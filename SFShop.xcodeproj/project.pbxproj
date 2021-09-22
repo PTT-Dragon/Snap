@@ -103,7 +103,6 @@
 				AE81BE0E26FB74C600AB4225 /* Account */,
 				AE81BE0D26FB735900AB4225 /* HomePage */,
 				AE81BE0C26FB735400AB4225 /* Login */,
-				AE81BE0B26FB734E00AB4225 /* Main */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -166,6 +165,7 @@
 				4B9FB9C926FB782900C90790 /* Components */,
 				4B9FB9C826FB781F00C90790 /* Utils */,
 				4B9FB9C726FB781500C90790 /* Network */,
+				AE81BE0B26FB734E00AB4225 /* Main */,
 				4B9FB9C626FB780700C90790 /* Modules */,
 				AE81BDE226FB6E7300AB4225 /* Assets.xcassets */,
 				AE81BDE426FB6E7300AB4225 /* LaunchScreen.storyboard */,
