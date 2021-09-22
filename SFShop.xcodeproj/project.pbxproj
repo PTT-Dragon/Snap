@@ -125,15 +125,17 @@
 		AE81BDD526FB6E7000AB4225 /* SFShop */ = {
 			isa = PBXGroup;
 			children = (
-				AE81BDD626FB6E7000AB4225 /* AppDelegate.h */,
-				AE81BDD726FB6E7000AB4225 /* AppDelegate.m */,
-				AE81BDDC26FB6E7000AB4225 /* ViewController.h */,
-				AE81BDDD26FB6E7000AB4225 /* ViewController.m */,
-				AE81BDDF26FB6E7000AB4225 /* Main.storyboard */,
+				AE81BE1126FB751000AB4225 /* Cart */,
+				AE81BE1026FB750800AB4225 /* Category */,
+				AE81BE0F26FB74D300AB4225 /* Community */,
+				AE81BE0E26FB74C600AB4225 /* Account */,
+				AE81BE0D26FB735900AB4225 /* HomePage */,
+				AE81BE0C26FB735400AB4225 /* Login */,
+				AE81BE0B26FB734E00AB4225 /* Main */,
 				AE81BDE226FB6E7300AB4225 /* Assets.xcassets */,
 				AE81BDE426FB6E7300AB4225 /* LaunchScreen.storyboard */,
 				AE81BDE726FB6E7300AB4225 /* Info.plist */,
-				AE81BDE826FB6E7300AB4225 /* main.m */,
+				AE81BDDF26FB6E7000AB4225 /* Main.storyboard */,
 			);
 			path = SFShop;
 			sourceTree = "<group>";
@@ -154,6 +156,60 @@
 				AE81BDFF26FB6E7300AB4225 /* Info.plist */,
 			);
 			path = SFShopUITests;
+			sourceTree = "<group>";
+		};
+		AE81BE0B26FB734E00AB4225 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				AE81BDD626FB6E7000AB4225 /* AppDelegate.h */,
+				AE81BDD726FB6E7000AB4225 /* AppDelegate.m */,
+				AE81BDDC26FB6E7000AB4225 /* ViewController.h */,
+				AE81BDDD26FB6E7000AB4225 /* ViewController.m */,
+				AE81BDE826FB6E7300AB4225 /* main.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		AE81BE0C26FB735400AB4225 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		AE81BE0D26FB735900AB4225 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		AE81BE0E26FB74C600AB4225 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		AE81BE0F26FB74D300AB4225 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		AE81BE1026FB750800AB4225 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		AE81BE1126FB751000AB4225 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
