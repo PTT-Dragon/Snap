@@ -117,6 +117,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                     <state key="normal" title="Login"/>
+                    <connections>
+                        <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="Kdq-bQ-jfh"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI4-Cb-XjV">
                     <rect key="frame" x="110.5" y="451" width="193" height="27"/>

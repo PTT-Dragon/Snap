@@ -17,8 +17,11 @@
 //*********************************************接口域名👆*********************************************//
 
 //*********************************************接口模块👇*********************************************//
-#define K_account_domain(url) [NSString stringWithFormat:@"%@/loginModule/%@",Host,url]
+#define K_account_domain(url) [NSString stringWithFormat:@"%@/h5/users/%@",Host,url]
 #define K_h5_domain(url) [NSString stringWithFormat:@"%@/h5/%@",Host,url]
 //*********************************************接口模块👆*********************************************//
+
+#pragma mark - login
+
 
 #endif /* SFNetworkMacro_h */

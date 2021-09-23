@@ -41,5 +41,12 @@
     _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
     _emailIndicationView.backgroundColor = [UIColor blackColor];
 }
+- (IBAction)loginAction:(id)sender {
+    [SFNetworkManager post:SFNet.account.login parameters:@{@"login":@{@"account":@"hxf01@qq.com",@"pwd":@"Abc@1234"}} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 
 @end

@@ -7,9 +7,7 @@
 
 #import "AppDelegate.h"
 #import "MainTabViewController.h"
-#import "FMDBManager.h"
-#import "SFNetworkURL.h"
-#import "SFNetworkManager.h"
+
 
 @interface AppDelegate ()
 

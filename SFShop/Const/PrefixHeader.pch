@@ -13,5 +13,9 @@
 
 
 #import "Macros.h"
+#import "FMDBManager.h"
+#import "SFNetworkURL.h"
+#import "SFNetworkManager.h"
+
 
 #endif /* PrefixHeader_pch */
