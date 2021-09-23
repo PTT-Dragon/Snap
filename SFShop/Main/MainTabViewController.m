@@ -6,6 +6,11 @@
 //
 
 #import "MainTabViewController.h"
+#import "AccountViewController.h"
+#import "HomeViewController.h"
+#import "CartViewController.h"
+#import "CommunityViewController.h"
+
 
 @interface MainTabViewController ()
 
@@ -16,6 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    AccountViewController *accountVC = [[AccountViewController alloc] init];
+    UINavigationController *tabNav = [[ UINavigationController alloc]initWithRootViewController:accountVC];
+    tabNav.tabBarItem.title = @"Account";
+    HomeViewController *homeVC = [[HomeViewController alloc] init];
+    homeVC.tabBarItem.title = @"Home";
+    CartViewController *cartVC = [[CartViewController alloc] init];
+    cartVC.tabBarItem.title = @"Cart";
+    CommunityViewController *CommunityVC = [[CommunityViewController alloc] init];
+    CommunityVC.tabBarItem.title = @"Community";
+    [self.tabBar setBackgroundColor:[UIColor whiteColor]];
+    [self.tabBar setTranslucent:NO];
+    [self setViewControllers:@[homeVC,CommunityVC,cartVC,tabNav]];
 }
 
 /*

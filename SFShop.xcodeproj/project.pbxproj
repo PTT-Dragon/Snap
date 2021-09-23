@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
+		1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122426FC5AC500235294 /* accountInfoCell.xib */; };
+		1B3C122826FC706000235294 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122726FC706000235294 /* LoginViewController.xib */; };
+		1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122A26FC7D3600235294 /* accountOrderCell.m */; };
+		1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122B26FC7D3600235294 /* accountOrderCell.xib */; };
+		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
+		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -42,6 +49,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B3C122226FC5AC500235294 /* accountInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountInfoCell.h; sourceTree = "<group>"; };
+		1B3C122326FC5AC500235294 /* accountInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountInfoCell.m; sourceTree = "<group>"; };
+		1B3C122426FC5AC500235294 /* accountInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
+		1B3C122726FC706000235294 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		1B3C122926FC7D3600235294 /* accountOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountOrderCell.h; sourceTree = "<group>"; };
+		1B3C122A26FC7D3600235294 /* accountOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountOrderCell.m; sourceTree = "<group>"; };
+		1B3C122B26FC7D3600235294 /* accountOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountOrderCell.xib; sourceTree = "<group>"; };
+		1B3C122E26FC808F00235294 /* accountSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountSubCell.h; sourceTree = "<group>"; };
+		1B3C122F26FC808F00235294 /* accountSubCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountSubCell.m; sourceTree = "<group>"; };
+		1B3C123026FC808F00235294 /* accountSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountSubCell.xib; sourceTree = "<group>"; };
 		4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
@@ -53,7 +70,9 @@
 		4B9FB9FE26FB7AAB00C90790 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		4B9FBA0326FB7AB600C90790 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		4B9FBA0426FB7AB600C90790 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
 		7B387B141A9718B8B8605036 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
+		ABCFEC0B341B688C59EBE3B6 /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
 		AE81BDD326FB6E7000AB4225 /* SFShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE81BDD626FB6E7000AB4225 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AE81BDD726FB6E7000AB4225 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -156,6 +175,7 @@
 			children = (
 				4B9FBA0326FB7AB600C90790 /* LoginViewController.h */,
 				4B9FBA0426FB7AB600C90790 /* LoginViewController.m */,
+				1B3C122726FC706000235294 /* LoginViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -165,6 +185,15 @@
 			children = (
 				4B9FB9F126FB7A7C00C90790 /* AccountViewController.h */,
 				4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */,
+				1B3C122226FC5AC500235294 /* accountInfoCell.h */,
+				1B3C122326FC5AC500235294 /* accountInfoCell.m */,
+				1B3C122426FC5AC500235294 /* accountInfoCell.xib */,
+				1B3C122926FC7D3600235294 /* accountOrderCell.h */,
+				1B3C122A26FC7D3600235294 /* accountOrderCell.m */,
+				1B3C122B26FC7D3600235294 /* accountOrderCell.xib */,
+				1B3C122E26FC808F00235294 /* accountSubCell.h */,
+				1B3C122F26FC808F00235294 /* accountSubCell.m */,
+				1B3C123026FC808F00235294 /* accountSubCell.xib */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -192,6 +221,8 @@
 			children = (
 				4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */,
 				7B387B141A9718B8B8605036 /* Pods-SFShop.release.xcconfig */,
+				ABCFEC0B341B688C59EBE3B6 /* Pods-SFShop.debug.xcconfig */,
+				50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -370,8 +401,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
+				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
+				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
+				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
 				AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,10 +475,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
+				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
+				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
+				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
 				AE81BDE926FB6E7300AB4225 /* main.m in Sources */,
