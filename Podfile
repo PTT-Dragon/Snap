@@ -9,5 +9,6 @@ target 'SFShop' do
   pod 'FMDB'
   pod 'MJRefresh'
   pod 'IQKeyboardManager'
+  pod 'JKCategories'
 
 end 
