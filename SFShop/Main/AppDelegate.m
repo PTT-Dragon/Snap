@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "MainTabViewController.h"
+#import "FMDBManager.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +22,7 @@
     MainTabViewController *tab = [[MainTabViewController alloc] init];
     self.window.rootViewController = tab;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
