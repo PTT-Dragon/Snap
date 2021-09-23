@@ -10,6 +10,8 @@
 #import "accountInfoCell.h"
 #import "accountOrderCell.h"
 #import "accountSubCell.h"
+#import "LoginViewController.h"
+
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -59,6 +61,14 @@
         return 134;
     }
     return 56;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 3) {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 - (UITableView *)tableView
 {

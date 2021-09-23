@@ -10,7 +10,7 @@
 #import "HomeViewController.h"
 #import "CartViewController.h"
 #import "CommunityViewController.h"
-
+#import "BaseNavigationController.h"
 
 @interface MainTabViewController ()
 
@@ -22,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     AccountViewController *accountVC = [[AccountViewController alloc] init];
-    UINavigationController *tabNav = [[ UINavigationController alloc]initWithRootViewController:accountVC];
+    BaseNavigationController *tabNav = [[BaseNavigationController alloc]initWithRootViewController:accountVC];
     tabNav.tabBarItem.title = @"Account";
     HomeViewController *homeVC = [[HomeViewController alloc] init];
     homeVC.tabBarItem.title = @"Home";

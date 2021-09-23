@@ -7,7 +7,18 @@
 
 #import "LoginViewController.h"
 
+
+
 @interface LoginViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
+@property (weak, nonatomic) IBOutlet UIButton *emailBtn;
+@property (weak, nonatomic) IBOutlet UIView *emailIndicationView;
+@property (weak, nonatomic) IBOutlet UIView *phoneIndicationView;
+@property (weak, nonatomic) IBOutlet UITextField *accountField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *signUpBtn;
 
 @end
 
@@ -16,17 +27,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.title = @"Login";
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)phoneAction:(UIButton *)sender {
+    sender.selected = YES;
+    _emailBtn.selected = NO;
+    _phoneIndicationView.backgroundColor = [UIColor blackColor];
+    _emailIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
 }
-*/
+- (IBAction)emailAction:(UIButton *)sender {
+    sender.selected = YES;
+    _phoneBtn.selected = NO;
+    _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
+    _emailIndicationView.backgroundColor = [UIColor blackColor];
+}
 
 @end

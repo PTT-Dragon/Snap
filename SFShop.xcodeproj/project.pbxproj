@@ -14,6 +14,7 @@
 		1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122B26FC7D3600235294 /* accountOrderCell.xib */; };
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
+		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -59,6 +60,10 @@
 		1B3C122E26FC808F00235294 /* accountSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountSubCell.h; sourceTree = "<group>"; };
 		1B3C122F26FC808F00235294 /* accountSubCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountSubCell.m; sourceTree = "<group>"; };
 		1B3C123026FC808F00235294 /* accountSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountSubCell.xib; sourceTree = "<group>"; };
+		1BDBEB8526FCADAB0018109B /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		1BDBEB8726FCAE7E0018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
@@ -120,6 +125,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BDBEB8626FCAE160018109B /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				1BDBEB8526FCADAB0018109B /* Macros.h */,
+				1BDBEB8726FCAE7E0018109B /* PrefixHeader.pch */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
 		1DFF059EB8FC08129B2B863F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +266,7 @@
 		AE81BDD526FB6E7000AB4225 /* SFShop */ = {
 			isa = PBXGroup;
 			children = (
+				1BDBEB8626FCAE160018109B /* Const */,
 				4B9FB9C926FB782900C90790 /* Components */,
 				4B9FB9C826FB781F00C90790 /* Utils */,
 				4B9FB9C726FB781500C90790 /* Network */,
@@ -293,6 +308,8 @@
 				AE81BDE826FB6E7300AB4225 /* main.m */,
 				AE81BE1226FB75B400AB4225 /* MainTabViewController.h */,
 				AE81BE1326FB75B400AB4225 /* MainTabViewController.m */,
+				1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */,
+				1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -480,6 +497,7 @@
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
+				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
@@ -660,6 +678,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SFShop/Const/PrefixHeader.pch";
 				INFOPLIST_FILE = SFShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -679,6 +699,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SFShop/Const/PrefixHeader.pch";
 				INFOPLIST_FILE = SFShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
