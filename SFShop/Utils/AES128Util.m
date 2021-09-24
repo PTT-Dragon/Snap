@@ -2,8 +2,8 @@
 #import <CommonCrypto/CommonCryptor.h>
 
 @implementation AES128Util
-static NSString *K_AES_128_CBC_LoginKey = @"4EGJ6D9CFFA2GG9A";
-static NSString *K_AES_128_CBC_IV = @"0102030405060708";
+static NSString *K_AES_128_CBC_LOGIN_KEY = @"4EGJ6D9CFFA2GG9A";
+static NSString *K_AES_128_CBC_LOGIN_IV = @"0102030405060708";
 
 #pragma mark - Public
 NSString * aes_128_cbc_encryptString(NSString *content, NSString *key, NSString *iv) {
@@ -24,11 +24,11 @@ NSString * aes_128_cbc_decryptString(NSString *content, NSString *key, NSString 
 }
 
 NSString * login_aes_128_cbc_encrypt(NSString *content) {
-    return aes_128_cbc_encryptString(content,K_AES_128_CBC_LoginKey,K_AES_128_CBC_IV);;
+    return aes_128_cbc_encryptString(content,K_AES_128_CBC_LOGIN_KEY,K_AES_128_CBC_LOGIN_IV);;
 }
 
 NSString * login_aes_128_cbc_decrypt(NSString *content) {
-    return aes_128_cbc_decryptString(content,K_AES_128_CBC_LoginKey,K_AES_128_CBC_IV);;
+    return aes_128_cbc_decryptString(content,K_AES_128_CBC_LOGIN_KEY,K_AES_128_CBC_LOGIN_IV);;
 }
 
 #pragma mark - Private
