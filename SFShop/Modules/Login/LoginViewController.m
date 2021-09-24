@@ -7,7 +7,7 @@
 
 #import "LoginViewController.h"
 #import "SignUpViewController.h"
-
+#import "AES128Util.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -42,10 +42,10 @@
     _emailIndicationView.backgroundColor = [UIColor blackColor];
 }
 - (IBAction)loginAction:(id)sender {
-    [SFNetworkManager post:SFNet.account.login parameters:@{@"login":@{@"account":@"hxf01@qq.com",@"pwd":@"Abc@1234"}} success:^(id  _Nullable response) {
-        
+    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"hxf01@qq.com",@"pwd":login_aes_128_cbc_encrypt(@"Abc@1234")} success:^(id  _Nullable response) {
+        NSLog(@"");
     } failed:^(NSError * _Nonnull error) {
-        
+        NSLog(@"");
     }];
 }
 - (IBAction)signUpAction:(id)sender {
