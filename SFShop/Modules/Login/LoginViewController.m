@@ -6,8 +6,7 @@
 //
 
 #import "LoginViewController.h"
-
-
+#import "AES128Util.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -40,6 +39,13 @@
     _phoneBtn.selected = NO;
     _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
     _emailIndicationView.backgroundColor = [UIColor blackColor];
+}
+- (IBAction)loginAction:(id)sender {
+    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"hxf01@qq.com",@"pwd":login_aes_128_cbc_encrypt(@"Abc@1234")} success:^(id  _Nullable response) {
+        NSLog(@"");
+    } failed:^(NSError * _Nonnull error) {
+        NSLog(@"");
+    }];
 }
 
 @end
