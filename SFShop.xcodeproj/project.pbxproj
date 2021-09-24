@@ -16,6 +16,8 @@
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */; };
+		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
+		1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -73,6 +75,9 @@
 		1BDBEB8F26FCB7590018109B /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		1BDBEB9026FCC9CE0018109B /* SFNetworkLoginModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkLoginModule.h; sourceTree = "<group>"; };
 		1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkLoginModule.m; sourceTree = "<group>"; };
+		1BDBEB9326FD6A1A0018109B /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
@@ -216,6 +221,9 @@
 				4B9FBA0326FB7AB600C90790 /* LoginViewController.h */,
 				4B9FBA0426FB7AB600C90790 /* LoginViewController.m */,
 				1B3C122726FC706000235294 /* LoginViewController.xib */,
+				1BDBEB9326FD6A1A0018109B /* SignUpViewController.h */,
+				1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */,
+				1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -461,6 +469,7 @@
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
+				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
 				AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +542,7 @@
 				4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */,
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
+				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
 				AE81BE2226FCB6E200AB4225 /* SFNetworkH5Module.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */,

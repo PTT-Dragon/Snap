@@ -6,7 +6,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "SignUpViewController.h"
 
 
 @interface LoginViewController ()
@@ -47,6 +47,10 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
+}
+- (IBAction)signUpAction:(id)sender {
+    SignUpViewController *vc = [[SignUpViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
