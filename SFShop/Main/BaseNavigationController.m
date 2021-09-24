@@ -50,7 +50,7 @@
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.interactivePopGestureRecognizer.delegate = weakSelf;
     }
-    NSDictionary *dict = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    NSDictionary *dict = @{NSForegroundColorAttributeName : [UIColor blackColor]};
     [self.navigationBar setTitleTextAttributes:dict];
 }
 

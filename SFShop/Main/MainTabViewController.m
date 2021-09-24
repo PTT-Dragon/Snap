@@ -28,11 +28,12 @@
     homeVC.tabBarItem.title = @"Home";
     CartViewController *cartVC = [[CartViewController alloc] init];
     cartVC.tabBarItem.title = @"Cart";
-    CommunityViewController *CommunityVC = [[CommunityViewController alloc] init];
-    CommunityVC.tabBarItem.title = @"Community";
+    CommunityViewController *communityVC = [[CommunityViewController alloc] init];
+    BaseNavigationController *communityNav = [[BaseNavigationController alloc]initWithRootViewController:communityVC];
+    communityNav.tabBarItem.title = @"Community";
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar setTranslucent:NO];
-    [self setViewControllers:@[homeVC,CommunityVC,cartVC,tabNav]];
+    [self setViewControllers:@[homeVC,communityNav,cartVC,tabNav]];
 }
 
 /*

@@ -1,22 +1,21 @@
 //
-//  CommunityViewController.m
+//  CommunityChildController.m
 //  SFShop
 //
-//  Created by Jacue on 2021/9/22.
+//  Created by Jacue on 2021/9/23.
 //
 
-#import "CommunityViewController.h"
+#import "CommunityChildController.h"
 
-@interface CommunityViewController ()
+@interface CommunityChildController ()
 
 @end
 
-@implementation CommunityViewController
+@implementation CommunityChildController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Community";
 }
 
 /*
