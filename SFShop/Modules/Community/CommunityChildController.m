@@ -6,6 +6,7 @@
 //
 
 #import "CommunityChildController.h"
+#import <JKCategories/JKCategories.h>
 
 @interface CommunityChildController ()
 
@@ -16,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor jk_randomColor];
 }
 
 /*

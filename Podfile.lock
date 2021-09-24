@@ -160,6 +160,9 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.7.2)
+  - VTMagic (1.2.4):
+    - VTMagic/Core (= 1.2.4)
+  - VTMagic/Core (1.2.4)
 
 DEPENDENCIES:
   - AFNetworking
@@ -170,6 +173,7 @@ DEPENDENCIES:
   - Masonry
   - MBProgressHUD
   - MJRefresh
+  - VTMagic
 
 SPEC REPOS:
   trunk:
@@ -181,6 +185,7 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - VTMagic
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -191,7 +196,8 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
+  VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
 
-PODFILE CHECKSUM: 5eb7f74f85fc7f872de8d6bc3c674d604d502818
+PODFILE CHECKSUM: 6c5b97c7ce3243fd2cab5ed72375aae905117061
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.0
