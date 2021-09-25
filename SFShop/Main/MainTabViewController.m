@@ -11,6 +11,7 @@
 #import "CartViewController.h"
 #import "CommunityViewController.h"
 #import "BaseNavigationController.h"
+#import "CategoryViewController.h"
 
 @interface MainTabViewController ()
 

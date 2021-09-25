@@ -42,7 +42,7 @@
         @"pageIndex": @"0",
         @"pageSize": @"10"
     };
-    [SFNetworkManager get: SFNet.h5.articles parameters: param success:^(id  _Nullable response) {
+    [SFNetworkManager get: SFNet.article.articles parameters: param success:^(id  _Nullable response) {
         NSError *error;
         self.model = [[ArticleListModel alloc] initWithDictionary: response error: &error];
         [self.collectionView reloadData];

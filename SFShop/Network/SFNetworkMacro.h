@@ -17,8 +17,10 @@
 //*********************************************接口域名👆*********************************************//
 
 //*********************************************接口模块👇*********************************************//
-#define K_account_domain(url) [NSString stringWithFormat:@"%@/h5/users/%@",Host,url]
-#define K_h5_domain(url) [NSString stringWithFormat:@"%@/h5/%@",Host,url]
+#define K_users_domain(url) [NSString stringWithFormat:@"%@/h5/users/%@",Host,url]
+#define K_pages_domain(url) [NSString stringWithFormat:@"%@/h5/pages/%@",Host,url]
+#define K_articles_domain(url) [NSString stringWithFormat:@"%@/h5/articles/%@",Host,url]
+
 //*********************************************接口模块👆*********************************************//
 
 #pragma mark - login
