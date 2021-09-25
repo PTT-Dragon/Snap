@@ -16,6 +16,8 @@
 #import "FMDBManager.h"
 #import "SFNetworkURL.h"
 #import "SFNetworkManager.h"
+#import "baseTool.h"
+#import "JSONModel.h"
 #import "SFNetworkMacro.h"
 
 #endif /* PrefixHeader_pch */

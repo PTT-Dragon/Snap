@@ -11,8 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFNetworkUsersModule : NSObject
 
-@property (nonatomic, readonly, strong) NSString *login;
-
+@property (nonatomic, readwrite, strong) NSString *login;
+@property (nonatomic, readwrite, strong) NSString *check;
+@property (nonatomic, readwrite, strong) NSString *getCode;
+@property (nonatomic, readwrite, strong) NSString *codeCheck;
 @end
 
 NS_ASSUME_NONNULL_END

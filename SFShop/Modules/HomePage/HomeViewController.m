@@ -6,6 +6,8 @@
 //
 
 #import "HomeViewController.h"
+#import <YYModel/YYModel.h>
+#import "HomePageModel.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, readwrite, strong) UITableView *tableView;
@@ -22,8 +24,13 @@
 }
 
 - (void)loadDatas {
-    SFNet.page.buyer_homepage;
-//    [SFNetworkManager get:<#(nonnull NSString *)#> parameters:<#(nullable NSDictionary *)#> success:<#^(id  _Nullable response)success#> failed:<#^(NSError * _Nonnull error)failed#>]
+    [SFNetworkManager get:SFNet.page.buyer_homepage parameters:nil success:^(id  _Nullable response) {
+        HomePageModel *pageModel = [HomePageModel yy_modelWithJSON:response];
+        LayoutModel *model = [LayoutModel yy_modelWithJSON:pageModel.layout];
+        NSLog(@"");
+    } failed:^(NSError * _Nonnull error) {
+        NSLog(@"");
+    }];
 }
 
 - (void)loadsubviews {
