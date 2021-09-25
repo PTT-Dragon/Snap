@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, copy) NSString *time;//查询系统时间
 
+@property (nonatomic, readonly, copy) NSString *articles;//查询系统时间
+
+
 @end
 
 NS_ASSUME_NONNULL_END

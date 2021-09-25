@@ -15,8 +15,12 @@
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
-		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */; };
+		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
+		4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43851726FEB80000BA3D90 /* ArticleListModel.m */; };
+		4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */; };
+		4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */; };
+		4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B43852B26FEC1CC00BA3D90 /* ArticleListCell.xib */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -73,11 +77,18 @@
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1BDBEB8F26FCB7590018109B /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		4B170FD426FCC13A00699B87 /* CommunityChildController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityChildController.h; sourceTree = "<group>"; };
-		4B170FD526FCC13A00699B87 /* CommunityChildController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityChildController.m; sourceTree = "<group>"; };
 		1BDBEB9026FCC9CE0018109B /* SFNetworkLoginModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkLoginModule.h; sourceTree = "<group>"; };
 		1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkLoginModule.m; sourceTree = "<group>"; };
+		4B170FD426FCC13A00699B87 /* CommunityChildController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityChildController.h; sourceTree = "<group>"; };
+		4B170FD526FCC13A00699B87 /* CommunityChildController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityChildController.m; sourceTree = "<group>"; };
 		4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
+		4B43851626FEB80000BA3D90 /* ArticleListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleListModel.h; sourceTree = "<group>"; };
+		4B43851726FEB80000BA3D90 /* ArticleListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleListModel.m; sourceTree = "<group>"; };
+		4B43852026FEBC5E00BA3D90 /* CommunityWaterfallLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityWaterfallLayout.h; sourceTree = "<group>"; };
+		4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityWaterfallLayout.m; sourceTree = "<group>"; };
+		4B43852926FEC1CC00BA3D90 /* ArticleListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleListCell.h; sourceTree = "<group>"; };
+		4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleListCell.m; sourceTree = "<group>"; };
+		4B43852B26FEC1CC00BA3D90 /* ArticleListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListCell.xib; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		4B9FB9F126FB7A7C00C90790 /* AccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -159,6 +170,27 @@
 				E56812568047A87A9E20FE0E /* libPods-SFShop.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B43851526FEB7D400BA3D90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B43851626FEB80000BA3D90 /* ArticleListModel.h */,
+				4B43851726FEB80000BA3D90 /* ArticleListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4B43851F26FEBC1800BA3D90 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B43852026FEBC5E00BA3D90 /* CommunityWaterfallLayout.h */,
+				4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */,
+				4B43852926FEC1CC00BA3D90 /* ArticleListCell.h */,
+				4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */,
+				4B43852B26FEC1CC00BA3D90 /* ArticleListCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4B9FB9C626FB780700C90790 /* Modules */ = {
@@ -258,6 +290,8 @@
 		4B9FB9DC26FB7A1F00C90790 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				4B43851F26FEBC1800BA3D90 /* View */,
+				4B43851526FEB7D400BA3D90 /* Model */,
 				4B9FB9F726FB7A9F00C90790 /* CommunityViewController.h */,
 				4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */,
 				4B170FD426FCC13A00699B87 /* CommunityChildController.h */,
@@ -469,6 +503,7 @@
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
+				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
 				AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */,
@@ -540,7 +575,9 @@
 			files = (
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
+				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
 				4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */,
+				4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */,
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
 				AE81BE2226FCB6E200AB4225 /* SFNetworkH5Module.m in Sources */,
@@ -556,6 +593,7 @@
 				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
+				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
 				AE81BDE926FB6E7300AB4225 /* main.m in Sources */,

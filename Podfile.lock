@@ -160,6 +160,9 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.7.2)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
   - VTMagic (1.2.4):
     - VTMagic/Core (= 1.2.4)
   - VTMagic/Core (1.2.4)
@@ -173,6 +176,7 @@ DEPENDENCIES:
   - Masonry
   - MBProgressHUD
   - MJRefresh
+  - SDWebImage
   - VTMagic
 
 SPEC REPOS:
@@ -185,6 +189,7 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - SDWebImage
     - VTMagic
 
 SPEC CHECKSUMS:
@@ -196,8 +201,9 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
 
-PODFILE CHECKSUM: 6c5b97c7ce3243fd2cab5ed72375aae905117061
+PODFILE CHECKSUM: cdbeccd0050e9f940646d550eade11e6aa9e9c6f
 
 COCOAPODS: 1.11.0

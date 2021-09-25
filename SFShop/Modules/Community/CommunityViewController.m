@@ -13,6 +13,7 @@
 @interface CommunityViewController () <VTMagicViewDelegate, VTMagicViewDataSource>
 
 @property(nonatomic, strong) NSArray *menuList;
+@property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 
 @end
@@ -26,6 +27,7 @@
     
     self.currentMenuIndex = 0;
     self.menuList = @[@"Recommend", @"Phone", @"House", @"Car", @"Computer", @"Camera"];
+    self.articleCatgIdList = @[@"6", @"7", @"10", @"6", @"7", @"10"];
     
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
@@ -62,6 +64,7 @@
     CommunityChildController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
         gridViewController = [[CommunityChildController alloc] init];
+        gridViewController.articleCatgId = self.articleCatgIdList[pageIndex];
     }
     return gridViewController;
 }
@@ -73,6 +76,7 @@
 }
 
 - (void)magicView:(VTMagicView *)magicView viewDidDisappear:(UIViewController *)viewController atPage:(NSUInteger)pageIndex {
+//    viewController.view.frame = magicView.bounds;
     NSLog(@"pageIndex:%ld viewDidDisappear:%@", (long)pageIndex, viewController.view);
 }
 

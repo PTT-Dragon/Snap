@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CommunityChildController : UIViewController
 
+@property (nonatomic, strong) NSString *articleCatgId;
+
 @end
 
 NS_ASSUME_NONNULL_END
