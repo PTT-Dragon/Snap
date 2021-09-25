@@ -18,6 +18,14 @@
 		1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
 		1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */; };
+		1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9B26FDA1360018109B /* forgotPasswordView.m */; };
+		1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9D26FDA1870018109B /* forgotPasswordView.xib */; };
+		1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA026FDAEB50018109B /* verifyCodeVC.m */; };
+		1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA126FDAEB50018109B /* verifyCodeVC.xib */; };
+		1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA526FDAF980018109B /* HWTFCodeBView.m */; };
+		1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA826FDB8690018109B /* resetPasswordViewController.m */; };
+		1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */; };
+		1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBAD26FDC8400018109B /* baseTool.m */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -79,6 +87,19 @@
 		1BDBEB9326FD6A1A0018109B /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		1BDBEB9A26FDA1360018109B /* forgotPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = forgotPasswordView.h; sourceTree = "<group>"; };
+		1BDBEB9B26FDA1360018109B /* forgotPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = forgotPasswordView.m; sourceTree = "<group>"; };
+		1BDBEB9D26FDA1870018109B /* forgotPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = forgotPasswordView.xib; sourceTree = "<group>"; };
+		1BDBEB9F26FDAEB50018109B /* verifyCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = verifyCodeVC.h; sourceTree = "<group>"; };
+		1BDBEBA026FDAEB50018109B /* verifyCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = verifyCodeVC.m; sourceTree = "<group>"; };
+		1BDBEBA126FDAEB50018109B /* verifyCodeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = verifyCodeVC.xib; sourceTree = "<group>"; };
+		1BDBEBA426FDAF970018109B /* HWTFCodeBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTFCodeBView.h; sourceTree = "<group>"; };
+		1BDBEBA526FDAF980018109B /* HWTFCodeBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWTFCodeBView.m; sourceTree = "<group>"; };
+		1BDBEBA726FDB8690018109B /* resetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resetPasswordViewController.h; sourceTree = "<group>"; };
+		1BDBEBA826FDB8690018109B /* resetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = resetPasswordViewController.m; sourceTree = "<group>"; };
+		1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = resetPasswordViewController.xib; sourceTree = "<group>"; };
+		1BDBEBAC26FDC8400018109B /* baseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseTool.h; sourceTree = "<group>"; };
+		1BDBEBAD26FDC8400018109B /* baseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseTool.m; sourceTree = "<group>"; };
 		4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
@@ -155,6 +176,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BDBEB9926FDA11B0018109B /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				1BDBEB9A26FDA1360018109B /* forgotPasswordView.h */,
+				1BDBEB9B26FDA1360018109B /* forgotPasswordView.m */,
+				1BDBEB9D26FDA1870018109B /* forgotPasswordView.xib */,
+				1BDBEBA726FDB8690018109B /* resetPasswordViewController.h */,
+				1BDBEBA826FDB8690018109B /* resetPasswordViewController.m */,
+				1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
 		1DFF059EB8FC08129B2B863F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +241,8 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1BDBEBA426FDAF970018109B /* HWTFCodeBView.h */,
+				1BDBEBA526FDAF980018109B /* HWTFCodeBView.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -223,12 +259,16 @@
 		4B9FB9D726FB7A1F00C90790 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				1BDBEB9926FDA11B0018109B /* ForgotPassword */,
 				4B9FBA0326FB7AB600C90790 /* LoginViewController.h */,
 				4B9FBA0426FB7AB600C90790 /* LoginViewController.m */,
 				1B3C122726FC706000235294 /* LoginViewController.xib */,
 				1BDBEB9326FD6A1A0018109B /* SignUpViewController.h */,
 				1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */,
 				1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */,
+				1BDBEB9F26FDAEB50018109B /* verifyCodeVC.h */,
+				1BDBEBA026FDAEB50018109B /* verifyCodeVC.m */,
+				1BDBEBA126FDAEB50018109B /* verifyCodeVC.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -276,6 +316,8 @@
 				4BBFEEA026FCAE1400E3C832 /* Enums.m */,
 				1BDBEB8F26FCB7590018109B /* Macros.h */,
 				1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */,
+				1BDBEBAC26FDC8400018109B /* baseTool.h */,
+				1BDBEBAD26FDC8400018109B /* baseTool.m */,
 			);
 			path = Const;
 			sourceTree = "<group>";
@@ -471,8 +513,11 @@
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
+				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
+				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
+				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
 				AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */,
@@ -544,13 +589,18 @@
 			files = (
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
+				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,
 				4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */,
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
+				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
+				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,
 				AE81BE2226FCB6E200AB4225 /* SFNetworkH5Module.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
+				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */,
+				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,
 				AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,

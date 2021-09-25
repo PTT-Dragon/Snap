@@ -82,7 +82,7 @@
                         <constraint firstAttribute="height" constant="46" id="Qws-uj-43E"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Phone number  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpW-bW-dO8">
                     <rect key="frame" x="32" y="166" width="96" height="15"/>
@@ -108,6 +108,9 @@
                     <state key="normal" title="Forgot Password">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                     </state>
+                    <connections>
+                        <action selector="forgotAction:" destination="-1" eventType="touchUpInside" id="N3g-ru-ucW"/>
+                    </connections>
                 </button>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdG-AI-YDO">
                     <rect key="frame" x="16" y="375" width="382" height="46"/>

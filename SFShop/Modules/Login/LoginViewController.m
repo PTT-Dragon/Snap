@@ -8,6 +8,7 @@
 #import "LoginViewController.h"
 #import "SignUpViewController.h"
 #import "AES128Util.h"
+#import "forgotPasswordView.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -43,6 +44,8 @@
 }
 - (IBAction)loginAction:(id)sender {
     [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"hxf01@qq.com",@"pwd":login_aes_128_cbc_encrypt(@"Abc@1234")} success:^(id  _Nullable response) {
+        UserModel *model = [[UserModel alloc] initWithDictionary:response error:nil];
+        [[FMDBManager sharedInstance] insertUser:model];
         NSLog(@"");
     } failed:^(NSError * _Nonnull error) {
         NSLog(@"");
@@ -51,6 +54,11 @@
 - (IBAction)signUpAction:(id)sender {
     SignUpViewController *vc = [[SignUpViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (IBAction)forgotAction:(id)sender {
+    forgotPasswordView *view = [[NSBundle mainBundle] loadNibNamed:@"forgotPasswordView" owner:self options:nil].firstObject;
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    [self.view addSubview:view];
 }
 
 @end
