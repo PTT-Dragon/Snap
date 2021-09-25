@@ -44,6 +44,7 @@
 		AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE2E26FE1FD800AB4225 /* CategoryViewController.m */; };
 		AE81BE3526FF318900AB4225 /* SFNetworkPageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE3426FF318900AB4225 /* SFNetworkPageModule.m */; };
 		AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE3726FF3F7700AB4225 /* SFNetworkArticlesModule.m */; };
+		AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE3B26FF449700AB4225 /* HomePageModel.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -142,6 +143,8 @@
 		AE81BE3426FF318900AB4225 /* SFNetworkPageModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkPageModule.m; sourceTree = "<group>"; };
 		AE81BE3626FF3F7700AB4225 /* SFNetworkArticlesModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkArticlesModule.h; sourceTree = "<group>"; };
 		AE81BE3726FF3F7700AB4225 /* SFNetworkArticlesModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkArticlesModule.m; sourceTree = "<group>"; };
+		AE81BE3A26FF449700AB4225 /* HomePageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
+		AE81BE3B26FF449700AB4225 /* HomePageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +259,7 @@
 		4B9FB9D626FB7A1F00C90790 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				AE81BE3926FF447200AB4225 /* Model */,
 				4B9FB9FD26FB7AAB00C90790 /* HomeViewController.h */,
 				4B9FB9FE26FB7AAB00C90790 /* HomeViewController.m */,
 				AE81BE2A26FE153800AB4225 /* MerchandisePageController.h */,
@@ -416,6 +420,15 @@
 				AE81BE2E26FE1FD800AB4225 /* CategoryViewController.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		AE81BE3926FF447200AB4225 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE81BE3A26FF449700AB4225 /* HomePageModel.h */,
+				AE81BE3B26FF449700AB4225 /* HomePageModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -612,6 +625,7 @@
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
+				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,
 				AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,

@@ -6,6 +6,7 @@ target 'SFShop' do
   pod 'Masonry'
   pod 'MBProgressHUD'
   pod 'JSONModel'
+  pod 'YYModel'
   pod 'FMDB'
   pod 'MJRefresh'
   pod 'IQKeyboardManager'
