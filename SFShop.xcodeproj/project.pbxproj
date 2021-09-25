@@ -21,6 +21,9 @@
 		4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */; };
 		4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */; };
 		4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B43852B26FEC1CC00BA3D90 /* ArticleListCell.xib */; };
+		4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43857A26FF535600BA3D90 /* CommunityDetailController.m */; };
+		4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B43857B26FF535600BA3D90 /* CommunityDetailController.xib */; };
+		4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43858226FF5D2400BA3D90 /* ArticleDetailModel.m */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -92,6 +95,11 @@
 		4B43852926FEC1CC00BA3D90 /* ArticleListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleListCell.h; sourceTree = "<group>"; };
 		4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleListCell.m; sourceTree = "<group>"; };
 		4B43852B26FEC1CC00BA3D90 /* ArticleListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListCell.xib; sourceTree = "<group>"; };
+		4B43857926FF535600BA3D90 /* CommunityDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityDetailController.h; sourceTree = "<group>"; };
+		4B43857A26FF535600BA3D90 /* CommunityDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityDetailController.m; sourceTree = "<group>"; };
+		4B43857B26FF535600BA3D90 /* CommunityDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityDetailController.xib; sourceTree = "<group>"; };
+		4B43858126FF5D2400BA3D90 /* ArticleDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleDetailModel.h; sourceTree = "<group>"; };
+		4B43858226FF5D2400BA3D90 /* ArticleDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailModel.m; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		4B9FB9F126FB7A7C00C90790 /* AccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -186,6 +194,8 @@
 			children = (
 				4B43851626FEB80000BA3D90 /* ArticleListModel.h */,
 				4B43851726FEB80000BA3D90 /* ArticleListModel.m */,
+				4B43858126FF5D2400BA3D90 /* ArticleDetailModel.h */,
+				4B43858226FF5D2400BA3D90 /* ArticleDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,6 +320,9 @@
 				4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */,
 				4B170FD426FCC13A00699B87 /* CommunityChildController.h */,
 				4B170FD526FCC13A00699B87 /* CommunityChildController.m */,
+				4B43857926FF535600BA3D90 /* CommunityDetailController.h */,
+				4B43857A26FF535600BA3D90 /* CommunityDetailController.m */,
+				4B43857B26FF535600BA3D90 /* CommunityDetailController.xib */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -523,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
+				4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
@@ -597,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
+				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
@@ -608,6 +623,7 @@
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
+				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
