@@ -19,5 +19,8 @@
 #import "baseTool.h"
 #import "JSONModel.h"
 #import "SFNetworkMacro.h"
+#import "UIColor+JKHEX.h"
+#import <Masonry/Masonry.h>
+#import <YYModel/YYModel.h>
 
 #endif /* PrefixHeader_pch */

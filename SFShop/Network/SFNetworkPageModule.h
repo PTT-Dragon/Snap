@@ -11,7 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFNetworkPageModule : NSObject
 
-@property (nonatomic, readonly, copy) NSString *buyer_homepage;
+@property (nonatomic, readonly, copy) NSString *buyer_homepage;//首页列表
+@property (nonatomic, readonly, copy) NSString *buyer_displaycatgs;//category 列表
 
 @end
 

@@ -39,11 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSArray<ChildNode *> *childNodes;
 @end
 
-@interface LayoutModel : NSObject
-
-
-
-@end
 
 
 NS_ASSUME_NONNULL_END
