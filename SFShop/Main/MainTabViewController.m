@@ -23,18 +23,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     AccountViewController *accountVC = [[AccountViewController alloc] init];
-    BaseNavigationController *tabNav = [[BaseNavigationController alloc]initWithRootViewController:accountVC];
-    tabNav.tabBarItem.title = @"Account";
+    BaseNavigationController *accountNav = [[BaseNavigationController alloc]initWithRootViewController:accountVC];
+    accountNav.tabBarItem.title = @"Account";
+    accountNav.tabBarItem.image = [UIImage imageNamed:@"account_tab_icon"];
     HomeViewController *homeVC = [[HomeViewController alloc] init];
     homeVC.tabBarItem.title = @"Home";
+    homeVC.tabBarItem.image = [UIImage imageNamed:@"home_tab_icon"];
     CartViewController *cartVC = [[CartViewController alloc] init];
     cartVC.tabBarItem.title = @"Cart";
+    cartVC.tabBarItem.image = [UIImage imageNamed:@"cart_tab_icon"];
     CommunityViewController *communityVC = [[CommunityViewController alloc] init];
     BaseNavigationController *communityNav = [[BaseNavigationController alloc]initWithRootViewController:communityVC];
     communityNav.tabBarItem.title = @"Community";
+    communityNav.tabBarItem.image = [UIImage imageNamed:@"community_tab_icon"];
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar setTranslucent:NO];
-    [self setViewControllers:@[homeVC,communityNav,cartVC,tabNav]];
+    [self setViewControllers:@[homeVC,communityNav,cartVC,accountNav]];
 }
 
 /*

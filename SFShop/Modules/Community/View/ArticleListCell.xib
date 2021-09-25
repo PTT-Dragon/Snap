@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,6 +49,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ndQ-u6-Nr8">
+                        <rect key="frame" x="205.5" y="324.5" width="12" height="8.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="Dhz-bP-fm4"/>
+                            <constraint firstAttribute="height" constant="12" id="X14-8O-SLk"/>
+                        </constraints>
+                        <imageReference key="image" image="eye" catalog="system" renderingMode="original"/>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
@@ -66,6 +75,8 @@
                 <constraint firstItem="7dv-l1-e2f" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="l2J-x0-GeD"/>
                 <constraint firstAttribute="bottom" secondItem="s3g-OR-Yhw" secondAttribute="bottom" constant="8" id="pN5-gM-feL"/>
                 <constraint firstItem="s3g-OR-Yhw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="tJy-cl-iDK"/>
+                <constraint firstItem="ndQ-u6-Nr8" firstAttribute="centerY" secondItem="s3g-OR-Yhw" secondAttribute="centerY" id="wPd-q3-xEH"/>
+                <constraint firstItem="4LY-u0-5Ty" firstAttribute="leading" secondItem="ndQ-u6-Nr8" secondAttribute="trailing" constant="4" id="yOK-KQ-pt5"/>
                 <constraint firstItem="dQm-JK-2WV" firstAttribute="top" secondItem="7dv-l1-e2f" secondAttribute="bottom" constant="8" id="z28-Di-Q21"/>
             </constraints>
             <size key="customSize" width="263" height="349"/>
@@ -79,4 +90,7 @@
             <point key="canvasLocation" x="50.000000000000007" y="69.977678571428569"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="eye" catalog="system" width="128" height="81"/>
+    </resources>
 </document>
