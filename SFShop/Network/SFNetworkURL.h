@@ -6,8 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SFNetworkLoginModule.h"
-#import "SFNetworkH5Module.h"
+#import "SFNetworkUsersModule.h"
+#import "SFNetworkPageModule.h"
+#import "SFNetworkArticlesModule.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,12 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 单例
 + (instancetype)shareInstance;
 
+/// 首页模块
+@property (nonatomic, readwrite, strong) SFNetworkPageModule *page;
+
 /// 账户模块
-@property (nonatomic, readonly, strong) SFNetworkLoginModule *account;
+@property (nonatomic, readwrite, strong) SFNetworkUsersModule *account;
 
-/// h5模块
-@property (nonatomic, readonly, strong) SFNetworkH5Module *h5;
-
+/// 文章模块
+@property (nonatomic, readwrite, strong) SFNetworkArticlesModule *article;
 @end
 
 NS_ASSUME_NONNULL_END

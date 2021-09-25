@@ -18,5 +18,9 @@
     return K_h5_domain(@"time");
 }
 
+- (NSString *)articles {
+    return K_h5_domain(@"articles");
+}
+
 
 @end

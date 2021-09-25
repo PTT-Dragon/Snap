@@ -8,7 +8,6 @@
 #import "AppDelegate.h"
 #import "MainTabViewController.h"
 
-
 @interface AppDelegate ()
 
 @end
@@ -33,11 +32,11 @@
 - (void)netDemo {
     //网络请求demo
     //ps: 新增url 参照SFNetworkH5Module (如果是新模块需要创建module 文件,并在 SFNetworkURL 中添加模块属性)
-    [SFNetworkManager get:SFNet.h5.time success:^(id response) {
-        NSLog(@"");
-    } failed:^(NSError * _Nonnull error) {
-        NSLog(@"");
-    }];
+//    [SFNetworkManager get:SFNet.h5.time success:^(id response) {
+//        NSLog(@"");
+//    } failed:^(NSError * _Nonnull error) {
+//        NSLog(@"");
+//    }];
 }
 
 @end

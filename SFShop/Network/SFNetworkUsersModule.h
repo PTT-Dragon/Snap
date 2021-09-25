@@ -1,5 +1,5 @@
 //
-//  SFNetworkLoginModule.h
+//  SFNetworkUsersModule.h
 //  SFShop
 //
 //  Created by MasterFly on 2021/9/23.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SFNetworkLoginModule : NSObject
+@interface SFNetworkUsersModule : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *login;
 @property (nonatomic, readwrite, strong) NSString *check;

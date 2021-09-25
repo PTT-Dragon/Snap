@@ -26,6 +26,12 @@
 		1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA826FDB8690018109B /* resetPasswordViewController.m */; };
 		1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */; };
 		1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBAD26FDC8400018109B /* baseTool.m */; };
+		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
+		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
+		4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43851726FEB80000BA3D90 /* ArticleListModel.m */; };
+		4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */; };
+		4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */; };
+		4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B43852B26FEC1CC00BA3D90 /* ArticleListCell.xib */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -45,7 +51,11 @@
 		AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE1326FB75B400AB4225 /* MainTabViewController.m */; };
 		AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE1626FCA93A00AB4225 /* SFNetworkManager.m */; };
 		AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE1926FCA9DB00AB4225 /* SFNetworkURL.m */; };
-		AE81BE2226FCB6E200AB4225 /* SFNetworkH5Module.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE2126FCB6E200AB4225 /* SFNetworkH5Module.m */; };
+		AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE2B26FE153800AB4225 /* MerchandisePageController.m */; };
+		AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE2E26FE1FD800AB4225 /* CategoryViewController.m */; };
+		AE81BE3526FF318900AB4225 /* SFNetworkPageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE3426FF318900AB4225 /* SFNetworkPageModule.m */; };
+		AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE3726FF3F7700AB4225 /* SFNetworkArticlesModule.m */; };
+		AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE3B26FF449700AB4225 /* HomePageModel.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -100,7 +110,18 @@
 		1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = resetPasswordViewController.xib; sourceTree = "<group>"; };
 		1BDBEBAC26FDC8400018109B /* baseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseTool.h; sourceTree = "<group>"; };
 		1BDBEBAD26FDC8400018109B /* baseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseTool.m; sourceTree = "<group>"; };
+		1BDBEB9026FCC9CE0018109B /* SFNetworkUsersModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkUsersModule.h; sourceTree = "<group>"; };
+		1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkUsersModule.m; sourceTree = "<group>"; };
+		4B170FD426FCC13A00699B87 /* CommunityChildController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityChildController.h; sourceTree = "<group>"; };
+		4B170FD526FCC13A00699B87 /* CommunityChildController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityChildController.m; sourceTree = "<group>"; };
 		4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
+		4B43851626FEB80000BA3D90 /* ArticleListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleListModel.h; sourceTree = "<group>"; };
+		4B43851726FEB80000BA3D90 /* ArticleListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleListModel.m; sourceTree = "<group>"; };
+		4B43852026FEBC5E00BA3D90 /* CommunityWaterfallLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityWaterfallLayout.h; sourceTree = "<group>"; };
+		4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityWaterfallLayout.m; sourceTree = "<group>"; };
+		4B43852926FEC1CC00BA3D90 /* ArticleListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleListCell.h; sourceTree = "<group>"; };
+		4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleListCell.m; sourceTree = "<group>"; };
+		4B43852B26FEC1CC00BA3D90 /* ArticleListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListCell.xib; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		4B9FB9F126FB7A7C00C90790 /* AccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -143,8 +164,16 @@
 		AE81BE1826FCA9DB00AB4225 /* SFNetworkURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkURL.h; sourceTree = "<group>"; };
 		AE81BE1926FCA9DB00AB4225 /* SFNetworkURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkURL.m; sourceTree = "<group>"; };
 		AE81BE1F26FCB2E900AB4225 /* SFNetworkMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkMacro.h; sourceTree = "<group>"; };
-		AE81BE2026FCB6E200AB4225 /* SFNetworkH5Module.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkH5Module.h; sourceTree = "<group>"; };
-		AE81BE2126FCB6E200AB4225 /* SFNetworkH5Module.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkH5Module.m; sourceTree = "<group>"; };
+		AE81BE2A26FE153800AB4225 /* MerchandisePageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MerchandisePageController.h; sourceTree = "<group>"; };
+		AE81BE2B26FE153800AB4225 /* MerchandisePageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MerchandisePageController.m; sourceTree = "<group>"; };
+		AE81BE2D26FE1FD800AB4225 /* CategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		AE81BE2E26FE1FD800AB4225 /* CategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		AE81BE3326FF318900AB4225 /* SFNetworkPageModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkPageModule.h; sourceTree = "<group>"; };
+		AE81BE3426FF318900AB4225 /* SFNetworkPageModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkPageModule.m; sourceTree = "<group>"; };
+		AE81BE3626FF3F7700AB4225 /* SFNetworkArticlesModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkArticlesModule.h; sourceTree = "<group>"; };
+		AE81BE3726FF3F7700AB4225 /* SFNetworkArticlesModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkArticlesModule.m; sourceTree = "<group>"; };
+		AE81BE3A26FF449700AB4225 /* HomePageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
+		AE81BE3B26FF449700AB4225 /* HomePageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,9 +226,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4B43851526FEB7D400BA3D90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B43851626FEB80000BA3D90 /* ArticleListModel.h */,
+				4B43851726FEB80000BA3D90 /* ArticleListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4B43851F26FEBC1800BA3D90 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B43852026FEBC5E00BA3D90 /* CommunityWaterfallLayout.h */,
+				4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */,
+				4B43852926FEC1CC00BA3D90 /* ArticleListCell.h */,
+				4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */,
+				4B43852B26FEC1CC00BA3D90 /* ArticleListCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4B9FB9C626FB780700C90790 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AE81BE2326FE0D5B00AB4225 /* Category */,
 				4B9FB9D826FB7A1F00C90790 /* Account */,
 				4B9FB9D926FB7A1F00C90790 /* Cart */,
 				4B9FB9DC26FB7A1F00C90790 /* Community */,
@@ -216,10 +267,12 @@
 				AE81BE1626FCA93A00AB4225 /* SFNetworkManager.m */,
 				AE81BE1826FCA9DB00AB4225 /* SFNetworkURL.h */,
 				AE81BE1926FCA9DB00AB4225 /* SFNetworkURL.m */,
-				AE81BE2026FCB6E200AB4225 /* SFNetworkH5Module.h */,
-				AE81BE2126FCB6E200AB4225 /* SFNetworkH5Module.m */,
-				1BDBEB9026FCC9CE0018109B /* SFNetworkLoginModule.h */,
-				1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */,
+				1BDBEB9026FCC9CE0018109B /* SFNetworkUsersModule.h */,
+				1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */,
+				AE81BE3326FF318900AB4225 /* SFNetworkPageModule.h */,
+				AE81BE3426FF318900AB4225 /* SFNetworkPageModule.m */,
+				AE81BE3626FF3F7700AB4225 /* SFNetworkArticlesModule.h */,
+				AE81BE3726FF3F7700AB4225 /* SFNetworkArticlesModule.m */,
 				AE81BE1F26FCB2E900AB4225 /* SFNetworkMacro.h */,
 			);
 			path = Network;
@@ -250,8 +303,11 @@
 		4B9FB9D626FB7A1F00C90790 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				AE81BE3926FF447200AB4225 /* Model */,
 				4B9FB9FD26FB7AAB00C90790 /* HomeViewController.h */,
 				4B9FB9FE26FB7AAB00C90790 /* HomeViewController.m */,
+				AE81BE2A26FE153800AB4225 /* MerchandisePageController.h */,
+				AE81BE2B26FE153800AB4225 /* MerchandisePageController.m */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -303,8 +359,12 @@
 		4B9FB9DC26FB7A1F00C90790 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				4B43851F26FEBC1800BA3D90 /* View */,
+				4B43851526FEB7D400BA3D90 /* Model */,
 				4B9FB9F726FB7A9F00C90790 /* CommunityViewController.h */,
 				4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */,
+				4B170FD426FCC13A00699B87 /* CommunityChildController.h */,
+				4B170FD526FCC13A00699B87 /* CommunityChildController.m */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -404,6 +464,24 @@
 				1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		AE81BE2326FE0D5B00AB4225 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				AE81BE2D26FE1FD800AB4225 /* CategoryViewController.h */,
+				AE81BE2E26FE1FD800AB4225 /* CategoryViewController.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		AE81BE3926FF447200AB4225 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE81BE3A26FF449700AB4225 /* HomePageModel.h */,
+				AE81BE3B26FF449700AB4225 /* HomePageModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -516,6 +594,7 @@
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
+				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
@@ -587,10 +666,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,
+				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
 				4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */,
+				4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */,
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
@@ -601,18 +683,26 @@
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */,
 				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,
+				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
+				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
+				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
+				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,
+				AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
+				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
+				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
 				AE81BDE926FB6E7300AB4225 /* main.m in Sources */,
+				AE81BE3526FF318900AB4225 /* SFNetworkPageModule.m in Sources */,
 				4B9FB9FF26FB7AAB00C90790 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

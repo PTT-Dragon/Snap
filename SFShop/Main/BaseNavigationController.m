@@ -19,6 +19,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
 //    self.navigationBar.hidden = YES;
 //    UIViewController* vc = self.topViewController;
 //    if([vc isKindOfClass:[LottertMainViewController class]])
@@ -30,7 +31,7 @@
 {
     if (self = [super initWithRootViewController:rootViewController]) {
         self.delegate = self;
-        self.modalPresentationStyle = UIModalPresentationFullScreen;
+//        self.modalPresentationStyle = UIModalPresentationFullScreen;
 //        [self setNavigationBarTheme];
     }
     return self;
@@ -45,12 +46,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // 自定义返回键(leftItem)后, 滑动返回不可用, 使用这种方式处理
-    self.navigationBar.hidden = YES;
+//    self.navigationBar.hidden = YES;
     __weak typeof (self) weakSelf = self;
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.interactivePopGestureRecognizer.delegate = weakSelf;
     }
-    NSDictionary *dict = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    NSDictionary *dict = @{NSForegroundColorAttributeName : [UIColor blackColor]};
     [self.navigationBar setTitleTextAttributes:dict];
 }
 

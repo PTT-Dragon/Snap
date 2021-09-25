@@ -340,15 +340,11 @@ dispatch_async(dispatch_get_main_queue(), block);\
 }
 
 #pragma mark - 高度
-
-#define navBarHei ((iPhoneX || iPhoneXSMAX || iPhoneXR) ? 88: 64)
-#define statuBarHei ((iPhoneX || iPhoneXSMAX || iPhoneXR) ? 44: 20)
-#define tabbarHei ((iPhoneX || iPhoneXSMAX || iPhoneXR) ? 84: 50)
-#define ScreenbottomHei ((iPhoneX || iPhoneXSMAX || iPhoneXR) ? 20: 0)
-
-
-
-
+#define k_is_bang (@available(iOS 14.0, *) && UIApplication.sharedApplication.keyWindow.safeAreaInsets.bottom > 0.0)
+#define navBarHei (k_is_bang ? 88: 64)
+#define statuBarHei (k_is_bang ? 44: 20)
+#define tabbarHei (k_is_bang ? 84: 50)
+#define ScreenbottomHei (k_is_bang ? 20: 0)
 
 #ifndef __OPTIMIZE__
 #define NSLog(...) NSLog(__VA_ARGS__)
