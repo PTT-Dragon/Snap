@@ -6,13 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CategorySideModel.h"
+#import "CategoryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CategorySideTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic, readwrite, strong) NSMutableArray<CategorySideModel *> *dataArray;
+@property (nonatomic, readwrite, strong) NSMutableArray<CategoryModel *> *dataArray;
 
 @end
 

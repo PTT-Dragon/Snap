@@ -22,5 +22,6 @@
 #import "UIColor+JKHEX.h"
 #import <Masonry/Masonry.h>
 #import <YYModel/YYModel.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #endif /* PrefixHeader_pch */

@@ -41,8 +41,7 @@
     return 78;
 }
 
-
-- (NSMutableArray<CategorySideModel *> *)dataArray {
+- (NSMutableArray<CategoryModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

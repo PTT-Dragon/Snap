@@ -15,7 +15,7 @@
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
-		1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */; };
+		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
 		1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */; };
 		1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9B26FDA1360018109B /* forgotPasswordView.m */; };
@@ -26,7 +26,6 @@
 		1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA826FDB8690018109B /* resetPasswordViewController.m */; };
 		1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */; };
 		1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBAD26FDC8400018109B /* baseTool.m */; };
-		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
 		4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43851726FEB80000BA3D90 /* ArticleListModel.m */; };
 		4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */; };
@@ -61,8 +60,9 @@
 		AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE3B26FF449700AB4225 /* HomePageModel.m */; };
 		AE81BE3F26FF5FD500AB4225 /* CategorySideTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE3E26FF5FD400AB4225 /* CategorySideTableView.m */; };
 		AE81BE4526FF605100AB4225 /* CategoryContentCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE4426FF605100AB4225 /* CategoryContentCollectionView.m */; };
-		AE81BE4926FF61A300AB4225 /* CategorySideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE4826FF61A300AB4225 /* CategorySideModel.m */; };
+		AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE4826FF61A300AB4225 /* CategoryModel.m */; };
 		AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE4C26FF623100AB4225 /* CategorySideCell.m */; };
+		AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE522700A5FF00AB4225 /* CategoryContentCell.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -99,8 +99,8 @@
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1BDBEB8F26FCB7590018109B /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		1BDBEB9026FCC9CE0018109B /* SFNetworkLoginModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkLoginModule.h; sourceTree = "<group>"; };
-		1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkLoginModule.m; sourceTree = "<group>"; };
+		1BDBEB9026FCC9CE0018109B /* SFNetworkUsersModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkUsersModule.h; sourceTree = "<group>"; };
+		1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkUsersModule.m; sourceTree = "<group>"; };
 		1BDBEB9326FD6A1A0018109B /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
@@ -117,8 +117,6 @@
 		1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = resetPasswordViewController.xib; sourceTree = "<group>"; };
 		1BDBEBAC26FDC8400018109B /* baseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseTool.h; sourceTree = "<group>"; };
 		1BDBEBAD26FDC8400018109B /* baseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseTool.m; sourceTree = "<group>"; };
-		1BDBEB9026FCC9CE0018109B /* SFNetworkUsersModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkUsersModule.h; sourceTree = "<group>"; };
-		1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkUsersModule.m; sourceTree = "<group>"; };
 		4B170FD426FCC13A00699B87 /* CommunityChildController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityChildController.h; sourceTree = "<group>"; };
 		4B170FD526FCC13A00699B87 /* CommunityChildController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityChildController.m; sourceTree = "<group>"; };
 		4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -190,10 +188,12 @@
 		AE81BE3E26FF5FD400AB4225 /* CategorySideTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategorySideTableView.m; sourceTree = "<group>"; };
 		AE81BE4326FF605100AB4225 /* CategoryContentCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryContentCollectionView.h; sourceTree = "<group>"; };
 		AE81BE4426FF605100AB4225 /* CategoryContentCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryContentCollectionView.m; sourceTree = "<group>"; };
-		AE81BE4726FF61A300AB4225 /* CategorySideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategorySideModel.h; sourceTree = "<group>"; };
-		AE81BE4826FF61A300AB4225 /* CategorySideModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategorySideModel.m; sourceTree = "<group>"; };
+		AE81BE4726FF61A300AB4225 /* CategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
+		AE81BE4826FF61A300AB4225 /* CategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
 		AE81BE4B26FF623100AB4225 /* CategorySideCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategorySideCell.h; sourceTree = "<group>"; };
 		AE81BE4C26FF623100AB4225 /* CategorySideCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategorySideCell.m; sourceTree = "<group>"; };
+		AE81BE512700A5FF00AB4225 /* CategoryContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryContentCell.h; sourceTree = "<group>"; };
+		AE81BE522700A5FF00AB4225 /* CategoryContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryContentCell.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -514,8 +514,8 @@
 		AE81BE4626FF619500AB4225 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AE81BE4726FF61A300AB4225 /* CategorySideModel.h */,
-				AE81BE4826FF61A300AB4225 /* CategorySideModel.m */,
+				AE81BE4726FF61A300AB4225 /* CategoryModel.h */,
+				AE81BE4826FF61A300AB4225 /* CategoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -523,14 +523,32 @@
 		AE81BE4A26FF621000AB4225 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AE81BE542700A60800AB4225 /* Side */,
+				AE81BE552700A61100AB4225 /* Content */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE81BE542700A60800AB4225 /* Side */ = {
+			isa = PBXGroup;
+			children = (
 				AE81BE3D26FF5FD400AB4225 /* CategorySideTableView.h */,
 				AE81BE3E26FF5FD400AB4225 /* CategorySideTableView.m */,
 				AE81BE4B26FF623100AB4225 /* CategorySideCell.h */,
 				AE81BE4C26FF623100AB4225 /* CategorySideCell.m */,
+			);
+			path = Side;
+			sourceTree = "<group>";
+		};
+		AE81BE552700A61100AB4225 /* Content */ = {
+			isa = PBXGroup;
+			children = (
 				AE81BE4326FF605100AB4225 /* CategoryContentCollectionView.h */,
 				AE81BE4426FF605100AB4225 /* CategoryContentCollectionView.m */,
+				AE81BE512700A5FF00AB4225 /* CategoryContentCell.h */,
+				AE81BE522700A5FF00AB4225 /* CategoryContentCell.m */,
 			);
-			path = View;
+			path = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -719,7 +737,7 @@
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
-				AE81BE4926FF61A300AB4225 /* CategorySideModel.m in Sources */,
+				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,
 				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
@@ -731,10 +749,10 @@
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
 				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,
-				AE81BE2226FCB6E200AB4225 /* SFNetworkH5Module.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
-				1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */,
+				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
+				AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */,
 				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,

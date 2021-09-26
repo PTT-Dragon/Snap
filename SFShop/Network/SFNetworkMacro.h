@@ -14,6 +14,8 @@
 #else
 #define Host @"http://147.139.137.130"
 #endif
+
+#define SFImage(v) ([[NSString stringWithFormat:@"%@%@",Host,v] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]])
 //*********************************************接口域名👆*********************************************//
 
 //*********************************************接口模块👇*********************************************//

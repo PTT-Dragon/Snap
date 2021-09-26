@@ -7,7 +7,6 @@
 
 #import "CategorySideCell.h"
 
-
 @interface CategorySideCell ()
 @property (nonatomic, readwrite, strong) UIView *lineView;
 @property (nonatomic, readwrite, strong) UILabel *titlelabel;
@@ -46,9 +45,9 @@
 }
 
 #pragma mark - Getter
-- (void)setModel:(CategorySideModel *)model {
+- (void)setModel:(CategoryModel *)model {
     _model = model;
-    _titlelabel.text = model.model.catgName;
+    _titlelabel.text = model.inner.catgName;
 }
 
 - (UIView *)lineView {
