@@ -6,18 +6,24 @@
 //
 
 #import "accountInfoCell.h"
+#import "MyCouponViewController.h"
+
+@interface accountInfoCell ()
+@property (weak, nonatomic) IBOutlet UIView *couponView;
+
+@end
 
 @implementation accountInfoCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    UITapGestureRecognizer *couponTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(couponAction)];
+    [_couponView addGestureRecognizer:couponTap];
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)couponAction
+{
+    MyCouponViewController *vc = [[MyCouponViewController alloc] init];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
-
 @end

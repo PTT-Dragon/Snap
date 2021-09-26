@@ -159,6 +159,9 @@ Viewed</string>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="couponView" destination="RjG-am-f1L" id="9Xg-q2-0aC"/>
+            </connections>
             <point key="canvasLocation" x="97" y="90"/>
         </tableViewCell>
     </objects>

@@ -15,7 +15,7 @@
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
-		1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */; };
+		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
 		1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */; };
 		1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9B26FDA1360018109B /* forgotPasswordView.m */; };
@@ -26,7 +26,16 @@
 		1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA826FDB8690018109B /* resetPasswordViewController.m */; };
 		1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */; };
 		1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBAD26FDC8400018109B /* baseTool.m */; };
-		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
+		1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBB226FF609A0018109B /* LoginAlertView.m */; };
+		1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBB426FF60C00018109B /* LoginAlertView.xib */; };
+		1BDBEBB926FF62BF0018109B /* LoginViaOTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBB726FF62BF0018109B /* LoginViaOTP.m */; };
+		1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBB826FF62BF0018109B /* LoginViaOTP.xib */; };
+		1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBC42700B85A0018109B /* MyCouponViewController.m */; };
+		1BDBEBC82700B8900018109B /* MyCouponChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBC72700B8900018109B /* MyCouponChildViewController.m */; };
+		1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBCA2700BA470018109B /* MyCouponCell.m */; };
+		1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBCB2700BA470018109B /* MyCouponCell.xib */; };
+		1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBD02700C7B10018109B /* MyCouponStoreCell.m */; };
+		1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBD22700C7F00018109B /* MyCouponStoreCell.xib */; };
 		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
 		4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43851726FEB80000BA3D90 /* ArticleListModel.m */; };
 		4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */; };
@@ -92,8 +101,8 @@
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1BDBEB8F26FCB7590018109B /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		1BDBEB9026FCC9CE0018109B /* SFNetworkLoginModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkLoginModule.h; sourceTree = "<group>"; };
-		1BDBEB9126FCC9CE0018109B /* SFNetworkLoginModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkLoginModule.m; sourceTree = "<group>"; };
+		1BDBEB9026FCC9CE0018109B /* SFNetworkUsersModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkUsersModule.h; sourceTree = "<group>"; };
+		1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkUsersModule.m; sourceTree = "<group>"; };
 		1BDBEB9326FD6A1A0018109B /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		1BDBEB9526FD6A1A0018109B /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
@@ -110,8 +119,22 @@
 		1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = resetPasswordViewController.xib; sourceTree = "<group>"; };
 		1BDBEBAC26FDC8400018109B /* baseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseTool.h; sourceTree = "<group>"; };
 		1BDBEBAD26FDC8400018109B /* baseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseTool.m; sourceTree = "<group>"; };
-		1BDBEB9026FCC9CE0018109B /* SFNetworkUsersModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkUsersModule.h; sourceTree = "<group>"; };
-		1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkUsersModule.m; sourceTree = "<group>"; };
+		1BDBEBB126FF609A0018109B /* LoginAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginAlertView.h; sourceTree = "<group>"; };
+		1BDBEBB226FF609A0018109B /* LoginAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginAlertView.m; sourceTree = "<group>"; };
+		1BDBEBB426FF60C00018109B /* LoginAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginAlertView.xib; sourceTree = "<group>"; };
+		1BDBEBB626FF62BF0018109B /* LoginViaOTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViaOTP.h; sourceTree = "<group>"; };
+		1BDBEBB726FF62BF0018109B /* LoginViaOTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViaOTP.m; sourceTree = "<group>"; };
+		1BDBEBB826FF62BF0018109B /* LoginViaOTP.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViaOTP.xib; sourceTree = "<group>"; };
+		1BDBEBC32700B8590018109B /* MyCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCouponViewController.h; sourceTree = "<group>"; };
+		1BDBEBC42700B85A0018109B /* MyCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCouponViewController.m; sourceTree = "<group>"; };
+		1BDBEBC62700B8900018109B /* MyCouponChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCouponChildViewController.h; sourceTree = "<group>"; };
+		1BDBEBC72700B8900018109B /* MyCouponChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCouponChildViewController.m; sourceTree = "<group>"; };
+		1BDBEBC92700BA470018109B /* MyCouponCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCouponCell.h; sourceTree = "<group>"; };
+		1BDBEBCA2700BA470018109B /* MyCouponCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCouponCell.m; sourceTree = "<group>"; };
+		1BDBEBCB2700BA470018109B /* MyCouponCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCouponCell.xib; sourceTree = "<group>"; };
+		1BDBEBCF2700C7B10018109B /* MyCouponStoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCouponStoreCell.h; sourceTree = "<group>"; };
+		1BDBEBD02700C7B10018109B /* MyCouponStoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCouponStoreCell.m; sourceTree = "<group>"; };
+		1BDBEBD22700C7F00018109B /* MyCouponStoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCouponStoreCell.xib; sourceTree = "<group>"; };
 		4B170FD426FCC13A00699B87 /* CommunityChildController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityChildController.h; sourceTree = "<group>"; };
 		4B170FD526FCC13A00699B87 /* CommunityChildController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityChildController.m; sourceTree = "<group>"; };
 		4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -216,6 +239,23 @@
 				1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		1BDBEBBB27004B140018109B /* Coupon */ = {
+			isa = PBXGroup;
+			children = (
+				1BDBEBC32700B8590018109B /* MyCouponViewController.h */,
+				1BDBEBC42700B85A0018109B /* MyCouponViewController.m */,
+				1BDBEBC62700B8900018109B /* MyCouponChildViewController.h */,
+				1BDBEBC72700B8900018109B /* MyCouponChildViewController.m */,
+				1BDBEBC92700BA470018109B /* MyCouponCell.h */,
+				1BDBEBCA2700BA470018109B /* MyCouponCell.m */,
+				1BDBEBCB2700BA470018109B /* MyCouponCell.xib */,
+				1BDBEBCF2700C7B10018109B /* MyCouponStoreCell.h */,
+				1BDBEBD02700C7B10018109B /* MyCouponStoreCell.m */,
+				1BDBEBD22700C7F00018109B /* MyCouponStoreCell.xib */,
+			);
+			path = Coupon;
 			sourceTree = "<group>";
 		};
 		1DFF059EB8FC08129B2B863F /* Frameworks */ = {
@@ -325,6 +365,12 @@
 				1BDBEB9F26FDAEB50018109B /* verifyCodeVC.h */,
 				1BDBEBA026FDAEB50018109B /* verifyCodeVC.m */,
 				1BDBEBA126FDAEB50018109B /* verifyCodeVC.xib */,
+				1BDBEBB126FF609A0018109B /* LoginAlertView.h */,
+				1BDBEBB226FF609A0018109B /* LoginAlertView.m */,
+				1BDBEBB426FF60C00018109B /* LoginAlertView.xib */,
+				1BDBEBB626FF62BF0018109B /* LoginViaOTP.h */,
+				1BDBEBB726FF62BF0018109B /* LoginViaOTP.m */,
+				1BDBEBB826FF62BF0018109B /* LoginViaOTP.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -332,6 +378,7 @@
 		4B9FB9D826FB7A1F00C90790 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				1BDBEBBB27004B140018109B /* Coupon */,
 				4B9FB9F126FB7A7C00C90790 /* AccountViewController.h */,
 				4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */,
 				1B3C122226FC5AC500235294 /* accountInfoCell.h */,
@@ -588,6 +635,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
@@ -597,8 +645,11 @@
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
+				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
+				1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */,
+				1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */,
 				AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -671,6 +722,8 @@
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,
 				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
+				1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */,
+				1BDBEBB926FF62BF0018109B /* LoginViaOTP.m in Sources */,
 				4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */,
 				4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */,
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
@@ -678,14 +731,14 @@
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
 				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,
-				AE81BE2226FCB6E200AB4225 /* SFNetworkH5Module.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
-				1BDBEB9226FCC9CE0018109B /* SFNetworkLoginModule.m in Sources */,
+				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */,
+				1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
@@ -698,8 +751,11 @@
 				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
+				1BDBEBC82700B8900018109B /* MyCouponChildViewController.m in Sources */,
+				1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */,
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
+				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
 				AE81BDE926FB6E7300AB4225 /* main.m in Sources */,
 				AE81BE3526FF318900AB4225 /* SFNetworkPageModule.m in Sources */,

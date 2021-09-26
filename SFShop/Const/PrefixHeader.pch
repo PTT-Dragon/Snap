@@ -19,5 +19,7 @@
 #import "baseTool.h"
 #import "JSONModel.h"
 #import "SFNetworkMacro.h"
+#import <JKCategories/JKCategories.h>
+#import <Masonry.h>
 
 #endif /* PrefixHeader_pch */

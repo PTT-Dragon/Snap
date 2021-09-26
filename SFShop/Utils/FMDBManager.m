@@ -69,7 +69,7 @@ static FMDBManager *_onetimeClass;
 
 - (void)insertUser: (UserModel *)user {
     if ([self.userDb open]) {
-        BOOL res = [self.userDb executeUpdate:@"INSERT INTO t_user (account, password) VALUES (?, ?);", user.account, user.password];
+        BOOL res = [self.userDb executeUpdate:@"INSERT INTO t_user (account) VALUES (?);", user.account];
         if (!res) {
             NSLog(@"增加数据失败");
         }else{
@@ -81,7 +81,7 @@ static FMDBManager *_onetimeClass;
 
 - (void)updateUser: (UserModel *)user {
     if ([self.userDb open]) {
-        BOOL res = [self.userDb executeUpdate:@"UPDATE t_user SET password = ? WHERE  account = ?", user.password, user.account];
+        BOOL res = [self.userDb executeUpdate:@"UPDATE t_user SET account = ?", user.account];
         if (!res) {
             NSLog(@"数据修改失败");
         }else{
@@ -100,7 +100,6 @@ static FMDBManager *_onetimeClass;
             if ([theAccount isEqualToString:account]) {
                 UserModel *user = [[UserModel alloc] init];
                 user.account = account;
-                user.password = [resultSet stringForColumn: @"password"];
                 
                 [self.userDb close];
                 return user;

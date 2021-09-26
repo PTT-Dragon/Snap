@@ -43,8 +43,10 @@
     _emailIndicationView.backgroundColor = [UIColor blackColor];
 }
 - (IBAction)loginAction:(id)sender {
+    
     [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"hxf01@qq.com",@"pwd":login_aes_128_cbc_encrypt(@"Abc@1234")} success:^(id  _Nullable response) {
-        UserModel *model = [[UserModel alloc] initWithDictionary:response error:nil];
+        NSError *error = nil;
+        UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         [[FMDBManager sharedInstance] insertUser:model];
         NSLog(@"");
     } failed:^(NSError * _Nonnull error) {

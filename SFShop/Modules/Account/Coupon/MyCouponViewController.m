@@ -1,45 +1,37 @@
 //
-//  CommunityViewController.m
+//  MyCouponViewController.m
 //  SFShop
 //
-//  Created by Jacue on 2021/9/22.
+//  Created by 游挺 on 2021/9/26.
 //
 
-#import "CommunityViewController.h"
-#import "CommunityChildController.h"
-#import <Masonry/Masonry.h>
+#import "MyCouponViewController.h"
+#import "MyCouponChildViewController.h"
 
-@interface CommunityViewController () <VTMagicViewDelegate, VTMagicViewDataSource>
-
+@interface MyCouponViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
 @property(nonatomic, strong) NSArray *menuList;
 @property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
-
 @end
 
-@implementation CommunityViewController
+@implementation MyCouponViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Community";
-    
-    self.currentMenuIndex = 0;
-    self.menuList = @[@"Recommend", @"Phone", @"House", @"Car", @"Computer", @"Camera"];
-    self.articleCatgIdList = @[@"6", @"7", @"10", @"6", @"7", @"10"];
+    self.title = @"My Coupon";
+    self.menuList = @[@"Available", @"Expired", @"Used"];
     
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
     self.magicView.sliderHeight = 1.0f;
-    self.magicView.layoutStyle = VTLayoutStyleDefault;
+    self.magicView.layoutStyle = VTLayoutStyleDivide;
     self.magicView.switchStyle = VTSwitchStyleDefault;
     self.magicView.navigationHeight = 40.f;
     self.magicView.dataSource = self;
     self.magicView.delegate = self;
-    
     [self.magicView reloadData];
 }
-
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
     return self.menuList;
@@ -60,10 +52,9 @@
 
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
     static NSString *gridId = @"community.childController.identifier";
-    CommunityChildController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
+    MyCouponChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
-        gridViewController = [[CommunityChildController alloc] init];
-        gridViewController.articleCatgId = self.articleCatgIdList[pageIndex];
+        gridViewController = [[MyCouponChildViewController alloc] init];
     }
     return gridViewController;
 }
@@ -82,8 +73,4 @@
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex {
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
 }
-
-
-
-
 @end
