@@ -13,4 +13,8 @@
     return K_pages_domain(@"buyer/homepage");
 }
 
+- (NSString *)buyer_displaycatgs {
+    return K_pages_domain(@"buyer/displaycatgs");
+}
+
 @end

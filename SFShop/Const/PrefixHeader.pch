@@ -20,6 +20,9 @@
 #import "JSONModel.h"
 #import "SFNetworkMacro.h"
 #import <JKCategories/JKCategories.h>
-#import <Masonry.h>
+#import "UIColor+JKHEX.h"
+#import <Masonry/Masonry.h>
+#import <YYModel/YYModel.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #endif /* PrefixHeader_pch */

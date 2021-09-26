@@ -36,9 +36,16 @@
     BaseNavigationController *communityNav = [[BaseNavigationController alloc]initWithRootViewController:communityVC];
     communityNav.tabBarItem.title = @"Community";
     communityNav.tabBarItem.image = [UIImage imageNamed:@"community_tab_icon"];
+    
+    //分类
+    CategoryViewController *categoryVc = [[CategoryViewController alloc] init];
+    BaseNavigationController *categoryNav = [[BaseNavigationController alloc]initWithRootViewController:categoryVc];
+    categoryNav.tabBarItem.title = @"Category";
+    categoryNav.tabBarItem.image = [UIImage imageNamed:@"community_tab_icon"];
+    
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar setTranslucent:NO];
-    [self setViewControllers:@[homeVC,communityNav,cartVC,accountNav]];
+    [self setViewControllers:@[homeVC,categoryNav,communityNav,cartVC,accountNav]];
 }
 
 /*

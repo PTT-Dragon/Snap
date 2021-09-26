@@ -10,6 +10,7 @@
 #import "ArticleListModel.h"
 #import "CommunityWaterfallLayout.h"
 #import "ArticleListCell.h"
+#import "CommunityDetailController.h"
 
 @interface CommunityChildController ()<UICollectionViewDelegate, UICollectionViewDataSource, CommunityWaterfallLayoutProtocol>
 
@@ -53,8 +54,7 @@
 }
 
 #pragma mark - getter
-- (UICollectionView *)collectionView
-{
+- (UICollectionView *)collectionView {
     if(!_collectionView){
         _waterfallLayout = [[CommunityWaterfallLayout alloc] init];
         _waterfallLayout.delegate = self;
@@ -73,14 +73,20 @@
     return _collectionView;
 }
 
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    ArticleModel *cellModel = self.model.list[indexPath.row];
+    CommunityDetailController *detailVC = [[CommunityDetailController alloc] init];
+    detailVC.articleId = [NSString stringWithFormat:@"%ld", cellModel.communityArticleId];
+    [self.navigationController pushViewController:detailVC animated: YES];
+}
+
 #pragma mark - UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.model.list.count ? self.model.list.count : 0;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ArticleListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"community.article.list.cell" forIndexPath:indexPath];
     if(!cell){
         cell = [[ArticleListCell alloc] init];
@@ -91,12 +97,10 @@
     }
     cell.model = cellModel;
     return cell;
-    
 }
 
 #pragma mark - CollectionWaterfallLayoutProtocol
-- (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath {
     ArticleModel *cellModel = [self.model.list[indexPath.row] copy];
     if (indexPath.row % 2 == 0) {
         cellModel.contentTitle = [NSString stringWithFormat:@"%@%@", cellModel.contentTitle, @"-增加一些内容使变成多行"];
