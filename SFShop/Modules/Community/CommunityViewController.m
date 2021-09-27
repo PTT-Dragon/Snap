@@ -9,11 +9,7 @@
 #import "CommunityChildController.h"
 #import <Masonry/Masonry.h>
 
-@interface CommunityViewController () <VTMagicViewDelegate, VTMagicViewDataSource>
-
-@property(nonatomic, strong) NSArray *menuList;
-@property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
-@property(nonatomic, assign) NSInteger currentMenuIndex;
+@interface CommunityViewController ()
 
 @end
 
@@ -21,13 +17,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.title = @"Community";
+
+    CommunityTabContainer *container = [[CommunityTabContainer alloc] init];
+    [self addChildViewController: container];
+    [self.view addSubview: container.view];
+    [container didMoveToParentViewController: self];
+    CGRect bounds = self.view.bounds;
+    container.view.frame = CGRectMake(0, 0, bounds.size.width, bounds.size.height - 200);
+}
+
+@end
+
+
+
+@interface CommunityTabContainer () <VTMagicViewDelegate, VTMagicViewDataSource>
+
+@property(nonatomic, strong) NSArray *menuList;
+@property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
+@property(nonatomic, assign) NSInteger currentMenuIndex;
+
+@end
+
+@implementation CommunityTabContainer
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     self.currentMenuIndex = 0;
     self.menuList = @[@"Recommend", @"Phone", @"House", @"Car", @"Computer", @"Camera"];
     self.articleCatgIdList = @[@"6", @"7", @"10", @"6", @"7", @"10"];
     
+    self.magicView.frame = CGRectMake(0, 100, 200, 300);
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
     self.magicView.sliderHeight = 1.0f;
