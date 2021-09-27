@@ -8,6 +8,7 @@
 #import "MyCouponChildViewController.h"
 #import "MyCouponCell.h"
 #import "MyCouponStoreCell.h"
+#import "CouponCenterViewController.h"
 
 @interface MyCouponChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -29,6 +30,12 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
+    
+}
+- (void)loadView
+{
+    [super loadView];
+    self.view.frame = CGRectMake(0, 0, MainScreen_width, 100);
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -59,6 +66,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.01;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

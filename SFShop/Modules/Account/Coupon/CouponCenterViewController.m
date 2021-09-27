@@ -1,44 +1,38 @@
 //
-//  MyCouponViewController.m
+//  CouponCenterViewController.m
 //  SFShop
 //
-//  Created by 游挺 on 2021/9/26.
+//  Created by 游挺 on 2021/9/27.
 //
 
-#import "MyCouponViewController.h"
-#import "MyCouponChildViewController.h"
+#import "CouponCenterViewController.h"
 #import "CouponCenterChildViewController.h"
 
-@interface MyCouponViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
+
+@interface CouponCenterViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
 @property(nonatomic, strong) NSArray *menuList;
 @property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
+
 @end
 
-@implementation MyCouponViewController
+@implementation CouponCenterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"My Coupon";
-    self.menuList = @[@"Available", @"Expired", @"Used"];
+    self.title = @"Coupon Center";
+    self.menuList = @[@"Category1", @"Category2", @"Category3"];
     
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
     self.magicView.sliderHeight = 1.0f;
-    self.magicView.layoutStyle = VTLayoutStyleDivide;
+    self.magicView.layoutStyle = VTLayoutStyleDefault;
     self.magicView.switchStyle = VTSwitchStyleDefault;
     self.magicView.navigationHeight = 40.f;
     self.magicView.dataSource = self;
     self.magicView.delegate = self;
-    
-    self.view.frame = CGRectMake(0, 0, MainScreen_width, 100);
     [self.magicView reloadData];
-    self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
-}
-- (void)loadView
-{
-    [super loadView];
 }
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
@@ -59,10 +53,10 @@
 }
 
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
-    static NSString *gridId = @"myCoupon.childController.identifier";
-    MyCouponChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
+    static NSString *gridId = @"coupon.childController.identifier";
+    CouponCenterChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
-        gridViewController = [[MyCouponChildViewController alloc] init];
+        gridViewController = [[CouponCenterChildViewController alloc] init];
     }
     return gridViewController;
 }
