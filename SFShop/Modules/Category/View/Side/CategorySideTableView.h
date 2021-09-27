@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CategorySideTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
+@interface CategorySideTableView : UITableView<UITableViewDataSource>
 
 @property (nonatomic, readwrite, strong) NSMutableArray<CategoryModel *> *dataArray;
 

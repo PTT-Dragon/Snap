@@ -73,6 +73,11 @@
 		AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE4826FF61A300AB4225 /* CategoryModel.m */; };
 		AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE4C26FF623100AB4225 /* CategorySideCell.m */; };
 		AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE522700A5FF00AB4225 /* CategoryContentCell.m */; };
+		AE81BE592702001700AB4225 /* MBProgressHUD+Prompt.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE582702001700AB4225 /* MBProgressHUD+Prompt.m */; };
+		AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE5A270200F200AB4225 /* BCLoadingView.m */; };
+		AE81BE5F2702025200AB4225 /* NSString+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE5E2702025100AB4225 /* NSString+Add.m */; };
+		AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE61270205A300AB4225 /* CategoryContentSectionHeader.m */; };
+		AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE64270205B300AB4225 /* CategoryContentSectionFooter.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -220,6 +225,16 @@
 		AE81BE4C26FF623100AB4225 /* CategorySideCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategorySideCell.m; sourceTree = "<group>"; };
 		AE81BE512700A5FF00AB4225 /* CategoryContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryContentCell.h; sourceTree = "<group>"; };
 		AE81BE522700A5FF00AB4225 /* CategoryContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryContentCell.m; sourceTree = "<group>"; };
+		AE81BE572702001700AB4225 /* MBProgressHUD+Prompt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Prompt.h"; sourceTree = "<group>"; };
+		AE81BE582702001700AB4225 /* MBProgressHUD+Prompt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Prompt.m"; sourceTree = "<group>"; };
+		AE81BE5A270200F200AB4225 /* BCLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLoadingView.m; sourceTree = "<group>"; };
+		AE81BE5B270200F200AB4225 /* BCLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLoadingView.h; sourceTree = "<group>"; };
+		AE81BE5D2702025100AB4225 /* NSString+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Add.h"; sourceTree = "<group>"; };
+		AE81BE5E2702025100AB4225 /* NSString+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Add.m"; sourceTree = "<group>"; };
+		AE81BE60270205A300AB4225 /* CategoryContentSectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryContentSectionHeader.h; sourceTree = "<group>"; };
+		AE81BE61270205A300AB4225 /* CategoryContentSectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryContentSectionHeader.m; sourceTree = "<group>"; };
+		AE81BE63270205B300AB4225 /* CategoryContentSectionFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryContentSectionFooter.h; sourceTree = "<group>"; };
+		AE81BE64270205B300AB4225 /* CategoryContentSectionFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryContentSectionFooter.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -359,6 +374,7 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AE81BE562701FFDC00AB4225 /* Prompt */,
 				1BDBEBA426FDAF970018109B /* HWTFCodeBView.h */,
 				1BDBEBA526FDAF980018109B /* HWTFCodeBView.m */,
 			);
@@ -597,8 +613,25 @@
 				AE81BE4426FF605100AB4225 /* CategoryContentCollectionView.m */,
 				AE81BE512700A5FF00AB4225 /* CategoryContentCell.h */,
 				AE81BE522700A5FF00AB4225 /* CategoryContentCell.m */,
+				AE81BE60270205A300AB4225 /* CategoryContentSectionHeader.h */,
+				AE81BE61270205A300AB4225 /* CategoryContentSectionHeader.m */,
+				AE81BE63270205B300AB4225 /* CategoryContentSectionFooter.h */,
+				AE81BE64270205B300AB4225 /* CategoryContentSectionFooter.m */,
 			);
 			path = Content;
+			sourceTree = "<group>";
+		};
+		AE81BE562701FFDC00AB4225 /* Prompt */ = {
+			isa = PBXGroup;
+			children = (
+				AE81BE5B270200F200AB4225 /* BCLoadingView.h */,
+				AE81BE5A270200F200AB4225 /* BCLoadingView.m */,
+				AE81BE572702001700AB4225 /* MBProgressHUD+Prompt.h */,
+				AE81BE582702001700AB4225 /* MBProgressHUD+Prompt.m */,
+				AE81BE5D2702025100AB4225 /* NSString+Add.h */,
+				AE81BE5E2702025100AB4225 /* NSString+Add.m */,
+			);
+			path = Prompt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -794,7 +827,9 @@
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,
+				AE81BE592702001700AB4225 /* MBProgressHUD+Prompt.m in Sources */,
 				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
+				AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */,
 				1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */,
 				1BDBEBB926FF62BF0018109B /* LoginViaOTP.m in Sources */,
 				AE81BE3F26FF5FD500AB4225 /* CategorySideTableView.m in Sources */,
@@ -803,6 +838,7 @@
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
+				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
 				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
@@ -812,9 +848,11 @@
 				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
+				AE81BE5F2702025200AB4225 /* NSString+Add.m in Sources */,
 				AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */,
 				1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
+				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,

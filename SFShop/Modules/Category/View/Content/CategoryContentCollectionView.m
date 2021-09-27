@@ -7,6 +7,8 @@
 
 #import "CategoryContentCollectionView.h"
 #import "CategoryContentCell.h"
+#import "CategoryContentSectionHeader.h"
+#import "CategoryContentSectionFooter.h"
 
 @implementation CategoryContentCollectionView
 
@@ -15,6 +17,8 @@
         self.dataSource = self;
         self.delegate = self;
         [self registerClass:[CategoryContentCell class] forCellWithReuseIdentifier:@"CategoryContentCell"];
+        [self registerClass:[CategoryContentSectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CategoryContentSectionHeader"];
+        [self registerClass:[CategoryContentSectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"CategoryContentSectionFooter"];
     }
     return self;
 }
@@ -33,6 +37,32 @@
     CategoryContentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryContentCell" forIndexPath:indexPath];
     cell.model = self.dataArray[indexPath.section][indexPath.row];
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        CategoryContentSectionHeader *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CategoryContentSectionHeader" forIndexPath:indexPath];
+        CategoryModel *model = self.dataArray[indexPath.section][indexPath.row];
+        view.titleLabel.text = model.inner.catgName;
+        return view;
+    }
+    
+    CategoryContentSectionFooter *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"CategoryContentSectionFooter" forIndexPath:indexPath];
+    return view;
+}
+
+#pragma mark - UICollectionDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeMake(MainScreen_width, KScale(47));
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeMake(MainScreen_width, KScale(16));
 }
 
 #pragma mark - Getter
