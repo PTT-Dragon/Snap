@@ -10,8 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CommunityViewController : VTMagicController
+@interface CommunityViewController : UIViewController
 
 @end
+
+@interface CommunityTabContainer : VTMagicController
+
+@end
+
 
 NS_ASSUME_NONNULL_END
