@@ -9,6 +9,7 @@
 #import "SFNetworkUsersModule.h"
 #import "SFNetworkPageModule.h"
 #import "SFNetworkArticlesModule.h"
+#import "SFNetworkOffersModule.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 文章模块
 @property (nonatomic, readwrite, strong) SFNetworkArticlesModule *article;
+
+/// 商品模块
+@property (nonatomic, readwrite, strong) SFNetworkOffersModule *offer;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -78,6 +78,8 @@
 		AE81BE5F2702025200AB4225 /* NSString+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE5E2702025100AB4225 /* NSString+Add.m */; };
 		AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE61270205A300AB4225 /* CategoryContentSectionHeader.m */; };
 		AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE64270205B300AB4225 /* CategoryContentSectionFooter.m */; };
+		AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6727020E2400AB4225 /* SFNetworkOffersModule.m */; };
+		AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -235,6 +237,10 @@
 		AE81BE61270205A300AB4225 /* CategoryContentSectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryContentSectionHeader.m; sourceTree = "<group>"; };
 		AE81BE63270205B300AB4225 /* CategoryContentSectionFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryContentSectionFooter.h; sourceTree = "<group>"; };
 		AE81BE64270205B300AB4225 /* CategoryContentSectionFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryContentSectionFooter.m; sourceTree = "<group>"; };
+		AE81BE6627020E2400AB4225 /* SFNetworkOffersModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkOffersModule.h; sourceTree = "<group>"; };
+		AE81BE6727020E2400AB4225 /* SFNetworkOffersModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkOffersModule.m; sourceTree = "<group>"; };
+		AE81BE6A2702158600AB4225 /* CategoryRankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankViewController.h; sourceTree = "<group>"; };
+		AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankViewController.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -353,6 +359,8 @@
 				AE81BE3426FF318900AB4225 /* SFNetworkPageModule.m */,
 				AE81BE3626FF3F7700AB4225 /* SFNetworkArticlesModule.h */,
 				AE81BE3726FF3F7700AB4225 /* SFNetworkArticlesModule.m */,
+				AE81BE6627020E2400AB4225 /* SFNetworkOffersModule.h */,
+				AE81BE6727020E2400AB4225 /* SFNetworkOffersModule.m */,
 				AE81BE1F26FCB2E900AB4225 /* SFNetworkMacro.h */,
 			);
 			path = Network;
@@ -560,6 +568,7 @@
 		AE81BE2326FE0D5B00AB4225 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				AE81BE6927020F3300AB4225 /* Rank */,
 				AE81BE4A26FF621000AB4225 /* View */,
 				AE81BE4626FF619500AB4225 /* Model */,
 				AE81BE2D26FE1FD800AB4225 /* CategoryViewController.h */,
@@ -632,6 +641,15 @@
 				AE81BE5E2702025100AB4225 /* NSString+Add.m */,
 			);
 			path = Prompt;
+			sourceTree = "<group>";
+		};
+		AE81BE6927020F3300AB4225 /* Rank */ = {
+			isa = PBXGroup;
+			children = (
+				AE81BE6A2702158600AB4225 /* CategoryRankViewController.h */,
+				AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */,
+			);
+			path = Rank;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -821,6 +839,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */,
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
@@ -841,6 +860,7 @@
 				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
 				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,
+				AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
