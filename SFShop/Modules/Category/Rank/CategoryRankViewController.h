@@ -6,10 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CategoryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoryRankViewController : UIViewController
+
+/// 上一级传入数据
+@property (nonatomic, readwrite, strong) CategoryModel *model;
 
 @end
 

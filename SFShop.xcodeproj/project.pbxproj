@@ -80,6 +80,7 @@
 		AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE64270205B300AB4225 /* CategoryContentSectionFooter.m */; };
 		AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6727020E2400AB4225 /* SFNetworkOffersModule.m */; };
 		AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */; };
+		AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6F2704B94E00AB4225 /* CategoryRankModel.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -241,6 +242,8 @@
 		AE81BE6727020E2400AB4225 /* SFNetworkOffersModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkOffersModule.m; sourceTree = "<group>"; };
 		AE81BE6A2702158600AB4225 /* CategoryRankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankViewController.h; sourceTree = "<group>"; };
 		AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankViewController.m; sourceTree = "<group>"; };
+		AE81BE6E2704B94E00AB4225 /* CategoryRankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankModel.h; sourceTree = "<group>"; };
+		AE81BE6F2704B94E00AB4225 /* CategoryRankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankModel.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -646,10 +649,20 @@
 		AE81BE6927020F3300AB4225 /* Rank */ = {
 			isa = PBXGroup;
 			children = (
+				AE81BE6D2704B91C00AB4225 /* Model */,
 				AE81BE6A2702158600AB4225 /* CategoryRankViewController.h */,
 				AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */,
 			);
 			path = Rank;
+			sourceTree = "<group>";
+		};
+		AE81BE6D2704B91C00AB4225 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE81BE6E2704B94E00AB4225 /* CategoryRankModel.h */,
+				AE81BE6F2704B94E00AB4225 /* CategoryRankModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -864,6 +877,7 @@
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
+				AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */,
 				AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */,
 				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,

@@ -15,7 +15,6 @@
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
         self.dataSource = self;
-        self.delegate = self;
         [self registerClass:[CategoryContentCell class] forCellWithReuseIdentifier:@"CategoryContentCell"];
         [self registerClass:[CategoryContentSectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CategoryContentSectionHeader"];
         [self registerClass:[CategoryContentSectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"CategoryContentSectionFooter"];
@@ -49,11 +48,6 @@
     
     CategoryContentSectionFooter *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"CategoryContentSectionFooter" forIndexPath:indexPath];
     return view;
-}
-
-#pragma mark - UICollectionDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

@@ -9,6 +9,7 @@
 #import "CategorySideTableView.h"
 #import "CategoryModel.h"
 #import "CategoryContentCollectionView.h"
+#import "CategoryRankViewController.h"
 
 @interface CategoryViewController ()<UITableViewDelegate>
 @property (nonatomic, readwrite, strong) CategorySideTableView *sideTableView;//侧边栏
@@ -66,6 +67,14 @@
     }];
 }
 
+#pragma mark - UICollectionDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    CategoryModel *model = [self.sideTableView.dataArray objectAtIndex:indexPath.row];
+    CategoryRankViewController *rank = [[CategoryRankViewController alloc] init];
+    rank.model = model;
+    [self.navigationController pushViewController:rank animated:YES];
+}
+
 #pragma mark UITableviewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryModel *model = [self.sideTableView.dataArray objectAtIndex:indexPath.row];
@@ -103,6 +112,7 @@
         layout.itemSize = CGSizeMake(KScale(72), KScale(106));
         _contentCollectionView = [[CategoryContentCollectionView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.sideTableView.frame), CGRectGetMinY(self.sideTableView.frame), KScale(280), CGRectGetHeight(self.sideTableView.frame)) collectionViewLayout:layout];
         _contentCollectionView.backgroundColor = [UIColor whiteColor];
+        _contentCollectionView.delegate = self;
     }
     return _contentCollectionView;
 }
