@@ -98,9 +98,9 @@
 //    return cellHeight;
     
     if (indexPath.row % 2 == 0) {
-        return 100;
+        return 318;
     }
-    return 120;
+    return 340;
 }
 
 #pragma mark - getter
