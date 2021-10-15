@@ -10,6 +10,7 @@
 #import "accountOrderCell.h"
 #import "accountSubCell.h"
 #import "LoginViewController.h"
+#import "AddressViewController.h"
 
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -67,6 +68,9 @@
 {
     if (indexPath.row == 3) {
         LoginViewController *vc = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 7){
+        AddressViewController *vc = [[AddressViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     

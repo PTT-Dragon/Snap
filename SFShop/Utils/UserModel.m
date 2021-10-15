@@ -7,6 +7,10 @@
 
 #import "UserModel.h"
 
+@implementation userResModel
+
+@end
+
 @implementation UserModel
 
 @end

@@ -69,7 +69,8 @@ static FMDBManager *_onetimeClass;
 
 - (void)insertUser: (UserModel *)user {
     if ([self.userDb open]) {
-        BOOL res = [self.userDb executeUpdate:@"INSERT INTO t_user (account) VALUES (?);", user.account];
+//        BOOL res = [self.userDb executeUpdate:@"INSERT INTO t_user (account,accessToken,expiresIn,lastSighinDate,userId,userName) VALUES (?,?,?,?,?,?);", user.account,user.accessToken,user.expiresIn,user.lastSighinDate,user.userId,user.userName];
+        BOOL res = [self.userDb executeUpdate:@"INSERT INTO t_user (account) VALUES (?)", user.account];
         if (!res) {
             NSLog(@"增加数据失败");
         }else{

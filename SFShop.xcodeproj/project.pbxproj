@@ -18,6 +18,16 @@
 		1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122B26FC7D3600235294 /* accountOrderCell.xib */; };
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
+		1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D11A27192CFB002461ED /* AddressViewController.m */; };
+		1B49D11D27192CFB002461ED /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49D11B27192CFB002461ED /* AddressViewController.xib */; };
+		1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D11F27193181002461ED /* AddressTableViewCell.m */; };
+		1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49D12027193181002461ED /* AddressTableViewCell.xib */; };
+		1B49D12627194CD9002461ED /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D12427194CD8002461ED /* AddAddressViewController.m */; };
+		1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49D12527194CD8002461ED /* AddAddressViewController.xib */; };
+		1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D12B27197D65002461ED /* FavoriteViewController.m */; };
+		1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D12E27197E1F002461ED /* FavoriteChildViewController.m */; };
+		1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D1312719809B002461ED /* FavoriteTableViewCell.m */; };
+		1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49D1322719809B002461ED /* FavoriteTableViewCell.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -129,6 +139,22 @@
 		1B3C122E26FC808F00235294 /* accountSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountSubCell.h; sourceTree = "<group>"; };
 		1B3C122F26FC808F00235294 /* accountSubCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountSubCell.m; sourceTree = "<group>"; };
 		1B3C123026FC808F00235294 /* accountSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountSubCell.xib; sourceTree = "<group>"; };
+		1B49D11927192CFB002461ED /* AddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		1B49D11A27192CFB002461ED /* AddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		1B49D11B27192CFB002461ED /* AddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
+		1B49D11E27193181002461ED /* AddressTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
+		1B49D11F27193181002461ED /* AddressTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressTableViewCell.m; sourceTree = "<group>"; };
+		1B49D12027193181002461ED /* AddressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressTableViewCell.xib; sourceTree = "<group>"; };
+		1B49D12327194CD8002461ED /* AddAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
+		1B49D12427194CD8002461ED /* AddAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
+		1B49D12527194CD8002461ED /* AddAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAddressViewController.xib; sourceTree = "<group>"; };
+		1B49D12A27197D65002461ED /* FavoriteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
+		1B49D12B27197D65002461ED /* FavoriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
+		1B49D12D27197E1F002461ED /* FavoriteChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteChildViewController.h; sourceTree = "<group>"; };
+		1B49D12E27197E1F002461ED /* FavoriteChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteChildViewController.m; sourceTree = "<group>"; };
+		1B49D1302719809A002461ED /* FavoriteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteTableViewCell.h; sourceTree = "<group>"; };
+		1B49D1312719809B002461ED /* FavoriteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteTableViewCell.m; sourceTree = "<group>"; };
+		1B49D1322719809B002461ED /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -299,6 +325,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B49D11827192C3A002461ED /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				1B49D11927192CFB002461ED /* AddressViewController.h */,
+				1B49D11A27192CFB002461ED /* AddressViewController.m */,
+				1B49D11B27192CFB002461ED /* AddressViewController.xib */,
+				1B49D11E27193181002461ED /* AddressTableViewCell.h */,
+				1B49D11F27193181002461ED /* AddressTableViewCell.m */,
+				1B49D12027193181002461ED /* AddressTableViewCell.xib */,
+				1B49D12327194CD8002461ED /* AddAddressViewController.h */,
+				1B49D12427194CD8002461ED /* AddAddressViewController.m */,
+				1B49D12527194CD8002461ED /* AddAddressViewController.xib */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
+		1B49D12827197881002461ED /* Invite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Invite;
+			sourceTree = "<group>";
+		};
+		1B49D12927197D43002461ED /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				1B49D12A27197D65002461ED /* FavoriteViewController.h */,
+				1B49D12B27197D65002461ED /* FavoriteViewController.m */,
+				1B49D12D27197E1F002461ED /* FavoriteChildViewController.h */,
+				1B49D12E27197E1F002461ED /* FavoriteChildViewController.m */,
+				1B49D1302719809A002461ED /* FavoriteTableViewCell.h */,
+				1B49D1312719809B002461ED /* FavoriteTableViewCell.m */,
+				1B49D1322719809B002461ED /* FavoriteTableViewCell.xib */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 		1BDBEB9926FDA11B0018109B /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +530,9 @@
 		4B9FB9D826FB7A1F00C90790 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				1B49D12927197D43002461ED /* Favorite */,
+				1B49D12827197881002461ED /* Invite */,
+				1B49D11827192C3A002461ED /* Address */,
 				1BDBEBBB27004B140018109B /* Coupon */,
 				4B9FB9F126FB7A7C00C90790 /* AccountViewController.h */,
 				4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */,
@@ -818,11 +884,15 @@
 			files = (
 				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
+				1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */,
 				4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */,
 				1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */,
+				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
+				1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
+				1B49D11D27192CFB002461ED /* AddressViewController.xib in Resources */,
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
@@ -915,6 +985,7 @@
 				AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */,
 				1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */,
 				1BDBEBB926FF62BF0018109B /* LoginViaOTP.m in Sources */,
+				1B49D12627194CD9002461ED /* AddAddressViewController.m in Sources */,
 				AE81BE3F26FF5FD500AB4225 /* CategorySideTableView.m in Sources */,
 				4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */,
 				1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */,
@@ -938,12 +1009,17 @@
 				AE81BE5F2702025200AB4225 /* NSString+Add.m in Sources */,
 				AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */,
 				1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */,
+				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
+				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
+				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
+				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
+				1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */,
 				AE81BE4526FF605100AB4225 /* CategoryContentCollectionView.m in Sources */,
 				1B12A3DA27015E9100DD7BCD /* CouponCenterViewController.m in Sources */,
 				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
