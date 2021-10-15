@@ -23,6 +23,7 @@
     self.title = @"My Coupon";
     self.menuList = @[@"Available", @"Expired", @"Used"];
     
+    self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
     self.magicView.sliderHeight = 1.0f;
@@ -34,7 +35,7 @@
     
     self.view.frame = CGRectMake(0, 0, MainScreen_width, 100);
     [self.magicView reloadData];
-    self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
+    
 }
 - (void)loadView
 {
