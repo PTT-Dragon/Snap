@@ -12,7 +12,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     if (self = [super initWithFrame:frame style:style]) {
-        self.delegate = self;
         self.dataSource = self;
         self.estimatedRowHeight = 78;
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -35,10 +34,6 @@
     CategorySideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CategorySideCell" forIndexPath:indexPath];
     cell.model = self.dataArray[indexPath.row];
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 78;
 }
 
 - (NSMutableArray<CategoryModel *> *)dataArray {

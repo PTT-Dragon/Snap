@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CategoryModel : NSObject
 @property (nonatomic, readwrite, strong) NSArray *children;
 @property (nonatomic, readwrite, strong) CategoryInnerModel *inner;
+
+//手动赋值
+@property (nonatomic, readwrite, assign) BOOL isCached;//是否缓存过数据
 @end
 
 NS_ASSUME_NONNULL_END

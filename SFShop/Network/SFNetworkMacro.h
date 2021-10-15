@@ -22,6 +22,7 @@
 #define K_users_domain(url) [NSString stringWithFormat:@"%@/h5/users/%@",Host,url]
 #define K_pages_domain(url) [NSString stringWithFormat:@"%@/h5/pages/%@",Host,url]
 #define K_articles_domain(url) [NSString stringWithFormat:@"%@/h5/articles/%@",Host,url]
+#define K_offers_domain(url) [NSString stringWithFormat:@"%@/h5/offers/%@",Host,url]
 
 //*********************************************接口模块👆*********************************************//
 
