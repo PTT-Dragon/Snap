@@ -25,8 +25,7 @@
     [self addChildViewController: container];
     [self.view addSubview: container.view];
     [container didMoveToParentViewController: self];
-    CGRect bounds = self.view.bounds;
-    container.view.frame = CGRectMake(0, 0, bounds.size.width, bounds.size.height - 200);
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 @end
@@ -50,7 +49,6 @@
     self.menuList = @[@"Recommend", @"Phone", @"House", @"Car", @"Computer", @"Camera"];
     self.articleCatgIdList = @[@"6", @"7", @"10", @"6", @"7", @"10"];
     
-    self.magicView.frame = CGRectMake(0, 100, 200, 300);
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
     self.magicView.sliderHeight = 1.0f;

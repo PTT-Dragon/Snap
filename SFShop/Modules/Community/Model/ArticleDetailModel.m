@@ -7,6 +7,12 @@
 
 #import "ArticleDetailModel.h"
 
+@implementation ArticleProduct
+
+@end
+
+
+
 @implementation ArticleDetailModel
 
 @end

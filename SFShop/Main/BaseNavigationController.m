@@ -89,6 +89,8 @@
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
     }
+    // 设置返回按钮不显示文字
+    viewController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle: nil style: UIBarButtonItemStyleDone target: nil action: nil];
     [super pushViewController:viewController animated:animated];
 }
 // 返回手势可用

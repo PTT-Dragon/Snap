@@ -55,6 +55,8 @@
 		1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0B88C2701944300C73CEC /* CouponAlertView.m */; };
 		1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */; };
 		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
+		4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B192DB527094FC20029D89F /* ArticleProductCell.xib */; };
+		4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B192DBB270950E70029D89F /* ArticleProductCell.m */; };
 		4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43851726FEB80000BA3D90 /* ArticleListModel.m */; };
 		4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */; };
 		4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */; };
@@ -201,6 +203,9 @@
 		1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponAlertView.xib; sourceTree = "<group>"; };
 		4B170FD426FCC13A00699B87 /* CommunityChildController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityChildController.h; sourceTree = "<group>"; };
 		4B170FD526FCC13A00699B87 /* CommunityChildController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityChildController.m; sourceTree = "<group>"; };
+		4B192DB527094FC20029D89F /* ArticleProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleProductCell.xib; sourceTree = "<group>"; };
+		4B192DBA270950E70029D89F /* ArticleProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleProductCell.h; sourceTree = "<group>"; };
+		4B192DBB270950E70029D89F /* ArticleProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleProductCell.m; sourceTree = "<group>"; };
 		4B253EB22B1A1046355C158C /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
 		4B43851626FEB80000BA3D90 /* ArticleListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleListModel.h; sourceTree = "<group>"; };
 		4B43851726FEB80000BA3D90 /* ArticleListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleListModel.m; sourceTree = "<group>"; };
@@ -432,6 +437,9 @@
 				4B43852926FEC1CC00BA3D90 /* ArticleListCell.h */,
 				4B43852A26FEC1CC00BA3D90 /* ArticleListCell.m */,
 				4B43852B26FEC1CC00BA3D90 /* ArticleListCell.xib */,
+				4B192DBA270950E70029D89F /* ArticleProductCell.h */,
+				4B192DBB270950E70029D89F /* ArticleProductCell.m */,
+				4B192DB527094FC20029D89F /* ArticleProductCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -893,6 +901,7 @@
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
 				1B49D11D27192CFB002461ED /* AddressViewController.xib in Resources */,
+				4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */,
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
@@ -1012,6 +1021,7 @@
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
+				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
