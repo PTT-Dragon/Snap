@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) NSInteger usefulCnt;
 @property(nonatomic, assign) NSInteger replyCnt;
 @property(nonatomic, strong) NSArray <ArticleProduct *> <ArticleProduct> *products;
+@property(nonatomic, strong) NSString <Optional> *createdDate;
 
 
 @end

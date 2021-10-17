@@ -19,7 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *viewCntLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usefulCntLabel;
 @property (weak, nonatomic) IBOutlet UILabel *replyCntLabel;
-@property (weak, nonatomic) IBOutlet UIStackView *productsStackView;
+@property (weak, nonatomic) IBOutlet UIView *productContainer;
+@property (weak, nonatomic) IBOutlet UILabel *createDateLabel;
 
 @end
 
@@ -66,17 +67,24 @@
     self.viewCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.viewCnt];
     self.usefulCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.usefulCnt];
     self.replyCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.replyCnt];
+    self.createDateLabel.text = self.model.createdDate;
     if (self.model.products.count > 0) {
-        [self.productsStackView.arrangedSubviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.productsStackView removeArrangedSubview: obj];
+        [self.productContainer.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj removeFromSuperview];
         }];
-        [self.productsStackView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(130 * self.model.products.count);
+        [self.productContainer mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(135 * self.model.products.count);
         }];
         [self.model.products enumerateObjectsUsingBlock:^(ArticleProduct * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             ArticleProductCell *productCell = [[[NSBundle mainBundle] loadNibNamed:@"ArticleProductCell" owner:nil options:nil] lastObject];
             [productCell setModel: obj];
-            [self.productsStackView addArrangedSubview: productCell];
+            [self.productContainer addSubview: productCell];
+            [productCell mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(130);
+                make.top.equalTo(self.productContainer).offset(135 * idx);
+                make.left.right.equalTo(self.productContainer);
+            }];
+            
         }];
     }
     [self.articlePictures reloadData];

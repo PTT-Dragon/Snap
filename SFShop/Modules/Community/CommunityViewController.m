@@ -11,6 +11,8 @@
 
 @interface CommunityViewController ()
 
+@property (nonatomic, strong) CommunityTabContainer *container;
+
 @end
 
 @implementation CommunityViewController
@@ -21,11 +23,17 @@
     // Do any additional setup after loading the view.
     self.title = @"Community";
 
-    CommunityTabContainer *container = [[CommunityTabContainer alloc] init];
-    [self addChildViewController: container];
-    [self.view addSubview: container.view];
-    [container didMoveToParentViewController: self];
+    self.container = [[CommunityTabContainer alloc] init];
+    [self addChildViewController: self.container];
+    [self.view addSubview: self.container.view];
+    [self.container didMoveToParentViewController: self];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    // 此处重新设置frame，因为VTMagicView内部对frame进行了处理
+    self.container.view.frame = self.view.bounds;
 }
 
 @end
