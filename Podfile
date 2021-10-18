@@ -10,9 +10,10 @@ target 'SFShop' do
   pod 'FMDB'
   pod 'MJRefresh'
   pod 'IQKeyboardManager'
+  pod 'JTCalendar', '~> 2.0'
   pod 'JKCategories'
   pod 'VTMagic'
   pod 'SDWebImage'
   pod 'iCarousel'
-
+  pod 'ReactiveObjC'
 end 

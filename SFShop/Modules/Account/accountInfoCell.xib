@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kAT-s2-Aye">
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kAT-s2-Aye">
                         <rect key="frame" x="16" y="16" width="59" height="59"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="59" id="CQD-yp-60a"/>
@@ -160,7 +160,14 @@ Viewed</string>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="RecentlyLabel" destination="rZr-F1-yKx" id="VpQ-80-uTg"/>
+                <outlet property="RecentlyViewedView" destination="28J-D2-ke3" id="05l-C9-IIB"/>
+                <outlet property="WhishlistLabel" destination="ad5-ph-Klw" id="NQe-XZ-iin"/>
+                <outlet property="WhishlistView" destination="ckn-Gx-hDh" id="jsZ-oV-XZd"/>
+                <outlet property="couponLabel" destination="uKv-I9-t1a" id="yUs-PJ-E3A"/>
                 <outlet property="couponView" destination="RjG-am-f1L" id="9Xg-q2-0aC"/>
+                <outlet property="imgVIew" destination="kAT-s2-Aye" id="Nd8-lD-8M0"/>
+                <outlet property="nameLabel" destination="Ow4-xP-dSu" id="011-W1-t2l"/>
             </connections>
             <point key="canvasLocation" x="97" y="90"/>
         </tableViewCell>

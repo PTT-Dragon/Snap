@@ -37,6 +37,10 @@
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
 }
+- (void)updateData
+{
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 2+_dataSource.count;
