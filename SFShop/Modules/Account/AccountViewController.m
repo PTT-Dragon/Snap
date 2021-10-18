@@ -11,6 +11,7 @@
 #import "accountSubCell.h"
 #import "LoginViewController.h"
 #import "AddressViewController.h"
+#import "FavoriteViewController.h"
 
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -69,8 +70,11 @@
     if (indexPath.row == 3) {
         LoginViewController *vc = [[LoginViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row == 7){
+    }else if (indexPath.row == 6){
         AddressViewController *vc = [[AddressViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 7){
+        FavoriteViewController *vc = [[FavoriteViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     
