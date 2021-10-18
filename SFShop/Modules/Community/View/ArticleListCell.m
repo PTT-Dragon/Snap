@@ -7,7 +7,6 @@
 
 #import "ArticleListCell.h"
 #import <SDWebImage/SDWebImage.h>
-#import "SFNetworkMacro.h"
 
 @interface ArticleListCell()
 @property (weak, nonatomic) IBOutlet UILabel *contentTitle;
@@ -29,10 +28,8 @@
 - (void)setModel:(ArticleModel *)model {
     _model = model;
     
-    NSString *profilePictureUrlString = [NSString stringWithFormat:@"%@%@", Host, model.profilePicture];
-    NSString *articlePicturesUrlString = [NSString stringWithFormat:@"%@%@", Host, model.articlePictures];
-    [self.profilePicture sd_setImageWithURL: [NSURL URLWithString: profilePictureUrlString]];
-    [self.articlePictures sd_setImageWithURL: [NSURL URLWithString: articlePicturesUrlString]];
+    [self.profilePicture sd_setImageWithURL: [NSURL URLWithString: SFImage(model.profilePicture)]];
+    [self.articlePictures sd_setImageWithURL: [NSURL URLWithString: SFImage(model.articlePictures)]];
     [self.contentTitle setText: model.contentTitle];
     [self.viewCnt setText: [NSString stringWithFormat:@"%ld", (long)model.viewCnt]];
 }

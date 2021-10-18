@@ -38,17 +38,20 @@
 }
 
 - (void)request {
+    [MBProgressHUD showHudMsg:@"加载中"];
     NSDictionary *param = @{
         @"articleCatgId": self.articleCatgId,
         @"pageIndex": @"0",
         @"pageSize": @"10"
     };
     [SFNetworkManager get: SFNet.article.articles parameters: param success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
         NSError *error;
         self.model = [[ArticleListModel alloc] initWithDictionary: response error: &error];
         [self.collectionView reloadData];
         NSLog(@"get articles success");
     } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
         NSLog(@"get articles failed");
     }];
 }

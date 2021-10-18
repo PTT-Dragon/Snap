@@ -44,7 +44,7 @@ static FMDBManager *_onetimeClass;
 
 - (void)createUserDb {
     if ([self.userDb open]) {
-        BOOL result=[self.userDb executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (account text PRIMARY KEY NOT NULL, password text NOT NULL);"];
+        BOOL result=[self.userDb executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (account text PRIMARY KEY NOT NULL, userInfo blob NOT NULL);"];
         if (result){
             NSLog(@"创表成功");
         }else{
@@ -67,10 +67,10 @@ static FMDBManager *_onetimeClass;
     }
 }
 
-- (void)insertUser: (UserModel *)user {
+- (void)insertUser: (UserModel *)user ofAccount: (NSString *)account {
     if ([self.userDb open]) {
-//        BOOL res = [self.userDb executeUpdate:@"INSERT INTO t_user (account,accessToken,expiresIn,lastSighinDate,userId,userName) VALUES (?,?,?,?,?,?);", user.account,user.accessToken,user.expiresIn,user.lastSighinDate,user.userId,user.userName];
-        BOOL res = [self.userDb executeUpdate:@"INSERT INTO t_user (account) VALUES (?)", user.account];
+        NSData *userData=[NSKeyedArchiver archivedDataWithRootObject: user];
+        BOOL res = [self.userDb executeUpdate:@"INSERT INTO t_user (account, userInfo) VALUES (?,?)", account, userData];
         if (!res) {
             NSLog(@"增加数据失败");
         }else{
@@ -80,9 +80,10 @@ static FMDBManager *_onetimeClass;
     }
 }
 
-- (void)updateUser: (UserModel *)user {
+- (void)updateUser: (UserModel *)user ofAccount: (NSString *)account {
     if ([self.userDb open]) {
-        BOOL res = [self.userDb executeUpdate:@"UPDATE t_user SET account = ?", user.account];
+        NSData *userData=[NSKeyedArchiver archivedDataWithRootObject: user];
+        BOOL res = [self.userDb executeUpdate:@"UPDATE t_user SET userInfo = ? where account = ? ", userData, account];
         if (!res) {
             NSLog(@"数据修改失败");
         }else{
@@ -94,17 +95,14 @@ static FMDBManager *_onetimeClass;
 
 - (UserModel *) queryUserWith: (NSString *)account {
     if ([self.userDb open]) {
-        FMResultSet *resultSet = [self.userDb executeQuery:@"SELECT * FROM t_user"];
+        FMResultSet *resultSet = [self.userDb executeQuery:@"SELECT * FROM t_user where account = ?", account];
         
         while ([resultSet next]) {
-            NSString *theAccount = [resultSet stringForColumn: @"account"];
-            if ([theAccount isEqualToString:account]) {
-                UserModel *user = [[UserModel alloc] init];
-                user.account = account;
-                
-                [self.userDb close];
-                return user;
-            }
+            NSData *data=[resultSet objectForColumn:@"userInfo"];
+            UserModel *user=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+            
+            [self.userDb close];
+            return user;
         }
         [self.userDb close];
     }

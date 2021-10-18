@@ -13,5 +13,6 @@ target 'SFShop' do
   pod 'JKCategories'
   pod 'VTMagic'
   pod 'SDWebImage'
+  pod 'iCarousel'
 
 end 

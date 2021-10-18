@@ -11,6 +11,8 @@
 
 @interface CommunityViewController ()
 
+@property (nonatomic, strong) CommunityTabContainer *container;
+
 @end
 
 @implementation CommunityViewController
@@ -21,12 +23,17 @@
     // Do any additional setup after loading the view.
     self.title = @"Community";
 
-    CommunityTabContainer *container = [[CommunityTabContainer alloc] init];
-    [self addChildViewController: container];
-    [self.view addSubview: container.view];
-    [container didMoveToParentViewController: self];
-    CGRect bounds = self.view.bounds;
-    container.view.frame = CGRectMake(0, 0, bounds.size.width, bounds.size.height - 200);
+    self.container = [[CommunityTabContainer alloc] init];
+    [self addChildViewController: self.container];
+    [self.view addSubview: self.container.view];
+    [self.container didMoveToParentViewController: self];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    // 此处重新设置frame，因为VTMagicView内部对frame进行了处理
+    self.container.view.frame = self.view.bounds;
 }
 
 @end
@@ -50,7 +57,6 @@
     self.menuList = @[@"Recommend", @"Phone", @"House", @"Car", @"Computer", @"Camera"];
     self.articleCatgIdList = @[@"6", @"7", @"10", @"6", @"7", @"10"];
     
-    self.magicView.frame = CGRectMake(0, 100, 200, 300);
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
     self.magicView.sliderHeight = 1.0f;

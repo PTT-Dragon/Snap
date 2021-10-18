@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface userResModel : JSONModel
+@interface userResModel : JSONModel <NSCoding>
 @property(nonatomic, copy) NSString *email;
 @property(nonatomic, copy) NSString *lastSighinDate;
 @property(nonatomic, copy) NSString *nickName;
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface UserModel : JSONModel
+@interface UserModel : JSONModel <NSCoding>
 
 @property(nonatomic, copy) NSString *accessToken;
 //@property(nonatomic, copy) NSString *birthdayDay;
