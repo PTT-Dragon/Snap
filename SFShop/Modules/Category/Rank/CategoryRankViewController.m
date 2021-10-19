@@ -69,7 +69,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CategoryRankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankCell" forIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor redColor];
+    CategoryRankPageInfoListModel *cellModel = self.dataModel.pageInfo.list[indexPath.row];
+    cell.model = cellModel;
     return cell;
 //    ArticleListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"community.article.list.cell" forIndexPath:indexPath];
 //    if(!cell){
@@ -98,9 +99,9 @@
 //    return cellHeight;
     
     if (indexPath.row % 2 == 0) {
-        return 318;
+        return 500;
     }
-    return 340;
+    return 700;
 }
 
 #pragma mark - getter
