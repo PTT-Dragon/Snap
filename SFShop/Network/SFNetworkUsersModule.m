@@ -14,3 +14,16 @@
 }
 
 @end
+
+@implementation SFNetworkUsersAddressModule
+- (NSString *)addressList {
+    return K_address_domain(@"delivery");
+}
+@end
+
+@implementation SFNetworkUsersCouponModule
+
+- (NSString *)usercoupons {
+    return K_coupon_domain(@"usercoupons");
+}
+@end

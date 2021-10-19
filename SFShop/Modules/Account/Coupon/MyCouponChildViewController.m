@@ -30,12 +30,14 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
-    
 }
-- (void)loadView
+- (void)loadDatas
 {
-    [super loadView];
-    self.view.frame = CGRectMake(0, 0, MainScreen_width, 100);
+    [SFNetworkManager get:SFNet.coupon.usercoupons parameters:@{} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

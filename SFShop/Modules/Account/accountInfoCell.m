@@ -43,6 +43,10 @@
         @strongify(self)
         self.nameLabel.text = model.userName;
     }];
+    [RACObserve(model, userRes) subscribeNext:^(id  _Nullable x) {
+        @strongify(self)
+        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:model.userRes.photo]];
+    }];
 }
 - (void)userInfoAction
 {

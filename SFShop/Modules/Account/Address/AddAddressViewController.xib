@@ -11,6 +11,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddAddressViewController">
             <connections>
+                <outlet property="areaField" destination="fLu-Z8-KKV" id="TsX-QT-8qi"/>
+                <outlet property="defaultSwitch" destination="EFd-0n-rry" id="sIh-K7-cnE"/>
+                <outlet property="detailField" destination="Cxf-5B-R3d" id="jUP-Xd-y1t"/>
+                <outlet property="homeBtn" destination="2qe-4t-aEt" id="vfS-2y-0yT"/>
+                <outlet property="moreBtn" destination="550-Bp-rgt" id="htF-S2-I3n"/>
+                <outlet property="nameField" destination="IxV-cw-9Pd" id="Y1F-Wl-CDw"/>
+                <outlet property="officeBtn" destination="bcO-PD-dXS" id="JvP-U4-bbb"/>
+                <outlet property="phoneField" destination="G8I-e7-lBd" id="l1u-VQ-wK9"/>
+                <outlet property="saveBtn" destination="qWu-vM-18D" id="Jzr-nO-egq"/>
+                <outlet property="schoolBtn" destination="wCC-6K-AcD" id="lJW-iA-rhr"/>
+                <outlet property="streetField" destination="Jdd-F9-asL" id="e5O-Lw-tiO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewWidth" destination="LxK-Tz-yos" id="yvd-8V-6Rg"/>
             </connections>
@@ -233,6 +244,9 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                             <state key="normal" title="SAVE"/>
+                            <connections>
+                                <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="hCn-Z4-vky"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>

@@ -31,6 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 商品模块
 @property (nonatomic, readwrite, strong) SFNetworkOffersModule *offer;
+
+/// 收货地址模块
+@property (nonatomic, readwrite, strong) SFNetworkUsersAddressModule *address;
+
+/// 红包模块
+@property (nonatomic, readwrite, strong) SFNetworkUsersCouponModule *coupon;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -23,6 +23,8 @@
 #define K_pages_domain(url) [NSString stringWithFormat:@"%@/h5/pages/%@",Host,url]
 #define K_articles_domain(url) [NSString stringWithFormat:@"%@/h5/articles/%@",Host,url]
 #define K_offers_domain(url) [NSString stringWithFormat:@"%@/h5/offers/%@",Host,url]
+#define K_address_domain(url) [NSString stringWithFormat:@"%@/h5/address/%@",Host,url]
+#define K_coupon_domain(url) [NSString stringWithFormat:@"%@/h5/coupons/%@",Host,url]
 
 //*********************************************接口模块👆*********************************************//
 

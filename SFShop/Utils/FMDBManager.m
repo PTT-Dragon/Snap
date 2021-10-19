@@ -95,7 +95,7 @@ static FMDBManager *_onetimeClass;
 
 - (UserModel *) queryUserWith: (NSString *)account {
     if ([self.userDb open]) {
-        FMResultSet *resultSet = [self.userDb executeQuery:@"SELECT * FROM t_user where account = ?", account];
+        FMResultSet *resultSet = [self.userDb executeQuery:@"SELECT * FROM t_user where account = ?", @"hxf01@qq.com"];
         
         while ([resultSet next]) {
             NSData *data=[resultSet objectForColumn:@"userInfo"];

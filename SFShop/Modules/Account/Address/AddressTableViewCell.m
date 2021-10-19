@@ -23,6 +23,14 @@
     // Initialization code
     
 }
+- (void)setContent:(addressModel *)model
+{
+    self.phoneLabel.text = model.contactNbr;
+    self.contentLabel.text = model.contactAddress;
+    self.nameLabel.text = model.contactName;
+//    self.tagLabel.text = model.
+    
+}
 - (IBAction)editAction:(id)sender {
 }
 

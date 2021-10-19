@@ -17,4 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *codeCheck;
 @end
 
+@interface SFNetworkUsersAddressModule : NSObject
+
+@property (nonatomic, readwrite, strong) NSString *addressList;
+@end
+
+@interface SFNetworkUsersCouponModule : NSObject
+
+@property (nonatomic, readwrite, strong) NSString *usercoupons;
+@end
+
 NS_ASSUME_NONNULL_END
