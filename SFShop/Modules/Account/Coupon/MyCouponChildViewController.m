@@ -30,6 +30,7 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
+    [self loadDatas];
 }
 - (void)loadDatas
 {
