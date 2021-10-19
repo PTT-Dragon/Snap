@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString <Optional> *publisherName;
 @property(nonatomic, strong) NSString <Optional> *profilePicture;
 @property(nonatomic, strong) NSString <Optional> *articleDetail;
+// 是否点赞
+@property(nonatomic, strong) NSString <Optional> *isUseful;
 @property(nonatomic, assign) NSInteger viewCnt;
 @property(nonatomic, assign) NSInteger usefulCnt;
 @property(nonatomic, assign) NSInteger replyCnt;

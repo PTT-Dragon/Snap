@@ -7,12 +7,14 @@
 
 #import "CommunityDetailController.h"
 #import "ArticleDetailModel.h"
+#import "ArticleEvaluateModel.h"
 #import <iCarousel/iCarousel.h>
 #import "ArticleProductCell.h"
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource>
 
 @property(nonatomic, strong) ArticleDetailModel *model;
+@property(nonatomic, strong) NSMutableArray<ArticleEvaluateModel *> *evaluateArray;
 @property(nonatomic, strong) UIImageView *headIV;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet iCarousel *articlePictures;
@@ -37,7 +39,8 @@
 - (void)setUpSubViews {
     _articlePictures.type = iCarouselTypeLinear;
     _articlePictures.bounces = NO;
-
+    _articlePictures.pagingEnabled = YES;
+    
     UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"share"] style: UIBarButtonItemStylePlain target: nil action: nil];
     _headIV = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0, 32, 32)];
     UIBarButtonItem *headItem = [[UIBarButtonItem alloc] initWithCustomView: _headIV];
@@ -46,6 +49,12 @@
 
 - (void)request {
     [MBProgressHUD showHudMsg:@"加载中"];
+    [self requestArticleDetail];
+    [self requestArticleEvaluate];
+}
+
+/// 文章详情接口
+- (void)requestArticleDetail {
     [SFNetworkManager get: [SFNet.article getDetailOf: _articleId] success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSError *error;
@@ -54,6 +63,19 @@
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
         NSLog(@"get article detail failed");
+    }];
+}
+
+/// 评论列表接口
+- (void)requestArticleEvaluate {
+    [SFNetworkManager get: [SFNet.article getEvaluateOf: _articleId] success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        NSError *error;
+        self.evaluateArray = [ArticleEvaluateModel arrayOfModelsFromDictionaries:response error:&error];
+        NSLog(@"get article evaluate success");
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+        NSLog(@"get article evaluate failed");
     }];
 }
 

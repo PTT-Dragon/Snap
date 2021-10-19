@@ -70,6 +70,7 @@
 		4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43857A26FF535600BA3D90 /* CommunityDetailController.m */; };
 		4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B43857B26FF535600BA3D90 /* CommunityDetailController.xib */; };
 		4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43858226FF5D2400BA3D90 /* ArticleDetailModel.m */; };
+		4B7974C7271EFD1200F2EEEA /* ArticleEvaluateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7974C6271EFD1200F2EEEA /* ArticleEvaluateModel.m */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -234,6 +235,8 @@
 		4B43857B26FF535600BA3D90 /* CommunityDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityDetailController.xib; sourceTree = "<group>"; };
 		4B43858126FF5D2400BA3D90 /* ArticleDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleDetailModel.h; sourceTree = "<group>"; };
 		4B43858226FF5D2400BA3D90 /* ArticleDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailModel.m; sourceTree = "<group>"; };
+		4B7974C5271EFD1200F2EEEA /* ArticleEvaluateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleEvaluateModel.h; sourceTree = "<group>"; };
+		4B7974C6271EFD1200F2EEEA /* ArticleEvaluateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleEvaluateModel.m; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		4B9FB9F126FB7A7C00C90790 /* AccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -463,6 +466,8 @@
 				4B43851726FEB80000BA3D90 /* ArticleListModel.m */,
 				4B43858126FF5D2400BA3D90 /* ArticleDetailModel.h */,
 				4B43858226FF5D2400BA3D90 /* ArticleDetailModel.m */,
+				4B7974C5271EFD1200F2EEEA /* ArticleEvaluateModel.h */,
+				4B7974C6271EFD1200F2EEEA /* ArticleEvaluateModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -837,7 +842,7 @@
 				AE81BDCF26FB6E7000AB4225 /* Sources */,
 				AE81BDD026FB6E7000AB4225 /* Frameworks */,
 				AE81BDD126FB6E7000AB4225 /* Resources */,
-				6403442AF64306CB9780A823 /* [CP] Copy Pods Resources */,
+				C0F2ADF17E0965831C276617 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -978,23 +983,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6403442AF64306CB9780A823 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SFShop/Pods-SFShop-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SFShop/Pods-SFShop-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SFShop/Pods-SFShop-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		67798DB90A38B1C6BB6EED16 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1015,6 +1003,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0F2ADF17E0965831C276617 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SFShop/Pods-SFShop-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SFShop/Pods-SFShop-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SFShop/Pods-SFShop-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1074,6 +1079,7 @@
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */,
+				4B7974C7271EFD1200F2EEEA /* ArticleEvaluateModel.m in Sources */,
 				AE81BE4526FF605100AB4225 /* CategoryContentCollectionView.m in Sources */,
 				1B12A3DA27015E9100DD7BCD /* CouponCenterViewController.m in Sources */,
 				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
