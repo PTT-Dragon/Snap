@@ -45,7 +45,7 @@
     }];
     [RACObserve(model, userRes) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
-        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:model.userRes.photo]];
+        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.userRes.photo]]];
     }];
 }
 - (void)userInfoAction

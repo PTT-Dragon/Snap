@@ -9,6 +9,7 @@
 #import "MyCouponCell.h"
 #import "MyCouponStoreCell.h"
 #import "CouponCenterViewController.h"
+#import "CouponModel.h"
 
 @interface MyCouponChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -34,8 +35,13 @@
 }
 - (void)loadDatas
 {
+    MPWeakSelf(self)
     [SFNetworkManager get:SFNet.coupon.usercoupons parameters:@{} success:^(id  _Nullable response) {
-        
+        NSArray *arr = response[@"list"];
+        for (NSDictionary *dic in arr) {
+            [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
+            [weakself.tableView reloadData];
+        }
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -43,15 +49,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyCouponCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCouponCell"];
+    [cell setContent:self.dataSource[indexPath.section]];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;//self.dataSource.count;
+    return self.dataSource.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

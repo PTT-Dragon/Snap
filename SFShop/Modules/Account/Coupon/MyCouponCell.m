@@ -7,17 +7,18 @@
 
 #import "MyCouponCell.h"
 
+@interface MyCouponCell ()
+
+@end
+
 @implementation MyCouponCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setContent:(CouponModel *)model
+{
+    
 }
-
 @end
