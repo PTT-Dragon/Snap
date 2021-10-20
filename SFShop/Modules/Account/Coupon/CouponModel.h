@@ -10,6 +10,26 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CouponModel : JSONModel
+
+@property (nonatomic,copy) NSString <Optional>*couponName;
+@property (nonatomic,copy) NSString <Optional>*couponId;
+@property (nonatomic,copy) NSString <Optional>*discountAmount;
+@property (nonatomic,copy) NSString <Optional>*discountMethod;
+@property (nonatomic,copy) NSString <Optional>*effDate;
+@property (nonatomic,copy) NSString <Optional>*expDate;
+@property (nonatomic,copy) NSString <Optional>*getDate;
+@property (nonatomic,copy) NSString <Optional>*getMethod;
+@property (nonatomic,copy) NSString <Optional>*initiator;
+@property (nonatomic,copy) NSString <Optional>*isOrderTh;
+@property (nonatomic,copy) NSString <Optional>*isOverlay;
+@property (nonatomic,copy) NSString <Optional>*isPrmotCode;
+@property (nonatomic,copy) NSString <Optional>*stateDate;
+@property (nonatomic,copy) NSString <Optional>*storeName;
+@property (nonatomic,copy) NSString <Optional>*thAmount;
+@property (nonatomic,copy) NSString <Optional>*useDesc;
+@property (nonatomic,copy) NSString <Optional>*userCouponId;
+@property (nonatomic,strong) NSArray <Optional>*targetProduct;
+
 /**
  {
 comments = "<null>";

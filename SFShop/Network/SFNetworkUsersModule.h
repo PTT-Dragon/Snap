@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *check;
 @property (nonatomic, readwrite, strong) NSString *getCode;
 @property (nonatomic, readwrite, strong) NSString *codeCheck;
+@property (nonatomic, readwrite, strong) NSString *modify;
 @end
 
 @interface SFNetworkUsersAddressModule : NSObject
@@ -25,6 +26,18 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFNetworkUsersCouponModule : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *usercoupons;
+@property (nonatomic, readwrite, strong) NSString *center;
+@property (nonatomic, readwrite, strong) NSString *usercoupon;
+
+
+@end
+
+@interface SFNetworkUsersFavoriteModule : NSObject
+
+@property (nonatomic, readwrite, strong) NSString *favorite;
+@property (nonatomic, readwrite, strong) NSString *delete;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

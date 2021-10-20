@@ -9,8 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface userInfoGenderView : UIView
+@protocol userInfoGenderViewDelegate <NSObject>
 
+- (void)chooseGender:(NSString *)gender;
+
+@end
+
+@interface userInfoGenderView : UIView
+@property (nonatomic,assign) id<userInfoGenderViewDelegate>delegate;
 @end
 
 NS_ASSUME_NONNULL_END

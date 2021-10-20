@@ -7,11 +7,22 @@
 
 #import "CouponCenterCollectionViewCell.h"
 
+@interface CouponCenterCollectionViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+
+@end
+
 @implementation CouponCenterCollectionViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
-
+- (void)setContent:(NSDictionary *)dic
+{
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,dic[@"imgUrl"]]]];
+    NSNumber *price = dic[@"salesPrice"];
+    _contentLabel.text = [NSString stringWithFormat:@"RP %@",price.stringValue];
+}
 @end

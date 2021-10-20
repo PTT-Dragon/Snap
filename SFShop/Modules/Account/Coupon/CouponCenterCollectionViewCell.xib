@@ -38,6 +38,10 @@
                 <constraint firstItem="J0G-Sa-jT4" firstAttribute="top" secondItem="Fdc-LY-XXO" secondAttribute="bottom" constant="8" id="m7S-vy-VZP"/>
                 <constraint firstItem="J0G-Sa-jT4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" symbolic="YES" id="wKz-D4-bcE"/>
             </constraints>
+            <connections>
+                <outlet property="contentLabel" destination="J0G-Sa-jT4" id="zKf-ND-a46"/>
+                <outlet property="imgView" destination="Fdc-LY-XXO" id="pIO-k0-5J6"/>
+            </connections>
             <point key="canvasLocation" x="112" y="74"/>
         </collectionViewCell>
     </objects>

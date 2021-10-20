@@ -12,6 +12,9 @@
 - (NSString *)login {
     return K_users_domain(@"login");
 }
+- (NSString *)modify {
+    return K_users_domain(@"modify");
+}
 
 @end
 
@@ -26,4 +29,21 @@
 - (NSString *)usercoupons {
     return K_coupon_domain(@"usercoupons");
 }
+- (NSString *)center {
+    return K_coupon_domain(@"center");
+}
+- (NSString *)usercoupon {
+    return K_coupon_domain(@"usercoupon");
+}
+
+@end
+
+@implementation SFNetworkUsersFavoriteModule
+- (NSString *)favorite {
+    return K_favorite_domain(@"");
+}
+- (NSString *)delete {
+    return K_favorite_domain(@"delete");
+}
+
 @end

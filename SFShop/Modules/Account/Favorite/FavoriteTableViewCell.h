@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "favoriteModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FavoriteTableViewCell : UITableViewCell
-
+- (void)setContent:(favoriteModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,7 +11,11 @@
 
 @interface CouponCenterCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
+@property (nonatomic,strong) CouponModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *discountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @end
 
 @implementation CouponCenterCell
@@ -24,19 +28,33 @@
     _collectionView.dataSource = self;
     [_collectionView reloadData];
 }
+- (void)setContent:(CouponModel *)model
+{
+    _model = model;
+    _storeNameLabel.text = model.storeName;
+    _timeLabel.text = model.stateDate;
+    _discountLabel.text = model.couponName;
+    _contentLabel.text = model.couponName;
+    [self.collectionView reloadData];
+}
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return _model.targetProduct.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CouponCenterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"CouponCenterCollectionViewCell" forIndexPath:indexPath];
+    [cell setContent:_model.targetProduct[indexPath.row]];
     return cell;
 }
 
 
 - (IBAction)getAction:(id)sender {
-    CouponAlertView *view = [[NSBundle mainBundle] loadNibNamed:@"CouponAlertView" owner:self options:nil].firstObject;
-    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-    [[baseTool getCurrentVC].view addSubview:view];
+    [SFNetworkManager post:SFNet.coupon.usercoupon parameters:@{@"couponId":_model.couponId} success:^(id  _Nullable response) {
+        CouponAlertView *view = [[NSBundle mainBundle] loadNibNamed:@"CouponAlertView" owner:self options:nil].firstObject;
+        view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+        [[baseTool getCurrentVC].view addSubview:view];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 @end

@@ -8,6 +8,10 @@
 #import "MyCouponCell.h"
 
 @interface MyCouponCell ()
+@property (weak, nonatomic) IBOutlet UIView *discountView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statuLabel;
 
 @end
 
@@ -19,6 +23,8 @@
 }
 - (void)setContent:(CouponModel *)model
 {
+    _nameLabel.text = model.couponName;
+    _timeLabel.text = model.expDate;
     
 }
 @end

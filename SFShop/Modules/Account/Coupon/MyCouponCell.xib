@@ -79,6 +79,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="discountView" destination="Zm7-wj-jxT" id="nkI-ur-nY8"/>
+                <outlet property="nameLabel" destination="6cx-xa-j2p" id="Gqs-SI-gYw"/>
+                <outlet property="statuLabel" destination="L3S-ui-GDf" id="sb0-cS-ZMk"/>
+                <outlet property="timeLabel" destination="Tcq-Jy-Gnr" id="AFL-aE-NM6"/>
+            </connections>
             <point key="canvasLocation" x="90" y="74"/>
         </tableViewCell>
     </objects>

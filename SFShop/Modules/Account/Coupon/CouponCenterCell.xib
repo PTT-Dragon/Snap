@@ -136,6 +136,10 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="collectionView" destination="OkS-je-45e" id="y1R-Nx-SNf"/>
+                <outlet property="contentLabel" destination="asd-8j-vXl" id="oFY-cr-6i0"/>
+                <outlet property="discountLabel" destination="dbf-Xo-jHk" id="HkT-Jq-fSL"/>
+                <outlet property="storeNameLabel" destination="DN8-M9-xHy" id="AY9-pU-Pp9"/>
+                <outlet property="timeLabel" destination="00z-ni-4Gh" id="LsT-vj-6Dp"/>
             </connections>
             <point key="canvasLocation" x="97" y="74"/>
         </tableViewCell>

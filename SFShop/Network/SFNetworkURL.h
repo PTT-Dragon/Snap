@@ -37,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 红包模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersCouponModule *coupon;
+
+/// 收藏模块
+@property (nonatomic, readwrite, strong) SFNetworkUsersFavoriteModule *favorite;
 @end
 
 NS_ASSUME_NONNULL_END

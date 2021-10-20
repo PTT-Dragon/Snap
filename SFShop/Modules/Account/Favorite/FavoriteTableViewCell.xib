@@ -38,8 +38,8 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jn4-Rs-SeA">
-                        <rect key="frame" x="199" y="14" width="47" height="10"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" DISCOUNT " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jn4-Rs-SeA">
+                        <rect key="frame" x="199" y="14" width="51" height="10"/>
                         <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="8"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,6 +69,9 @@
                         <state key="normal" title="FIND SIMILAR">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                         </state>
+                        <connections>
+                            <action selector="similarAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="n1y-VH-WOz"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eV6-yF-Vsf">
                         <rect key="frame" x="228" y="112" width="98" height="24"/>
@@ -80,6 +83,9 @@
                         <state key="normal" title="ADD TO CART">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="spCartAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ObM-6g-Rkm"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -109,6 +115,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="discountLabel" destination="Cmq-TF-L3f" id="9h7-dt-URh"/>
+                <outlet property="downLabel" destination="oxc-MU-vjH" id="F5a-ga-5E1"/>
+                <outlet property="imgView" destination="Ax4-u6-vZi" id="PdO-e7-UNb"/>
+                <outlet property="nameLabel" destination="Zvo-jG-9q0" id="fcB-4x-I2r"/>
+                <outlet property="priceLabel" destination="cf0-aG-jsl" id="LRg-ae-UUb"/>
+                <outlet property="similarBtn" destination="ufO-Tl-RXv" id="b1f-GA-EMj"/>
+            </connections>
             <point key="canvasLocation" x="75" y="72"/>
         </tableViewCell>
     </objects>

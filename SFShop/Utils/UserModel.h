@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 //@property(nonatomic, copy) NSString *birthdayDay;
 @property(nonatomic, copy) NSString *account;
 @property(nonatomic, copy) NSString *expiresIn;
-//@property(nonatomic, copy) NSString *gender;
+@property(nonatomic, copy) NSString <Optional>*gender;
 @property(nonatomic, copy) NSString *userId;
 //@property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *lastSighinDate;

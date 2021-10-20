@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CouponCenterCollectionViewCell : UICollectionViewCell
-
+- (void)setContent:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -32,6 +32,7 @@
     self.magicView.navigationHeight = 40.f;
     self.magicView.dataSource = self;
     self.magicView.delegate = self;
+    self.magicView.scrollEnabled = NO;
     
     self.view.frame = CGRectMake(0, 0, MainScreen_width, 100);
     [self.magicView reloadData];

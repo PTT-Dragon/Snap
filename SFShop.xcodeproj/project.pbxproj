@@ -36,6 +36,9 @@
 		1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49D144271D5C14002461ED /* RecentlyViewedViewController.xib */; };
 		1B49D14A271EAA05002461ED /* addressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D149271EAA03002461ED /* addressModel.m */; };
 		1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC3271F192400B30ECC /* CouponModel.m */; };
+		1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC6271FF06500B30ECC /* favoriteModel.m */; };
+		1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */; };
+		1B74DACF272007D900B30ECC /* InitializationUIMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DACD272007D900B30ECC /* InitializationUIMethod.m */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -179,6 +182,12 @@
 		1B49D149271EAA03002461ED /* addressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = addressModel.m; sourceTree = "<group>"; };
 		1B74DAC2271F192400B30ECC /* CouponModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		1B74DAC3271F192400B30ECC /* CouponModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
+		1B74DAC5271FF06500B30ECC /* favoriteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = favoriteModel.h; sourceTree = "<group>"; };
+		1B74DAC6271FF06500B30ECC /* favoriteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = favoriteModel.m; sourceTree = "<group>"; };
+		1B74DAC9272007D900B30ECC /* SWCenterDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCenterDatePickerView.h; sourceTree = "<group>"; };
+		1B74DACA272007D900B30ECC /* InitializationUIMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitializationUIMethod.h; sourceTree = "<group>"; };
+		1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCenterDatePickerView.m; sourceTree = "<group>"; };
+		1B74DACD272007D900B30ECC /* InitializationUIMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitializationUIMethod.m; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -388,6 +397,8 @@
 				1B49D1302719809A002461ED /* FavoriteTableViewCell.h */,
 				1B49D1312719809B002461ED /* FavoriteTableViewCell.m */,
 				1B49D1322719809B002461ED /* FavoriteTableViewCell.xib */,
+				1B74DAC5271FF06500B30ECC /* favoriteModel.h */,
+				1B74DAC6271FF06500B30ECC /* favoriteModel.m */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -429,6 +440,17 @@
 				1B49D149271EAA03002461ED /* addressModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1B74DAC8272007D900B30ECC /* DatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				1B74DACA272007D900B30ECC /* InitializationUIMethod.h */,
+				1B74DACD272007D900B30ECC /* InitializationUIMethod.m */,
+				1B74DAC9272007D900B30ECC /* SWCenterDatePickerView.h */,
+				1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */,
+			);
+			path = DatePickerView;
 			sourceTree = "<group>";
 		};
 		1BDBEB9926FDA11B0018109B /* ForgotPassword */ = {
@@ -561,6 +583,7 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1B74DAC8272007D900B30ECC /* DatePickerView */,
 				AE81BE562701FFDC00AB4225 /* Prompt */,
 				1BDBEBA426FDAF970018109B /* HWTFCodeBView.h */,
 				1BDBEBA526FDAF980018109B /* HWTFCodeBView.m */,
@@ -1102,6 +1125,7 @@
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
+				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
@@ -1115,6 +1139,7 @@
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,
 				AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */,
+				1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */,
 				1B49D13D271D477F002461ED /* userInfoGenderView.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
 				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,
@@ -1127,6 +1152,7 @@
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
+				1B74DACF272007D900B30ECC /* InitializationUIMethod.m in Sources */,
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
 				AE81BDE926FB6E7300AB4225 /* main.m in Sources */,

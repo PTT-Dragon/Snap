@@ -7,6 +7,7 @@
 
 #import "CouponCenterChildViewController.h"
 #import "CouponCenterCell.h"
+#import "CouponModel.h"
 
 @interface CouponCenterChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -19,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _dataSource = [NSMutableArray array];
     [self.view addSubview:self.tableView];
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.tableView registerNib:[UINib nibWithNibName:@"CouponCenterCell" bundle:nil] forCellReuseIdentifier:@"CouponCenterCell"];
@@ -28,15 +30,29 @@
         make.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(0);
     }];
-    
+    [self loadDatas];
+}
+- (void)loadDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.coupon.center parameters:@{} success:^(id  _Nullable response) {
+        NSArray *arr = response[@"list"];
+        for (NSDictionary *dic in arr) {
+            [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
+            [weakself.tableView reloadData];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;//self.dataSource.count;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CouponCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CouponCenterCell"];
+    [cell setContent:self.dataSource[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
