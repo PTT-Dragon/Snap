@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self loadDatas:1];
     [self loadsubviews];
     [self layout];
@@ -98,10 +99,9 @@
 //    CGFloat cellHeight = cellWidth + 8 + 20 + 24 + 8 + labelHeight;
 //    return cellHeight;
     
-    if (indexPath.row % 2 == 0) {
-        return 500;
-    }
-    return 700;
+//    return  UICollectionViewFlowLayoutAutomaticSize;
+
+    return 300;
 }
 
 #pragma mark - getter
@@ -118,7 +118,7 @@
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = false;
         _collectionView.backgroundColor = [UIColor clearColor];
-        
+
         [_collectionView registerClass:CategoryRankCell.class forCellWithReuseIdentifier:@"CategoryRankCell"];
     }
     return _collectionView;
