@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CategoryRankModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoryRankCell : UICollectionViewCell
+
+@property (nonatomic, readwrite, strong) CategoryRankPageInfoListModel *model;
 
 @end
 

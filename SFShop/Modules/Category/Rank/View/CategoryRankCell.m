@@ -6,6 +6,7 @@
 //
 
 #import "CategoryRankCell.h"
+#import "NSString+Add.h"
 
 @interface CategoryRankCell ()
 
@@ -104,10 +105,20 @@
 }
 
 #pragma mark - Getter
+- (void)setModel:(CategoryRankPageInfoListModel *)model {
+    _model = model;
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
+    self.titleLabel.text = _model.offerName;
+    self.priceLabel.text = [[NSString stringWithFormat:@"%ld",_model.salesPrice] thousandthFormat];
+    self.originPriceLabel.text = [[NSString stringWithFormat:@"%ld",_model.marketPrice] thousandthFormat];
+    self.gradeLevelLabel.text = _model.evaluationAvg;
+    self.gradeNumberLabel.text = [NSString stringWithFormat:@"(%ld)",_model.evaluationCnt];
+    self.discountLabel.text = [NSString stringWithFormat:@"%@%",_model.discountPercent];
+}
+
 - (UIImageView *)iconImageView  {
     if (_iconImageView == nil) {
         _iconImageView = [[UIImageView alloc] init];
-        _iconImageView.backgroundColor = [UIColor greenColor];
     }
     return _iconImageView;
 }
@@ -115,7 +126,7 @@
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.text = @"这是title";
+        _titleLabel.text = @"";
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _titleLabel.font = [UIFont boldSystemFontOfSize:14];
         _titleLabel.textAlignment = NSTextAlignmentLeft;

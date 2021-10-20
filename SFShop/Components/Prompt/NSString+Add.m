@@ -145,6 +145,21 @@
     return NSMakeRange(begin, length);
 }
 
+#define IsStrEmpty(_ref)(( [(_ref) isKindOfClass:[NSNull class]]||(_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref)isEqualToString:@""]) || ([(_ref) isEqualToString:@""]) )
+//转化为千分位格式,例如 :23456789 输出：23,456,789
+- (NSString *)thousandthFormat {
+   NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+   NSNumber *number = [formatter numberFromString:self];
+   formatter.numberStyle = NSNumberFormatterDecimalStyle;
+   NSString *string = [formatter stringFromNumber:number];
+   NSLog(@"numberFormatter == %@",string);
+   if(IsStrEmpty(string)) {
+       return self;
+   }
+   return string;
+}
+
+
 @end
 
 @implementation NSMutableString (Add)
