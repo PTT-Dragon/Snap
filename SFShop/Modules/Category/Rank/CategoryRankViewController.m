@@ -9,6 +9,8 @@
 #import "CommunityWaterfallLayout.h"
 #import "CategoryRankModel.h"
 #import "CategoryRankCell.h"
+#import "NSString+Add.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 @property (nonatomic, readwrite, strong) UICollectionView *collectionView;
@@ -23,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self loadDatas:1];
     [self loadsubviews];
     [self layout];
     // Do any additional setup after loading the view.
@@ -33,22 +34,46 @@
     NSDictionary *parm = @{
       @"q": @"",
       @"pageIndex": @(currentPage),
-      @"pageSize": @(10),
+      @"pageSize": @(20),
       @"sortType": @"2",
       @"offerIdList": [NSNull null],
       @"catgIds": @(self.model.inner.catgId)
     };
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
+        if ([self.collectionView.mj_header isRefreshing]) {
+            [self.collectionView.mj_header endRefreshing];
+            [self.dataArray removeAllObjects];
+        }
+        if ([self.collectionView.mj_footer isRefreshing]) {
+            [self.collectionView.mj_footer endRefreshing];
+        }
+        [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
         [self.collectionView reloadData];
-        NSLog(@"");
     } failed:^(NSError * _Nonnull error) {
-        NSLog(@"");
+        [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+        if ([self.collectionView.mj_header isRefreshing]) {
+            [self.collectionView.mj_header endRefreshing];
+        }
+        if ([self.collectionView.mj_footer isRefreshing]) {
+            [self.collectionView.mj_footer endRefreshing];
+        }
     }];
 }
 
 - (void)loadsubviews {
     [self.view addSubview:self.collectionView];
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.currentPage = 1;
+        [self loadDatas:self.currentPage];
+    }];
+    
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        self.currentPage += 1;
+        [self loadDatas:self.currentPage];
+    }];
+    
+    [self.collectionView.mj_header beginRefreshing];
 }
 
 - (void)layout {
@@ -61,47 +86,33 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.dataModel.pageInfo.list.count > 0?1:0;
+    return self.dataArray.count > 0?1:0;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataModel.pageInfo.list.count;
+    return self.dataArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CategoryRankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankCell" forIndexPath:indexPath];
-    CategoryRankPageInfoListModel *cellModel = self.dataModel.pageInfo.list[indexPath.row];
+    CategoryRankPageInfoListModel *cellModel = self.dataArray[indexPath.row];
     cell.model = cellModel;
     return cell;
-//    ArticleListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"community.article.list.cell" forIndexPath:indexPath];
-//    if(!cell){
-//        cell = [[ArticleListCell alloc] init];
-//    }
-//    ArticleModel *cellModel = [self.model.list[indexPath.row] copy];
-//    if (indexPath.row % 2 == 0) {
-//        cellModel.contentTitle = [NSString stringWithFormat:@"%@%@", cellModel.contentTitle, @"-增加一些内容使变成多行"];
-//    }
-//    cell.model = cellModel;
-//    return cell;
-    return  nil;
 }
 
 #pragma mark - CollectionWaterfallLayoutProtocol
 - (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CategoryRankPageInfoListModel *cellModel = self.dataModel.pageInfo.list[indexPath.row];
-//    if (indexPath.row % 2 == 0) {
-//        cellModel.contentTitle = [NSString stringWithFormat:@"%@%@", cellModel.contentTitle, @"-增加一些内容使变成多行"];
-//    }
-//    NSString *labelString = cellModel.contentTitle;
-//    CGFloat cellWidth = (MainScreen_width - 18 * 2) / 2;
-//    CGFloat labelWidth = cellWidth - 8 * 2;
-//    CGFloat labelHeight = [labelString jk_heightWithFont: [UIFont systemFontOfSize:14] constrainedToWidth: labelWidth];
-//    CGFloat cellHeight = cellWidth + 8 + 20 + 24 + 8 + labelHeight;
-//    return cellHeight;
-    
-//    return  UICollectionViewFlowLayoutAutomaticSize;
-
-    return 300;
+    CategoryRankPageInfoListModel *cellModel = self.dataArray[indexPath.row];
+    if (!cellModel.height) {
+        CGFloat titleHeight = [cellModel.offerName calHeightWithFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - KScale(12) * 3 - KScale(16) * 2, 100)];
+        CGFloat imageHeigjt = KScale(166);
+        CGFloat tagHeight = KScale(14);
+        CGFloat priceHeight = KScale(14);
+        CGFloat discountHeight = KScale(14);
+        CGFloat levelHeight = KScale(12);
+        cellModel.height = imageHeigjt + KScale(16) + tagHeight + KScale(12) + titleHeight + KScale(16) + priceHeight + KScale(4) + discountHeight + KScale(12) + levelHeight + KScale(25);
+    }
+    return cellModel.height;
 }
 
 #pragma mark - getter
@@ -110,8 +121,8 @@
         _waterfallLayout = [[CommunityWaterfallLayout alloc] init];
         _waterfallLayout.delegate = self;
         _waterfallLayout.columns = 2;
-        _waterfallLayout.columnSpacing = 12;
-        _waterfallLayout.insets = UIEdgeInsetsMake(12, 18, 12, 18);
+        _waterfallLayout.columnSpacing = KScale(12);
+        _waterfallLayout.insets = UIEdgeInsetsMake(KScale(12), KScale(16), KScale(12), KScale(16));
         
         _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, navBarHei + 64, MainScreen_width, MainScreen_height - navBarHei - 64) collectionViewLayout:_waterfallLayout];
         _collectionView.delegate = self;
