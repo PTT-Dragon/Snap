@@ -39,6 +39,13 @@
 		1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC6271FF06500B30ECC /* favoriteModel.m */; };
 		1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */; };
 		1B74DACF272007D900B30ECC /* InitializationUIMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DACD272007D900B30ECC /* InitializationUIMethod.m */; };
+		1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAD32721A03800B30ECC /* PolicesViewController.m */; };
+		1B74DAD82721A7A400B30ECC /* PolicesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAD62721A7A400B30ECC /* PolicesDetailViewController.m */; };
+		1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DAD72721A7A400B30ECC /* PolicesDetailViewController.xib */; };
+		1B74DADD2721ABC500B30ECC /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DADC2721ABC500B30ECC /* ReviewViewController.m */; };
+		1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DADF2721ACD900B30ECC /* ReviewChildViewController.m */; };
+		1B74DAE42721B6FD00B30ECC /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAE22721B6FD00B30ECC /* InviteViewController.m */; };
+		1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DAE32721B6FD00B30ECC /* InviteViewController.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -188,6 +195,18 @@
 		1B74DACA272007D900B30ECC /* InitializationUIMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitializationUIMethod.h; sourceTree = "<group>"; };
 		1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCenterDatePickerView.m; sourceTree = "<group>"; };
 		1B74DACD272007D900B30ECC /* InitializationUIMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitializationUIMethod.m; sourceTree = "<group>"; };
+		1B74DAD22721A03800B30ECC /* PolicesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PolicesViewController.h; sourceTree = "<group>"; };
+		1B74DAD32721A03800B30ECC /* PolicesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PolicesViewController.m; sourceTree = "<group>"; };
+		1B74DAD52721A7A400B30ECC /* PolicesDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PolicesDetailViewController.h; sourceTree = "<group>"; };
+		1B74DAD62721A7A400B30ECC /* PolicesDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PolicesDetailViewController.m; sourceTree = "<group>"; };
+		1B74DAD72721A7A400B30ECC /* PolicesDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PolicesDetailViewController.xib; sourceTree = "<group>"; };
+		1B74DADB2721ABC500B30ECC /* ReviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
+		1B74DADC2721ABC500B30ECC /* ReviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
+		1B74DADE2721ACD900B30ECC /* ReviewChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewChildViewController.h; sourceTree = "<group>"; };
+		1B74DADF2721ACD900B30ECC /* ReviewChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewChildViewController.m; sourceTree = "<group>"; };
+		1B74DAE12721B6FD00B30ECC /* InviteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
+		1B74DAE22721B6FD00B30ECC /* InviteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
+		1B74DAE32721B6FD00B30ECC /* InviteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -383,6 +402,9 @@
 		1B49D12827197881002461ED /* Invite */ = {
 			isa = PBXGroup;
 			children = (
+				1B74DAE12721B6FD00B30ECC /* InviteViewController.h */,
+				1B74DAE22721B6FD00B30ECC /* InviteViewController.m */,
+				1B74DAE32721B6FD00B30ECC /* InviteViewController.xib */,
 			);
 			path = Invite;
 			sourceTree = "<group>";
@@ -451,6 +473,36 @@
 				1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */,
 			);
 			path = DatePickerView;
+			sourceTree = "<group>";
+		};
+		1B74DAD02721090000B30ECC /* DistributeCenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DistributeCenter;
+			sourceTree = "<group>";
+		};
+		1B74DAD12721A01800B30ECC /* Polices */ = {
+			isa = PBXGroup;
+			children = (
+				1B74DAD22721A03800B30ECC /* PolicesViewController.h */,
+				1B74DAD32721A03800B30ECC /* PolicesViewController.m */,
+				1B74DAD52721A7A400B30ECC /* PolicesDetailViewController.h */,
+				1B74DAD62721A7A400B30ECC /* PolicesDetailViewController.m */,
+				1B74DAD72721A7A400B30ECC /* PolicesDetailViewController.xib */,
+			);
+			path = Polices;
+			sourceTree = "<group>";
+		};
+		1B74DADA2721ABAF00B30ECC /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				1B74DADB2721ABC500B30ECC /* ReviewViewController.h */,
+				1B74DADC2721ABC500B30ECC /* ReviewViewController.m */,
+				1B74DADE2721ACD900B30ECC /* ReviewChildViewController.h */,
+				1B74DADF2721ACD900B30ECC /* ReviewChildViewController.m */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 		1BDBEB9926FDA11B0018109B /* ForgotPassword */ = {
@@ -629,6 +681,9 @@
 		4B9FB9D826FB7A1F00C90790 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				1B74DADA2721ABAF00B30ECC /* Review */,
+				1B74DAD12721A01800B30ECC /* Polices */,
+				1B74DAD02721090000B30ECC /* DistributeCenter */,
 				1B49D147271E91D8002461ED /* Order */,
 				1B49D141271D5BED002461ED /* RecnetlyViewed */,
 				1B49D135271D44E2002461ED /* UserInfo */,
@@ -1003,7 +1058,9 @@
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
+				1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
+				1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */,
 				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
 				1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */,
@@ -1081,6 +1138,7 @@
 				AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */,
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
+				1B74DAD82721A7A400B30ECC /* PolicesDetailViewController.m in Sources */,
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */,
@@ -1098,6 +1156,7 @@
 				4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */,
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
+				1B74DAE42721B6FD00B30ECC /* InviteViewController.m in Sources */,
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
 				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
@@ -1105,6 +1164,7 @@
 				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,
 				AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
+				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */,
@@ -1127,6 +1187,7 @@
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
 				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
+				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
@@ -1135,6 +1196,7 @@
 				AE81BE4526FF605100AB4225 /* CategoryContentCollectionView.m in Sources */,
 				1B12A3DA27015E9100DD7BCD /* CouponCenterViewController.m in Sources */,
 				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
+				1B74DADD2721ABC500B30ECC /* ReviewViewController.m in Sources */,
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,

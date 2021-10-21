@@ -40,6 +40,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 收藏模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersFavoriteModule *favorite;
+
+/// 邀请模块
+@property (nonatomic, readwrite, strong) SFNetworkUsersInviteModule *invite;
+
+/// h5
+@property (nonatomic, readwrite, strong) SFNetworkH5FavoriteModule *h5;
 @end
 
 NS_ASSUME_NONNULL_END

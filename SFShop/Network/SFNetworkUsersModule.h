@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *getCode;
 @property (nonatomic, readwrite, strong) NSString *codeCheck;
 @property (nonatomic, readwrite, strong) NSString *modify;
+@property (nonatomic, readwrite, strong) NSString *pwdpolicy;
+
 @end
 
 @interface SFNetworkUsersAddressModule : NSObject
@@ -35,9 +37,30 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFNetworkUsersFavoriteModule : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *favorite;
-@property (nonatomic, readwrite, strong) NSString *delete;
+@property (nonatomic, readwrite, strong) NSString *del;
 
 
 @end
+
+@interface SFNetworkUsersInviteModule : NSObject
+
+@property (nonatomic, readwrite, strong) NSString *activity;
+@property (nonatomic, readwrite, strong) NSString *activityInfo;
+@property (nonatomic, readwrite, strong) NSString *activityInvRecord;
+@property (nonatomic, readwrite, strong) NSString *activityInvRule;
+@property (nonatomic, readwrite, strong) NSString *activityInvShare;
+@property (nonatomic, readwrite, strong) NSString *activityInvTrends;
+@property (nonatomic, readwrite, strong) NSString *img;
+
+@end
+
+@interface SFNetworkH5FavoriteModule : NSObject
+
+@property (nonatomic, readwrite, strong) NSString *agreement;
+
+
+@end
+
+
 
 NS_ASSUME_NONNULL_END

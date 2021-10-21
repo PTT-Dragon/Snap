@@ -10,6 +10,7 @@
 #import "changeUserInfoVC.h"
 #import "RecentlyViewedViewController.h"
 
+
 @interface accountInfoCell ()
 @property (weak, nonatomic) IBOutlet UIView *couponView;
 @property (weak, nonatomic) IBOutlet UIImageView *imgVIew;

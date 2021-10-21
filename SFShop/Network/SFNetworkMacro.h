@@ -27,6 +27,8 @@
 #define K_address_domain(url) [NSString stringWithFormat:@"%@/h5/address/%@",Host,url]
 #define K_coupon_domain(url) [NSString stringWithFormat:@"%@/h5/coupons/%@",Host,url]
 #define K_favorite_domain(url) [NSString stringWithFormat:@"%@/h5/usercollection/%@",Host,url]
+#define K_invite_domain(url) [NSString stringWithFormat:@"%@/h5/newInv/%@",Host,url]
+#define K_h5_domain(url) [NSString stringWithFormat:@"%@/h5/%@",Host,url]
 
 
 //*********************************************接口模块👆*********************************************//

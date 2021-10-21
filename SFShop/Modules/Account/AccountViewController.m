@@ -12,6 +12,9 @@
 #import "LoginViewController.h"
 #import "AddressViewController.h"
 #import "FavoriteViewController.h"
+#import "PolicesViewController.h"
+#import "ReviewViewController.h"
+#import "InviteViewController.h"
 
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -71,7 +74,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 3) {
+    if (indexPath.row == 2) {
         LoginViewController *vc = [[LoginViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 6){
@@ -80,8 +83,16 @@
     }else if (indexPath.row == 7){
         FavoriteViewController *vc = [[FavoriteViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 8){
+        PolicesViewController *vc = [[PolicesViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 5){
+        ReviewViewController *vc = [[ReviewViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 3){
+        InviteViewController *vc = [[InviteViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    
 }
 - (UITableView *)tableView
 {
