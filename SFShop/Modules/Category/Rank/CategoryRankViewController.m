@@ -11,9 +11,11 @@
 #import "CategoryRankCell.h"
 #import "NSString+Add.h"
 #import <MJRefresh/MJRefresh.h>
+#import "CategoryRankHeadSelectorView.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 @property (nonatomic, readwrite, strong) UICollectionView *collectionView;
+@property (nonatomic, readwrite, strong) CategoryRankHeadSelectorView *headSelectorView;
 @property (nonatomic, readwrite, strong) CommunityWaterfallLayout *waterfallLayout;
 @property (nonatomic, readwrite, assign) NSInteger currentPage;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
@@ -62,6 +64,7 @@
 }
 
 - (void)loadsubviews {
+    [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.collectionView];
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
@@ -124,7 +127,7 @@
         _waterfallLayout.columnSpacing = KScale(12);
         _waterfallLayout.insets = UIEdgeInsetsMake(KScale(12), KScale(16), KScale(12), KScale(16));
         
-        _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, navBarHei + 64, MainScreen_width, MainScreen_height - navBarHei - 64) collectionViewLayout:_waterfallLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, navBarHei + KScale(64), MainScreen_width, MainScreen_height - navBarHei - KScale(64)) collectionViewLayout:_waterfallLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = false;
@@ -133,6 +136,13 @@
         [_collectionView registerClass:CategoryRankCell.class forCellWithReuseIdentifier:@"CategoryRankCell"];
     }
     return _collectionView;
+}
+
+- (CategoryRankHeadSelectorView *)headSelectorView {
+    if (_headSelectorView == nil) {
+        _headSelectorView = [[CategoryRankHeadSelectorView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, KScale(64))];
+    }
+    return _headSelectorView;
 }
 
 - (NSMutableArray *)dataArray {
