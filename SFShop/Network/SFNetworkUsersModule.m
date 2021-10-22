@@ -18,6 +18,16 @@
 - (NSString *)pwdpolicy {
     return K_users_domain(@"pwdpolicy");
 }
+- (NSString *)check {
+    return K_users_domain(@"check");
+}
+- (NSString *)getCode {
+    return K_users_domain(@"code");
+}
+- (NSString *)codeCheck {
+    return K_users_domain(@"code/check");
+}
+
 
 @end
 

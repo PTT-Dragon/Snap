@@ -32,7 +32,7 @@
 - (void)codeFinish
 {
     //验证验证码
-    [SFNetworkManager post:SFNet.account.codeCheck parameters:@{@"account":_account,@"userType":@"Terminal",@"code":login_aes_128_cbc_encrypt(_codeView.code)} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.account.codeCheck parameters:@{@"account":_account,@"userType":@"Terminal",@"code":_codeView.code} success:^(id  _Nullable response) {
         
     } failed:^(NSError * _Nonnull error) {
         
