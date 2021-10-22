@@ -61,6 +61,7 @@
     ReviewChildViewController *reviewViewController = [magicView dequeueReusablePageWithIdentifier:reviewId];
     if (!reviewViewController) {
         reviewViewController = [[ReviewChildViewController alloc] init];
+        reviewViewController.type = pageIndex == 0 ? 1: 2;
     }
     return reviewViewController;
 }

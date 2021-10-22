@@ -41,8 +41,8 @@
         for (NSDictionary *dic in response) {
             addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
             [weakself.dataSource addObject:model];
-            [weakself.tableView reloadData];
         }
+        [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         
     }];

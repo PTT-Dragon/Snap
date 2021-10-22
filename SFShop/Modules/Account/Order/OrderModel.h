@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*orderNbr;
 @property (nonatomic,copy) NSString <Optional>*orderPrice;
 @property (nonatomic,copy) NSString <Optional>*paymentState;
-@property (nonatomic,copy) NSString <Optional>*shareBuyBriefInfo;
+@property (nonatomic,copy) NSDictionary <Optional>*shareBuyBriefInfo;
 @property (nonatomic,copy) NSString <Optional>*state;
 @property (nonatomic,copy) NSString <Optional>*storeId;
 @property (nonatomic,copy) NSString <Optional>*storeLogoUrl;

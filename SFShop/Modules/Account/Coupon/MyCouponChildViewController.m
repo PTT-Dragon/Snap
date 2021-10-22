@@ -40,8 +40,8 @@
         NSArray *arr = response[@"list"];
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
-            [weakself.tableView reloadData];
         }
+        [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         
     }];
