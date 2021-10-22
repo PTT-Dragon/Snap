@@ -101,6 +101,14 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhz-Jd-uPC" customClass="StarView">
+                                        <rect key="frame" x="203" y="8" width="100" height="16"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="LGS-8F-d3z"/>
+                                            <constraint firstAttribute="height" constant="16" id="zas-Lt-bD9"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -115,6 +123,8 @@
                                     <constraint firstAttribute="trailing" secondItem="rZ9-BV-mlT" secondAttribute="trailing" id="MP7-46-a5N"/>
                                     <constraint firstAttribute="trailing" secondItem="Cuu-aU-Zkx" secondAttribute="trailing" id="Ncu-9I-lwk"/>
                                     <constraint firstItem="rZ9-BV-mlT" firstAttribute="top" secondItem="axF-Lw-Yfd" secondAttribute="bottom" constant="8" id="PS0-TL-NVx"/>
+                                    <constraint firstItem="dhz-Jd-uPC" firstAttribute="top" secondItem="m5L-0o-tJn" secondAttribute="top" constant="8" id="bB6-Lb-Yhb"/>
+                                    <constraint firstAttribute="trailing" secondItem="dhz-Jd-uPC" secondAttribute="trailing" id="ejF-jN-BeE"/>
                                     <constraint firstItem="NXT-SI-sbV" firstAttribute="leading" secondItem="m5L-0o-tJn" secondAttribute="leading" constant="1" id="lZu-aP-fKP"/>
                                     <constraint firstAttribute="height" constant="94" id="nst-Ud-8vI"/>
                                     <constraint firstItem="NXT-SI-sbV" firstAttribute="top" secondItem="KQX-Qq-gkV" secondAttribute="bottom" constant="10" id="wam-01-KHv"/>
@@ -184,6 +194,7 @@
                 <outlet property="nameLabel" destination="8in-Z0-wZj" id="WYI-Dx-yg9"/>
                 <outlet property="priceLabel" destination="weE-Ha-HoP" id="vr9-Cx-gZD"/>
                 <outlet property="skuLabel" destination="hQ4-sd-Fg3" id="yCS-vl-2iH"/>
+                <outlet property="starView" destination="dhz-Jd-uPC" id="P87-41-HXD"/>
                 <outlet property="storeImgView" destination="w6r-gN-od8" id="DB4-ir-fSM"/>
                 <outlet property="storeNameLabel" destination="PQS-OK-rYI" id="as2-8h-E6N"/>
             </connections>

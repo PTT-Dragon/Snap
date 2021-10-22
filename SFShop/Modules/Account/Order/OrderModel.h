@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*productRemark;
 @property (nonatomic,copy) NSString <Optional>*serviceTypes;
 @property (nonatomic,copy) NSString <Optional>*unitPrice;
+
 @end
 
 @interface OrderModel : JSONModel
