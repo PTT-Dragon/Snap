@@ -77,6 +77,14 @@
 
 @end
 
+@implementation SFNetworkUsersOrderModule
+- (NSString *)list {
+    return K_order_domain(@"");
+}
+
+
+@end
+
 @implementation SFNetworkH5FavoriteModule
 
 - (NSString *)agreement {

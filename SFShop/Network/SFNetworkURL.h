@@ -44,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 邀请模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersInviteModule *invite;
 
+/// 订单模块
+@property (nonatomic, readwrite, strong) SFNetworkUsersOrderModule *order;
+
 /// h5
 @property (nonatomic, readwrite, strong) SFNetworkH5FavoriteModule *h5;
 @end

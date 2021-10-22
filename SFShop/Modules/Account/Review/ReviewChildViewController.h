@@ -9,8 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ReviewChildViewController : UIViewController
 
+
+@interface ReviewChildViewController : UIViewController
+@property (nonatomic,assign) NSInteger type;//1.To review 2.rated
 @end
 
 NS_ASSUME_NONNULL_END

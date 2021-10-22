@@ -54,6 +54,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface SFNetworkUsersOrderModule : NSObject
+
+@property (nonatomic, readwrite, strong) NSString *list;
+
+
+@end
+
 @interface SFNetworkH5FavoriteModule : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *agreement;
