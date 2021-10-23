@@ -21,31 +21,43 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, copy) NSString *evaluationAvgs;
 @property (nonatomic, readwrite, copy) NSString *salesPrices;
 @end
+
+    
+    /*------------------------------------------------------------------------------------*/
+    @interface CategoryRankFilterModel : NSObject
+    @property (nonatomic, readwrite, assign) NSInteger num;
+    @property (nonatomic, readwrite, copy) NSString *name;
+    @property (nonatomic, readwrite, copy) NSString *idStr;
+
+    //自定义
+    @property (nonatomic, readwrite, copy) NSString *groupName;
+    @end
+
     /*------------------------------------------------------------------------------------*/
     //Services
     /*------------------------------------------------------------------------------------*/
-    @interface CategoryRankServiceModel : NSObject
-    @property (nonatomic, readwrite, assign) NSInteger num;
-    @property (nonatomic, readwrite, assign) NSInteger serviceId;
-    @property (nonatomic, readwrite, copy) NSString *serviceName;
+    @interface CategoryRankServiceModel : CategoryRankFilterModel
     @end
 
     /*------------------------------------------------------------------------------------*/
     //Categorys
     /*------------------------------------------------------------------------------------*/
-    @interface CategoryRankCategoryModel : NSObject
-    @property (nonatomic, readwrite, assign) NSInteger num;
-    @property (nonatomic, readwrite, assign) NSInteger catgId;
-    @property (nonatomic, readwrite, copy) NSString *catgName;
+    @interface CategoryRankCategoryModel : CategoryRankFilterModel
     @end
 
     /*------------------------------------------------------------------------------------*/
     //Brands
     /*------------------------------------------------------------------------------------*/
-    @interface CategoryRankBrandModel : NSObject
-    @property (nonatomic, readwrite, assign) NSInteger num;
-    @property (nonatomic, readwrite, assign) NSInteger brandId;
-    @property (nonatomic, readwrite, copy) NSString *brandName;
+    @interface CategoryRankBrandModel : CategoryRankFilterModel
+    @end
+
+    /*------------------------------------------------------------------------------------*/
+    //Price ⚠️:自定义价格model
+    /*------------------------------------------------------------------------------------*/
+    @interface CategoryRankPriceModel : NSObject
+        @property (nonatomic, readwrite, copy) NSString *groupName;
+        @property (nonatomic, readwrite, assign) NSInteger minPrice;
+        @property (nonatomic, readwrite, assign) NSInteger maxPrice;
     @end
 
     /*------------------------------------------------------------------------------------*/

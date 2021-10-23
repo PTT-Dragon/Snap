@@ -17,13 +17,47 @@
 }
 @end
 
+@implementation CategoryRankFilterModel
+
+@end
+
 @implementation CategoryRankServiceModel
+- (NSString *)groupName {
+    return @"Service";
+}
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"idStr" : @"serviceId",
+             @"name" : @"serviceName",
+    };
+}
 @end
 
 @implementation CategoryRankCategoryModel
+- (NSString *)groupName {
+    return @"Category";
+}
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"idStr" : @"catgId",
+             @"name" : @"catgName",
+    };
+}
 @end
 
 @implementation CategoryRankBrandModel
+- (NSString *)groupName {
+    return @"Brand";
+}
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"idStr" : @"brandId",
+             @"name" : @"brandName",
+    };
+}
+@end
+
+@implementation CategoryRankPriceModel
 @end
 
 @implementation CategoryRankPageInfoModel

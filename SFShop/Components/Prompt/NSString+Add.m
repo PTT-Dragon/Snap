@@ -101,6 +101,19 @@
     return height + 5;//需要额外添加5
 }
 
+- (CGFloat)calWidth:(UIFont *)font lineMode:(NSLineBreakMode)lineMode alignment:(NSTextAlignment)alignment limitSize:(CGSize )limitSize {
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = lineMode;
+    paragraphStyle.alignment = alignment;
+    CGFloat width = [self boundingRectWithSize:limitSize
+                                        options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                     attributes:@{NSFontAttributeName:font,
+                                        NSParagraphStyleAttributeName:paragraphStyle}
+                                        context:nil].size.width;
+    return width + 5;//需要额外添加5
+}
+
+
 /**
  md5加密
 

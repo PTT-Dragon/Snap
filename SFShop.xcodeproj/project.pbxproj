@@ -128,6 +128,11 @@
 		AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6F2704B94E00AB4225 /* CategoryRankModel.m */; };
 		AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9327F32715DB25000F543A /* CategoryRankCell.m */; };
 		AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329642723FA3500E7827A /* UIButton+EnlargeTouchArea.m */; };
+		AEA32968272400B000E7827A /* CategoryRankFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA32967272400B000E7827A /* CategoryRankFilterViewController.m */; };
+		AEA3296B27240E6800E7827A /* YHRegularLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3296A27240E6800E7827A /* YHRegularLayout.m */; };
+		AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3296D2724133100E7827A /* CategoryRankFilterItem.m */; };
+		AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329702724134800E7827A /* CategoryRankFilterInputItem.m */; };
+		AEA329742724571F00E7827A /* CategoryRankFilterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329732724571F00E7827A /* CategoryRankFilterHeader.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -371,6 +376,16 @@
 		AE9327F32715DB25000F543A /* CategoryRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankCell.m; sourceTree = "<group>"; };
 		AEA329632723FA3500E7827A /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
 		AEA329642723FA3500E7827A /* UIButton+EnlargeTouchArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeTouchArea.m"; sourceTree = "<group>"; };
+		AEA32966272400B000E7827A /* CategoryRankFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankFilterViewController.h; sourceTree = "<group>"; };
+		AEA32967272400B000E7827A /* CategoryRankFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankFilterViewController.m; sourceTree = "<group>"; };
+		AEA3296927240E6800E7827A /* YHRegularLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHRegularLayout.h; sourceTree = "<group>"; };
+		AEA3296A27240E6800E7827A /* YHRegularLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHRegularLayout.m; sourceTree = "<group>"; };
+		AEA3296C2724133100E7827A /* CategoryRankFilterItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankFilterItem.h; sourceTree = "<group>"; };
+		AEA3296D2724133100E7827A /* CategoryRankFilterItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankFilterItem.m; sourceTree = "<group>"; };
+		AEA3296F2724134800E7827A /* CategoryRankFilterInputItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankFilterInputItem.h; sourceTree = "<group>"; };
+		AEA329702724134800E7827A /* CategoryRankFilterInputItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankFilterInputItem.m; sourceTree = "<group>"; };
+		AEA329722724571F00E7827A /* CategoryRankFilterHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankFilterHeader.h; sourceTree = "<group>"; };
+		AEA329732724571F00E7827A /* CategoryRankFilterHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankFilterHeader.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -960,6 +975,8 @@
 				AE81BE6D2704B91C00AB4225 /* Model */,
 				AE81BE6A2702158600AB4225 /* CategoryRankViewController.h */,
 				AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */,
+				AEA32966272400B000E7827A /* CategoryRankFilterViewController.h */,
+				AEA32967272400B000E7827A /* CategoryRankFilterViewController.m */,
 			);
 			path = Rank;
 			sourceTree = "<group>";
@@ -976,6 +993,14 @@
 		AE9327F12715DB01000F543A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AEA3296927240E6800E7827A /* YHRegularLayout.h */,
+				AEA3296A27240E6800E7827A /* YHRegularLayout.m */,
+				AEA3296C2724133100E7827A /* CategoryRankFilterItem.h */,
+				AEA3296D2724133100E7827A /* CategoryRankFilterItem.m */,
+				AEA329722724571F00E7827A /* CategoryRankFilterHeader.h */,
+				AEA329732724571F00E7827A /* CategoryRankFilterHeader.m */,
+				AEA3296F2724134800E7827A /* CategoryRankFilterInputItem.h */,
+				AEA329702724134800E7827A /* CategoryRankFilterInputItem.m */,
 				AE9327F22715DB25000F543A /* CategoryRankCell.h */,
 				AE9327F32715DB25000F543A /* CategoryRankCell.m */,
 				AE6CFFAE2721C09E008F18B5 /* CategoryRankHeadSelectorView.h */,
@@ -1227,6 +1252,8 @@
 				AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */,
 				1B49D145271D5C14002461ED /* RecentlyViewedViewController.m in Sources */,
 				1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */,
+				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
+				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
 				4B818FD527239C910058038A /* ProductViewController.m in Sources */,
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
@@ -1241,6 +1268,7 @@
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
+				AEA329742724571F00E7827A /* CategoryRankFilterHeader.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */,
@@ -1252,12 +1280,14 @@
 				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
 				1B74DADD2721ABC500B30ECC /* ReviewViewController.m in Sources */,
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
+				AEA3296B27240E6800E7827A /* YHRegularLayout.m in Sources */,
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,
 				AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */,
 				1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */,
 				AE6CFFB02721C09E008F18B5 /* CategoryRankHeadSelectorView.m in Sources */,
 				1B49D13D271D477F002461ED /* userInfoGenderView.m in Sources */,
+				AEA32968272400B000E7827A /* CategoryRankFilterViewController.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
 				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,
 				1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */,

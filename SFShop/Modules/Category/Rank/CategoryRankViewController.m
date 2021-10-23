@@ -12,6 +12,7 @@
 #import "NSString+Add.h"
 #import <MJRefresh/MJRefresh.h>
 #import "CategoryRankHeadSelectorView.h"
+#import "CategoryRankFilterViewController.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 @property (nonatomic, readwrite, strong) UICollectionView *collectionView;
@@ -87,7 +88,9 @@
 
 #pragma mark - Event
 - (void)jumpToFilterDetail {
-    
+    CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
+    filterVc.model = self.dataModel;
+    [self presentViewController:filterVc animated:YES completion:nil];
 }
 
 #pragma mark - UICollectionViewDelegate
