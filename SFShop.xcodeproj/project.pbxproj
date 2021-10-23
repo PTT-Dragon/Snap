@@ -83,6 +83,7 @@
 		4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B43857B26FF535600BA3D90 /* CommunityDetailController.xib */; };
 		4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43858226FF5D2400BA3D90 /* ArticleDetailModel.m */; };
 		4B7974C7271EFD1200F2EEEA /* ArticleEvaluateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7974C6271EFD1200F2EEEA /* ArticleEvaluateModel.m */; };
+		4B818FCB272395050058038A /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B818FCA272395050058038A /* ProductViewController.m */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -272,6 +273,8 @@
 		4B43858226FF5D2400BA3D90 /* ArticleDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailModel.m; sourceTree = "<group>"; };
 		4B7974C5271EFD1200F2EEEA /* ArticleEvaluateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleEvaluateModel.h; sourceTree = "<group>"; };
 		4B7974C6271EFD1200F2EEEA /* ArticleEvaluateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleEvaluateModel.m; sourceTree = "<group>"; };
+		4B818FC9272395050058038A /* ProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductViewController.h; sourceTree = "<group>"; };
+		4B818FCA272395050058038A /* ProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductViewController.m; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		4B9FB9F126FB7A7C00C90790 /* AccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -589,9 +592,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4B818FC8272394D90058038A /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				4B818FC9272395050058038A /* ProductViewController.h */,
+				4B818FCA272395050058038A /* ProductViewController.m */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
 		4B9FB9C626FB780700C90790 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4B818FC8272394D90058038A /* Product */,
 				AE81BE2326FE0D5B00AB4225 /* Category */,
 				4B9FB9D826FB7A1F00C90790 /* Account */,
 				4B9FB9D926FB7A1F00C90790 /* Cart */,
@@ -1182,6 +1195,7 @@
 				1B49D145271D5C14002461ED /* RecentlyViewedViewController.m in Sources */,
 				1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
+				4B818FCB272395050058038A /* ProductViewController.m in Sources */,
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,

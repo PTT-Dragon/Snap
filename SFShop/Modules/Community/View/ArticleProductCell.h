@@ -12,7 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ArticleProductCell : UIView
 
-- (void)setModel: (ArticleProduct *)model;
+typedef void(^BuyBlock)(NSInteger);
+
+@property(nonatomic, strong) ArticleProduct *model;
+@property (nonatomic, copy) BuyBlock buyBlock;
 
 @end
 

@@ -10,6 +10,7 @@
 #import "ArticleEvaluateModel.h"
 #import <iCarousel/iCarousel.h>
 #import "ArticleProductCell.h"
+#import "ProductViewController.h"
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource>
 
@@ -42,7 +43,10 @@
     _articlePictures.pagingEnabled = YES;
     
     UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"share"] style: UIBarButtonItemStylePlain target: nil action: nil];
-    _headIV = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0, 32, 32)];
+    _headIV = [[UIImageView alloc] init];
+    // 防止拉伸
+    [[[_headIV widthAnchor] constraintEqualToConstant:32] setActive: YES];
+    [[[_headIV heightAnchor] constraintEqualToConstant:32] setActive: YES];
     UIBarButtonItem *headItem = [[UIBarButtonItem alloc] initWithCustomView: _headIV];
     self.navigationItem.rightBarButtonItems = @[shareItem, headItem];
 }
@@ -90,6 +94,7 @@
     self.usefulCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.usefulCnt];
     self.replyCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.replyCnt];
     self.createDateLabel.text = self.model.createdDate;
+    
     if (self.model.products.count > 0) {
         [self.productContainer.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj removeFromSuperview];
@@ -97,14 +102,20 @@
         [self.productContainer mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(135 * self.model.products.count);
         }];
+        MPWeakSelf(self)
         [self.model.products enumerateObjectsUsingBlock:^(ArticleProduct * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             ArticleProductCell *productCell = [[[NSBundle mainBundle] loadNibNamed:@"ArticleProductCell" owner:nil options:nil] lastObject];
             [productCell setModel: obj];
-            [self.productContainer addSubview: productCell];
+            [productCell setBuyBlock:^(NSInteger offerId) {
+                ProductViewController *productVC = [[ProductViewController alloc] init];
+                productVC.offerId = offerId;
+                [weakself.navigationController pushViewController:productVC animated:YES];
+            }];
+            [weakself.productContainer addSubview: productCell];
             [productCell mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(130);
-                make.top.equalTo(self.productContainer).offset(135 * idx);
-                make.left.right.equalTo(self.productContainer);
+                make.top.equalTo(weakself.productContainer).offset(135 * idx);
+                make.left.right.equalTo(weakself.productContainer);
             }];
             
         }];
