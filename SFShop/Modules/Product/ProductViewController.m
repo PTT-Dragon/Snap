@@ -8,14 +8,22 @@
 #import "ProductViewController.h"
 #import "ProductDetailModel.h"
 #import <iCarousel/iCarousel.h>
+#import <WebKit/WebKit.h>
 
-@interface ProductViewController ()
+@interface ProductViewController () <WKNavigationDelegate>
+@property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *addCartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
 @property(nonatomic, strong) ProductDetailModel *model;
 @property (weak, nonatomic) IBOutlet iCarousel *carouselImgView;
+@property (weak, nonatomic) IBOutlet UILabel *salesPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *marketPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *offerNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subheadNameLabel;
+@property (weak, nonatomic) IBOutlet UIView *detailViewHeader;
+@property (nonatomic, strong) WKWebView *detailWebView;
 
 @end
 
@@ -56,11 +64,44 @@
     _carouselImgView.type = iCarouselTypeLinear;
     _carouselImgView.bounces = NO;
     _carouselImgView.pagingEnabled = YES;
+    
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    self.detailWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+//    self.detailWebView.navigationDelegate = self;
+    self.detailWebView.scrollView.scrollEnabled = NO;
+    [self.detailWebView.scrollView addObserver:self forKeyPath:@"contentSize" options: NSKeyValueObservingOptionNew context:nil];
+    [self.scrollContentView addSubview:self.detailWebView];
+    [self.detailWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.detailViewHeader.mas_bottom);
+        make.left.right.equalTo(self.scrollContentView);
+        make.height.mas_equalTo(200);
+    }];
 }
 
 - (void)setModel:(ProductDetailModel *)model {
     _model = model;
     [self.carouselImgView reloadData];
+    self.salesPriceLabel.text = [NSString stringWithFormat:@"Rp %ld", model.salesPrice];
+    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"Rp %ld", model.marketPrice]];
+    [marketPriceStr addAttribute: NSStrikethroughStyleAttributeName value:@2 range: NSMakeRange(0, marketPriceStr.length)];
+    self.marketPriceLabel.attributedText = marketPriceStr;
+    self.offerNameLabel.text = model.offerName;
+    self.subheadNameLabel.text = model.subheadName;
+    [self.detailWebView loadHTMLString: [self replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (object == self.detailWebView.scrollView && [keyPath isEqualToString:@"contentSize"]) {
+        CGFloat height = self.detailWebView.scrollView.contentSize.height;
+        NSLog(@"height=%f", height);
+        [self.detailWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.detailViewHeader.mas_bottom);
+            make.left.right.equalTo(self.scrollContentView);
+            make.height.mas_equalTo(height);
+            make.bottom.lessThanOrEqualTo(self.scrollContentView).offset(-20);
+        }];
+    }
 }
 
 #pragma mark - iCarouselDataSource
@@ -80,8 +121,9 @@
     return iv;
 }
 
-// 此处添加容错，目前数据返回较为杂乱
+#pragma mark private method
 /**
+ 此处添加容错，目前数据返回较为杂乱
  <ProductCarouselImgModel>
     [imgUrl]: /get/resource/1113434319518177730561438412161289424896.png
     [contentId]: 31698
@@ -90,17 +132,8 @@
     [contentType]: B
     [smallImgUrl]: <nil>
     [seq]: 1
- </ProductCarouselImgModel>,
- <ProductCarouselImgModel>
-    [imgUrl]: <nil>
-    [contentId]: 31697
-    [url]: /get/resource/iphone101438412083082432512.jpg
-    [bigImgUrl]: /get/resource/iphone101438412083082432512.jpg
-    [contentType]: A
-    [smallImgUrl]: /get/resource/iphone101438412083082432512_150x150.jpg
-    [seq]: 1
  </ProductCarouselImgModel>
- */
+*/
 - (NSString *)getNonNullCarouselImageAt: (NSInteger)index {
     ProductCarouselImgModel *imgModel = self.model.carouselImgUrls[index];
     if (imgModel.imgUrl) {
@@ -116,6 +149,11 @@
         return imgModel.url;
     }
     return nil;
+}
+
+- (NSString *)replaceHtmlSourceOfRelativeImageSource: (NSString *)htmlString {
+    NSString *replacedHtmlString = [htmlString stringByReplacingOccurrencesOfString: @"img src=\"" withString: [NSString stringWithFormat:@"img src=\"%@", Host]];
+    return replacedHtmlString;
 }
 
 
