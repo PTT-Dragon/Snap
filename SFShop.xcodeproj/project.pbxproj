@@ -55,6 +55,7 @@
 		1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAFC2722A86800B30ECC /* InviteTopCell.m */; };
 		1B74DAFF2722A86800B30ECC /* InviteTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DAFD2722A86800B30ECC /* InviteTopCell.xib */; };
 		1B74DB022722B68100B30ECC /* InviteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB012722B68100B30ECC /* InviteModel.m */; };
+		1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB0827243F0A00B30ECC /* OrderViewController.m */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -231,6 +232,8 @@
 		1B74DAFD2722A86800B30ECC /* InviteTopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteTopCell.xib; sourceTree = "<group>"; };
 		1B74DB002722B68100B30ECC /* InviteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteModel.h; sourceTree = "<group>"; };
 		1B74DB012722B68100B30ECC /* InviteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteModel.m; sourceTree = "<group>"; };
+		1B74DB0727243F0A00B30ECC /* OrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		1B74DB0827243F0A00B30ECC /* OrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 			children = (
 				1B74DAE627224E4600B30ECC /* OrderModel.h */,
 				1B74DAE727224E4600B30ECC /* OrderModel.m */,
+				1B74DB0727243F0A00B30ECC /* OrderViewController.h */,
+				1B74DB0827243F0A00B30ECC /* OrderViewController.m */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -1192,6 +1197,7 @@
 				1B74DAE827224E4600B30ECC /* OrderModel.m in Sources */,
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
+				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
 				1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,

@@ -57,6 +57,11 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
+    [SFNetworkManager get:SFNet.invite.activityInvShare parameters:@{} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
