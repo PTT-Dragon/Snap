@@ -92,7 +92,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="784"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNw-J5-BPH">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3B5-HJ-OKN" customClass="iCarousel">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
@@ -177,7 +177,7 @@
                                 <constraint firstItem="3B5-HJ-OKN" firstAttribute="top" secondItem="TNw-J5-BPH" secondAttribute="top" id="aqA-h6-5qc"/>
                                 <constraint firstItem="zUg-Wd-3Ad" firstAttribute="top" secondItem="3B5-HJ-OKN" secondAttribute="bottom" constant="16" id="bzq-5x-JXq"/>
                                 <constraint firstItem="h95-ML-yMl" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" constant="16" id="cxC-fh-gdA"/>
-                                <constraint firstAttribute="height" priority="100" constant="1000" id="eY8-md-knY"/>
+                                <constraint firstAttribute="height" priority="100" constant="800" id="eY8-md-knY"/>
                                 <constraint firstItem="Sh5-6B-V3T" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="gxB-ih-MOb"/>
                                 <constraint firstItem="Sh5-6B-V3T" firstAttribute="top" secondItem="t4A-ep-h6d" secondAttribute="bottom" constant="30" id="hFj-wg-bWE"/>
                                 <constraint firstAttribute="trailing" secondItem="xH6-hl-n8N" secondAttribute="trailing" constant="16" id="hK3-Rn-qnp"/>

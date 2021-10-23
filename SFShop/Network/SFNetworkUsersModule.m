@@ -48,6 +48,9 @@
 - (NSString *)del {
     return K_favorite_domain(@"delete");
 }
+- (NSString *)similar {
+    return K_favorite_domain(@"similar");
+}
 
 @end
 

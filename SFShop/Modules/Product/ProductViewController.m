@@ -7,10 +7,12 @@
 
 #import "ProductViewController.h"
 #import "ProductDetailModel.h"
+#import "ProductSimilarModel.h"
 #import <iCarousel/iCarousel.h>
 #import <WebKit/WebKit.h>
+#import "MakeH5Happy.h"
 
-@interface ProductViewController () <WKNavigationDelegate>
+@interface ProductViewController ()
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
@@ -24,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *subheadNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *detailViewHeader;
 @property (nonatomic, strong) WKWebView *detailWebView;
+@property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
 
 @end
 
@@ -36,7 +39,16 @@
     self.title = @"Product Detail";
     self.view.backgroundColor = [UIColor whiteColor];
     [self request];
+    [self requestSimilar];
     [self setupSubViews];
+}
+
+- (void)dealloc {
+    @try {
+        [self.detailWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
+    } @catch (NSException *exception) {
+        NSLog(@"可能多次释放，避免crash");
+    }
 }
 
 - (void)request {
@@ -51,6 +63,20 @@
         NSLog(@"get product detail failed");
     }];
 }
+
+- (void)requestSimilar {
+    [MBProgressHUD showHudMsg:@"加载中"];
+    [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", self.offerId]} success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        NSError *error;
+        self.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
+        NSLog(@"get similar success");
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+        NSLog(@"get similarfailed");
+    }];
+}
+
 
 - (void)setupSubViews {
     self.cartBtn.layer.borderWidth = 0.5;
@@ -67,7 +93,6 @@
     
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     self.detailWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
-//    self.detailWebView.navigationDelegate = self;
     self.detailWebView.scrollView.scrollEnabled = NO;
     [self.detailWebView.scrollView addObserver:self forKeyPath:@"contentSize" options: NSKeyValueObservingOptionNew context:nil];
     [self.scrollContentView addSubview:self.detailWebView];
@@ -87,14 +112,16 @@
     self.marketPriceLabel.attributedText = marketPriceStr;
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
-    [self.detailWebView loadHTMLString: [self replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+    [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+}
 
+- (void)setSimilarList:(NSMutableArray<ProductSimilarModel *> *)similarList {
+    _similarList = similarList;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if (object == self.detailWebView.scrollView && [keyPath isEqualToString:@"contentSize"]) {
         CGFloat height = self.detailWebView.scrollView.contentSize.height;
-        NSLog(@"height=%f", height);
         [self.detailWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.detailViewHeader.mas_bottom);
             make.left.right.equalTo(self.scrollContentView);
@@ -117,44 +144,8 @@
     } else {
         iv = (UIImageView *)view;
     }
-    [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([self getNonNullCarouselImageAt: index])]];
+    [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf:self.model.carouselImgUrls[index]])]];
     return iv;
 }
-
-#pragma mark private method
-/**
- 此处添加容错，目前数据返回较为杂乱
- <ProductCarouselImgModel>
-    [imgUrl]: /get/resource/1113434319518177730561438412161289424896.png
-    [contentId]: 31698
-    [url]: /get/resource/1113434319518177730561438412161289424896.mp4
-    [bigImgUrl]: <nil>
-    [contentType]: B
-    [smallImgUrl]: <nil>
-    [seq]: 1
- </ProductCarouselImgModel>
-*/
-- (NSString *)getNonNullCarouselImageAt: (NSInteger)index {
-    ProductCarouselImgModel *imgModel = self.model.carouselImgUrls[index];
-    if (imgModel.imgUrl) {
-        return imgModel.imgUrl;
-    }
-    if (imgModel.bigImgUrl) {
-        return imgModel.bigImgUrl;
-    }
-    if (imgModel.smallImgUrl) {
-        return imgModel.smallImgUrl;
-    }
-    if (imgModel.url) {
-        return imgModel.url;
-    }
-    return nil;
-}
-
-- (NSString *)replaceHtmlSourceOfRelativeImageSource: (NSString *)htmlString {
-    NSString *replacedHtmlString = [htmlString stringByReplacingOccurrencesOfString: @"img src=\"" withString: [NSString stringWithFormat:@"img src=\"%@", Host]];
-    return replacedHtmlString;
-}
-
 
 @end

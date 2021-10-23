@@ -11,19 +11,22 @@
 #import <iCarousel/iCarousel.h>
 #import "ArticleProductCell.h"
 #import "ProductViewController.h"
+#import <WebKit/WebKit.h>
+#import "MakeH5Happy.h"
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource>
 
 @property(nonatomic, strong) ArticleDetailModel *model;
 @property(nonatomic, strong) NSMutableArray<ArticleEvaluateModel *> *evaluateArray;
 @property(nonatomic, strong) UIImageView *headIV;
-@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet iCarousel *articlePictures;
 @property (weak, nonatomic) IBOutlet UILabel *viewCntLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usefulCntLabel;
 @property (weak, nonatomic) IBOutlet UILabel *replyCntLabel;
 @property (weak, nonatomic) IBOutlet UIView *productContainer;
 @property (weak, nonatomic) IBOutlet UILabel *createDateLabel;
+@property (nonatomic, strong) WKWebView *detailWebView;
 
 @end
 
@@ -35,6 +38,14 @@
     
     [self setUpSubViews];
     [self request];
+}
+
+- (void)dealloc {
+    @try {
+        [self.detailWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
+    } @catch (NSException *exception) {
+        NSLog(@"可能多次释放，避免crash");
+    }
 }
 
 - (void)setUpSubViews {
@@ -49,6 +60,19 @@
     [[[_headIV heightAnchor] constraintEqualToConstant:32] setActive: YES];
     UIBarButtonItem *headItem = [[UIBarButtonItem alloc] initWithCustomView: _headIV];
     self.navigationItem.rightBarButtonItems = @[shareItem, headItem];
+    
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    self.detailWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+    self.detailWebView.scrollView.scrollEnabled = NO;
+    [self.detailWebView.scrollView addObserver:self forKeyPath:@"contentSize" options: NSKeyValueObservingOptionNew context:nil];
+    [self.scrollContentView addSubview:self.detailWebView];
+    [self.detailWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.viewCntLabel.mas_bottom).offset(28);
+        make.left.equalTo(self.scrollContentView).offset(16);
+        make.right.equalTo(self.scrollContentView).offset(-16);
+        make.height.mas_equalTo(50);
+    }];
+
 }
 
 - (void)request {
@@ -87,9 +111,7 @@
     _model = model;
     self.title = self.model.publisherName;
     [_headIV sd_setImageWithURL: [NSURL URLWithString: SFImage(self.model.profilePicture)]];
-    NSString *detailStr = self.model.articleDetail;
-    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData: [detailStr dataUsingEncoding: NSUnicodeStringEncoding] options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes: nil error: nil];
-    self.detailLabel.attributedText = attrStr;
+    [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: self.model.articleDetail] baseURL:nil];
     self.viewCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.viewCnt];
     self.usefulCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.usefulCnt];
     self.replyCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.replyCnt];
@@ -122,6 +144,21 @@
     }
     [self.articlePictures reloadData];
 }
+
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (object == self.detailWebView.scrollView && [keyPath isEqualToString:@"contentSize"]) {
+        CGFloat height = self.detailWebView.scrollView.contentSize.height;
+        [self.detailWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.viewCntLabel.mas_bottom).offset(28);
+            make.left.equalTo(self.scrollContentView).offset(16);
+            make.right.equalTo(self.scrollContentView).offset(-16);
+            make.height.mas_equalTo(height);
+            make.bottom.equalTo(self.productContainer.mas_top).offset(-20);
+        }];
+    }
+}
+
 
 #pragma mark - iCarouselDataSource
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel {

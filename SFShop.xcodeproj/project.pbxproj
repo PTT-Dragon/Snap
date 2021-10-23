@@ -86,6 +86,8 @@
 		4B818FD527239C910058038A /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B818FD327239C910058038A /* ProductViewController.m */; };
 		4B818FD627239C910058038A /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B818FD427239C910058038A /* ProductViewController.xib */; };
 		4B818FDD27239F510058038A /* ProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B818FDC27239F500058038A /* ProductDetailModel.m */; };
+		4B818FE6272435E30058038A /* MakeH5Happy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B818FE5272435E30058038A /* MakeH5Happy.m */; };
+		4B818FEC272444560058038A /* ProductSimilarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B818FEB272444560058038A /* ProductSimilarModel.m */; };
 		4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */; };
 		4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */; };
 		4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9F826FB7A9F00C90790 /* CommunityViewController.m */; };
@@ -281,6 +283,10 @@
 		4B818FD427239C910058038A /* ProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewController.xib; sourceTree = "<group>"; };
 		4B818FDB27239F500058038A /* ProductDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductDetailModel.h; sourceTree = "<group>"; };
 		4B818FDC27239F500058038A /* ProductDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductDetailModel.m; sourceTree = "<group>"; };
+		4B818FE4272435E30058038A /* MakeH5Happy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeH5Happy.h; sourceTree = "<group>"; };
+		4B818FE5272435E30058038A /* MakeH5Happy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeH5Happy.m; sourceTree = "<group>"; };
+		4B818FEA272444560058038A /* ProductSimilarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductSimilarModel.h; sourceTree = "<group>"; };
+		4B818FEB272444560058038A /* ProductSimilarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductSimilarModel.m; sourceTree = "<group>"; };
 		4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		4B9FB9F126FB7A7C00C90790 /* AccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -616,6 +622,8 @@
 			children = (
 				4B818FDB27239F500058038A /* ProductDetailModel.h */,
 				4B818FDC27239F500058038A /* ProductDetailModel.m */,
+				4B818FEA272444560058038A /* ProductSimilarModel.h */,
+				4B818FEB272444560058038A /* ProductSimilarModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -663,6 +671,8 @@
 				4BBFEEA926FCB13300E3C832 /* FMDBManager.m */,
 				4BBFEEAE26FCB57A00E3C832 /* UserModel.h */,
 				4BBFEEAF26FCB57A00E3C832 /* UserModel.m */,
+				4B818FE4272435E30058038A /* MakeH5Happy.h */,
+				4B818FE5272435E30058038A /* MakeH5Happy.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1234,6 +1244,7 @@
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */,
+				4B818FE6272435E30058038A /* MakeH5Happy.m in Sources */,
 				1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */,
 				4B7974C7271EFD1200F2EEEA /* ArticleEvaluateModel.m in Sources */,
 				AE81BE4526FF605100AB4225 /* CategoryContentCollectionView.m in Sources */,
@@ -1253,6 +1264,7 @@
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
 				1BDBEBC82700B8900018109B /* MyCouponChildViewController.m in Sources */,
+				4B818FEC272444560058038A /* ProductSimilarModel.m in Sources */,
 				1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */,
 				1B49D139271D4557002461ED /* changeUserInfoVC.m in Sources */,
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
