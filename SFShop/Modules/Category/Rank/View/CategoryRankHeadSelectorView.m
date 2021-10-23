@@ -6,6 +6,7 @@
 //
 
 #import "CategoryRankHeadSelectorView.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface CategoryRankHeadSelectorView ()
 @property (nonatomic, readwrite, strong) UIButton *popularityBtn;
@@ -16,20 +17,21 @@
 @end
 @implementation CategoryRankHeadSelectorView
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame type:(CategoryRankType)type {
     if (self = [super initWithFrame:frame]) {
-        [self loadSubviews];
+        [self loadSubviewsWithType:type];
         [self layout];
     }
     return self;
 }
 
-- (void)loadSubviews {
-    [self addSubview:self.popularityBtn];
-    [self addSubview:self.salesBtn];
-    [self addSubview:self.priceBtn];
-    [self addSubview:self.filterBtn];
-
+- (void)loadSubviewsWithType:(CategoryRankType)type {
+    for (UIButton *btn in @[self.popularityBtn,self.salesBtn,self.priceBtn,self.filterBtn]) {
+        if (btn.tag - 100 == type) {
+            [self sortUpdateBtnUI:btn];
+        }
+        [self addSubview:btn];
+    }
 }
 
 - (void)layout {
@@ -62,20 +64,49 @@
     }];
 }
 
+#pragma mark - Event
 - (void)sort:(UIButton *)btn {
+    //改变状态之前的逻辑处理
+    if (btn == self.priceBtn) {
+        CategoryRankType type = btn.tag - 100;
+        BOOL isSeleted = btn.selected;
+        if (isSeleted) {
+            if (type == CategoryRankTypePriceDescending) {
+                btn.tag = CategoryRankTypePriceAscending + 100;
+            } else {
+                btn.tag = CategoryRankTypePriceDescending + 100;
+            }
+        } else {//从未选中到选中状态默认未降序
+            btn.tag = CategoryRankTypePriceDescending + 100;
+        }
+    }
+    
+    //回调给外部
+    !self.clickFilterBlock?:self.clickFilterBlock(btn.tag - 100);
+    
+    //UI 处理
+    [self sortUpdateBtnUI:btn];
+}
+
+- (void)sortUpdateBtnUI:(UIButton *)btn {
     btn.selected = YES;
     btn.layer.borderColor = [UIColor jk_colorWithHexString:@"#FF1659"].CGColor;
-    if (self.lastBtn != btn) {
+    if (self.lastBtn && self.lastBtn != btn ) {
         self.lastBtn.selected = NO;
         self.lastBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
     }
     self.lastBtn = btn;
 }
 
+- (void)detailFilter:(UIButton *)btn {
+    !self.clickFilterBlock?:self.clickFilterBlock(btn.tag - 100);
+}
+
 #pragma mark - Getter
 - (UIButton *)popularityBtn {
     if (_popularityBtn == nil) {
         _popularityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _popularityBtn.tag = CategoryRankTypePopularity + 100;
         _popularityBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_popularityBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
         [_popularityBtn setTitle:@"Popularity" forState:UIControlStateNormal];
@@ -90,6 +121,7 @@
 - (UIButton *)salesBtn {
     if (_salesBtn == nil) {
         _salesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _salesBtn.tag = CategoryRankTypeSales + 100;
         _salesBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_salesBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
         [_salesBtn setTitle:@"Sales" forState:UIControlStateNormal];
@@ -104,6 +136,7 @@
 - (UIButton *)priceBtn {
     if (_priceBtn == nil) {
         _priceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _priceBtn.tag = CategoryRankTypePriceAscending + 100;
         _priceBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_priceBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
         [_priceBtn setTitle:@"Sales" forState:UIControlStateNormal];
@@ -118,8 +151,10 @@
 - (UIButton *)filterBtn {
     if (_filterBtn == nil) {
         _filterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_filterBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
+        _filterBtn.tag = CategoryRankTypeDetail + 100;
         [_filterBtn addTarget:self action:@selector(detailFilter:) forControlEvents:UIControlEventTouchUpInside];
-        [_filterBtn setBackgroundColor:[UIColor redColor]];
+        [_filterBtn setImage:[UIImage imageNamed:@"rank_filters"] forState:UIControlStateNormal];
     }
     return _filterBtn;
 }

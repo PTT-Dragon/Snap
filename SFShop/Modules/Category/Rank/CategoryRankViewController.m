@@ -18,6 +18,7 @@
 @property (nonatomic, readwrite, strong) CategoryRankHeadSelectorView *headSelectorView;
 @property (nonatomic, readwrite, strong) CommunityWaterfallLayout *waterfallLayout;
 @property (nonatomic, readwrite, assign) NSInteger currentPage;
+@property (nonatomic, readwrite, assign) CategoryRankType currentType;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @end
@@ -32,16 +33,18 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)loadDatas:(NSInteger)currentPage {
+- (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type {
     NSDictionary *parm = @{
       @"q": @"",
       @"pageIndex": @(currentPage),
-      @"pageSize": @(20),
-      @"sortType": @"2",
+      @"pageSize": @(10),
+      @"sortType": [NSString stringWithFormat:@"%ld",type],
       @"offerIdList": [NSNull null],
       @"catgIds": @(self.model.inner.catgId)
     };
+    
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
         self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
         if ([self.collectionView.mj_header isRefreshing]) {
             [self.collectionView.mj_header endRefreshing];
@@ -68,18 +71,23 @@
     [self.view addSubview:self.collectionView];
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
-        [self loadDatas:self.currentPage];
+        [self loadDatas:self.currentPage sortType:self.currentType];
     }];
     
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.currentPage += 1;
-        [self loadDatas:self.currentPage];
+        [self loadDatas:self.currentPage sortType:self.currentType];
     }];
     
     [self.collectionView.mj_header beginRefreshing];
 }
 
 - (void)layout {
+}
+
+#pragma mark - Event
+- (void)jumpToFilterDetail {
+    
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -140,7 +148,27 @@
 
 - (CategoryRankHeadSelectorView *)headSelectorView {
     if (_headSelectorView == nil) {
-        _headSelectorView = [[CategoryRankHeadSelectorView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, KScale(64))];
+        _headSelectorView = [[CategoryRankHeadSelectorView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, KScale(64)) type:CategoryRankTypePopularity];
+        __weak __typeof(self)weakSelf = self;
+        _headSelectorView.clickFilterBlock = ^(CategoryRankType type) {
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            switch (type) {
+                case CategoryRankTypePopularity:
+                case CategoryRankTypeSales:
+                case CategoryRankTypePriceDescending:
+                case CategoryRankTypePriceAscending: {
+                    [MBProgressHUD showHudMsg:@"加载中"];
+                    strongSelf.currentType = type;
+                    [strongSelf.collectionView.mj_header beginRefreshing];
+                }
+                    break;
+                case CategoryRankTypeDetail:
+                    [strongSelf jumpToFilterDetail];
+                    break;
+                default:
+                    break;
+            }
+        };
     }
     return _headSelectorView;
 }

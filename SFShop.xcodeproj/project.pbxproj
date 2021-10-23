@@ -125,6 +125,7 @@
 		AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */; };
 		AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6F2704B94E00AB4225 /* CategoryRankModel.m */; };
 		AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9327F32715DB25000F543A /* CategoryRankCell.m */; };
+		AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329642723FA3500E7827A /* UIButton+EnlargeTouchArea.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -362,6 +363,8 @@
 		AE81BE6F2704B94E00AB4225 /* CategoryRankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankModel.m; sourceTree = "<group>"; };
 		AE9327F22715DB25000F543A /* CategoryRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankCell.h; sourceTree = "<group>"; };
 		AE9327F32715DB25000F543A /* CategoryRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankCell.m; sourceTree = "<group>"; };
+		AEA329632723FA3500E7827A /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
+		AEA329642723FA3500E7827A /* UIButton+EnlargeTouchArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeTouchArea.m"; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -928,6 +931,8 @@
 		AE81BE562701FFDC00AB4225 /* Prompt */ = {
 			isa = PBXGroup;
 			children = (
+				AEA329632723FA3500E7827A /* UIButton+EnlargeTouchArea.h */,
+				AEA329642723FA3500E7827A /* UIButton+EnlargeTouchArea.m */,
 				AE81BE5B270200F200AB4225 /* BCLoadingView.h */,
 				AE81BE5A270200F200AB4225 /* BCLoadingView.m */,
 				AE81BE572702001700AB4225 /* MBProgressHUD+Prompt.h */,
@@ -1228,6 +1233,7 @@
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
+				AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */,
 				1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */,
 				4B7974C7271EFD1200F2EEEA /* ArticleEvaluateModel.m in Sources */,
 				AE81BE4526FF605100AB4225 /* CategoryContentCollectionView.m in Sources */,
