@@ -69,16 +69,16 @@
     return K_invite_domain(@"activity/info");
 }
 - (NSString *)activityInvRule {
-    return K_invite_domain(@"activity/info");
+    return K_invite_domain(@"activity/rule");
 }
 - (NSString *)activityInvShare {
-    return K_invite_domain(@"activity/info");
+    return K_invite_domain(@"activity/share");
 }
 - (NSString *)activityInvRecord {
-    return K_invite_domain(@"activity/info");
+    return K_invite_domain(@"activity/invRecord");
 }
 - (NSString *)activityInvTrends {
-    return K_invite_domain(@"activity/info");
+    return K_invite_domain(@"activity/trends");
 }
 - (NSString *)img {
     return K_invite_domain(@"img");

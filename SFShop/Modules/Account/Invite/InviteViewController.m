@@ -8,6 +8,7 @@
 #import "InviteViewController.h"
 #import "InviteTopCell.h"
 #import "InviteCell.h"
+#import "InviteModel.h"
 
 @interface InviteViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _dataSource = [NSMutableArray array];
     [self loadDatas];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"InviteTopCell" bundle:nil] forCellReuseIdentifier:@"InviteTopCell"];
@@ -44,6 +46,17 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
+    [SFNetworkManager get:SFNet.invite.activityInvRecord parameters:@{} success:^(id  _Nullable response) {
+        NSArray *arr = response[@"list"];
+        if (!kArrayIsEmpty(arr)) {
+            for (NSDictionary *dic in arr) {
+                [weakself.dataSource addObject:[[InviteModel alloc] initWithDictionary:dic error:nil]];
+            }
+            [weakself.tableView reloadData];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -57,6 +70,7 @@
         return cell;
     }
     InviteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteCell"];
+    [cell setContent:self.dataSource[indexPath.row-1]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

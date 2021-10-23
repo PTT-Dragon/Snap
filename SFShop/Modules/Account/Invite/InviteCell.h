@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InviteModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface InviteCell : UITableViewCell
-
+- (void)setContent:(InviteModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,17 +7,27 @@
 
 #import "InviteCell.h"
 
+@interface InviteCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *couponLabel;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+
+@end
+
 @implementation InviteCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setContent:(InviteModel *)model
+{
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.url]]];
+    _nameLabel.text = model.beInvdUserName;
+    _timeLabel.text = model.regTime;
+    _couponLabel.text = @"";
+    _label.text = model.gift.firstObject;
 }
-
 @end
