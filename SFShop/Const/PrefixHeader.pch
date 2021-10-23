@@ -28,5 +28,6 @@
 #import "MBProgressHUD+Prompt.h"
 #import <ReactiveObjC.h>
 #import "AES128Util.h"
+#import "Enums.h"
 
 #endif /* PrefixHeader_pch */

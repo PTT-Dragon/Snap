@@ -9,6 +9,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    OrderListType_All,
+    OrderListType_ToShip,
+    OrderListType_ToPay,
+    OrderListType_ToReceive,
+    OrderListType_Cancel,
+    OrderListType_Successful,
+    
+} OrderListType;
+
 @interface Enums : NSObject
 
 @end

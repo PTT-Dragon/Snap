@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <VTMagic/VTMagic.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OrderViewController : UIViewController
-
+@interface OrderViewController : VTMagicController
+@property (nonatomic,assign) OrderListType selType;
 @end
 
 NS_ASSUME_NONNULL_END
