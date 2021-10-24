@@ -13,6 +13,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "CategoryRankHeadSelectorView.h"
 #import "CategoryRankFilterViewController.h"
+#import "CategoryRankFilterCacheModel.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 @property (nonatomic, readwrite, strong) UICollectionView *collectionView;
@@ -22,6 +23,8 @@
 @property (nonatomic, readwrite, assign) CategoryRankType currentType;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
+@property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
+
 @end
 
 @implementation CategoryRankViewController
@@ -47,6 +50,7 @@
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
+        
         if ([self.collectionView.mj_header isRefreshing]) {
             [self.collectionView.mj_header endRefreshing];
             [self.dataArray removeAllObjects];
@@ -88,6 +92,7 @@
 
 #pragma mark - Event
 - (void)jumpToFilterDetail {
+    self.dataModel.filterCache = self.filterCacheModel;
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     [self presentViewController:filterVc animated:YES completion:nil];
@@ -181,6 +186,15 @@
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
+}
+
+- (CategoryRankFilterCacheModel *)filterCacheModel {
+    if (_filterCacheModel == nil) {
+        _filterCacheModel = [[CategoryRankFilterCacheModel alloc] init];
+        self.filterCacheModel.minPrice = -1;//初始化为-1,传参时,传入@""表示没有指定min价格
+        self.filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
+    }
+    return _filterCacheModel;
 }
 
 @end

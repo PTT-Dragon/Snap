@@ -80,9 +80,22 @@
         CategoryRankFilterItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankFilterItem" forIndexPath:indexPath];
         CategoryRankFilterModel *model = cellModel;
         cell.titleLabel.text = model.name;
+        return cell;
     } else if ([cellModel isKindOfClass:CategoryRankPriceModel.class]){
         CategoryRankPriceModel *model = cellModel;
         CategoryRankFilterInputItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankFilterInputItem" forIndexPath:indexPath];
+        __weak __typeof(self)weakSelf = self;
+        cell.priceIntervalBlock = ^(NSInteger price, BOOL minOrMax) {
+            __weak __typeof(weakSelf)strongSelf = weakSelf;
+            if (minOrMax) {
+                model.minPrice = price;
+                strongSelf.model.filterCache.minPrice = price;
+            } else {
+                model.maxPrice = price;
+                strongSelf.model.filterCache.maxPrice = price;
+            }
+        };
+        cell.model = cellModel;
         return cell;
     }
     
@@ -95,8 +108,8 @@
     if ([cellModel isKindOfClass:CategoryRankFilterModel.class]) {
         CategoryRankFilterModel *model = cellModel;
         width = [model.name calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(200, 32)] + 12 * 2;
-    }else {
-        NSLog(@"");
+    } else if ([cellModel isKindOfClass:CategoryRankPriceModel.class]) {
+        return CGSizeMake(MainScreen_width - 16 * 2 , 46);
     }
     return CGSizeMake(width , 32);
 }
@@ -123,10 +136,12 @@
     
     //组装price 数据
     CategoryRankPriceModel *price = [CategoryRankPriceModel new];
-    price.groupName = @"Price";
-    price.minPrice = 0;
-    price.maxPrice = 0;
+    price.minPrice = self.model.filterCache.minPrice;
+    price.maxPrice = self.model.filterCache.maxPrice;
     [self.dataArray addObject:[NSMutableArray arrayWithArray:@[price]]];
+    
+    //拼接好自定义组装的评价数据
+    [self.dataArray addObject:[NSMutableArray arrayWithArray:model.evaluations]];
 }
 
 - (UICollectionView *)collectionView {

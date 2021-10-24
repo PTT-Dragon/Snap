@@ -6,11 +6,12 @@
 //
 
 #import "CategoryRankFilterInputItem.h"
+#import "CustomTextField.h"
 
-@interface CategoryRankFilterInputItem ()
-@property (nonatomic, readwrite, strong) UITextField *minField;
+@interface CategoryRankFilterInputItem ()<UITextFieldDelegate>
+@property (nonatomic, readwrite, strong) CustomTextField *minField;
 @property (nonatomic, readwrite, strong) UIImageView *middleLineImageView;
-@property (nonatomic, readwrite, strong) UITextField *maxField;
+@property (nonatomic, readwrite, strong) CustomTextField *maxField;
 @end
 
 @implementation CategoryRankFilterInputItem
@@ -36,19 +37,37 @@
     }];
     
     [self.middleLineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.minField.mas_left).offset(4);
+        make.left.equalTo(self.minField.mas_right).offset(4);
         make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(24, 24));
+        make.height.mas_equalTo(24);
+        make.width.mas_equalTo(24);
     }];
     
-    [self.minField mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.maxField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.middleLineImageView.mas_right).offset(4);
         make.top.bottom.mas_equalTo(0);
         make.width.mas_equalTo(KScale(150));
     }];
 }
 
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
+    if (textField.text && ![textField.text isEqualToString:@""]) {
+        if (textField == self.minField) {
+            !self.priceIntervalBlock ?: self.priceIntervalBlock(textField.text.intValue,YES);
+        } else if (textField == self.maxField) {
+            !self.priceIntervalBlock ?: self.priceIntervalBlock(textField.text.intValue,NO);
+        }
+    }
+}
+
 #pragma mark - Getter
+- (void)setModel:(CategoryRankPriceModel *)model {
+    _model = model;
+    self.minField.text = _model.minPriceGinseng;
+    self.maxField.text = _model.maxPriceGinseng;
+}
+
 - (UIImageView *)middleLineImageView {
     if (_middleLineImageView == nil) {
         _middleLineImageView = [[UIImageView alloc] init];
@@ -57,24 +76,33 @@
     return _middleLineImageView;
 }
 
-- (UITextField *)minField {
+- (CustomTextField *)minField {
     if (_minField == nil) {
-        _minField = [[UITextField alloc] init];
+        _minField = [[CustomTextField alloc] init];
+        _minField.userInteractionEnabled = YES;
         _minField.placeholder = @"Min";
         _minField.textColor = [UIColor blackColor];
         _minField.font = [UIFont systemFontOfSize:16];
+        _minField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
+        _minField.layer.borderWidth = 1;
+        _minField.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
+        _minField.delegate = self;
     }
     return _minField;
 }
 
-- (UITextField *)maxField {
+- (CustomTextField *)maxField {
     if (_maxField == nil) {
-        _maxField = [[UITextField alloc] init];
+        _maxField = [[CustomTextField alloc] init];
         _maxField.placeholder = @"Max";
         _maxField.textColor = [UIColor blackColor];
         _maxField.font = [UIFont systemFontOfSize:16];
+        _maxField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
+        _maxField.layer.borderWidth = 1;
+        _maxField.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
+        _maxField.delegate = self;
     }
-    return _minField;
+    return _maxField;
 }
 
 @end
