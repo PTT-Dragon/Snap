@@ -7,6 +7,12 @@
 
 #import "CategoryRankFilterItem.h"
 
+@interface CategoryRankFilterItem ()
+
+@property (nonatomic, readwrite, strong) UILabel *titleLabel;
+
+@end
+
 @implementation CategoryRankFilterItem
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -27,9 +33,11 @@
     }];
 }
 
-- (void)setSelected:(BOOL)selected {
-    [super setSelected:selected];
-    if (selected) {
+#pragma mark - Getter
+- (void)setModel:(CategoryRankFilterModel *)model {
+    _model = model;
+    self.titleLabel.text = model.name;
+    if (model.isSelected) {
         self.titleLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
         self.titleLabel.layer.borderColor = [UIColor jk_colorWithHexString:@"#FF1659"].CGColor;
     } else {
@@ -39,7 +47,6 @@
     }
 }
 
-#pragma mark - Getter
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];

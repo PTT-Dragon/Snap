@@ -37,16 +37,16 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type {
-    NSDictionary *parm = @{
-      @"q": @"",
-      @"pageIndex": @(currentPage),
-      @"pageSize": @(10),
-      @"sortType": [NSString stringWithFormat:@"%ld",type],
-      @"offerIdList": [NSNull null],
-      @"catgIds": @(self.model.inner.catgId)
-    };
-    
+- (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter {
+    NSMutableDictionary *parm = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"q": @"",
+        @"pageIndex": @(currentPage),
+        @"pageSize": @(10),
+        @"sortType": [NSString stringWithFormat:@"%ld",type],
+        @"offerIdList": [NSNull null],
+        @"catgIds": @(self.model.inner.catgId)//默认是外部传入的分类,如果 filter.filterParam 有该字段,会被新值覆盖
+    }];
+    [parm addEntriesFromDictionary:filter.filterParam];
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
@@ -76,12 +76,12 @@
     [self.view addSubview:self.collectionView];
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
-        [self loadDatas:self.currentPage sortType:self.currentType];
+        [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
     }];
     
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.currentPage += 1;
-        [self loadDatas:self.currentPage sortType:self.currentType];
+        [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
     }];
     
     [self.collectionView.mj_header beginRefreshing];
@@ -92,9 +92,46 @@
 
 #pragma mark - Event
 - (void)jumpToFilterDetail {
+    //加载缓存配置到数据层
     self.dataModel.filterCache = self.filterCacheModel;
+    
+    CategoryRankPriceModel *priceModel = [CategoryRankPriceModel new];
+    priceModel.minPrice = self.filterCacheModel.minPrice;
+    priceModel.maxPrice = self.filterCacheModel.maxPrice;
+    self.dataModel.priceModel = priceModel;
+    for (CategoryRankServiceModel *model in self.dataModel.serviceIds) {
+        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.serverId]) {
+            model.isSelected = YES;
+            break;
+        }
+    }
+    
+    for (CategoryRankCategoryModel *model in self.dataModel.catgIds) {
+        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.categoryId]) {
+            model.isSelected = YES;
+            break;
+        }
+    }
+    
+    for (CategoryRankBrandModel *model in self.dataModel.brandIds) {
+        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.brandId]) {
+            model.isSelected = YES;
+            break;
+        }
+    }
+    
+    for (CategoryRankEvaluationModel *model in self.dataModel.evaluations) {
+        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.evaluationId]) {
+            model.isSelected = YES;
+            break;
+        }
+    }
+    
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
+    filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
+        [self.collectionView.mj_header beginRefreshing];
+    };
     [self presentViewController:filterVc animated:YES completion:nil];
 }
 

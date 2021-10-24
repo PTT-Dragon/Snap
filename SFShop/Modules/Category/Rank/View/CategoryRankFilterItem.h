@@ -6,12 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CategoryRankModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoryRankFilterItem : UICollectionViewCell
 
-@property (nonatomic, readwrite, strong) UILabel *titleLabel;
+@property (nonatomic, readwrite, strong) CategoryRankFilterModel *model;
 
 @end
 

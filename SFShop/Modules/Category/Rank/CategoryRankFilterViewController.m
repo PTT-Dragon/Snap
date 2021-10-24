@@ -45,12 +45,38 @@
 
 #pragma mark - Event
 - (void)dismiss {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshUpdate,self.model);
+    }];
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    id cellModel = self.dataArray[indexPath.section][indexPath.row];
+    if ([cellModel isKindOfClass:CategoryRankFilterModel.class]) {
+        
+        //先全部重置isSelected
+        NSArray *arr = self.dataArray[indexPath.section];
+        for (CategoryRankFilterModel *filter in arr) {
+            filter.isSelected = NO;
+        }
+        
+        //设置当前的selected
+        CategoryRankFilterModel *model = cellModel;
+        model.isSelected = YES;
+        [collectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+        
+        //存储数据到缓存中
+        if ([cellModel isKindOfClass:CategoryRankServiceModel.class]) {
+            self.model.filterCache.serverId = model.idStr;
+        } else if ([cellModel isKindOfClass:CategoryRankBrandModel.class]) {
+            self.model.filterCache.brandId = model.idStr;
+        } else if ([cellModel isKindOfClass:CategoryRankCategoryModel.class]) {
+            self.model.filterCache.categoryId = model.idStr;
+        } else if ([cellModel isKindOfClass:CategoryRankEvaluationModel.class]) {
+            self.model.filterCache.evaluationId = model.idStr;
+        }
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -79,7 +105,7 @@
     if ([cellModel isKindOfClass:CategoryRankFilterModel.class]) {
         CategoryRankFilterItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankFilterItem" forIndexPath:indexPath];
         CategoryRankFilterModel *model = cellModel;
-        cell.titleLabel.text = model.name;
+        cell.model = model;
         return cell;
     } else if ([cellModel isKindOfClass:CategoryRankPriceModel.class]){
         CategoryRankPriceModel *model = cellModel;
@@ -126,22 +152,19 @@
 - (void)setModel:(CategoryRankModel *)model {
     _model = model;
     
-    //组装数据
-    NSArray *arr = @[model.serviceIds,model.catgIds,model.brandIds];
+    //组装需要显示的数据
+    NSArray *arr = @[model.serviceIds,model.catgIds,model.brandIds,@[model.priceModel],model.evaluations];
     for (NSArray *subArr in arr) {
         if (subArr.count) {
             [self.dataArray addObject:[NSMutableArray arrayWithArray:subArr]];
         }
     }
     
-    //组装price 数据
-    CategoryRankPriceModel *price = [CategoryRankPriceModel new];
-    price.minPrice = self.model.filterCache.minPrice;
-    price.maxPrice = self.model.filterCache.maxPrice;
-    [self.dataArray addObject:[NSMutableArray arrayWithArray:@[price]]];
-    
-    //拼接好自定义组装的评价数据
-    [self.dataArray addObject:[NSMutableArray arrayWithArray:model.evaluations]];
+//    //组装price 数据
+//    [self.dataArray addObject:[NSMutableArray arrayWithArray:@[price]]];
+//
+//    //拼接好自定义组装的评价数据
+//    [self.dataArray addObject:[NSMutableArray arrayWithArray:model.evaluations]];
 }
 
 - (UICollectionView *)collectionView {

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class CategoryRankBrandModel;
 @class CategoryRankPageInfoModel;
 @class CategoryRankEvaluationModel;
+@class CategoryRankPriceModel;
 @interface CategoryRankModel : NSObject
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankServiceModel *> *serviceIds;
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankCategoryModel *> *catgIds;
@@ -24,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, copy) NSString *salesPrices;
 
 /// ⚠️:自定义
+@property (nonatomic, readwrite, strong) CategoryRankPriceModel *priceModel;
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCache;//配置缓存
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankEvaluationModel *> *evaluations;//评价
 @end
@@ -34,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     @property (nonatomic, readwrite, copy) NSString *idStr;
 
     //⚠️:自定义
+    @property (nonatomic, readwrite, assign) BOOL isSelected;
     @property (nonatomic, readwrite, copy) NSString *groupName;
     @end
 
