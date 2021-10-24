@@ -63,6 +63,13 @@
 		1B74DB162724466100B30ECC /* OrderListBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB142724466100B30ECC /* OrderListBottomCell.xib */; };
 		1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB182724467100B30ECC /* OrderListItemCell.m */; };
 		1B74DB1B2724467100B30ECC /* OrderListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB192724467100B30ECC /* OrderListItemCell.xib */; };
+		1B74DB21272539BC00B30ECC /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB20272539BC00B30ECC /* OrderDetailViewController.m */; };
+		1B74DB2527253A3500B30ECC /* DeliveryInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB2327253A3500B30ECC /* DeliveryInformationCell.m */; };
+		1B74DB2627253A3500B30ECC /* DeliveryInformationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB2427253A3500B30ECC /* DeliveryInformationCell.xib */; };
+		1B74DB2A27253AD600B30ECC /* DeliveryAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB2827253AD600B30ECC /* DeliveryAddressCell.m */; };
+		1B74DB2B27253AD600B30ECC /* DeliveryAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB2927253AD600B30ECC /* DeliveryAddressCell.xib */; };
+		1B74DB2F27253AF900B30ECC /* OrderPayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB2D27253AF900B30ECC /* OrderPayInfoCell.m */; };
+		1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB2E27253AF900B30ECC /* OrderPayInfoCell.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -252,6 +259,17 @@
 		1B74DB172724467100B30ECC /* OrderListItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderListItemCell.h; sourceTree = "<group>"; };
 		1B74DB182724467100B30ECC /* OrderListItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderListItemCell.m; sourceTree = "<group>"; };
 		1B74DB192724467100B30ECC /* OrderListItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderListItemCell.xib; sourceTree = "<group>"; };
+		1B74DB1F272539BC00B30ECC /* OrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		1B74DB20272539BC00B30ECC /* OrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
+		1B74DB2227253A3500B30ECC /* DeliveryInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeliveryInformationCell.h; sourceTree = "<group>"; };
+		1B74DB2327253A3500B30ECC /* DeliveryInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeliveryInformationCell.m; sourceTree = "<group>"; };
+		1B74DB2427253A3500B30ECC /* DeliveryInformationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryInformationCell.xib; sourceTree = "<group>"; };
+		1B74DB2727253AD600B30ECC /* DeliveryAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeliveryAddressCell.h; sourceTree = "<group>"; };
+		1B74DB2827253AD600B30ECC /* DeliveryAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeliveryAddressCell.m; sourceTree = "<group>"; };
+		1B74DB2927253AD600B30ECC /* DeliveryAddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryAddressCell.xib; sourceTree = "<group>"; };
+		1B74DB2C27253AF900B30ECC /* OrderPayInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderPayInfoCell.h; sourceTree = "<group>"; };
+		1B74DB2D27253AF900B30ECC /* OrderPayInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderPayInfoCell.m; sourceTree = "<group>"; };
+		1B74DB2E27253AF900B30ECC /* OrderPayInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderPayInfoCell.xib; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -504,6 +522,7 @@
 		1B49D147271E91D8002461ED /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				1B74DB1E272539A000B30ECC /* OrderDetail */,
 				1B74DAE627224E4600B30ECC /* OrderModel.h */,
 				1B74DAE727224E4600B30ECC /* OrderModel.m */,
 				1B74DB0727243F0A00B30ECC /* OrderViewController.h */,
@@ -581,6 +600,24 @@
 			children = (
 			);
 			path = FAQ;
+			sourceTree = "<group>";
+		};
+		1B74DB1E272539A000B30ECC /* OrderDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1B74DB1F272539BC00B30ECC /* OrderDetailViewController.h */,
+				1B74DB20272539BC00B30ECC /* OrderDetailViewController.m */,
+				1B74DB2227253A3500B30ECC /* DeliveryInformationCell.h */,
+				1B74DB2327253A3500B30ECC /* DeliveryInformationCell.m */,
+				1B74DB2427253A3500B30ECC /* DeliveryInformationCell.xib */,
+				1B74DB2727253AD600B30ECC /* DeliveryAddressCell.h */,
+				1B74DB2827253AD600B30ECC /* DeliveryAddressCell.m */,
+				1B74DB2927253AD600B30ECC /* DeliveryAddressCell.xib */,
+				1B74DB2C27253AF900B30ECC /* OrderPayInfoCell.h */,
+				1B74DB2D27253AF900B30ECC /* OrderPayInfoCell.m */,
+				1B74DB2E27253AF900B30ECC /* OrderPayInfoCell.xib */,
+			);
+			path = OrderDetail;
 			sourceTree = "<group>";
 		};
 		1BDBEB9926FDA11B0018109B /* ForgotPassword */ = {
@@ -1125,10 +1162,12 @@
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */,
 				1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */,
+				1B74DB2627253A3500B30ECC /* DeliveryInformationCell.xib in Resources */,
 				4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */,
 				1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */,
 				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
 				1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */,
+				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
 				1B74DB1B2724467100B30ECC /* OrderListItemCell.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
@@ -1145,6 +1184,7 @@
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
 				1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
+				1B74DB2B27253AD600B30ECC /* DeliveryAddressCell.xib in Resources */,
 				1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */,
 				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
@@ -1232,6 +1272,7 @@
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
 				1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
+				1B74DB21272539BC00B30ECC /* OrderDetailViewController.m in Sources */,
 				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,
 				AE81BE592702001700AB4225 /* MBProgressHUD+Prompt.m in Sources */,
 				1B74DAF92722A85600B30ECC /* InviteCell.m in Sources */,
@@ -1249,6 +1290,7 @@
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
 				1B74DAE42721B6FD00B30ECC /* InviteViewController.m in Sources */,
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
+				1B74DB2527253A3500B30ECC /* DeliveryInformationCell.m in Sources */,
 				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
 				1B12A3DD27015EB800DD7BCD /* CouponCenterChildViewController.m in Sources */,
@@ -1265,6 +1307,7 @@
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				AE81BE5F2702025200AB4225 /* NSString+Add.m in Sources */,
 				AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */,
+				1B74DB2A27253AD600B30ECC /* DeliveryAddressCell.m in Sources */,
 				1B49D145271D5C14002461ED /* RecentlyViewedViewController.m in Sources */,
 				1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
@@ -1286,6 +1329,7 @@
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
+				1B74DB2F27253AF900B30ECC /* OrderPayInfoCell.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				1B74DAF2272272D000B30ECC /* StarView.m in Sources */,
 				1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */,
