@@ -16,11 +16,18 @@
 @implementation ArticleProductCell
 
 - (void)setModel:(ArticleProduct *)model {
+    _model = model;
     self.layer.borderWidth = 0.5;
     self.layer.borderColor = RGBColorFrom16(0xd5d5d5).CGColor;
 
     [self.productIV sd_setImageWithURL: [NSURL URLWithString: SFImage(model.imgUrl)]];
     self.productNameLabel.text = model.productName;
+}
+
+- (IBAction)buyAction:(UIButton *)sender {
+    if (self.buyBlock) {
+        self.buyBlock(self.model.offerId);
+    }
 }
 
 @end

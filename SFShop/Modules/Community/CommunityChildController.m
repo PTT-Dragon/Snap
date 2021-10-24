@@ -95,9 +95,6 @@
         cell = [[ArticleListCell alloc] init];
     }
     ArticleModel *cellModel = [self.model.list[indexPath.row] copy];
-    if (indexPath.row % 2 == 0) {
-        cellModel.contentTitle = [NSString stringWithFormat:@"%@%@", cellModel.contentTitle, @"-增加一些内容使变成多行"];
-    }
     cell.model = cellModel;
     return cell;
 }
@@ -105,9 +102,6 @@
 #pragma mark - CollectionWaterfallLayoutProtocol
 - (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath {
     ArticleModel *cellModel = [self.model.list[indexPath.row] copy];
-    if (indexPath.row % 2 == 0) {
-        cellModel.contentTitle = [NSString stringWithFormat:@"%@%@", cellModel.contentTitle, @"-增加一些内容使变成多行"];
-    }
     NSString *labelString = cellModel.contentTitle;
     CGFloat cellWidth = (MainScreen_width - 18 * 2) / 2;
     CGFloat labelWidth = cellWidth - 8 * 2;

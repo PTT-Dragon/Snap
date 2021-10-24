@@ -6,12 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CategoryRankFilterCacheModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class CategoryRankServiceModel;
 @class CategoryRankCategoryModel;
 @class CategoryRankBrandModel;
 @class CategoryRankPageInfoModel;
+@class CategoryRankEvaluationModel;
+@class CategoryRankPriceModel;
 @interface CategoryRankModel : NSObject
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankServiceModel *> *serviceIds;
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankCategoryModel *> *catgIds;
@@ -20,32 +23,56 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) CategoryRankPageInfoModel *pageInfo;
 @property (nonatomic, readwrite, copy) NSString *evaluationAvgs;
 @property (nonatomic, readwrite, copy) NSString *salesPrices;
+
+/// ⚠️:自定义
+@property (nonatomic, readwrite, strong) CategoryRankPriceModel *priceModel;
+@property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCache;//配置缓存
+@property (nonatomic, readwrite, strong) NSArray<CategoryRankEvaluationModel *> *evaluations;//评价
 @end
+    /*------------------------------------------------------------------------------------*/
+    @interface CategoryRankFilterModel : NSObject
+    @property (nonatomic, readwrite, assign) NSInteger num;
+    @property (nonatomic, readwrite, copy) NSString *name;
+    @property (nonatomic, readwrite, copy) NSString *idStr;
+
+    //⚠️:自定义
+    @property (nonatomic, readwrite, assign) BOOL isSelected;
+    @property (nonatomic, readwrite, copy) NSString *groupName;
+    @end
+
     /*------------------------------------------------------------------------------------*/
     //Services
     /*------------------------------------------------------------------------------------*/
-    @interface CategoryRankServiceModel : NSObject
-    @property (nonatomic, readwrite, assign) NSInteger num;
-    @property (nonatomic, readwrite, assign) NSInteger serviceId;
-    @property (nonatomic, readwrite, copy) NSString *serviceName;
+    @interface CategoryRankServiceModel : CategoryRankFilterModel
     @end
 
     /*------------------------------------------------------------------------------------*/
     //Categorys
     /*------------------------------------------------------------------------------------*/
-    @interface CategoryRankCategoryModel : NSObject
-    @property (nonatomic, readwrite, assign) NSInteger num;
-    @property (nonatomic, readwrite, assign) NSInteger catgId;
-    @property (nonatomic, readwrite, copy) NSString *catgName;
+    @interface CategoryRankCategoryModel : CategoryRankFilterModel
     @end
 
     /*------------------------------------------------------------------------------------*/
     //Brands
     /*------------------------------------------------------------------------------------*/
-    @interface CategoryRankBrandModel : NSObject
-    @property (nonatomic, readwrite, assign) NSInteger num;
-    @property (nonatomic, readwrite, assign) NSInteger brandId;
-    @property (nonatomic, readwrite, copy) NSString *brandName;
+    @interface CategoryRankBrandModel : CategoryRankFilterModel
+    @end
+
+    /*------------------------------------------------------------------------------------*/
+    //Evaluation ⚠️:自定义评价model
+    /*------------------------------------------------------------------------------------*/
+    @interface CategoryRankEvaluationModel : CategoryRankFilterModel
+    @end
+
+    /*------------------------------------------------------------------------------------*/
+    //Price ⚠️:自定义价格model
+    /*------------------------------------------------------------------------------------*/
+    @interface CategoryRankPriceModel : NSObject
+        @property (nonatomic, readwrite, copy) NSString *groupName;
+        @property (nonatomic, readwrite, assign) NSInteger minPrice;
+        @property (nonatomic, readwrite, assign) NSInteger maxPrice;
+        @property (nonatomic, readwrite, copy) NSString *minPriceGinseng;//给接口入参使用
+        @property (nonatomic, readwrite, copy) NSString *maxPriceGinseng;//给接口入参使用
     @end
 
     /*------------------------------------------------------------------------------------*/

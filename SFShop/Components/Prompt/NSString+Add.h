@@ -56,6 +56,19 @@
 - (CGFloat)calHeightOrWidth:(BOOL)heightOrWidth andLabel:(UILabel *)aLabel andLimitSize:(CGSize )aSize;
 
 
+/// 计算高度
+/// @param font 字体
+/// @param model 分割模式
+/// @param alignment NSTextAlignment
+/// @param aSize 大小
+- (CGFloat)calHeightWithFont:(UIFont *)font lineBreakMode:(NSLineBreakMode)model alignment:(NSTextAlignment)alignment limitSize:(CGSize )aSize;
+
+/// 计算宽度
+/// @param font 字体
+/// @param lineMode 分割模式
+/// @param alignment NSTextAlignment
+/// @param limitSize 限制大小
+- (CGFloat)calWidth:(UIFont *)font lineMode:(NSLineBreakMode)lineMode alignment:(NSTextAlignment)alignment limitSize:(CGSize )limitSize;
 /**
  获取md5加密字符串
 

@@ -31,6 +31,8 @@
 }
 
 - (void)loadSubviews {
+    self.contentView.layer.borderWidth = 0.5;
+    self.contentView.layer.borderColor = [UIColor jk_colorWithHexString:@"#CCCCCC"].CGColor;
     [self.contentView addSubview:self.iconImageView];
     [self.contentView addSubview:self.iconTagImageView];
     [self.contentView addSubview:self.titleLabel];
@@ -103,27 +105,23 @@
 
 }
 
-- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    CGSize size = [self systemLayoutSizeFittingSize:layoutAttributes.size];
-    CGRect cellFrame = layoutAttributes.frame;
-    cellFrame.size.height = size.height;
-    self.model.height = size.height;//记录下来自适应计算出来的高度
-    layoutAttributes.frame = cellFrame;
-    return layoutAttributes;
-}
-
 #pragma mark - Getter
 - (void)setModel:(CategoryRankPageInfoListModel *)model {
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
     self.titleLabel.text = _model.offerName;
     self.priceLabel.text = [NSString stringWithFormat:@"%@%@",_model.currencySymbol,[[NSString stringWithFormat:@"%ld",_model.salesPrice] thousandthFormat]] ;
-    self.originPriceLabel.text = [NSString stringWithFormat:@"%@%@",_model.currencySymbol,[[NSString stringWithFormat:@"%ld",_model.marketPrice] thousandthFormat]];
     self.gradeLevelLabel.text = _model.evaluationAvg;
     self.gradeNumberLabel.text = [NSString stringWithFormat:@"(%ld)",_model.evaluationCnt];
-    self.discountLabel.text = [NSString stringWithFormat:@"%@\%",_model.discountPercent];
+    self.discountLabel.text = [NSString stringWithFormat:@"%@%%",_model.discountPercent];
+    
+    NSAttributedString *attrStr =
+    [[NSAttributedString alloc]initWithString: [NSString stringWithFormat:@"%@ %@",_model.currencySymbol,[[NSString stringWithFormat:@"%ld",_model.marketPrice] thousandthFormat]] attributes:
+    @{NSFontAttributeName:[UIFont systemFontOfSize:10],
+      NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
+      NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
+      NSStrikethroughColorAttributeName:[UIColor jk_colorWithHexString:@"#CCCCCC"]}];
+    self.originPriceLabel.attributedText = attrStr;
 }
 
 - (UIImageView *)iconImageView  {
@@ -140,6 +138,7 @@
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _titleLabel.font = [UIFont boldSystemFontOfSize:14];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
+        _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         _titleLabel.numberOfLines = 2;
     }
     return _titleLabel;
@@ -150,7 +149,7 @@
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.text = @"";
         _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _priceLabel.font = [UIFont boldSystemFontOfSize:14];
+        _priceLabel.font = [UIFont systemFontOfSize:12];
         _priceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _priceLabel;
@@ -160,9 +159,9 @@
     if (_discountLabel == nil) {
         _discountLabel = [[UILabel alloc] init];
         _discountLabel.text = @"";
-        _discountLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _discountLabel.font = [UIFont boldSystemFontOfSize:14];
-        _discountLabel.textAlignment = NSTextAlignmentLeft;
+        _discountLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
+        _discountLabel.font = [UIFont systemFontOfSize:8];
+        _discountLabel.textAlignment = NSTextAlignmentCenter;
         _discountLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
     }
     return _discountLabel;
@@ -171,9 +170,8 @@
 - (UILabel *)originPriceLabel {
     if (_originPriceLabel == nil) {
         _originPriceLabel = [[UILabel alloc] init];
-        _originPriceLabel.text = @"这是title";
         _originPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _originPriceLabel.font = [UIFont boldSystemFontOfSize:14];
+        _originPriceLabel.font = [UIFont systemFontOfSize:10];
         _originPriceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _originPriceLabel;
@@ -183,8 +181,8 @@
     if (_gradeLevelLabel == nil) {
         _gradeLevelLabel = [[UILabel alloc] init];
         _gradeLevelLabel.text = @"";
-        _gradeLevelLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _gradeLevelLabel.font = [UIFont boldSystemFontOfSize:14];
+        _gradeLevelLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
+        _gradeLevelLabel.font = [UIFont systemFontOfSize:10];
         _gradeLevelLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _gradeLevelLabel;
@@ -194,8 +192,8 @@
     if (_gradeNumberLabel == nil) {
         _gradeNumberLabel = [[UILabel alloc] init];
         _gradeNumberLabel.text = @"";
-        _gradeNumberLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _gradeNumberLabel.font = [UIFont boldSystemFontOfSize:14];
+        _gradeNumberLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
+        _gradeNumberLabel.font = [UIFont systemFontOfSize:10];
         _gradeNumberLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _gradeNumberLabel;
