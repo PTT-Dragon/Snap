@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderListItemCell : UITableViewCell
-
+- (void)setContent:(orderItemsModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

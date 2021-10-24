@@ -6,6 +6,7 @@
 //
 
 #import "accountOrderCell.h"
+#import "OrderViewController.h"
 
 @interface accountOrderCell ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -37,5 +38,19 @@
      */
     //阴影路径
     _bgView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds cornerRadius:_bgView.layer.cornerRadius].CGPath;
+}
+- (IBAction)btnAction:(UIButton *)sender {
+    OrderViewController *vc = [[OrderViewController alloc] init];
+    switch (sender.tag) {
+        case 1001:
+        {
+            vc.selType = OrderListType_All;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 @end
