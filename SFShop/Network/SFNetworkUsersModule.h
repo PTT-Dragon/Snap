@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *favorite;
 @property (nonatomic, readwrite, strong) NSString *del;
 @property (nonatomic, readwrite, strong) NSString *similar;
+@property (nonatomic, readwrite, strong) NSString *num;
 
 @end
 
@@ -62,7 +63,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface SFNetworkH5FavoriteModule : NSObject
+@interface SFNetworkUsersRecentModule : NSObject
+
+@property (nonatomic, readwrite, strong) NSString *num;
+@property (nonatomic, readwrite, strong) NSString *list;
+
+
+@end
+
+@interface SFNetworkH5Module : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *agreement;
 

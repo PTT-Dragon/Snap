@@ -47,8 +47,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 订单模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersOrderModule *order;
 
+/// 浏览模块
+@property (nonatomic, readwrite, strong) SFNetworkUsersRecentModule *recent;
+
 /// h5
-@property (nonatomic, readwrite, strong) SFNetworkH5FavoriteModule *h5;
+@property (nonatomic, readwrite, strong) SFNetworkH5Module *h5;
 @end
 
 NS_ASSUME_NONNULL_END

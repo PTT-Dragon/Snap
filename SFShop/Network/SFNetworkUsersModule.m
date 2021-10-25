@@ -64,6 +64,9 @@
 - (NSString *)similar {
     return K_favorite_domain(@"similar");
 }
+- (NSString *)num {
+    return K_favorite_domain(@"num");
+}
 
 @end
 
@@ -101,10 +104,23 @@
 
 @end
 
-@implementation SFNetworkH5FavoriteModule
+@implementation SFNetworkUsersRecentModule
+
+- (NSString *)num {
+    return K_recent_domain(@"recent/num");
+}
+- (NSString *)list {
+    return K_recent_domain(@"recent/list");
+}
+
+
+@end
+
+@implementation SFNetworkH5Module
 
 - (NSString *)agreement {
     return K_h5_domain(@"agreement");
 }
+
 
 @end

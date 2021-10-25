@@ -55,6 +55,16 @@
     _couponCount = couponCount;
     self.couponLabel.text = [NSString stringWithFormat:@"%ld",couponCount];
 }
+- (void)setFavoriteCount:(NSInteger)favoriteCount
+{
+    _favoriteCount = favoriteCount;
+    self.WhishlistLabel.text = [NSString stringWithFormat:@"%ld",favoriteCount];
+}
+- (void)setRecentCount:(NSInteger)recentCount
+{
+    _recentCount = recentCount;
+    self.RecentlyLabel.text = [NSString stringWithFormat:@"%ld",recentCount];
+}
 - (void)userInfoAction
 {
     changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];

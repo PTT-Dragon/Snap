@@ -21,6 +21,8 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) double couponCount;
+@property (nonatomic,assign) double favoriteCount;
+@property (nonatomic,assign) double recentCount;
 @end
 
 @implementation AccountViewController
@@ -31,6 +33,8 @@
 //    self.navigationController.navigationBar.hidden = YES;
     self.title = @"Account";
     _couponCount = 0;
+    _favoriteCount = 0;
+    _recentCount = 0;
     _dataSource = [NSMutableArray array];
     [_dataSource addObjectsFromArray:@[@{@"image":@"00350_Distributor_Center",@"title":@"Distributor  Center"},@{@"image":@"00350_Distributor_Center",@"title":@"Refers"},@{@"image":@"00350_Distributor_Center",@"title":@"Forum"},@{@"image":@"00350_Distributor_Center",@"title":@"Reviews"},@{@"image":@"00350_Distributor_Center",@"title":@"Address"},@{@"image":@"00350_Distributor_Center",@"title":@"Service"},@{@"image":@"00350_Distributor_Center",@"title":@"Policies"},@{@"image":@"00350_Distributor_Center",@"title":@"FAQ"}]];
     [self.view addSubview:self.tableView];
@@ -53,6 +57,20 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
+    [SFNetworkManager get:SFNet.favorite.num parameters:@{} success:^(id  _Nullable response) {
+        NSNumber *num = response[@"totalNum"];
+        weakself.favoriteCount = num.doubleValue;
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+    [SFNetworkManager get:SFNet.recent.num parameters:@{} success:^(id  _Nullable response) {
+        NSNumber *num = response[@"totalOfferViewNum"];
+        weakself.recentCount = num.doubleValue;
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -63,6 +81,8 @@
     if (indexPath.row == 0) {
         accountInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountInfoCell"];
         cell.couponCount = self.couponCount;
+        cell.favoriteCount = self.favoriteCount;
+        cell.recentCount = self.recentCount;
         return cell;
     }else if (indexPath.row == 1){
         accountOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountOrderCell"];
