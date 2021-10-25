@@ -6,11 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DeliveryInformationCell : UITableViewCell
-
+- (void)setContent:(OrderDetailModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

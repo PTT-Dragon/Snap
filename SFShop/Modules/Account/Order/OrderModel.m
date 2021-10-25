@@ -15,3 +15,14 @@
 @implementation OrderModel
 
 @end
+@implementation billAddressModel
+
+@end
+@implementation deliveryAddress
+
+@end
+
+@implementation OrderDetailModel
+
+
+@end

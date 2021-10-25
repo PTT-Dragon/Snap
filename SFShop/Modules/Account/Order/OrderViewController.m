@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"My Favorites";
+    self.title = @"My Orders";
     self.menuList = @[@"All", @"ToPay", @"ToShip",@"ToReceive"];
     self.typeList = @[@(OrderListType_All),@(OrderListType_ToPay),@(OrderListType_ToShip),@(OrderListType_ToReceive)];
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);

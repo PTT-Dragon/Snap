@@ -70,6 +70,7 @@
 		1B74DB2B27253AD600B30ECC /* DeliveryAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB2927253AD600B30ECC /* DeliveryAddressCell.xib */; };
 		1B74DB2F27253AF900B30ECC /* OrderPayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB2D27253AF900B30ECC /* OrderPayInfoCell.m */; };
 		1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB2E27253AF900B30ECC /* OrderPayInfoCell.xib */; };
+		1B74DB332725ABB700B30ECC /* UIButton+SGImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB312725ABB700B30ECC /* UIButton+SGImagePosition.m */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -284,6 +285,8 @@
 		1B74DB2C27253AF900B30ECC /* OrderPayInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderPayInfoCell.h; sourceTree = "<group>"; };
 		1B74DB2D27253AF900B30ECC /* OrderPayInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderPayInfoCell.m; sourceTree = "<group>"; };
 		1B74DB2E27253AF900B30ECC /* OrderPayInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderPayInfoCell.xib; sourceTree = "<group>"; };
+		1B74DB312725ABB700B30ECC /* UIButton+SGImagePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SGImagePosition.m"; sourceTree = "<group>"; };
+		1B74DB322725ABB700B30ECC /* UIButton+SGImagePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SGImagePosition.h"; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -1080,6 +1083,8 @@
 		AE81BE562701FFDC00AB4225 /* Prompt */ = {
 			isa = PBXGroup;
 			children = (
+				1B74DB322725ABB700B30ECC /* UIButton+SGImagePosition.h */,
+				1B74DB312725ABB700B30ECC /* UIButton+SGImagePosition.m */,
 				AEA329632723FA3500E7827A /* UIButton+EnlargeTouchArea.h */,
 				AEA329642723FA3500E7827A /* UIButton+EnlargeTouchArea.m */,
 				AE81BE5B270200F200AB4225 /* BCLoadingView.h */,
@@ -1357,6 +1362,7 @@
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
 				1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */,
+				1B74DB332725ABB700B30ECC /* UIButton+SGImagePosition.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1B74DB21272539BC00B30ECC /* OrderDetailViewController.m in Sources */,
 				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,

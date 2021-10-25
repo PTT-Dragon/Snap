@@ -50,48 +50,104 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*storeName;
 @property (nonatomic,strong) NSArray <orderItemsModel>*orderItems;
 
+@end
+
+@interface billAddressModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*certNbr;
+@property (nonatomic,copy) NSString <Optional>*certTypeId;
+@property (nonatomic,copy) NSString <Optional>*contactAddress;
+@property (nonatomic,copy) NSString <Optional>*contactEmail;
+@property (nonatomic,copy) NSString <Optional>*contactFixNbr;
+@property (nonatomic,copy) NSString <Optional>*contactName;
+@property (nonatomic,copy) NSString <Optional>*contactNbr;
+@property (nonatomic,copy) NSString <Optional>*contactStdId;
+@property (nonatomic,copy) NSString <Optional>*postCode;
+@end
+
+@interface deliveryAddress : JSONModel
+@property (nonatomic,copy) NSString <Optional>*certNbr;
+@property (nonatomic,copy) NSString <Optional>*certTypeId;
+@property (nonatomic,copy) NSString <Optional>*contactAddress;
+@property (nonatomic,copy) NSString <Optional>*contactEmail;
+@property (nonatomic,copy) NSString <Optional>*contactFixNbr;
+@property (nonatomic,copy) NSString <Optional>*contactName;
+@property (nonatomic,copy) NSString <Optional>*contactNbr;
+@property (nonatomic,copy) NSString <Optional>*contactStdId;
+@property (nonatomic,copy) NSString <Optional>*postCode;
+@end
+
+@interface OrderDetailModel : JSONModel
+@property (nonatomic,strong) billAddressModel *billAddress;
+@property (nonatomic,strong) deliveryAddress *deliveryAddress;
+@property (nonatomic,strong) NSArray <orderItemsModel>*orderItems;
+@property (nonatomic,strong) NSArray <Optional>*deliverys;
+@property (nonatomic,copy) NSString <Optional>*canEvaluate;
+@property (nonatomic,copy) NSString <Optional>*canReview;
+@property (nonatomic,copy) NSString <Optional>*cancelReason;
+@property (nonatomic,copy) NSString <Optional>*completionDate;
+@property (nonatomic,copy) NSString <Optional>*createdDate;
+@property (nonatomic,copy) NSString <Optional>*deductionPrice;
+@property (nonatomic,copy) NSString <Optional>*deliveryDate;
+@property (nonatomic,copy) NSString <Optional>*deliveryMode;
+@property (nonatomic,copy) NSString <Optional>*deliveryState;
+@property (nonatomic,copy) NSString <Optional>*discountPrice;
+@property (nonatomic,copy) NSString <Optional>*isNeedDelivery;
+@property (nonatomic,copy) NSString <Optional>*leaveMsg;
+@property (nonatomic,copy) NSString <Optional>*logisticsDeductFee;
+@property (nonatomic,copy) NSString <Optional>*logisticsFee;
+@property (nonatomic,copy) NSString <Optional>*logisticsModeId;
+@property (nonatomic,copy) NSString <Optional>*logisticsOriFee;
+@property (nonatomic,copy) NSString <Optional>*offerCnt;
+@property (nonatomic,copy) NSString <Optional>*offerPrice;
+@property (nonatomic,copy) NSString <Optional>*orderNbr;
+@property (nonatomic,copy) NSString <Optional>*orderId;
+@property (nonatomic,copy) NSString <Optional>*orderPrice;
+@property (nonatomic,copy) NSString <Optional>*state;
+@property (nonatomic,copy) NSString <Optional>*packageQty;
+@property (nonatomic,copy) NSString <Optional>*paymentMode;
+@property (nonatomic,copy) NSString <Optional>*paymentState;
+@property (nonatomic,copy) NSString <Optional>*storeName;
+@property (nonatomic,copy) NSString <Optional>*storeId;
+@property (nonatomic,copy) NSString <Optional>*stateDate;
+@property (nonatomic,copy) NSString <Optional>*storeCampaignPrice;
+@property (nonatomic,copy) NSString <Optional>*storeCouponPrice;
+@property (nonatomic,copy) NSString <Optional>*returnPrice;
+@property (nonatomic,copy) NSString <Optional>*pointPrice;
+@property (nonatomic,copy) NSString <Optional>*receivedDate;
 /**
  {
-canEvaluate = N;
-canReview = Y;
-deliveryState = C;
-offerCnt = 1;
-orderId = 31001;
-orderItems =             (
-                 {
-     canEvaluate = N;
-     canReturn = N;
-     canReview = Y;
-     evaluation =                     {
-         createdDate = "2021-08-03 01:00:00";
-         evaluationComments = "Positive review given by system default";
-         rate = 5;
-     };
-     imagUrl = "/get/resource/5a6f1b7da492a4cf904df186694e3d1813170270762593198081381447867742425088.webp";
+     logisticsDeductFee = 0;
+     logisticsFee = 20000;
+     logisticsModeId = 1;
+     logisticsOriFee = 20000;
      offerCnt = 1;
-     offerId = 1029;
-     offerName = "iPhone 11";
-     offerType = P;
-     orderItemId = 31001;
-     orderPrice = 5791112;
-     productId = 1724;
-     productName = "iPhone 11 256,White";
-     productRemark = "{\"Capacity\":\"256\",\"Color\":\"White\"}";
-     serviceTypes = "2,3,4";
-     unitPrice = 5800000;
+     offerPrice = 3000;
+     orderId = 69004;
+     orderNbr = O202109162044596345;
+     orderPrice = 23000;
+     packageQty = "<null>";
+     paymentMode = A;
+     paymentState = N;
+     payments = "<null>";
+     platformCouponPrice = 0;
+     pointExchCharge = 0;
+     pointPrice = 0;
+     receivedDate = "<null>";
+     returnPrice = "<null>";
+     sellerComments = "<null>";
+     shareBuyOrderId = "<null>";
+     shareBuyOrderNbr = "<null>";
+     state = E;
+     stateDate = "2021-09-16 21:15:00";
+     storeCampaignPrice = 0;
+     storeCouponPrice = 0;
+     storeId = 11;
+     storeName = "Apple Store";
+     thirdPartyCodeList =     (
+     );
+     uccAccount = "<null>";
+     vatPrice = 0;
  }
-);
-orderNbr = O202107211536208465;
-orderPrice = 5871112;
-paymentState = S;
-shareBuyBriefInfo = "<null>";
-state = D;
-storeId = 11;
-storeLogoUrl = "<null>";
-storeName = "Apple Store";
-thirdPartyCodeList =             (
-);
-}
  **/
 
 @end

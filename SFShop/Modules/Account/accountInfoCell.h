@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface accountInfoCell : UITableViewCell
-
+@property (nonatomic,assign) NSInteger couponCount;
 @end
 
 NS_ASSUME_NONNULL_END

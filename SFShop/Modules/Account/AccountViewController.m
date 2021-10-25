@@ -20,6 +20,7 @@
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,assign) double couponCount;
 @end
 
 @implementation AccountViewController
@@ -29,6 +30,7 @@
     // Do any additional setup after loading the view.
 //    self.navigationController.navigationBar.hidden = YES;
     self.title = @"Account";
+    _couponCount = 0;
     _dataSource = [NSMutableArray array];
     [_dataSource addObjectsFromArray:@[@{@"image":@"00350_Distributor_Center",@"title":@"Distributor  Center"},@{@"image":@"00350_Distributor_Center",@"title":@"Refers"},@{@"image":@"00350_Distributor_Center",@"title":@"Forum"},@{@"image":@"00350_Distributor_Center",@"title":@"Reviews"},@{@"image":@"00350_Distributor_Center",@"title":@"Address"},@{@"image":@"00350_Distributor_Center",@"title":@"Service"},@{@"image":@"00350_Distributor_Center",@"title":@"Policies"},@{@"image":@"00350_Distributor_Center",@"title":@"FAQ"}]];
     [self.view addSubview:self.tableView];
@@ -39,10 +41,18 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
+    [self loadData];
 }
-- (void)updateData
+- (void)loadData
 {
-    
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.coupon.num parameters:@{} success:^(id  _Nullable response) {
+        NSNumber *num = response;
+        weakself.couponCount = num.doubleValue;
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -52,6 +62,7 @@
 {
     if (indexPath.row == 0) {
         accountInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountInfoCell"];
+        cell.couponCount = self.couponCount;
         return cell;
     }else if (indexPath.row == 1){
         accountOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountOrderCell"];

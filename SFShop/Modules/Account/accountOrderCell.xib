@@ -47,35 +47,35 @@
                             <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhV-xd-XOa">
                                 <rect key="frame" x="140" y="31" width="63" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="To Receive">
+                                <state key="normal" title="To Receive" image="delivery-2">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" tag="1005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNM-QF-3IG">
                                 <rect key="frame" x="203" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="Rating">
+                                <state key="normal" title="Rating" image="chat-fill">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsb-hE-gyw">
                                 <rect key="frame" x="265.5" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="Return">
+                                <state key="normal" title="Return" image="00341_ Return Fill">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2X-bT-a9a">
                                 <rect key="frame" x="77.5" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="To Ship">
+                                <state key="normal" title="To Ship" image="组 64598">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXb-7r-1rp">
                                 <rect key="frame" x="15" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="To Pay">
+                                <state key="normal" title="To Pay" image="card-2">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                             </button>
@@ -127,6 +127,11 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="00341_ Return Fill" width="32" height="32"/>
+        <image name="card-2" width="32" height="32"/>
+        <image name="chat-fill" width="32" height="32"/>
+        <image name="delivery-2" width="32" height="32"/>
+        <image name="组 64598" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

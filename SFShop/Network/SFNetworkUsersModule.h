@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *usercoupons;
 @property (nonatomic, readwrite, strong) NSString *center;
 @property (nonatomic, readwrite, strong) NSString *usercoupon;
+@property (nonatomic, readwrite, strong) NSString *num;
 
 
 @end

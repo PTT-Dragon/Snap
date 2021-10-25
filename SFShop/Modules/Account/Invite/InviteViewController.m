@@ -58,7 +58,10 @@
         
     }];
     [SFNetworkManager get:SFNet.invite.activityInvShare parameters:@{} success:^(id  _Nullable response) {
-        
+        NSArray *arr = response[@"content"];
+        NSString *url = [arr.firstObject[@"ctnAttachment"]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        weakself.imgUrl = url;
+        [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         
     }];

@@ -48,6 +48,9 @@
 - (NSString *)usercoupon {
     return K_coupon_domain(@"usercoupon");
 }
+- (NSString *)num {
+    return K_coupon_domain(@"state/num");
+}
 
 @end
 

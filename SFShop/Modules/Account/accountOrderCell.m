@@ -7,6 +7,7 @@
 
 #import "accountOrderCell.h"
 #import "OrderViewController.h"
+#import "UIButton+SGImagePosition.h"
 
 @interface accountOrderCell ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -18,6 +19,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    for (UIView *subView in _bgView.subviews) {
+        if ([subView isKindOfClass:[UIButton class]]) {
+            [(UIButton *)subView SG_imagePositionStyle:SGImagePositionStyleTop spacing:5];
+        }
+    }
     [self drawShadow];
 }
 

@@ -10,6 +10,7 @@
 #import "OrderListBottomCell.h"
 #import "OrderListStateCell.h"
 #import "OrderModel.h"
+#import "OrderDetailViewController.h"
 
 @interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -63,6 +64,13 @@
 {
     OrderModel *model = self.dataSource[indexPath.section];
     return indexPath.row == 0 ? 40: indexPath.row == model.orderItems.count+1 ? 100: 118;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OrderModel *model = self.dataSource[indexPath.section];
+    OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
+    vc.orderId = model.orderId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)loadDatas
 {

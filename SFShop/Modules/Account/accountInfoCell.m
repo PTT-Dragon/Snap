@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *RecentlyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *couponLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *setBtn;
 
 @end
 
@@ -49,6 +50,11 @@
         [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.userRes.photo]]];
     }];
 }
+- (void)setCouponCount:(NSInteger)couponCount
+{
+    _couponCount = couponCount;
+    self.couponLabel.text = [NSString stringWithFormat:@"%ld",couponCount];
+}
 - (void)userInfoAction
 {
     changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];
@@ -63,5 +69,9 @@
 {
     MyCouponViewController *vc = [[MyCouponViewController alloc] init];
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+}
+- (IBAction)setAction:(id)sender {
+}
+- (IBAction)msgAction:(id)sender {
 }
 @end
