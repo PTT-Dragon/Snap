@@ -9,6 +9,7 @@
 #import "MyCouponViewController.h"
 #import "changeUserInfoVC.h"
 #import "RecentlyViewedViewController.h"
+#import "setViewController.h"
 
 
 @interface accountInfoCell ()
@@ -81,6 +82,8 @@
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)setAction:(id)sender {
+    setViewController *vc = [[setViewController alloc] init];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)msgAction:(id)sender {
 }
