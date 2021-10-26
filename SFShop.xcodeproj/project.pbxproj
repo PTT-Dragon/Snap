@@ -72,6 +72,8 @@
 		1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB2E27253AF900B30ECC /* OrderPayInfoCell.xib */; };
 		1B74DB332725ABB700B30ECC /* UIButton+SGImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB312725ABB700B30ECC /* UIButton+SGImagePosition.m */; };
 		1B74DB3927265EDC00B30ECC /* setViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB3827265EDC00B30ECC /* setViewController.m */; };
+		1B74DB3F2726FF3600B30ECC /* RecentlyViewedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB3D2726FF3500B30ECC /* RecentlyViewedCell.m */; };
+		1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB3E2726FF3500B30ECC /* RecentlyViewedCell.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -290,6 +292,9 @@
 		1B74DB322725ABB700B30ECC /* UIButton+SGImagePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SGImagePosition.h"; sourceTree = "<group>"; };
 		1B74DB3727265EDB00B30ECC /* setViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = setViewController.h; sourceTree = "<group>"; };
 		1B74DB3827265EDC00B30ECC /* setViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = setViewController.m; sourceTree = "<group>"; };
+		1B74DB3C2726FF3500B30ECC /* RecentlyViewedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecentlyViewedCell.h; sourceTree = "<group>"; };
+		1B74DB3D2726FF3500B30ECC /* RecentlyViewedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecentlyViewedCell.m; sourceTree = "<group>"; };
+		1B74DB3E2726FF3500B30ECC /* RecentlyViewedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentlyViewedCell.xib; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -562,6 +567,9 @@
 				1B49D142271D5C14002461ED /* RecentlyViewedViewController.h */,
 				1B49D143271D5C14002461ED /* RecentlyViewedViewController.m */,
 				1B49D144271D5C14002461ED /* RecentlyViewedViewController.xib */,
+				1B74DB3C2726FF3500B30ECC /* RecentlyViewedCell.h */,
+				1B74DB3D2726FF3500B30ECC /* RecentlyViewedCell.m */,
+				1B74DB3E2726FF3500B30ECC /* RecentlyViewedCell.xib */,
 			);
 			path = RecnetlyViewed;
 			sourceTree = "<group>";
@@ -1277,6 +1285,7 @@
 				1B49D11D27192CFB002461ED /* AddressViewController.xib in Resources */,
 				4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */,
 				1B74DAFA2722A85600B30ECC /* InviteCell.xib in Resources */,
+				1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */,
 				1B74DAEE27225EF000B30ECC /* ReviewCell.xib in Resources */,
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
@@ -1474,6 +1483,7 @@
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
 				1B74DACF272007D900B30ECC /* InitializationUIMethod.m in Sources */,
+				1B74DB3F2726FF3600B30ECC /* RecentlyViewedCell.m in Sources */,
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
 				AEA3297A2725391A00E7827A /* CategoryRankFilterCacheModel.m in Sources */,

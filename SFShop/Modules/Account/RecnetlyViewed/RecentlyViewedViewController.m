@@ -7,8 +7,9 @@
 
 #import "RecentlyViewedViewController.h"
 #import <JTCalendar/JTCalendar.h>
+#import "RecentlyViewedCell.h"
 
-@interface RecentlyViewedViewController ()<JTCalendarDelegate>
+@interface RecentlyViewedViewController ()<JTCalendarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableDictionary *_eventsByDate;
     
@@ -20,6 +21,8 @@
 @property (nonatomic,strong) NSDate *dateSelected;
 @property (strong, nonatomic) JTCalendarManager *calendarManager;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHei;
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) NSMutableArray *dataSource;
 
 @end
 
@@ -39,7 +42,17 @@
     
     _datesSelected = [NSMutableArray new];
     _selectionMode = NO;
+    [self initUI];
     [self loadDatas];
+}
+- (void)initUI
+{
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.top.mas_equalTo(_calendarContentView.mas_bottom).offset(10);
+    }];
+    [self.tableView registerNib:[UINib nibWithNibName:@"RecentlyViewedCell" bundle:nil] forCellReuseIdentifier:@"RecentlyViewedCell"];
 }
 - (void)loadDatas
 {
@@ -50,6 +63,26 @@
         
     }];
 }
+
+#pragma mark - tableView.delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 5;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RecentlyViewedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecentlyViewedCell"];
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 130;
+}
+
 #pragma mark - CalendarManager delegate
 
 // Exemple of implementation of prepareDayView method
@@ -237,5 +270,28 @@
     
     self.viewHei.constant = newHeight;
     [self.view layoutIfNeeded];
+}
+
+
+
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        _tableView.backgroundColor = [UIColor whiteColor];
+        if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        else
+        {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        _tableView.estimatedRowHeight = 44;
+    }
+    return _tableView;
 }
 @end
