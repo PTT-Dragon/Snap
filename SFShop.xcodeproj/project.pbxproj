@@ -163,6 +163,8 @@
 		AEA329742724571F00E7827A /* CategoryRankFilterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329732724571F00E7827A /* CategoryRankFilterHeader.m */; };
 		AEA329772725307300E7827A /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329762725307300E7827A /* CustomTextField.m */; };
 		AEA3297A2725391A00E7827A /* CategoryRankFilterCacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329792725391A00E7827A /* CategoryRankFilterCacheModel.m */; };
+		AEA3297E2727053F00E7827A /* SFSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3297D2727053F00E7827A /* SFSearchView.m */; };
+		AEA329812727054B00E7827A /* SFSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329802727054B00E7827A /* SFSearchViewController.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -466,6 +468,10 @@
 		AEA329762725307300E7827A /* CustomTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
 		AEA329782725391A00E7827A /* CategoryRankFilterCacheModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankFilterCacheModel.h; sourceTree = "<group>"; };
 		AEA329792725391A00E7827A /* CategoryRankFilterCacheModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankFilterCacheModel.m; sourceTree = "<group>"; };
+		AEA3297C2727053F00E7827A /* SFSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchView.h; sourceTree = "<group>"; };
+		AEA3297D2727053F00E7827A /* SFSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchView.m; sourceTree = "<group>"; };
+		AEA3297F2727054B00E7827A /* SFSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchViewController.h; sourceTree = "<group>"; };
+		AEA329802727054B00E7827A /* SFSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchViewController.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -839,6 +845,7 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AEA3297B2727051400E7827A /* Search */,
 				1B74DAC8272007D900B30ECC /* DatePickerView */,
 				AE81BE562701FFDC00AB4225 /* Prompt */,
 				1BDBEBA426FDAF970018109B /* HWTFCodeBView.h */,
@@ -1163,6 +1170,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AEA3297B2727051400E7827A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				AEA3297C2727053F00E7827A /* SFSearchView.h */,
+				AEA3297D2727053F00E7827A /* SFSearchView.m */,
+				AEA3297F2727054B00E7827A /* SFSearchViewController.h */,
+				AEA329802727054B00E7827A /* SFSearchViewController.m */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1401,6 +1419,7 @@
 				1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */,
 				4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */,
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
+				AEA3297E2727053F00E7827A /* SFSearchView.m in Sources */,
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
 				1B74DAE42721B6FD00B30ECC /* InviteViewController.m in Sources */,
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
@@ -1489,6 +1508,7 @@
 				AEA3297A2725391A00E7827A /* CategoryRankFilterCacheModel.m in Sources */,
 				AE81BDE926FB6E7300AB4225 /* main.m in Sources */,
 				AE81BE3526FF318900AB4225 /* SFNetworkPageModule.m in Sources */,
+				AEA329812727054B00E7827A /* SFSearchViewController.m in Sources */,
 				4B9FB9FF26FB7AAB00C90790 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
