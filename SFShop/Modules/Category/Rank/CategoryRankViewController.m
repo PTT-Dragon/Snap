@@ -184,7 +184,9 @@
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
         backItem.icon = @"nav_back";
-        
+        backItem.itemActionBlock = ^(NSInteger type) {
+            [self.navigationController popViewControllerAnimated:YES];
+        };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"nav_addition";
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei) backItme:backItem rightItem:rightItem];
