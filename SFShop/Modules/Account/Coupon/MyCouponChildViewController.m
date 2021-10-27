@@ -36,7 +36,8 @@
 - (void)loadDatas
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.coupon.usercoupons parameters:@{} success:^(id  _Nullable response) {
+    NSString *state = _type == CouponType_Available ? @"A": _type == CouponType_Expired ? @"C": @"B";
+    [SFNetworkManager get:SFNet.coupon.usercoupons parameters:@{@"couponState":state} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
@@ -71,6 +72,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     MyCouponStoreCell *cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MyCouponStoreCell"];
+    [cell setContent:self.dataSource[section]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

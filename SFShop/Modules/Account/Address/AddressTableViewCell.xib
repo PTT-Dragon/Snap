@@ -41,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kke-dl-YbG">
-                                <rect key="frame" x="20" y="62.5" width="303" height="14.5"/>
+                                <rect key="frame" x="20" y="62.5" width="273" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -77,7 +77,7 @@
                             <constraint firstItem="bGi-Y9-Xvd" firstAttribute="leading" secondItem="mC0-IN-mMj" secondAttribute="leading" constant="20" id="ab1-EH-PCq"/>
                             <constraint firstItem="hwI-E2-x2q" firstAttribute="centerY" secondItem="bGi-Y9-Xvd" secondAttribute="centerY" id="dkE-o7-09J"/>
                             <constraint firstItem="kke-dl-YbG" firstAttribute="leading" secondItem="mC0-IN-mMj" secondAttribute="leading" constant="20" id="fmv-IT-GOM"/>
-                            <constraint firstAttribute="trailing" secondItem="kke-dl-YbG" secondAttribute="trailing" constant="20" id="oPE-v1-vQ8"/>
+                            <constraint firstAttribute="trailing" secondItem="kke-dl-YbG" secondAttribute="trailing" constant="50" id="oPE-v1-vQ8"/>
                             <constraint firstAttribute="trailing" secondItem="lSV-q3-WI0" secondAttribute="trailing" constant="20" id="uPq-Ry-U9A"/>
                             <constraint firstItem="bGi-Y9-Xvd" firstAttribute="top" secondItem="mC0-IN-mMj" secondAttribute="top" constant="20" id="voL-Hj-ycP"/>
                             <constraint firstItem="lSV-q3-WI0" firstAttribute="leading" secondItem="mC0-IN-mMj" secondAttribute="leading" constant="20" id="zfi-T9-qej"/>

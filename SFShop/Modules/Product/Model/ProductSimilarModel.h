@@ -21,6 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString <Optional> *imgUrl;
 // 产品标题
 @property(nonatomic, strong) NSString <Optional> *offerName;
+@property(nonatomic, strong) NSString <Optional> *offerType;
+//评分
+@property(nonatomic, copy) NSString <Optional> * evaluationRate;
+//评分次数
+@property(nonatomic, copy) NSString <Optional> * evaluationCnt;
+
 
 
 @end

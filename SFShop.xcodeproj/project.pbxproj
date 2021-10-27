@@ -77,6 +77,9 @@
 		1B74DB442728EB1A00B30ECC /* RecentlyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB432728EB1900B30ECC /* RecentlyModel.m */; };
 		1B74DB492728EF7300B30ECC /* SimilarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB472728EF7300B30ECC /* SimilarViewController.m */; };
 		1B74DB4A2728EF7300B30ECC /* SimilarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB482728EF7300B30ECC /* SimilarViewController.xib */; };
+		1B787B4C27293AE900E6A983 /* SimilarProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B787B4A27293AE900E6A983 /* SimilarProductCell.m */; };
+		1B787B4D27293AE900E6A983 /* SimilarProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B4B27293AE900E6A983 /* SimilarProductCell.xib */; };
+		1B787B5727299E5F00E6A983 /* OrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5627299E5F00E6A983 /* OrderDetailViewController.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -305,6 +308,10 @@
 		1B74DB462728EF7300B30ECC /* SimilarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimilarViewController.h; sourceTree = "<group>"; };
 		1B74DB472728EF7300B30ECC /* SimilarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimilarViewController.m; sourceTree = "<group>"; };
 		1B74DB482728EF7300B30ECC /* SimilarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarViewController.xib; sourceTree = "<group>"; };
+		1B787B4927293AE900E6A983 /* SimilarProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimilarProductCell.h; sourceTree = "<group>"; };
+		1B787B4A27293AE900E6A983 /* SimilarProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimilarProductCell.m; sourceTree = "<group>"; };
+		1B787B4B27293AE900E6A983 /* SimilarProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarProductCell.xib; sourceTree = "<group>"; };
+		1B787B5627299E5F00E6A983 /* OrderDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailViewController.xib; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -678,6 +685,7 @@
 			children = (
 				1B74DB1F272539BC00B30ECC /* OrderDetailViewController.h */,
 				1B74DB20272539BC00B30ECC /* OrderDetailViewController.m */,
+				1B787B5627299E5F00E6A983 /* OrderDetailViewController.xib */,
 				1B74DB2227253A3500B30ECC /* DeliveryInformationCell.h */,
 				1B74DB2327253A3500B30ECC /* DeliveryInformationCell.m */,
 				1B74DB2427253A3500B30ECC /* DeliveryInformationCell.xib */,
@@ -706,6 +714,9 @@
 				1B74DB462728EF7300B30ECC /* SimilarViewController.h */,
 				1B74DB472728EF7300B30ECC /* SimilarViewController.m */,
 				1B74DB482728EF7300B30ECC /* SimilarViewController.xib */,
+				1B787B4927293AE900E6A983 /* SimilarProductCell.h */,
+				1B787B4A27293AE900E6A983 /* SimilarProductCell.m */,
+				1B787B4B27293AE900E6A983 /* SimilarProductCell.xib */,
 			);
 			path = Similar;
 			sourceTree = "<group>";
@@ -1338,7 +1349,9 @@
 				1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */,
 				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
+				1B787B5727299E5F00E6A983 /* OrderDetailViewController.xib in Resources */,
 				1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */,
+				1B787B4D27293AE900E6A983 /* SimilarProductCell.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
 				1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */,
 				1B49D13F271D478C002461ED /* userInfoGenderView.xib in Resources */,
@@ -1455,6 +1468,7 @@
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
+				1B787B4C27293AE900E6A983 /* SimilarProductCell.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */,
 				AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */,

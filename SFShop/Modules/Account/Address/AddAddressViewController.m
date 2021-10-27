@@ -38,6 +38,15 @@
     _moreBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _moreBtn.layer.borderWidth = 1;
     _viewWidth.constant = MainScreen_width-32;
+    if (_model) {
+        //修改地址
+        self.nameField.text = _model.contactName;
+        self.phoneField.text = _model.contactNbr;
+        self.areaField.text = [NSString stringWithFormat:@"%@,%@,%@",_model.district,_model.city,_model.province];
+        self.streetField.text = [NSString stringWithFormat:@"%@,%@",_model.street,_model.postCode];
+        self.detailField.text = _model.contactAddress;
+        self.defaultSwitch.on = [_model.isDefault isEqualToString:@"Y"];
+    }
 }
 
 

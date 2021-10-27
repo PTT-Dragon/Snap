@@ -14,8 +14,11 @@
 #import "OrderModel.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (nonatomic,strong) OrderDetailModel *model;
 @end
 
@@ -25,6 +28,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"Order Details";
+    _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+    _btn2.layer.borderWidth = 1;
     _dataSource = [NSMutableArray array];
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
@@ -36,7 +41,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
-        make.bottom.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.bottomView.mas_top);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
     [self loadDatas];
@@ -61,6 +66,7 @@
         return cell;
     }
     OrderPayInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderPayInfoCell"];
+    [cell setContent:self.dataSource[indexPath.row]];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -69,7 +75,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 1: section == 1 ? 1: section == 2 ? self.model.orderItems.count+1 : 5;
+    return section == 0 ? 1: section == 1 ? 1: section == 2 ? self.model.orderItems.count+1 : self.dataSource.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -91,10 +97,15 @@
     MPWeakSelf(self)
     [SFNetworkManager get:url parameters:@{} success:^(id  _Nullable response) {
         weakself.model = [[OrderDetailModel alloc] initWithDictionary:response error:nil];
-        [weakself.tableView reloadData];
+        [weakself handleDatas];
     } failed:^(NSError * _Nonnull error) {
         
     }];
+}
+- (void)handleDatas
+{
+    [_dataSource addObjectsFromArray:@[@{@"coupon":self.model.storeCouponPrice},@{@"Store promo":self.model.storeCampaignPrice},@{@"Platform Voucher":self.model.discountPrice},@{@"Delivery Total":self.model.deliveryState},@{@"Total Payment":self.model.offerPrice}]];
+    [self.tableView reloadData];
 }
 - (UITableView *)tableView
 {

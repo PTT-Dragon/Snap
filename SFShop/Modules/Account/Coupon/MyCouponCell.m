@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statuLabel;
+@property (nonatomic,weak) CouponModel *model;
 
 @end
 
@@ -20,11 +21,20 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(useCouponAction)];
+    [_statuLabel addGestureRecognizer:tap];
 }
 - (void)setContent:(CouponModel *)model
 {
+    _model = model;
     _nameLabel.text = model.couponName;
     _timeLabel.text = model.expDate;
+    _statuLabel.text = [model.userCouponState isEqualToString:@"C"] ? @"EXPIRED": [model.userCouponState isEqualToString:@"A"] ? @"USE NOW": @"USED";
+    _statuLabel.textColor = [model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0xFFA6C0);
+    _discountView.backgroundColor = [model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0xFFA6C0);
+}
+- (void)useCouponAction
+{
     
 }
 @end

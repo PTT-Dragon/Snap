@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*thAmount;
 @property (nonatomic,copy) NSString <Optional>*useDesc;
 @property (nonatomic,copy) NSString <Optional>*userCouponId;
+@property (nonatomic,copy) NSString <Optional>*storeLogo;
+@property (nonatomic,copy) NSString <Optional>*userCouponState;
 @property (nonatomic,strong) NSArray <Optional>*targetProduct;
 
 /**

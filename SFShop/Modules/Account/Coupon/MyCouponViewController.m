@@ -11,7 +11,7 @@
 
 @interface MyCouponViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
 @property(nonatomic, strong) NSArray *menuList;
-@property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
+@property(nonatomic, strong) NSArray *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 @end
 
@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view.
     self.title = @"My Coupon";
     self.menuList = @[@"Available", @"Expired", @"Used"];
-    
+    self.articleCatgIdList = @[@(CouponType_Available),@(CouponType_Expired),@(CouponType_Used)];
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
@@ -64,6 +64,8 @@
     MyCouponChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
         gridViewController = [[MyCouponChildViewController alloc] init];
+        NSNumber *a = self.articleCatgIdList[pageIndex];
+        gridViewController.type = a.integerValue;
     }
     return gridViewController;
 }

@@ -45,6 +45,7 @@
         return cell;
     }else if (indexPath.row == model.orderItems.count+1){
         OrderListBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListBottomCell"];
+        [cell setContent:model];
         return cell;
     }
     OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
@@ -72,9 +73,19 @@
     vc.orderId = model.orderId;
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 10;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 10)];
+    view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    return view;
+}
 - (void)loadDatas
 {
-    NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B": _type == OrderListType_ToReceive ? @"C": @"";
+    NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.order.list parameters:@{@"state":state} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];

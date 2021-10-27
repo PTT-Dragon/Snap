@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
-    OrderListType_All,
+    OrderListType_All = 0,
     OrderListType_ToShip,
     OrderListType_ToPay,
     OrderListType_ToReceive,
@@ -18,6 +18,14 @@ typedef enum : NSUInteger {
     OrderListType_Successful,
     
 } OrderListType;
+
+typedef enum : NSUInteger {
+    CouponType_All = 0,
+    CouponType_Available,
+    CouponType_Expired,
+    CouponType_Used,
+    
+} CouponType;
 
 @interface Enums : NSObject
 

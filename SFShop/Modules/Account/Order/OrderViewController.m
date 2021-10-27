@@ -22,13 +22,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"My Orders";
-    self.menuList = @[@"All", @"ToPay", @"ToShip",@"ToReceive"];
-    self.typeList = @[@(OrderListType_All),@(OrderListType_ToPay),@(OrderListType_ToShip),@(OrderListType_ToReceive)];
+    self.menuList = @[@"All", @"ToPay", @"ToShip",@"ToReceive",@"Completed",@"Canceled"];
+    self.typeList = @[@(OrderListType_All),@(OrderListType_ToPay),@(OrderListType_ToShip),@(OrderListType_ToReceive),@(OrderListType_Successful),@(OrderListType_Cancel)];
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#000000"];
     self.magicView.sliderHeight = 1.0f;
-    self.magicView.layoutStyle = VTLayoutStyleDivide;
+    self.magicView.layoutStyle = VTLayoutStyleDefault;
     self.magicView.switchStyle = VTSwitchStyleDefault;
     self.magicView.navigationHeight = 40.f;
     self.magicView.dataSource = self;
@@ -66,7 +66,8 @@
     OrderChildViewController *orderViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!orderViewController) {
         orderViewController = [[OrderChildViewController alloc] init];
-        orderViewController.type = self.typeList[pageIndex];
+        NSNumber *a = [self.typeList objectAtIndex:pageIndex];
+        orderViewController.type = a.integerValue;
     }
     return orderViewController;
 }
