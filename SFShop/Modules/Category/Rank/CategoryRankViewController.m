@@ -14,8 +14,10 @@
 #import "CategoryRankHeadSelectorView.h"
 #import "CategoryRankFilterViewController.h"
 #import "CategoryRankFilterCacheModel.h"
+#import "SFSearchNav.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
+@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @property (nonatomic, readwrite, strong) UICollectionView *collectionView;
 @property (nonatomic, readwrite, strong) CategoryRankHeadSelectorView *headSelectorView;
 @property (nonatomic, readwrite, strong) CommunityWaterfallLayout *waterfallLayout;
@@ -35,6 +37,11 @@
     [self loadsubviews];
     [self layout];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter {
@@ -72,6 +79,7 @@
 }
 
 - (void)loadsubviews {
+    [self.view addSubview:self.navSearchView];
     [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.collectionView];
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -172,6 +180,18 @@
 }
 
 #pragma mark - getter
+- (SFSearchNav *)navSearchView {
+    if (_navSearchView == nil) {
+        SFSearchItem *backItem = [SFSearchItem new];
+        backItem.icon = @"nav_back";
+        
+        SFSearchItem *rightItem = [SFSearchItem new];
+        rightItem.icon = @"nav_addition";
+        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei) backItme:backItem rightItem:rightItem];
+    }
+    return _navSearchView;
+}
+
 - (UICollectionView *)collectionView {
     if(!_collectionView){
         _waterfallLayout = [[CommunityWaterfallLayout alloc] init];

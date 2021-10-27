@@ -165,6 +165,8 @@
 		AEA3297A2725391A00E7827A /* CategoryRankFilterCacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329792725391A00E7827A /* CategoryRankFilterCacheModel.m */; };
 		AEA3297E2727053F00E7827A /* SFSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3297D2727053F00E7827A /* SFSearchView.m */; };
 		AEA329812727054B00E7827A /* SFSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329802727054B00E7827A /* SFSearchViewController.m */; };
+		AEA3298427299CDF00E7827A /* SFSearchNav.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3298327299CDF00E7827A /* SFSearchNav.m */; };
+		AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329862729A0F700E7827A /* SFSearchItem.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -472,6 +474,10 @@
 		AEA3297D2727053F00E7827A /* SFSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchView.m; sourceTree = "<group>"; };
 		AEA3297F2727054B00E7827A /* SFSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchViewController.h; sourceTree = "<group>"; };
 		AEA329802727054B00E7827A /* SFSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchViewController.m; sourceTree = "<group>"; };
+		AEA3298227299CDF00E7827A /* SFSearchNav.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchNav.h; sourceTree = "<group>"; };
+		AEA3298327299CDF00E7827A /* SFSearchNav.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchNav.m; sourceTree = "<group>"; };
+		AEA329852729A0F700E7827A /* SFSearchItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchItem.h; sourceTree = "<group>"; };
+		AEA329862729A0F700E7827A /* SFSearchItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchItem.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1173,8 +1179,12 @@
 		AEA3297B2727051400E7827A /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				AEA3298227299CDF00E7827A /* SFSearchNav.h */,
+				AEA3298327299CDF00E7827A /* SFSearchNav.m */,
 				AEA3297C2727053F00E7827A /* SFSearchView.h */,
 				AEA3297D2727053F00E7827A /* SFSearchView.m */,
+				AEA329852729A0F700E7827A /* SFSearchItem.h */,
+				AEA329862729A0F700E7827A /* SFSearchItem.m */,
 				AEA3297F2727054B00E7827A /* SFSearchViewController.h */,
 				AEA329802727054B00E7827A /* SFSearchViewController.m */,
 			);
@@ -1455,6 +1465,7 @@
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
+				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
@@ -1472,6 +1483,7 @@
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				1B74DAF2272272D000B30ECC /* StarView.m in Sources */,
 				AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */,
+				AEA3298427299CDF00E7827A /* SFSearchNav.m in Sources */,
 				4B818FE6272435E30058038A /* MakeH5Happy.m in Sources */,
 				1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */,
 				4B7974C7271EFD1200F2EEEA /* ArticleEvaluateModel.m in Sources */,
