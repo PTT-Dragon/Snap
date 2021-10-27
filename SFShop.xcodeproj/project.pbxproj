@@ -74,6 +74,9 @@
 		1B74DB3927265EDC00B30ECC /* setViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB3827265EDC00B30ECC /* setViewController.m */; };
 		1B74DB3F2726FF3600B30ECC /* RecentlyViewedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB3D2726FF3500B30ECC /* RecentlyViewedCell.m */; };
 		1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB3E2726FF3500B30ECC /* RecentlyViewedCell.xib */; };
+		1B74DB442728EB1A00B30ECC /* RecentlyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB432728EB1900B30ECC /* RecentlyModel.m */; };
+		1B74DB492728EF7300B30ECC /* SimilarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DB472728EF7300B30ECC /* SimilarViewController.m */; };
+		1B74DB4A2728EF7300B30ECC /* SimilarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74DB482728EF7300B30ECC /* SimilarViewController.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -297,6 +300,11 @@
 		1B74DB3C2726FF3500B30ECC /* RecentlyViewedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecentlyViewedCell.h; sourceTree = "<group>"; };
 		1B74DB3D2726FF3500B30ECC /* RecentlyViewedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecentlyViewedCell.m; sourceTree = "<group>"; };
 		1B74DB3E2726FF3500B30ECC /* RecentlyViewedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentlyViewedCell.xib; sourceTree = "<group>"; };
+		1B74DB422728EB1900B30ECC /* RecentlyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecentlyModel.h; sourceTree = "<group>"; };
+		1B74DB432728EB1900B30ECC /* RecentlyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecentlyModel.m; sourceTree = "<group>"; };
+		1B74DB462728EF7300B30ECC /* SimilarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimilarViewController.h; sourceTree = "<group>"; };
+		1B74DB472728EF7300B30ECC /* SimilarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimilarViewController.m; sourceTree = "<group>"; };
+		1B74DB482728EF7300B30ECC /* SimilarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarViewController.xib; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -576,6 +584,8 @@
 				1B74DB3C2726FF3500B30ECC /* RecentlyViewedCell.h */,
 				1B74DB3D2726FF3500B30ECC /* RecentlyViewedCell.m */,
 				1B74DB3E2726FF3500B30ECC /* RecentlyViewedCell.xib */,
+				1B74DB422728EB1900B30ECC /* RecentlyModel.h */,
+				1B74DB432728EB1900B30ECC /* RecentlyModel.m */,
 			);
 			path = RecnetlyViewed;
 			sourceTree = "<group>";
@@ -688,6 +698,16 @@
 				1B74DB3827265EDC00B30ECC /* setViewController.m */,
 			);
 			path = Set;
+			sourceTree = "<group>";
+		};
+		1B74DB452728EF5800B30ECC /* Similar */ = {
+			isa = PBXGroup;
+			children = (
+				1B74DB462728EF7300B30ECC /* SimilarViewController.h */,
+				1B74DB472728EF7300B30ECC /* SimilarViewController.m */,
+				1B74DB482728EF7300B30ECC /* SimilarViewController.xib */,
+			);
+			path = Similar;
 			sourceTree = "<group>";
 		};
 		1BDBEB9926FDA11B0018109B /* ForgotPassword */ = {
@@ -894,6 +914,7 @@
 		4B9FB9D826FB7A1F00C90790 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				1B74DB452728EF5800B30ECC /* Similar */,
 				1B74DB3B2726A33D00B30ECC /* Set */,
 				1B74DB032722BAC500B30ECC /* FAQ */,
 				1B74DADA2721ABAF00B30ECC /* Review */,
@@ -1321,6 +1342,7 @@
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
 				1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */,
 				1B49D13F271D478C002461ED /* userInfoGenderView.xib in Resources */,
+				1B74DB4A2728EF7300B30ECC /* SimilarViewController.xib in Resources */,
 				1B74DAFF2722A86800B30ECC /* InviteTopCell.xib in Resources */,
 				4B818FD627239C910058038A /* ProductViewController.xib in Resources */,
 				1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */,
@@ -1402,6 +1424,7 @@
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
 				1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */,
+				1B74DB492728EF7300B30ECC /* SimilarViewController.m in Sources */,
 				1B74DB332725ABB700B30ECC /* UIButton+SGImagePosition.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1B74DB21272539BC00B30ECC /* OrderDetailViewController.m in Sources */,
@@ -1496,6 +1519,7 @@
 				1BDBEBC82700B8900018109B /* MyCouponChildViewController.m in Sources */,
 				4B818FEC272444560058038A /* ProductSimilarModel.m in Sources */,
 				1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */,
+				1B74DB442728EB1A00B30ECC /* RecentlyModel.m in Sources */,
 				1B49D139271D4557002461ED /* changeUserInfoVC.m in Sources */,
 				1B74DB102724463500B30ECC /* OrderListStateCell.m in Sources */,
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,

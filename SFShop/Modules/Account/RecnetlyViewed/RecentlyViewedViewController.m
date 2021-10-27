@@ -8,12 +8,13 @@
 #import "RecentlyViewedViewController.h"
 #import <JTCalendar/JTCalendar.h>
 #import "RecentlyViewedCell.h"
+#import "RecentlyModel.h"
 
 @interface RecentlyViewedViewController ()<JTCalendarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableDictionary *_eventsByDate;
     
-    NSMutableArray *_datesSelected;
+    NSDate *_dateSelected;
     BOOL _selectionMode;
 }
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
@@ -32,6 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Recently Viewed";
+    _dataSource = [NSMutableArray array];
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
     [self createRandomEvents];
@@ -39,8 +41,7 @@
     [_calendarManager setMenuView:_calendarMenuView];
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
-    
-    _datesSelected = [NSMutableArray new];
+    _dateSelected = [NSDate date];
     _selectionMode = NO;
     [self initUI];
     [self loadDatas];
@@ -50,15 +51,25 @@
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.mas_equalTo(_calendarContentView.mas_bottom).offset(10);
+        make.top.mas_equalTo(_calendarContentView.mas_bottom).offset(20);
     }];
     [self.tableView registerNib:[UINib nibWithNibName:@"RecentlyViewedCell" bundle:nil] forCellReuseIdentifier:@"RecentlyViewedCell"];
 }
 - (void)loadDatas
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.recent.list parameters:@{} success:^(id  _Nullable response) {
-        
+    NSDateFormatter* formatter1 = [[NSDateFormatter alloc] init];
+    [formatter1 setDateFormat:@"yyyy-MM-dd"];
+    NSString *selDay = [formatter1 stringFromDate:_dateSelected];
+    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":selDay,@"endDate":selDay} success:^(id  _Nullable response) {
+        NSArray *arr = response[@"list"];
+        if (!kArrayIsEmpty(arr)) {
+            [weakself.dataSource removeAllObjects];
+            for (NSDictionary *dic in arr) {
+                [weakself.dataSource addObject:[[RecentlyModel alloc] initWithDictionary:dic error:nil]];
+            }
+            [weakself.tableView reloadData];
+        }
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -67,15 +78,16 @@
 #pragma mark - tableView.delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataSource.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RecentlyViewedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecentlyViewedCell"];
+    [cell setContent:self.dataSource[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,7 +109,7 @@
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
     // Selected date
-    else if([self isInDatesSelected:dayView.date]){
+    else if(_dateSelected && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
         dayView.circleView.backgroundColor = [UIColor redColor];
         dayView.dotView.backgroundColor = [UIColor whiteColor];
@@ -126,42 +138,19 @@
 
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
 {
-    if(_selectionMode && _datesSelected.count == 1 && ![_calendarManager.dateHelper date:[_datesSelected firstObject] isTheSameDayThan:dayView.date]){
-        [_datesSelected addObject:dayView.date];
-        [self selectDates];
-        _selectionMode = NO;
-        [_calendarManager reload];
-        return;
-    }
+    _dateSelected = dayView.date;
+    [self loadDatas];
     
+    // Animation for the circleView
+    dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
+    [UIView transitionWithView:dayView
+                      duration:.3
+                       options:0
+                    animations:^{
+                        dayView.circleView.transform = CGAffineTransformIdentity;
+                        [_calendarManager reload];
+                    } completion:nil];
     
-    if([self isInDatesSelected:dayView.date]){
-         [_datesSelected removeObject:dayView.date];
-        
-        [UIView transitionWithView:dayView
-                          duration:.3
-                           options:0
-                        animations:^{
-                            [_calendarManager reload];
-                            dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
-                        } completion:nil];
-    }
-    else{
-        [_datesSelected addObject:dayView.date];
-        
-        dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
-        [UIView transitionWithView:dayView
-                          duration:.3
-                           options:0
-                        animations:^{
-                            [_calendarManager reload];
-                            dayView.circleView.transform = CGAffineTransformIdentity;
-                        } completion:nil];
-    }
-    
-    if(_selectionMode) {
-        return;
-    }
     
     // Don't change page in week mode because block the selection of days in first and last weeks of the month
     if(_calendarManager.settings.weekModeEnabled){
@@ -180,38 +169,18 @@
     }
 }
 
-#pragma mark - Date selection
+#pragma mark - CalendarManager delegate - Page mangement
 
-- (BOOL)isInDatesSelected:(NSDate *)date
+// Used to limit the date for the calendar, optional
+
+- (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar
 {
-    for(NSDate *dateSelected in _datesSelected){
-        if([_calendarManager.dateHelper date:dateSelected isTheSameDayThan:date]){
-            return YES;
-        }
-    }
-    
-    return NO;
+    //    NSLog(@"Next page loaded");
 }
 
-- (void)selectDates
+- (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar
 {
-    NSDate * startDate = [_datesSelected firstObject];
-    NSDate * endDate = [_datesSelected lastObject];
-    
-    if([_calendarManager.dateHelper date:startDate isEqualOrAfter:endDate]){
-        NSDate *nextDate = endDate;
-        while ([nextDate compare:startDate] == NSOrderedAscending) {
-            [_datesSelected addObject:nextDate];
-            nextDate = [_calendarManager.dateHelper addToDate:nextDate days:1];
-        }
-    }
-    else {
-        NSDate *nextDate = startDate;
-        while ([nextDate compare:endDate] == NSOrderedAscending) {
-            [_datesSelected addObject:nextDate];
-            nextDate = [_calendarManager.dateHelper addToDate:nextDate days:1];
-        }
-    }
+    //    NSLog(@"Previous page loaded");
 }
 
 #pragma mark - Fake data

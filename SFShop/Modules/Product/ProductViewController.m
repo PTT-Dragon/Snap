@@ -41,6 +41,7 @@
     [self request];
     [self requestSimilar];
     [self setupSubViews];
+    [self requestProductRecord];
 }
 
 - (void)dealloc {
@@ -61,6 +62,15 @@
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
         NSLog(@"get product detail failed");
+    }];
+}
+- (void)requestProductRecord
+{
+    //商品浏览记录
+    [SFNetworkManager post:SFNet.offer.viewlog parameters:@{@"offerId":@(self.offerId)} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
     }];
 }
 

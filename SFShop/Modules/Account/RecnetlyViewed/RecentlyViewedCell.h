@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecentlyModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecentlyViewedCell : UITableViewCell
-
+- (void)setContent:(RecentlyModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

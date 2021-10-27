@@ -22,6 +22,15 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _similarBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
+    _similarBtn.layer.borderWidth = 1;
+}
+- (void)setContent:(RecentlyModel *)model
+{
+    _nameLabel.text = model.offerName;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.imgUrl]]];
+    _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.salesPrice];
+    
 }
 - (IBAction)cartAction:(UIButton *)sender {
 }

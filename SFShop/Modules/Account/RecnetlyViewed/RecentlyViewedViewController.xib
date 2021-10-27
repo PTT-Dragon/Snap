@@ -23,22 +23,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHS-Oi-Hbo" customClass="JTCalendarMenuView">
-                    <rect key="frame" x="0.0" y="108" width="414" height="50"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="SRS-Ah-630"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiZ-hh-XhR" customClass="JTHorizontalCalendarView">
-                    <rect key="frame" x="0.0" y="185" width="414" height="300"/>
+                    <rect key="frame" x="0.0" y="94" width="414" height="300"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="300" id="uyY-cG-QNr"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-cU-ue7">
-                    <rect key="frame" x="184" y="508" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-cU-ue7">
+                    <rect key="frame" x="184" y="394" width="46" height="30"/>
                     <state key="normal" title="Button"/>
                     <connections>
                         <action selector="changeModeAction:" destination="-1" eventType="touchUpInside" id="VXA-go-WhJ"/>
@@ -50,10 +49,12 @@
             <constraints>
                 <constraint firstItem="RHS-Oi-Hbo" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="0ZX-pp-drQ"/>
                 <constraint firstItem="RHS-Oi-Hbo" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="CdE-hA-rWD"/>
-                <constraint firstItem="RHS-Oi-Hbo" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="64" id="OMh-qw-mnQ"/>
+                <constraint firstItem="cP7-cU-ue7" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Ef2-Wd-L1b"/>
+                <constraint firstItem="cP7-cU-ue7" firstAttribute="top" secondItem="EiZ-hh-XhR" secondAttribute="bottom" id="ICX-7e-Du3"/>
+                <constraint firstItem="RHS-Oi-Hbo" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="OMh-qw-mnQ"/>
                 <constraint firstItem="EiZ-hh-XhR" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Wwo-Se-Yi7"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="EiZ-hh-XhR" secondAttribute="trailing" id="YeW-V2-0sa"/>
-                <constraint firstItem="EiZ-hh-XhR" firstAttribute="top" secondItem="RHS-Oi-Hbo" secondAttribute="bottom" constant="27" id="ZP2-6d-Qs4"/>
+                <constraint firstItem="EiZ-hh-XhR" firstAttribute="top" secondItem="RHS-Oi-Hbo" secondAttribute="bottom" id="ZP2-6d-Qs4"/>
             </constraints>
             <point key="canvasLocation" x="75" y="61"/>
         </view>
