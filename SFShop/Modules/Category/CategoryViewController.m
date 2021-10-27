@@ -28,6 +28,11 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)loadsubviews {
     [self.view addSubview:self.sideTableView];
     [self.view addSubview:self.contentCollectionView];
