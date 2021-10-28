@@ -38,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 红包模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersCouponModule *coupon;
 
+/// 评价模块
+@property (nonatomic, readwrite, strong) SFNetworkUsersEvaluateModule *evaluate;
+
 /// 收藏模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersFavoriteModule *favorite;
 
@@ -46,6 +49,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 订单模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersOrderModule *order;
+
+/// 退货模块
+@property (nonatomic, readwrite, strong) SFNetworkUsersRefundModule *refund;
 
 /// 浏览模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersRecentModule *recent;

@@ -24,7 +24,7 @@
 {
     _storeNameLabel.text = model.storeName;
     [_storeIconImgview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.storeLogoUrl]]];
-    _statuLabel.text = model.state;
+    _statuLabel.text = [model getStateStr];
 }
 - (void)setOrderDetailContent:(OrderDetailModel *)model
 {

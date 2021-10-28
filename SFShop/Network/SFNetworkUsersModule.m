@@ -70,6 +70,25 @@
 
 @end
 
+@implementation SFNetworkUsersEvaluateModule
+- (NSString *)addEvaluate {
+    return K_evaluate_domain(@"");
+}
+
+
+@end
+
+@implementation SFNetworkUsersRefundModule
+
+- (NSString *)refundList {
+    return K_refund_domain(@"");
+}
+- (NSString *)getDetailOf: (NSString *)offerId {
+    NSString *url = [NSString stringWithFormat:@"/%@", offerId];
+    return K_refund_domain(url);
+}
+@end
+
 @implementation SFNetworkUsersInviteModule
 - (NSString *)activity {
     return K_invite_domain(@"activity");

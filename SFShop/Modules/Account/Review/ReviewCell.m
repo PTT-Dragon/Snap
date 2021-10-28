@@ -7,6 +7,7 @@
 
 #import "ReviewCell.h"
 #import "StarView.h"
+#import "AddReviewViewController.h"
 
 @interface ReviewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *storeImgView;
@@ -22,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
-
+@property (nonatomic,weak) OrderModel *model;
 
 @end
 
@@ -41,6 +42,7 @@
 }
 - (void)setContent:(OrderModel *)model type:(NSInteger)type
 {
+    _model = model;
     _evaluationView.hidden = type == 1;
     _btn2.hidden = type == 1;
     [_btn1 setTitle:type == 1 ? @"REVIEW":@"EDIT REVIEW" forState:0];
@@ -51,11 +53,18 @@
     _nameLabel.text = itemModel.productName;
     _countLabel.text = [NSString stringWithFormat:@"X%@",itemModel.offerCnt];
     _priceLabel.text = [NSString stringWithFormat:@"RP %@",itemModel.unitPrice];
-    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[itemModel.productRemark dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-    _skuLabel.attributedText = attrStr;
+    NSDictionary *dic = [itemModel.productRemark jk_dictionaryValue];
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
     _dateLabel.text = [NSString stringWithFormat:@"Review Date:%@",itemModel.evaluation[@"createdDate"]];
     _commentLabel.text = itemModel.evaluation[@"evaluationComments"];
     _starView.score = [itemModel.evaluation[@"rate"] integerValue];
     
+}
+- (IBAction)btn1Action:(UIButton *)sender {
+    AddReviewViewController *vc = [[AddReviewViewController alloc] init];
+    vc.model = _model;
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+}
+- (IBAction)btn2Action:(UIButton *)sender {
 }
 @end

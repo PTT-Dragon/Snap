@@ -18,6 +18,22 @@
 		1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122B26FC7D3600235294 /* accountOrderCell.xib */; };
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
+		1B478304272A785200F2A945 /* RefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478303272A785200F2A945 /* RefundViewController.m */; };
+		1B478308272A7B1000F2A945 /* RefundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478306272A7B1000F2A945 /* RefundCell.m */; };
+		1B478309272A7B1000F2A945 /* RefundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B478307272A7B1000F2A945 /* RefundCell.xib */; };
+		1B47830C272A838500F2A945 /* refundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B47830B272A838500F2A945 /* refundModel.m */; };
+		1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B47830E272A8CA900F2A945 /* RefundDetailViewController.m */; };
+		1B478311272A8CA900F2A945 /* RefundDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B47830F272A8CA900F2A945 /* RefundDetailViewController.xib */; };
+		1B478316272A957000F2A945 /* RefundProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478314272A957000F2A945 /* RefundProcessCell.m */; };
+		1B478317272A957000F2A945 /* RefundProcessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B478315272A957000F2A945 /* RefundProcessCell.xib */; };
+		1B478320272A9F0300F2A945 /* SetLogOutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B47831E272A9F0300F2A945 /* SetLogOutCell.m */; };
+		1B478321272A9F0300F2A945 /* SetLogOutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B47831F272A9F0300F2A945 /* SetLogOutCell.xib */; };
+		1B478325272AA04600F2A945 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478323272AA04600F2A945 /* ChangePasswordViewController.m */; };
+		1B478326272AA04600F2A945 /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B478324272AA04600F2A945 /* ChangePasswordViewController.xib */; };
+		1B47832A272AA15700F2A945 /* ChangeMobileOrEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478328272AA15700F2A945 /* ChangeMobileOrEmailViewController.m */; };
+		1B47832B272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B478329272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib */; };
+		1B47832F272AA1FF00F2A945 /* SecurityCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B47832D272AA1FF00F2A945 /* SecurityCenterViewController.m */; };
+		1B478330272AA1FF00F2A945 /* SecurityCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B47832E272AA1FF00F2A945 /* SecurityCenterViewController.xib */; };
 		1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D11A27192CFB002461ED /* AddressViewController.m */; };
 		1B49D11D27192CFB002461ED /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49D11B27192CFB002461ED /* AddressViewController.xib */; };
 		1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D11F27193181002461ED /* AddressTableViewCell.m */; };
@@ -80,6 +96,10 @@
 		1B787B4C27293AE900E6A983 /* SimilarProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B787B4A27293AE900E6A983 /* SimilarProductCell.m */; };
 		1B787B4D27293AE900E6A983 /* SimilarProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B4B27293AE900E6A983 /* SimilarProductCell.xib */; };
 		1B787B5727299E5F00E6A983 /* OrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5627299E5F00E6A983 /* OrderDetailViewController.xib */; };
+		1B787B5B272A34FE00E6A983 /* SetTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B787B59272A34FE00E6A983 /* SetTopCell.m */; };
+		1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5A272A34FE00E6A983 /* SetTopCell.xib */; };
+		1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B787B5E272A354C00E6A983 /* AddReviewViewController.m */; };
+		1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -212,6 +232,31 @@
 		1B3C122E26FC808F00235294 /* accountSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountSubCell.h; sourceTree = "<group>"; };
 		1B3C122F26FC808F00235294 /* accountSubCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountSubCell.m; sourceTree = "<group>"; };
 		1B3C123026FC808F00235294 /* accountSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountSubCell.xib; sourceTree = "<group>"; };
+		1B478302272A785200F2A945 /* RefundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundViewController.h; sourceTree = "<group>"; };
+		1B478303272A785200F2A945 /* RefundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundViewController.m; sourceTree = "<group>"; };
+		1B478305272A7B0F00F2A945 /* RefundCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundCell.h; sourceTree = "<group>"; };
+		1B478306272A7B1000F2A945 /* RefundCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundCell.m; sourceTree = "<group>"; };
+		1B478307272A7B1000F2A945 /* RefundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundCell.xib; sourceTree = "<group>"; };
+		1B47830A272A838500F2A945 /* refundModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = refundModel.h; sourceTree = "<group>"; };
+		1B47830B272A838500F2A945 /* refundModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = refundModel.m; sourceTree = "<group>"; };
+		1B47830D272A8CA900F2A945 /* RefundDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundDetailViewController.h; sourceTree = "<group>"; };
+		1B47830E272A8CA900F2A945 /* RefundDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundDetailViewController.m; sourceTree = "<group>"; };
+		1B47830F272A8CA900F2A945 /* RefundDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundDetailViewController.xib; sourceTree = "<group>"; };
+		1B478313272A957000F2A945 /* RefundProcessCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundProcessCell.h; sourceTree = "<group>"; };
+		1B478314272A957000F2A945 /* RefundProcessCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundProcessCell.m; sourceTree = "<group>"; };
+		1B478315272A957000F2A945 /* RefundProcessCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundProcessCell.xib; sourceTree = "<group>"; };
+		1B47831D272A9F0300F2A945 /* SetLogOutCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetLogOutCell.h; sourceTree = "<group>"; };
+		1B47831E272A9F0300F2A945 /* SetLogOutCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetLogOutCell.m; sourceTree = "<group>"; };
+		1B47831F272A9F0300F2A945 /* SetLogOutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetLogOutCell.xib; sourceTree = "<group>"; };
+		1B478322272AA04600F2A945 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		1B478323272AA04600F2A945 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		1B478324272AA04600F2A945 /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
+		1B478327272AA15700F2A945 /* ChangeMobileOrEmailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeMobileOrEmailViewController.h; sourceTree = "<group>"; };
+		1B478328272AA15700F2A945 /* ChangeMobileOrEmailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeMobileOrEmailViewController.m; sourceTree = "<group>"; };
+		1B478329272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeMobileOrEmailViewController.xib; sourceTree = "<group>"; };
+		1B47832C272AA1FF00F2A945 /* SecurityCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityCenterViewController.h; sourceTree = "<group>"; };
+		1B47832D272AA1FF00F2A945 /* SecurityCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecurityCenterViewController.m; sourceTree = "<group>"; };
+		1B47832E272AA1FF00F2A945 /* SecurityCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecurityCenterViewController.xib; sourceTree = "<group>"; };
 		1B49D11927192CFB002461ED /* AddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
 		1B49D11A27192CFB002461ED /* AddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
 		1B49D11B27192CFB002461ED /* AddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
@@ -314,6 +359,12 @@
 		1B787B4A27293AE900E6A983 /* SimilarProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimilarProductCell.m; sourceTree = "<group>"; };
 		1B787B4B27293AE900E6A983 /* SimilarProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarProductCell.xib; sourceTree = "<group>"; };
 		1B787B5627299E5F00E6A983 /* OrderDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailViewController.xib; sourceTree = "<group>"; };
+		1B787B58272A34FE00E6A983 /* SetTopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetTopCell.h; sourceTree = "<group>"; };
+		1B787B59272A34FE00E6A983 /* SetTopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetTopCell.m; sourceTree = "<group>"; };
+		1B787B5A272A34FE00E6A983 /* SetTopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetTopCell.xib; sourceTree = "<group>"; };
+		1B787B5D272A354C00E6A983 /* AddReviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewViewController.h; sourceTree = "<group>"; };
+		1B787B5E272A354C00E6A983 /* AddReviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewViewController.m; sourceTree = "<group>"; };
+		1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewViewController.xib; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -524,6 +575,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B478301272A77B300F2A945 /* Refund */ = {
+			isa = PBXGroup;
+			children = (
+				1B478302272A785200F2A945 /* RefundViewController.h */,
+				1B478303272A785200F2A945 /* RefundViewController.m */,
+				1B478305272A7B0F00F2A945 /* RefundCell.h */,
+				1B478306272A7B1000F2A945 /* RefundCell.m */,
+				1B478307272A7B1000F2A945 /* RefundCell.xib */,
+				1B47830D272A8CA900F2A945 /* RefundDetailViewController.h */,
+				1B47830E272A8CA900F2A945 /* RefundDetailViewController.m */,
+				1B47830F272A8CA900F2A945 /* RefundDetailViewController.xib */,
+				1B478313272A957000F2A945 /* RefundProcessCell.h */,
+				1B478314272A957000F2A945 /* RefundProcessCell.m */,
+				1B478315272A957000F2A945 /* RefundProcessCell.xib */,
+				1B47830A272A838500F2A945 /* refundModel.h */,
+				1B47830B272A838500F2A945 /* refundModel.m */,
+			);
+			path = Refund;
+			sourceTree = "<group>";
+		};
 		1B49D11827192C3A002461ED /* Address */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +655,15 @@
 				1B49D13B271D477F002461ED /* userInfoGenderView.h */,
 				1B49D13C271D477F002461ED /* userInfoGenderView.m */,
 				1B49D13E271D478C002461ED /* userInfoGenderView.xib */,
+				1B478322272AA04600F2A945 /* ChangePasswordViewController.h */,
+				1B478323272AA04600F2A945 /* ChangePasswordViewController.m */,
+				1B478324272AA04600F2A945 /* ChangePasswordViewController.xib */,
+				1B478327272AA15700F2A945 /* ChangeMobileOrEmailViewController.h */,
+				1B478328272AA15700F2A945 /* ChangeMobileOrEmailViewController.m */,
+				1B478329272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib */,
+				1B47832C272AA1FF00F2A945 /* SecurityCenterViewController.h */,
+				1B47832D272AA1FF00F2A945 /* SecurityCenterViewController.m */,
+				1B47832E272AA1FF00F2A945 /* SecurityCenterViewController.xib */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -606,6 +686,7 @@
 		1B49D147271E91D8002461ED /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				1B478301272A77B300F2A945 /* Refund */,
 				1B74DB1E272539A000B30ECC /* OrderDetail */,
 				1B74DAE627224E4600B30ECC /* OrderModel.h */,
 				1B74DAE727224E4600B30ECC /* OrderModel.m */,
@@ -675,6 +756,9 @@
 				1B74DAEA27225EF000B30ECC /* ReviewCell.h */,
 				1B74DAEB27225EF000B30ECC /* ReviewCell.m */,
 				1B74DAEC27225EF000B30ECC /* ReviewCell.xib */,
+				1B787B5D272A354C00E6A983 /* AddReviewViewController.h */,
+				1B787B5E272A354C00E6A983 /* AddReviewViewController.m */,
+				1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -710,6 +794,12 @@
 			children = (
 				1B74DB3727265EDB00B30ECC /* setViewController.h */,
 				1B74DB3827265EDC00B30ECC /* setViewController.m */,
+				1B787B58272A34FE00E6A983 /* SetTopCell.h */,
+				1B787B59272A34FE00E6A983 /* SetTopCell.m */,
+				1B787B5A272A34FE00E6A983 /* SetTopCell.xib */,
+				1B47831D272A9F0300F2A945 /* SetLogOutCell.h */,
+				1B47831E272A9F0300F2A945 /* SetLogOutCell.m */,
+				1B47831F272A9F0300F2A945 /* SetLogOutCell.xib */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -1328,7 +1418,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
+				1B478326272AA04600F2A945 /* ChangePasswordViewController.xib in Resources */,
 				1B49D13A271D4557002461ED /* changeUserInfoVC.xib in Resources */,
+				1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */,
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */,
 				1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */,
@@ -1336,14 +1428,17 @@
 				4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */,
 				1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */,
 				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
+				1B478321272A9F0300F2A945 /* SetLogOutCell.xib in Resources */,
 				1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */,
 				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
 				1B74DB1B2724467100B30ECC /* OrderListItemCell.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
+				1B478317272A957000F2A945 /* RefundProcessCell.xib in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
 				1B49D11D27192CFB002461ED /* AddressViewController.xib in Resources */,
 				4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */,
+				1B478309272A7B1000F2A945 /* RefundCell.xib in Resources */,
 				1B74DAFA2722A85600B30ECC /* InviteCell.xib in Resources */,
 				1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */,
 				1B74DAEE27225EF000B30ECC /* ReviewCell.xib in Resources */,
@@ -1355,12 +1450,15 @@
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
 				1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
+				1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */,
 				1B74DB2B27253AD600B30ECC /* DeliveryAddressCell.xib in Resources */,
+				1B478330272AA1FF00F2A945 /* SecurityCenterViewController.xib in Resources */,
 				1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */,
 				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
 				1B787B5727299E5F00E6A983 /* OrderDetailViewController.xib in Resources */,
 				1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */,
+				1B478311272A8CA900F2A945 /* RefundDetailViewController.xib in Resources */,
 				1B787B4D27293AE900E6A983 /* SimilarProductCell.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
 				1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */,
@@ -1368,6 +1466,7 @@
 				1B74DB4A2728EF7300B30ECC /* SimilarViewController.xib in Resources */,
 				1B74DAFF2722A86800B30ECC /* InviteTopCell.xib in Resources */,
 				4B818FD627239C910058038A /* ProductViewController.xib in Resources */,
+				1B47832B272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib in Resources */,
 				1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */,
 				AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */,
 				1B74DB162724466100B30ECC /* OrderListBottomCell.xib in Resources */,
@@ -1440,6 +1539,7 @@
 				AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */,
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
+				1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */,
 				1B74DAD82721A7A400B30ECC /* PolicesDetailViewController.m in Sources */,
 				1B74DAE827224E4600B30ECC /* OrderModel.m in Sources */,
 				4B818FDD27239F510058038A /* ProductDetailModel.m in Sources */,
@@ -1465,6 +1565,8 @@
 				1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */,
 				4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */,
 				4B9FB9DD26FB7A1F00C90790 /* CartViewController.m in Sources */,
+				1B478316272A957000F2A945 /* RefundProcessCell.m in Sources */,
+				1B47830C272A838500F2A945 /* refundModel.m in Sources */,
 				AEA3297E2727053F00E7827A /* SFSearchView.m in Sources */,
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
 				1B74DAE42721B6FD00B30ECC /* InviteViewController.m in Sources */,
@@ -1500,21 +1602,27 @@
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,
+				1B478304272A785200F2A945 /* RefundViewController.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
+				1B47832A272AA15700F2A945 /* ChangeMobileOrEmailViewController.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
+				1B478308272A7B1000F2A945 /* RefundCell.m in Sources */,
 				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
+				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,
 				1B74DB0C2724420A00B30ECC /* OrderChildViewController.m in Sources */,
 				1B74DB022722B68100B30ECC /* InviteModel.m in Sources */,
+				1B787B5B272A34FE00E6A983 /* SetTopCell.m in Sources */,
 				1B74DAED27225EF000B30ECC /* ReviewCell.m in Sources */,
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				AEA329742724571F00E7827A /* CategoryRankFilterHeader.m in Sources */,
+				1B478325272AA04600F2A945 /* ChangePasswordViewController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				1B74DB2F27253AF900B30ECC /* OrderPayInfoCell.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
@@ -1538,10 +1646,12 @@
 				1B49D13D271D477F002461ED /* userInfoGenderView.m in Sources */,
 				AEA32968272400B000E7827A /* CategoryRankFilterViewController.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
+				1B478320272A9F0300F2A945 /* SetLogOutCell.m in Sources */,
 				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,
 				1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */,
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
+				1B47832F272AA1FF00F2A945 /* SecurityCenterViewController.m in Sources */,
 				1BDBEBC82700B8900018109B /* MyCouponChildViewController.m in Sources */,
 				4B818FEC272444560058038A /* ProductSimilarModel.m in Sources */,
 				1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */,

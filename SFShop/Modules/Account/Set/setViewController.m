@@ -6,6 +6,9 @@
 //
 
 #import "setViewController.h"
+#import "SetTopCell.h"
+#import "accountSubCell.h"
+#import "SetLogOutCell.h"
 
 @interface setViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -18,33 +21,59 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"Setting";
+    self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     _dataSource = [NSMutableArray array];
-    [_dataSource addObjectsFromArray:@[@{@"image":@"00350_Distributor_Center",@"title":@"Distributor  Center"},@{@"image":@"00350_Distributor_Center",@"title":@"Refers"},@{@"image":@"00350_Distributor_Center",@"title":@"Forum"},@{@"image":@"00350_Distributor_Center",@"title":@"Reviews"},@{@"image":@"00350_Distributor_Center",@"title":@"Address"},@{@"image":@"00350_Distributor_Center",@"title":@"Service"},@{@"image":@"00350_Distributor_Center",@"title":@"Policies"},@{@"image":@"00350_Distributor_Center",@"title":@"FAQ"}]];
+    [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":@"My Address"},@{@"image":@"",@"title":@"Security Center"},@{@"image":@"",@"title":@"Language"},@{@"image":@"",@"title":@"Policies"}]];
     [self.view addSubview:self.tableView];
-    [self.tableView registerNib:[UINib nibWithNibName:@"accountInfoCell" bundle:nil] forCellReuseIdentifier:@"accountInfoCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SetTopCell" bundle:nil] forCellReuseIdentifier:@"SetTopCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"accountOrderCell" bundle:nil] forCellReuseIdentifier:@"accountOrderCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SetLogOutCell" bundle:nil] forCellReuseIdentifier:@"SetLogOutCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
 }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 4;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2+_dataSource.count;
+    return section == 1 ? 4: 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    if (indexPath.section == 0) {
+        SetTopCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetTopCell"];
+        return cell;
+    }else if (indexPath.section == 1){
+        NSDictionary *dic = _dataSource[indexPath.row];
+        accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
+        cell.label.text = dic[@"title"];
+        return cell;
+    }else if (indexPath.section == 2){
+        accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
+        cell.label.text = @"Share Shop";
+        return cell;
+    }
+    SetLogOutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetLogOutCell"];
+    return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        return 175;
+    if (indexPath.section == 0) {
+        return 122;
     }else if (indexPath.row == 1){
-        return 134;
+        return 56;
     }
     return 56;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 15)];
+    view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    return view;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -58,7 +87,7 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
         if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }

@@ -8,6 +8,7 @@
 #import "accountOrderCell.h"
 #import "OrderViewController.h"
 #import "UIButton+SGImagePosition.h"
+#import "RefundViewController.h"
 
 @interface accountOrderCell ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -46,17 +47,23 @@
     _bgView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds cornerRadius:_bgView.layer.cornerRadius].CGPath;
 }
 - (IBAction)btnAction:(UIButton *)sender {
-    OrderViewController *vc = [[OrderViewController alloc] init];
     switch (sender.tag) {
         case 1001:
         {
+            OrderViewController *vc = [[OrderViewController alloc] init];
             vc.selType = OrderListType_All;
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1006:
+        {
+            RefundViewController *vc = [[RefundViewController alloc] init];
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
         }
             break;
             
         default:
             break;
     }
-    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 @end

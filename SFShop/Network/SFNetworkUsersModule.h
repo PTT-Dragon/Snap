@@ -71,6 +71,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface SFNetworkUsersEvaluateModule : NSObject
+//添加评论
+@property (nonatomic, readwrite, strong) NSString *addEvaluate;
+
+@end
+
+@interface SFNetworkUsersRefundModule : NSObject
+//退货列表
+@property (nonatomic, readwrite, strong) NSString *refundList;
+- (NSString *)getDetailOf: (NSString *)offerId;
+@end
+
 @interface SFNetworkH5Module : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *agreement;

@@ -48,7 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*storeId;
 @property (nonatomic,copy) NSString <Optional>*storeLogoUrl;
 @property (nonatomic,copy) NSString <Optional>*storeName;
+@property (nonatomic,copy) NSString <Optional>*stateStr;
 @property (nonatomic,strong) NSArray <orderItemsModel>*orderItems;
+- (NSString *)getStateStr;
 
 @end
 

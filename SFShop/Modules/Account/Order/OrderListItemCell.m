@@ -28,8 +28,8 @@
 {
     [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.imagUrl]]];
     _nameLabel.text = model.productName;
-    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[model.productRemark dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-    _skuLabel.attributedText = attrStr;
+    NSDictionary *dic = [model.productRemark jk_dictionaryValue];
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
     _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.unitPrice];
 }
