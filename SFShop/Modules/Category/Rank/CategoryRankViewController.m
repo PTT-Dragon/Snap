@@ -15,6 +15,7 @@
 #import "CategoryRankFilterViewController.h"
 #import "CategoryRankFilterCacheModel.h"
 #import "SFSearchNav.h"
+#import "SFSearchView.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;

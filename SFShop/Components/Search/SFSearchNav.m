@@ -7,6 +7,7 @@
 
 #import "SFSearchNav.h"
 #import "CustomTextField.h"
+#import "SFSearchView.h"
 
 @interface SFSearchNav ()<UITextFieldDelegate>
 @property (nonatomic, readwrite, strong) SFSearchItem *bItem;
@@ -14,6 +15,8 @@
 @property (nonatomic, readwrite, strong) UIButton *backBtn;
 @property (nonatomic, readwrite, strong) CustomTextField *textField;
 @property (nonatomic, readwrite, strong) UIButton *rightBtn;
+@property (nonatomic, readwrite, strong) SFSearchView *searchView;
+
 @end
 @implementation SFSearchNav
 
@@ -31,6 +34,7 @@
     [self addSubview:self.backBtn];
     [self addSubview:self.textField];
     [self addSubview:self.rightBtn];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.searchView];
 }
 
 - (void)layout {
@@ -57,13 +61,25 @@
 #pragma mark - Event
 - (void)btnClick:(UIButton *)btn {
     if (btn == self.backBtn) {
-        !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(self.bItem.type);
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        if ([window.subviews containsObject:self.searchView]) {
+            [self.searchView removeFromSuperview];
+        } else {
+            !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(self.bItem.type);
+        }
     } else if (btn == self.rightBtn) {
         !self.rItem.itemActionBlock ?: self.rItem.itemActionBlock(self.rItem.type);
     }
 }
 
 #pragma mark - Getter
+- (SFSearchView *)searchView {
+    if (_searchView == nil) {
+        _searchView = [[SFSearchView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height - navBarHei)];
+    }
+    return _searchView;
+}
+
 - (UIButton *)backBtn {
     if (_backBtn == nil) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
