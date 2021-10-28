@@ -190,7 +190,7 @@
         };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"nav_addition";
-        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei) backItme:backItem rightItem:rightItem];
+        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem];
     }
     return _navSearchView;
 }
@@ -203,7 +203,7 @@
         _waterfallLayout.columnSpacing = KScale(12);
         _waterfallLayout.insets = UIEdgeInsetsMake(KScale(12), KScale(16), KScale(12), KScale(16));
         
-        _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, navBarHei + KScale(64), MainScreen_width, MainScreen_height - navBarHei - KScale(64)) collectionViewLayout:_waterfallLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, 10 + navBarHei + KScale(64), MainScreen_width, MainScreen_height - 10 - navBarHei - KScale(64)) collectionViewLayout:_waterfallLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = false;
@@ -216,7 +216,7 @@
 
 - (CategoryRankHeadSelectorView *)headSelectorView {
     if (_headSelectorView == nil) {
-        _headSelectorView = [[CategoryRankHeadSelectorView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, KScale(64)) type:CategoryRankTypePopularity];
+        _headSelectorView = [[CategoryRankHeadSelectorView alloc] initWithFrame:CGRectMake(0, navBarHei + 10, MainScreen_width, KScale(64)) type:CategoryRankTypePopularity];
         __weak __typeof(self)weakSelf = self;
         _headSelectorView.clickFilterBlock = ^(CategoryRankType type) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
