@@ -97,4 +97,12 @@
  @return NSArray<NSRange>
  */
 - (NSArray<NSValue *> *)rangeArrWithLeftStr:(NSString *)leftStr rightStr:(NSString *)rightStr removeLabel:(BOOL)isRemoveLabel;
+
+
+//字符串不同颜色
++ (NSMutableAttributedString *)difereentColorStr:(NSString *)str Color:(UIColor *)color range:(NSRange)range;
++ (NSMutableAttributedString *)difereentColorStr:(NSString *)str Color:(UIColor *)color changeText:(NSString *)changeText;
++ (NSMutableAttributedString *)difereentFontStr:(NSString *)str font:(UIFont *)font changeText:(NSString *)changeText;
++ (NSMutableAttributedString *)difereentAttr:(NSDictionary *)attrDic str:(NSString *)str changeText:(NSString *)changeText;
++(NSMutableAttributedString *)stringWithHighLightSubstring:(NSString *)totalString substring:(NSString *)substring color:(UIColor *)color;
 @end

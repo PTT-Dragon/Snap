@@ -9,6 +9,7 @@
 #import "SetTopCell.h"
 #import "accountSubCell.h"
 #import "SetLogOutCell.h"
+#import "SecurityCenterViewController.h"
 
 @interface setViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -77,7 +78,17 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.section == 1 && indexPath.row == 1) {
+        SecurityCenterViewController *vc = [[SecurityCenterViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 3){
+        [SFNetworkManager post:SFNet.account.logout success:^(id  _Nullable response) {
+            [MBProgressHUD autoDismissShowHudMsg:@"LogOut Success"];
+            [[FMDBManager sharedInstance] deleteUserData];
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
+    }
 }
 - (UITableView *)tableView
 {

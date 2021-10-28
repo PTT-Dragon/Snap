@@ -15,6 +15,7 @@
 #import "PolicesViewController.h"
 #import "ReviewViewController.h"
 #import "InviteViewController.h"
+#import "FAQViewController.h"
 
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -71,6 +72,11 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
+    [SFNetworkManager get:SFNet.account.userInfo success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -122,6 +128,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 3){
         InviteViewController *vc = [[InviteViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 9){
+        FAQViewController *vc = [[FAQViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

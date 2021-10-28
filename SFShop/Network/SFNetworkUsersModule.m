@@ -24,9 +24,26 @@
 - (NSString *)getCode {
     return K_users_domain(@"code");
 }
+- (NSString *)userInfo {
+    return K_users_domain(@"");
+}
 - (NSString *)codeCheck {
     return K_users_domain(@"code/check");
 }
+- (NSString *)pwdModify {
+    return K_users_domain(@"pwd/modify");
+}
+- (NSString *)bindEmail {
+    return K_users_domain(@"email/binding");
+}
+- (NSString *)phoneModify {
+    return K_users_domain(@"phone/modify");
+}
+- (NSString *)logout {
+    return K_users_domain(@"logout");
+}
+
+
 
 
 @end
@@ -139,6 +156,12 @@
 
 - (NSString *)agreement {
     return K_h5_domain(@"agreement");
+}
+- (NSString *)faqList {
+    return K_h5_domain(@"faq/catalog/list");
+}
+- (NSString *)faqQuestion {
+    return K_h5_domain(@"/faq/question/page");
 }
 
 

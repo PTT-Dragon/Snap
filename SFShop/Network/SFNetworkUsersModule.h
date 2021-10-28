@@ -17,6 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *codeCheck;
 @property (nonatomic, readwrite, strong) NSString *modify;
 @property (nonatomic, readwrite, strong) NSString *pwdpolicy;
+@property (nonatomic, readwrite, strong) NSString *pwdModify;
+@property (nonatomic, readwrite, strong) NSString *bindEmail;
+@property (nonatomic, readwrite, strong) NSString *phoneModify;
+@property (nonatomic, readwrite, strong) NSString *logout;
+@property (nonatomic, readwrite, strong) NSString *userInfo;
+
 
 @end
 
@@ -86,7 +92,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFNetworkH5Module : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *agreement;
-
+@property (nonatomic, readwrite, strong) NSString *faqList;
+@property (nonatomic, readwrite, strong) NSString *faqQuestion;
 
 @end
 

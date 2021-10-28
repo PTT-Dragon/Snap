@@ -8,6 +8,9 @@
 #import "ChangePasswordViewController.h"
 
 @interface ChangePasswordViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *currentField;
+@property (weak, nonatomic) IBOutlet UITextField *PasswordField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPassword;
 
 @end
 
@@ -16,16 +19,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Change Password";
+}
+- (IBAction)changeAction:(id)sender {
+    if (![_PasswordField.text isEqualToString:_confirmPassword.text]) {
+        [MBProgressHUD autoDismissShowHudMsg:@"xxxx"];
+        return;
+    }
+    [SFNetworkManager post:SFNet.account.pwdModify parameters:@{@"newPwd":_PasswordField.text,@"oldPwd":_currentField.text} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

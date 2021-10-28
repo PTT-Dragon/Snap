@@ -100,6 +100,13 @@
 		1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5A272A34FE00E6A983 /* SetTopCell.xib */; };
 		1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B787B5E272A354C00E6A983 /* AddReviewViewController.m */; };
 		1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */; };
+		1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2B9272AF1E400755832 /* FAQViewController.m */; };
+		1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BA272AF1E400755832 /* FAQViewController.xib */; };
+		1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BE272AF27C00755832 /* FAQChildViewController.m */; };
+		1BC7A2C2272AF48600755832 /* FAQTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2C1272AF48600755832 /* FAQTableCell.m */; };
+		1BC7A2C5272AF50500755832 /* FAQListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2C4272AF50500755832 /* FAQListModel.m */; };
+		1BC7A2CA272AFC9600755832 /* FAQDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2C8272AFC9600755832 /* FAQDetailViewController.m */; };
+		1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2C9272AFC9600755832 /* FAQDetailViewController.xib */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -365,6 +372,18 @@
 		1B787B5D272A354C00E6A983 /* AddReviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewViewController.h; sourceTree = "<group>"; };
 		1B787B5E272A354C00E6A983 /* AddReviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewViewController.m; sourceTree = "<group>"; };
 		1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewViewController.xib; sourceTree = "<group>"; };
+		1BC7A2B8272AF1E400755832 /* FAQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
+		1BC7A2B9272AF1E400755832 /* FAQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
+		1BC7A2BA272AF1E400755832 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
+		1BC7A2BD272AF27C00755832 /* FAQChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQChildViewController.h; sourceTree = "<group>"; };
+		1BC7A2BE272AF27C00755832 /* FAQChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQChildViewController.m; sourceTree = "<group>"; };
+		1BC7A2C0272AF48600755832 /* FAQTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQTableCell.h; sourceTree = "<group>"; };
+		1BC7A2C1272AF48600755832 /* FAQTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQTableCell.m; sourceTree = "<group>"; };
+		1BC7A2C3272AF50500755832 /* FAQListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQListModel.h; sourceTree = "<group>"; };
+		1BC7A2C4272AF50500755832 /* FAQListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQListModel.m; sourceTree = "<group>"; };
+		1BC7A2C7272AFC9600755832 /* FAQDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQDetailViewController.h; sourceTree = "<group>"; };
+		1BC7A2C8272AFC9600755832 /* FAQDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQDetailViewController.m; sourceTree = "<group>"; };
+		1BC7A2C9272AFC9600755832 /* FAQDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQDetailViewController.xib; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -766,6 +785,18 @@
 		1B74DB032722BAC500B30ECC /* FAQ */ = {
 			isa = PBXGroup;
 			children = (
+				1BC7A2B8272AF1E400755832 /* FAQViewController.h */,
+				1BC7A2B9272AF1E400755832 /* FAQViewController.m */,
+				1BC7A2BA272AF1E400755832 /* FAQViewController.xib */,
+				1BC7A2BD272AF27C00755832 /* FAQChildViewController.h */,
+				1BC7A2BE272AF27C00755832 /* FAQChildViewController.m */,
+				1BC7A2C0272AF48600755832 /* FAQTableCell.h */,
+				1BC7A2C1272AF48600755832 /* FAQTableCell.m */,
+				1BC7A2C7272AFC9600755832 /* FAQDetailViewController.h */,
+				1BC7A2C8272AFC9600755832 /* FAQDetailViewController.m */,
+				1BC7A2C9272AFC9600755832 /* FAQDetailViewController.xib */,
+				1BC7A2C3272AF50500755832 /* FAQListModel.h */,
+				1BC7A2C4272AF50500755832 /* FAQListModel.m */,
 			);
 			path = FAQ;
 			sourceTree = "<group>";
@@ -1420,6 +1451,7 @@
 				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
 				1B478326272AA04600F2A945 /* ChangePasswordViewController.xib in Resources */,
 				1B49D13A271D4557002461ED /* changeUserInfoVC.xib in Resources */,
+				1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */,
 				1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */,
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */,
@@ -1460,6 +1492,7 @@
 				1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */,
 				1B478311272A8CA900F2A945 /* RefundDetailViewController.xib in Resources */,
 				1B787B4D27293AE900E6A983 /* SimilarProductCell.xib in Resources */,
+				1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
 				1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */,
 				1B49D13F271D478C002461ED /* userInfoGenderView.xib in Resources */,
@@ -1540,6 +1573,7 @@
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
 				1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */,
+				1BC7A2C2272AF48600755832 /* FAQTableCell.m in Sources */,
 				1B74DAD82721A7A400B30ECC /* PolicesDetailViewController.m in Sources */,
 				1B74DAE827224E4600B30ECC /* OrderModel.m in Sources */,
 				4B818FDD27239F510058038A /* ProductDetailModel.m in Sources */,
@@ -1576,6 +1610,7 @@
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
 				1B12A3DD27015EB800DD7BCD /* CouponCenterChildViewController.m in Sources */,
 				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,
+				1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */,
 				AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
@@ -1593,6 +1628,7 @@
 				1B74DB2A27253AD600B30ECC /* DeliveryAddressCell.m in Sources */,
 				1B49D145271D5C14002461ED /* RecentlyViewedViewController.m in Sources */,
 				1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */,
+				1BC7A2CA272AFC9600755832 /* FAQDetailViewController.m in Sources */,
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
@@ -1620,6 +1656,7 @@
 				1B787B5B272A34FE00E6A983 /* SetTopCell.m in Sources */,
 				1B74DAED27225EF000B30ECC /* ReviewCell.m in Sources */,
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
+				1BC7A2C5272AF50500755832 /* FAQListModel.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				AEA329742724571F00E7827A /* CategoryRankFilterHeader.m in Sources */,
 				1B478325272AA04600F2A945 /* ChangePasswordViewController.m in Sources */,
@@ -1661,6 +1698,7 @@
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
+				1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */,
 				1B74DACF272007D900B30ECC /* InitializationUIMethod.m in Sources */,
 				1B74DB3F2726FF3600B30ECC /* RecentlyViewedCell.m in Sources */,
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,

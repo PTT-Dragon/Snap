@@ -209,4 +209,48 @@
     return array;
 }
 
++ (NSMutableAttributedString *)difereentColorStr:(NSString *)str Color:(UIColor *)color range:(NSRange)range
+{
+    NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:str];
+    [string addAttribute:NSForegroundColorAttributeName value:color range:range];
+    return string;
+}
++ (NSMutableAttributedString *)difereentColorStr:(NSString *)str Color:(UIColor *)color changeText:(NSString *)changeText
+{
+    changeText = changeText ? changeText: @"";
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:str];
+    NSRange range1=[[hintString string]rangeOfString:changeText];
+    [hintString addAttribute:NSForegroundColorAttributeName value:color range:range1];
+    return hintString;
+}
++ (NSMutableAttributedString *)difereentFontStr:(NSString *)str font:(UIFont *)font changeText:(NSString *)changeText
+{
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:str];
+    NSRange range1=[[hintString string]rangeOfString:changeText];
+    [hintString addAttribute:NSFontAttributeName value:font range:range1];
+    return hintString;
+}
++ (NSMutableAttributedString *)difereentAttr:(NSDictionary *)attrDic str:(NSString *)str changeText:(NSString *)changeText
+{
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:str];
+    NSRange range1=[[hintString string]rangeOfString:changeText];
+    [hintString addAttributes:attrDic range:range1];
+    return hintString;
+}
++(NSMutableAttributedString *)stringWithHighLightSubstring:(NSString *)totalString substring:(NSString *)substring color:(UIColor *)color{
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:totalString];
+    NSString * copyTotalString = totalString;
+    NSMutableString * replaceString = [NSMutableString stringWithCapacity:0];
+    for (int i = 0; i < substring.length; i ++) {
+        [replaceString appendString:@" "];
+    }
+    while ([copyTotalString rangeOfString:substring].location != NSNotFound) {
+        NSRange range = [copyTotalString rangeOfString:substring];
+        //颜色如果统一的话可写在这里，如果颜色根据内容在改变，可把颜色作为参数，调用方法的时候传入
+        [attributedString addAttribute:NSForegroundColorAttributeName value:color range:range];
+        copyTotalString = [copyTotalString stringByReplacingCharactersInRange:range withString:replaceString];
+    }
+    return attributedString;
+}
+
 @end

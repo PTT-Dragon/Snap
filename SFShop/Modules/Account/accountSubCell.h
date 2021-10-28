@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface accountSubCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 
 @end
 
