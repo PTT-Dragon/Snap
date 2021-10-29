@@ -34,27 +34,26 @@
     [self addSubview:self.backBtn];
     [self addSubview:self.textField];
     [self addSubview:self.rightBtn];
-    [[UIApplication sharedApplication].keyWindow addSubview:self.searchView];
 }
 
 - (void)layout {
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(statuBarHei);
+        make.centerY.mas_equalTo(10);
         make.size.mas_equalTo(CGSizeMake(24, 24));
         make.left.mas_equalTo(10);
     }];
     
     [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(statuBarHei);
+        make.centerY.mas_equalTo(10);
         make.size.mas_equalTo(CGSizeMake(24, 24));
         make.right.mas_equalTo(-27);
     }];
     
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(statuBarHei);
+        make.centerY.mas_equalTo(10);
         make.right.equalTo(self.rightBtn.mas_left).offset(-18);
         make.left.equalTo(self.backBtn.mas_right).offset(12);
-        make.height.mas_equalTo(30);
+        make.height.mas_equalTo(35);
     }];
 }
 
@@ -72,10 +71,19 @@
     }
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if (![window.subviews containsObject:self.searchView]) {
+        [window addSubview:self.searchView];
+    }
+}
+
 #pragma mark - Getter
 - (SFSearchView *)searchView {
     if (_searchView == nil) {
-        _searchView = [[SFSearchView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height - navBarHei)];
+        _searchView = [[SFSearchView alloc] initWithFrame:CGRectMake(0, 10 + navBarHei, MainScreen_width, MainScreen_height - (10 + navBarHei))];
     }
     return _searchView;
 }

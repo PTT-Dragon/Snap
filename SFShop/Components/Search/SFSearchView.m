@@ -21,6 +21,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
         [self loadSubviews];
     }
     return self;
@@ -36,7 +37,8 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  
+    SFSearchModel *model = self.dataArray[indexPath.section][indexPath.row];
+    !self.clickBlock ?: self.clickBlock(model);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -108,7 +110,7 @@
         SFSearchModel *model = [SFSearchModel new];
         model.name = @"测试";
         model.sectionTitle = @"组标题";
-        [_dataArray addObject:@[model]];
+        [_dataArray addObject:@[model,model,model]];
     }
     return _dataArray;
 }

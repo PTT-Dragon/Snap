@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SFSearchModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SFSearchView : UIView
+
+@property (nonatomic, readwrite, copy) void(^clickBlock)(SFSearchModel *model);
 
 @end
 
