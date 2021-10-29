@@ -6,6 +6,7 @@
 //
 
 #import "MyCouponCell.h"
+#import "UseCouponViewController.h"
 
 @interface MyCouponCell ()
 @property (weak, nonatomic) IBOutlet UIView *discountView;
@@ -35,6 +36,8 @@
 }
 - (void)useCouponAction
 {
-    
+    UseCouponViewController *vc = [[UseCouponViewController alloc] init];
+    vc.couponModel = _model;
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 @end

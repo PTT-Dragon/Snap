@@ -11,6 +11,7 @@
 #import "RecentlyViewedViewController.h"
 #import "setViewController.h"
 #import "FavoriteViewController.h"
+#import "LoginViewController.h"
 
 @interface accountInfoCell ()
 @property (weak, nonatomic) IBOutlet UIView *couponView;
@@ -39,12 +40,21 @@
     UITapGestureRecognizer *favoriteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(favoriteAction)];
     [_WhishlistView addGestureRecognizer:favoriteTap];
     
+    UITapGestureRecognizer *nameLabelTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nameAction)];
+    [_nameLabel addGestureRecognizer:nameLabelTap];
     
     [self updateData];
 }
 - (void)updateData
 {
     UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@"hxf01@qq.com"];
+    if (!model || [model.accessToken isEqualToString:@""]) {
+        //登出状态
+        self.nameLabel.text = @"Login Or Register";
+        self.nameLabel.userInteractionEnabled = YES;
+    }else{
+        self.nameLabel.userInteractionEnabled = NO;
+    }
     @weakify(self)
     [RACObserve(model, userName) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
@@ -88,6 +98,11 @@
 - (void)couponAction
 {
     MyCouponViewController *vc = [[MyCouponViewController alloc] init];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+}
+- (void)nameAction
+{
+    LoginViewController *vc = [[LoginViewController alloc] init];
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)setAction:(id)sender {

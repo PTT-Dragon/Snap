@@ -43,6 +43,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                     <state key="normal" title="SEND"/>
+                    <connections>
+                        <action selector="sendAction:" destination="-1" eventType="touchUpInside" id="8fX-BK-WA4"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

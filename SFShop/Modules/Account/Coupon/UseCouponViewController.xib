@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UseCouponViewController">
             <connections>
+                <outlet property="couponNameLabel" destination="65G-6A-PYd" id="qLt-4o-nBg"/>
+                <outlet property="couponView" destination="RY7-gh-hx9" id="KOj-0s-UWQ"/>
+                <outlet property="expiredDataLabel" destination="Fbp-07-jOy" id="U10-Pe-Ud2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

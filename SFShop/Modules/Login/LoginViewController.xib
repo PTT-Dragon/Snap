@@ -146,6 +146,19 @@
                     <state key="normal" image="eye-open-0"/>
                     <state key="selected" image="hide-0"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdd-wW-aLM">
+                    <rect key="frame" x="166" y="498" width="82" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="3ui-cP-CEn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                    <state key="normal" title="Login via OTP">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="otpAction:" destination="-1" eventType="touchUpInside" id="XOj-ik-GAI"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="oac-3T-U0G"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -158,9 +171,11 @@
                 <constraint firstItem="tGN-iU-kgh" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" id="9CH-bA-mt0"/>
                 <constraint firstItem="KTg-PS-qni" firstAttribute="top" secondItem="CPB-84-N7c" secondAttribute="bottom" constant="30" id="9Cu-kP-tuU"/>
                 <constraint firstItem="ZI4-Cb-XjV" firstAttribute="centerX" secondItem="oac-3T-U0G" secondAttribute="centerX" id="Apg-xq-YKt"/>
+                <constraint firstItem="cdd-wW-aLM" firstAttribute="top" secondItem="ZI4-Cb-XjV" secondAttribute="bottom" constant="20" id="DwJ-D7-w7H"/>
                 <constraint firstItem="pYJ-Me-RM6" firstAttribute="trailing" secondItem="ThS-DP-mIk" secondAttribute="trailing" id="HyV-S7-N61"/>
                 <constraint firstItem="KTg-PS-qni" firstAttribute="centerX" secondItem="oac-3T-U0G" secondAttribute="centerX" id="IEG-b6-9TS"/>
                 <constraint firstItem="sNg-2V-2oq" firstAttribute="trailing" secondItem="oac-3T-U0G" secondAttribute="trailing" constant="-28" id="JQj-hJ-TSo"/>
+                <constraint firstItem="cdd-wW-aLM" firstAttribute="centerX" secondItem="oac-3T-U0G" secondAttribute="centerX" id="Jfm-Cn-HXj"/>
                 <constraint firstItem="MdG-AI-YDO" firstAttribute="top" secondItem="KTg-PS-qni" secondAttribute="bottom" constant="30" id="Qau-HZ-dBL"/>
                 <constraint firstItem="ThS-DP-mIk" firstAttribute="leading" secondItem="tGN-iU-kgh" secondAttribute="trailing" id="Rzi-jP-X5i"/>
                 <constraint firstItem="imm-98-TnR" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" constant="16" id="UQK-qU-Dqc"/>

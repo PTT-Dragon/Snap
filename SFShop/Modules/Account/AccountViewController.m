@@ -46,7 +46,16 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
-    [self loadData];
+    [self updateDatas];
+}
+- (void)updateDatas
+{
+    UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@""];
+    @weakify(self)
+    [RACObserve(model, accessToken) subscribeNext:^(id  _Nullable x) {
+        @strongify(self)
+        [self loadData];
+    }];
 }
 - (void)loadData
 {
@@ -112,8 +121,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 2) {
-        LoginViewController *vc = [[LoginViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        
     }else if (indexPath.row == 6){
         AddressViewController *vc = [[AddressViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];

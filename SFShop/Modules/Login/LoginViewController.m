@@ -8,6 +8,7 @@
 #import "LoginViewController.h"
 #import "SignUpViewController.h"
 #import "forgotPasswordView.h"
+#import "LoginViaOTP.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -62,5 +63,10 @@
     view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
     [self.view addSubview:view];
 }
+- (IBAction)otpAction:(id)sender {
+    LoginViaOTP *vc = [[LoginViaOTP alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 @end

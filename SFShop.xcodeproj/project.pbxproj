@@ -100,6 +100,8 @@
 		1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5A272A34FE00E6A983 /* SetTopCell.xib */; };
 		1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B787B5E272A354C00E6A983 /* AddReviewViewController.m */; };
 		1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */; };
+		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
+		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2B9272AF1E400755832 /* FAQViewController.m */; };
 		1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BA272AF1E400755832 /* FAQViewController.xib */; };
 		1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BE272AF27C00755832 /* FAQChildViewController.m */; };
@@ -376,6 +378,9 @@
 		1B787B5D272A354C00E6A983 /* AddReviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewViewController.h; sourceTree = "<group>"; };
 		1B787B5E272A354C00E6A983 /* AddReviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewViewController.m; sourceTree = "<group>"; };
 		1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewViewController.xib; sourceTree = "<group>"; };
+		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
+		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
+		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
 		1BC7A2B8272AF1E400755832 /* FAQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
 		1BC7A2B9272AF1E400755832 /* FAQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
 		1BC7A2BA272AF1E400755832 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
@@ -901,6 +906,9 @@
 				1BC7A2CC272B081E00755832 /* UseCouponViewController.h */,
 				1BC7A2CD272B081E00755832 /* UseCouponViewController.m */,
 				1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */,
+				1B90F95D272B992E003A047A /* UseCouponProductCell.h */,
+				1B90F95E272B992E003A047A /* UseCouponProductCell.m */,
+				1B90F95F272B992E003A047A /* UseCouponProductCell.xib */,
 				1B74DAC2271F192400B30ECC /* CouponModel.h */,
 				1B74DAC3271F192400B30ECC /* CouponModel.m */,
 			);
@@ -1471,6 +1479,7 @@
 				1B49D13A271D4557002461ED /* changeUserInfoVC.xib in Resources */,
 				1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */,
 				1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */,
+				1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */,
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */,
 				1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */,
@@ -1656,6 +1665,7 @@
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
 				4B818FD527239C910058038A /* ProductViewController.m in Sources */,
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
+				1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */,
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,
 				1B478304272A785200F2A945 /* RefundViewController.m in Sources */,

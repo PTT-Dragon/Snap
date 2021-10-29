@@ -6,6 +6,7 @@
 //
 
 #import "LoginViaOTP.h"
+#import "verifyCodeVC.h"
 
 @interface LoginViaOTP ()
 @property (weak, nonatomic) IBOutlet UITextField *field;
@@ -18,6 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+}
+- (IBAction)sendAction:(id)sender {
+    verifyCodeVC *vc = [[verifyCodeVC alloc] init];
+    vc.account = self.field.text;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*
