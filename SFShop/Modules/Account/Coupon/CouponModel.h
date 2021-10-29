@@ -72,4 +72,10 @@ willExpireShow = 0;
  **/
 @end
 
+@interface CouponCategoryModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*couponCatgId;
+@property (nonatomic,copy) NSString <Optional>*couponCatgName;
+@property (nonatomic,copy) NSString <Optional>*isPltOnly;
+@end
+
 NS_ASSUME_NONNULL_END

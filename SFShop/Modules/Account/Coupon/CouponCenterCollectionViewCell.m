@@ -21,7 +21,7 @@
 }
 - (void)setContent:(NSDictionary *)dic
 {
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,dic[@"imgUrl"]]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(dic[@"imgUrl"])]];
     NSNumber *price = dic[@"salesPrice"];
     _contentLabel.text = [NSString stringWithFormat:@"RP %@",price.stringValue];
 }

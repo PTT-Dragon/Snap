@@ -48,7 +48,7 @@
     NSDictionary *dic = [itemModel.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
     _nameLabel.text = itemModel.productName;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,itemModel.imagUrl]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];
 }
 
 - (IBAction)submitAction:(UIButton *)sender {

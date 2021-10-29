@@ -24,7 +24,7 @@
 }
 - (void)setContent:(InviteModel *)model
 {
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.url]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.url)]];
     _nameLabel.text = model.beInvdUserName;
     _timeLabel.text = model.regTime;
     _couponLabel.text = @"";

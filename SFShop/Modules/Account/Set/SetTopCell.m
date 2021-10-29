@@ -20,7 +20,7 @@
     // Initialization code
     UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@""];
     self.nameLabel.text = model.userRes.nickName;
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.userRes.photo]]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -39,7 +39,7 @@
 }
 - (void)initUI
 {
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,_model.imgUrl]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
     _nameLabel.text = _model.offerName;
     _priceLabel.text = [NSString stringWithFormat:@"RP%@",_model.salesPrice];
 }

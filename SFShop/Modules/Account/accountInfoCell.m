@@ -10,7 +10,7 @@
 #import "changeUserInfoVC.h"
 #import "RecentlyViewedViewController.h"
 #import "setViewController.h"
-
+#import "FavoriteViewController.h"
 
 @interface accountInfoCell ()
 @property (weak, nonatomic) IBOutlet UIView *couponView;
@@ -36,6 +36,10 @@
     [self.imgVIew addGestureRecognizer:userInfoTap];
     UITapGestureRecognizer *recentlyTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recentlyAction)];
     [_RecentlyViewedView addGestureRecognizer:recentlyTap];
+    UITapGestureRecognizer *favoriteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(favoriteAction)];
+    [_WhishlistView addGestureRecognizer:favoriteTap];
+    
+    
     [self updateData];
 }
 - (void)updateData
@@ -48,7 +52,7 @@
     }];
     [RACObserve(model, userRes) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
-        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.userRes.photo]]];
+        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
     }];
 }
 - (void)setCouponCount:(NSInteger)couponCount
@@ -69,6 +73,11 @@
 - (void)userInfoAction
 {
     changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+}
+- (void)favoriteAction
+{
+    FavoriteViewController *vc = [[FavoriteViewController alloc] init];
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (void)recentlyAction

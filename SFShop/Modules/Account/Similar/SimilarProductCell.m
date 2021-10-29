@@ -30,7 +30,7 @@
 }
 - (void)setContent:(ProductSimilarModel *)model
 {
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.imgUrl]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.offerName;
     _priceLabel.text = [NSString stringWithFormat:@"RP%ld",model.salesPrice];
     _macketPriceLabel.text = [NSString stringWithFormat:@"%ld",model.marketPrice];

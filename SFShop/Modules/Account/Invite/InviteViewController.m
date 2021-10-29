@@ -75,7 +75,7 @@
 {
     if (indexPath.row == 0) {
         InviteTopCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteTopCell"];
-        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,self.imgUrl]]];
+        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(self.imgUrl)]];
         return cell;
     }
     InviteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteCell"];

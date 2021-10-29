@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString <Optional>*userRegSrc;
 @property(nonatomic, copy) NSString <Optional>*userType;
 @property(nonatomic, copy) NSString <Optional>*mobilePhone;
+@property(nonatomic, copy) NSString <Optional>*birthdayDay;
+@property(nonatomic, copy) NSString <Optional>*gender;
 
 @end
 

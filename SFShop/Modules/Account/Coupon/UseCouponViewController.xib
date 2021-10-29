@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UseCouponViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RY7-gh-hx9">
+                    <rect key="frame" x="16" y="60" width="382" height="84"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7re-wl-TOH">
+                            <rect key="frame" x="0.0" y="-13" width="90" height="110"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="a-00196_DiscountVoucher" translatesAutoresizingMaskIntoConstraints="NO" id="8nE-9P-zup">
+                                    <rect key="frame" x="25" y="28" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="vV0-5B-hNX"/>
+                                        <constraint firstAttribute="width" constant="40" id="vVk-Xk-8Dn"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpd-LE-Kie">
+                                    <rect key="frame" x="19.5" y="68" width="51" height="15"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstItem="8nE-9P-zup" firstAttribute="centerY" secondItem="7re-wl-TOH" secondAttribute="centerY" constant="-7" id="D6n-IC-SbT"/>
+                                <constraint firstAttribute="width" constant="90" id="KMP-Cg-H7T"/>
+                                <constraint firstItem="Rpd-LE-Kie" firstAttribute="top" secondItem="8nE-9P-zup" secondAttribute="bottom" id="gRl-Vh-yu7"/>
+                                <constraint firstItem="Rpd-LE-Kie" firstAttribute="centerX" secondItem="7re-wl-TOH" secondAttribute="centerX" id="jw8-am-Jgc"/>
+                                <constraint firstItem="8nE-9P-zup" firstAttribute="centerX" secondItem="7re-wl-TOH" secondAttribute="centerX" id="vX6-ty-9kv"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65G-6A-PYd">
+                            <rect key="frame" x="102" y="12" width="267" height="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbp-07-jOy">
+                            <rect key="frame" x="169" y="59" width="34" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RI-YF-mv4">
+                            <rect key="frame" x="103" y="60" width="56" height="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="65G-6A-PYd" firstAttribute="top" secondItem="RY7-gh-hx9" secondAttribute="top" constant="12" id="3SJ-92-lns"/>
+                        <constraint firstItem="Fbp-07-jOy" firstAttribute="leading" secondItem="2RI-YF-mv4" secondAttribute="trailing" constant="10" id="3Y2-GR-buB"/>
+                        <constraint firstAttribute="bottom" secondItem="2RI-YF-mv4" secondAttribute="bottom" constant="12" id="ES5-Io-DhB"/>
+                        <constraint firstAttribute="height" constant="84" id="ExK-e3-HHM"/>
+                        <constraint firstItem="7re-wl-TOH" firstAttribute="top" secondItem="RY7-gh-hx9" secondAttribute="top" constant="-13" id="FGT-Un-s4T"/>
+                        <constraint firstAttribute="trailing" secondItem="65G-6A-PYd" secondAttribute="trailing" constant="13" id="Jfs-az-1nL"/>
+                        <constraint firstAttribute="bottom" secondItem="7re-wl-TOH" secondAttribute="bottom" constant="-13" id="JoB-eV-xxw"/>
+                        <constraint firstItem="7re-wl-TOH" firstAttribute="leading" secondItem="RY7-gh-hx9" secondAttribute="leading" id="KRR-W5-Nsr"/>
+                        <constraint firstItem="65G-6A-PYd" firstAttribute="leading" secondItem="7re-wl-TOH" secondAttribute="trailing" constant="12" id="Wfc-ov-YQB"/>
+                        <constraint firstItem="2RI-YF-mv4" firstAttribute="leading" secondItem="7re-wl-TOH" secondAttribute="trailing" constant="13" id="oeM-Bi-aFQ"/>
+                        <constraint firstItem="Fbp-07-jOy" firstAttribute="centerY" secondItem="2RI-YF-mv4" secondAttribute="centerY" id="s8C-pP-gfm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="RY7-gh-hx9" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="3wm-a3-cOn"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="RY7-gh-hx9" secondAttribute="trailing" constant="16" id="IwC-wU-bFo"/>
+                <constraint firstItem="RY7-gh-hx9" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="16" id="Mhx-cY-QlR"/>
+            </constraints>
+            <point key="canvasLocation" x="112" y="72"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="a-00196_DiscountVoucher" width="200" height="200"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

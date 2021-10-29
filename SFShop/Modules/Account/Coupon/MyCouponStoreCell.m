@@ -23,7 +23,7 @@
 }
 - (void)setContent:(CouponModel *)model
 {
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.storeLogo]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogo)]];
     _nameLabel.text = model.storeName;
 }
 

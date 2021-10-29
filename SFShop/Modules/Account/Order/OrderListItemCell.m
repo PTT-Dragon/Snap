@@ -26,7 +26,7 @@
 }
 - (void)setContent:(orderItemsModel *)model
 {
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.imagUrl]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
     _nameLabel.text = model.productName;
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];

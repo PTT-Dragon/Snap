@@ -35,7 +35,7 @@
 - (void)loadDatas
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.coupon.center parameters:@{} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.coupon.center parameters:@{@"couponCateId":_couponCatgId} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];

@@ -23,7 +23,7 @@
 - (void)setContent:(OrderModel *)model
 {
     _storeNameLabel.text = model.storeName;
-    [_storeIconImgview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.storeLogoUrl]]];
+    [_storeIconImgview sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)]];
     _statuLabel.text = [model getStateStr];
 }
 - (void)setOrderDetailContent:(OrderDetailModel *)model

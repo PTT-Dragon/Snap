@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CouponCenterChildViewController : UIViewController
-
+@property (nonatomic,copy) NSString *couponCatgId;
 @end
 
 NS_ASSUME_NONNULL_END

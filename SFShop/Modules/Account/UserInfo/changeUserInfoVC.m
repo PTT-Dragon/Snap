@@ -25,11 +25,15 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"Personal Information";
     UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@""];
-    _gender = model.gender;
+    _selectDateStr = model.userRes.birthdayDay;
+    _gender = model.userRes.gender;
     _genderBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _genderBtn.layer.borderWidth = 1;
     _birthBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _birthBtn.layer.borderWidth = 1;
+    [_birthBtn setTitle:model.userRes.birthdayDay forState:0];
+    [_genderBtn setTitle:_gender forState:0];
+    _nameField.text = model.userRes.nickName;
 }
 - (void)selectWithSelectTime:(NSString *)selectTime withYear:(NSString *)year withMonth:(NSString *)month{
     self.selectDateStr = selectTime;
@@ -52,8 +56,22 @@
     [self.view addSubview:genderView];
 }
 - (IBAction)saveAction:(id)sender {
-    [SFNetworkManager post:SFNet.account.modify parameters:@{@"birthdayDay":_selectDateStr,@"nickName":_nameField.text,@"gender":_gender} success:^(id  _Nullable response) {
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.account.modify parameters:@{@"birthdayDay":_selectDateStr ? _selectDateStr:@"",@"nickName":_nameField.text,@"gender":_gender?_gender:@""} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"修改成功"];
+        [weakself loadUserInfo];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)loadUserInfo
+{
+    [SFNetworkManager get:SFNet.account.userInfo success:^(id  _Nullable response) {
+        NSError *error;
+        userResModel *resModel = [[userResModel alloc] initWithDictionary:response error:&error];
+        UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@""];
+        model.userRes = resModel;
+        [[FMDBManager sharedInstance] updateUser:model ofAccount:model.account];
     } failed:^(NSError * _Nonnull error) {
         
     }];

@@ -10,3 +10,7 @@
 @implementation CouponModel
 
 @end
+
+@implementation CouponCategoryModel
+
+@end

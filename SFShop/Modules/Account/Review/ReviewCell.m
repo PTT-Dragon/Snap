@@ -47,9 +47,9 @@
     _btn2.hidden = type == 1;
     [_btn1 setTitle:type == 1 ? @"REVIEW":@"EDIT REVIEW" forState:0];
     orderItemsModel *itemModel = model.orderItems.firstObject;
-    [_storeImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.storeLogoUrl]]];
+    [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)]];
     _storeNameLabel.text = model.storeName;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,itemModel.imagUrl]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];
     _nameLabel.text = itemModel.productName;
     _countLabel.text = [NSString stringWithFormat:@"X%@",itemModel.offerCnt];
     _priceLabel.text = [NSString stringWithFormat:@"RP %@",itemModel.unitPrice];

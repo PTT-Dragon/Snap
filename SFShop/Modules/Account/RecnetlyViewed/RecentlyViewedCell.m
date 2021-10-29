@@ -30,7 +30,7 @@
 {
     _model = model;
     _nameLabel.text = model.offerName;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.imgUrl]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.salesPrice];
     
 }

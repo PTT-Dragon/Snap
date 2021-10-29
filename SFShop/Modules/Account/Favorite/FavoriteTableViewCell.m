@@ -27,7 +27,7 @@
 }
 - (void)setContent:(favoriteModel *)model
 {
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.imgUrl]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.productName;
     _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.salesPrice];
     _downLabel.text = [NSString stringWithFormat:@"↓ RP %@",model.markdownPrice];

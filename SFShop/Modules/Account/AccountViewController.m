@@ -118,8 +118,7 @@
         AddressViewController *vc = [[AddressViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 7){
-        FavoriteViewController *vc = [[FavoriteViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        
     }else if (indexPath.row == 8){
         PolicesViewController *vc = [[PolicesViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];

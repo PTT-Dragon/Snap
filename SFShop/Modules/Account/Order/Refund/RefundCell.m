@@ -36,9 +36,9 @@
 - (void)setContent:(refundModel *)model
 {
     refundItemsModel *itemsModel = model.items.firstObject;
-    [_storeImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.storeId]]];
+    [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeId)]];
     _storeNameLabel.text = model.storeName;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,itemsModel.imagUrl]]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemsModel.imagUrl)]];
     _nameLabel.text = itemsModel.productName;
     NSDictionary *dic = [itemsModel.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allKeys.firstObject];

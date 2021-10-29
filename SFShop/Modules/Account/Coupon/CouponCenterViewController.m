@@ -7,12 +7,14 @@
 
 #import "CouponCenterViewController.h"
 #import "CouponCenterChildViewController.h"
-
+#import "CouponModel.h"
 
 @interface CouponCenterViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
 @property(nonatomic, strong) NSArray *menuList;
 @property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
+@property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) NSMutableArray *titleList;
 
 @end
 
@@ -22,7 +24,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"Coupon Center";
-    self.menuList = @[@"Category1", @"Category2", @"Category3"];
+    _dataSource = [NSMutableArray array];
+    _titleList = [NSMutableArray array];
+    [self loadDatas];
+}
+- (void)loadDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.coupon.couponCatg success:^(id  _Nullable response) {
+        weakself.menuList = [CouponCategoryModel arrayOfModelsFromDictionaries:response error:nil];
+        [weakself initUI];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)initUI
+{
+    for (CouponCategoryModel *model in self.menuList) {
+        [self.dataSource addObject:model.couponCatgId];
+    }
+    for (CouponCategoryModel *model in self.menuList) {
+        [self.titleList addObject:model.couponCatgName];
+    }
     
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
@@ -36,7 +59,7 @@
 }
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
-    return self.menuList;
+    return self.titleList;
 }
 
 - (UIButton *)magicView:(VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
@@ -57,6 +80,7 @@
     CouponCenterChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
         gridViewController = [[CouponCenterChildViewController alloc] init];
+        gridViewController.couponCatgId = self.dataSource[pageIndex];
     }
     return gridViewController;
 }
