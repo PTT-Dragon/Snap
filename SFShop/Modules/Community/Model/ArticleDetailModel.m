@@ -11,7 +11,9 @@
 
 @end
 
+@implementation ArticleImageModel
 
+@end
 
 @implementation ArticleDetailModel
 

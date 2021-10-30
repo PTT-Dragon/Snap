@@ -144,6 +144,7 @@
 		1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B8882701678000C73CEC /* CouponCenterCollectionViewCell.xib */; };
 		1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0B88C2701944300C73CEC /* CouponAlertView.m */; };
 		1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */; };
+		4B1522CC272D300A00C3BDD9 /* ProductSpecAttrsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */; };
 		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
 		4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B192DB527094FC20029D89F /* ArticleProductCell.xib */; };
 		4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B192DBB270950E70029D89F /* ArticleProductCell.m */; };
@@ -458,6 +459,8 @@
 		1BE0B88B2701944300C73CEC /* CouponAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponAlertView.h; sourceTree = "<group>"; };
 		1BE0B88C2701944300C73CEC /* CouponAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponAlertView.m; sourceTree = "<group>"; };
 		1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponAlertView.xib; sourceTree = "<group>"; };
+		4B1522CA272D300A00C3BDD9 /* ProductSpecAttrsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductSpecAttrsView.h; sourceTree = "<group>"; };
+		4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductSpecAttrsView.m; sourceTree = "<group>"; };
 		4B170FD426FCC13A00699B87 /* CommunityChildController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityChildController.h; sourceTree = "<group>"; };
 		4B170FD526FCC13A00699B87 /* CommunityChildController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityChildController.m; sourceTree = "<group>"; };
 		4B192DB527094FC20029D89F /* ArticleProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleProductCell.xib; sourceTree = "<group>"; };
@@ -941,6 +944,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4B1522C9272D2FBB00C3BDD9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B1522CA272D300A00C3BDD9 /* ProductSpecAttrsView.h */,
+				4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4B43851526FEB7D400BA3D90 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -972,6 +984,7 @@
 		4B818FC8272394D90058038A /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				4B1522C9272D2FBB00C3BDD9 /* View */,
 				4B818FDA27239F260058038A /* Model */,
 				4B818FD227239C910058038A /* ProductViewController.h */,
 				4B818FD327239C910058038A /* ProductViewController.m */,
@@ -1735,6 +1748,7 @@
 				AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */,
 				AEA3298427299CDF00E7827A /* SFSearchNav.m in Sources */,
 				4B818FE6272435E30058038A /* MakeH5Happy.m in Sources */,
+				4B1522CC272D300A00C3BDD9 /* ProductSpecAttrsView.m in Sources */,
 				1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */,
 				4B7974C7271EFD1200F2EEEA /* ArticleEvaluateModel.m in Sources */,
 				AE81BE4526FF605100AB4225 /* CategoryContentCollectionView.m in Sources */,

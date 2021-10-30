@@ -42,7 +42,7 @@
  将h5相对路径替换为绝对路径
  */
 + (NSString *)replaceHtmlSourceOfRelativeImageSource: (NSString *)htmlString {
-    NSString *replacedHtmlString = [htmlString stringByReplacingOccurrencesOfString: @"img src=\"" withString: [NSString stringWithFormat:@"img src=\"%@", Host]];
+    NSString *replacedHtmlString = [htmlString stringByReplacingOccurrencesOfString: @"src=\"" withString: [NSString stringWithFormat:@"src=\"%@", Host]];
     return replacedHtmlString;
 }
 

@@ -16,6 +16,7 @@
 #import "CategoryRankFilterCacheModel.h"
 #import "SFSearchNav.h"
 #import "SFSearchView.h"
+#import "ProductViewController.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
@@ -146,7 +147,9 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    ProductViewController *productVC = [[ProductViewController alloc] init];
+    productVC.offerId = ((CategoryRankPageInfoListModel *)self.dataArray[indexPath.row]).offerId;
+    [self.navigationController pushViewController:productVC animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource

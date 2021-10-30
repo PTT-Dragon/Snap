@@ -16,4 +16,5 @@ target 'SFShop' do
   pod 'SDWebImage'
   pod 'iCarousel'
   pod 'ReactiveObjC'
+  pod 'SJVideoPlayer'
 end 
