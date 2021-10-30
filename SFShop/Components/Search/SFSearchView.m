@@ -38,7 +38,7 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     SFSearchModel *model = self.dataArray[indexPath.section][indexPath.row];
-    !self.clickBlock ?: self.clickBlock(model);
+    !self.searchBlock ?: self.searchBlock(model.idStr);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -53,6 +53,10 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         SFSearchSectionHeadView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SFSearchSectionHeadView" forIndexPath:indexPath];
+        view.model = [self.dataArray[indexPath.section] firstObject];
+        view.rightBlock = ^(SFSearchModel * _Nonnull model) {
+          
+        };
         return view;
     }
     
@@ -72,7 +76,7 @@
     if (!model.width) {
         width = [model.name calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(200, 32)] + 12 * 2;
     }
-    return CGSizeMake(100 , 32);
+    return CGSizeMake(width , 32);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
@@ -90,9 +94,9 @@
         flow.minimumInteritemSpacing = 8;
         flow.minimumLineSpacing = 8;
         flow.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16);
-        flow.headerReferenceSize = CGSizeMake(MainScreen_width, 13);
+        flow.headerReferenceSize = CGSizeZero;
         flow.footerReferenceSize = CGSizeMake(MainScreen_width, 13);
-        _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height - navBarHei) collectionViewLayout:flow];
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flow];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = false;
@@ -110,7 +114,16 @@
         SFSearchModel *model = [SFSearchModel new];
         model.name = @"测试";
         model.sectionTitle = @"组标题";
-        [_dataArray addObject:@[model,model,model]];
+        model.type = SFSearchHeadTypeNormal;
+        
+        SFSearchModel *model1 = [SFSearchModel new];
+        model1.name = @"点我点我asafgas";
+        model1.sectionTitle = @"第二组标题";
+        model1.type = SFSearchHeadTypeDelete;
+
+        [_dataArray addObject:@[model,model1,model,model1]];
+        [_dataArray addObject:@[model1,model,model,model1]];
+
     }
     return _dataArray;
 }

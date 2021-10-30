@@ -7,6 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef NS_ENUM(NSUInteger, SFSearchHeadType) {
+    SFSearchHeadTypeNormal, //正常
+    SFSearchHeadTypeDelete, //删除按钮
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SFSearchModel : NSObject
@@ -15,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *sectionTitle;
 @property (nonatomic, readwrite, strong) NSString *name;
 @property (nonatomic, readwrite, strong) NSString *idStr;
-@property (nonatomic, readwrite, assign) NSInteger type;
+@property (nonatomic, readwrite, assign) SFSearchHeadType type;
 @property (nonatomic, readwrite, assign) CGFloat width;
 
 @end

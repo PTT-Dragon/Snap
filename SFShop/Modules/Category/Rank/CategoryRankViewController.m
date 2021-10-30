@@ -188,12 +188,21 @@
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
         backItem.icon = @"nav_back";
-        backItem.itemActionBlock = ^(NSInteger type) {
+        backItem.itemActionBlock = ^(SFSearchModel *model) {
             [self.navigationController popViewControllerAnimated:YES];
         };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"nav_addition";
-        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem];
+        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model) {
+          
+        };
+        __weak __typeof(self)weakSelf = self;
+        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
+            __weak __typeof(weakSelf)strongSelf = weakSelf;
+            strongSelf.filterCacheModel.qs = qs;
+            [strongSelf.collectionView.mj_header beginRefreshing];
+            [strongSelf.view endEditing:strongSelf];
+        }];
     }
     return _navSearchView;
 }
