@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"Security Center";
     _dataSource = [NSMutableArray array];
-    UserModel *model = [[FMDBManager sharedInstance]queryUserWith:@""];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
     [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":@"Change Password"},@{@"image":@"",@"title":@"Change Mobile Number",@"subTitle":([model.userRes.mobilePhone isEqualToString:@""] || !model.userRes.mobilePhone) ? @"Not Set": @""},@{@"image":@"",@"title":@"Change Email",@"subTitle":([model.userRes.email isEqualToString:@""] || !model.userRes.email) ? @"Not Set": @""}]];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];

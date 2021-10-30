@@ -50,7 +50,7 @@
 }
 - (void)updateDatas
 {
-    UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@""];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
     @weakify(self)
     [RACObserve(model, accessToken) subscribeNext:^(id  _Nullable x) {
         @strongify(self)

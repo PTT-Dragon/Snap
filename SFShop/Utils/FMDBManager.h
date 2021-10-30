@@ -14,14 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (FMDBManager *)sharedInstance;
 
+@property(nonatomic, strong) UserModel *currentUser;
+
 /**
  此处需要显式传入account，因为user中的account会脱敏
  */
 - (void)insertUser: (UserModel *)user ofAccount: (NSString *)account;
 - (void)updateUser: (UserModel *)user ofAccount: (NSString *)account;
-
-- (UserModel *) queryUserWith: (NSString *)account;
-
 - (void)deleteUserData;
 
 @end

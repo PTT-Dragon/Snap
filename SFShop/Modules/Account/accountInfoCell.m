@@ -47,7 +47,7 @@
 }
 - (void)updateData
 {
-    UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@"hxf01@qq.com"];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (!model || [model.accessToken isEqualToString:@""]) {
         //登出状态
         self.nameLabel.text = @"Login Or Register";
