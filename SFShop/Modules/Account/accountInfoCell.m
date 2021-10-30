@@ -102,6 +102,9 @@
 - (void)nameAction
 {
     LoginViewController *vc = [[LoginViewController alloc] init];
+    vc.didLoginBlock = ^{
+        [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
+    };
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)setAction:(id)sender {

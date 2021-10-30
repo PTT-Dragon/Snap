@@ -143,6 +143,7 @@
 		1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0B88C2701944300C73CEC /* CouponAlertView.m */; };
 		1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */; };
 		4B1522CC272D300A00C3BDD9 /* ProductSpecAttrsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */; };
+		4B1522D5272D432700C3BDD9 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522D4272D432700C3BDD9 /* BaseViewController.m */; };
 		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
 		4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B192DB527094FC20029D89F /* ArticleProductCell.xib */; };
 		4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B192DBB270950E70029D89F /* ArticleProductCell.m */; };
@@ -456,6 +457,8 @@
 		1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponAlertView.xib; sourceTree = "<group>"; };
 		4B1522CA272D300A00C3BDD9 /* ProductSpecAttrsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductSpecAttrsView.h; sourceTree = "<group>"; };
 		4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductSpecAttrsView.m; sourceTree = "<group>"; };
+		4B1522D3272D432700C3BDD9 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		4B1522D4272D432700C3BDD9 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		4B170FD426FCC13A00699B87 /* CommunityChildController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityChildController.h; sourceTree = "<group>"; };
 		4B170FD526FCC13A00699B87 /* CommunityChildController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityChildController.m; sourceTree = "<group>"; };
 		4B192DB527094FC20029D89F /* ArticleProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleProductCell.xib; sourceTree = "<group>"; };
@@ -1254,6 +1257,8 @@
 				AE81BE1326FB75B400AB4225 /* MainTabViewController.m */,
 				1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */,
 				1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */,
+				4B1522D3272D432700C3BDD9 /* BaseViewController.h */,
+				4B1522D4272D432700C3BDD9 /* BaseViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1702,6 +1707,7 @@
 				1B63D459272D212A0062762B /* CartChildViewController.m in Sources */,
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
 				4B818FD527239C910058038A /* ProductViewController.m in Sources */,
+				4B1522D5272D432700C3BDD9 /* BaseViewController.m in Sources */,
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
 				1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */,
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,

@@ -6,6 +6,8 @@
 //
 
 #import "BaseNavigationController.h"
+#import "BaseViewController.h"
+#import "LoginViewController.h"
 
 @interface BaseNavigationController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 
@@ -81,6 +83,18 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    if ([viewController isKindOfClass: [BaseViewController class]]) {
+        if ([(BaseViewController *)viewController shouldCheckLoggedIn] && ![[FMDBManager sharedInstance] currentUser]) {
+            LoginViewController *vc = [[LoginViewController alloc] init];
+            MPWeakSelf(self)
+            vc.didLoginBlock = ^{
+                [weakself popViewControllerAnimated:NO];
+                [weakself pushViewController: viewController animated: animated];
+            };
+            [self pushViewController: vc animated: animated];
+            return;
+        }
+    }
     // 禁用返回手势, 防止崩溃
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.interactivePopGestureRecognizer.enabled = NO;
