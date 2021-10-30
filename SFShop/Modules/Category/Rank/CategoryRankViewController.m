@@ -178,7 +178,8 @@
         CGFloat priceHeight = KScale(14);
         CGFloat discountHeight = KScale(14);
         CGFloat levelHeight = KScale(12);
-        cellModel.height = imageHeigjt + KScale(16) + tagHeight + KScale(12) + titleHeight + KScale(16) + priceHeight + KScale(4) + discountHeight + KScale(12) + levelHeight + KScale(25);
+        //        + KScale(16) + tagHeight
+        cellModel.height = imageHeigjt  + KScale(12) + titleHeight + KScale(16) + priceHeight + KScale(4) + discountHeight + KScale(12) + levelHeight + KScale(25);
     }
     return cellModel.height;
 }

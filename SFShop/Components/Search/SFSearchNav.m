@@ -70,8 +70,7 @@
 #pragma mark - Event
 - (void)btnClick:(UIButton *)btn {
     if (btn == self.backBtn) {
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        if ([window.subviews containsObject:self.searchView]) {
+        if ([self.superview.subviews containsObject:self.searchView]) {
             [self.searchView removeFromSuperview];
             [self endEditing:YES];
         } else {
@@ -84,9 +83,8 @@
 
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    if (![window.subviews containsObject:self.searchView]) {
-        [window addSubview:self.searchView];
+    if (![self.superview.subviews containsObject:self.searchView]) {
+        [self.superview addSubview:self.searchView];
     }
 }
 
@@ -106,8 +104,7 @@
 }
 
 - (void)search:(NSString *)qs {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    if ([window.subviews containsObject:self.searchView]) {
+    if ([self.superview.subviews containsObject:self.searchView]) {
         [self.searchView removeFromSuperview];
     }
     !self.searchBlock ?: self.searchBlock(qs);
@@ -145,10 +142,16 @@
         };
         _searchView.cleanHistoryBlock = ^{
             __weak __typeof (weakSelf)strongSelf = weakSelf;
-            UserDefaultSetObjectForKey(nil, userDefaultNameSearchHistory);
-            [strongSelf.searchHistory removeAllObjects];
-//            [strongSelf.dataArray removeObjectAtIndex:0];
-            [strongSelf.searchView reload];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Confirm delete all search history?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"DELETE" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UserDefaultSetObjectForKey(nil, userDefaultNameSearchHistory);
+                [strongSelf.searchHistory removeAllObjects];
+                [strongSelf.searchView reload];
+            }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"CANCEL" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
         };
     }
     return _searchView;
