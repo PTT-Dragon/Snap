@@ -47,22 +47,21 @@
 }
 - (void)updateData
 {
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    if (!model || [model.accessToken isEqualToString:@""]) {
-        //登出状态
-        self.nameLabel.text = @"Login Or Register";
-        self.nameLabel.userInteractionEnabled = YES;
-    }else{
-        self.nameLabel.userInteractionEnabled = NO;
-    }
+    FMDBManager *dbManager = [FMDBManager sharedInstance];
+    
     @weakify(self)
-    [RACObserve(model, userName) subscribeNext:^(id  _Nullable x) {
+    [RACObserve(dbManager, currentUser) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
-        self.nameLabel.text = model.userName;
-    }];
-    [RACObserve(model, userRes) subscribeNext:^(id  _Nullable x) {
-        @strongify(self)
-        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        if (!model || [model.accessToken isEqualToString:@""]) {
+            //登出状态
+            self.nameLabel.text = @"Login Or Register";
+            self.nameLabel.userInteractionEnabled = YES;
+        }else{
+            self.nameLabel.userInteractionEnabled = NO;
+            self.nameLabel.text = model.userName;
+            [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
+        }
     }];
 }
 - (void)setCouponCount:(NSInteger)couponCount

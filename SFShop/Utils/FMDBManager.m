@@ -76,7 +76,7 @@ static FMDBManager *_onetimeClass;
         if (!res) {
             NSLog(@"数据删除失败");
         } else {
-            _currentUser = nil;
+            self.currentUser = nil;
             NSLog(@"数据删除成功");
         }
         [self.userDb close];
@@ -90,6 +90,7 @@ static FMDBManager *_onetimeClass;
         if (!res) {
             NSLog(@"增加数据失败");
         }else{
+            self.currentUser = user;
             NSLog(@"增加数据成功");
         }
         [self.userDb close];
@@ -103,6 +104,7 @@ static FMDBManager *_onetimeClass;
         if (!res) {
             NSLog(@"数据修改失败");
         }else{
+            self.currentUser = user;
             NSLog(@"数据修改成功");
         }
         [self.userDb close];
