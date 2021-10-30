@@ -11,6 +11,8 @@
 		1B12A3DD27015EB800DD7BCD /* CouponCenterChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DC27015EB800DD7BCD /* CouponCenterChildViewController.m */; };
 		1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DF27015F7000DD7BCD /* CouponCenterCell.m */; };
 		1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B12A3E027015F7000DD7BCD /* CouponCenterCell.xib */; };
+		1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */; };
+		1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */; };
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
 		1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122426FC5AC500235294 /* accountInfoCell.xib */; };
 		1B3C122826FC706000235294 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122726FC706000235294 /* LoginViewController.xib */; };
@@ -51,6 +53,9 @@
 		1B49D145271D5C14002461ED /* RecentlyViewedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D143271D5C14002461ED /* RecentlyViewedViewController.m */; };
 		1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49D144271D5C14002461ED /* RecentlyViewedViewController.xib */; };
 		1B49D14A271EAA05002461ED /* addressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D149271EAA03002461ED /* addressModel.m */; };
+		1B63D459272D212A0062762B /* CartChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B63D458272D21290062762B /* CartChildViewController.m */; };
+		1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B63D460272D238C0062762B /* CartChooseAddressViewController.m */; };
+		1B63D463272D238C0062762B /* CartChooseAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B63D461272D238C0062762B /* CartChooseAddressViewController.xib */; };
 		1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC3271F192400B30ECC /* CouponModel.m */; };
 		1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC6271FF06500B30ECC /* favoriteModel.m */; };
 		1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */; };
@@ -236,6 +241,9 @@
 		1B12A3DE27015F7000DD7BCD /* CouponCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponCenterCell.h; sourceTree = "<group>"; };
 		1B12A3DF27015F7000DD7BCD /* CouponCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponCenterCell.m; sourceTree = "<group>"; };
 		1B12A3E027015F7000DD7BCD /* CouponCenterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponCenterCell.xib; sourceTree = "<group>"; };
+		1B2AE420272D274300FB23D3 /* CartChooseAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChooseAddressCell.h; sourceTree = "<group>"; };
+		1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChooseAddressCell.m; sourceTree = "<group>"; };
+		1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartChooseAddressCell.xib; sourceTree = "<group>"; };
 		1B3C122226FC5AC500235294 /* accountInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountInfoCell.h; sourceTree = "<group>"; };
 		1B3C122326FC5AC500235294 /* accountInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountInfoCell.m; sourceTree = "<group>"; };
 		1B3C122426FC5AC500235294 /* accountInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
@@ -298,6 +306,11 @@
 		1B49D144271D5C14002461ED /* RecentlyViewedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentlyViewedViewController.xib; sourceTree = "<group>"; };
 		1B49D148271EAA03002461ED /* addressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = addressModel.h; sourceTree = "<group>"; };
 		1B49D149271EAA03002461ED /* addressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = addressModel.m; sourceTree = "<group>"; };
+		1B63D457272D21290062762B /* CartChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChildViewController.h; sourceTree = "<group>"; };
+		1B63D458272D21290062762B /* CartChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChildViewController.m; sourceTree = "<group>"; };
+		1B63D45F272D238C0062762B /* CartChooseAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChooseAddressViewController.h; sourceTree = "<group>"; };
+		1B63D460272D238C0062762B /* CartChooseAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChooseAddressViewController.m; sourceTree = "<group>"; };
+		1B63D461272D238C0062762B /* CartChooseAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartChooseAddressViewController.xib; sourceTree = "<group>"; };
 		1B74DAC2271F192400B30ECC /* CouponModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		1B74DAC3271F192400B30ECC /* CouponModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
 		1B74DAC5271FF06500B30ECC /* favoriteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = favoriteModel.h; sourceTree = "<group>"; };
@@ -1118,8 +1131,16 @@
 		4B9FB9D926FB7A1F00C90790 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
-				4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */,
 				4B9FB9DB26FB7A1F00C90790 /* CartViewController.h */,
+				4B9FB9DA26FB7A1F00C90790 /* CartViewController.m */,
+				1B63D457272D21290062762B /* CartChildViewController.h */,
+				1B63D458272D21290062762B /* CartChildViewController.m */,
+				1B63D45F272D238C0062762B /* CartChooseAddressViewController.h */,
+				1B63D460272D238C0062762B /* CartChooseAddressViewController.m */,
+				1B63D461272D238C0062762B /* CartChooseAddressViewController.xib */,
+				1B2AE420272D274300FB23D3 /* CartChooseAddressCell.h */,
+				1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */,
+				1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -1505,6 +1526,7 @@
 				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
 				1B74DB1B2724467100B30ECC /* OrderListItemCell.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
+				1B63D463272D238C0062762B /* CartChooseAddressViewController.xib in Resources */,
 				1B478317272A957000F2A945 /* RefundProcessCell.xib in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
@@ -1518,6 +1540,7 @@
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
+				1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1B74DB112724463500B30ECC /* OrderListStateCell.xib in Resources */,
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
@@ -1655,6 +1678,7 @@
 				1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */,
 				AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
+				1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */,
 				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
 				1B787B4C27293AE900E6A983 /* SimilarProductCell.m in Sources */,
@@ -1675,6 +1699,7 @@
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
+				1B63D459272D212A0062762B /* CartChildViewController.m in Sources */,
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
 				4B818FD527239C910058038A /* ProductViewController.m in Sources */,
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
@@ -1682,6 +1707,7 @@
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,
 				1B478304272A785200F2A945 /* RefundViewController.m in Sources */,
+				1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,

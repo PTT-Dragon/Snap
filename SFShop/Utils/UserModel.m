@@ -43,6 +43,8 @@
 
 @implementation UserModel
 
+singleton_implementation(UserModel)
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
      unsigned int count=0;
@@ -72,5 +74,7 @@
     }
     return self;
 }
+
+
 
 @end
