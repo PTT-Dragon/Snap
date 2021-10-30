@@ -41,6 +41,10 @@
     [self request];
 }
 
+- (BOOL)shouldCheckLoggedIn {
+    return YES;
+}
+
 - (void)dealloc {
     @try {
         [self.detailWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];

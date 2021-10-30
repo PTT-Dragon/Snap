@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CommunityDetailController : UIViewController
+@interface CommunityDetailController : BaseViewController
 
 @property (nonatomic, strong) NSString *articleId;
 

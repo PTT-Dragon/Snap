@@ -55,7 +55,7 @@
     
     self.currentMenuIndex = 0;
     self.menuList = @[@"Recommend", @"Phone", @"House", @"Car", @"Computer", @"Camera"];
-    self.articleCatgIdList = @[@"6", @"7", @"10", @"6", @"7", @"10"];
+    self.articleCatgIdList = @[@"6", @"11", @"10", @"6", @"7", @"10"];
     
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];

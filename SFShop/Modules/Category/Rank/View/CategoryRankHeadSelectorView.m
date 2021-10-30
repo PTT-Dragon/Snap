@@ -139,7 +139,7 @@
         _priceBtn.tag = CategoryRankTypePriceAscending + 100;
         _priceBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_priceBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
-        [_priceBtn setTitle:@"Sales" forState:UIControlStateNormal];
+        [_priceBtn setTitle:@"Price" forState:UIControlStateNormal];
         [_priceBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];
         [_priceBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateSelected];
         _priceBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;

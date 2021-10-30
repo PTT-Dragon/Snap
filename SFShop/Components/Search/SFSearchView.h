@@ -12,7 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFSearchView : UIView
 
+@property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFSearchModel *> *> *dataArray;
 @property (nonatomic, readwrite, copy) void(^searchBlock)(NSString *qs);
+@property (nonatomic, readwrite, copy) void(^cleanHistoryBlock)(void);
+
+- (void)reload;
 
 @end
 

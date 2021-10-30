@@ -6,6 +6,7 @@
 //
 
 #import "SFSearchSectionHeadView.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface SFSearchSectionHeadView ()
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
@@ -50,6 +51,7 @@
 - (void)setModel:(SFSearchModel *)model {
     _model = model;
     self.titleLabel.text = model.sectionTitle;
+    [self.rightBtn setImage:[UIImage imageNamed:model.sectionIcon] forState:UIControlStateNormal];
     switch (model.type) {
         case SFSearchHeadTypeDelete:
             self.rightBtn.hidden = NO;
@@ -76,9 +78,9 @@
 - (UIButton *)rightBtn {
     if (_rightBtn == nil) {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_rightBtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpOutside];
-        [_rightBtn setImage:[UIImage imageNamed:@"search_clear"] forState:UIControlStateNormal];
+        [_rightBtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
         _rightBtn.hidden = YES;
+        [_rightBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     }
     return _rightBtn;
 }

@@ -9,8 +9,14 @@
 
 @implementation SFSearchModel
 
-- (NSString *)idStr {
-    return _name;
++ (instancetype)historyModelWithName:(NSString *)name {
+    SFSearchModel *model = [[SFSearchModel alloc] init];
+    model.name = name;
+    model.sectionTitle = @"Search Discovery";
+    model.sectionIcon = @"search_clear";
+    model.type = SFSearchHeadTypeDelete;
+    model.width = 0;
+    return model;
 }
 
 @end

@@ -260,6 +260,7 @@
 #pragma mark - 本地存储对象名
 #define userDefaultNameGiftVersion @"GIFTVERSION"
 #define userDefaultNameGiftDatas @"GIFTDATAS"
+#define userDefaultNameSearchHistory @"userDefaultNameSearchHistory"
 
 
 #pragma mark -

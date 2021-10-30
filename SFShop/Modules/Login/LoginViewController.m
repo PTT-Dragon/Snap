@@ -50,6 +50,9 @@
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
         [[FMDBManager sharedInstance] insertUser:model ofAccount:@"hxf01@qq.com"];
+        if (self.didLoginBlock) {
+            self.didLoginBlock();
+        }
     } failed:^(NSError * _Nonnull error) {
         
     }];

@@ -17,6 +17,8 @@
 @property (nonatomic, readwrite, strong) UIButton *rightBtn;
 @property (nonatomic, readwrite, strong) SFSearchView *searchView;
 @property (nonatomic, readwrite, copy) void(^searchBlock)(NSString *qs);
+@property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFSearchModel *> *> *dataArray;
+@property (nonatomic, readwrite, strong) NSMutableArray<SFSearchModel *> *searchHistory;
 
 @end
 @implementation SFSearchNav
@@ -59,12 +61,19 @@
     }];
 }
 
+#pragma mark - Publice
+- (void)addSearchSection:(NSMutableArray<SFSearchModel *> *)sectionData {
+    [self.dataArray addObject:sectionData];
+    self.searchView.dataArray = _dataArray;
+}
+
 #pragma mark - Event
 - (void)btnClick:(UIButton *)btn {
     if (btn == self.backBtn) {
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
         if ([window.subviews containsObject:self.searchView]) {
             [self.searchView removeFromSuperview];
+            [self endEditing:YES];
         } else {
             !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(nil);
         }
@@ -74,7 +83,6 @@
 }
 
 #pragma mark - UITextFieldDelegate
-
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if (![window.subviews containsObject:self.searchView]) {
@@ -82,26 +90,65 @@
     }
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self search:textField.text];
+    NSString *qs = textField.text;
+    if (qs) {
+        NSMutableArray *searchHistory = UserDefaultObjectForKey(userDefaultNameSearchHistory) ? [NSMutableArray arrayWithArray:UserDefaultObjectForKey(userDefaultNameSearchHistory)] : [NSMutableArray array];
+        if (![searchHistory containsObject:qs]) {
+            [searchHistory addObject:qs];
+            UserDefaultSetObjectForKey(searchHistory, userDefaultNameSearchHistory);
+            [self.searchHistory insertObject:[SFSearchModel historyModelWithName:qs] atIndex:0];
+            [self.searchView reload];
+        }
+    }
+    return YES;
+}
+
+- (void)search:(NSString *)qs {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if ([window.subviews containsObject:self.searchView]) {
         [self.searchView removeFromSuperview];
     }
-    !self.searchBlock ?: self.searchBlock(textField.text);
+    !self.searchBlock ?: self.searchBlock(qs);
+    [self endEditing:YES];
 }
 
-#pragma mark - Getter
+#pragma mark - Getter & Setter
+- (NSMutableArray<NSMutableArray<SFSearchModel *> *> *)dataArray {
+    if (_dataArray == nil) {
+        _dataArray = [NSMutableArray array];
+        [_dataArray addObject:self.searchHistory];
+    }
+    return _dataArray;
+}
+
+- (NSMutableArray<SFSearchModel *> *)searchHistory {
+    if (_searchHistory == nil) {
+        _searchHistory = [NSMutableArray array];
+        NSArray *searchs = UserDefaultObjectForKey(userDefaultNameSearchHistory);
+        for (NSString *qs in searchs) {
+            [_searchHistory addObject:[SFSearchModel historyModelWithName:qs]];
+        }
+    }
+    return _searchHistory;
+}
+
 - (SFSearchView *)searchView {
     if (_searchView == nil) {
         _searchView = [[SFSearchView alloc] initWithFrame:CGRectMake(0, 10 + navBarHei, MainScreen_width, MainScreen_height - (10 + navBarHei))];
         __weak __typeof (self)weakSelf = self;
+        _searchView.dataArray = self.dataArray;
         _searchView.searchBlock = ^(NSString *qs) {
             __weak __typeof (weakSelf)strongSelf = weakSelf;
-            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            if ([window.subviews containsObject:strongSelf.searchView]) {
-                [strongSelf.searchView removeFromSuperview];
-            }
-            !strongSelf.searchBlock ?: strongSelf.searchBlock(qs);
+            [strongSelf search:qs];
+        };
+        _searchView.cleanHistoryBlock = ^{
+            __weak __typeof (weakSelf)strongSelf = weakSelf;
+            UserDefaultSetObjectForKey(nil, userDefaultNameSearchHistory);
+            [strongSelf.searchHistory removeAllObjects];
+//            [strongSelf.dataArray removeObjectAtIndex:0];
+            [strongSelf.searchView reload];
         };
     }
     return _searchView;
@@ -125,6 +172,7 @@
         _textField.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _textField.textAlignment = NSTextAlignmentLeft;
         _textField.borderStyle = UITextBorderStyleLine;
+        _textField.returnKeyType = UIReturnKeySearch;
     }
     return _textField;
 }

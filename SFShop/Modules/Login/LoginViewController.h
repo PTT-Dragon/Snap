@@ -11,6 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LoginViewController : UIViewController
 
+typedef void(^DidLoginBlock)(void);
+
+@property (nonatomic, copy) DidLoginBlock didLoginBlock;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

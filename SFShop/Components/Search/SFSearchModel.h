@@ -20,9 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *sectionIcon;
 @property (nonatomic, readwrite, strong) NSString *sectionTitle;
 @property (nonatomic, readwrite, strong) NSString *name;
-@property (nonatomic, readwrite, strong) NSString *idStr;
 @property (nonatomic, readwrite, assign) SFSearchHeadType type;
 @property (nonatomic, readwrite, assign) CGFloat width;
+
+/// 初始化搜素历史model
+/// @param name 搜索内容
++ (instancetype)historyModelWithName:(NSString *)name;
 
 @end
 
