@@ -13,7 +13,6 @@
 #import "NSString+Add.h"
 
 @interface SFSearchView ()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
 @property (nonatomic, readwrite, strong) UICollectionView *collectionView;
 @end
 
@@ -35,10 +34,15 @@
     
 }
 
+#pragma mark - Publice
+- (void)reload {
+    [self.collectionView reloadData];
+}
+
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     SFSearchModel *model = self.dataArray[indexPath.section][indexPath.row];
-    !self.searchBlock ?: self.searchBlock(model.idStr);
+    !self.searchBlock ?: self.searchBlock(model.name);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -55,7 +59,9 @@
         SFSearchSectionHeadView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SFSearchSectionHeadView" forIndexPath:indexPath];
         view.model = [self.dataArray[indexPath.section] firstObject];
         view.rightBlock = ^(SFSearchModel * _Nonnull model) {
-          
+            if (model.type == SFSearchHeadTypeDelete) {
+                !self.cleanHistoryBlock ?: self.cleanHistoryBlock();
+            }
         };
         return view;
     }
@@ -106,26 +112,6 @@
         [_collectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionReusableView"];
     }
     return _collectionView;
-}
-
-- (NSMutableArray *)dataArray {
-    if (_dataArray == nil) {
-        _dataArray = [NSMutableArray array];
-        SFSearchModel *model = [SFSearchModel new];
-        model.name = @"测试";
-        model.sectionTitle = @"组标题";
-        model.type = SFSearchHeadTypeNormal;
-        
-        SFSearchModel *model1 = [SFSearchModel new];
-        model1.name = @"点我点我asafgas";
-        model1.sectionTitle = @"第二组标题";
-        model1.type = SFSearchHeadTypeDelete;
-
-        [_dataArray addObject:@[model,model1,model,model1]];
-        [_dataArray addObject:@[model1,model,model,model1]];
-
-    }
-    return _dataArray;
 }
 
 @end
