@@ -9,6 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+
 @interface userResModel : JSONModel <NSCoding>
 @property(nonatomic, copy) NSString <Optional>*email;
 @property(nonatomic, copy) NSString <Optional>*lastSighinDate;
@@ -32,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface UserModel : JSONModel <NSCoding>
+
+singleton_interface(UserModel)
 
 @property(nonatomic, copy) NSString <Optional>*accessToken;
 @property(nonatomic, copy) NSString <Optional>*birthdayDay;
