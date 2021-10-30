@@ -43,7 +43,6 @@
 
 @implementation UserModel
 
-singleton_implementation(UserModel)
 
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {

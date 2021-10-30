@@ -35,7 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserModel : JSONModel <NSCoding>
 
-singleton_interface(UserModel)
 
 @property(nonatomic, copy) NSString <Optional>*accessToken;
 @property(nonatomic, copy) NSString <Optional>*birthdayDay;
