@@ -22,8 +22,8 @@
 }
 
 - (void)loadsubviews {
-    [self.contentView addSubview:self.lineView];
     [self.contentView addSubview:self.titlelabel];
+    [self.contentView addSubview:self.lineView];
 }
 
 - (void)layout {
@@ -39,7 +39,6 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
     self.lineView.hidden = !selected;
     self.contentView.backgroundColor = selected?[UIColor jk_colorWithHexString:@"#FFFFFF"]:[UIColor jk_colorWithHexString:@"#F4F4F4"];
 }
