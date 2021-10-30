@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readwrite, strong) NSString *name;
 @property (nonatomic, readwrite, strong) NSString *icon;
-@property (nonatomic, readwrite, copy) void(^itemActionBlock)(SFSearchModel * _Nullable model);
+@property (nonatomic, readwrite, strong) NSString *selectedIcon;
+@property (nonatomic, readwrite, copy) void(^itemActionBlock)(SFSearchModel * _Nullable model,BOOL isSelected);
 
 @end
 
