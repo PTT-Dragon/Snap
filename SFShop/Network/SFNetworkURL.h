@@ -41,6 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 评价模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersEvaluateModule *evaluate;
 
+/// 购物车模块
+@property (nonatomic, readwrite, strong) SFNetworkUsersCartModule *cart;
+
 /// 收藏模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersFavoriteModule *favorite;
 

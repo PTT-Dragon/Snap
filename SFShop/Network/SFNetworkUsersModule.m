@@ -43,7 +43,12 @@
     return K_users_domain(@"logout");
 }
 
+@end
 
+@implementation SFNetworkUsersCartModule
+- (NSString *)cart {
+    return K_address_domain(@"");
+}
 
 
 @end
