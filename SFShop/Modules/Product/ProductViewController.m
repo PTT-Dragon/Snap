@@ -141,6 +141,17 @@
     }
 }
 
+#pragma mark - Action
+
+- (IBAction)addToCart:(UIButton *)sender {
+}
+
+- (IBAction)buyNow:(UIButton *)sender {
+
+    
+}
+
+
 #pragma mark - iCarouselDataSource
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
     return _model.carouselImgUrls.count;

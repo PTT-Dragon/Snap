@@ -13,6 +13,7 @@
 #import "ProductViewController.h"
 #import <WebKit/WebKit.h>
 #import "MakeH5Happy.h"
+//#import <SJVideoPlayer/SJVideoPlayer.h>
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource>
 
@@ -166,6 +167,13 @@
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
+//    ArticleImageModel *imgModel = self.model.imgs[index];
+//    if ([imgModel.type isEqual:@"C"]) {
+//        SJVideoPlayerURLAsset *asset = [SJVideoPlayerURLAsset.alloc initWithURL: [NSURL URLWithString: SFImage(self.model.imgs[index].url)] startPosition:10];
+//        SJVideoPlayer *player = SJVideoPlayer.player;
+//        player.URLAsset = asset;
+//        return player.view;
+//    }
     UIImageView *iv = nil;
     if (view == nil) {
         iv = [[UIImageView alloc] initWithFrame:carousel.bounds];

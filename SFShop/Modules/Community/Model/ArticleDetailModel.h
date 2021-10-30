@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ArticleProduct;
+@protocol ArticleImageModel;
 
 @interface ArticleProduct : JSONModel
 
@@ -23,9 +24,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface ArticleImageModel : JSONModel
+
+@property(nonatomic, strong) NSString <Optional> *type;
+@property(nonatomic, strong) NSString <Optional> *url;
+@property(nonatomic, strong) NSString <Optional> *imgUrl;
+
+@end
+
 @interface ArticleDetailModel : JSONModel
 
 @property(nonatomic, strong) NSArray<NSString *> <Optional> *articlePictures;
+@property(nonatomic, strong) NSArray<ArticleImageModel *> <ArticleImageModel, Optional> *imgs;
 @property(nonatomic, strong) NSString <Optional> *publisherName;
 @property(nonatomic, strong) NSString <Optional> *profilePicture;
 @property(nonatomic, strong) NSString <Optional> *articleDetail;
