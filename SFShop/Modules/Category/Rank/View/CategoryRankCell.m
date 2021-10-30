@@ -52,8 +52,10 @@
     
     [self.iconTagImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
-        make.top.equalTo(self.iconImageView.mas_bottom).offset(KScale(16));
-        make.height.mas_equalTo(KScale(14));
+//        make.top.equalTo(self.iconImageView.mas_bottom).offset(KScale(16));
+//        make.height.mas_equalTo(KScale(14));//14,先注释
+        make.top.equalTo(self.iconImageView.mas_bottom).offset(KScale(0));
+        make.height.mas_equalTo(KScale(0));//14,先注释
         make.right.mas_equalTo(KScale(-12));
     }];
     
@@ -210,7 +212,7 @@
 - (UIImageView *)gradeImageView  {
     if (_gradeImageView == nil) {
         _gradeImageView = [[UIImageView alloc] init];
-        _gradeImageView.backgroundColor = [UIColor greenColor];
+        _gradeImageView.image = [UIImage imageNamed:@"rank_star"];
     }
     return _gradeImageView;
 }

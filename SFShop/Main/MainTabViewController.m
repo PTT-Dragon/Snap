@@ -42,7 +42,7 @@
     CategoryViewController *categoryVc = [[CategoryViewController alloc] init];
     BaseNavigationController *categoryNav = [[BaseNavigationController alloc]initWithRootViewController:categoryVc];
     categoryNav.tabBarItem.title = @"Category";
-    categoryNav.tabBarItem.image = [UIImage imageNamed:@"community_tab_icon"];
+    categoryNav.tabBarItem.image = [UIImage imageNamed:@"category_tab_icon"];
     
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar setTranslucent:NO];
