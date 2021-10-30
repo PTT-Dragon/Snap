@@ -27,6 +27,21 @@ static FMDBManager *_onetimeClass;
     return _onetimeClass;
 }
 
+- (UserModel *)currentUser {
+    if (!_currentUser) {
+        if ([self.userDb open]) {
+            FMResultSet *resultSet = [self.userDb executeQuery:@"SELECT * FROM t_user"];
+            // 取第一个
+            if ([resultSet next]) {
+                NSData *data=[resultSet objectForColumn:@"userInfo"];
+                _currentUser = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            }
+            [self.userDb close];
+        }
+    }
+    return _currentUser;
+}
+
 - (NSString *)userDbPath {
     if (!_userDbPath) {
         NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -92,23 +107,5 @@ static FMDBManager *_onetimeClass;
         [self.userDb close];
     }
 }
-
-- (UserModel *) queryUserWith: (NSString *)account {
-    if ([self.userDb open]) {
-        FMResultSet *resultSet = [self.userDb executeQuery:@"SELECT * FROM t_user where account = ?", @"hxf01@qq.com"];
-        
-        while ([resultSet next]) {
-            NSData *data=[resultSet objectForColumn:@"userInfo"];
-            UserModel *user=[NSKeyedUnarchiver unarchiveObjectWithData:data];
-            
-            [self.userDb close];
-            return user;
-        }
-        [self.userDb close];
-    }
-    return nil;
-}
-
-
 
 @end

@@ -16,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param frame frame
 /// @param bitem 返回item
 /// @param rItem 右上角item
-- (instancetype)initWithFrame:(CGRect)frame backItme:(SFSearchItem *)bitem rightItem:(SFSearchItem *)rItem;
+/// @param clickBlock 点击具体内容回调
+- (instancetype)initWithFrame:(CGRect)frame backItme:(SFSearchItem *)bitem rightItem:(SFSearchItem *)rItem searchBlock:(void(^)(NSString *qs))searchBlock;
 
 @end
 

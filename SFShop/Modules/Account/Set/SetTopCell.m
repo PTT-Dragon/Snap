@@ -18,7 +18,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@""];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
     self.nameLabel.text = model.userRes.nickName;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
 }

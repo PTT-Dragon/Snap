@@ -16,12 +16,14 @@
 @property (nonatomic, readwrite, strong) CustomTextField *textField;
 @property (nonatomic, readwrite, strong) UIButton *rightBtn;
 @property (nonatomic, readwrite, strong) SFSearchView *searchView;
+@property (nonatomic, readwrite, copy) void(^searchBlock)(NSString *qs);
 
 @end
 @implementation SFSearchNav
 
-- (instancetype)initWithFrame:(CGRect)frame backItme:(SFSearchItem *)bItem rightItem:(SFSearchItem *)rItem {
+- (instancetype)initWithFrame:(CGRect)frame backItme:(SFSearchItem *)bItem rightItem:(SFSearchItem *)rItem searchBlock:(nonnull void (^)(NSString *qs))searchBlock {
     if (self = [super initWithFrame:frame]) {
+        _searchBlock = searchBlock;
         _bItem = bItem;
         _rItem = rItem;
         [self loadsubviews];
@@ -64,10 +66,10 @@
         if ([window.subviews containsObject:self.searchView]) {
             [self.searchView removeFromSuperview];
         } else {
-            !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(self.bItem.type);
+            !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(nil);
         }
     } else if (btn == self.rightBtn) {
-        !self.rItem.itemActionBlock ?: self.rItem.itemActionBlock(self.rItem.type);
+        !self.rItem.itemActionBlock ?: self.rItem.itemActionBlock(nil);
     }
 }
 
@@ -80,10 +82,27 @@
     }
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if ([window.subviews containsObject:self.searchView]) {
+        [self.searchView removeFromSuperview];
+    }
+    !self.searchBlock ?: self.searchBlock(textField.text);
+}
+
 #pragma mark - Getter
 - (SFSearchView *)searchView {
     if (_searchView == nil) {
         _searchView = [[SFSearchView alloc] initWithFrame:CGRectMake(0, 10 + navBarHei, MainScreen_width, MainScreen_height - (10 + navBarHei))];
+        __weak __typeof (self)weakSelf = self;
+        _searchView.searchBlock = ^(NSString *qs) {
+            __weak __typeof (weakSelf)strongSelf = weakSelf;
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            if ([window.subviews containsObject:strongSelf.searchView]) {
+                [strongSelf.searchView removeFromSuperview];
+            }
+            !strongSelf.searchBlock ?: strongSelf.searchBlock(qs);
+        };
     }
     return _searchView;
 }

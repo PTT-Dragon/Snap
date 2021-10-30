@@ -42,6 +42,7 @@
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
+        _titleLabel.backgroundColor = [UIColor whiteColor];
         _titleLabel.text = @"";
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
         _titleLabel.font = [UIFont systemFontOfSize:14];

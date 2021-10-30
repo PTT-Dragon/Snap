@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SFSearchModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,8 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readwrite, strong) NSString *name;
 @property (nonatomic, readwrite, strong) NSString *icon;
-@property (nonatomic, readwrite, assign) NSInteger type;
-@property (nonatomic, readwrite, copy) void(^itemActionBlock)(NSInteger type);
+@property (nonatomic, readwrite, copy) void(^itemActionBlock)(SFSearchModel * _Nullable model);
 
 @end
 

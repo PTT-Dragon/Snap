@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Personal Information";
-    UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@""];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
     _selectDateStr = model.userRes.birthdayDay;
     _gender = model.userRes.gender;
     _genderBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
@@ -69,7 +69,7 @@
     [SFNetworkManager get:SFNet.account.userInfo success:^(id  _Nullable response) {
         NSError *error;
         userResModel *resModel = [[userResModel alloc] initWithDictionary:response error:&error];
-        UserModel *model = [[FMDBManager sharedInstance] queryUserWith:@""];
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
         model.userRes = resModel;
         [[FMDBManager sharedInstance] updateUser:model ofAccount:model.account];
     } failed:^(NSError * _Nonnull error) {

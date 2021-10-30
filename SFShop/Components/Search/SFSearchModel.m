@@ -9,4 +9,8 @@
 
 @implementation SFSearchModel
 
+- (NSString *)idStr {
+    return _name;
+}
+
 @end

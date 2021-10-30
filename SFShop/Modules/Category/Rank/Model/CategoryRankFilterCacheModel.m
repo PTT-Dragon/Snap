@@ -33,6 +33,10 @@
         [result setObject:_evaluationId forKey:@"evaluationAvgs"];
     }
     
+    if (_qs && ![_qs isEqualToString:@""]) {
+        [result setObject:_qs forKey:@"q"];
+    }
+    
     return result;
 }
 

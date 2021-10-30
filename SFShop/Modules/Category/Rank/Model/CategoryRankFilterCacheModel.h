@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, copy) NSString *categoryId;
 @property (nonatomic, readwrite, copy) NSString *brandId;
 @property (nonatomic, readwrite, copy) NSString *evaluationId;
+@property (nonatomic, readwrite, copy) NSString *qs;
 
 - (NSDictionary *)filterParam;
 
