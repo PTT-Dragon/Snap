@@ -15,6 +15,8 @@
 		1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */; };
 		1B2AE428272D36F000FB23D3 /* CartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE426272D36F000FB23D3 /* CartTableViewCell.m */; };
 		1B2AE429272D36F000FB23D3 /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE427272D36F000FB23D3 /* CartTableViewCell.xib */; };
+		1B2AE42F272D8F3700FB23D3 /* CartTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE42D272D8F3700FB23D3 /* CartTitleCell.m */; };
+		1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE42E272D8F3700FB23D3 /* CartTitleCell.xib */; };
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
 		1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122426FC5AC500235294 /* accountInfoCell.xib */; };
 		1B3C122826FC706000235294 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122726FC706000235294 /* LoginViewController.xib */; };
@@ -250,6 +252,9 @@
 		1B2AE425272D36F000FB23D3 /* CartTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartTableViewCell.h; sourceTree = "<group>"; };
 		1B2AE426272D36F000FB23D3 /* CartTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartTableViewCell.m; sourceTree = "<group>"; };
 		1B2AE427272D36F000FB23D3 /* CartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTableViewCell.xib; sourceTree = "<group>"; };
+		1B2AE42C272D8F3700FB23D3 /* CartTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartTitleCell.h; sourceTree = "<group>"; };
+		1B2AE42D272D8F3700FB23D3 /* CartTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartTitleCell.m; sourceTree = "<group>"; };
+		1B2AE42E272D8F3700FB23D3 /* CartTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTitleCell.xib; sourceTree = "<group>"; };
 		1B3C122226FC5AC500235294 /* accountInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountInfoCell.h; sourceTree = "<group>"; };
 		1B3C122326FC5AC500235294 /* accountInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountInfoCell.m; sourceTree = "<group>"; };
 		1B3C122426FC5AC500235294 /* accountInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
@@ -1146,6 +1151,9 @@
 				1B2AE425272D36F000FB23D3 /* CartTableViewCell.h */,
 				1B2AE426272D36F000FB23D3 /* CartTableViewCell.m */,
 				1B2AE427272D36F000FB23D3 /* CartTableViewCell.xib */,
+				1B2AE42C272D8F3700FB23D3 /* CartTitleCell.h */,
+				1B2AE42D272D8F3700FB23D3 /* CartTitleCell.m */,
+				1B2AE42E272D8F3700FB23D3 /* CartTitleCell.xib */,
 				1B63D45F272D238C0062762B /* CartChooseAddressViewController.h */,
 				1B63D460272D238C0062762B /* CartChooseAddressViewController.m */,
 				1B63D461272D238C0062762B /* CartChooseAddressViewController.xib */,
@@ -1522,6 +1530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
+				1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */,
 				1B478326272AA04600F2A945 /* ChangePasswordViewController.xib in Resources */,
 				1B49D13A271D4557002461ED /* changeUserInfoVC.xib in Resources */,
 				1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */,
@@ -1749,6 +1758,7 @@
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				1B74DB2F27253AF900B30ECC /* OrderPayInfoCell.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
+				1B2AE42F272D8F3700FB23D3 /* CartTitleCell.m in Sources */,
 				AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */,
 				1B74DAF2272272D000B30ECC /* StarView.m in Sources */,
 				AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */,
