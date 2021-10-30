@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartChooseAddressViewController">
             <connections>
                 <outlet property="tableView" destination="f2j-T1-Ra8" id="B1Y-y6-gvw"/>
+                <outlet property="tableViewHei" destination="7Nb-T0-esP" id="7Yr-og-ULw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

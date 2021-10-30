@@ -11,6 +11,8 @@
 		1B12A3DD27015EB800DD7BCD /* CouponCenterChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DC27015EB800DD7BCD /* CouponCenterChildViewController.m */; };
 		1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DF27015F7000DD7BCD /* CouponCenterCell.m */; };
 		1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B12A3E027015F7000DD7BCD /* CouponCenterCell.xib */; };
+		1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */; };
+		1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */; };
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
 		1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122426FC5AC500235294 /* accountInfoCell.xib */; };
 		1B3C122826FC706000235294 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122726FC706000235294 /* LoginViewController.xib */; };
@@ -238,6 +240,9 @@
 		1B12A3DE27015F7000DD7BCD /* CouponCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponCenterCell.h; sourceTree = "<group>"; };
 		1B12A3DF27015F7000DD7BCD /* CouponCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponCenterCell.m; sourceTree = "<group>"; };
 		1B12A3E027015F7000DD7BCD /* CouponCenterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponCenterCell.xib; sourceTree = "<group>"; };
+		1B2AE420272D274300FB23D3 /* CartChooseAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChooseAddressCell.h; sourceTree = "<group>"; };
+		1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChooseAddressCell.m; sourceTree = "<group>"; };
+		1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartChooseAddressCell.xib; sourceTree = "<group>"; };
 		1B3C122226FC5AC500235294 /* accountInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountInfoCell.h; sourceTree = "<group>"; };
 		1B3C122326FC5AC500235294 /* accountInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountInfoCell.m; sourceTree = "<group>"; };
 		1B3C122426FC5AC500235294 /* accountInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
@@ -1120,6 +1125,9 @@
 				1B63D45F272D238C0062762B /* CartChooseAddressViewController.h */,
 				1B63D460272D238C0062762B /* CartChooseAddressViewController.m */,
 				1B63D461272D238C0062762B /* CartChooseAddressViewController.xib */,
+				1B2AE420272D274300FB23D3 /* CartChooseAddressCell.h */,
+				1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */,
+				1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -1519,6 +1527,7 @@
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
+				1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1B74DB112724463500B30ECC /* OrderListStateCell.xib in Resources */,
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
@@ -1656,6 +1665,7 @@
 				1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */,
 				AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
+				1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */,
 				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
 				1B787B4C27293AE900E6A983 /* SimilarProductCell.m in Sources */,

@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CartChooseAddressViewController : UIViewController
-
+@property (nonatomic,weak) NSArray *addressListArr;
 @end
 
 NS_ASSUME_NONNULL_END

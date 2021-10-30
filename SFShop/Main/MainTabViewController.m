@@ -32,6 +32,7 @@
     CartViewController *cartVC = [[CartViewController alloc] init];
     cartVC.tabBarItem.title = @"Cart";
     cartVC.tabBarItem.image = [UIImage imageNamed:@"cart_tab_icon"];
+    BaseNavigationController *CartNav = [[BaseNavigationController alloc]initWithRootViewController:cartVC];
     CommunityViewController *communityVC = [[CommunityViewController alloc] init];
     BaseNavigationController *communityNav = [[BaseNavigationController alloc]initWithRootViewController:communityVC];
     communityNav.tabBarItem.title = @"Community";
@@ -45,7 +46,7 @@
     
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar setTranslucent:NO];
-    [self setViewControllers:@[homeVC,categoryNav,communityNav,cartVC,accountNav]];
+    [self setViewControllers:@[homeVC,categoryNav,communityNav,CartNav,accountNav]];
 }
 
 /*
