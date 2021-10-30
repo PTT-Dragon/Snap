@@ -93,7 +93,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self search:textField.text];
     NSString *qs = textField.text;
-    if (qs) {
+    if (qs && ![qs isEqualToString:@""]) {
         NSMutableArray *searchHistory = UserDefaultObjectForKey(userDefaultNameSearchHistory) ? [NSMutableArray arrayWithArray:UserDefaultObjectForKey(userDefaultNameSearchHistory)] : [NSMutableArray array];
         if (![searchHistory containsObject:qs]) {
             [searchHistory addObject:qs];
