@@ -74,6 +74,7 @@ static FMDBManager *_onetimeClass;
         NSString *sql = @"delete from t_user";
         BOOL res = [self.userDb executeUpdate:sql];
         if (!res) {
+            _currentUser = nil;
             NSLog(@"数据删除失败");
         } else {
             NSLog(@"数据删除成功");
