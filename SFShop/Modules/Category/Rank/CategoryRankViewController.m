@@ -199,9 +199,10 @@
         __weak __typeof(self)weakSelf = self;
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
-            strongSelf.filterCacheModel.qs = qs;
-            [strongSelf.collectionView.mj_header beginRefreshing];
-            [strongSelf.view endEditing:strongSelf];
+            if (![qs isEqualToString:strongSelf.filterCacheModel.qs]) {
+                strongSelf.filterCacheModel.qs = qs;
+                [strongSelf.collectionView.mj_header beginRefreshing];
+            }
         }];
     }
     return _navSearchView;

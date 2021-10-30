@@ -65,6 +65,7 @@
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
         if ([window.subviews containsObject:self.searchView]) {
             [self.searchView removeFromSuperview];
+            [self endEditing:YES];
         } else {
             !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(nil);
         }
@@ -82,12 +83,18 @@
     }
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self search:textField.text];
+    return YES;
+}
+
+- (void)search:(NSString *)qs {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if ([window.subviews containsObject:self.searchView]) {
         [self.searchView removeFromSuperview];
     }
-    !self.searchBlock ?: self.searchBlock(textField.text);
+    !self.searchBlock ?: self.searchBlock(qs);
+    [self endEditing:YES];
 }
 
 #pragma mark - Getter
@@ -97,11 +104,7 @@
         __weak __typeof (self)weakSelf = self;
         _searchView.searchBlock = ^(NSString *qs) {
             __weak __typeof (weakSelf)strongSelf = weakSelf;
-            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            if ([window.subviews containsObject:strongSelf.searchView]) {
-                [strongSelf.searchView removeFromSuperview];
-            }
-            !strongSelf.searchBlock ?: strongSelf.searchBlock(qs);
+            [strongSelf search:qs];
         };
     }
     return _searchView;
@@ -125,6 +128,7 @@
         _textField.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _textField.textAlignment = NSTextAlignmentLeft;
         _textField.borderStyle = UITextBorderStyleLine;
+        _textField.returnKeyType = UIReturnKeySearch;
     }
     return _textField;
 }
