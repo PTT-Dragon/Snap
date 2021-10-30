@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFSearchView : UIView
 
-@property (nonatomic, readwrite, copy) void(^clickBlock)(SFSearchModel *model);
+@property (nonatomic, readwrite, copy) void(^searchBlock)(NSString *qs);
 
 @end
 
