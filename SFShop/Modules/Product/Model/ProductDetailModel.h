@@ -10,40 +10,59 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ProductCarouselImgModel;
+@protocol ProductAttrModel;
+@protocol ProductAttrValueModel;
 
 @interface ProductCarouselImgModel: JSONModel
 
 @property(nonatomic, assign) NSInteger contentId;
-@property(nonatomic, strong) NSString <Optional> *contentType;
+@property(nonatomic, strong) NSString *contentType;
 @property(nonatomic, assign) NSInteger seq;
-@property(nonatomic, strong) NSString <Optional> *url;
-@property(nonatomic, strong) NSString <Optional> *imgUrl;
-@property(nonatomic, strong) NSString <Optional> *bigImgUrl;
-@property(nonatomic, strong) NSString <Optional> *smallImgUrl;
+@property(nonatomic, strong) NSString *url;
+@property(nonatomic, strong) NSString *imgUrl;
+@property(nonatomic, strong) NSString *bigImgUrl;
+@property(nonatomic, strong) NSString *smallImgUrl;
+
+@end
+
+@interface ProductAttrValueModel: JSONModel
+
+@property(nonatomic, assign) NSInteger seq;
+@property(nonatomic, strong) NSString *value;
+
+@end
+
+
+@interface ProductAttrModel: JSONModel
+
+@property(nonatomic, assign) NSInteger attrId;
+@property(nonatomic, assign) NSInteger seq;
+@property(nonatomic, strong) NSString *attrName;
+@property(nonatomic, strong) NSArray <ProductAttrValueModel *> <ProductAttrValueModel> *attrValues;
 
 @end
 
 @interface ProductDetailModel : JSONModel
 
 @property(nonatomic, assign) NSInteger offerId;
-@property(nonatomic, strong) NSString <Optional> *offerType;
-@property(nonatomic, strong) NSString <Optional> *isNeedDelivery;
-@property(nonatomic, strong) NSString <Optional> *deliveryMode;
-@property(nonatomic, strong) NSString <Optional> *offerName;
-@property(nonatomic, strong) NSString <Optional> *subheadName;
+@property(nonatomic, strong) NSString *offerType;
+@property(nonatomic, strong) NSString *isNeedDelivery;
+@property(nonatomic, strong) NSString *deliveryMode;
+@property(nonatomic, strong) NSString *offerName;
+@property(nonatomic, strong) NSString *subheadName;
 @property(nonatomic, assign) NSInteger salesPrice;
 @property(nonatomic, assign) NSInteger marketPrice;
-@property(nonatomic, strong) NSString <Optional> *goodsIntroduce;
-@property(nonatomic, strong) NSString <Optional> *goodsDetails;
+@property(nonatomic, strong) NSString *goodsIntroduce;
+@property(nonatomic, strong) NSString *goodsDetails;
 @property(nonatomic, assign) NSInteger storeId;
-@property(nonatomic, strong) NSString <Optional> *storeName;
-@property(nonatomic, strong) NSString <Optional> *storeType;
-@property(nonatomic, strong) NSString <Optional> *storeLogoUrl;
-@property(nonatomic, strong) NSString <Optional> *uccAccount;
-@property(nonatomic, strong) NSArray <Optional> *offerSpecAttrs;
+@property(nonatomic, strong) NSString *storeName;
+@property(nonatomic, strong) NSString *storeType;
+@property(nonatomic, strong) NSString *storeLogoUrl;
+@property(nonatomic, strong) NSString *uccAccount;
+@property(nonatomic, strong) NSArray <ProductAttrModel *> <ProductAttrModel> *offerSpecAttrs;
 @property(nonatomic, strong) NSArray <ProductCarouselImgModel *> <ProductCarouselImgModel> *carouselImgUrls;
-@property(nonatomic, strong) NSArray <Optional> *offerAttrValues;
-@property(nonatomic, strong) NSArray <Optional> *products;
+@property(nonatomic, strong) NSArray *offerAttrValues;
+@property(nonatomic, strong) NSArray *products;
 
 @end
 

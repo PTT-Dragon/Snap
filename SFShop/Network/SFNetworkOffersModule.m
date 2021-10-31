@@ -15,6 +15,9 @@
 - (NSString *)viewlog {
     return K_offers_domain(@"viewlog");
 }
+- (NSString *)stock {
+    return K_offers_domain(@"whstock");
+}
 
 - (NSString *)getDetailOf: (NSInteger)offerId {
     NSString *url = [NSString stringWithFormat:@"detail/%ld", offerId];

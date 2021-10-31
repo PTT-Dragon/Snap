@@ -11,6 +11,8 @@
 #import <iCarousel/iCarousel.h>
 #import <WebKit/WebKit.h>
 #import "MakeH5Happy.h"
+#import "ProductSpecAttrsView.h"
+#import "ProductCheckoutViewController.h"
 
 @interface ProductViewController ()
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -27,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *detailViewHeader;
 @property (nonatomic, strong) WKWebView *detailWebView;
 @property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
+@property (nonatomic, assign) BOOL isCheckingSaleInfo;
 
 @end
 
@@ -144,11 +147,39 @@
 #pragma mark - Action
 
 - (IBAction)addToCart:(UIButton *)sender {
+    if (!_isCheckingSaleInfo) {
+        [self showAttrsView];
+    } else {
+        // TODO: 添加购物车
+    }
 }
 
 - (IBAction)buyNow:(UIButton *)sender {
+    if (!_isCheckingSaleInfo) {
+        [self showAttrsView];
+    } else {
+        // TODO: 跳转checkout页
+        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
-    
+- (void)showAttrsView {
+    _isCheckingSaleInfo = YES;
+    ProductSpecAttrsView *attrView = [[ProductSpecAttrsView alloc] init];
+    attrView.model = self.model;
+    MPWeakSelf(self)
+    MPWeakSelf(attrView)
+    attrView.dismissBlock = ^{
+        [weakattrView removeFromSuperview];
+        weakself.isCheckingSaleInfo = NO;
+    };
+    UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+    [rootView addSubview:attrView];
+    [attrView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(rootView);
+        make.bottom.equalTo(_buyBtn.mas_top).offset(-16);
+    }];
 }
 
 

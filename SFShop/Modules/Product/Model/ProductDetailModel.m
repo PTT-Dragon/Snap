@@ -9,9 +9,33 @@
 
 @implementation ProductCarouselImgModel
 
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+@end
+
+@implementation ProductAttrValueModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
 @end
 
 
+@implementation ProductAttrModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+@end
+
 @implementation ProductDetailModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 
 @end
