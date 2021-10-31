@@ -19,4 +19,9 @@ typedef void(^Block)(void);
 
 @end
 
+@interface ProductAttrButton : UIButton
+
+@end
+
+
 NS_ASSUME_NONNULL_END

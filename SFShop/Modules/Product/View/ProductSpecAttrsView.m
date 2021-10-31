@@ -7,6 +7,7 @@
 
 #import "ProductSpecAttrsView.h"
 #import "MakeH5Happy.h"
+#import "NSString+Add.h"
 
 @interface ProductSpecAttrsView()
 
@@ -15,9 +16,12 @@
 @property (nonatomic, strong) UILabel *priceLabel;
 @property (nonatomic, strong) UILabel *stockLabel;
 @property (nonatomic, strong) UIScrollView *attrsScrollView;
+@property (nonatomic, strong) UIView *attrsScrollContentView;
 @property (nonatomic, strong) UILabel *countLabel;
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, strong) UIButton *decreaseBtn;
+@property (nonatomic, strong) NSMutableArray<NSNumber *> *selectedAttrValue;
+@property (nonatomic, strong) NSMutableArray<ProductAttrButton *> *selectedAttrBtn;
 
 @end
 
@@ -26,6 +30,8 @@
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     self.count = 1;
+    self.selectedAttrBtn = [NSMutableArray array];
+    self.selectedAttrValue = [NSMutableArray array];
     [self setupSubViews];
     return self;
 }
@@ -161,15 +167,78 @@
         make.top.equalTo(_imgView.mas_bottom).offset(10);
         make.bottom.equalTo(line.mas_top).offset(-10);
     }];
+    
+    _attrsScrollContentView = [[UIView alloc] init];
+    [_attrsScrollView addSubview:_attrsScrollContentView];
+    [_attrsScrollContentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_attrsScrollView);
+        make.width.equalTo(self);
+    }];
 }
 
 -(void)setModel:(ProductDetailModel *)model {
     _model = model;
+    MPWeakSelf(self)
+    [model.offerSpecAttrs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // TODO: 此处默认选择第一个
+        [weakself.selectedAttrValue addObject:@0];
+    }];
     [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf:self.model.carouselImgUrls[0]])]];
     self.titleLabel.text = model.offerName;
     self.priceLabel.text = [NSString stringWithFormat:@"Rp %ld", (long)model.salesPrice];
     // TODO: 此处先固定，后续根据库存接口数据调整
     self.stockLabel.text = @"stock: 25";
+    
+    __block UIView *preLayoutView = nil;
+    NSArray<ProductAttrModel *> *attrs = model.offerSpecAttrs;
+    [attrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx1, BOOL * _Nonnull stop) {
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.text = obj.attrName;
+        titleLabel.textColor = [UIColor blackColor];
+        titleLabel.font = [UIFont systemFontOfSize:16];
+        [weakself.attrsScrollContentView addSubview:titleLabel];
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(weakself.attrsScrollContentView).offset(16);
+            make.top.equalTo(preLayoutView ? preLayoutView.mas_bottom : weakself.attrsScrollContentView).offset(10);
+            make.height.mas_equalTo(20);
+        }];
+        preLayoutView = titleLabel;
+        __block CGFloat xOffset = 16;
+        __block BOOL newLine = YES;
+        [obj.attrValues enumerateObjectsUsingBlock:^(ProductAttrValueModel * _Nonnull obj, NSUInteger idx2, BOOL * _Nonnull stop) {
+            ProductAttrButton *item = [ProductAttrButton buttonWithType:UIButtonTypeCustom];
+            BOOL isSelected = weakself.selectedAttrValue[idx1].integerValue == idx2;
+            if (isSelected) {
+                [weakself.selectedAttrBtn addObject:item];
+            }
+            [item addTarget:weakself action:@selector(selcteAttr:) forControlEvents:UIControlEventTouchUpInside];
+            item.tag = idx1 * 100 + idx2;
+            [item setSelected: isSelected];
+            [item setTitle:obj.value forState:UIControlStateNormal];
+            [weakself.attrsScrollContentView addSubview:item];
+            CGFloat itemWidth = [obj.value calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(1000, 1000)] + 20; // 添加10的宽度做padding
+            if(idx2 == 0 || xOffset + itemWidth + 16 > [[UIScreen mainScreen] bounds].size.width) {
+                xOffset = 16;
+                newLine = YES;
+            } else {
+                newLine = NO;
+            }
+            [item mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(weakself.attrsScrollContentView).offset(xOffset);
+                make.size.mas_equalTo(CGSizeMake(itemWidth, 32));
+                if (newLine) {
+                    make.top.equalTo(preLayoutView.mas_bottom).offset(8);
+                } else {
+                    make.centerY.equalTo(preLayoutView);
+                }
+            }];
+            xOffset += itemWidth + 8;
+            preLayoutView = item;
+        }];
+    }];
+    [preLayoutView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(weakself.attrsScrollContentView).offset(-10);
+    }];
 }
 
 - (void)dismiss: (UIButton *)sender {
@@ -189,6 +258,42 @@
     _decreaseBtn.enabled = self.count > 1;
     _countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
     
+}
+
+- (void)selcteAttr: (ProductAttrButton *)sender {
+    NSUInteger sectionIndex = sender.tag / 100;
+    ProductAttrButton *selectedBtn = self.selectedAttrBtn[sectionIndex];
+    if (sender.tag == selectedBtn.tag) {
+        return;
+    }
+    [selectedBtn setSelected:NO];
+    [sender setSelected:YES];
+    [self.selectedAttrBtn replaceObjectAtIndex:sectionIndex withObject:sender];
+}
+
+
+@end
+
+
+@implementation ProductAttrButton
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    self.titleLabel.font = [UIFont systemFontOfSize:14];
+    [self setTitleColor:[UIColor jk_colorWithHexString:@"#7b7b7b"] forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor jk_colorWithHexString:@"#ff1659"] forState:UIControlStateSelected];
+    self.layer.borderColor = [UIColor jk_colorWithHexString:@"#c4c4c4"].CGColor;
+    self.layer.borderWidth = 1;
+    return self;
+}
+
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    if (selected) {
+        self.layer.borderColor = [UIColor jk_colorWithHexString:@"#ff1659"].CGColor;
+    } else {
+        self.layer.borderColor = [UIColor jk_colorWithHexString:@"#c4c4c4"].CGColor;
+    }
 }
 
 
