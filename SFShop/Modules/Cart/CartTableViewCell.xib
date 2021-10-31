@@ -115,6 +115,12 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="additonBtn" destination="xDM-D5-S5g" id="dnF-2g-GqA"/>
+                <outlet property="countLabel" destination="jWp-Ge-qwV" id="GLs-vB-4gl"/>
+                <outlet property="imgView" destination="5Uk-UU-CJV" id="LC3-sa-uCQ"/>
+                <outlet property="nameLabel" destination="2OE-4E-Ucf" id="geg-Hm-xwy"/>
+                <outlet property="priceLabel" destination="8nW-Ol-sVX" id="EDJ-W8-Jlb"/>
+                <outlet property="selBtn" destination="MvD-Qt-BbY" id="k3Q-56-MNs"/>
+                <outlet property="skuLabel" destination="p92-dv-aGh" id="GKK-tg-VV9"/>
                 <outlet property="subtractBtn" destination="kJB-Fa-M5g" id="Iqy-b7-PfR"/>
             </connections>
             <point key="canvasLocation" x="75" y="72"/>

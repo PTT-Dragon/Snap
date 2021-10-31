@@ -126,6 +126,9 @@
 		1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2C9272AFC9600755832 /* FAQDetailViewController.xib */; };
 		1BC7A2CF272B081E00755832 /* UseCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CD272B081E00755832 /* UseCouponViewController.m */; };
 		1BC7A2D0272B081E00755832 /* UseCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */; };
+		1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */; };
+		1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */; };
+		1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBE272EC1E00016C2F3 /* CartModel.m */; };
 		1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */; };
 		1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9126FCC9CE0018109B /* SFNetworkUsersModule.m */; };
 		1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEB9426FD6A1A0018109B /* SignUpViewController.m */; };
@@ -436,6 +439,11 @@
 		1BC7A2CC272B081E00755832 /* UseCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponViewController.h; sourceTree = "<group>"; };
 		1BC7A2CD272B081E00755832 /* UseCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponViewController.m; sourceTree = "<group>"; };
 		1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponViewController.xib; sourceTree = "<group>"; };
+		1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderReasonCell.h; sourceTree = "<group>"; };
+		1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderReasonCell.m; sourceTree = "<group>"; };
+		1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderReasonCell.xib; sourceTree = "<group>"; };
+		1BDB5DBD272EC1E00016C2F3 /* CartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
+		1BDB5DBE272EC1E00016C2F3 /* CartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
 		1BDBEB8B26FCB24C0018109B /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -791,6 +799,9 @@
 				1B2AE43E272E8EDD00FB23D3 /* ChooseReasonViewController.h */,
 				1B2AE43F272E8EDD00FB23D3 /* ChooseReasonViewController.m */,
 				1B2AE440272E8EDD00FB23D3 /* ChooseReasonViewController.xib */,
+				1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */,
+				1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */,
+				1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -1184,6 +1195,8 @@
 				1B2AE420272D274300FB23D3 /* CartChooseAddressCell.h */,
 				1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */,
 				1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */,
+				1BDB5DBD272EC1E00016C2F3 /* CartModel.h */,
+				1BDB5DBE272EC1E00016C2F3 /* CartModel.m */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -1594,6 +1607,7 @@
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1B74DB112724463500B30ECC /* OrderListStateCell.xib in Resources */,
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
+				1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */,
 				1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
 				1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */,
@@ -1705,6 +1719,7 @@
 				1B74DAF92722A85600B30ECC /* InviteCell.m in Sources */,
 				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
 				AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */,
+				1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */,
 				1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */,
 				1B74DB152724466100B30ECC /* OrderListBottomCell.m in Sources */,
 				1BDBEBB926FF62BF0018109B /* LoginViaOTP.m in Sources */,
@@ -1749,6 +1764,7 @@
 				1BC7A2CA272AFC9600755832 /* FAQDetailViewController.m in Sources */,
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
+				1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */,
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
 				1B63D459272D212A0062762B /* CartChildViewController.m in Sources */,

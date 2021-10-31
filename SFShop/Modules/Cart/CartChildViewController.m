@@ -8,10 +8,12 @@
 #import "CartChildViewController.h"
 #import "CartTableViewCell.h"
 #import "CartTitleCell.h"
+#import "CartModel.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) CartModel *cartModel;
 
 @end
 
@@ -34,23 +36,28 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    CartListModel *model = self.cartModel.validCarts[section];
+    return model.shoppingCarts.count+1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return self.cartModel.validCarts.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 117;
+    return indexPath.row == 0 ? 70: 117;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
         CartTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTitleCell"];
+        cell.model = self.cartModel.validCarts[indexPath.section];
         return cell;
     }
+    CartListModel *listModel = self.cartModel.validCarts[indexPath.section];
+    CartItemModel *model = listModel.shoppingCarts[indexPath.row-1];
     CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTableViewCell"];
+    cell.model = model;
     return cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -104,14 +111,14 @@
 
 - (void)loadDatas
 {
-    [SFNetworkManager get:SFNet.cart.cart parameters:@{@"reduceFlag":_reduceFlag ? @"Y": @"N",@"stdAddrId":_addModel.deliveryAddressId} success:^(id  _Nullable response) {
-        
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.cart.cart parameters:@{@"reduceFlag":_reduceFlag ? @"true": @"false",@"stdAddrId":_addModel.deliveryAddressId} success:^(id  _Nullable response) {
+        weakself.cartModel = [[CartModel alloc] initWithDictionary:response error:nil];
+        [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         
     }];
 }
-
-
 - (UITableView *)tableView
 {
     if (!_tableView) {

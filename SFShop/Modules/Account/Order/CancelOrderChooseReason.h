@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CancelOrderChooseReason : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
 
 @end
 

@@ -43,8 +43,8 @@
                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzc-Gv-CUo">
-                                <rect key="frame" x="20" y="49" width="27" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coupon applied" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzc-Gv-CUo">
+                                <rect key="frame" x="20" y="49" width="76" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -81,6 +81,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="iconImgView" destination="gnT-YZ-mU4" id="I8j-aG-tOm"/>
+                <outlet property="offLabel" destination="x5R-y6-jzR" id="Niq-4R-4n9"/>
+                <outlet property="selBtn" destination="wRO-ee-qdu" id="KMg-pD-6tM"/>
+                <outlet property="storeNameLabel" destination="KN5-62-ZdT" id="iih-6w-iqe"/>
+            </connections>
             <point key="canvasLocation" x="75" y="72"/>
         </tableViewCell>
     </objects>

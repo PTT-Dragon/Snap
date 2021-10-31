@@ -7,6 +7,14 @@
 
 #import "CartTitleCell.h"
 
+@interface CartTitleCell ()
+@property (weak, nonatomic) IBOutlet UIButton *selBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImgView;
+@property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *offLabel;
+
+@end
+
 @implementation CartTitleCell
 
 - (void)awakeFromNib {
@@ -14,10 +22,11 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setModel:(CartListModel *)model
+{
+    _model = model;
+    [_iconImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.logoUrl)]];
+    _storeNameLabel.text = model.storeName;
+    _offLabel.text = [NSString stringWithFormat:@" RP %.0f OFF ",model.discountPrice];
 }
-
 @end

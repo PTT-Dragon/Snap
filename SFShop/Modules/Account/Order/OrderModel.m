@@ -31,3 +31,13 @@
 
 
 @end
+@implementation CancelOrderReasonModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+
+
+
+@end

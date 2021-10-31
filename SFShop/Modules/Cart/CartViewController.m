@@ -121,7 +121,7 @@
     if (!gridViewController) {
         gridViewController = [[CartChildViewController alloc] init];
         gridViewController.addModel = _selAddModel;
-        gridViewController.reduceFlag = (pageIndex == 0) ? @"Y": @"N";
+        gridViewController.reduceFlag = (pageIndex == 0) ? YES: NO;
     }
     return gridViewController;
 }

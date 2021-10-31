@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnr-pD-Pww">
-                        <rect key="frame" x="16" y="0.0" width="343" height="60"/>
+                        <rect key="frame" x="10" y="0.0" width="355" height="60"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancellation Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgv-61-tmv">
                                 <rect key="frame" x="20" y="21.5" width="135" height="17"/>
@@ -28,13 +28,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXU-Ki-dhk">
-                                <rect key="frame" x="258.5" y="21.5" width="50.5" height="17"/>
+                                <rect key="frame" x="270.5" y="21.5" width="50.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right-scroll" translatesAutoresizingMaskIntoConstraints="NO" id="pmP-eZ-hT6">
-                                <rect key="frame" x="317" y="22" width="16" height="16"/>
+                                <rect key="frame" x="329" y="22" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="Lxv-ev-7QI"/>
                                     <constraint firstAttribute="width" constant="16" id="t08-Rv-T3a"/>
@@ -55,12 +55,15 @@
                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="deviceRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="rnr-pD-Pww" secondAttribute="bottom" id="5Q8-k8-kze"/>
-                    <constraint firstItem="rnr-pD-Pww" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JFa-08-xjU"/>
+                    <constraint firstItem="rnr-pD-Pww" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="JFa-08-xjU"/>
                     <constraint firstItem="rnr-pD-Pww" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="M97-7e-TvV"/>
-                    <constraint firstAttribute="trailing" secondItem="rnr-pD-Pww" secondAttribute="trailing" constant="16" id="emJ-vg-fCa"/>
+                    <constraint firstAttribute="trailing" secondItem="rnr-pD-Pww" secondAttribute="trailing" constant="10" id="emJ-vg-fCa"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="reasonLabel" destination="xgv-61-tmv" id="SVK-TG-IHm"/>
+            </connections>
             <point key="canvasLocation" x="75" y="72"/>
         </tableViewCell>
     </objects>

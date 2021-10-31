@@ -47,7 +47,7 @@
 
 @implementation SFNetworkUsersCartModule
 - (NSString *)cart {
-    return K_address_domain(@"");
+    return K_cart_domain(@"");
 }
 
 
