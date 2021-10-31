@@ -28,7 +28,7 @@
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
-
+@property (nonatomic, readwrite, assign) BOOL showType;//显示类型 0:colletion 1:list
 @end
 
 @implementation CategoryRankViewController
@@ -165,23 +165,29 @@
     CategoryRankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankCell" forIndexPath:indexPath];
     CategoryRankPageInfoListModel *cellModel = self.dataArray[indexPath.row];
     cell.model = cellModel;
+    cell.showType = self.showType;
+
     return cell;
 }
 
 #pragma mark - CollectionWaterfallLayoutProtocol
 - (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CategoryRankPageInfoListModel *cellModel = self.dataArray[indexPath.row];
-    if (!cellModel.height) {
-        CGFloat titleHeight = [cellModel.offerName calHeightWithFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - KScale(12) * 3 - KScale(16) * 2, 100)];
-        CGFloat imageHeigjt = KScale(166);
-        CGFloat tagHeight = KScale(14);
-        CGFloat priceHeight = KScale(14);
-        CGFloat discountHeight = KScale(14);
-        CGFloat levelHeight = KScale(12);
-        //        + KScale(16) + tagHeight
-        cellModel.height = imageHeigjt  + KScale(12) + titleHeight + KScale(16) + priceHeight + KScale(4) + discountHeight + KScale(12) + levelHeight + KScale(25);
+    if (!self.showType) {
+        CategoryRankPageInfoListModel *cellModel = self.dataArray[indexPath.row];
+        if (!cellModel.height) {
+            CGFloat titleHeight = [cellModel.offerName calHeightWithFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - KScale(12) * 3 - KScale(16) * 2, 100)];
+            CGFloat imageHeight = KScale(166);
+            CGFloat tagHeight = KScale(14);
+            CGFloat priceHeight = KScale(14);
+            CGFloat discountHeight = KScale(14);
+            CGFloat levelHeight = KScale(12);
+            //        + KScale(16) + tagHeight
+            cellModel.height = imageHeight  + KScale(12) + titleHeight + KScale(16) + priceHeight + KScale(4) + discountHeight + KScale(12) + levelHeight + KScale(25);
+        }
+        return cellModel.height;
+    } else {
+        return 160;
     }
-    return cellModel.height;
 }
 
 #pragma mark - getter
@@ -189,13 +195,25 @@
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
         backItem.icon = @"nav_back";
-        backItem.itemActionBlock = ^(SFSearchModel *model) {
+        backItem.itemActionBlock = ^(SFSearchModel *model,BOOL isSelected) {
             [self.navigationController popViewControllerAnimated:YES];
         };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"nav_addition";
-        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model) {
-          
+        rightItem.selectedIcon = @"nav_addtion_list";
+        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
+            self.showType = isSelected;
+            if (self.showType) {
+                self.waterfallLayout.columns = 1;
+                self.waterfallLayout.columnSpacing = 0;
+                self.waterfallLayout.insets = UIEdgeInsetsZero;
+            } else {
+                self.waterfallLayout.columns = 2;
+                self.waterfallLayout.columnSpacing = KScale(12);
+                self.waterfallLayout.insets = UIEdgeInsetsMake(KScale(12), KScale(16), KScale(12), KScale(16));
+
+            }
+            [self.collectionView reloadData];
         };
         __weak __typeof(self)weakSelf = self;
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {

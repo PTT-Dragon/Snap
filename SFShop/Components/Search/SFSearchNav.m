@@ -74,10 +74,11 @@
             [self.searchView removeFromSuperview];
             [self endEditing:YES];
         } else {
-            !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(nil);
+            !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(nil,NO);
         }
     } else if (btn == self.rightBtn) {
-        !self.rItem.itemActionBlock ?: self.rItem.itemActionBlock(nil);
+        btn.selected = !btn.selected;
+        !self.rItem.itemActionBlock ?: self.rItem.itemActionBlock(nil,btn.selected);
     }
 }
 
@@ -186,6 +187,8 @@
         [_rightBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_rightBtn setTitle:_rItem.name forState:UIControlStateNormal];
         [_rightBtn setImage:[UIImage imageNamed:_rItem.icon] forState:UIControlStateNormal];
+        [_rightBtn setImage:[UIImage imageNamed:_rItem.selectedIcon] forState:UIControlStateSelected];
+
     }
     return _rightBtn;
 }

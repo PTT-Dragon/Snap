@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoryRankCell : UICollectionViewCell
 
+/// 0: colletion 样式 1:tableview 样式 (⚠️,这个需要在数据源之前赋值)
+@property (nonatomic, readwrite, assign) NSInteger showType;
+
+/// 数据源
 @property (nonatomic, readwrite, strong) CategoryRankPageInfoListModel *model;
 
 @end

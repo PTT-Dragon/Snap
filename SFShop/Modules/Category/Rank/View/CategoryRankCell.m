@@ -11,7 +11,7 @@
 @interface CategoryRankCell ()
 
 @property (nonatomic, readwrite, strong) UIImageView *iconImageView;
-@property (nonatomic, readwrite, strong) UIImageView *iconTagImageView;
+@property (nonatomic, readwrite, strong) UILabel *promoTypeLabel;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
 @property (nonatomic, readwrite, strong) UILabel *priceLabel;
 @property (nonatomic, readwrite, strong) UILabel *discountLabel;
@@ -25,7 +25,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self loadSubviews];
-        [self layout];
+        [self layoutCollection];
     }
     return self;
 }
@@ -34,7 +34,7 @@
     self.contentView.layer.borderWidth = 0.5;
     self.contentView.layer.borderColor = [UIColor jk_colorWithHexString:@"#CCCCCC"].CGColor;
     [self.contentView addSubview:self.iconImageView];
-    [self.contentView addSubview:self.iconTagImageView];
+    [self.contentView addSubview:self.promoTypeLabel];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.priceLabel];
     [self.contentView addSubview:self.discountLabel];
@@ -44,13 +44,74 @@
     [self.contentView addSubview:self.gradeNumberLabel];
 }
 
-- (void)layout {
-    [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+- (void)layoutTableView {
+    [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.centerY.mas_equalTo(0);
+        make.width.mas_equalTo(KScale(160));
+        make.height.mas_equalTo(KScale(160));
+    }];
+    
+    [self.promoTypeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.iconImageView.mas_right).offset(KScale(16));
+        make.top.mas_equalTo(KScale(13));
+        make.height.mas_equalTo(KScale(14));//14,先注释
+        make.width.mas_equalTo(78);
+    }];
+    
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.promoTypeLabel);
+        make.top.equalTo(self.promoTypeLabel.mas_bottom).offset(KScale(12));
+        make.right.mas_equalTo(KScale(-12));
+    }];
+    
+    [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.promoTypeLabel);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(KScale(16));
+        make.height.mas_equalTo(KScale(14));
+        make.right.mas_equalTo(KScale(-12));
+    }];
+    
+    [self.discountLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.promoTypeLabel);
+        make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
+        make.height.mas_equalTo(KScale(14));
+        make.width.mas_equalTo(KScale(30));
+    }];
+    
+    [self.originPriceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.discountLabel.mas_right).offset(KScale(8));
+        make.right.mas_equalTo(KScale(-12));
+        make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
+        make.height.mas_equalTo(KScale(12));
+    }];
+    
+    [self.gradeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.promoTypeLabel);
+        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.height.mas_equalTo(KScale(12));
+        make.width.mas_equalTo(KScale(12));
+    }];
+    
+    [self.gradeLevelLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.gradeImageView.mas_right).offset(KScale(2));
+        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.height.mas_equalTo(KScale(12));
+    }];
+    
+    [self.gradeNumberLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.gradeLevelLabel.mas_right).offset(KScale(8));
+        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.height.mas_equalTo(KScale(12));
+    }];
+}
+
+- (void)layoutCollection {
+    [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);
         make.height.mas_equalTo(KScale(166));
     }];
     
-    [self.iconTagImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.promoTypeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
 //        make.top.equalTo(self.iconImageView.mas_bottom).offset(KScale(16));
 //        make.height.mas_equalTo(KScale(14));//14,先注释
@@ -59,47 +120,47 @@
         make.right.mas_equalTo(KScale(-12));
     }];
     
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
-        make.top.equalTo(self.iconTagImageView.mas_bottom).offset(KScale(12));
+        make.top.equalTo(self.promoTypeLabel.mas_bottom).offset(KScale(12));
         make.right.mas_equalTo(KScale(-12));
     }];
     
-    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
         make.top.equalTo(self.titleLabel.mas_bottom).offset(KScale(16));
         make.height.mas_equalTo(KScale(14));
         make.right.mas_equalTo(KScale(-12));
     }];
     
-    [self.discountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.discountLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
         make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
         make.height.mas_equalTo(KScale(14));
         make.width.mas_equalTo(KScale(30));
     }];
     
-    [self.originPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.originPriceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.discountLabel.mas_right).offset(KScale(8));
         make.right.mas_equalTo(KScale(-12));
         make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
         make.height.mas_equalTo(KScale(12));
     }];
     
-    [self.gradeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.gradeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
         make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
         make.width.mas_equalTo(KScale(12));
     }];
     
-    [self.gradeLevelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.gradeLevelLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.gradeImageView.mas_right).offset(KScale(2));
         make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
     }];
     
-    [self.gradeNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.gradeNumberLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.gradeLevelLabel.mas_right).offset(KScale(8));
         make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
@@ -108,6 +169,19 @@
 }
 
 #pragma mark - Getter
+- (void)setShowType:(NSInteger)showType {
+    _showType = showType;
+    switch (_showType) {
+        case 1:
+            [self layoutTableView];
+            break;
+        case 0:
+        default:
+            [self layoutCollection];
+            break;
+    }
+}
+
 - (void)setModel:(CategoryRankPageInfoListModel *)model {
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
@@ -201,12 +275,16 @@
     return _gradeNumberLabel;
 }
 
-- (UIImageView *)iconTagImageView  {
-    if (_iconTagImageView == nil) {
-        _iconTagImageView = [[UIImageView alloc] init];
-        _iconTagImageView.backgroundColor = [UIColor greenColor];
+- (UILabel *)promoTypeLabel {
+    if (_promoTypeLabel == nil) {
+        _promoTypeLabel = [[UILabel alloc] init];
+        _promoTypeLabel.text = @"SPECIAL PROMO";
+        _promoTypeLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
+        _promoTypeLabel.font = [UIFont systemFontOfSize:8];
+        _promoTypeLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
+        _promoTypeLabel.textAlignment = NSTextAlignmentCenter;
     }
-    return _iconTagImageView;
+    return _promoTypeLabel;
 }
 
 - (UIImageView *)gradeImageView  {
