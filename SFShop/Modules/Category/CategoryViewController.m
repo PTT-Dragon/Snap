@@ -45,7 +45,6 @@
             CategoryModel *model = [CategoryModel yy_modelWithDictionary:dict];
             [self.sideTableView.dataArray addObject:model];
         }
-        NSLog(@"");
         [self.sideTableView reloadData];
         [self.sideTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         CategoryModel *model = self.sideTableView.dataArray.firstObject;
