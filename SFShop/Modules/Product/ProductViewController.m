@@ -12,6 +12,7 @@
 #import <WebKit/WebKit.h>
 #import "MakeH5Happy.h"
 #import "ProductSpecAttrsView.h"
+#import "ProductCheckoutViewController.h"
 
 @interface ProductViewController ()
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -158,6 +159,8 @@
         [self showAttrsView];
     } else {
         // TODO: 跳转checkout页
+        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
