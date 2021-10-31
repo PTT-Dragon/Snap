@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, assign) CGFloat height;
 @property (nonatomic, readwrite, strong) NSString *cellId;
 @property (nonatomic, readwrite, assign) NSInteger type;
+@property (nonatomic, readwrite, strong) id obj;//任意值,两边约定好
 
 @end
 

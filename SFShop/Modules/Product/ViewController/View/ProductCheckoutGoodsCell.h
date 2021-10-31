@@ -6,6 +6,7 @@
 //
 
 #import "ProductCheckoutBaseCell.h"
+#import "SFCellCacheModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

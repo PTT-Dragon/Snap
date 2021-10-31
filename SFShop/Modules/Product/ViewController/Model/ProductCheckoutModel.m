@@ -7,6 +7,10 @@
 
 #import "ProductCheckoutModel.h"
 
+@implementation ProductCheckoutSubItemModel
+
+@end
+
 @implementation ProductCheckoutModel
 
 @end

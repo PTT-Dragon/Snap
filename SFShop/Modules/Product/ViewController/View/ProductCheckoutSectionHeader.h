@@ -1,5 +1,5 @@
 //
-//  ProductCheckoutBaseCell.h
+//  ProductCheckoutSectionHeader.h
 //  SFShop
 //
 //  Created by MasterFly on 2021/10/31.
@@ -11,9 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProductCheckoutBaseCell : UITableViewCell
+@interface ProductCheckoutSectionHeader : UITableViewHeaderFooterView
 
-@property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
 @property (nonatomic, readwrite, strong) SFCellCacheModel *cellModel;
 
 @end

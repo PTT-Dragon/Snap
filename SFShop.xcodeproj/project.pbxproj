@@ -221,6 +221,7 @@
 		AE8F32D3272E96B2008E3DD8 /* ProductCheckoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8F32D2272E96B2008E3DD8 /* ProductCheckoutModel.m */; };
 		AE8F32D6272EA117008E3DD8 /* ProductCheckoutBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8F32D5272EA117008E3DD8 /* ProductCheckoutBaseCell.m */; };
 		AE8F32DA272EA42F008E3DD8 /* SFCellCacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8F32D9272EA42F008E3DD8 /* SFCellCacheModel.m */; };
+		AE8F32DD272EF0B2008E3DD8 /* ProductCheckoutSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8F32DC272EF0B2008E3DD8 /* ProductCheckoutSectionHeader.m */; };
 		AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9327F32715DB25000F543A /* CategoryRankCell.m */; };
 		AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329642723FA3500E7827A /* UIButton+EnlargeTouchArea.m */; };
 		AEA32968272400B000E7827A /* CategoryRankFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA32967272400B000E7827A /* CategoryRankFilterViewController.m */; };
@@ -630,6 +631,8 @@
 		AE8F32D5272EA117008E3DD8 /* ProductCheckoutBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCheckoutBaseCell.m; sourceTree = "<group>"; };
 		AE8F32D8272EA42F008E3DD8 /* SFCellCacheModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFCellCacheModel.h; sourceTree = "<group>"; };
 		AE8F32D9272EA42F008E3DD8 /* SFCellCacheModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFCellCacheModel.m; sourceTree = "<group>"; };
+		AE8F32DB272EF0B2008E3DD8 /* ProductCheckoutSectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCheckoutSectionHeader.h; sourceTree = "<group>"; };
+		AE8F32DC272EF0B2008E3DD8 /* ProductCheckoutSectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCheckoutSectionHeader.m; sourceTree = "<group>"; };
 		AE9327F22715DB25000F543A /* CategoryRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankCell.h; sourceTree = "<group>"; };
 		AE9327F32715DB25000F543A /* CategoryRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankCell.m; sourceTree = "<group>"; };
 		AEA329632723FA3500E7827A /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -1465,6 +1468,8 @@
 		AE8F32C0272E9170008E3DD8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AE8F32DB272EF0B2008E3DD8 /* ProductCheckoutSectionHeader.h */,
+				AE8F32DC272EF0B2008E3DD8 /* ProductCheckoutSectionHeader.m */,
 				AE8F32D4272EA117008E3DD8 /* ProductCheckoutBaseCell.h */,
 				AE8F32D5272EA117008E3DD8 /* ProductCheckoutBaseCell.m */,
 				AE8F32C2272E95BD008E3DD8 /* ProductCheckoutAddressCell.h */,
@@ -1830,6 +1835,7 @@
 				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
 				1B787B4C27293AE900E6A983 /* SimilarProductCell.m in Sources */,
+				AE8F32DD272EF0B2008E3DD8 /* ProductCheckoutSectionHeader.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */,
 				AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */,
