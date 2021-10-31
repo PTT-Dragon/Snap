@@ -6,10 +6,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductSpecAttrsView : UIView
+
+typedef void(^Block)(void);
+
+@property(nonatomic, strong) ProductDetailModel *model;
+@property (nonatomic, copy) Block dismissBlock;
 
 @end
 

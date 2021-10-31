@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, copy) NSString *viewlog;
 
+@property (nonatomic, readonly, copy) NSString *stock;
+
 - (NSString *)getDetailOf: (NSInteger)offerId;
 
 @end
