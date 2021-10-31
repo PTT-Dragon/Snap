@@ -12,7 +12,7 @@
 #import "OrderModel.h"
 #import "OrderDetailViewController.h"
 
-@interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource,OrderListBottomCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 
@@ -46,6 +46,7 @@
     }else if (indexPath.row == model.orderItems.count+1){
         OrderListBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListBottomCell"];
         [cell setContent:model];
+        cell.delegate = self;
         return cell;
     }
     OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
@@ -82,6 +83,12 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 10)];
     view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     return view;
+}
+
+#pragma mark - cell.delegate
+- (void)refreshDatas
+{
+    [self loadDatas];
 }
 - (void)loadDatas
 {

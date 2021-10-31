@@ -70,7 +70,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFNetworkUsersOrderModule : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *list;
-
+@property (nonatomic, readwrite, strong) NSString *confirmOrder;
+@property (nonatomic, readwrite, strong) NSString *cancelOrder;
+@property (nonatomic, readwrite, strong) NSString *cancelOrderReason;
+- (NSString *)getReasonlOf: (NSString *)eventId;
 
 @end
 

@@ -30,6 +30,7 @@
 #define K_favorite_domain(url) [NSString stringWithFormat:@"%@/h5/usercollection/%@",Host,url]
 #define K_invite_domain(url) [NSString stringWithFormat:@"%@/h5/newInv/%@",Host,url]
 #define K_order_domain(url) [NSString stringWithFormat:@"%@/h5/orders/%@",Host,url]
+#define K_orderReason_domain(url) [NSString stringWithFormat:@"%@/h5/orderreason/%@",Host,url]
 #define K_recent_domain(url) [NSString stringWithFormat:@"%@/h5/viewlog/%@",Host,url]
 #define K_evaluate_domain(url) [NSString stringWithFormat:@"%@/h5/evaluate/%@",Host,url]
 #define K_refund_domain(url) [NSString stringWithFormat:@"%@/h5/orderapply/%@",Host,url]

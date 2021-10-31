@@ -49,11 +49,18 @@
 }
 - (void)updateDatas
 {
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    FMDBManager *dbManager = [FMDBManager sharedInstance];
+    
     @weakify(self)
-    [RACObserve(model, accessToken) subscribeNext:^(id  _Nullable x) {
+    [RACObserve(dbManager, currentUser) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
-        [self loadData];
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        if (!model || [model.accessToken isEqualToString:@""]) {
+            //登出状态
+            [self.tableView reloadData];
+        }else{
+            [self loadData];
+        }
     }];
 }
 - (void)loadData
@@ -97,6 +104,7 @@
         cell.couponCount = self.couponCount;
         cell.favoriteCount = self.favoriteCount;
         cell.recentCount = self.recentCount;
+        [cell updateData];
         return cell;
     }else if (indexPath.row == 1){
         accountOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountOrderCell"];

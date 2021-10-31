@@ -51,6 +51,9 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="btn1Action:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="x4r-CP-frL"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRi-m8-JJ8">
                         <rect key="frame" x="136" y="69" width="68" height="24"/>
@@ -62,6 +65,9 @@
                         <state key="normal" title="Button">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                         </state>
+                        <connections>
+                            <action selector="btn2Action:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nfS-6w-cck"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

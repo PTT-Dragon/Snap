@@ -17,6 +17,12 @@
 		1B2AE429272D36F000FB23D3 /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE427272D36F000FB23D3 /* CartTableViewCell.xib */; };
 		1B2AE42F272D8F3700FB23D3 /* CartTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE42D272D8F3700FB23D3 /* CartTitleCell.m */; };
 		1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE42E272D8F3700FB23D3 /* CartTitleCell.xib */; };
+		1B2AE434272E3FD200FB23D3 /* CancelOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE432272E3FD200FB23D3 /* CancelOrderViewController.m */; };
+		1B2AE435272E3FD200FB23D3 /* CancelOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE433272E3FD200FB23D3 /* CancelOrderViewController.xib */; };
+		1B2AE43C272E8C7700FB23D3 /* CancelOrderChooseReason.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE43A272E8C7700FB23D3 /* CancelOrderChooseReason.m */; };
+		1B2AE43D272E8C7700FB23D3 /* CancelOrderChooseReason.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE43B272E8C7700FB23D3 /* CancelOrderChooseReason.xib */; };
+		1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE43F272E8EDD00FB23D3 /* ChooseReasonViewController.m */; };
+		1B2AE442272E8EDD00FB23D3 /* ChooseReasonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE440272E8EDD00FB23D3 /* ChooseReasonViewController.xib */; };
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
 		1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122426FC5AC500235294 /* accountInfoCell.xib */; };
 		1B3C122826FC706000235294 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122726FC706000235294 /* LoginViewController.xib */; };
@@ -255,6 +261,15 @@
 		1B2AE42C272D8F3700FB23D3 /* CartTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartTitleCell.h; sourceTree = "<group>"; };
 		1B2AE42D272D8F3700FB23D3 /* CartTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartTitleCell.m; sourceTree = "<group>"; };
 		1B2AE42E272D8F3700FB23D3 /* CartTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTitleCell.xib; sourceTree = "<group>"; };
+		1B2AE431272E3FD200FB23D3 /* CancelOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderViewController.h; sourceTree = "<group>"; };
+		1B2AE432272E3FD200FB23D3 /* CancelOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderViewController.m; sourceTree = "<group>"; };
+		1B2AE433272E3FD200FB23D3 /* CancelOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderViewController.xib; sourceTree = "<group>"; };
+		1B2AE439272E8C7700FB23D3 /* CancelOrderChooseReason.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderChooseReason.h; sourceTree = "<group>"; };
+		1B2AE43A272E8C7700FB23D3 /* CancelOrderChooseReason.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderChooseReason.m; sourceTree = "<group>"; };
+		1B2AE43B272E8C7700FB23D3 /* CancelOrderChooseReason.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderChooseReason.xib; sourceTree = "<group>"; };
+		1B2AE43E272E8EDD00FB23D3 /* ChooseReasonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseReasonViewController.h; sourceTree = "<group>"; };
+		1B2AE43F272E8EDD00FB23D3 /* ChooseReasonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseReasonViewController.m; sourceTree = "<group>"; };
+		1B2AE440272E8EDD00FB23D3 /* ChooseReasonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseReasonViewController.xib; sourceTree = "<group>"; };
 		1B3C122226FC5AC500235294 /* accountInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountInfoCell.h; sourceTree = "<group>"; };
 		1B3C122326FC5AC500235294 /* accountInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountInfoCell.m; sourceTree = "<group>"; };
 		1B3C122426FC5AC500235294 /* accountInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
@@ -767,6 +782,15 @@
 				1B74DB172724467100B30ECC /* OrderListItemCell.h */,
 				1B74DB182724467100B30ECC /* OrderListItemCell.m */,
 				1B74DB192724467100B30ECC /* OrderListItemCell.xib */,
+				1B2AE431272E3FD200FB23D3 /* CancelOrderViewController.h */,
+				1B2AE432272E3FD200FB23D3 /* CancelOrderViewController.m */,
+				1B2AE433272E3FD200FB23D3 /* CancelOrderViewController.xib */,
+				1B2AE439272E8C7700FB23D3 /* CancelOrderChooseReason.h */,
+				1B2AE43A272E8C7700FB23D3 /* CancelOrderChooseReason.m */,
+				1B2AE43B272E8C7700FB23D3 /* CancelOrderChooseReason.xib */,
+				1B2AE43E272E8EDD00FB23D3 /* ChooseReasonViewController.h */,
+				1B2AE43F272E8EDD00FB23D3 /* ChooseReasonViewController.m */,
+				1B2AE440272E8EDD00FB23D3 /* ChooseReasonViewController.xib */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -1535,11 +1559,13 @@
 				1B49D13A271D4557002461ED /* changeUserInfoVC.xib in Resources */,
 				1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */,
 				1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */,
+				1B2AE43D272E8C7700FB23D3 /* CancelOrderChooseReason.xib in Resources */,
 				1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */,
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */,
 				1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */,
 				1B74DB2627253A3500B30ECC /* DeliveryInformationCell.xib in Resources */,
+				1B2AE435272E3FD200FB23D3 /* CancelOrderViewController.xib in Resources */,
 				4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */,
 				1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */,
 				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
@@ -1550,6 +1576,7 @@
 				1B74DB1B2724467100B30ECC /* OrderListItemCell.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
 				1B63D463272D238C0062762B /* CartChooseAddressViewController.xib in Resources */,
+				1B2AE442272E8EDD00FB23D3 /* ChooseReasonViewController.xib in Resources */,
 				1B478317272A957000F2A945 /* RefundProcessCell.xib in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
@@ -1671,6 +1698,7 @@
 				1B74DB492728EF7300B30ECC /* SimilarViewController.m in Sources */,
 				1B74DB332725ABB700B30ECC /* UIButton+SGImagePosition.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
+				1B2AE43C272E8C7700FB23D3 /* CancelOrderChooseReason.m in Sources */,
 				1B74DB21272539BC00B30ECC /* OrderDetailViewController.m in Sources */,
 				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,
 				AE81BE592702001700AB4225 /* MBProgressHUD+Prompt.m in Sources */,
@@ -1753,6 +1781,7 @@
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				1BC7A2C5272AF50500755832 /* FAQListModel.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
+				1B2AE434272E3FD200FB23D3 /* CancelOrderViewController.m in Sources */,
 				AEA329742724571F00E7827A /* CategoryRankFilterHeader.m in Sources */,
 				1B478325272AA04600F2A945 /* ChangePasswordViewController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
@@ -1774,6 +1803,7 @@
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
 				AEA3296B27240E6800E7827A /* YHRegularLayout.m in Sources */,
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
+				1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,
 				AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */,
 				1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */,

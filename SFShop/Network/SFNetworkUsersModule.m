@@ -137,12 +137,26 @@
     return K_invite_domain(@"img");
 }
 
-
 @end
 
 @implementation SFNetworkUsersOrderModule
 - (NSString *)list {
     return K_order_domain(@"");
+}
+
+- (NSString *)confirmOrder {
+    return K_order_domain(@"confirmreceipt");
+}
+- (NSString *)cancelOrder {
+    return K_order_domain(@"cancel");
+}
+- (NSString *)cancelOrderReason {
+    return K_order_domain(@"");
+}
+- (NSString *)getReasonlOf: (NSString *)eventId
+{
+    NSString *url = [NSString stringWithFormat:@"/%@", eventId];
+    return K_orderReason_domain(url);
 }
 
 
