@@ -7,6 +7,7 @@
 
 #import "OrderListBottomCell.h"
 #import "CancelOrderViewController.h"
+#import "PublicWebViewController.h"
 
 @interface OrderListBottomCell ()
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
@@ -53,6 +54,15 @@
         CancelOrderViewController *vc = [[CancelOrderViewController alloc] init];
         vc.model = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([str isEqualToString:@"RECEIPT"]){
+        [SFNetworkManager get:[SFNet.h5 getReceiptOf:_model.orderId] parameters:@{} success:^(id  _Nullable response) {
+            
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
+//        PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+//        vc.url = [SFNet.h5 getReceiptOf:_model.orderId];
+//        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }
 }
 //数组转为json字符串

@@ -185,6 +185,10 @@
 - (NSString *)faqQuestion {
     return K_h5_domain(@"/faq/question/page");
 }
-
+- (NSString *)getReceiptOf: (NSString *)orderId
+{
+    NSString *url = [NSString stringWithFormat:@"/receipt/%@", orderId];
+    return K_h5_domain(url);
+}
 
 @end

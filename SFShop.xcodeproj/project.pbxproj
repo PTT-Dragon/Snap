@@ -11,6 +11,7 @@
 		1B12A3DD27015EB800DD7BCD /* CouponCenterChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DC27015EB800DD7BCD /* CouponCenterChildViewController.m */; };
 		1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DF27015F7000DD7BCD /* CouponCenterCell.m */; };
 		1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B12A3E027015F7000DD7BCD /* CouponCenterCell.xib */; };
+		1B27A4C7272F8C7F0042AD30 /* PublicWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B27A4C6272F8C7F0042AD30 /* PublicWebViewController.m */; };
 		1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */; };
 		1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */; };
 		1B2AE428272D36F000FB23D3 /* CartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE426272D36F000FB23D3 /* CartTableViewCell.m */; };
@@ -265,6 +266,8 @@
 		1B12A3DE27015F7000DD7BCD /* CouponCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponCenterCell.h; sourceTree = "<group>"; };
 		1B12A3DF27015F7000DD7BCD /* CouponCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponCenterCell.m; sourceTree = "<group>"; };
 		1B12A3E027015F7000DD7BCD /* CouponCenterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponCenterCell.xib; sourceTree = "<group>"; };
+		1B27A4C5272F8C7F0042AD30 /* PublicWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicWebViewController.h; sourceTree = "<group>"; };
+		1B27A4C6272F8C7F0042AD30 /* PublicWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublicWebViewController.m; sourceTree = "<group>"; };
 		1B2AE420272D274300FB23D3 /* CartChooseAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChooseAddressCell.h; sourceTree = "<group>"; };
 		1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChooseAddressCell.m; sourceTree = "<group>"; };
 		1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartChooseAddressCell.xib; sourceTree = "<group>"; };
@@ -1138,6 +1141,8 @@
 				1BDBEBA526FDAF980018109B /* HWTFCodeBView.m */,
 				1B74DAF0272272D000B30ECC /* StarView.h */,
 				1B74DAF1272272D000B30ECC /* StarView.m */,
+				1B27A4C5272F8C7F0042AD30 /* PublicWebViewController.h */,
+				1B27A4C6272F8C7F0042AD30 /* PublicWebViewController.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1853,6 +1858,7 @@
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
 				1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */,
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
+				1B27A4C7272F8C7F0042AD30 /* PublicWebViewController.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
 				1B63D459272D212A0062762B /* CartChildViewController.m in Sources */,
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
