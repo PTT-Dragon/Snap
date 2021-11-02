@@ -15,6 +15,7 @@
 #import "ReviewViewController.h"
 #import "InviteViewController.h"
 #import "FAQViewController.h"
+#import "DistributeCenterViewController.h"
 
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -36,7 +37,7 @@
     _favoriteCount = 0;
     _recentCount = 0;
     _dataSource = [NSMutableArray array];
-    [_dataSource addObjectsFromArray:@[@{@"image":@"00350_Distributor_Center",@"title":@"Distributor  Center"},@{@"image":@"00350_Distributor_Center",@"title":@"Refers"},@{@"image":@"00350_Distributor_Center",@"title":@"Forum"},@{@"image":@"00350_Distributor_Center",@"title":@"Reviews"},@{@"image":@"00350_Distributor_Center",@"title":@"Address"},@{@"image":@"00350_Distributor_Center",@"title":@"Service"},@{@"image":@"00350_Distributor_Center",@"title":@"Policies"},@{@"image":@"00350_Distributor_Center",@"title":@"FAQ"}]];
+    [_dataSource addObjectsFromArray:@[@{@"image":@"00350_Distributor_Center",@"title":@"Refers"},@{@"image":@"00350_Distributor_Center",@"title":@"Forum"},@{@"image":@"00350_Distributor_Center",@"title":@"Reviews"},@{@"image":@"00350_Distributor_Center",@"title":@"Address"},@{@"image":@"00350_Distributor_Center",@"title":@"Service"},@{@"image":@"00350_Distributor_Center",@"title":@"Policies"},@{@"image":@"00350_Distributor_Center",@"title":@"FAQ"}]];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountInfoCell" bundle:nil] forCellReuseIdentifier:@"accountInfoCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
@@ -49,6 +50,7 @@
 }
 - (void)updateDatas
 {
+    [self loadUserInfo];
     FMDBManager *dbManager = [FMDBManager sharedInstance];
     
     @weakify(self)
@@ -59,6 +61,10 @@
             //登出状态
             [self.tableView reloadData];
         }else{
+            if (model.userRes.distributorDto) {
+                [self.dataSource insertObject:@{@"image":@"00350_Distributor_Center",@"title":@"Distributor  Center"} atIndex:0];
+                [self.tableView reloadData];
+            }
             [self loadData];
         }
     }];
@@ -87,8 +93,15 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
+    
+}
+- (void)loadUserInfo
+{
     [SFNetworkManager get:SFNet.account.userInfo success:^(id  _Nullable response) {
-        
+        userResModel *resModel = [[userResModel alloc] initWithDictionary:response error:nil];
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        [model setUserRes:resModel];
+        [[FMDBManager sharedInstance] updateUser:model ofAccount:model.account];
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -127,25 +140,31 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2) {
-        
-    }else if (indexPath.row == 6){
-        AddressViewController *vc = [[AddressViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row == 7){
-        
-    }else if (indexPath.row == 8){
-        PolicesViewController *vc = [[PolicesViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row == 5){
-        ReviewViewController *vc = [[ReviewViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row == 3){
-        InviteViewController *vc = [[InviteViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row == 9){
-        FAQViewController *vc = [[FAQViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.row > 1) {
+        accountSubCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([cell.label.text isEqualToString:@"Distributor  Center"]) {
+            DistributeCenterViewController *vc = [[DistributeCenterViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([cell.label.text isEqualToString:@"Refers"]){
+            InviteViewController *vc = [[InviteViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([cell.label.text isEqualToString:@"Reviews"]){
+            ReviewViewController *vc = [[ReviewViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([cell.label.text isEqualToString:@"Address"]){
+            AddressViewController *vc = [[AddressViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([cell.label.text isEqualToString:@"Service"]){
+            
+        }else if ([cell.label.text isEqualToString:@"Forum"]){
+            self.tabBarController.selectedIndex = 2;
+        }else if ([cell.label.text isEqualToString:@"Policies"]){
+            PolicesViewController *vc = [[PolicesViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([cell.label.text isEqualToString:@"FAQ"]){
+            FAQViewController *vc = [[FAQViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 - (UITableView *)tableView

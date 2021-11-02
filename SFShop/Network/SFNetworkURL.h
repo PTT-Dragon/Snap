@@ -10,6 +10,7 @@
 #import "SFNetworkPageModule.h"
 #import "SFNetworkArticlesModule.h"
 #import "SFNetworkOffersModule.h"
+#import "SFNetworkDistributorModule.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -58,6 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 浏览模块
 @property (nonatomic, readwrite, strong) SFNetworkUsersRecentModule *recent;
+
+/// 分销模块
+@property (nonatomic, readwrite, strong) SFNetworkDistributorModule *distributor;
 
 /// h5
 @property (nonatomic, readwrite, strong) SFNetworkH5Module *h5;

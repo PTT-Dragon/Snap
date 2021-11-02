@@ -37,7 +37,7 @@
 }
 - (IBAction)spCartAction:(id)sender {
     [SFNetworkManager post:SFNet.cart.cart parameters:@{@"productId":_model.productId,@"storeId":_model.storeId,@"offerId":_model.offerId,@"num":@(1),@"unitPrice":_model.salesPrice} success:^(id  _Nullable response) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
     } failed:^(NSError * _Nonnull error) {
         
     }];

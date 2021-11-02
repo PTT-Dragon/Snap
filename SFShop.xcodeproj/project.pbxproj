@@ -156,6 +156,20 @@
 		1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B8882701678000C73CEC /* CouponCenterCollectionViewCell.xib */; };
 		1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0B88C2701944300C73CEC /* CouponAlertView.m */; };
 		1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */; };
+		1BF00F54272FC13D0081C8E4 /* DistributeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F52272FC13D0081C8E4 /* DistributeCenterViewController.m */; };
+		1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F53272FC13D0081C8E4 /* DistributeCenterViewController.xib */; };
+		1BF00F59272FD4090081C8E4 /* SFNetworkDistributorModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F58272FD4090081C8E4 /* SFNetworkDistributorModule.m */; };
+		1BF00F5F272FDC090081C8E4 /* DistributorInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F5D272FDC080081C8E4 /* DistributorInfoCell.m */; };
+		1BF00F60272FDC090081C8E4 /* DistributorInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F5E272FDC080081C8E4 /* DistributorInfoCell.xib */; };
+		1BF00F64272FDC2E0081C8E4 /* DistributorRelationOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F62272FDC2E0081C8E4 /* DistributorRelationOrderCell.m */; };
+		1BF00F65272FDC2E0081C8E4 /* DistributorRelationOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F63272FDC2E0081C8E4 /* DistributorRelationOrderCell.xib */; };
+		1BF00F69272FDC4B0081C8E4 /* DistribitorRankTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F67272FDC4B0081C8E4 /* DistribitorRankTopCell.m */; };
+		1BF00F6A272FDC4B0081C8E4 /* DistribitorRankTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F68272FDC4B0081C8E4 /* DistribitorRankTopCell.xib */; };
+		1BF00F6E272FDC5D0081C8E4 /* DistributorRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F6C272FDC5D0081C8E4 /* DistributorRankCell.m */; };
+		1BF00F6F272FDC5D0081C8E4 /* DistributorRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F6D272FDC5D0081C8E4 /* DistributorRankCell.xib */; };
+		1BF00F74272FDD770081C8E4 /* DistributorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F73272FDD770081C8E4 /* DistributorModel.m */; };
+		1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */; };
+		1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */; };
 		4B1522CC272D300A00C3BDD9 /* ProductSpecAttrsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */; };
 		4B1522D5272D432700C3BDD9 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522D4272D432700C3BDD9 /* BaseViewController.m */; };
 		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
@@ -501,6 +515,28 @@
 		1BE0B88B2701944300C73CEC /* CouponAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponAlertView.h; sourceTree = "<group>"; };
 		1BE0B88C2701944300C73CEC /* CouponAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponAlertView.m; sourceTree = "<group>"; };
 		1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponAlertView.xib; sourceTree = "<group>"; };
+		1BF00F51272FC13D0081C8E4 /* DistributeCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeCenterViewController.h; sourceTree = "<group>"; };
+		1BF00F52272FC13D0081C8E4 /* DistributeCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeCenterViewController.m; sourceTree = "<group>"; };
+		1BF00F53272FC13D0081C8E4 /* DistributeCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DistributeCenterViewController.xib; sourceTree = "<group>"; };
+		1BF00F57272FD4090081C8E4 /* SFNetworkDistributorModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkDistributorModule.h; sourceTree = "<group>"; };
+		1BF00F58272FD4090081C8E4 /* SFNetworkDistributorModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkDistributorModule.m; sourceTree = "<group>"; };
+		1BF00F5C272FDC080081C8E4 /* DistributorInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributorInfoCell.h; sourceTree = "<group>"; };
+		1BF00F5D272FDC080081C8E4 /* DistributorInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributorInfoCell.m; sourceTree = "<group>"; };
+		1BF00F5E272FDC080081C8E4 /* DistributorInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DistributorInfoCell.xib; sourceTree = "<group>"; };
+		1BF00F61272FDC2E0081C8E4 /* DistributorRelationOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributorRelationOrderCell.h; sourceTree = "<group>"; };
+		1BF00F62272FDC2E0081C8E4 /* DistributorRelationOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributorRelationOrderCell.m; sourceTree = "<group>"; };
+		1BF00F63272FDC2E0081C8E4 /* DistributorRelationOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DistributorRelationOrderCell.xib; sourceTree = "<group>"; };
+		1BF00F66272FDC4B0081C8E4 /* DistribitorRankTopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistribitorRankTopCell.h; sourceTree = "<group>"; };
+		1BF00F67272FDC4B0081C8E4 /* DistribitorRankTopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistribitorRankTopCell.m; sourceTree = "<group>"; };
+		1BF00F68272FDC4B0081C8E4 /* DistribitorRankTopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DistribitorRankTopCell.xib; sourceTree = "<group>"; };
+		1BF00F6B272FDC5D0081C8E4 /* DistributorRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributorRankCell.h; sourceTree = "<group>"; };
+		1BF00F6C272FDC5D0081C8E4 /* DistributorRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributorRankCell.m; sourceTree = "<group>"; };
+		1BF00F6D272FDC5D0081C8E4 /* DistributorRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DistributorRankCell.xib; sourceTree = "<group>"; };
+		1BF00F72272FDD770081C8E4 /* DistributorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributorModel.h; sourceTree = "<group>"; };
+		1BF00F73272FDD770081C8E4 /* DistributorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributorModel.m; sourceTree = "<group>"; };
+		1BF00F7B2731313F0081C8E4 /* CommissionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommissionViewController.h; sourceTree = "<group>"; };
+		1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommissionViewController.m; sourceTree = "<group>"; };
+		1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommissionViewController.xib; sourceTree = "<group>"; };
 		4B1522CA272D300A00C3BDD9 /* ProductSpecAttrsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductSpecAttrsView.h; sourceTree = "<group>"; };
 		4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductSpecAttrsView.m; sourceTree = "<group>"; };
 		4B1522D3272D432700C3BDD9 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -862,6 +898,14 @@
 		1B74DAD02721090000B30ECC /* DistributeCenter */ = {
 			isa = PBXGroup;
 			children = (
+				1BF00F71272FDD600081C8E4 /* View */,
+				1BF00F70272FDD580081C8E4 /* Model */,
+				1BF00F51272FC13D0081C8E4 /* DistributeCenterViewController.h */,
+				1BF00F52272FC13D0081C8E4 /* DistributeCenterViewController.m */,
+				1BF00F53272FC13D0081C8E4 /* DistributeCenterViewController.xib */,
+				1BF00F7B2731313F0081C8E4 /* CommissionViewController.h */,
+				1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */,
+				1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */,
 			);
 			path = DistributeCenter;
 			sourceTree = "<group>";
@@ -1012,6 +1056,34 @@
 			path = Coupon;
 			sourceTree = "<group>";
 		};
+		1BF00F70272FDD580081C8E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1BF00F72272FDD770081C8E4 /* DistributorModel.h */,
+				1BF00F73272FDD770081C8E4 /* DistributorModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1BF00F71272FDD600081C8E4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1BF00F5C272FDC080081C8E4 /* DistributorInfoCell.h */,
+				1BF00F5D272FDC080081C8E4 /* DistributorInfoCell.m */,
+				1BF00F5E272FDC080081C8E4 /* DistributorInfoCell.xib */,
+				1BF00F61272FDC2E0081C8E4 /* DistributorRelationOrderCell.h */,
+				1BF00F62272FDC2E0081C8E4 /* DistributorRelationOrderCell.m */,
+				1BF00F63272FDC2E0081C8E4 /* DistributorRelationOrderCell.xib */,
+				1BF00F66272FDC4B0081C8E4 /* DistribitorRankTopCell.h */,
+				1BF00F67272FDC4B0081C8E4 /* DistribitorRankTopCell.m */,
+				1BF00F68272FDC4B0081C8E4 /* DistribitorRankTopCell.xib */,
+				1BF00F6B272FDC5D0081C8E4 /* DistributorRankCell.h */,
+				1BF00F6C272FDC5D0081C8E4 /* DistributorRankCell.m */,
+				1BF00F6D272FDC5D0081C8E4 /* DistributorRankCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1DFF059EB8FC08129B2B863F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1110,6 +1182,8 @@
 				AE81BE3726FF3F7700AB4225 /* SFNetworkArticlesModule.m */,
 				AE81BE6627020E2400AB4225 /* SFNetworkOffersModule.h */,
 				AE81BE6727020E2400AB4225 /* SFNetworkOffersModule.m */,
+				1BF00F57272FD4090081C8E4 /* SFNetworkDistributorModule.h */,
+				1BF00F58272FD4090081C8E4 /* SFNetworkDistributorModule.m */,
 				AE81BE1F26FCB2E900AB4225 /* SFNetworkMacro.h */,
 			);
 			path = Network;
@@ -1661,6 +1735,7 @@
 				1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */,
 				1B2AE43D272E8C7700FB23D3 /* CancelOrderChooseReason.xib in Resources */,
 				1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */,
+				1BF00F6A272FDC4B0081C8E4 /* DistribitorRankTopCell.xib in Resources */,
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */,
 				1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */,
@@ -1670,6 +1745,7 @@
 				1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */,
 				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
 				1B478321272A9F0300F2A945 /* SetLogOutCell.xib in Resources */,
+				1BF00F60272FDC090081C8E4 /* DistributorInfoCell.xib in Resources */,
 				1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */,
 				1B2AE429272D36F000FB23D3 /* CartTableViewCell.xib in Resources */,
 				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
@@ -1692,6 +1768,7 @@
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
+				1BF00F65272FDC2E0081C8E4 /* DistributorRelationOrderCell.xib in Resources */,
 				1B74DB112724463500B30ECC /* OrderListStateCell.xib in Resources */,
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
 				1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */,
@@ -1700,6 +1777,7 @@
 				1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */,
 				1B74DB2B27253AD600B30ECC /* DeliveryAddressCell.xib in Resources */,
 				1B478330272AA1FF00F2A945 /* SecurityCenterViewController.xib in Resources */,
+				1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */,
 				1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */,
 				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
@@ -1713,6 +1791,8 @@
 				1B49D13F271D478C002461ED /* userInfoGenderView.xib in Resources */,
 				1B74DB4A2728EF7300B30ECC /* SimilarViewController.xib in Resources */,
 				1B74DAFF2722A86800B30ECC /* InviteTopCell.xib in Resources */,
+				1BF00F6F272FDC5D0081C8E4 /* DistributorRankCell.xib in Resources */,
+				1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */,
 				4B818FD627239C910058038A /* ProductViewController.xib in Resources */,
 				1B47832B272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib in Resources */,
 				1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */,
@@ -1798,8 +1878,10 @@
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
 				1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */,
+				1BF00F74272FDD770081C8E4 /* DistributorModel.m in Sources */,
 				1B74DB492728EF7300B30ECC /* SimilarViewController.m in Sources */,
 				1B74DB332725ABB700B30ECC /* UIButton+SGImagePosition.m in Sources */,
+				1BF00F64272FDC2E0081C8E4 /* DistributorRelationOrderCell.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1B2AE43C272E8C7700FB23D3 /* CancelOrderChooseReason.m in Sources */,
 				1B74DB21272539BC00B30ECC /* OrderDetailViewController.m in Sources */,
@@ -1859,6 +1941,7 @@
 				1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */,
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
 				1B27A4C7272F8C7F0042AD30 /* PublicWebViewController.m in Sources */,
+				1BF00F59272FD4090081C8E4 /* SFNetworkDistributorModule.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
 				1B63D459272D212A0062762B /* CartChildViewController.m in Sources */,
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
@@ -1881,6 +1964,7 @@
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
 				1B478308272A7B1000F2A945 /* RefundCell.m in Sources */,
+				1BF00F6E272FDC5D0081C8E4 /* DistributorRankCell.m in Sources */,
 				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,
@@ -1897,6 +1981,7 @@
 				1B478325272AA04600F2A945 /* ChangePasswordViewController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
 				1B74DB2F27253AF900B30ECC /* OrderPayInfoCell.m in Sources */,
+				1BF00F5F272FDC090081C8E4 /* DistributorInfoCell.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				1B2AE42F272D8F3700FB23D3 /* CartTitleCell.m in Sources */,
 				AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */,
@@ -1939,9 +2024,12 @@
 				1B74DB102724463500B30ECC /* OrderListStateCell.m in Sources */,
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
+				1BF00F69272FDC4B0081C8E4 /* DistribitorRankTopCell.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
 				1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */,
+				1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */,
 				1B74DACF272007D900B30ECC /* InitializationUIMethod.m in Sources */,
+				1BF00F54272FC13D0081C8E4 /* DistributeCenterViewController.m in Sources */,
 				1B74DB3F2726FF3600B30ECC /* RecentlyViewedCell.m in Sources */,
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				AE8F32C4272E95BD008E3DD8 /* ProductCheckoutAddressCell.m in Sources */,

@@ -9,6 +9,7 @@
 #import "CartTableViewCell.h"
 #import "CartTitleCell.h"
 #import "CartModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -22,8 +23,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self loadDatas];
+    
     [self initUI];
+    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        [self loadDatas];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (void)initUI
 {
@@ -72,9 +77,16 @@
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     //删除
+    CartItemModel *model = [self.cartModel.validCarts[indexPath.section] shoppingCarts][indexPath.row-1];
+    MPWeakSelf(self)
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
-        
+        [SFNetworkManager post:SFNet.cart.del parameters:@{@"cartIds":@[model.shoppingCartId]} success:^(id  _Nullable response) {
+            [MBProgressHUD autoDismissShowHudMsg:@"DELETE SUCCESS"];
+            [weakself loadDatas];
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
     }];
     deleteRowAction.image = [UIImage imageNamed:@"删除"];
     deleteRowAction.backgroundColor = [UIColor redColor];

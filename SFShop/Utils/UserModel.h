@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString <Optional>*mobilePhone;
 @property(nonatomic, copy) NSString <Optional>*birthdayDay;
 @property(nonatomic, copy) NSString <Optional>*gender;
+@property(nonatomic, copy) NSDictionary <Optional>*distributorDto;
+
 
 @end
 

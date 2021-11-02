@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFNetworkUsersCartModule : NSObject
 @property (nonatomic, readwrite, strong) NSString *cart;
+@property (nonatomic, readwrite, strong) NSString *del;
 @end
 
 @interface SFNetworkUsersAddressModule : NSObject

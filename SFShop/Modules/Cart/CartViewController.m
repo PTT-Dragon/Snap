@@ -48,7 +48,7 @@
 - (void)initUI
 {
     _addressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addressBtn.frame = CGRectMake(0, navBarHei, MainScreen_width, 20);
+    _addressBtn.frame = CGRectMake(0, 0, MainScreen_width, 20);
     _addressBtn.backgroundColor = [UIColor whiteColor];
     _addressBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
     [_addressBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
@@ -61,7 +61,7 @@
     
     self.menuList = @[@"All", @"Drop in price"];
     
-    self.magicView.frame = CGRectMake(0, navBarHei+20, MainScreen_width, self.view.jk_height-20);
+    self.magicView.frame = CGRectMake(0, navBarHei, MainScreen_width, self.view.jk_height-20);
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#000000"];
     self.magicView.sliderHeight = 1.0f;
@@ -121,7 +121,7 @@
     if (!gridViewController) {
         gridViewController = [[CartChildViewController alloc] init];
         gridViewController.addModel = _selAddModel;
-        gridViewController.reduceFlag = (pageIndex == 0) ? YES: NO;
+        gridViewController.reduceFlag = (pageIndex == 0) ? NO: YES;
     }
     return gridViewController;
 }
