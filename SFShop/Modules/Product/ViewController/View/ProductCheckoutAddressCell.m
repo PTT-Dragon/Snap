@@ -38,8 +38,8 @@
 
 - (void)layout {
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
-        make.right.mas_equalTo(0);
+        make.left.mas_equalTo(16);
+        make.right.mas_equalTo(-16);
         make.top.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
     }];

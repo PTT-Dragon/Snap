@@ -106,6 +106,8 @@
         _typeLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
         _typeLabel.font = [UIFont systemFontOfSize:10];
         _typeLabel.textAlignment = NSTextAlignmentCenter;
+        _typeLabel.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
+        _typeLabel.layer.borderWidth = 1;
     }
     return _typeLabel;
 }

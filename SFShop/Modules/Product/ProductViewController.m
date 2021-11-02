@@ -155,13 +155,13 @@
 }
 
 - (IBAction)buyNow:(UIButton *)sender {
-    if (!_isCheckingSaleInfo) {
-        [self showAttrsView];
-    } else {
+//    if (!_isCheckingSaleInfo) {
+//        [self showAttrsView];
+//    } else {
         // TODO: 跳转checkout页
         ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-    }
+//    }
 }
 
 - (void)showAttrsView {

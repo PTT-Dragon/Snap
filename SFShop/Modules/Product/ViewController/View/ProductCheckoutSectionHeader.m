@@ -14,8 +14,8 @@
 
 @implementation ProductCheckoutSectionHeader
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self loadSubviews];
         [self layout];
     }
@@ -30,7 +30,7 @@
 - (void)layout {
     [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20);
-        make.top.bottom.mas_equalTo(16);
+        make.top.mas_equalTo(16);
         make.size.mas_equalTo(CGSizeMake(16, 16));
     }];
     
@@ -82,6 +82,7 @@
 - (UIImageView *)icon {
     if (_icon == nil) {
         _icon = [[UIImageView alloc] init];
+        _icon.backgroundColor = [UIColor greenColor];
     }
     return _icon;
 }
