@@ -6,6 +6,7 @@
 //
 
 #import "DistributorInfoCell.h"
+#import "CommissionViewController.h"
 
 @interface DistributorInfoCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -31,5 +32,7 @@
     
 }
 - (IBAction)detailAction:(id)sender {
+    CommissionViewController *vc = [[CommissionViewController alloc] init];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 @end
