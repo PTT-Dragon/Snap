@@ -15,8 +15,11 @@
 #import "SFCellCacheModel.h"
 #import "NSString+Add.h"
 #import "ProductCheckoutSectionHeader.h"
+#import "ProductCheckoutBuyView.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, readwrite, strong) ProductCheckoutBuyView *buyView;
 @property (nonatomic, readwrite, strong) UITableView *tableView;
 @property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFCellCacheModel *> *> *dataArray;
@@ -30,6 +33,7 @@
     self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
     [self loadsubviews];
     [self layout];
+    self.buyView.dataModel = self.dataModel;
     // Do any additional setup after loading the view.
 }
 
@@ -41,13 +45,19 @@
 #pragma mark - Loadsubviews
 - (void)loadsubviews {
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.buyView];
 }
 
 - (void)layout {
+    [self.buyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(78);
+    }];
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
+        make.bottom.equalTo(self.buyView.mas_top);
         make.top.mas_equalTo(navBarHei);
     }];
 }
@@ -81,6 +91,12 @@
     return nil;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"UITableViewHeaderFooterView"];
+    footer.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
+    return footer;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     SFCellCacheModel *cellModel = self.dataArray[section].firstObject;
     if ([cellModel.cellId isEqualToString:@"ProductCheckoutAddressCell"] ||
@@ -89,6 +105,17 @@
         return 40;
     }
     return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    SFCellCacheModel *cellModel = self.dataArray[section].firstObject;
+    if ([cellModel.cellId isEqualToString:@"ProductCheckoutAddressCell"] ||
+        [cellModel.cellId isEqualToString:@"ProductCheckoutNoteCell"]) {
+        return 12;
+    } else if ([cellModel.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
+        return 25;
+    }
+    return 1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -108,9 +135,9 @@
         } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
             model.height = 67;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutNoteCell"]) {
-            model.height = 45 + 30;
+            model.height = 153;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
-            model.height = 45 + 30;
+            model.height = 44;
         }
     }
 
@@ -131,22 +158,37 @@
         item.productPrice = 1000.123;
         item.productNum = 3;
         item.productIcon = @"";
+        item.storeName = @"storeName";
         
         _dataModel.priceRp = @"Rp";
         _dataModel.deliveryDes = @"萨嘎是个哈看就是高科技啊司空见惯黑科技";
         _dataModel.deliveryTitle = @"萨嘎了三个哈开始更健康";
         _dataModel.deliveryPrice = 144;
-
+        
+        _dataModel.vouchersReduce = 0;
+        _dataModel.promoReduce = 0;
+        _dataModel.availableVouchersCount = 0;
         _dataModel.productList = @[item,item,item];
+        
+        _dataModel.shopAvailableVouchersCount = 2;
     }
     return _dataModel;
 }
 
+- (ProductCheckoutBuyView *)buyView {
+    if (_buyView == nil) {
+        _buyView = [[ProductCheckoutBuyView alloc] init];
+        _buyView.backgroundColor = [UIColor whiteColor];
+    }
+    return _buyView;
+}
+
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
         _tableView.backgroundView.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:ProductCheckoutAddressCell.class forCellReuseIdentifier:@"ProductCheckoutAddressCell"];
@@ -155,6 +197,8 @@
         [_tableView registerClass:ProductCheckoutNoteCell.class forCellReuseIdentifier:@"ProductCheckoutNoteCell"];
         [_tableView registerClass:ProductCheckoutVoucherCell.class forCellReuseIdentifier:@"ProductCheckoutVoucherCell"];
         [_tableView registerClass:ProductCheckoutSectionHeader.class forHeaderFooterViewReuseIdentifier:@"ProductCheckoutSectionHeader"];
+        [_tableView registerClass:UITableViewHeaderFooterView.class forHeaderFooterViewReuseIdentifier:@"UITableViewHeaderFooterView"];
+
     }
     return _tableView;
 }

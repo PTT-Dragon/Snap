@@ -199,6 +199,7 @@
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
 		AE68D68B272AFAF900CF544C /* SFSearchSectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE68D68A272AFAF900CF544C /* SFSearchSectionHeadView.m */; };
 		AE6CFFB02721C09E008F18B5 /* CategoryRankHeadSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6CFFAF2721C09E008F18B5 /* CategoryRankHeadSelectorView.m */; };
+		AE80F26E2732EB9100A2D8DE /* ProductCheckoutBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE80F26D2732EB9100A2D8DE /* ProductCheckoutBuyView.m */; };
 		AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BDD726FB6E7000AB4225 /* AppDelegate.m */; };
 		AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BDDD26FB6E7000AB4225 /* ViewController.m */; };
 		AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE81BDDF26FB6E7000AB4225 /* Main.storyboard */; };
@@ -596,6 +597,8 @@
 		AE68D68A272AFAF900CF544C /* SFSearchSectionHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchSectionHeadView.m; sourceTree = "<group>"; };
 		AE6CFFAE2721C09E008F18B5 /* CategoryRankHeadSelectorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankHeadSelectorView.h; sourceTree = "<group>"; };
 		AE6CFFAF2721C09E008F18B5 /* CategoryRankHeadSelectorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankHeadSelectorView.m; sourceTree = "<group>"; };
+		AE80F26C2732EB9100A2D8DE /* ProductCheckoutBuyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCheckoutBuyView.h; sourceTree = "<group>"; };
+		AE80F26D2732EB9100A2D8DE /* ProductCheckoutBuyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCheckoutBuyView.m; sourceTree = "<group>"; };
 		AE81BDD326FB6E7000AB4225 /* SFShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE81BDD626FB6E7000AB4225 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AE81BDD726FB6E7000AB4225 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1566,6 +1569,8 @@
 				AE8F32CC272E9670008E3DD8 /* ProductCheckoutNoteCell.m */,
 				AE8F32CE272E9683008E3DD8 /* ProductCheckoutVoucherCell.h */,
 				AE8F32CF272E9683008E3DD8 /* ProductCheckoutVoucherCell.m */,
+				AE80F26C2732EB9100A2D8DE /* ProductCheckoutBuyView.h */,
+				AE80F26D2732EB9100A2D8DE /* ProductCheckoutBuyView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2018,6 +2023,7 @@
 				1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */,
 				AE8F32C7272E95FA008E3DD8 /* ProductCheckoutGoodsCell.m in Sources */,
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
+				AE80F26E2732EB9100A2D8DE /* ProductCheckoutBuyView.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
 				1B47832F272AA1FF00F2A945 /* SecurityCenterViewController.m in Sources */,
 				AEA3298A272AEE9500E7827A /* SFSearchCollectionCell.m in Sources */,

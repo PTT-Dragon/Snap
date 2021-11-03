@@ -20,6 +20,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.contentView.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
         [self loadubsviews];
         [self layout];
     }
@@ -120,8 +121,7 @@
     if (_nextBtn == nil) {
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_nextBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_nextBtn setBackgroundColor:[UIColor redColor]];
-        
+        [_nextBtn setImage:[UIImage imageNamed:@"right-scroll"] forState:UIControlStateNormal];
     }
     return _nextBtn;
 }
