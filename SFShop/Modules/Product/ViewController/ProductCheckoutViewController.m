@@ -74,6 +74,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SFCellCacheModel *cellModel = self.dataArray[indexPath.section][indexPath.row];
     ProductCheckoutBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellModel.cellId];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.dataModel = self.dataModel;
     cell.cellModel = cellModel;
     return cell;
