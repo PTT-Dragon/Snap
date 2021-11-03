@@ -158,7 +158,7 @@
         item.priceRp = @"Rp";
         item.productPrice = 1000.123;
         item.productNum = 3;
-        item.productIcon = @"";
+        item.productIcon = @"https://scpic.chinaz.net/Files/pic/icons128/8090/m6.png";
         item.storeName = @"storeName";
         
         _dataModel.priceRp = @"Rp";

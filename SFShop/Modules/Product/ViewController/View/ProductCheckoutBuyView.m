@@ -51,6 +51,11 @@
     }];
 }
     
+#pragma mark - Event
+- (void)btnClick:(UIButton)btn {
+    
+}
+
 #pragma mark - Get and Set
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     self.priceLabel.text = [NSString stringWithFormat:@"%@ %f",dataModel.priceRp,dataModel.totalPrice];

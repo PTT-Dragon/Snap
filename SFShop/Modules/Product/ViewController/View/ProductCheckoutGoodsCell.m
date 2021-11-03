@@ -87,6 +87,7 @@
     self.typeLabel.text = [NSString stringWithFormat:@"%@",model.productCategpry] ;
     self.priceLabel.text = [NSString stringWithFormat:@"%@ %f",model.priceRp,model.productPrice];
     self.numLabel.text = [NSString stringWithFormat:@"x%ld",model.productNum];
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:model.productIcon]];
     [self layout];
 }
 
@@ -101,7 +102,6 @@
 - (UIImageView *)icon {
     if (_icon == nil) {
         _icon = [[UIImageView alloc] init];
-        _icon.backgroundColor = [UIColor redColor];
     }
     return _icon;
 }
