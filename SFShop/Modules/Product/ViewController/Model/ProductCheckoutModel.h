@@ -28,7 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSArray<ProductCheckoutSubItemModel *> *productList;
 
 //投递
-@property (nonatomic, readwrite, strong) NSString *deliveryPrice;//快递费用
+@property (nonatomic, readwrite, assign) NSString *priceRp;//价格单位
+@property (nonatomic, readwrite, strong) NSString *deliveryTitle;//快递费用
+@property (nonatomic, readwrite, assign) float deliveryPrice;//快递费用
 @property (nonatomic, readwrite, strong) NSString *deliveryDes;//快递描述
 
 //最后提示信息相关

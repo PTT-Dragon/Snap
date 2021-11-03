@@ -45,8 +45,8 @@
 
 - (void)layout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(16);
-        make.right.mas_equalTo(-16);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
         make.top.mas_equalTo(navBarHei);
     }];
@@ -106,7 +106,7 @@
         } else if ([model.cellId isEqualToString:@"ProductCheckoutGoodsCell"]) {
             model.height = 118;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
-            model.height = 45 + 30;
+            model.height = 67;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutNoteCell"]) {
             model.height = 45 + 30;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
@@ -131,6 +131,12 @@
         item.productPrice = 1000.123;
         item.productNum = 3;
         item.productIcon = @"";
+        
+        _dataModel.priceRp = @"Rp";
+        _dataModel.deliveryDes = @"萨嘎是个哈看就是高科技啊司空见惯黑科技";
+        _dataModel.deliveryTitle = @"萨嘎了三个哈开始更健康";
+        _dataModel.deliveryPrice = 144;
+
         _dataModel.productList = @[item,item,item];
     }
     return _dataModel;
