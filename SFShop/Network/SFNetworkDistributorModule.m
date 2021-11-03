@@ -16,5 +16,20 @@
 {
     return K_distributor_domain(@"salesranking/top10");
 }
-
+- (NSString *)cashOutList
+{
+    return K_distributor_domain(@"cash/request/list");
+}
+- (NSString *)createCashOut
+{
+    return K_distributor_domain(@"cash/request/create");
+}
+- (NSString *)cancelCashOut
+{
+    return K_distributor_domain(@"cash/request/cancel");
+}
+- (NSString *)commission
+{
+    return K_distributor_domain(@"commission");
+}
 @end

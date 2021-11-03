@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFNetworkDistributorModule : NSObject
 @property (nonatomic, readonly, copy) NSString *center;
 @property (nonatomic, readonly, copy) NSString *rankingTop;
+@property (nonatomic, readonly, copy) NSString *cashOutList;
+@property (nonatomic, readonly, copy) NSString *createCashOut;
+@property (nonatomic, readonly, copy) NSString *cancelCashOut;
+@property (nonatomic, readonly, copy) NSString *commission;
+
 
 @end
 

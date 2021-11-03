@@ -24,6 +24,11 @@
 		1B2AE43D272E8C7700FB23D3 /* CancelOrderChooseReason.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE43B272E8C7700FB23D3 /* CancelOrderChooseReason.xib */; };
 		1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE43F272E8EDD00FB23D3 /* ChooseReasonViewController.m */; };
 		1B2AE442272E8EDD00FB23D3 /* ChooseReasonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AE440272E8EDD00FB23D3 /* ChooseReasonViewController.xib */; };
+		1B3122552732306B0055033D /* CashOutHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3122532732306B0055033D /* CashOutHistoryCell.m */; };
+		1B3122562732306B0055033D /* CashOutHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3122542732306B0055033D /* CashOutHistoryCell.xib */; };
+		1B31225A273260980055033D /* CaseOutDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B312258273260980055033D /* CaseOutDetailViewController.m */; };
+		1B31225B273260980055033D /* CaseOutDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B312259273260980055033D /* CaseOutDetailViewController.xib */; };
+		1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B312260273267630055033D /* IncomeAndExpenseViewController.m */; };
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
 		1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122426FC5AC500235294 /* accountInfoCell.xib */; };
 		1B3C122826FC706000235294 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122726FC706000235294 /* LoginViewController.xib */; };
@@ -301,6 +306,14 @@
 		1B2AE43E272E8EDD00FB23D3 /* ChooseReasonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseReasonViewController.h; sourceTree = "<group>"; };
 		1B2AE43F272E8EDD00FB23D3 /* ChooseReasonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseReasonViewController.m; sourceTree = "<group>"; };
 		1B2AE440272E8EDD00FB23D3 /* ChooseReasonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseReasonViewController.xib; sourceTree = "<group>"; };
+		1B3122522732306B0055033D /* CashOutHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashOutHistoryCell.h; sourceTree = "<group>"; };
+		1B3122532732306B0055033D /* CashOutHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashOutHistoryCell.m; sourceTree = "<group>"; };
+		1B3122542732306B0055033D /* CashOutHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashOutHistoryCell.xib; sourceTree = "<group>"; };
+		1B312257273260980055033D /* CaseOutDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaseOutDetailViewController.h; sourceTree = "<group>"; };
+		1B312258273260980055033D /* CaseOutDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaseOutDetailViewController.m; sourceTree = "<group>"; };
+		1B312259273260980055033D /* CaseOutDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaseOutDetailViewController.xib; sourceTree = "<group>"; };
+		1B31225F273267630055033D /* IncomeAndExpenseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncomeAndExpenseViewController.h; sourceTree = "<group>"; };
+		1B312260273267630055033D /* IncomeAndExpenseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncomeAndExpenseViewController.m; sourceTree = "<group>"; };
 		1B3C122226FC5AC500235294 /* accountInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountInfoCell.h; sourceTree = "<group>"; };
 		1B3C122326FC5AC500235294 /* accountInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountInfoCell.m; sourceTree = "<group>"; };
 		1B3C122426FC5AC500235294 /* accountInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
@@ -911,6 +924,11 @@
 				1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */,
 				1B412838273141F100513430 /* CashOutHistoryViewController.h */,
 				1B412839273141F100513430 /* CashOutHistoryViewController.m */,
+				1B312257273260980055033D /* CaseOutDetailViewController.h */,
+				1B312258273260980055033D /* CaseOutDetailViewController.m */,
+				1B312259273260980055033D /* CaseOutDetailViewController.xib */,
+				1B31225F273267630055033D /* IncomeAndExpenseViewController.h */,
+				1B312260273267630055033D /* IncomeAndExpenseViewController.m */,
 			);
 			path = DistributeCenter;
 			sourceTree = "<group>";
@@ -1085,6 +1103,9 @@
 				1BF00F6B272FDC5D0081C8E4 /* DistributorRankCell.h */,
 				1BF00F6C272FDC5D0081C8E4 /* DistributorRankCell.m */,
 				1BF00F6D272FDC5D0081C8E4 /* DistributorRankCell.xib */,
+				1B3122522732306B0055033D /* CashOutHistoryCell.h */,
+				1B3122532732306B0055033D /* CashOutHistoryCell.m */,
+				1B3122542732306B0055033D /* CashOutHistoryCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1732,6 +1753,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B3122562732306B0055033D /* CashOutHistoryCell.xib in Resources */,
+				1B31225B273260980055033D /* CaseOutDetailViewController.xib in Resources */,
 				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
 				1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */,
 				1B478326272AA04600F2A945 /* ChangePasswordViewController.xib in Resources */,
@@ -1945,6 +1968,7 @@
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
 				1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */,
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
+				1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */,
 				1B27A4C7272F8C7F0042AD30 /* PublicWebViewController.m in Sources */,
 				1BF00F59272FD4090081C8E4 /* SFNetworkDistributorModule.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
@@ -1989,6 +2013,7 @@
 				1B74DB2F27253AF900B30ECC /* OrderPayInfoCell.m in Sources */,
 				1BF00F5F272FDC090081C8E4 /* DistributorInfoCell.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
+				1B3122552732306B0055033D /* CashOutHistoryCell.m in Sources */,
 				1B2AE42F272D8F3700FB23D3 /* CartTitleCell.m in Sources */,
 				AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */,
 				1B74DAF2272272D000B30ECC /* StarView.m in Sources */,
@@ -2027,6 +2052,7 @@
 				1B74DB442728EB1A00B30ECC /* RecentlyModel.m in Sources */,
 				1B49D139271D4557002461ED /* changeUserInfoVC.m in Sources */,
 				AE8F32D3272E96B2008E3DD8 /* ProductCheckoutModel.m in Sources */,
+				1B31225A273260980055033D /* CaseOutDetailViewController.m in Sources */,
 				1B74DB102724463500B30ECC /* OrderListStateCell.m in Sources */,
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,

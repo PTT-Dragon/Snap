@@ -26,3 +26,7 @@
 @implementation DistributorModel
 
 @end
+
+@implementation DistributorCommissionModel
+
+@end

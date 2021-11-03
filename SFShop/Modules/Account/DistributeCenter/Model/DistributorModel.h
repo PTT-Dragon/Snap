@@ -46,4 +46,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*sysKolCampaignId;
 @end
 
+@interface DistributorCommissionModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*distributorId;
+@property (nonatomic,copy) NSString <Optional>*settledCommission;
+@property (nonatomic,copy) NSString <Optional>*withdrawnCommission;
+@property (nonatomic,copy) NSString <Optional>*lockedCommission;
+@property (nonatomic,copy) NSString <Optional>*balanceCommission;
+@property (nonatomic,copy) NSString <Optional>*receivableCommission;
+@end
+
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,9 @@
 
 #import "CommissionViewController.h"
 #import "accountSubCell.h"
+#import "CashOutHistoryViewController.h"
+#import "DistributorModel.h"
+#import "IncomeAndExpenseViewController.h"
 
 @interface CommissionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
@@ -15,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) DistributorCommissionModel *model;
 
 @end
 
@@ -34,8 +38,23 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.bottomView.mas_bottom).offset(10);
     }];
+    [self loadDatas];
 }
-
+- (void)loadDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.distributor.commission parameters:@{} success:^(id  _Nullable response) {
+        weakself.model = [[DistributorCommissionModel alloc] initWithDictionary:response error:nil];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)updateDatas
+{
+    _balanceLabel.text = self.model.balanceCommission;
+    _inReviewLabel.text = self.model.lockedCommission;
+    _cashLabel.text = self.model.withdrawnCommission;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _dataSource.count;
@@ -51,6 +70,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 56;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 2) {
+        CashOutHistoryViewController *vc = [[CashOutHistoryViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 1){
+        IncomeAndExpenseViewController *vc = [[IncomeAndExpenseViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 
 - (UITableView *)tableView
