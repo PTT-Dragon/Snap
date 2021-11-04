@@ -13,16 +13,16 @@
 @interface chooseAreaTopView : UIView
 @property (nonatomic,strong) UIButton *provinceBtn;
 @property (nonatomic,strong) UIButton *cityBtn;
-@property (nonatomic,strong) UIButton *streetBtn;
+@property (nonatomic,strong) UIButton *DistrictBtn;
 
-- (instancetype)initWithSelAreaModel:(AreaModel *)provinceModel selCity:(AreaModel *)cityModel street:(AreaModel *)streetModel;
+- (instancetype)initWithSelAreaModel:(AreaModel *)provinceModel selCity:(AreaModel *)cityModel District:(AreaModel *)DistrictModel;
 @property (nonatomic,weak) AreaModel *selProvinceAreaMoel;
 @property (nonatomic,weak) AreaModel *selCityAreaMoel;
-@property (nonatomic,weak) AreaModel *selStreetAreaMoel;
+@property (nonatomic,weak) AreaModel *selDistrictAreaMoel;
 @end
 
 @implementation chooseAreaTopView
-- (instancetype)initWithSelAreaModel:(AreaModel *)provinceModel selCity:(AreaModel *)cityModel street:(AreaModel *)streetModel
+- (instancetype)initWithSelAreaModel:(AreaModel *)provinceModel selCity:(AreaModel *)cityModel District:(AreaModel *)DistrictModel
 {
     if (self = [super init]) {
         _provinceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -46,13 +46,13 @@
             make.bottom.top.mas_equalTo(self);
             make.left.mas_equalTo(self.provinceBtn.mas_right).offset(10);
         }];
-        _streetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_streetBtn setTitleColor:[UIColor blackColor] forState:0];
-        _streetBtn.titleLabel.font = CHINESE_SYSTEM(14);
-        [_streetBtn setTitle:streetModel.stdAddr forState:0];
-        _streetBtn.titleLabel.numberOfLines = 0;
-        [self addSubview:_streetBtn];
-        [_streetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        _DistrictBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_DistrictBtn setTitleColor:[UIColor blackColor] forState:0];
+        _DistrictBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        [_DistrictBtn setTitle:DistrictModel.stdAddr forState:0];
+        _DistrictBtn.titleLabel.numberOfLines = 0;
+        [self addSubview:_DistrictBtn];
+        [_DistrictBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.bottom.top.mas_equalTo(self);
             make.left.mas_equalTo(self.cityBtn.mas_right).offset(10);
         }];
@@ -69,10 +69,10 @@
     _selCityAreaMoel = selCityAreaMoel;
     [_cityBtn setTitle:selCityAreaMoel.stdAddr forState:0];
 }
-- (void)setSelStreetAreaMoel:(AreaModel *)selStreetAreaMoel
+- (void)setSelDistrictAreaMoel:(AreaModel *)selDistrictAreaMoel
 {
-    _selStreetAreaMoel = selStreetAreaMoel;
-    [_streetBtn setTitle:selStreetAreaMoel.stdAddr forState:0];
+    _selDistrictAreaMoel = selDistrictAreaMoel;
+    [_DistrictBtn setTitle:selDistrictAreaMoel.stdAddr forState:0];
 }
 @end
 
@@ -98,7 +98,7 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(150);
     }];
-    _topView = [[chooseAreaTopView alloc] initWithSelAreaModel:_selProvinceAreaMoel selCity:_selCityAreaMoel street:_selStreetAreaMoel];
+    _topView = [[chooseAreaTopView alloc] initWithSelAreaModel:_selProvinceAreaMoel selCity:_selCityAreaMoel District:_selDistrictAreaMoel];
     [self.view addSubview:_topView];
     [_topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
@@ -113,9 +113,9 @@
 {
     _selCityAreaMoel = selCityAreaMoel;
 }
-- (void)setSelStreetAreaMoel:(AreaModel *)selStreetAreaMoel
+- (void)setSelDistrictAreaMoel:(AreaModel *)selDistrictAreaMoel
 {
-    _selStreetAreaMoel = selStreetAreaMoel;
+    _selDistrictAreaMoel = selDistrictAreaMoel;
 }
 - (void)loadDatas
 {
@@ -130,6 +130,7 @@
             
         }];
     }else if (_selCityAreaMoel && _selCityAreaMoel.addrLevelId){
+        //已选择市
         [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selCityAreaMoel.addrLevelId} success:^(id  _Nullable response) {
             [weakself.dataSource removeAllObjects];
             [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
@@ -137,8 +138,17 @@
         } failed:^(NSError * _Nonnull error) {
             
         }];
-    }else{
+    }else if(!_selProvinceAreaMoel || !_selProvinceAreaMoel.addrLevelId){
         [SFNetworkManager get:SFNet.address.areaData parameters:@{@"addrLevelId":@(2)} success:^(id  _Nullable response) {
+            [weakself.dataSource removeAllObjects];
+            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+            [weakself.tableView reloadData];
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
+    }else{
+        //已选择地区
+        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selDistrictAreaMoel.addrLevelId} success:^(id  _Nullable response) {
             [weakself.dataSource removeAllObjects];
             [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
             [weakself.tableView reloadData];
@@ -165,15 +175,19 @@
 {
     AreaModel *model = self.dataSource[indexPath.row];
     if (!_selProvinceAreaMoel || !_selProvinceAreaMoel.addrLevelId) {
-        _selProvinceAreaMoel.addrLevelId = model.addrLevelId;
+        _selProvinceAreaMoel = model;
         _topView.selProvinceAreaMoel = _selProvinceAreaMoel;
     }else if (!_selCityAreaMoel || !_selCityAreaMoel.addrLevelId){
         _selCityAreaMoel = model;
         _topView.selCityAreaMoel = _selCityAreaMoel;
+    }else if(!_selDistrictAreaMoel || !_selDistrictAreaMoel.addrLevelId){
+        _selDistrictAreaMoel = model;
+        _topView.selDistrictAreaMoel = _selDistrictAreaMoel;
+        [self.delegate chooseProvince:_selProvinceAreaMoel city:_selCityAreaMoel district:_selDistrictAreaMoel];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }else{
         _selStreetAreaMoel = model;
-        _topView.selStreetAreaMoel = _selStreetAreaMoel;
-//        [self.delegate chooseProvince:_selProvinceAreaMoel city:_selCityAreaMoel street:_selStreetAreaMoel];
+        [self.delegate chooseStreet:_selStreetAreaMoel];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     [self loadDatas];

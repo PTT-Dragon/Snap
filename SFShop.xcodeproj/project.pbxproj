@@ -129,6 +129,7 @@
 		1B92D15027327F4400E73F98 /* ChooseAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B92D14E27327F4400E73F98 /* ChooseAreaViewController.xib */; };
 		1B92D1542732815C00E73F98 /* AreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D1522732815C00E73F98 /* AreaCell.m */; };
 		1B92D1552732815C00E73F98 /* AreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B92D1532732815C00E73F98 /* AreaCell.xib */; };
+		1B92D15A2733CA9B00E73F98 /* a.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D1592733CA9A00E73F98 /* a.m */; };
 		1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2B9272AF1E400755832 /* FAQViewController.m */; };
 		1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BA272AF1E400755832 /* FAQViewController.xib */; };
 		1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BE272AF27C00755832 /* FAQChildViewController.m */; };
@@ -481,6 +482,7 @@
 		1B92D1512732815C00E73F98 /* AreaCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AreaCell.h; sourceTree = "<group>"; };
 		1B92D1522732815C00E73F98 /* AreaCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AreaCell.m; sourceTree = "<group>"; };
 		1B92D1532732815C00E73F98 /* AreaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AreaCell.xib; sourceTree = "<group>"; };
+		1B92D1592733CA9A00E73F98 /* a.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = a.m; sourceTree = "<group>"; };
 		1BC7A2B8272AF1E400755832 /* FAQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
 		1BC7A2B9272AF1E400755832 /* FAQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
 		1BC7A2BA272AF1E400755832 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
@@ -1434,6 +1436,7 @@
 				AE81BE0B26FB734E00AB4225 /* Main */,
 				4B9FB9C626FB780700C90790 /* Modules */,
 				AE81BDE226FB6E7300AB4225 /* Assets.xcassets */,
+				1B92D1592733CA9A00E73F98 /* a.m */,
 				AE81BDE426FB6E7300AB4225 /* LaunchScreen.storyboard */,
 				AE81BDE726FB6E7300AB4225 /* Info.plist */,
 				AE81BDDF26FB6E7000AB4225 /* Main.storyboard */,
@@ -1944,6 +1947,7 @@
 				1B74DB21272539BC00B30ECC /* OrderDetailViewController.m in Sources */,
 				1BDBEBA626FDAF980018109B /* HWTFCodeBView.m in Sources */,
 				AE81BE592702001700AB4225 /* MBProgressHUD+Prompt.m in Sources */,
+				1B92D15A2733CA9B00E73F98 /* a.m in Sources */,
 				1B74DAF92722A85600B30ECC /* InviteCell.m in Sources */,
 				AE8F32CA272E962B008E3DD8 /* ProductCheckoutDeliveryCell.m in Sources */,
 				1B92D1542732815C00E73F98 /* AreaCell.m in Sources */,

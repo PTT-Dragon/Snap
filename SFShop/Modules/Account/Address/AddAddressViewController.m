@@ -8,7 +8,7 @@
 #import "AddAddressViewController.h"
 #import "ChooseAreaViewController.h"
 
-@interface AddAddressViewController ()<UITextFieldDelegate>
+@interface AddAddressViewController ()<UITextFieldDelegate,ChooseAreaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidth;
 @property (weak, nonatomic) IBOutlet UIButton *homeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *officeBtn;
@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 @property (nonatomic,strong) AreaModel *selProvinceAreaMoel;
 @property (nonatomic,strong) AreaModel *selCityAreaMoel;
+@property (nonatomic,strong) AreaModel *selDistrictAreaMoel;
 @property (nonatomic,strong) AreaModel *selStreetAreaMoel;
 
 @end
@@ -55,10 +56,8 @@
     }else{
         _selProvinceAreaMoel = [[AreaModel alloc] init];
         _selCityAreaMoel = [[AreaModel alloc] init];
+        _selDistrictAreaMoel = [[AreaModel alloc] init];
         _selStreetAreaMoel = [[AreaModel alloc] init];
-        [RACObserve(_selProvinceAreaMoel, addrLevelId) subscribeNext:^(id  _Nullable x) {
-            
-        }];
     }
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -67,19 +66,41 @@
         ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
         vc.selProvinceAreaMoel = _selProvinceAreaMoel;
         vc.selCityAreaMoel = _selCityAreaMoel;
-        vc.selStreetAreaMoel = _selStreetAreaMoel;
+        vc.selDistrictAreaMoel = _selDistrictAreaMoel;
+        vc.delegate = self;
         [self.navigationController presentViewController:vc animated:YES completion:^{
             
         }];
         return NO;
     }else if (textField == _streetField){
+        if (!_selDistrictAreaMoel) {
+            [MBProgressHUD autoDismissShowHudMsg:@"Please select the province first"];
+            return NO;
+        }
         ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
+        vc.selProvinceAreaMoel = _selProvinceAreaMoel;
+        vc.selCityAreaMoel = _selCityAreaMoel;
+        vc.selDistrictAreaMoel = _selDistrictAreaMoel;
         [self.navigationController presentViewController:vc animated:YES completion:^{
                 
         }];
         return NO;
     }
     return YES;
+}
+
+#pragma mark - delegate
+- (void)chooseProvince:(AreaModel *)provinceModel city:(AreaModel *)cityModel street:(AreaModel *)streetModel
+{
+    _selProvinceAreaMoel = provinceModel;
+    _selCityAreaMoel = cityModel;
+    _selStreetAreaMoel = streetModel;
+    self.areaField.text = [NSString stringWithFormat:@"%@,%@,%@",streetModel.stdAddr,cityModel.stdAddr,provinceModel.stdAddr];
+}
+- (void)chooseStreet:(AreaModel *)streetModel
+{
+    _selStreetAreaMoel = streetModel;
+    self.streetField.text = streetModel.stdAddr;
 }
 
 - (IBAction)saveAction:(UIButton *)sender {

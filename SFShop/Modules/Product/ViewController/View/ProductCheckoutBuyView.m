@@ -52,7 +52,7 @@
 }
     
 #pragma mark - Event
-- (void)btnClick:(UIButton)btn {
+- (void)btnClick:(UIButton *)btn {
     
 }
 
