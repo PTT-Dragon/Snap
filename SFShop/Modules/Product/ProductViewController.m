@@ -30,6 +30,7 @@
 @property (nonatomic, strong) WKWebView *detailWebView;
 @property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
 @property (nonatomic, assign) BOOL isCheckingSaleInfo;
+@property (nonatomic, strong) ProductSpecAttrsView *attrView;
 
 @end
 
@@ -159,6 +160,8 @@
         [self showAttrsView];
     } else {
         // TODO: 跳转checkout页
+        [self.attrView removeFromSuperview];
+        self.isCheckingSaleInfo = NO;
         ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -166,17 +169,17 @@
 
 - (void)showAttrsView {
     _isCheckingSaleInfo = YES;
-    ProductSpecAttrsView *attrView = [[ProductSpecAttrsView alloc] init];
-    attrView.model = self.model;
+    _attrView = [[ProductSpecAttrsView alloc] init];
+    _attrView.model = self.model;
     MPWeakSelf(self)
-    MPWeakSelf(attrView)
-    attrView.dismissBlock = ^{
-        [weakattrView removeFromSuperview];
+    MPWeakSelf(_attrView)
+    _attrView.dismissBlock = ^{
+        [weak_attrView removeFromSuperview];
         weakself.isCheckingSaleInfo = NO;
     };
     UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
-    [rootView addSubview:attrView];
-    [attrView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [rootView addSubview:_attrView];
+    [_attrView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(rootView);
         make.bottom.equalTo(_buyBtn.mas_top).offset(-16);
     }];
