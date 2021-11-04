@@ -28,11 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFNetworkUsersCartModule : NSObject
 @property (nonatomic, readwrite, strong) NSString *cart;
+@property (nonatomic, readwrite, strong) NSString *del;
 @end
 
 @interface SFNetworkUsersAddressModule : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *addressList;
+@property (nonatomic, readwrite, strong) NSString *areaData;
+
 @end
 
 @interface SFNetworkUsersCouponModule : NSObject
@@ -70,7 +73,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFNetworkUsersOrderModule : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *list;
-
+@property (nonatomic, readwrite, strong) NSString *confirmOrder;
+@property (nonatomic, readwrite, strong) NSString *cancelOrder;
+@property (nonatomic, readwrite, strong) NSString *cancelOrderReason;
+- (NSString *)getReasonlOf: (NSString *)eventId;
 
 @end
 
@@ -99,6 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *agreement;
 @property (nonatomic, readwrite, strong) NSString *faqList;
 @property (nonatomic, readwrite, strong) NSString *faqQuestion;
+- (NSString *)getReceiptOf: (NSString *)orderId;
 
 @end
 

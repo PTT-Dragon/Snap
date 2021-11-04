@@ -154,4 +154,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface CancelOrderReasonModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*comments;
+@property (nonatomic,assign) BOOL sel;
+@property (nonatomic,copy) NSString <Optional>*orderReasonId;
+@property (nonatomic,copy) NSString <Optional>*orderReasonName;
+@end
+
 NS_ASSUME_NONNULL_END

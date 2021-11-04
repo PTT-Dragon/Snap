@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface addressModel : JSONModel
 
 @property(nonatomic,copy) NSString <Optional>*contactAddress;
-//@property(nonatomic,assign) BOOL sel;
+@property(nonatomic,assign) BOOL sel;
 @property(nonatomic,copy) NSString <Optional>*city;
 @property(nonatomic,copy) NSString <Optional>*province;
 @property(nonatomic,copy) NSString <Optional>*district;
@@ -30,6 +30,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString <Optional>*stateDate;
 @property(nonatomic,copy) NSString <Optional>*street;
 @property(nonatomic,copy) NSDictionary *addressLabelList;
+
+@end
+
+@interface AreaModel : JSONModel
+@property(nonatomic,copy) NSString <Optional>*stdAddrId;
+@property(nonatomic,copy) NSString <Optional>*stdAddr;
+@property(nonatomic,copy) NSString <Optional>*addrLevelId;
+@property(nonatomic,copy) NSString <Optional>*parentId;
+@property(nonatomic,copy) NSString <Optional>*isLeaf;
+@property(nonatomic,copy) NSString <Optional>*zipcode;
+@property(nonatomic,assign) BOOL sel;
+/**
+ "stdAddrId": 1,
+     "stdAddr": "Bali",
+     "addrLevelId": 2,
+     "parentId": 0,
+     "isLeaf": false,
+     "zipcode": null
+ **/
 
 @end
 

@@ -37,8 +37,9 @@
     [SFNetworkManager get:SFNet.address.addressList parameters:@{} success:^(id  _Nullable response) {
         NSError *error;
         [weakself.addressArr addObjectsFromArray:[addressModel arrayOfModelsFromDictionaries:response error:&error]];
-        weakself.selAddModel = weakself.addressArr.firstObject;
-//        weakself.selAddModel.sel = YES;
+        addressModel *model =  weakself.addressArr.firstObject;
+        weakself.selAddModel = model;
+        weakself.selAddModel.sel = YES;
         [weakself initUI];
     } failed:^(NSError * _Nonnull error) {
         
@@ -47,20 +48,20 @@
 - (void)initUI
 {
     _addressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addressBtn.frame = CGRectMake(0, navBarHei, MainScreen_width, 20);
+    _addressBtn.frame = CGRectMake(0, 0, MainScreen_width, 20);
     _addressBtn.backgroundColor = [UIColor whiteColor];
     _addressBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
     [_addressBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
         [self toAddressListVC];
     }];
-    [_addressBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@%@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street,_selAddModel.contactAddress] forState:0];
     [_addressBtn setTitleColor:RGBColorFrom16(0x7b7b7b) forState:0];
     _addressBtn.titleLabel.font = CHINESE_SYSTEM(13);
     [self.view addSubview:_addressBtn];
+    [self updateAddress];
     
     self.menuList = @[@"All", @"Drop in price"];
     
-    self.magicView.frame = CGRectMake(0, 30, MainScreen_width, self.view.jk_height);
+    self.magicView.frame = CGRectMake(0, navBarHei, MainScreen_width, self.view.jk_height-20);
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#000000"];
     self.magicView.sliderHeight = 1.0f;
@@ -72,11 +73,27 @@
     self.magicView.scrollEnabled = NO;
     [self.magicView reloadData];
 }
+- (void)updateAddress
+{
+    [_addressBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@%@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street,_selAddModel.contactAddress] forState:0];
+    for (addressModel *model in self.addressArr) {
+        if ([model.deliveryAddressId isEqualToString:_selAddModel.deliveryAddressId]) {
+            model.sel = YES;
+        }else{
+            model.sel = NO;
+        }
+    }
+}
 - (void)toAddressListVC
 {
     CartChooseAddressViewController *vc = [[CartChooseAddressViewController alloc] init];
     vc.addressListArr = self.addressArr;
     vc.view.frame = CGRectMake(0, 0, self.view.jk_width, self.view.jk_height);
+    MPWeakSelf(self)
+    vc.selBlock = ^(addressModel * model) {
+        weakself.selAddModel = model;
+        [weakself updateAddress];
+    };
     [self.view addSubview:vc.view];
     [self addChildViewController:vc];
 }
@@ -103,6 +120,8 @@
     CartChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
         gridViewController = [[CartChildViewController alloc] init];
+        gridViewController.addModel = _selAddModel;
+        gridViewController.reduceFlag = (pageIndex == 0) ? NO: YES;
     }
     return gridViewController;
 }

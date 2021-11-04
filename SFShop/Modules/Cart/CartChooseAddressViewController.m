@@ -37,6 +37,13 @@
 {
     CartChooseAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartChooseAddressCell"];
     [cell setContent:self.addressListArr[indexPath.row]];
+    MPWeakSelf(self)
+    cell.selBlock = ^(addressModel *model) {
+        if (weakself.selBlock) {
+            weakself.selBlock(model);
+            [weakself closeAction:nil];
+        }
+    };
     return cell;
 }
 

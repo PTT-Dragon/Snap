@@ -7,12 +7,14 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductCheckoutModel.h"
+#import "SFCellCacheModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductCheckoutBaseCell : UITableViewCell
 
 @property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
+@property (nonatomic, readwrite, strong) SFCellCacheModel *cellModel;
 
 @end
 

@@ -44,12 +44,12 @@
 }
 - (IBAction)loginAction:(id)sender {
     
-    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"hxf01@qq.com",@"pwd":login_aes_128_cbc_encrypt(@"Abc@1234")} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"wcttest1@qq.com",@"pwd":login_aes_128_cbc_encrypt(@"smart123")} success:^(id  _Nullable response) {
         NSError *error = nil;
         [[FMDBManager sharedInstance] deleteUserData];
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
-        [[FMDBManager sharedInstance] insertUser:model ofAccount:@"hxf01@qq.com"];
+        [[FMDBManager sharedInstance] insertUser:model ofAccount:@"wcttest1@qq.com"];
         if (self.didLoginBlock) {
             self.didLoginBlock();
         }

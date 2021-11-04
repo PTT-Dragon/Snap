@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol OrderListBottomCellDelegate <NSObject>
+
+- (void)refreshDatas;
+
+@end
+
 @interface OrderListBottomCell : UITableViewCell
+@property (nonatomic,assign) id<OrderListBottomCellDelegate>delegate;
 - (void)setContent:(OrderModel *)model;
 @end
 

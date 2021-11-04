@@ -8,5 +8,15 @@
 #import "addressModel.h"
 
 @implementation addressModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
 
+@implementation AreaModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 @end

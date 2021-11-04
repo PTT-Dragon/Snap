@@ -42,27 +42,19 @@
     
     UITapGestureRecognizer *nameLabelTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nameAction)];
     [_nameLabel addGestureRecognizer:nameLabelTap];
-    
-    [self updateData];
 }
 - (void)updateData
 {
-    FMDBManager *dbManager = [FMDBManager sharedInstance];
-    
-    @weakify(self)
-    [RACObserve(dbManager, currentUser) subscribeNext:^(id  _Nullable x) {
-        @strongify(self)
-        UserModel *model = [FMDBManager sharedInstance].currentUser;
-        if (!model || [model.accessToken isEqualToString:@""]) {
-            //登出状态
-            self.nameLabel.text = @"Login Or Register";
-            self.nameLabel.userInteractionEnabled = YES;
-        }else{
-            self.nameLabel.userInteractionEnabled = NO;
-            self.nameLabel.text = model.userName;
-            [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
-        }
-    }];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model || [model.accessToken isEqualToString:@""]) {
+        //登出状态
+        self.nameLabel.text = @"Login Or Register";
+        self.nameLabel.userInteractionEnabled = YES;
+    }else{
+        self.nameLabel.userInteractionEnabled = NO;
+        self.nameLabel.text = model.userName;
+        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
+    }
 }
 - (void)setCouponCount:(NSInteger)couponCount
 {

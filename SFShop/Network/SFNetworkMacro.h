@@ -25,14 +25,16 @@
 #define K_articles_evaluate_domain(url) [NSString stringWithFormat:@"%@/h5/articles/%@/evaluate",Host,url]
 #define K_offers_domain(url) [NSString stringWithFormat:@"%@/h5/offers/%@",Host,url]
 #define K_address_domain(url) [NSString stringWithFormat:@"%@/h5/address/%@",Host,url]
-#define K_cart_domain(url) [NSString stringWithFormat:@"%@/h5/cart/%@",Host,url]
+#define K_cart_domain(url) [NSString stringWithFormat:@"%@/h5/carts/%@",Host,url]
 #define K_coupon_domain(url) [NSString stringWithFormat:@"%@/h5/coupons/%@",Host,url]
 #define K_favorite_domain(url) [NSString stringWithFormat:@"%@/h5/usercollection/%@",Host,url]
 #define K_invite_domain(url) [NSString stringWithFormat:@"%@/h5/newInv/%@",Host,url]
 #define K_order_domain(url) [NSString stringWithFormat:@"%@/h5/orders/%@",Host,url]
+#define K_orderReason_domain(url) [NSString stringWithFormat:@"%@/h5/orderreason/%@",Host,url]
 #define K_recent_domain(url) [NSString stringWithFormat:@"%@/h5/viewlog/%@",Host,url]
 #define K_evaluate_domain(url) [NSString stringWithFormat:@"%@/h5/evaluate/%@",Host,url]
 #define K_refund_domain(url) [NSString stringWithFormat:@"%@/h5/orderapply/%@",Host,url]
+#define K_distributor_domain(url) [NSString stringWithFormat:@"%@/h5/kol/%@",Host,url]
 #define K_h5_domain(url) [NSString stringWithFormat:@"%@/h5/%@",Host,url]
 
 

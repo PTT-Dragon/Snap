@@ -64,11 +64,11 @@
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
     static NSString *gridId = @"order.childController.identifier";
     OrderChildViewController *orderViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
-    if (!orderViewController) {
+//    if (!orderViewController) {
         orderViewController = [[OrderChildViewController alloc] init];
         NSNumber *a = [self.typeList objectAtIndex:pageIndex];
         orderViewController.type = a.integerValue;
-    }
+//    }
     return orderViewController;
 }
 
