@@ -109,8 +109,7 @@
 - (UIButton *)addressExtend {
     if (_addressExtend == nil) {
         _addressExtend = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_addressExtend jk_setBackgroundColor:[UIColor jk_colorWithHexString:@"#000000"] forState:UIControlStateNormal];
-//        [_addressExtend setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_addressExtend setImage:[UIImage imageNamed:@"right-scroll"] forState:UIControlStateNormal];
         [_addressExtend addTarget:self action:@selector(extendClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addressExtend;

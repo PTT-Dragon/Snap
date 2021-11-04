@@ -36,7 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 //最后提示信息相关
 @property (nonatomic, readwrite, strong) NSString *notes;//备注
 @property (nonatomic, readwrite, assign) NSInteger availableVouchersCount;//有效优惠券数量
-@property (nonatomic, readwrite, assign) float storePromo;//促销降价
+@property (nonatomic, readwrite, assign) float vouchersReduce;//当前优惠券降价
+@property (nonatomic, readwrite, assign) float promoReduce;//促销降价
 @property (nonatomic, readwrite, assign) float totalPrice;//总价
 @property (nonatomic, readwrite, assign) NSInteger shopAvailableVouchersCount;//商店总的有效优惠券数量
 @end

@@ -7,9 +7,11 @@
 
 #import "ProductCheckoutGoodsCell.h"
 #import "ProductCheckoutModel.h"
+#import "NSString+Add.h"
 
 @interface ProductCheckoutGoodsCell ()
 
+@property (nonatomic, readwrite, strong) UIView *bgView;
 @property (nonatomic, readwrite, strong) UIImageView *icon;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
 @property (nonatomic, readwrite, strong) UILabel *typeLabel;
@@ -22,20 +24,29 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.contentView.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
         [self loadsubviews];
     }
     return self;
 }
 
 - (void)loadsubviews {
-    [self.contentView addSubview:self.icon];
-    [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.typeLabel];
-    [self.contentView addSubview:self.priceLabel];
-    [self.contentView addSubview:self.numLabel];
+    [self.contentView addSubview:self.bgView];
+    [self.bgView addSubview:self.icon];
+    [self.bgView addSubview:self.titleLabel];
+    [self.bgView addSubview:self.typeLabel];
+    [self.bgView addSubview:self.priceLabel];
+    [self.bgView addSubview:self.numLabel];
 }
 
 - (void)layout {
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(16);
+        make.right.mas_equalTo(-16);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+    
     [self.icon mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(90, 90));
@@ -52,6 +63,7 @@
         make.top.equalTo(self.titleLabel.mas_bottom).offset(6);
         make.left.equalTo(self.icon.mas_right).offset(10);
         make.height.mas_equalTo(20);
+        make.width.mas_equalTo([self.typeLabel.text calWidthWithLabel:self.typeLabel] + 16);
     }];
     
     [self.numLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -72,16 +84,24 @@
 - (void)setCellModel:(SFCellCacheModel *)cellModel {
     ProductCheckoutSubItemModel *model = cellModel.obj;
     self.titleLabel.text = model.productTitle;
-    self.typeLabel.text = model.productCategpry;
+    self.typeLabel.text = [NSString stringWithFormat:@"%@",model.productCategpry] ;
     self.priceLabel.text = [NSString stringWithFormat:@"%@ %f",model.priceRp,model.productPrice];
     self.numLabel.text = [NSString stringWithFormat:@"x%ld",model.productNum];
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:model.productIcon]];
     [self layout];
+}
+
+- (UIView *)bgView {
+    if (_bgView == nil) {
+        _bgView = [[UIView alloc] init];
+        _bgView.backgroundColor = [UIColor whiteColor];
+    }
+    return _bgView;
 }
 
 - (UIImageView *)icon {
     if (_icon == nil) {
         _icon = [[UIImageView alloc] init];
-        _icon.backgroundColor = [UIColor redColor];
     }
     return _icon;
 }
