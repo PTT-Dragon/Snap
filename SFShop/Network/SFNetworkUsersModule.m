@@ -60,6 +60,9 @@
 - (NSString *)addressList {
     return K_address_domain(@"delivery");
 }
+- (NSString *)areaData {
+    return K_address_domain(@"");
+}
 @end
 
 @implementation SFNetworkUsersCouponModule

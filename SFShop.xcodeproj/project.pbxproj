@@ -124,6 +124,11 @@
 		1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
+		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
+		1B92D14F27327F4400E73F98 /* ChooseAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14D27327F4400E73F98 /* ChooseAreaViewController.m */; };
+		1B92D15027327F4400E73F98 /* ChooseAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B92D14E27327F4400E73F98 /* ChooseAreaViewController.xib */; };
+		1B92D1542732815C00E73F98 /* AreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D1522732815C00E73F98 /* AreaCell.m */; };
+		1B92D1552732815C00E73F98 /* AreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B92D1532732815C00E73F98 /* AreaCell.xib */; };
 		1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2B9272AF1E400755832 /* FAQViewController.m */; };
 		1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BA272AF1E400755832 /* FAQViewController.xib */; };
 		1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BE272AF27C00755832 /* FAQChildViewController.m */; };
@@ -467,6 +472,14 @@
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
+		1B92D14827326FC200E73F98 /* PublicAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicAlertView.h; sourceTree = "<group>"; };
+		1B92D14927326FC200E73F98 /* PublicAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublicAlertView.m; sourceTree = "<group>"; };
+		1B92D14C27327F4400E73F98 /* ChooseAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseAreaViewController.h; sourceTree = "<group>"; };
+		1B92D14D27327F4400E73F98 /* ChooseAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseAreaViewController.m; sourceTree = "<group>"; };
+		1B92D14E27327F4400E73F98 /* ChooseAreaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseAreaViewController.xib; sourceTree = "<group>"; };
+		1B92D1512732815C00E73F98 /* AreaCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AreaCell.h; sourceTree = "<group>"; };
+		1B92D1522732815C00E73F98 /* AreaCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AreaCell.m; sourceTree = "<group>"; };
+		1B92D1532732815C00E73F98 /* AreaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AreaCell.xib; sourceTree = "<group>"; };
 		1BC7A2B8272AF1E400755832 /* FAQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
 		1BC7A2B9272AF1E400755832 /* FAQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
 		1BC7A2BA272AF1E400755832 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
@@ -780,6 +793,12 @@
 				1B49D12327194CD8002461ED /* AddAddressViewController.h */,
 				1B49D12427194CD8002461ED /* AddAddressViewController.m */,
 				1B49D12527194CD8002461ED /* AddAddressViewController.xib */,
+				1B92D14C27327F4400E73F98 /* ChooseAreaViewController.h */,
+				1B92D14D27327F4400E73F98 /* ChooseAreaViewController.m */,
+				1B92D14E27327F4400E73F98 /* ChooseAreaViewController.xib */,
+				1B92D1512732815C00E73F98 /* AreaCell.h */,
+				1B92D1522732815C00E73F98 /* AreaCell.m */,
+				1B92D1532732815C00E73F98 /* AreaCell.xib */,
 			);
 			path = Address;
 			sourceTree = "<group>";
@@ -1243,6 +1262,8 @@
 				1B74DAF1272272D000B30ECC /* StarView.m */,
 				1B27A4C5272F8C7F0042AD30 /* PublicWebViewController.h */,
 				1B27A4C6272F8C7F0042AD30 /* PublicWebViewController.m */,
+				1B92D14827326FC200E73F98 /* PublicAlertView.h */,
+				1B92D14927326FC200E73F98 /* PublicAlertView.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1770,6 +1791,7 @@
 				1B74DB2627253A3500B30ECC /* DeliveryInformationCell.xib in Resources */,
 				1B2AE435272E3FD200FB23D3 /* CancelOrderViewController.xib in Resources */,
 				4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */,
+				1B92D1552732815C00E73F98 /* AreaCell.xib in Resources */,
 				1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */,
 				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
 				1B478321272A9F0300F2A945 /* SetLogOutCell.xib in Resources */,
@@ -1793,6 +1815,7 @@
 				1B74DAEE27225EF000B30ECC /* ReviewCell.xib in Resources */,
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
 				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
+				1B92D15027327F4400E73F98 /* ChooseAreaViewController.xib in Resources */,
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
@@ -1902,6 +1925,7 @@
 				1B74DAD82721A7A400B30ECC /* PolicesDetailViewController.m in Sources */,
 				1B74DAE827224E4600B30ECC /* OrderModel.m in Sources */,
 				4B818FDD27239F510058038A /* ProductDetailModel.m in Sources */,
+				1B92D14F27327F4400E73F98 /* ChooseAreaViewController.m in Sources */,
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
@@ -1917,6 +1941,7 @@
 				AE81BE592702001700AB4225 /* MBProgressHUD+Prompt.m in Sources */,
 				1B74DAF92722A85600B30ECC /* InviteCell.m in Sources */,
 				AE8F32CA272E962B008E3DD8 /* ProductCheckoutDeliveryCell.m in Sources */,
+				1B92D1542732815C00E73F98 /* AreaCell.m in Sources */,
 				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
 				AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */,
 				1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */,
@@ -1940,6 +1965,7 @@
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
 				1B74DB2527253A3500B30ECC /* DeliveryInformationCell.m in Sources */,
 				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
+				1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
 				1B12A3DD27015EB800DD7BCD /* CouponCenterChildViewController.m in Sources */,
 				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,

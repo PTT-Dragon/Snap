@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFNetworkUsersAddressModule : NSObject
 
 @property (nonatomic, readwrite, strong) NSString *addressList;
+@property (nonatomic, readwrite, strong) NSString *areaData;
+
 @end
 
 @interface SFNetworkUsersCouponModule : NSObject

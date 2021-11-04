@@ -13,3 +13,10 @@
     return YES;
 }
 @end
+
+@implementation AreaModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end

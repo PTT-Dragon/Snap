@@ -10,6 +10,7 @@
 #import "CashOutHistoryViewController.h"
 #import "DistributorModel.h"
 #import "IncomeAndExpenseViewController.h"
+#import "PublicAlertView.h"
 
 @interface CommissionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
@@ -79,6 +80,13 @@
     }else if (indexPath.row == 1){
         IncomeAndExpenseViewController *vc = [[IncomeAndExpenseViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 0){
+        if (self.model.balanceCommission.doubleValue < 10) {
+            PublicAlertView *alertView = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:@"The balance is insufficient to be cashed out.The minimum cash withdrawal is ¥10.00" btnTitle:@"OK" block:^{
+                
+            }];
+            [self.view addSubview:alertView];
+        }
     }
     
 }

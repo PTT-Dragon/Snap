@@ -33,4 +33,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface AreaModel : JSONModel
+@property(nonatomic,copy) NSString <Optional>*stdAddrId;
+@property(nonatomic,copy) NSString <Optional>*stdAddr;
+@property(nonatomic,copy) NSString <Optional>*addrLevelId;
+@property(nonatomic,copy) NSString <Optional>*parentId;
+@property(nonatomic,copy) NSString <Optional>*isLeaf;
+@property(nonatomic,copy) NSString <Optional>*zipcode;
+@property(nonatomic,assign) BOOL sel;
+/**
+ "stdAddrId": 1,
+     "stdAddr": "Bali",
+     "addrLevelId": 2,
+     "parentId": 0,
+     "isLeaf": false,
+     "zipcode": null
+ **/
+
+@end
+
 NS_ASSUME_NONNULL_END
