@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "00200： Currency ／ Rupiah Note.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "00200： Currency ／ Rupiah Note@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "00200： Currency ／ Rupiah Note@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

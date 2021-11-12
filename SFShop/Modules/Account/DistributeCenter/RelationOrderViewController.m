@@ -1,27 +1,27 @@
 //
-//  IncomeAndExpenseViewController.m
+//  RelationOrderViewController.m
 //  SFShop
 //
-//  Created by 游挺 on 2021/11/3.
+//  Created by 游挺 on 2021/11/12.
 //
 
-#import "IncomeAndExpenseViewController.h"
-#import "IncomeAndExpenseChildViewController.h"
+#import "RelationOrderViewController.h"
+#import "RelationOrderChildViewController.h"
 
-@interface IncomeAndExpenseViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
+@interface RelationOrderViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
 @property(nonatomic, strong) NSArray *menuList;
 @property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 
 @end
 
-@implementation IncomeAndExpenseViewController
+@implementation RelationOrderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"My Favorites";
-    self.menuList = @[@"All", @"Income", @"Expense"];
+    self.title = @"Relation Order";
+    self.menuList = @[@"Pending", @"Settled"];
     
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, self.view.jk_height);
     self.magicView.navigationColor = [UIColor whiteColor];
@@ -56,9 +56,9 @@
 
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
     static NSString *gridId = @"myFavorite.childController.identifier";
-    IncomeAndExpenseChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
+    RelationOrderChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
-        gridViewController = [[IncomeAndExpenseChildViewController alloc] init];
+        gridViewController = [[RelationOrderChildViewController alloc] init];
     }
     return gridViewController;
 }

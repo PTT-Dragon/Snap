@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <VTMagic/VTMagic.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IncomeAndExpenseViewController : UIViewController
+@interface IncomeAndExpenseViewController : VTMagicController
 
 @end
 

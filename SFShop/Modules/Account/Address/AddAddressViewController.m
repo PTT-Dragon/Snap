@@ -54,10 +54,7 @@
         self.detailField.text = _model.contactAddress;
         self.defaultSwitch.on = [_model.isDefault isEqualToString:@"Y"];
     }else{
-        _selProvinceAreaMoel = [[AreaModel alloc] init];
-        _selCityAreaMoel = [[AreaModel alloc] init];
-        _selDistrictAreaMoel = [[AreaModel alloc] init];
-        _selStreetAreaMoel = [[AreaModel alloc] init];
+        
     }
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -68,7 +65,7 @@
         vc.selCityAreaMoel = _selCityAreaMoel;
         vc.selDistrictAreaMoel = _selDistrictAreaMoel;
         vc.delegate = self;
-        [self.navigationController presentViewController:vc animated:YES completion:^{
+        [self presentViewController:vc animated:YES completion:^{
             
         }];
         return NO;
@@ -81,7 +78,8 @@
         vc.selProvinceAreaMoel = _selProvinceAreaMoel;
         vc.selCityAreaMoel = _selCityAreaMoel;
         vc.selDistrictAreaMoel = _selDistrictAreaMoel;
-        [self.navigationController presentViewController:vc animated:YES completion:^{
+        vc.delegate = self;
+        [self presentViewController:vc animated:YES completion:^{
                 
         }];
         return NO;
@@ -90,12 +88,12 @@
 }
 
 #pragma mark - delegate
-- (void)chooseProvince:(AreaModel *)provinceModel city:(AreaModel *)cityModel street:(AreaModel *)streetModel
+- (void)chooseProvince:(AreaModel *)provinceModel city:(AreaModel *)cityModel district:(AreaModel *)districtModel
 {
     _selProvinceAreaMoel = provinceModel;
     _selCityAreaMoel = cityModel;
-    _selStreetAreaMoel = streetModel;
-    self.areaField.text = [NSString stringWithFormat:@"%@,%@,%@",streetModel.stdAddr,cityModel.stdAddr,provinceModel.stdAddr];
+    _selDistrictAreaMoel = districtModel;
+    self.areaField.text = [NSString stringWithFormat:@"%@,%@,%@",districtModel.stdAddr,cityModel.stdAddr,provinceModel.stdAddr];
 }
 - (void)chooseStreet:(AreaModel *)streetModel
 {

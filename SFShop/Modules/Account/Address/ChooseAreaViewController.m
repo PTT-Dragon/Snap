@@ -9,16 +9,25 @@
 #import "AreaCell.h"
 #import "UIButton+SGImagePosition.h"
 
+@protocol chooseAreaTopViewDelegate <NSObject>
+
+- (void)updateData;
+
+@end
 
 @interface chooseAreaTopView : UIView
+
+
 @property (nonatomic,strong) UIButton *provinceBtn;
 @property (nonatomic,strong) UIButton *cityBtn;
 @property (nonatomic,strong) UIButton *DistrictBtn;
+@property (nonatomic,strong) UIView *indicationView;
+@property (nonatomic,assign) id<chooseAreaTopViewDelegate>delegate;
 
 - (instancetype)initWithSelAreaModel:(AreaModel *)provinceModel selCity:(AreaModel *)cityModel District:(AreaModel *)DistrictModel;
-@property (nonatomic,weak) AreaModel *selProvinceAreaMoel;
-@property (nonatomic,weak) AreaModel *selCityAreaMoel;
-@property (nonatomic,weak) AreaModel *selDistrictAreaMoel;
+@property (nonatomic,strong) AreaModel *selProvinceAreaMoel;
+@property (nonatomic,strong) AreaModel *selCityAreaMoel;
+@property (nonatomic,strong) AreaModel *selDistrictAreaMoel;
 @end
 
 @implementation chooseAreaTopView
@@ -31,6 +40,16 @@
         [_provinceBtn setTitle:provinceModel.stdAddr forState:0];
         _provinceBtn.titleLabel.numberOfLines = 0;
 //        [_provinceBtn setImage:[UIImage imageNamed:@"swipe-down"] forState:0];
+        @weakify(self)
+        [[_provinceBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self)
+            if (self.selProvinceAreaMoel) {
+                self.selProvinceAreaMoel = [[AreaModel alloc]init];
+                self.selCityAreaMoel = nil;
+                self.selDistrictAreaMoel = nil;
+                [self.delegate updateData];
+            }
+        }];
         [_provinceBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
         [self addSubview:_provinceBtn];
         [_provinceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -53,8 +72,16 @@
         _DistrictBtn.titleLabel.numberOfLines = 0;
         [self addSubview:_DistrictBtn];
         [_DistrictBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.bottom.top.mas_equalTo(self);
+            make.bottom.top.mas_equalTo(self);
             make.left.mas_equalTo(self.cityBtn.mas_right).offset(10);
+            make.right.mas_lessThanOrEqualTo(self);
+        }];
+        [self addSubview:self.indicationView];
+        [self.indicationView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+            make.width.mas_equalTo(self.provinceBtn);
+            make.centerX.mas_equalTo(self.provinceBtn);
         }];
     }
     return self;
@@ -63,22 +90,58 @@
 {
     _selProvinceAreaMoel = selProvinceAreaMoel;
     [_provinceBtn setTitle:selProvinceAreaMoel.stdAddr forState:0];
+    if (selProvinceAreaMoel) {
+        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+            make.width.mas_equalTo(self.provinceBtn);
+            make.centerX.mas_equalTo(self.provinceBtn);
+        }];
+        self.indicationView.hidden = NO;
+    }
 }
 - (void)setSelCityAreaMoel:(AreaModel *)selCityAreaMoel
 {
     _selCityAreaMoel = selCityAreaMoel;
     [_cityBtn setTitle:selCityAreaMoel.stdAddr forState:0];
+    if (selCityAreaMoel) {
+        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+            make.width.mas_equalTo(self.cityBtn);
+            make.centerX.mas_greaterThanOrEqualTo(self.cityBtn);
+        }];
+        self.indicationView.hidden = NO;
+    }
 }
 - (void)setSelDistrictAreaMoel:(AreaModel *)selDistrictAreaMoel
 {
     _selDistrictAreaMoel = selDistrictAreaMoel;
     [_DistrictBtn setTitle:selDistrictAreaMoel.stdAddr forState:0];
+    if (selDistrictAreaMoel) {
+        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+            make.width.mas_equalTo(self.DistrictBtn);
+            make.centerX.mas_greaterThanOrEqualTo(self.DistrictBtn);
+        }];
+        self.indicationView.hidden = NO;
+    }
+}
+
+- (UIView *)indicationView
+{
+    if (!_indicationView) {
+        _indicationView = [[UIView alloc] init];
+        _indicationView.backgroundColor = [UIColor redColor];
+    }
+    return _indicationView;
 }
 @end
 
 
 
-@interface ChooseAreaViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ChooseAreaViewController ()<UITableViewDelegate,UITableViewDataSource,chooseAreaTopViewDelegate>
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) chooseAreaTopView *topView;
 @property (nonatomic,strong) UITableView *tableView;
@@ -96,9 +159,10 @@
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(150);
+        make.top.mas_equalTo(self.view.mas_top).offset(100);
     }];
     _topView = [[chooseAreaTopView alloc] initWithSelAreaModel:_selProvinceAreaMoel selCity:_selCityAreaMoel District:_selDistrictAreaMoel];
+    _topView.delegate = self;
     [self.view addSubview:_topView];
     [_topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
@@ -192,6 +256,13 @@
     }
     [self loadDatas];
 }
+#pragma mark - delegate
+- (void)updateData
+{
+    [self loadDatas];
+}
+
+
 
 - (UITableView *)tableView
 {
