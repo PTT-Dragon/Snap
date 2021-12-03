@@ -49,6 +49,9 @@
 - (NSString *)cart {
     return K_cart_domain(@"");
 }
+- (NSString *)modify {
+    return K_cart_domain(@"modify");
+}
 - (NSString *)del {
     return K_cart_domain(@"delete");
 }

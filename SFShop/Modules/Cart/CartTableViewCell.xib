@@ -29,6 +29,9 @@
                                 </constraints>
                                 <state key="normal" image="radio-0"/>
                                 <state key="selected" image="radio-1"/>
+                                <connections>
+                                    <action selector="selAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xdr-VD-C2W"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Uk-UU-CJV">
                                 <rect key="frame" x="46" y="20" width="90" height="90"/>
@@ -62,6 +65,9 @@
                                     <constraint firstAttribute="height" constant="20" id="geX-WG-qtQ"/>
                                 </constraints>
                                 <state key="normal" image="new-alternative"/>
+                                <connections>
+                                    <action selector="addAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0xX-ZY-n0X"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJB-Fa-M5g">
                                 <rect key="frame" x="251" y="96" width="20" height="20"/>
@@ -70,6 +76,9 @@
                                     <constraint firstAttribute="height" constant="20" id="LTD-w0-TIH"/>
                                 </constraints>
                                 <state key="normal" image="subtract"/>
+                                <connections>
+                                    <action selector="subtractAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="T2S-DR-Tca"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWp-Ge-qwV">
                                 <rect key="frame" x="271" y="96" width="32" height="20"/>

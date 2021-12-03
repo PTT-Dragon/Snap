@@ -8,7 +8,6 @@
 #import "CartChildViewController.h"
 #import "CartTableViewCell.h"
 #import "CartTitleCell.h"
-#import "CartModel.h"
 #import <MJRefresh/MJRefresh.h>
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -36,7 +35,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"CartTableViewCell" bundle:nil] forCellReuseIdentifier:@"CartTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"CartTitleCell" bundle:nil] forCellReuseIdentifier:@"CartTitleCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.bottom.equalTo(self.view);
+        make.top.left.right.equalTo(self.view);
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-78);
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -127,9 +127,15 @@
     [SFNetworkManager get:SFNet.cart.cart parameters:@{@"reduceFlag":_reduceFlag ? @"true": @"false",@"stdAddrId":_addModel.deliveryAddressId} success:^(id  _Nullable response) {
         weakself.cartModel = [[CartModel alloc] initWithDictionary:response error:nil];
         [weakself.tableView reloadData];
+        [weakself.tableView.mj_header endRefreshing];
+        [weakself calculateAmount];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself.tableView.mj_header endRefreshing];
     }];
+}
+- (void)calculateAmount
+{
+    [self.delegate calculateAmount:self.cartModel];
 }
 - (UITableView *)tableView
 {

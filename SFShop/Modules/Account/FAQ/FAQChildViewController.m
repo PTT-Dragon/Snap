@@ -14,6 +14,7 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 
+
 @end
 
 @implementation FAQChildViewController
@@ -22,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _dataSource = [NSMutableArray array];
+    _searchText = @"";
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
     [_tableView registerClass:[FAQTableCell class] forCellReuseIdentifier:@"FAQTableCell"];
@@ -35,7 +37,8 @@
 - (void)loadDatas
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.h5.faqQuestion parameters:@{@"faqCatgName":_faqCatgName} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.h5.faqQuestion parameters:@{@"faqCatgId":_model.faqCatgId} success:^(id  _Nullable response) {
+        [weakself.dataSource removeAllObjects];
         NSArray *arr = response[@"list"];
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[FAQQuestionModel alloc] initWithDictionary:dic error:nil]];
@@ -45,11 +48,16 @@
         
     }];
 }
+- (void)setSearchText:(NSString *)searchText
+{
+    _searchText = searchText;
+    [self loadDatas];
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FAQQuestionModel *model = self.dataSource[indexPath.row];
     FAQTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FAQTableCell"];
-    [cell setContent:model.faqName highlightText:@"h"];
+    [cell setContent:model.faqName highlightText:_searchText];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

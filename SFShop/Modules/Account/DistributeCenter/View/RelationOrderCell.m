@@ -17,7 +17,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
+    _bgView.layer.borderWidth = 1;
+    _bgView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
 }
 
 @end

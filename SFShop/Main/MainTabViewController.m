@@ -12,6 +12,7 @@
 #import "CommunityViewController.h"
 #import "BaseNavigationController.h"
 #import "CategoryViewController.h"
+#import "PublicWebViewController.h"
 
 @interface MainTabViewController ()
 
@@ -26,9 +27,12 @@
     BaseNavigationController *accountNav = [[BaseNavigationController alloc]initWithRootViewController:accountVC];
     accountNav.tabBarItem.title = @"Account";
     accountNav.tabBarItem.image = [UIImage imageNamed:@"account_tab_icon"];
-    HomeViewController *homeVC = [[HomeViewController alloc] init];
-    homeVC.tabBarItem.title = @"Home";
-    homeVC.tabBarItem.image = [UIImage imageNamed:@"home_tab_icon"];
+//    HomeViewController *homeVC = [[HomeViewController alloc] init];
+    PublicWebViewController *homeVc = [[PublicWebViewController alloc] init];
+    BaseNavigationController *homeNav = [[BaseNavigationController alloc]initWithRootViewController:homeVc];
+    homeVc.url = @"https://www.smartfrenshop.com/main/home";
+    homeNav.tabBarItem.title = @"Home";
+    homeNav.tabBarItem.image = [UIImage imageNamed:@"home_tab_icon"];
     CartViewController *cartVC = [[CartViewController alloc] init];
     cartVC.tabBarItem.title = @"Cart";
     cartVC.tabBarItem.image = [UIImage imageNamed:@"cart_tab_icon"];
@@ -46,7 +50,7 @@
     
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar setTranslucent:NO];
-    [self setViewControllers:@[homeVC,categoryNav,communityNav,CartNav,accountNav]];
+    [self setViewControllers:@[homeNav,categoryNav,communityNav,CartNav,accountNav]];
 }
 
 /*

@@ -81,7 +81,7 @@
     FAQChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
 //    if (!gridViewController) {
         gridViewController = [[FAQChildViewController alloc] init];
-        gridViewController.faqCatgName = self.dataSource[pageIndex];
+        gridViewController.model = self.menuList[pageIndex];
 //    }
     return gridViewController;
 }
@@ -101,7 +101,6 @@
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
 }
 
-
 #pragma mark - getter
 - (SFSearchNav *)navSearchView {
     if (_navSearchView == nil) {
@@ -113,7 +112,8 @@
         __weak __typeof(self)weakSelf = self;
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:nil searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
-            
+            FAQChildViewController *vc = strongSelf.viewControllers[strongSelf.currentMenuIndex];
+            vc.searchText = qs;
         }];
     }
     return _navSearchView;

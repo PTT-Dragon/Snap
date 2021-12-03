@@ -8,10 +8,13 @@
 #import "PublicWebViewController.h"
 #import <WebKit/WebKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "WKWebViewJavascriptBridge.h"
+#import "CouponCenterViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
 @property (nonatomic,weak) WKWebViewConfiguration *configuration;
+@property (nonatomic,strong) WKWebViewJavascriptBridge *jsBridge;
 @end
 
 @implementation PublicWebViewController
@@ -25,8 +28,21 @@
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
+    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSString *newUserAgent = [result stringByAppendingFormat:@"/%@",@"app/CYLON-APP"];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
+    }];
     [self.view addSubview:webview];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+    [self addJsBridge];
+}
+- (void)addJsBridge
+{
+    _jsBridge = [WKWebViewJavascriptBridge bridgeForWebView:_webView];
+    [_jsBridge setWebViewDelegate:self];
+    [_jsBridge registerHandler:@"COUPON" handler:^(id data, WVJBResponseCallback responseCallback) {
+        
+    }];
 }
 #pragma mark - WKNavigationDelegate
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
@@ -71,6 +87,14 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
     NSLog(@"%@",navigationAction.request.URL.absoluteString);
+    if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/coupon-center"]) {
+        CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/search-page"]){
+        
+    }
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 

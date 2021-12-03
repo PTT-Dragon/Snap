@@ -41,5 +41,37 @@
     _priceLabel.text = [NSString stringWithFormat:@" RP%.0f",model.salesPrice];
     ProdSpcAttrsModel *skuLabel = model.prodSpcAttrs.firstObject;
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",skuLabel.value];
+    _selBtn.selected = [model.isSelected isEqualToString:@"Y"];
+}
+- (IBAction)selAction:(UIButton *)sender {
+    _model.isSelected = sender.selected ? @"N": @"Y";
+    [self setModel:_model];
+    [self cartModifyAction];
+}
+- (IBAction)addAction:(UIButton *)sender {
+    NSInteger i = _model.num.integerValue;
+    i++;
+    _model.num = [NSString stringWithFormat:@"%ld",i];
+    [self setModel:_model];
+    [self cartModifyAction];
+}
+- (IBAction)subtractAction:(UIButton *)sender {
+    NSInteger i = _model.num.integerValue;
+    if (i<2) {
+        return;
+    }
+    i--;
+    _model.num = [NSString stringWithFormat:@"%ld",i];
+    [self setModel:_model];
+    [self cartModifyAction];
+}
+- (void)cartModifyAction
+{
+    NSDictionary *dic = [_model toDictionary];
+    [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":@[dic]} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 @end

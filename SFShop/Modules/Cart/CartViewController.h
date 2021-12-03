@@ -2,10 +2,10 @@
 //  CartViewController.h
 //  SFShop
 //
-//  Created by Jacue on 2021/9/22.
+//  Created by 游挺 on 2021/12/2.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 #import <VTMagic/VTMagic.h>
 
 NS_ASSUME_NONNULL_BEGIN

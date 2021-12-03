@@ -6,11 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FAQListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FAQChildViewController : UIViewController
-@property (nonatomic,copy) NSString *faqCatgName;
+@property (nonatomic,weak) FAQListModel *model;
+@property (nonatomic,copy) NSString *searchText;
 @end
 
 NS_ASSUME_NONNULL_END
