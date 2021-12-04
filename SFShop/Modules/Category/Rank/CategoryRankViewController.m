@@ -17,6 +17,7 @@
 #import "SFSearchNav.h"
 #import "SFSearchView.h"
 #import "ProductViewController.h"
+#import "CategoryRankNoItemsView.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
@@ -29,6 +30,7 @@
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic, readwrite, assign) BOOL showType;//显示类型 0:colletion 1:list
+@property (nonatomic, readwrite, strong) CategoryRankNoItemsView *noItemsView;
 @end
 
 @implementation CategoryRankViewController
@@ -68,6 +70,7 @@
             [self.collectionView.mj_footer endRefreshing];
         }
         [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
+        [self refreshNoItemsStatus];
         [self.collectionView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
@@ -84,6 +87,7 @@
     [self.view addSubview:self.navSearchView];
     [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.noItemsView];
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
         [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
@@ -98,6 +102,9 @@
 }
 
 - (void)layout {
+    [self.noItemsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.right.mas_equalTo(self.collectionView);
+    }];
 }
 
 #pragma mark - Event
@@ -145,6 +152,14 @@
     [self presentViewController:filterVc animated:YES completion:nil];
 }
 
+- (void)refreshNoItemsStatus {
+    if (!self.dataArray.count) {
+        self.noItemsView.hidden = NO;
+    } else {
+        self.noItemsView.hidden = YES;
+    }
+}
+
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ProductViewController *productVC = [[ProductViewController alloc] init];
@@ -190,7 +205,16 @@
     }
 }
 
-#pragma mark - getter
+#pragma mark - Get and Set
+- (CategoryRankNoItemsView *)noItemsView {
+    if (_noItemsView == nil) {
+        _noItemsView = [[CategoryRankNoItemsView alloc] init];
+        _noItemsView.hidden = YES;
+        _noItemsView.backgroundColor = UIColor.whiteColor;
+    }
+    return _noItemsView;
+}
+
 - (SFSearchNav *)navSearchView {
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
@@ -288,5 +312,4 @@
     }
     return _filterCacheModel;
 }
-
 @end
