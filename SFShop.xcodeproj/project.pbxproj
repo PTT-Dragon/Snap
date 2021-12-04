@@ -78,6 +78,39 @@
 		1B6C523F2758619600A1C617 /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C523B2758619600A1C617 /* WebViewJavascriptBridge_JS.m */; };
 		1B6C52462758AD8100A1C617 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C52442758AD8100A1C617 /* CartViewController.m */; };
 		1B6C52472758AD8100A1C617 /* CartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B6C52452758AD8100A1C617 /* CartViewController.xib */; };
+		1B6C5291275B672200A1C617 /* UIControl+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C524E275B672200A1C617 /* UIControl+EnlargeTouchArea.m */; };
+		1B6C5292275B672200A1C617 /* ZLBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C524F275B672200A1C617 /* ZLBigImageCell.m */; };
+		1B6C5293275B672200A1C617 /* ZLAlbumListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5250275B672200A1C617 /* ZLAlbumListController.m */; };
+		1B6C5294275B672200A1C617 /* ZLPhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5255275B672200A1C617 /* ZLPhotoBrowserCell.m */; };
+		1B6C5295275B672200A1C617 /* ZLForceTouchPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5256275B672200A1C617 /* ZLForceTouchPreviewController.m */; };
+		1B6C5296275B672200A1C617 /* ZLPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C525A275B672200A1C617 /* ZLPhotoManager.m */; };
+		1B6C5297275B672200A1C617 /* ZLAnimateTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C525F275B672200A1C617 /* ZLAnimateTransition.m */; };
+		1B6C5298275B672200A1C617 /* ZLInteractiveTrasition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5261275B672200A1C617 /* ZLInteractiveTrasition.m */; };
+		1B6C5299275B672200A1C617 /* ZLPullDownInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5264275B672200A1C617 /* ZLPullDownInteractiveTransition.m */; };
+		1B6C529A275B672200A1C617 /* ZLProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5267275B672200A1C617 /* ZLProgressView.m */; };
+		1B6C529B275B672200A1C617 /* ZLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C526A275B672200A1C617 /* ZLProgressHUD.m */; };
+		1B6C529C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C526C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m */; };
+		1B6C529D275B672200A1C617 /* ZLCustomCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5270275B672200A1C617 /* ZLCustomCamera.m */; };
+		1B6C529E275B672200A1C617 /* ZLPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5271275B672200A1C617 /* ZLPlayer.m */; };
+		1B6C529F275B672200A1C617 /* UIImage+ZLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5272275B672200A1C617 /* UIImage+ZLPhotoBrowser.m */; };
+		1B6C52A0275B672200A1C617 /* ToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5273275B672200A1C617 /* ToastUtils.m */; };
+		1B6C52A1275B672200A1C617 /* ZLEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5274275B672200A1C617 /* ZLEditViewController.m */; };
+		1B6C52A2275B672200A1C617 /* ZLCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5276275B672200A1C617 /* ZLCollectionCell.m */; };
+		1B6C52A3275B672200A1C617 /* ZLVideoPlayerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5277275B672200A1C617 /* ZLVideoPlayerControl.m */; };
+		1B6C52A4275B672200A1C617 /* ZLNoAuthorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5278275B672200A1C617 /* ZLNoAuthorityViewController.m */; };
+		1B6C52A5275B672200A1C617 /* ZLImageEditTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C527A275B672200A1C617 /* ZLImageEditTool.m */; };
+		1B6C52A6275B672200A1C617 /* ZLBrushBoardImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C527D275B672200A1C617 /* ZLBrushBoardImageView.m */; };
+		1B6C52A7275B672200A1C617 /* ZLDrawItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C527E275B672200A1C617 /* ZLDrawItem.m */; };
+		1B6C52A8275B672200A1C617 /* ZLClipItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C527F275B672200A1C617 /* ZLClipItem.m */; };
+		1B6C52A9275B672200A1C617 /* ZLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B6C5284275B672200A1C617 /* ZLPhotoBrowser.bundle */; };
+		1B6C52AA275B672200A1C617 /* ZLPhotoActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B6C5285275B672200A1C617 /* ZLPhotoActionSheet.xib */; };
+		1B6C52AB275B672200A1C617 /* ZLPhotoBrowserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B6C5286275B672200A1C617 /* ZLPhotoBrowserCell.xib */; };
+		1B6C52AC275B672200A1C617 /* ZLShowBigImgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5288275B672200A1C617 /* ZLShowBigImgViewController.m */; };
+		1B6C52AD275B672200A1C617 /* ZLThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C528A275B672200A1C617 /* ZLThumbnailViewController.m */; };
+		1B6C52AE275B672200A1C617 /* ZLPhotoActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C528B275B672200A1C617 /* ZLPhotoActionSheet.m */; };
+		1B6C52AF275B672200A1C617 /* ZLPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C528D275B672200A1C617 /* ZLPhotoModel.m */; };
+		1B6C52B0275B672200A1C617 /* ZLEditVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C528F275B672200A1C617 /* ZLEditVideoController.m */; };
+		1B6C52B1275B672200A1C617 /* ZLPhotoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5290275B672200A1C617 /* ZLPhotoConfiguration.m */; };
 		1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC3271F192400B30ECC /* CouponModel.m */; };
 		1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC6271FF06500B30ECC /* favoriteModel.m */; };
 		1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */; };
@@ -412,6 +445,72 @@
 		1B6C52432758AD8100A1C617 /* CartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		1B6C52442758AD8100A1C617 /* CartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		1B6C52452758AD8100A1C617 /* CartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartViewController.xib; sourceTree = "<group>"; };
+		1B6C524C275B672200A1C617 /* ZLCustomCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomCamera.h; sourceTree = "<group>"; };
+		1B6C524D275B672200A1C617 /* ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoBrowser.h; sourceTree = "<group>"; };
+		1B6C524E275B672200A1C617 /* UIControl+EnlargeTouchArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+EnlargeTouchArea.m"; sourceTree = "<group>"; };
+		1B6C524F275B672200A1C617 /* ZLBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLBigImageCell.m; sourceTree = "<group>"; };
+		1B6C5250275B672200A1C617 /* ZLAlbumListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLAlbumListController.m; sourceTree = "<group>"; };
+		1B6C5251275B672200A1C617 /* ZLEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLEditViewController.h; sourceTree = "<group>"; };
+		1B6C5252275B672200A1C617 /* ToastUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastUtils.h; sourceTree = "<group>"; };
+		1B6C5253275B672200A1C617 /* UIImage+ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZLPhotoBrowser.h"; sourceTree = "<group>"; };
+		1B6C5254275B672200A1C617 /* ZLPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPlayer.h; sourceTree = "<group>"; };
+		1B6C5255275B672200A1C617 /* ZLPhotoBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoBrowserCell.m; sourceTree = "<group>"; };
+		1B6C5256275B672200A1C617 /* ZLForceTouchPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLForceTouchPreviewController.m; sourceTree = "<group>"; };
+		1B6C5257275B672200A1C617 /* ZLCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCollectionCell.h; sourceTree = "<group>"; };
+		1B6C5258275B672200A1C617 /* ZLVideoPlayerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLVideoPlayerControl.h; sourceTree = "<group>"; };
+		1B6C5259275B672200A1C617 /* ZLNoAuthorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNoAuthorityViewController.h; sourceTree = "<group>"; };
+		1B6C525A275B672200A1C617 /* ZLPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoManager.m; sourceTree = "<group>"; };
+		1B6C525B275B672200A1C617 /* ZLPhotoConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoConfiguration.h; sourceTree = "<group>"; };
+		1B6C525C275B672200A1C617 /* ZLDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLDefine.h; sourceTree = "<group>"; };
+		1B6C525E275B672200A1C617 /* ZLInteractiveTrasition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLInteractiveTrasition.h; sourceTree = "<group>"; };
+		1B6C525F275B672200A1C617 /* ZLAnimateTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLAnimateTransition.m; sourceTree = "<group>"; };
+		1B6C5260275B672200A1C617 /* ZLPullDownInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPullDownInteractiveTransition.h; sourceTree = "<group>"; };
+		1B6C5261275B672200A1C617 /* ZLInteractiveTrasition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLInteractiveTrasition.m; sourceTree = "<group>"; };
+		1B6C5262275B672200A1C617 /* ZLInteractiveAnimateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLInteractiveAnimateProtocol.h; sourceTree = "<group>"; };
+		1B6C5263275B672200A1C617 /* ZLAnimateTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLAnimateTransition.h; sourceTree = "<group>"; };
+		1B6C5264275B672200A1C617 /* ZLPullDownInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPullDownInteractiveTransition.m; sourceTree = "<group>"; };
+		1B6C5265275B672200A1C617 /* ZLEditVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLEditVideoController.h; sourceTree = "<group>"; };
+		1B6C5266275B672200A1C617 /* ZLPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoModel.h; sourceTree = "<group>"; };
+		1B6C5267275B672200A1C617 /* ZLProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLProgressView.m; sourceTree = "<group>"; };
+		1B6C5268275B672200A1C617 /* ZLThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLThumbnailViewController.h; sourceTree = "<group>"; };
+		1B6C5269275B672200A1C617 /* ZLPhotoActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoActionSheet.h; sourceTree = "<group>"; };
+		1B6C526A275B672200A1C617 /* ZLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLProgressHUD.m; sourceTree = "<group>"; };
+		1B6C526B275B672200A1C617 /* ZLShowBigImgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShowBigImgViewController.h; sourceTree = "<group>"; };
+		1B6C526C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ZLPhotoBrowser.m"; sourceTree = "<group>"; };
+		1B6C526D275B672200A1C617 /* ZLAlbumListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLAlbumListController.h; sourceTree = "<group>"; };
+		1B6C526E275B672200A1C617 /* UIControl+EnlargeTouchArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+EnlargeTouchArea.h"; sourceTree = "<group>"; };
+		1B6C526F275B672200A1C617 /* ZLBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLBigImageCell.h; sourceTree = "<group>"; };
+		1B6C5270275B672200A1C617 /* ZLCustomCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomCamera.m; sourceTree = "<group>"; };
+		1B6C5271275B672200A1C617 /* ZLPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPlayer.m; sourceTree = "<group>"; };
+		1B6C5272275B672200A1C617 /* UIImage+ZLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZLPhotoBrowser.m"; sourceTree = "<group>"; };
+		1B6C5273275B672200A1C617 /* ToastUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastUtils.m; sourceTree = "<group>"; };
+		1B6C5274275B672200A1C617 /* ZLEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLEditViewController.m; sourceTree = "<group>"; };
+		1B6C5275275B672200A1C617 /* ZLPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoManager.h; sourceTree = "<group>"; };
+		1B6C5276275B672200A1C617 /* ZLCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCollectionCell.m; sourceTree = "<group>"; };
+		1B6C5277275B672200A1C617 /* ZLVideoPlayerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLVideoPlayerControl.m; sourceTree = "<group>"; };
+		1B6C5278275B672200A1C617 /* ZLNoAuthorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNoAuthorityViewController.m; sourceTree = "<group>"; };
+		1B6C527A275B672200A1C617 /* ZLImageEditTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLImageEditTool.m; sourceTree = "<group>"; };
+		1B6C527B275B672200A1C617 /* ZLClipItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLClipItem.h; sourceTree = "<group>"; };
+		1B6C527C275B672200A1C617 /* ZLDrawItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLDrawItem.h; sourceTree = "<group>"; };
+		1B6C527D275B672200A1C617 /* ZLBrushBoardImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLBrushBoardImageView.m; sourceTree = "<group>"; };
+		1B6C527E275B672200A1C617 /* ZLDrawItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLDrawItem.m; sourceTree = "<group>"; };
+		1B6C527F275B672200A1C617 /* ZLClipItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLClipItem.m; sourceTree = "<group>"; };
+		1B6C5280275B672200A1C617 /* ZLImageEditTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLImageEditTool.h; sourceTree = "<group>"; };
+		1B6C5281275B672200A1C617 /* ZLBrushBoardImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLBrushBoardImageView.h; sourceTree = "<group>"; };
+		1B6C5282275B672200A1C617 /* ZLForceTouchPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLForceTouchPreviewController.h; sourceTree = "<group>"; };
+		1B6C5284275B672200A1C617 /* ZLPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoBrowser.bundle; sourceTree = "<group>"; };
+		1B6C5285275B672200A1C617 /* ZLPhotoActionSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPhotoActionSheet.xib; sourceTree = "<group>"; };
+		1B6C5286275B672200A1C617 /* ZLPhotoBrowserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPhotoBrowserCell.xib; sourceTree = "<group>"; };
+		1B6C5287275B672200A1C617 /* ZLPhotoBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoBrowserCell.h; sourceTree = "<group>"; };
+		1B6C5288275B672200A1C617 /* ZLShowBigImgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShowBigImgViewController.m; sourceTree = "<group>"; };
+		1B6C5289275B672200A1C617 /* NSBundle+ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ZLPhotoBrowser.h"; sourceTree = "<group>"; };
+		1B6C528A275B672200A1C617 /* ZLThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLThumbnailViewController.m; sourceTree = "<group>"; };
+		1B6C528B275B672200A1C617 /* ZLPhotoActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoActionSheet.m; sourceTree = "<group>"; };
+		1B6C528C275B672200A1C617 /* ZLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLProgressHUD.h; sourceTree = "<group>"; };
+		1B6C528D275B672200A1C617 /* ZLPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoModel.m; sourceTree = "<group>"; };
+		1B6C528E275B672200A1C617 /* ZLProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLProgressView.h; sourceTree = "<group>"; };
+		1B6C528F275B672200A1C617 /* ZLEditVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLEditVideoController.m; sourceTree = "<group>"; };
+		1B6C5290275B672200A1C617 /* ZLPhotoConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoConfiguration.m; sourceTree = "<group>"; };
 		1B74DAC2271F192400B30ECC /* CouponModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		1B74DAC3271F192400B30ECC /* CouponModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
 		1B74DAC5271FF06500B30ECC /* favoriteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = favoriteModel.h; sourceTree = "<group>"; };
@@ -968,6 +1067,111 @@
 			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
 		};
+		1B6C524A275B672200A1C617 /* ZLPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				1B6C524B275B672200A1C617 /* PhotoBrowser */,
+			);
+			path = ZLPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		1B6C524B275B672200A1C617 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				1B6C524C275B672200A1C617 /* ZLCustomCamera.h */,
+				1B6C524D275B672200A1C617 /* ZLPhotoBrowser.h */,
+				1B6C524E275B672200A1C617 /* UIControl+EnlargeTouchArea.m */,
+				1B6C524F275B672200A1C617 /* ZLBigImageCell.m */,
+				1B6C5250275B672200A1C617 /* ZLAlbumListController.m */,
+				1B6C5251275B672200A1C617 /* ZLEditViewController.h */,
+				1B6C5252275B672200A1C617 /* ToastUtils.h */,
+				1B6C5253275B672200A1C617 /* UIImage+ZLPhotoBrowser.h */,
+				1B6C5254275B672200A1C617 /* ZLPlayer.h */,
+				1B6C5255275B672200A1C617 /* ZLPhotoBrowserCell.m */,
+				1B6C5256275B672200A1C617 /* ZLForceTouchPreviewController.m */,
+				1B6C5257275B672200A1C617 /* ZLCollectionCell.h */,
+				1B6C5258275B672200A1C617 /* ZLVideoPlayerControl.h */,
+				1B6C5259275B672200A1C617 /* ZLNoAuthorityViewController.h */,
+				1B6C525A275B672200A1C617 /* ZLPhotoManager.m */,
+				1B6C525B275B672200A1C617 /* ZLPhotoConfiguration.h */,
+				1B6C525C275B672200A1C617 /* ZLDefine.h */,
+				1B6C525D275B672200A1C617 /* Animation */,
+				1B6C5265275B672200A1C617 /* ZLEditVideoController.h */,
+				1B6C5266275B672200A1C617 /* ZLPhotoModel.h */,
+				1B6C5267275B672200A1C617 /* ZLProgressView.m */,
+				1B6C5268275B672200A1C617 /* ZLThumbnailViewController.h */,
+				1B6C5269275B672200A1C617 /* ZLPhotoActionSheet.h */,
+				1B6C526A275B672200A1C617 /* ZLProgressHUD.m */,
+				1B6C526B275B672200A1C617 /* ZLShowBigImgViewController.h */,
+				1B6C526C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m */,
+				1B6C526D275B672200A1C617 /* ZLAlbumListController.h */,
+				1B6C526E275B672200A1C617 /* UIControl+EnlargeTouchArea.h */,
+				1B6C526F275B672200A1C617 /* ZLBigImageCell.h */,
+				1B6C5270275B672200A1C617 /* ZLCustomCamera.m */,
+				1B6C5271275B672200A1C617 /* ZLPlayer.m */,
+				1B6C5272275B672200A1C617 /* UIImage+ZLPhotoBrowser.m */,
+				1B6C5273275B672200A1C617 /* ToastUtils.m */,
+				1B6C5274275B672200A1C617 /* ZLEditViewController.m */,
+				1B6C5275275B672200A1C617 /* ZLPhotoManager.h */,
+				1B6C5276275B672200A1C617 /* ZLCollectionCell.m */,
+				1B6C5277275B672200A1C617 /* ZLVideoPlayerControl.m */,
+				1B6C5278275B672200A1C617 /* ZLNoAuthorityViewController.m */,
+				1B6C5279275B672200A1C617 /* ZLImageEditTools */,
+				1B6C5282275B672200A1C617 /* ZLForceTouchPreviewController.h */,
+				1B6C5283275B672200A1C617 /* resource */,
+				1B6C5287275B672200A1C617 /* ZLPhotoBrowserCell.h */,
+				1B6C5288275B672200A1C617 /* ZLShowBigImgViewController.m */,
+				1B6C5289275B672200A1C617 /* NSBundle+ZLPhotoBrowser.h */,
+				1B6C528A275B672200A1C617 /* ZLThumbnailViewController.m */,
+				1B6C528B275B672200A1C617 /* ZLPhotoActionSheet.m */,
+				1B6C528C275B672200A1C617 /* ZLProgressHUD.h */,
+				1B6C528D275B672200A1C617 /* ZLPhotoModel.m */,
+				1B6C528E275B672200A1C617 /* ZLProgressView.h */,
+				1B6C528F275B672200A1C617 /* ZLEditVideoController.m */,
+				1B6C5290275B672200A1C617 /* ZLPhotoConfiguration.m */,
+			);
+			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
+		1B6C525D275B672200A1C617 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				1B6C525E275B672200A1C617 /* ZLInteractiveTrasition.h */,
+				1B6C525F275B672200A1C617 /* ZLAnimateTransition.m */,
+				1B6C5260275B672200A1C617 /* ZLPullDownInteractiveTransition.h */,
+				1B6C5261275B672200A1C617 /* ZLInteractiveTrasition.m */,
+				1B6C5262275B672200A1C617 /* ZLInteractiveAnimateProtocol.h */,
+				1B6C5263275B672200A1C617 /* ZLAnimateTransition.h */,
+				1B6C5264275B672200A1C617 /* ZLPullDownInteractiveTransition.m */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		1B6C5279275B672200A1C617 /* ZLImageEditTools */ = {
+			isa = PBXGroup;
+			children = (
+				1B6C527A275B672200A1C617 /* ZLImageEditTool.m */,
+				1B6C527B275B672200A1C617 /* ZLClipItem.h */,
+				1B6C527C275B672200A1C617 /* ZLDrawItem.h */,
+				1B6C527D275B672200A1C617 /* ZLBrushBoardImageView.m */,
+				1B6C527E275B672200A1C617 /* ZLDrawItem.m */,
+				1B6C527F275B672200A1C617 /* ZLClipItem.m */,
+				1B6C5280275B672200A1C617 /* ZLImageEditTool.h */,
+				1B6C5281275B672200A1C617 /* ZLBrushBoardImageView.h */,
+			);
+			path = ZLImageEditTools;
+			sourceTree = "<group>";
+		};
+		1B6C5283275B672200A1C617 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				1B6C5284275B672200A1C617 /* ZLPhotoBrowser.bundle */,
+				1B6C5285275B672200A1C617 /* ZLPhotoActionSheet.xib */,
+				1B6C5286275B672200A1C617 /* ZLPhotoBrowserCell.xib */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		1B74DAC8272007D900B30ECC /* DatePickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1326,6 +1530,7 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1B6C524A275B672200A1C617 /* ZLPhotoBrowser */,
 				1B6C52362758619600A1C617 /* WebViewJavascriptBridge */,
 				AE8F32D7272EA3D2008E3DD8 /* Cell */,
 				AEA3297B2727051400E7827A /* Search */,
@@ -1858,6 +2063,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B3122562732306B0055033D /* CashOutHistoryCell.xib in Resources */,
+				1B6C52A9275B672200A1C617 /* ZLPhotoBrowser.bundle in Resources */,
 				1B31225B273260980055033D /* CaseOutDetailViewController.xib in Resources */,
 				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
 				1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */,
@@ -1881,6 +2087,7 @@
 				1BF00F60272FDC090081C8E4 /* DistributorInfoCell.xib in Resources */,
 				1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */,
 				1B2AE429272D36F000FB23D3 /* CartTableViewCell.xib in Resources */,
+				1B6C52AB275B672200A1C617 /* ZLPhotoBrowserCell.xib in Resources */,
 				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
 				1B74DB1B2724467100B30ECC /* OrderListItemCell.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
@@ -1934,6 +2141,7 @@
 				1B47832B272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib in Resources */,
 				1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */,
 				AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */,
+				1B6C52AA275B672200A1C617 /* ZLPhotoActionSheet.xib in Resources */,
 				1B74DB162724466100B30ECC /* OrderListBottomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2001,7 +2209,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B6C52A3275B672200A1C617 /* ZLVideoPlayerControl.m in Sources */,
 				AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */,
+				1B6C52A7275B672200A1C617 /* ZLDrawItem.m in Sources */,
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
 				1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */,
@@ -2014,6 +2224,7 @@
 				1B92D14F27327F4400E73F98 /* ChooseAreaViewController.m in Sources */,
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
+				1B6C529C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
 				1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */,
 				1BF00F74272FDD770081C8E4 /* DistributorModel.m in Sources */,
@@ -2029,7 +2240,9 @@
 				1B74DAF92722A85600B30ECC /* InviteCell.m in Sources */,
 				AE8F32CA272E962B008E3DD8 /* ProductCheckoutDeliveryCell.m in Sources */,
 				1B92D1542732815C00E73F98 /* AreaCell.m in Sources */,
+				1B6C529D275B672200A1C617 /* ZLCustomCamera.m in Sources */,
 				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
+				1B6C52B0275B672200A1C617 /* ZLEditVideoController.m in Sources */,
 				AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */,
 				1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */,
 				1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */,
@@ -2042,9 +2255,11 @@
 				AE81BE3F26FF5FD500AB4225 /* CategorySideTableView.m in Sources */,
 				4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */,
 				1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */,
+				1B6C5291275B672200A1C617 /* UIControl+EnlargeTouchArea.m in Sources */,
 				4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */,
 				1B6C523E2758619600A1C617 /* WKWebViewJavascriptBridge.m in Sources */,
 				AE68D68B272AFAF900CF544C /* SFSearchSectionHeadView.m in Sources */,
+				1B6C5294275B672200A1C617 /* ZLPhotoBrowserCell.m in Sources */,
 				1B478316272A957000F2A945 /* RefundProcessCell.m in Sources */,
 				1B47830C272A838500F2A945 /* refundModel.m in Sources */,
 				AEA3297E2727053F00E7827A /* SFSearchView.m in Sources */,
@@ -2060,8 +2275,10 @@
 				1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */,
 				AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */,
 				1B964754273E48BF00345DDA /* IncomeAndExpenseChildViewController.m in Sources */,
+				1B6C5296275B672200A1C617 /* ZLPhotoManager.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */,
+				1B6C5297275B672200A1C617 /* ZLAnimateTransition.m in Sources */,
 				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
 				1B787B4C27293AE900E6A983 /* SimilarProductCell.m in Sources */,
@@ -2084,6 +2301,7 @@
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
 				1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */,
+				1B6C52A4275B672200A1C617 /* ZLNoAuthorityViewController.m in Sources */,
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
 				1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */,
 				1B27A4C7272F8C7F0042AD30 /* PublicWebViewController.m in Sources */,
@@ -2101,6 +2319,7 @@
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,
 				1B478304272A785200F2A945 /* RefundViewController.m in Sources */,
+				1B6C5299275B672200A1C617 /* ZLPullDownInteractiveTransition.m in Sources */,
 				1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */,
 				1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
@@ -2108,13 +2327,17 @@
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
 				1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */,
+				1B6C52A1275B672200A1C617 /* ZLEditViewController.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
 				1B47832A272AA15700F2A945 /* ChangeMobileOrEmailViewController.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
+				1B6C52A2275B672200A1C617 /* ZLCollectionCell.m in Sources */,
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
 				1B478308272A7B1000F2A945 /* RefundCell.m in Sources */,
+				1B6C52AC275B672200A1C617 /* ZLShowBigImgViewController.m in Sources */,
 				1BF00F6E272FDC5D0081C8E4 /* DistributorRankCell.m in Sources */,
 				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
+				1B6C5298275B672200A1C617 /* ZLInteractiveTrasition.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,
 				1B74DB0C2724420A00B30ECC /* OrderChildViewController.m in Sources */,
@@ -2135,23 +2358,30 @@
 				1B3122552732306B0055033D /* CashOutHistoryCell.m in Sources */,
 				1B2AE42F272D8F3700FB23D3 /* CartTitleCell.m in Sources */,
 				AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */,
+				1B6C5292275B672200A1C617 /* ZLBigImageCell.m in Sources */,
+				1B6C52A5275B672200A1C617 /* ZLImageEditTool.m in Sources */,
 				1B74DAF2272272D000B30ECC /* StarView.m in Sources */,
 				AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */,
 				AEA3298427299CDF00E7827A /* SFSearchNav.m in Sources */,
 				4B818FE6272435E30058038A /* MakeH5Happy.m in Sources */,
 				4B1522CC272D300A00C3BDD9 /* ProductSpecAttrsView.m in Sources */,
+				1B6C52B1275B672200A1C617 /* ZLPhotoConfiguration.m in Sources */,
 				1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */,
+				1B6C52AD275B672200A1C617 /* ZLThumbnailViewController.m in Sources */,
 				4B7974C7271EFD1200F2EEEA /* ArticleEvaluateModel.m in Sources */,
+				1B6C52AF275B672200A1C617 /* ZLPhotoModel.m in Sources */,
 				AE81BE4526FF605100AB4225 /* CategoryContentCollectionView.m in Sources */,
 				1B12A3DA27015E9100DD7BCD /* CouponCenterViewController.m in Sources */,
 				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
 				1B74DADD2721ABC500B30ECC /* ReviewViewController.m in Sources */,
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
 				AEA3296B27240E6800E7827A /* YHRegularLayout.m in Sources */,
+				1B6C5295275B672200A1C617 /* ZLForceTouchPreviewController.m in Sources */,
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,
 				AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */,
+				1B6C5293275B672200A1C617 /* ZLAlbumListController.m in Sources */,
 				1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */,
 				AE6CFFB02721C09E008F18B5 /* CategoryRankHeadSelectorView.m in Sources */,
 				1B49D13D271D477F002461ED /* userInfoGenderView.m in Sources */,
@@ -2160,9 +2390,12 @@
 				1B478320272A9F0300F2A945 /* SetLogOutCell.m in Sources */,
 				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,
 				1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */,
+				1B6C52AE275B672200A1C617 /* ZLPhotoActionSheet.m in Sources */,
+				1B6C529A275B672200A1C617 /* ZLProgressView.m in Sources */,
 				1BE94C1F274B762900B588F4 /* PublicShareView.m in Sources */,
 				AE8F32C7272E95FA008E3DD8 /* ProductCheckoutGoodsCell.m in Sources */,
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
+				1B6C52A8275B672200A1C617 /* ZLClipItem.m in Sources */,
 				AE80F26E2732EB9100A2D8DE /* ProductCheckoutBuyView.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
 				1B47832F272AA1FF00F2A945 /* SecurityCenterViewController.m in Sources */,
@@ -2172,20 +2405,24 @@
 				1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */,
 				1B74DB442728EB1A00B30ECC /* RecentlyModel.m in Sources */,
 				1B49D139271D4557002461ED /* changeUserInfoVC.m in Sources */,
+				1B6C52A6275B672200A1C617 /* ZLBrushBoardImageView.m in Sources */,
 				1B96475F273E4CF400345DDA /* RelationOrderChildViewController.m in Sources */,
 				AE8F32D3272E96B2008E3DD8 /* ProductCheckoutModel.m in Sources */,
 				1B31225A273260980055033D /* CaseOutDetailViewController.m in Sources */,
 				1B74DB102724463500B30ECC /* OrderListStateCell.m in Sources */,
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
+				1B6C52A0275B672200A1C617 /* ToastUtils.m in Sources */,
 				1BF00F69272FDC4B0081C8E4 /* DistribitorRankTopCell.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
 				1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */,
 				1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */,
 				1B74DACF272007D900B30ECC /* InitializationUIMethod.m in Sources */,
 				1BF00F54272FC13D0081C8E4 /* DistributeCenterViewController.m in Sources */,
+				1B6C529F275B672200A1C617 /* UIImage+ZLPhotoBrowser.m in Sources */,
 				1B74DB3F2726FF3600B30ECC /* RecentlyViewedCell.m in Sources */,
 				1B6C52462758AD8100A1C617 /* CartViewController.m in Sources */,
+				1B6C529E275B672200A1C617 /* ZLPlayer.m in Sources */,
 				AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */,
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				AE8F32C4272E95BD008E3DD8 /* ProductCheckoutAddressCell.m in Sources */,
@@ -2193,6 +2430,7 @@
 				AEA3297A2725391A00E7827A /* CategoryRankFilterCacheModel.m in Sources */,
 				AE81BDE926FB6E7300AB4225 /* main.m in Sources */,
 				AE81BE3526FF318900AB4225 /* SFNetworkPageModule.m in Sources */,
+				1B6C529B275B672200A1C617 /* ZLProgressHUD.m in Sources */,
 				4B9FB9FF26FB7AAB00C90790 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

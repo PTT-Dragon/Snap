@@ -107,6 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *agreement;
 @property (nonatomic, readwrite, strong) NSString *faqList;
 @property (nonatomic, readwrite, strong) NSString *faqQuestion;
+@property (nonatomic, readwrite, strong) NSString *publishImg;
 - (NSString *)getReceiptOf: (NSString *)orderId;
 
 @end

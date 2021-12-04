@@ -74,8 +74,4 @@
         [self closeAction:nil];
     }
 }
-- (void)chooseStreet:(AreaModel *_Nullable)streetModel
-{
-    
-}
 @end

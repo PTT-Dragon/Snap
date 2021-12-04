@@ -197,6 +197,9 @@
 - (NSString *)faqQuestion {
     return K_h5_domain(@"/faq/question/page");
 }
+- (NSString *)publishImg {
+    return K_h5_domain(@"image");
+}
 - (NSString *)getReceiptOf: (NSString *)orderId
 {
     NSString *url = [NSString stringWithFormat:@"/receipt/%@", orderId];
