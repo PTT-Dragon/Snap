@@ -220,6 +220,7 @@
 		4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA026FCAE1400E3C832 /* Enums.m */; };
 		4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA926FCB13300E3C832 /* FMDBManager.m */; };
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
+		AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A65275B502C00F34481 /* CategoryRankNoItemsView.m */; };
 		AE68D68B272AFAF900CF544C /* SFSearchSectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE68D68A272AFAF900CF544C /* SFSearchSectionHeadView.m */; };
 		AE6CFFB02721C09E008F18B5 /* CategoryRankHeadSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6CFFAF2721C09E008F18B5 /* CategoryRankHeadSelectorView.m */; };
 		AE80F26E2732EB9100A2D8DE /* ProductCheckoutBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE80F26D2732EB9100A2D8DE /* ProductCheckoutBuyView.m */; };
@@ -654,6 +655,8 @@
 		50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
 		7B387B141A9718B8B8605036 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
 		ABCFEC0B341B688C59EBE3B6 /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
+		AE5C9A64275B502C00F34481 /* CategoryRankNoItemsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankNoItemsView.h; sourceTree = "<group>"; };
+		AE5C9A65275B502C00F34481 /* CategoryRankNoItemsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankNoItemsView.m; sourceTree = "<group>"; };
 		AE68D689272AFAF900CF544C /* SFSearchSectionHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchSectionHeadView.h; sourceTree = "<group>"; };
 		AE68D68A272AFAF900CF544C /* SFSearchSectionHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchSectionHeadView.m; sourceTree = "<group>"; };
 		AE6CFFAE2721C09E008F18B5 /* CategoryRankHeadSelectorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankHeadSelectorView.h; sourceTree = "<group>"; };
@@ -1725,6 +1728,8 @@
 				AE6CFFAF2721C09E008F18B5 /* CategoryRankHeadSelectorView.m */,
 				AEA329752725307300E7827A /* CustomTextField.h */,
 				AEA329762725307300E7827A /* CustomTextField.m */,
+				AE5C9A64275B502C00F34481 /* CategoryRankNoItemsView.h */,
+				AE5C9A65275B502C00F34481 /* CategoryRankNoItemsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2181,6 +2186,7 @@
 				1BF00F54272FC13D0081C8E4 /* DistributeCenterViewController.m in Sources */,
 				1B74DB3F2726FF3600B30ECC /* RecentlyViewedCell.m in Sources */,
 				1B6C52462758AD8100A1C617 /* CartViewController.m in Sources */,
+				AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */,
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				AE8F32C4272E95BD008E3DD8 /* ProductCheckoutAddressCell.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
