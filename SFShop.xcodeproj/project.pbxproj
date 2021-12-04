@@ -221,6 +221,9 @@
 		4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA926FCB13300E3C832 /* FMDBManager.m */; };
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
 		AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A65275B502C00F34481 /* CategoryRankNoItemsView.m */; };
+		AE5C9A69275B5C7C00F34481 /* SFSearchingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A68275B5C7C00F34481 /* SFSearchingView.m */; };
+		AE5C9A6C275B5D7700F34481 /* SFSearchingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A6B275B5D7700F34481 /* SFSearchingCell.m */; };
+		AE5C9A6F275B5F3800F34481 /* SFSearchingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A6E275B5F3800F34481 /* SFSearchingModel.m */; };
 		AE68D68B272AFAF900CF544C /* SFSearchSectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE68D68A272AFAF900CF544C /* SFSearchSectionHeadView.m */; };
 		AE6CFFB02721C09E008F18B5 /* CategoryRankHeadSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6CFFAF2721C09E008F18B5 /* CategoryRankHeadSelectorView.m */; };
 		AE80F26E2732EB9100A2D8DE /* ProductCheckoutBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE80F26D2732EB9100A2D8DE /* ProductCheckoutBuyView.m */; };
@@ -657,6 +660,12 @@
 		ABCFEC0B341B688C59EBE3B6 /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
 		AE5C9A64275B502C00F34481 /* CategoryRankNoItemsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankNoItemsView.h; sourceTree = "<group>"; };
 		AE5C9A65275B502C00F34481 /* CategoryRankNoItemsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankNoItemsView.m; sourceTree = "<group>"; };
+		AE5C9A67275B5C7C00F34481 /* SFSearchingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchingView.h; sourceTree = "<group>"; };
+		AE5C9A68275B5C7C00F34481 /* SFSearchingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchingView.m; sourceTree = "<group>"; };
+		AE5C9A6A275B5D7700F34481 /* SFSearchingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchingCell.h; sourceTree = "<group>"; };
+		AE5C9A6B275B5D7700F34481 /* SFSearchingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchingCell.m; sourceTree = "<group>"; };
+		AE5C9A6D275B5F3800F34481 /* SFSearchingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchingModel.h; sourceTree = "<group>"; };
+		AE5C9A6E275B5F3800F34481 /* SFSearchingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchingModel.m; sourceTree = "<group>"; };
 		AE68D689272AFAF900CF544C /* SFSearchSectionHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchSectionHeadView.h; sourceTree = "<group>"; };
 		AE68D68A272AFAF900CF544C /* SFSearchSectionHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchSectionHeadView.m; sourceTree = "<group>"; };
 		AE6CFFAE2721C09E008F18B5 /* CategoryRankHeadSelectorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankHeadSelectorView.h; sourceTree = "<group>"; };
@@ -1739,16 +1748,22 @@
 			children = (
 				AEA32988272AEE9500E7827A /* SFSearchCollectionCell.h */,
 				AEA32989272AEE9500E7827A /* SFSearchCollectionCell.m */,
+				AE5C9A6A275B5D7700F34481 /* SFSearchingCell.h */,
+				AE5C9A6B275B5D7700F34481 /* SFSearchingCell.m */,
 				AE68D689272AFAF900CF544C /* SFSearchSectionHeadView.h */,
 				AE68D68A272AFAF900CF544C /* SFSearchSectionHeadView.m */,
 				AEA3298227299CDF00E7827A /* SFSearchNav.h */,
 				AEA3298327299CDF00E7827A /* SFSearchNav.m */,
 				AEA3297C2727053F00E7827A /* SFSearchView.h */,
 				AEA3297D2727053F00E7827A /* SFSearchView.m */,
+				AE5C9A67275B5C7C00F34481 /* SFSearchingView.h */,
+				AE5C9A68275B5C7C00F34481 /* SFSearchingView.m */,
 				AEA329852729A0F700E7827A /* SFSearchItem.h */,
 				AEA329862729A0F700E7827A /* SFSearchItem.m */,
 				AEA3298D272AF2C700E7827A /* SFSearchModel.h */,
 				AEA3298E272AF2C700E7827A /* SFSearchModel.m */,
+				AE5C9A6D275B5F3800F34481 /* SFSearchingModel.h */,
+				AE5C9A6E275B5F3800F34481 /* SFSearchingModel.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -2068,6 +2083,7 @@
 				AE8F32DD272EF0B2008E3DD8 /* ProductCheckoutSectionHeader.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */,
+				AE5C9A6F275B5F3800F34481 /* SFSearchingModel.m in Sources */,
 				AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */,
 				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,
 				1B74DB3927265EDC00B30ECC /* setViewController.m in Sources */,
@@ -2081,6 +2097,7 @@
 				1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */,
 				1BC7A2CA272AFC9600755832 /* FAQDetailViewController.m in Sources */,
 				1B6C523F2758619600A1C617 /* WebViewJavascriptBridge_JS.m in Sources */,
+				AE5C9A69275B5C7C00F34481 /* SFSearchingView.m in Sources */,
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
 				1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */,
@@ -2186,6 +2203,7 @@
 				1BF00F54272FC13D0081C8E4 /* DistributeCenterViewController.m in Sources */,
 				1B74DB3F2726FF3600B30ECC /* RecentlyViewedCell.m in Sources */,
 				1B6C52462758AD8100A1C617 /* CartViewController.m in Sources */,
+				AE5C9A6C275B5D7700F34481 /* SFSearchingCell.m in Sources */,
 				AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */,
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				AE8F32C4272E95BD008E3DD8 /* ProductCheckoutAddressCell.m in Sources */,
