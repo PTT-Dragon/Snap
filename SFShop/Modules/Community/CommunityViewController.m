@@ -53,10 +53,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self request];
+}
+
+- (void)request {
+    [MBProgressHUD showHudMsg:@"加载中"];
+    [SFNetworkManager get: SFNet.article.articleCatgs parameters: nil success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        NSArray *recCatgs = [(NSDictionary *)response objectForKey:@"recCatgs"];
+        self.menuList = [recCatgs jk_map:^NSString *(NSDictionary *object) {
+            return [object jk_stringForKey:@"articleCatgName"];
+        }];
+        self.articleCatgIdList = [recCatgs jk_map:^NSString *(NSDictionary *object) {
+            return [object jk_stringForKey:@"articleCatgId"];
+        }];
+        [self setupMagicView];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+    }];
+}
+
+- (void)setupMagicView {
     self.currentMenuIndex = 0;
-    self.menuList = @[@"Recommend", @"Phone", @"House", @"Car", @"Computer", @"Camera"];
-    self.articleCatgIdList = @[@"6", @"11", @"10", @"6", @"7", @"10"];
-    
+
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
     self.magicView.sliderHeight = 1.0f;

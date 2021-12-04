@@ -13,6 +13,10 @@
     return K_articles_domain(@"");
 }
 
+- (NSString *)articleCatgs {
+    return K_articles_domain(@"catgs");
+}
+
 - (NSString *)getDetailOf: (NSString *)articleId {
     return K_articles_domain(articleId);
 }
