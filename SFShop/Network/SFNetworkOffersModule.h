@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFNetworkOffersModule : NSObject
 
+@property (nonatomic, readonly, copy) NSString *suggest;
+
 @property (nonatomic, readonly, copy) NSString *offers;
 
 @property (nonatomic, readonly, copy) NSString *viewlog;
@@ -18,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) NSString *stock;
 
 - (NSString *)getDetailOf: (NSInteger)offerId;
+
 
 @end
 

@@ -8,6 +8,7 @@
 #import "SFSearchNav.h"
 #import "CustomTextField.h"
 #import "SFSearchView.h"
+#import "SFSearchingView.h"
 
 @interface SFSearchNav ()<UITextFieldDelegate>
 @property (nonatomic, readwrite, strong) SFSearchItem *bItem;
@@ -16,12 +17,17 @@
 @property (nonatomic, readwrite, strong) CustomTextField *textField;
 @property (nonatomic, readwrite, strong) UIButton *rightBtn;
 @property (nonatomic, readwrite, strong) SFSearchView *searchView;
+@property (nonatomic, readwrite, strong) SFSearchingView *searchingView;
 @property (nonatomic, readwrite, copy) void(^searchBlock)(NSString *qs);
 @property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFSearchModel *> *> *dataArray;
 @property (nonatomic, readwrite, strong) NSMutableArray<SFSearchModel *> *searchHistory;
 
 @end
 @implementation SFSearchNav
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame backItme:(SFSearchItem *)bItem rightItem:(SFSearchItem *)rItem searchBlock:(nonnull void (^)(NSString *qs))searchBlock {
     if (self = [super initWithFrame:frame]) {
@@ -32,6 +38,15 @@
         [self layout];
     }
     return self;
+}
+
+- (void)textFieldDidChangeValue:(NSNotification *)noti {
+    UITextField *textField = (UITextField *)[noti object];
+    if (textField.text.length > 0) {
+        [self.searchingView requestAssociate:textField.text];
+    } else {
+        self.searchingView.hidden = YES;
+    }
 }
 
 - (void)loadsubviews {
@@ -87,6 +102,9 @@
     if (![self.superview.subviews containsObject:self.searchView]) {
         [self.superview addSubview:self.searchView];
     }
+//    if (textField.text.length > 0) {
+//        [self.searchingView requestAssociate:textField.text];
+//    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -112,7 +130,7 @@
     [self endEditing:YES];
 }
 
-#pragma mark - Getter & Setter
+#pragma mark - Get and Set
 - (NSMutableArray<NSMutableArray<SFSearchModel *> *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
@@ -138,11 +156,11 @@
         __weak __typeof (self)weakSelf = self;
         _searchView.dataArray = self.dataArray;
         _searchView.searchBlock = ^(NSString *qs) {
-            __weak __typeof (weakSelf)strongSelf = weakSelf;
+            __strong __typeof (weakSelf)strongSelf = weakSelf;
             [strongSelf search:qs];
         };
         _searchView.cleanHistoryBlock = ^{
-            __weak __typeof (weakSelf)strongSelf = weakSelf;
+            __strong __typeof (weakSelf)strongSelf = weakSelf;
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Confirm delete all search history?" message:nil preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"DELETE" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 UserDefaultSetObjectForKey(nil, userDefaultNameSearchHistory);
@@ -156,6 +174,20 @@
         };
     }
     return _searchView;
+}
+
+- (SFSearchingView *)searchingView {
+    if (_searchingView == nil) {
+        _searchingView = [[SFSearchingView alloc] initWithFrame:self.searchView.bounds];
+        _searchingView.hidden = YES;
+        __weak __typeof (self)weakSelf = self;
+        _searchingView.selectedBlock = ^(NSString * _Nonnull q) {
+            __strong __typeof (weakSelf)strongSelf = weakSelf;
+            [strongSelf search:q];
+        };
+        [self.searchView addSubview:_searchingView];
+    }
+    return _searchingView;
 }
 
 - (UIButton *)backBtn {
@@ -177,6 +209,10 @@
         _textField.textAlignment = NSTextAlignmentLeft;
         _textField.borderStyle = UITextBorderStyleLine;
         _textField.returnKeyType = UIReturnKeySearch;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldDidChangeValue:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:_textField];
     }
     return _textField;
 }

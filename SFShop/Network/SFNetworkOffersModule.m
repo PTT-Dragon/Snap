@@ -19,6 +19,10 @@
     return K_offers_domain(@"whstock");
 }
 
+- (NSString *)suggest {
+    return K_offers_domain(@"suggest");
+}
+
 - (NSString *)getDetailOf: (NSInteger)offerId {
     NSString *url = [NSString stringWithFormat:@"detail/%ld", offerId];
     return K_offers_domain(url);
