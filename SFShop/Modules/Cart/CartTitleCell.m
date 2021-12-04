@@ -29,4 +29,6 @@
     _storeNameLabel.text = model.storeName;
     _offLabel.text = [NSString stringWithFormat:@" RP %.0f OFF ",model.discountPrice];
 }
+- (IBAction)selAction:(UIButton *)sender {
+}
 @end
