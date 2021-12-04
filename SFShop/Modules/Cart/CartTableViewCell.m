@@ -68,8 +68,9 @@
 - (void)cartModifyAction
 {
     NSDictionary *dic = [_model toDictionary];
+    MPWeakSelf(self)
     [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":@[dic]} success:^(id  _Nullable response) {
-        
+        [weakself.delegate refreshData];
     } failed:^(NSError * _Nonnull error) {
         
     }];

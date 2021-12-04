@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *cart;
 @property (nonatomic, readwrite, strong) NSString *del;
 @property (nonatomic, readwrite, strong) NSString *modify;
+@property (nonatomic, readwrite, strong) NSString *collection;
 @end
 
 @interface SFNetworkUsersAddressModule : NSObject

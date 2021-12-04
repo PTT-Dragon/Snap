@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CartTableViewCellDelegate <NSObject>
+
+- (void)refreshData;
+
+@end
+
 @interface CartTableViewCell : UITableViewCell
+@property (nonatomic,assign) id<CartTableViewCellDelegate>delegate;
 @property (nonatomic,weak) CartItemModel *model;
 @end
 

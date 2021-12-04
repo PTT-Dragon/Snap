@@ -10,7 +10,7 @@
 #import "CartTitleCell.h"
 #import <MJRefresh/MJRefresh.h>
 
-@interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) CartModel *cartModel;
@@ -24,7 +24,7 @@
     // Do any additional setup after loading the view.
     
     [self initUI];
-    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self loadDatas];
     }];
     [self.tableView.mj_header beginRefreshing];
@@ -36,7 +36,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"CartTitleCell" bundle:nil] forCellReuseIdentifier:@"CartTitleCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-78);
+        make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -63,6 +63,7 @@
     CartItemModel *model = listModel.shoppingCarts[indexPath.row-1];
     CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTableViewCell"];
     cell.model = model;
+    cell.delegate = self;
     return cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -91,10 +92,10 @@
     deleteRowAction.image = [UIImage imageNamed:@"删除"];
     deleteRowAction.backgroundColor = [UIColor redColor];
     
-    //置顶
+    //移到收藏列表
     UIContextualAction *topRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Move to\nfavourite" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
-        [self.tableView reloadData];
+        [self addToFavoriteWithID:model.shoppingCartId];
     }];
     topRowAction.image = [UIImage imageNamed:@"bookmark-0"];
     topRowAction.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -122,9 +123,9 @@
 
 
 - (void)loadDatas
-{
+{//_addModel.deliveryAddressId
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.cart.cart parameters:@{@"reduceFlag":_reduceFlag ? @"true": @"false",@"stdAddrId":_addModel.deliveryAddressId} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.cart.cart parameters:@{@"reduceFlag":_reduceFlag ? @"true": @"false",@"stdAddrId":_addModel.contactStdId} success:^(id  _Nullable response) {
         weakself.cartModel = [[CartModel alloc] initWithDictionary:response error:nil];
         [weakself.tableView reloadData];
         [weakself.tableView.mj_header endRefreshing];
@@ -133,9 +134,22 @@
         [weakself.tableView.mj_header endRefreshing];
     }];
 }
+- (void)addToFavoriteWithID:(NSString *)offerId
+{
+    //添加到收藏列表
+    [SFNetworkManager post:SFNet.cart.collection parametersArr:@[offerId] success:^(id  _Nullable response) {
+        [self loadDatas];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 - (void)calculateAmount
 {
     [self.delegate calculateAmount:self.cartModel];
+}
+- (void)refreshData
+{
+    [self loadDatas];
 }
 - (UITableView *)tableView
 {

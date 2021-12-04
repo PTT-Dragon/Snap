@@ -321,6 +321,7 @@
         _magicController.magicView.navigationHeight = 40.f;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
+        _magicController.magicView.scrollEnabled = NO;
     }
     return _magicController;
 }

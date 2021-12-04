@@ -55,6 +55,9 @@
 - (NSString *)del {
     return K_cart_domain(@"delete");
 }
+- (NSString *)collection {
+    return K_cart_domain(@"usercollection");
+}
 
 
 @end
