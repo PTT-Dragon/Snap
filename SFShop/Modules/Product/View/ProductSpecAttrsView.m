@@ -269,6 +269,10 @@
     [selectedBtn setSelected:NO];
     [sender setSelected:YES];
     [self.selectedAttrBtn replaceObjectAtIndex:sectionIndex withObject:sender];
+    self.selectedAttrValue[sectionIndex] = @(sender.tag % 100);
+    if(self.chooseAttrBlock) {
+        self.chooseAttrBlock(self.selectedAttrValue);
+    }
 }
 
 

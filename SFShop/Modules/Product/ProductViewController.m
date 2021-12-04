@@ -13,6 +13,8 @@
 #import "MakeH5Happy.h"
 #import "ProductSpecAttrsView.h"
 #import "ProductCheckoutViewController.h"
+#import "addressModel.h"
+#import "CartChooseAddressViewController.h"
 
 @interface ProductViewController ()
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -27,10 +29,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *offerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subheadNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *detailViewHeader;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+// TODO:暂时写死，后面估计会根据deliveryMode存在映射关系？
+@property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *variationsLabel;
+
 @property (nonatomic, strong) WKWebView *detailWebView;
 @property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
 @property (nonatomic, assign) BOOL isCheckingSaleInfo;
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
+@property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
+
 
 @end
 
@@ -46,6 +55,8 @@
     [self requestSimilar];
     [self setupSubViews];
     [self requestProductRecord];
+    [self requestAddressInfo];
+    [self addActions];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -53,13 +64,32 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-
 - (void)dealloc {
     @try {
         [self.detailWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
     } @catch (NSException *exception) {
         NSLog(@"可能多次释放，避免crash");
     }
+}
+
+- (void)addActions {
+    UITapGestureRecognizer *addressTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAddress)];
+    [self.addressLabel addGestureRecognizer:addressTap];
+    
+    UITapGestureRecognizer *variationTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAttrsView)];
+    [self.variationsLabel addGestureRecognizer:variationTap];
+}
+
+- (void)chooseAddress {
+    CartChooseAddressViewController *vc = [[CartChooseAddressViewController alloc] init];
+    vc.addressListArr = self.addressDataSource;
+    vc.view.frame = CGRectMake(0, 0, self.view.jk_width, self.view.jk_height);
+    MPWeakSelf(self)
+    vc.selBlock = ^(addressModel * model) {
+        weakself.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", model.province, model.city, model.district, model.postCode];
+    };
+    [self.view addSubview:vc.view];
+    [self addChildViewController:vc];
 }
 
 - (void)request {
@@ -74,6 +104,24 @@
         NSLog(@"get product detail failed");
     }];
 }
+
+- (void)requestAddressInfo {
+    self.addressDataSource = [NSMutableArray array];
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.address.addressList parameters:@{} success:^(id  _Nullable response) {
+        for (NSDictionary *dic in response) {
+            addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
+            if ([model.isDefault isEqualToString:@"Y"]) {
+                weakself.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", model.province, model.city, model.district, model.postCode];
+            }
+            [weakself.addressDataSource addObject:model];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+
+}
+
 - (void)requestProductRecord
 {
     //商品浏览记录
@@ -132,7 +180,18 @@
     self.marketPriceLabel.attributedText = marketPriceStr;
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
+    self.variationsLabel.text = [self getVariationsString];
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+}
+
+- (NSString *)getVariationsString {
+    __block NSString *result = @"";
+    [_model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.attrName isEqualToString:@"Color"]) {
+            result = obj.attrValues.firstObject.value;
+        }
+    }];
+    return result;
 }
 
 - (void)setSimilarList:(NSMutableArray<ProductSimilarModel *> *)similarList {
@@ -162,15 +221,15 @@
 }
 
 - (IBAction)buyNow:(UIButton *)sender {
-//    if (!_isCheckingSaleInfo) {
-//        [self showAttrsView];
-//    } else {
+    if (!_isCheckingSaleInfo) {
+        [self showAttrsView];
+    } else {
         // TODO: 跳转checkout页
         [self.attrView removeFromSuperview];
         self.isCheckingSaleInfo = NO;
         ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-//    }
+    }
 }
 
 - (void)showAttrsView {
@@ -182,6 +241,15 @@
     _attrView.dismissBlock = ^{
         [weak_attrView removeFromSuperview];
         weakself.isCheckingSaleInfo = NO;
+    };
+    _attrView.chooseAttrBlock = ^(NSMutableArray<NSNumber *> * attrValues) {
+        [weakself.model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            // TODO: 此处暂时仅处理颜色的属性，因为没找到有其他属性的测试数据
+            if ([obj.attrName isEqualToString:@"Color"]) {
+                NSInteger selectedColorIndex = attrValues[idx].integerValue;
+                weakself.variationsLabel.text = obj.attrValues[selectedColorIndex].value;
+            }
+        }];
     };
     UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
     [rootView addSubview:_attrView];
