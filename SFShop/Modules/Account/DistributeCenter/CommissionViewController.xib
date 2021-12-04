@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommissionViewController">
             <connections>
                 <outlet property="balanceLabel" destination="xCc-M7-AgD" id="iWQ-so-DuN"/>
+                <outlet property="bgView" destination="jfb-7x-HlQ" id="DgY-9m-wn6"/>
                 <outlet property="bottomView" destination="l9F-XC-3Ok" id="5lC-XD-sv4"/>
                 <outlet property="cashLabel" destination="kLc-9b-M7i" id="Qmn-oc-aJ1"/>
                 <outlet property="inReviewLabel" destination="coy-Pe-MLu" id="azJ-CE-Tp4"/>

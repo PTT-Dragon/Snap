@@ -32,4 +32,9 @@
 {
     return K_distributor_domain(@"commission");
 }
+- (NSString *)commissionList
+{
+    return K_distributor_domain(@"commission/log/list");
+}
+
 @end

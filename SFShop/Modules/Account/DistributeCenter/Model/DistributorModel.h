@@ -36,7 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface KolOrderStatusNumModel : JSONModel
-
+@property (nonatomic,assign) NSInteger pendingNum;
+@property (nonatomic,assign) NSInteger settledNum;
 @end
 
 @interface DistributorModel : JSONModel
@@ -53,6 +54,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*lockedCommission;
 @property (nonatomic,copy) NSString <Optional>*balanceCommission;
 @property (nonatomic,copy) NSString <Optional>*receivableCommission;
+@end
+
+@interface IncomeOrWithdrawListModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*charge;
+@property (nonatomic,copy) NSString <Optional>*commissionOperType;
+@property (nonatomic,copy) NSString <Optional>*createdDate;
+@property (nonatomic,copy) NSString <Optional>*distributorId;
+@property (nonatomic,copy) NSString <Optional>*relaId;
+@property (nonatomic,copy) NSString <Optional>*relaSn;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)get:(NSString *)url success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed;
 /// @param parameters 字典参数
 + (void)get:(NSString *)url parameters:(nullable NSDictionary *)parameters success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed;
+//数组传参的post请求
++ (void)post:(NSString *)url parametersArr:(nullable NSArray *)parametersArr success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed;
 @end
 
 NS_ASSUME_NONNULL_END

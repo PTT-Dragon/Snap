@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
 @property (weak, nonatomic) IBOutlet JTHorizontalCalendarView *calendarContentView;
 @property (nonatomic,strong) NSDate *dateSelected;
+@property (weak, nonatomic) IBOutlet UIButton *clickBtn;
 @property (strong, nonatomic) JTCalendarManager *calendarManager;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHei;
 @property (nonatomic,strong) UITableView *tableView;
@@ -231,7 +232,7 @@
 - (IBAction)changeModeAction:(UIButton *)sender {
     _calendarManager.settings.weekModeEnabled = !_calendarManager.settings.weekModeEnabled;
     [_calendarManager reload];
-    
+    sender.selected = !sender.selected;
     CGFloat newHeight = 300;
     if(_calendarManager.settings.weekModeEnabled){
         newHeight = 85.;

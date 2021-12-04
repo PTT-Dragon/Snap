@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IncomeAndExpenseChildViewController : UIViewController
-
+@property (nonatomic,copy) NSString *commissionType;
 @end
 
 NS_ASSUME_NONNULL_END

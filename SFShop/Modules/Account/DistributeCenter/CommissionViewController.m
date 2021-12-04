@@ -11,9 +11,11 @@
 #import "DistributorModel.h"
 #import "IncomeAndExpenseViewController.h"
 #import "PublicAlertView.h"
+#import "CaseOutDetailViewController.h"
 
 @interface CommissionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UILabel *cashLabel;
 @property (weak, nonatomic) IBOutlet UILabel *inReviewLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -39,6 +41,7 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.bottomView.mas_bottom).offset(10);
     }];
+    [self drawShadow];
     [self loadDatas];
 }
 - (void)loadDatas
@@ -46,13 +49,14 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.distributor.commission parameters:@{} success:^(id  _Nullable response) {
         weakself.model = [[DistributorCommissionModel alloc] initWithDictionary:response error:nil];
+        [weakself updateDatas];
     } failed:^(NSError * _Nonnull error) {
         
     }];
 }
 - (void)updateDatas
 {
-    _balanceLabel.text = self.model.balanceCommission;
+    _balanceLabel.text = [NSString stringWithFormat:@"RP %@",self.model.balanceCommission];
     _inReviewLabel.text = self.model.lockedCommission;
     _cashLabel.text = self.model.withdrawnCommission;
 }
@@ -86,9 +90,30 @@
                 
             }];
             [self.view addSubview:alertView];
+        }else{
+            CaseOutDetailViewController *vc = [[CaseOutDetailViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
+}
+
+- (void)drawShadow
+{
+    _bgView.layer.masksToBounds = NO;//默认值为NO。不能设置为YES，否则阴影无法出现。
+    _bgView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor;
+    _bgView.layer.shadowOpacity = 0.5;//阴影透明度，默认0
+    _bgView.layer.shadowRadius = 4;//阴影圆角
+    _bgView.layer.shadowOffset = CGSizeMake(5, 0);    //阴影偏移量。有值是向下向右偏移。
     
+    
+    /*
+     * 默认值：(0,-3)向上偏移。
+     原因：阴影最先在mac平台实现，默认是向下偏移3。但由于iOS和macOS的Y轴相反，所以，iOS是向上偏移3.
+     
+     设置为：(0,0)，四周都有阴影。
+     */
+    //阴影路径
+    _bgView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds cornerRadius:_bgView.layer.cornerRadius].CGPath;
 }
 
 - (UITableView *)tableView

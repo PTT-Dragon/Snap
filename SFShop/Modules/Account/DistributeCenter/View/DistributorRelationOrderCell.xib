@@ -121,7 +121,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="pendingLabel" destination="42Y-kb-dSc" id="gjx-g9-pWg"/>
                 <outlet property="pendingView" destination="g3g-9U-sfV" id="V96-15-lF5"/>
+                <outlet property="settledLabel" destination="u8j-FM-2Nb" id="zt0-vm-ESb"/>
                 <outlet property="settledView" destination="54B-fK-ZFf" id="HNd-Da-FcB"/>
             </connections>
             <point key="canvasLocation" x="112" y="15"/>

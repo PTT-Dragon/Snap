@@ -24,9 +24,15 @@
 @end
 
 @implementation DistributorModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end
 
 @implementation DistributorCommissionModel
+
+@end
+
+@implementation IncomeOrWithdrawListModel
 
 @end

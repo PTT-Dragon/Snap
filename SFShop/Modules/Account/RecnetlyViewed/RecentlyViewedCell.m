@@ -32,7 +32,7 @@
     _nameLabel.text = model.offerName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.salesPrice];
-    
+    _favoriteBtn.selected = model.isCollection;
 }
 - (IBAction)cartAction:(UIButton *)sender {
     [SFNetworkManager post:SFNet.cart.cart parameters:@{@"storeId":_model.storeId,@"offerId":_model.offerId,@"num":@(1),@"unitPrice":_model.salesPrice,@"contactChannel":@"3",@"addon":@"",@"isSelected":@"N"} success:^(id  _Nullable response) {
@@ -49,7 +49,7 @@
 }
 
 - (IBAction)favoriteAction:(UIButton *)sender {
-    [SFNetworkManager post:SFNet.favorite.favorite parameters:@{@"offerId":@[_model.offerId]} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.favorite.favorite parametersArr:@[@{@"offerId":_model.offerId}] success:^(id  _Nullable response) {
         
     } failed:^(NSError * _Nonnull error) {
         

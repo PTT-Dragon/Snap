@@ -6,8 +6,14 @@
 //
 
 #import "CaseOutDetailViewController.h"
+#import "verifyCodeVC.h"
 
 @interface CaseOutDetailViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *bankField;
+@property (weak, nonatomic) IBOutlet UITextField *accountField;
+@property (weak, nonatomic) IBOutlet UITextField *accountNameField;
+@property (weak, nonatomic) IBOutlet UITextField *amountField;
+@property (weak, nonatomic) IBOutlet UIButton *chargeBtn;
 
 @end
 
@@ -16,16 +22,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Cash Out";
+    [self.bankField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+    [self.accountField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+    [self.accountNameField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+    [self.amountField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)changedTextField:(UITextField *)textField
+{
+    if (![_accountField.text isEqualToString:@""] && ![_bankField.text isEqualToString:@""] && ![_accountNameField.text isEqualToString:@""] && ![_amountField.text isEqualToString:@""]) {
+        _chargeBtn.backgroundColor = RGBColorFrom16(0xFF1659);
+    }else{
+        _chargeBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+    }
 }
-*/
-
+- (IBAction)chargeAction:(UIButton *)sender {
+    verifyCodeVC *vc = [[verifyCodeVC alloc] init];
+    vc.type = CashOut_Code;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end

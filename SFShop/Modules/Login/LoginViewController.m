@@ -43,8 +43,8 @@
     _emailIndicationView.backgroundColor = [UIColor blackColor];
 }
 - (IBAction)loginAction:(id)sender {
-    
-    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"wcttest1@qq.com",@"pwd":login_aes_128_cbc_encrypt(@"smart123")} success:^(id  _Nullable response) {
+    //wcttest1@qq.com/smart123
+    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"17366287044",@"pwd":login_aes_128_cbc_encrypt(@"Abc@1234")} success:^(id  _Nullable response) {
         NSError *error = nil;
         [[FMDBManager sharedInstance] deleteUserData];
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];

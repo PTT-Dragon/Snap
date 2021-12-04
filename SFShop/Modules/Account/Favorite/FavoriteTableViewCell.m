@@ -36,10 +36,10 @@
     _discountLabel.text = [NSString stringWithFormat:@" RP %@OFF ",model.markdownPrice];
 }
 - (IBAction)spCartAction:(id)sender {
-    [SFNetworkManager post:SFNet.cart.cart parameters:@{@"productId":_model.productId,@"storeId":_model.storeId,@"offerId":_model.offerId,@"num":@(1),@"unitPrice":_model.salesPrice} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.cart.cart parameters:@{@"isSelected":@"N",@"contactChannel":@"3",@"addon":@"",@"productId":_model.productId,@"storeId":_model.storeId,@"offerId":_model.offerId,@"num":@(1),@"unitPrice":_model.salesPrice} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
     }];
 }
 - (IBAction)similarAction:(id)sender {

@@ -31,7 +31,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(i*(self.jk_height+5), 0, self.jk_height, self.jk_height);
         [btn setImage:[UIImage imageNamed:@"蒙版组 44"] forState:0];
-        [btn setImage:[UIImage imageNamed:@"蒙版组 42"] forState:UIControlStateSelected];
+        [btn setImage:[UIImage imageNamed:@"rank_star"] forState:UIControlStateSelected];
         btn.tag = 1000+i;
         [self addSubview:btn];
     }

@@ -7,10 +7,13 @@
 
 #import "IncomeAndExpenseChildViewController.h"
 #import "IncomeAndExpenseCell.h"
+#import <MJRefresh/MJRefresh.h>
+#import "DistributorModel.h"
 
 @interface IncomeAndExpenseChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic, readwrite, assign) NSInteger currentPage;
 
 @end
 
@@ -28,15 +31,43 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
-    [self loadDatas];
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadDatas];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (void)loadDatas
 {
-    
+    self.currentPage = 1;
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.distributor.commissionList parameters:@{@"pageSize":@(10),@"pageIndex":@(self.currentPage),@"commissionOperType":_commissionType} success:^(id  _Nullable response) {
+        [weakself.dataSource removeAllObjects];
+        [weakself.dataSource addObjectsFromArray:[IncomeOrWithdrawListModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
+        [weakself.tableView.mj_header endRefreshing];
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_header endRefreshing];
+    }];
+}
+- (void)loadMoreDatas
+{
+    self.currentPage ++;
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.distributor.commissionList parameters:@{@"pageSize":@(10),@"pageIndex":@(self.currentPage),@"commissionOperType":_commissionType} success:^(id  _Nullable response) {
+        [weakself.dataSource addObjectsFromArray:[IncomeOrWithdrawListModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
+        [weakself.tableView.mj_footer endRefreshing];
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_footer endRefreshing];
+    }];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     IncomeAndExpenseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IncomeAndExpenseCell"];
+    cell.model = self.dataSource[indexPath.row];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -49,7 +80,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 160;
+    return 74;
 }
 - (UITableView *)tableView
 {

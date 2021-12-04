@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DistributorInfoCell : UITableViewCell
 @property (nonatomic,weak) DistributionSettlementDtoModel *model;
+- (void)setContent:(DistributionSettlementDtoModel *)model type:(NSInteger)type;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,6 +9,7 @@
 
 typedef enum : NSUInteger {
     LoginType_Code = 0,
+    CashOut_Code = 1
     
 } LoginType;
 

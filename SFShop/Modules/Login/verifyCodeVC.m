@@ -22,7 +22,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _codeView.delegate = self;
-    [SFNetworkManager post:SFNet.account.getCode parameters:@{@"account":_account,@"userType":@"Terminal"} success:^(id  _Nullable response) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (_account) {
+        [params setValue:_account forKey:@"account"];
+    }else{
+        [params setValue:@"false" forKey:@"isEmail"];
+    }
+    [params setValue:@"Terminal" forKey:@"userType"];
+    [SFNetworkManager post:SFNet.account.getCode parameters:params success:^(id  _Nullable response) {
         
     } failed:^(NSError * _Nonnull error) {
         

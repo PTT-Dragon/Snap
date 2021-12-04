@@ -49,9 +49,11 @@
 {
     if (indexPath.row == 0) {
         DistributorInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistributorInfoCell"];
+        [cell setContent:self.model.kolDayMonthSale type:1];
         return cell;
     }else if (indexPath.row == 1){
         DistributorInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistributorInfoCell"];
+        [cell setContent:self.model.distributionSettlementDto type:2];
         return cell;
     }else if (indexPath.row == 2){
         DistributorRelationOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistributorRelationOrderCell"];

@@ -11,6 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CaseOutDetailViewController">
             <connections>
+                <outlet property="accountField" destination="h1i-63-Nte" id="t2K-Lr-fBR"/>
+                <outlet property="accountNameField" destination="zaV-wk-ovQ" id="eK4-S2-BTt"/>
+                <outlet property="amountField" destination="doe-vt-WJ8" id="DKE-uX-T0Y"/>
+                <outlet property="bankField" destination="88K-ou-eOA" id="gph-CF-74S"/>
+                <outlet property="chargeBtn" destination="W2h-G4-bRP" id="Pfm-ag-9DV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,8 +23,91 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LsD-sZ-jxB">
+                    <rect key="frame" x="0.0" y="88" width="414" height="66.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tips: The maximum daily withdrawal amount is Rp6.900.000, and the minimum withdrawal amount is Rp6.900.000." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etk-SJ-ef4">
+                            <rect key="frame" x="16" y="8" width="382" height="50.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstItem="etk-SJ-ef4" firstAttribute="top" secondItem="LsD-sZ-jxB" secondAttribute="top" constant="8" id="O4y-c6-wKJ"/>
+                        <constraint firstAttribute="trailing" secondItem="etk-SJ-ef4" secondAttribute="trailing" constant="16" id="UPH-9R-xo6"/>
+                        <constraint firstAttribute="bottom" secondItem="etk-SJ-ef4" secondAttribute="bottom" constant="8" id="XyD-9n-Xuq"/>
+                        <constraint firstItem="etk-SJ-ef4" firstAttribute="leading" secondItem="LsD-sZ-jxB" secondAttribute="leading" constant="16" id="ZNq-69-96x"/>
+                    </constraints>
+                </view>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="BANK" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="88K-ou-eOA">
+                    <rect key="frame" x="16" y="192.5" width="382" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="Si3-QH-Ncj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Account" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h1i-63-Nte">
+                    <rect key="frame" x="16" y="261.5" width="382" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="1nd-EQ-5xS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Account Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zaV-wk-ovQ">
+                    <rect key="frame" x="16" y="330.5" width="382" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="fOU-q8-C8n"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cash Out (Rp)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="doe-vt-WJ8">
+                    <rect key="frame" x="16" y="399.5" width="382" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="T6j-S8-aQ8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2h-G4-bRP">
+                    <rect key="frame" x="16" y="772" width="382" height="46"/>
+                    <color key="backgroundColor" red="1" green="0.89803921568627454" blue="0.92156862745098034" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="LIg-lR-hbT"/>
+                    </constraints>
+                    <state key="normal" title="CHARGE"/>
+                    <connections>
+                        <action selector="chargeAction:" destination="-1" eventType="touchUpInside" id="OH6-Op-EoA"/>
+                    </connections>
+                </button>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="h1i-63-Nte" firstAttribute="leading" secondItem="88K-ou-eOA" secondAttribute="leading" id="5Ly-oa-bPB"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="W2h-G4-bRP" secondAttribute="bottom" constant="44" id="7RK-oA-lqw"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="88K-ou-eOA" secondAttribute="trailing" constant="16" id="9lF-d8-qqg"/>
+                <constraint firstItem="doe-vt-WJ8" firstAttribute="top" secondItem="zaV-wk-ovQ" secondAttribute="bottom" constant="23" id="A9L-vO-mRL"/>
+                <constraint firstItem="zaV-wk-ovQ" firstAttribute="leading" secondItem="h1i-63-Nte" secondAttribute="leading" id="BfQ-X6-96n"/>
+                <constraint firstItem="88K-ou-eOA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="DNE-gJ-Gg5"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="LsD-sZ-jxB" secondAttribute="trailing" id="JMO-xc-Mb4"/>
+                <constraint firstItem="h1i-63-Nte" firstAttribute="top" secondItem="88K-ou-eOA" secondAttribute="bottom" constant="23" id="PXn-s0-3Hj"/>
+                <constraint firstItem="LsD-sZ-jxB" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Pwz-j3-8ks"/>
+                <constraint firstItem="LsD-sZ-jxB" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="44" id="YC6-CN-rFq"/>
+                <constraint firstItem="h1i-63-Nte" firstAttribute="trailing" secondItem="88K-ou-eOA" secondAttribute="trailing" id="YPY-SE-IOj"/>
+                <constraint firstItem="zaV-wk-ovQ" firstAttribute="trailing" secondItem="h1i-63-Nte" secondAttribute="trailing" id="YZa-9n-6wJ"/>
+                <constraint firstItem="W2h-G4-bRP" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="dRN-8z-V3A"/>
+                <constraint firstItem="zaV-wk-ovQ" firstAttribute="top" secondItem="h1i-63-Nte" secondAttribute="bottom" constant="23" id="dpL-vb-haU"/>
+                <constraint firstItem="88K-ou-eOA" firstAttribute="top" secondItem="LsD-sZ-jxB" secondAttribute="bottom" constant="38" id="h9d-AA-6OZ"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="W2h-G4-bRP" secondAttribute="trailing" constant="16" id="jvL-aW-WNA"/>
+                <constraint firstItem="doe-vt-WJ8" firstAttribute="trailing" secondItem="zaV-wk-ovQ" secondAttribute="trailing" id="q8s-8c-oTh"/>
+                <constraint firstItem="doe-vt-WJ8" firstAttribute="leading" secondItem="zaV-wk-ovQ" secondAttribute="leading" id="qkX-EN-C92"/>
+            </constraints>
             <point key="canvasLocation" x="75" y="72"/>
         </view>
     </objects>

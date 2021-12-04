@@ -11,6 +11,8 @@
 @interface DistributorRelationOrderCell ()
 @property (weak, nonatomic) IBOutlet UIView *pendingView;
 @property (weak, nonatomic) IBOutlet UIView *settledView;
+@property (weak, nonatomic) IBOutlet UILabel *pendingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *settledLabel;
 
 @end
 
@@ -23,6 +25,12 @@
     [_pendingView addGestureRecognizer:pendingTap];
     UITapGestureRecognizer *settledTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(settledAction)];
     [_settledView addGestureRecognizer:settledTap];
+}
+- (void)setModel:(DistributorModel *)model
+{
+    _model = model;
+    _pendingLabel.text = [NSString stringWithFormat:@"%ld",model.kolOrderStatusNum.pendingNum];
+    _settledLabel.text = [NSString stringWithFormat:@"%ld",model.kolOrderStatusNum.settledNum];
 }
 - (void)pendingAction
 {

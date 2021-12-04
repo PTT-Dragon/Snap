@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"My Favorites";
+    self.title = @"Income & Expense";
     self.menuList = @[@"All", @"Income", @"Expense"];
     
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, self.view.jk_height);
@@ -59,6 +59,7 @@
     IncomeAndExpenseChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
         gridViewController = [[IncomeAndExpenseChildViewController alloc] init];
+        gridViewController.commissionType = pageIndex == 0 ? @"": pageIndex == 1 ? @"Commission": @"Withdrawals"; 
     }
     return gridViewController;
 }

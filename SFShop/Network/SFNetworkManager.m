@@ -57,4 +57,38 @@
     }];
 }
 
++ (void)post:(NSString *)url parametersArr:(nullable NSArray *)parametersArr success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed {
+    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain", nil];
+    [manager setAuthenticationChallengeHandler:^id _Nonnull(NSURLSession * _Nonnull session, NSURLSessionTask * _Nonnull task, NSURLAuthenticationChallenge * _Nonnull challenge, void (^ _Nonnull completionHandler)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable)) {
+        return [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+    }];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    
+    
+      
+    NSError *parseError = nil;
+
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parametersArr options:NSJSONWritingPrettyPrinted  error:&parseError];
+      
+    NSString *jsonstr =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+      
+    NSData *objectData = [jsonstr dataUsingEncoding:NSUTF8StringEncoding];
+      
+    NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:objectData
+                               
+                                                              options:NSJSONReadingMutableContainers
+                               
+                                                                error:&parseError];
+    [manager POST:url parameters:jsonDic headers:@{@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:nil];
+        !success?:success(obj);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        !failed?:failed(error);
+    }];
+}
+
 @end

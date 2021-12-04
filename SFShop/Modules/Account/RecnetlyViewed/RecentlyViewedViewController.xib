@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="calendarContentView" destination="EiZ-hh-XhR" id="XcY-JH-Hnz"/>
                 <outlet property="calendarMenuView" destination="RHS-Oi-Hbo" id="Q4d-DR-0hT"/>
+                <outlet property="clickBtn" destination="cP7-cU-ue7" id="kwD-kb-e5O"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewHei" destination="uyY-cG-QNr" id="oI0-kw-H4J"/>
             </connections>
@@ -36,9 +37,14 @@
                         <constraint firstAttribute="height" constant="300" id="uyY-cG-QNr"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-cU-ue7">
-                    <rect key="frame" x="184" y="394" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-cU-ue7">
+                    <rect key="frame" x="196" y="394" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="22" id="rfP-6f-YRw"/>
+                        <constraint firstAttribute="height" constant="22" id="wLr-fk-UlT"/>
+                    </constraints>
+                    <state key="normal" image="swipe-down"/>
+                    <state key="selected" image="swipe-up"/>
                     <connections>
                         <action selector="changeModeAction:" destination="-1" eventType="touchUpInside" id="VXA-go-WhJ"/>
                     </connections>
@@ -60,6 +66,8 @@
         </view>
     </objects>
     <resources>
+        <image name="swipe-down" width="200" height="200"/>
+        <image name="swipe-up" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
