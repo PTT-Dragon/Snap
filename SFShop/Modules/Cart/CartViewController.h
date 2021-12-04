@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CartViewController : VTMagicController
+@interface CartViewController : BaseViewController
 
 @end
 

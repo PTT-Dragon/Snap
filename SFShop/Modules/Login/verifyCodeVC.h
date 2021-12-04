@@ -16,6 +16,7 @@ typedef enum : NSUInteger {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface verifyCodeVC : UIViewController
+@property (nonatomic,strong) NSDictionary *cashOutInfoDic;//提现资料
 @property (nonatomic,copy) NSString *account;
 @property (nonatomic,assign) LoginType type;
 @end

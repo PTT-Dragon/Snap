@@ -184,25 +184,8 @@
 - (void)loadDatas
 {
     MPWeakSelf(self)
-    if (_selProvinceAreaMoel && _selProvinceAreaMoel.addrLevelId) {
-        //说明有已选择的省
-        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selProvinceAreaMoel.addrLevelId} success:^(id  _Nullable response) {
-            [weakself.dataSource removeAllObjects];
-            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
-            [weakself.tableView reloadData];
-        } failed:^(NSError * _Nonnull error) {
-            
-        }];
-    }else if (_selCityAreaMoel && _selCityAreaMoel.addrLevelId){
-        //已选择市
-        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selCityAreaMoel.addrLevelId} success:^(id  _Nullable response) {
-            [weakself.dataSource removeAllObjects];
-            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
-            [weakself.tableView reloadData];
-        } failed:^(NSError * _Nonnull error) {
-            
-        }];
-    }else if(!_selProvinceAreaMoel || !_selProvinceAreaMoel.addrLevelId){
+    if(!_selProvinceAreaMoel || !_selProvinceAreaMoel.addrLevelId){
+        //都还未选
         [SFNetworkManager get:SFNet.address.areaData parameters:@{@"addrLevelId":@(2)} success:^(id  _Nullable response) {
             [weakself.dataSource removeAllObjects];
             [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
@@ -210,9 +193,27 @@
         } failed:^(NSError * _Nonnull error) {
             
         }];
+    }else if (!_selCityAreaMoel || !_selCityAreaMoel.addrLevelId){
+        //说明有已选择的省  选择市
+        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selProvinceAreaMoel.stdAddrId} success:^(id  _Nullable response) {
+            [weakself.dataSource removeAllObjects];
+            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+            [weakself.tableView reloadData];
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
+    }else if (!_selDistrictAreaMoel || !_selDistrictAreaMoel.addrLevelId){
+        //已选择市 选择区
+        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selCityAreaMoel.stdAddrId} success:^(id  _Nullable response) {
+            [weakself.dataSource removeAllObjects];
+            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+            [weakself.tableView reloadData];
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
     }else{
-        //已选择地区
-        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selDistrictAreaMoel.addrLevelId} success:^(id  _Nullable response) {
+        //已选择地区 选择街道
+        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selDistrictAreaMoel.stdAddrId} success:^(id  _Nullable response) {
             [weakself.dataSource removeAllObjects];
             [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
             [weakself.tableView reloadData];
@@ -220,6 +221,43 @@
             
         }];
     }
+//    if (_selProvinceAreaMoel && _selProvinceAreaMoel.addrLevelId) {
+//        //说明有已选择的省  选择市
+//        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selProvinceAreaMoel.addrLevelId} success:^(id  _Nullable response) {
+//            [weakself.dataSource removeAllObjects];
+//            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+//            [weakself.tableView reloadData];
+//        } failed:^(NSError * _Nonnull error) {
+//
+//        }];
+//    }else if (_selCityAreaMoel && _selCityAreaMoel.addrLevelId){
+//        //已选择市 选择区
+//        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selCityAreaMoel.addrLevelId} success:^(id  _Nullable response) {
+//            [weakself.dataSource removeAllObjects];
+//            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+//            [weakself.tableView reloadData];
+//        } failed:^(NSError * _Nonnull error) {
+//
+//        }];
+//    }else if(!_selProvinceAreaMoel || !_selProvinceAreaMoel.addrLevelId){
+//        //都还未选
+//        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"addrLevelId":@(2)} success:^(id  _Nullable response) {
+//            [weakself.dataSource removeAllObjects];
+//            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+//            [weakself.tableView reloadData];
+//        } failed:^(NSError * _Nonnull error) {
+//
+//        }];
+//    }else{
+//        //已选择地区
+//        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selDistrictAreaMoel.addrLevelId} success:^(id  _Nullable response) {
+//            [weakself.dataSource removeAllObjects];
+//            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+//            [weakself.tableView reloadData];
+//        } failed:^(NSError * _Nonnull error) {
+//
+//        }];
+//    }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -247,11 +285,20 @@
     }else if(!_selDistrictAreaMoel || !_selDistrictAreaMoel.addrLevelId){
         _selDistrictAreaMoel = model;
         _topView.selDistrictAreaMoel = _selDistrictAreaMoel;
-        [self.delegate chooseProvince:_selProvinceAreaMoel city:_selCityAreaMoel district:_selDistrictAreaMoel];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        if (_type == 3) {
+            //状态为3 需要全部都选择
+        }else{
+            [self.delegate chooseProvince:_selProvinceAreaMoel city:_selCityAreaMoel district:_selDistrictAreaMoel];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
     }else{
         _selStreetAreaMoel = model;
-        [self.delegate chooseStreet:_selStreetAreaMoel];
+        if (_type == 3) {
+            //状态为3 需要全部都选择
+            [self.delegate chooseProvince:_selProvinceAreaMoel city:_selCityAreaMoel district:_selDistrictAreaMoel street:_selStreetAreaMoel];
+        }else{
+            [self.delegate chooseStreet:_selStreetAreaMoel];
+        }
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     [self loadDatas];

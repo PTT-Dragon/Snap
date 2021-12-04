@@ -39,14 +39,18 @@
 - (void)codeFinish
 {
     //验证验证码
+    MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.codeCheck parameters:@{@"account":_account,@"userType":@"Terminal",@"code":_codeView.code} success:^(id  _Nullable response) {
-        
+        if (weakself.type == LoginType_Code) {
+            [weakself login];
+        }else if (weakself.type == CashOut_Code){
+            //提现
+            [weakself cashOutAction];
+        }
     } failed:^(NSError * _Nonnull error) {
         
     }];
-    if (_type == LoginType_Code) {
-        [self login];
-    }
+    
 }
 - (void)login
 {
@@ -58,6 +62,14 @@
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
         [[FMDBManager sharedInstance] insertUser:model ofAccount:@"hxf01@qq.com"];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)cashOutAction
+{
+    [SFNetworkManager post:SFNet.distributor.createCashOut parameters:@{} success:^(id  _Nullable response) {
+        
     } failed:^(NSError * _Nonnull error) {
         
     }];

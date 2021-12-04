@@ -7,8 +7,9 @@
 
 #import "CartChooseAddressViewController.h"
 #import "CartChooseAddressCell.h"
+#import "ChooseAreaViewController.h"
 
-@interface CartChooseAddressViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CartChooseAddressViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseAreaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHei;
 
@@ -52,6 +53,29 @@
     [self removeFromParentViewController];
 }
 - (IBAction)anotherAddressAction:(UIButton *)sender {
+    ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
+    vc.delegate = self;
+    vc.type = 3;
+    [self presentViewController:vc animated:YES completion:^{
+        
+    }];
 }
 
+#pragma mark - delegate
+- (void)chooseProvince:(AreaModel *_Nullable)provinceModel city:(AreaModel *_Nullable)cityModel district:(AreaModel *_Nullable)districtModel street:(AreaModel * _Nullable)streetModel
+{
+    addressModel *model = [[addressModel alloc] init];
+    model.province = provinceModel.stdAddr;
+    model.city = cityModel.stdAddr;
+    model.district = districtModel.stdAddr;
+    model.street = streetModel.stdAddr;
+    if (self.selBlock) {
+        self.selBlock(model);
+        [self closeAction:nil];
+    }
+}
+- (void)chooseStreet:(AreaModel *_Nullable)streetModel
+{
+    
+}
 @end
