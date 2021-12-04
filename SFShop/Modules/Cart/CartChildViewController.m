@@ -10,7 +10,7 @@
 #import "CartTitleCell.h"
 #import <MJRefresh/MJRefresh.h>
 
-@interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate>
+@interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) CartModel *cartModel;
@@ -57,6 +57,7 @@
     if (indexPath.row == 0) {
         CartTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTitleCell"];
         cell.model = self.cartModel.validCarts[indexPath.section];
+        cell.delegate = self;
         return cell;
     }
     CartListModel *listModel = self.cartModel.validCarts[indexPath.section];
@@ -150,6 +151,25 @@
 - (void)refreshData
 {
     [self loadDatas];
+}
+- (void)selAll:(BOOL)selAll storeId:(nonnull NSString *)storeId
+{
+    NSMutableArray *modifyArr = [NSMutableArray array];
+    for (CartListModel *subModel in _cartModel.validCarts) {
+        if ([subModel.storeId isEqualToString:storeId]) {
+            for (CartItemModel *itemModel in subModel.shoppingCarts) {
+                itemModel.isSelected = selAll ? @"Y": @"N";
+                NSDictionary *dic = [itemModel toDictionary];
+                [modifyArr addObject:dic];
+            }
+            MPWeakSelf(self)
+            [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
+                [weakself loadDatas];
+            } failed:^(NSError * _Nonnull error) {
+                
+            }];
+        }
+    }
 }
 - (UITableView *)tableView
 {

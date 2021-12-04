@@ -9,8 +9,14 @@
 #import "CartModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol CartTitleCellDelegate <NSObject>
+
+- (void)selAll:(BOOL)selAll storeId:(NSString *)storeId;
+
+@end
 
 @interface CartTitleCell : UITableViewCell
+@property (nonatomic,assign) id<CartTitleCellDelegate>delegate;
 @property (nonatomic,weak) CartListModel *model;
 @end
 

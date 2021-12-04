@@ -1172,6 +1172,31 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
+		1B6C52B2275BA55600A1C617 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1BDB5DBD272EC1E00016C2F3 /* CartModel.h */,
+				1BDB5DBE272EC1E00016C2F3 /* CartModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B6C52B3275BA56100A1C617 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B2AE425272D36F000FB23D3 /* CartTableViewCell.h */,
+				1B2AE426272D36F000FB23D3 /* CartTableViewCell.m */,
+				1B2AE427272D36F000FB23D3 /* CartTableViewCell.xib */,
+				1B2AE42C272D8F3700FB23D3 /* CartTitleCell.h */,
+				1B2AE42D272D8F3700FB23D3 /* CartTitleCell.m */,
+				1B2AE42E272D8F3700FB23D3 /* CartTitleCell.xib */,
+				1B2AE420272D274300FB23D3 /* CartChooseAddressCell.h */,
+				1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */,
+				1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1B74DAC8272007D900B30ECC /* DatePickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1619,25 +1644,16 @@
 		4B9FB9D926FB7A1F00C90790 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				1B6C52B3275BA56100A1C617 /* View */,
+				1B6C52B2275BA55600A1C617 /* Model */,
 				1B6C52432758AD8100A1C617 /* CartViewController.h */,
 				1B6C52442758AD8100A1C617 /* CartViewController.m */,
 				1B6C52452758AD8100A1C617 /* CartViewController.xib */,
 				1B63D457272D21290062762B /* CartChildViewController.h */,
 				1B63D458272D21290062762B /* CartChildViewController.m */,
-				1B2AE425272D36F000FB23D3 /* CartTableViewCell.h */,
-				1B2AE426272D36F000FB23D3 /* CartTableViewCell.m */,
-				1B2AE427272D36F000FB23D3 /* CartTableViewCell.xib */,
-				1B2AE42C272D8F3700FB23D3 /* CartTitleCell.h */,
-				1B2AE42D272D8F3700FB23D3 /* CartTitleCell.m */,
-				1B2AE42E272D8F3700FB23D3 /* CartTitleCell.xib */,
 				1B63D45F272D238C0062762B /* CartChooseAddressViewController.h */,
 				1B63D460272D238C0062762B /* CartChooseAddressViewController.m */,
 				1B63D461272D238C0062762B /* CartChooseAddressViewController.xib */,
-				1B2AE420272D274300FB23D3 /* CartChooseAddressCell.h */,
-				1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */,
-				1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */,
-				1BDB5DBD272EC1E00016C2F3 /* CartModel.h */,
-				1BDB5DBE272EC1E00016C2F3 /* CartModel.m */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
