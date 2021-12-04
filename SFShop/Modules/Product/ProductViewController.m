@@ -48,6 +48,12 @@
     [self requestProductRecord];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+
 - (void)dealloc {
     @try {
         [self.detailWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
