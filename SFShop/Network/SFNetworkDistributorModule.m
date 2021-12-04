@@ -36,5 +36,9 @@
 {
     return K_distributor_domain(@"commission/log/list");
 }
+- (NSString *)orders
+{
+    return K_distributor_domain(@"orders");
+}
 
 @end

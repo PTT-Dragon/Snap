@@ -47,7 +47,7 @@
                                     <constraint firstAttribute="height" constant="64" id="L5h-H5-1XU"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="B1v-HQ-G3B">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="64" height="64"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -60,6 +60,9 @@
                                     <constraint firstAttribute="height" constant="24" id="7LG-C0-tPi"/>
                                 </constraints>
                                 <state key="normal" image="more-horizontal"/>
+                                <connections>
+                                    <action selector="moreProductAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Nta-6i-ZFc"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWd-jU-IQq">
                                 <rect key="frame" x="17" y="138" width="309" height="1"/>
@@ -134,7 +137,16 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="amountLabel" destination="fBb-Zn-Tmf" id="IiI-Zk-gaN"/>
                 <outlet property="bgView" destination="uJQ-MX-SFO" id="PHF-wC-Fm6"/>
+                <outlet property="collectionView" destination="MW5-M4-TSV" id="umj-dH-4ZC"/>
+                <outlet property="moreBtn" destination="Ibd-YT-ga2" id="ucn-g1-5iT"/>
+                <outlet property="nameLabel" destination="72k-Jy-6hX" id="twF-K8-XiI"/>
+                <outlet property="stateLabel" destination="vTr-l7-W4b" id="9ZZ-8S-WHN"/>
+                <outlet property="storeIconImgView" destination="5cd-SB-tH5" id="oEu-va-Yi2"/>
+                <outlet property="storeNameLabel" destination="m0k-y1-kp0" id="P8j-g6-MBh"/>
+                <outlet property="timeLabel" destination="CmH-hA-The" id="Asp-t2-cg5"/>
+                <outlet property="totalLabel" destination="YtA-eK-LkC" id="T2q-Tg-eaX"/>
             </connections>
             <point key="canvasLocation" x="75" y="93"/>
         </tableViewCell>

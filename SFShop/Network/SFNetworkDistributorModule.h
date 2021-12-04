@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) NSString *cancelCashOut;
 @property (nonatomic, readonly, copy) NSString *commission;
 @property (nonatomic, readonly, copy) NSString *commissionList;
+@property (nonatomic, readonly, copy) NSString *orders;
+
 
 
 

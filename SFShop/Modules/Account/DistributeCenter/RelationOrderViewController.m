@@ -59,6 +59,7 @@
     RelationOrderChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
         gridViewController = [[RelationOrderChildViewController alloc] init];
+        gridViewController.type = pageIndex == 0 ? @"Pending": @"Settled";
     }
     return gridViewController;
 }

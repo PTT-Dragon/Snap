@@ -36,3 +36,18 @@
 @implementation IncomeOrWithdrawListModel
 
 @end
+@implementation RelationOrderItemModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+@end
+
+@implementation RelationOrderListModel
+
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end

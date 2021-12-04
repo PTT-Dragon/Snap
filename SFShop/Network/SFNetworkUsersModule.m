@@ -104,6 +104,9 @@
 - (NSString *)num {
     return K_favorite_domain(@"num");
 }
+- (NSString *)top {
+    return K_favorite_domain(@"top");
+}
 
 @end
 

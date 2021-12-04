@@ -57,6 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *del;
 @property (nonatomic, readwrite, strong) NSString *similar;
 @property (nonatomic, readwrite, strong) NSString *num;
+@property (nonatomic, readwrite, strong) NSString *top;
 
 @end
 
