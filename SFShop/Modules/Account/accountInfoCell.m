@@ -12,6 +12,7 @@
 #import "setViewController.h"
 #import "FavoriteViewController.h"
 #import "LoginViewController.h"
+#import "ZLPhotoBrowser.h"
 
 @interface accountInfoCell ()
 @property (weak, nonatomic) IBOutlet UIView *couponView;
@@ -73,8 +74,9 @@
 }
 - (void)userInfoAction
 {
-    changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];
-    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    [self uploadAvatar];
+//    changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];
+//    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (void)favoriteAction
 {
@@ -98,6 +100,47 @@
         [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
     };
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+}
+//打开相册
+-(void)uploadAvatar{
+    ZLPhotoActionSheet *ac = [[ZLPhotoActionSheet alloc] init];
+
+    // 相册参数配置，configuration有默认值，可直接使用并对其属性进行修改
+    ac.configuration.maxSelectCount = 1;
+    ac.configuration.maxPreviewCount = 10;
+    ac.configuration.useSystemCamera = YES;
+    ac.configuration.allowSelectVideo = NO;
+
+    //如调用的方法无sender参数，则该参数必传
+    ac.sender = [baseTool getCurrentVC];
+    MPWeakSelf(self)
+    // 选择回调
+    [ac setSelectImageBlock:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
+        //your codes
+        [weakself publishImgWithImage:images.firstObject];
+    }];
+    // 调用相册
+    [ac showPreviewAnimated:YES];
+}
+- (void)publishImgWithImage:(UIImage *)image
+{
+    MPWeakSelf(self)
+    [SFNetworkManager postImage:SFNet.h5.publishImg image:image success:^(id  _Nullable response) {
+        [weakself modifyUserInfoWithFileName:response[@"fullPath"]];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)modifyUserInfoWithFileName:(NSString *)fileName
+{
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.account.modify parameters:@{@"photo":fileName} success:^(id  _Nullable response) {
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        model.userRes.photo = fileName;
+        [weakself updateData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (IBAction)setAction:(id)sender {
     setViewController *vc = [[setViewController alloc] init];

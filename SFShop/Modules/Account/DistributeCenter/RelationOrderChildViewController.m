@@ -7,10 +7,13 @@
 
 #import "RelationOrderChildViewController.h"
 #import "RelationOrderCell.h"
+#import <MJRefresh/MJRefresh.h>
+#import "DistributorModel.h"
 
 @interface RelationOrderChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,assign) NSInteger pageIndex;
 
 @end
 
@@ -28,15 +31,43 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
-    [self loadDatas];
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadDatas];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (void)loadDatas
 {
-    
+    _pageIndex = 1;
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.distributor.orders parameters:@{@"settState":_type,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.dataSource removeAllObjects];
+        [weakself.dataSource addObjectsFromArray:[RelationOrderListModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
+        [weakself.tableView reloadData];
+        [weakself.tableView.mj_header endRefreshing];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_header endRefreshing];
+    }];
+}
+- (void)loadMoreDatas
+{
+    _pageIndex ++;
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.distributor.orders parameters:@{@"settState":_type,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.dataSource addObjectsFromArray:[RelationOrderListModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
+        [weakself.tableView reloadData];
+        [weakself.tableView.mj_footer endRefreshing];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_footer endRefreshing];
+    }];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RelationOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RelationOrderCell"];
+    cell.model = self.dataSource[indexPath.row];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -45,7 +76,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;//self.dataSource.count;
+    return self.dataSource.count;//self.dataSource.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -104,6 +104,9 @@
 - (NSString *)num {
     return K_favorite_domain(@"num");
 }
+- (NSString *)top {
+    return K_favorite_domain(@"top");
+}
 
 @end
 
@@ -196,6 +199,9 @@
 }
 - (NSString *)faqQuestion {
     return K_h5_domain(@"/faq/question/page");
+}
+- (NSString *)publishImg {
+    return K_h5_domain(@"image");
 }
 - (NSString *)getReceiptOf: (NSString *)orderId
 {

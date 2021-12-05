@@ -28,5 +28,16 @@
     [_iconImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.logoUrl)]];
     _storeNameLabel.text = model.storeName;
     _offLabel.text = [NSString stringWithFormat:@" RP %.0f OFF ",model.discountPrice];
+    BOOL selAll = YES;
+    for (CartItemModel *subModel in model.shoppingCarts) {
+        if (![subModel.isSelected isEqualToString:@"Y"]) {
+            selAll = NO;
+        }
+    }
+    _selBtn.selected = selAll;
+}
+- (IBAction)selAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    [self.delegate selAll:sender.selected storeId:_model.storeId];
 }
 @end

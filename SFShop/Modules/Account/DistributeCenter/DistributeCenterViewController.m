@@ -57,6 +57,7 @@
         return cell;
     }else if (indexPath.row == 2){
         DistributorRelationOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistributorRelationOrderCell"];
+        cell.model = self.model;
         return cell;
     }else if (indexPath.row == 3){
         DistribitorRankTopCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistribitorRankTopCell"];

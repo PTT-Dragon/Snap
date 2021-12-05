@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankServiceModel *> *serviceIds;
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankCategoryModel *> *catgIds;
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankBrandModel *> *brandIds;
+@property (nonatomic, readwrite, strong) NSArray<CategoryRankBrandModel *> *catgNumList;
 @property (nonatomic, readwrite, strong) NSArray *offerAttrValues;
 @property (nonatomic, readwrite, strong) CategoryRankPageInfoModel *pageInfo;
 @property (nonatomic, readwrite, copy) NSString *evaluationAvgs;
@@ -34,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
     @property (nonatomic, readwrite, assign) NSInteger num;
     @property (nonatomic, readwrite, copy) NSString *name;
     @property (nonatomic, readwrite, copy) NSString *idStr;
+    @property (nonatomic, readwrite, assign) NSInteger goodsNum;
+    @property (nonatomic, readwrite, copy) NSString *catgId;
+    @property (nonatomic, readwrite, copy) NSString *catgName;
 
     //⚠️:自定义
     @property (nonatomic, readwrite, assign) BOOL isSelected;

@@ -8,10 +8,12 @@
 #import "FavoriteChildViewController.h"
 #import "FavoriteTableViewCell.h"
 #import "favoriteModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface FavoriteChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,assign) NSInteger pageIndex;
 @end
 
 @implementation FavoriteChildViewController
@@ -20,6 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _dataSource = [NSMutableArray array];
+    _pageIndex = 1;
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"FavoriteTableViewCell" bundle:nil] forCellReuseIdentifier:@"FavoriteTableViewCell"];
@@ -28,19 +31,43 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
-    [self loadDatas];
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadDatas];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (void)loadDatas
 {
+    self.pageIndex = 1;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.favorite.favorite parameters:@{} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.favorite.favorite parameters:@{@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_header endRefreshing];
+        NSArray *arr = response[@"list"];
+        [weakself.dataSource removeAllObjects];
+        for (NSDictionary *dic in arr) {
+            [weakself.dataSource addObject:[[favoriteModel alloc] initWithDictionary:dic error:nil]];
+        }
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_header endRefreshing];
+    }];
+}
+- (void)loadMoreDatas
+{
+    self.pageIndex ++;
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.favorite.favorite parameters:@{@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_footer endRefreshing];
         NSArray *arr = response[@"list"];
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[favoriteModel alloc] initWithDictionary:dic error:nil]];
         }
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself.tableView.mj_footer endRefreshing];
     }];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,7 +100,7 @@
     //置顶
     UIContextualAction *topRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Pin to\nTop" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
-        [self.tableView reloadData];
+        [self pinToTopWithRow:indexPath.row];
     }];
     topRowAction.image = [UIImage imageNamed:@"删除"];
     topRowAction.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -108,6 +135,16 @@
         [MBProgressHUD autoDismissShowHudMsg:@"删除成功"];
         [weakself.dataSource removeObjectAtIndex:row];
         [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+//置顶
+- (void)pinToTopWithRow:(NSInteger)row
+{
+    favoriteModel *model = self.dataSource[row];
+    [SFNetworkManager post:SFNet.favorite.top parameters:@{@"productId":model.productId,@"topFlag":@"Y"} success:^(id  _Nullable response) {
+        [self.tableView.mj_header beginRefreshing];
     } failed:^(NSError * _Nonnull error) {
         
     }];
