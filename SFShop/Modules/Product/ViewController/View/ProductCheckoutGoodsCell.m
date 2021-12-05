@@ -82,12 +82,13 @@
 
 #pragma mark - Getter
 - (void)setCellModel:(SFCellCacheModel *)cellModel {
+    
     ProductCheckoutSubItemModel *model = cellModel.obj;
     self.titleLabel.text = model.productTitle;
     self.typeLabel.text = [NSString stringWithFormat:@"%@",model.productCategpry] ;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %f",model.priceRp,model.productPrice];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",model.priceRp,model.productPrice * 0.001];
     self.numLabel.text = [NSString stringWithFormat:@"x%ld",model.productNum];
-    [self.icon sd_setImageWithURL:[NSURL URLWithString:model.productIcon]];
+    [self.icon sd_setImageWithURL: model.productIcon];
     [self layout];
 }
 

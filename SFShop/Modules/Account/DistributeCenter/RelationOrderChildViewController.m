@@ -9,7 +9,7 @@
 #import "RelationOrderCell.h"
 #import <MJRefresh/MJRefresh.h>
 #import "DistributorModel.h"
-#import "RelationOrderDetailViewController.h"
+//#import "RelationOrderDetailViewController.h"
 
 @interface RelationOrderChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -86,9 +86,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RelationOrderListModel *model = self.dataSource[indexPath.row];
-    RelationOrderDetailViewController *vc = [[RelationOrderDetailViewController alloc] init];
-    vc.orderId = model.orderId;
-    [self.navigationController pushViewController:vc animated:YES];
+//    RelationOrderDetailViewController *vc = [[RelationOrderDetailViewController alloc] init];
+//    vc.orderId = model.orderId;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 - (UITableView *)tableView
 {

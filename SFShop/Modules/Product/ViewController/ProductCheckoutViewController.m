@@ -16,6 +16,7 @@
 #import "NSString+Add.h"
 #import "ProductCheckoutSectionHeader.h"
 #import "ProductCheckoutBuyView.h"
+#import "MakeH5Happy.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -23,6 +24,11 @@
 @property (nonatomic, readwrite, strong) UITableView *tableView;
 @property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFCellCacheModel *> *> *dataArray;
+@property (nonatomic,strong) ProductCalcFeeModel *feeModel;
+@property (nonatomic,strong) addressModel *addressModel;
+@property (nonatomic,strong) NSArray<ProductDetailModel *> *productModels;
+@property (nonatomic,strong) NSArray<NSNumber *> *productBuyCounts;
+@property (nonatomic,strong) NSArray<NSNumber *> *productIds;
 
 @end
 
@@ -30,6 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Check Out";
     self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
     [self loadsubviews];
     [self layout];
@@ -40,6 +47,83 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+#pragma mark - Setter
+
+- (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
+               attrValues:(NSArray<NSString *> *)attrValues
+               productIds:(NSArray<NSNumber *> *) productIds
+            addressModel: (addressModel *)addressModel
+                feeModel:(ProductCalcFeeModel *)feeModel
+                   count: (NSArray<NSNumber *> *)productBuyCounts {
+    // 商品详情
+    _productModels = productModels;
+    _productBuyCounts = productBuyCounts;
+    _productIds = productIds;
+    NSMutableArray *arr = [NSMutableArray array];
+    [productModels enumerateObjectsUsingBlock:^(ProductDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        ProductCheckoutSubItemModel *item = [[ProductCheckoutSubItemModel alloc] init];
+        item.storeName = obj.storeName;
+        item.productCategpry = attrValues[idx];
+        item.productTitle = obj.offerName;
+        item.priceRp = @"Rp";
+        item.productPrice = obj.salesPrice;
+        item.productNum = [productBuyCounts[idx] integerValue];
+        item.productIcon = SFImage([MakeH5Happy getNonNullCarouselImageOf: obj.carouselImgUrls.firstObject]);
+        
+        [arr addObject:item];
+    }];
+    self.dataModel.productList = arr;
+
+    // 地址
+    _addressModel = addressModel;
+    self.dataModel.address = [NSString stringWithFormat:@"%@  %@\n%@ %@ %@ %@ %@ %@ %@", addressModel.contactName, addressModel.contactNbr, addressModel.postCode, addressModel.contactAddress, addressModel.street, addressModel.district, addressModel.city, addressModel.province, addressModel.country];
+    self.dataModel.email = addressModel.email;
+
+    // 费用
+    _feeModel = feeModel;
+        
+    self.dataModel.priceRp = @"Rp";
+    self.dataModel.deliveryTitle = @"Standard Delivery";
+    self.dataModel.deliveryDes = @"Est.Arrival:2-14 Days";
+    self.dataModel.deliveryPrice = [feeModel.stores.firstObject.logisticsFee floatValue] * 0.001;
+    self.dataModel.totalPrice = [feeModel.totalPrice floatValue] * 0.001;
+    self.dataModel.shopAvailableVouchersCount = 0;
+    
+    [self.tableView reloadData];
+}
+
+- (void)showPaymentAlert: (NSDictionary *)orderInfo {
+    MPWeakSelf(self)
+    NSArray *orders = (NSArray *)orderInfo[@"orders"];
+    NSString *orderId = [orders.firstObject valueForKey:@"orderId"];
+    NSString *totalPrice = orderInfo[@"totalPrice"];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Order Payment Processing" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *mockAction = [UIAlertAction actionWithTitle:@"Mock Pay" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [MBProgressHUD showHudMsg:@"Mocking pay..."];
+        NSDictionary *params = @{
+            @"paymentChannel": @"1",
+            @"totalPrice": totalPrice,
+            @"paymentMethod": @"1",
+            @"orders": @[orderId]
+        };
+        [SFNetworkManager post:SFNet.order.mock parameters: params success:^(NSDictionary *  _Nullable response) {
+            [MBProgressHUD autoDismissShowHudMsg: @"Mock Pay Success!"];
+            [weakself.navigationController popToRootViewControllerAnimated:YES];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg: @"Mock Pay Failed!"];
+        }];
+    }];
+    [alert addAction:mockAction];
+    UIAlertAction *onlineAction = [UIAlertAction actionWithTitle:@"Online Pay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:onlineAction];
+    UIAlertAction *cencelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cencelAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Loadsubviews
@@ -149,29 +233,6 @@
 - (ProductCheckoutModel *)dataModel {
     if (_dataModel == nil) {
         _dataModel = ProductCheckoutModel.new;
-        _dataModel.address = @"这是一个测试地址,测试地址\n 第二行是嘎时光 \n 第三行:撒发顺丰啊师傅";
-        _dataModel.email = @"www.baidu.com";
-        ProductCheckoutSubItemModel *item = [[ProductCheckoutSubItemModel alloc] init];
-        item.productCategpry = @"HK";
-        item.productTitle = @"这是标题萨法嘎嘎嘎嘎是嘎贵卅是嘎阿萨是嘎是嘎说";
-        item.productTitle = @"这是标题萨法嘎嘎嘎嘎是嘎贵卅是嘎阿萨是嘎是嘎说";
-        item.priceRp = @"Rp";
-        item.productPrice = 1000.123;
-        item.productNum = 3;
-        item.productIcon = @"https://scpic.chinaz.net/Files/pic/icons128/8090/m6.png";
-        item.storeName = @"storeName";
-        
-        _dataModel.priceRp = @"Rp";
-        _dataModel.deliveryDes = @"萨嘎是个哈看就是高科技啊司空见惯黑科技";
-        _dataModel.deliveryTitle = @"萨嘎了三个哈开始更健康";
-        _dataModel.deliveryPrice = 144;
-        
-        _dataModel.vouchersReduce = 0;
-        _dataModel.promoReduce = 0;
-        _dataModel.availableVouchersCount = 0;
-        _dataModel.productList = @[item,item,item];
-        
-        _dataModel.shopAvailableVouchersCount = 2;
     }
     return _dataModel;
 }
@@ -180,6 +241,37 @@
     if (_buyView == nil) {
         _buyView = [[ProductCheckoutBuyView alloc] init];
         _buyView.backgroundColor = [UIColor whiteColor];
+        MPWeakSelf(self)
+        _buyView.buyBlock = ^{
+            [MBProgressHUD showHudMsg:@"Calculating..."];
+            NSDictionary *params = @{
+                @"billingEmail": weakself.addressModel.email,
+                @"deliveryAddressId": weakself.addressModel.deliveryAddressId,
+                @"deliveryMode": @"A",
+                @"paymentMode": @"A",
+                @"sourceType": @"LJGM",
+                @"totalPrice": weakself.feeModel.totalPrice,
+                @"stores": @[
+                        @{
+                            @"logisticsModeId": @"1",
+                            @"storeId": @(weakself.productModels.firstObject.storeId),
+                            @"leaveMsg": @"", // TODO: 这是备注内容
+                            @"products": @[
+                                    @{
+                                        @"productId": weakself.productIds.firstObject,
+                                        @"offerCnt": weakself.productBuyCounts.firstObject
+                                    }
+                            ]
+                        }
+                ],
+            };
+            [SFNetworkManager post:SFNet.order.save parameters: params success:^(NSDictionary *  _Nullable response) {
+                [MBProgressHUD autoDismissShowHudMsg: @"Save order Success!"];
+                [weakself showPaymentAlert:response];
+            } failed:^(NSError * _Nonnull error) {
+                [MBProgressHUD autoDismissShowHudMsg: @"Save order Failed!"];
+            }];
+        };
     }
     return _buyView;
 }
@@ -205,7 +297,7 @@
 }
 
 - (NSMutableArray<NSMutableArray<SFCellCacheModel *> *> *)dataArray {
-    if (_dataArray == nil) {
+//    if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
         NSArray *arr = @[@"ProductCheckoutAddressCell",@"ProductCheckoutGoodsCell",@"ProductCheckoutDeliveryCell",@"ProductCheckoutNoteCell",@"ProductCheckoutVoucherCell"];
         for (NSString *obj in arr) {
@@ -224,7 +316,7 @@
                 [_dataArray addObject:[NSMutableArray arrayWithObject:model]];
             }
         }
-    }
+//    }
     return _dataArray;
 }
 

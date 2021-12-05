@@ -79,6 +79,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *confirmOrder;
 @property (nonatomic, readwrite, strong) NSString *cancelOrder;
 @property (nonatomic, readwrite, strong) NSString *cancelOrderReason;
+@property (nonatomic, readwrite, strong) NSString *calcfee;
+@property (nonatomic, readwrite, strong) NSString *save;
+@property (nonatomic, readwrite, strong) NSString *mock;
 - (NSString *)getReasonlOf: (NSString *)eventId;
 
 @end
