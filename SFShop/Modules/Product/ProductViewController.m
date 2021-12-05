@@ -65,6 +65,14 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.attrView && self.attrView.superview != nil) {
+        [self.attrView removeFromSuperview];
+        self.isCheckingSaleInfo = NO;
+    }
+}
+
 - (void)dealloc {
     @try {
         [self.detailWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
