@@ -6,12 +6,15 @@
 //
 
 #import "JSONModel.h"
+#import "CartModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ProductCarouselImgModel;
 @protocol ProductAttrModel;
 @protocol ProductAttrValueModel;
+@protocol ProdSpcAttrsModel;
+@protocol ProductItemModel;
 
 @interface ProductCarouselImgModel: JSONModel
 
@@ -35,10 +38,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductAttrModel: JSONModel
 
-@property(nonatomic, assign) NSInteger attrId;
+@property(nonatomic, strong) NSString *attrId;
 @property(nonatomic, assign) NSInteger seq;
 @property(nonatomic, strong) NSString *attrName;
 @property(nonatomic, strong) NSArray <ProductAttrValueModel *> <ProductAttrValueModel> *attrValues;
+
+@end
+
+@interface ProductItemModel: JSONModel
+
+@property(nonatomic, assign) NSInteger productId;
+@property(nonatomic, strong) NSString *productName;
+@property(nonatomic, assign) NSInteger salesPrice;
+@property(nonatomic, assign) NSInteger marketPrice;
+@property(nonatomic, assign) NSInteger minBuyCount;
+@property(nonatomic, assign) NSInteger maxBuyCount;
+@property(nonatomic, strong) NSString *isCollection;
+@property(nonatomic, strong) NSString *imgUrl;
+@property (nonatomic,strong) NSArray <ProdSpcAttrsModel *> <ProdSpcAttrsModel> *prodSpcAttrs;
 
 @end
 
@@ -62,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSArray <ProductAttrModel *> <ProductAttrModel> *offerSpecAttrs;
 @property(nonatomic, strong) NSArray <ProductCarouselImgModel *> <ProductCarouselImgModel> *carouselImgUrls;
 @property(nonatomic, strong) NSArray *offerAttrValues;
-@property(nonatomic, strong) NSArray *products;
+@property(nonatomic, strong) NSArray <ProductItemModel *> <ProductItemModel> *products;
 
 @end
 

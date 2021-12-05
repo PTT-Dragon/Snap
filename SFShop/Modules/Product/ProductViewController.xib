@@ -48,6 +48,9 @@
                                 <constraint firstAttribute="height" constant="46" id="IHW-hV-fe0"/>
                             </constraints>
                             <state key="normal" image="product_cart"/>
+                            <connections>
+                                <action selector="goToCart:" destination="-1" eventType="touchUpInside" id="fRA-zv-Yzr"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmQ-y4-MWr">
                             <rect key="frame" x="70" y="16" width="46" height="46"/>

@@ -18,9 +18,7 @@
 @property (nonatomic, strong) UIScrollView *attrsScrollView;
 @property (nonatomic, strong) UIView *attrsScrollContentView;
 @property (nonatomic, strong) UILabel *countLabel;
-@property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, strong) UIButton *decreaseBtn;
-@property (nonatomic, strong) NSMutableArray<NSNumber *> *selectedAttrValue;
 @property (nonatomic, strong) NSMutableArray<ProductAttrButton *> *selectedAttrBtn;
 
 @end
@@ -271,7 +269,7 @@
     [self.selectedAttrBtn replaceObjectAtIndex:sectionIndex withObject:sender];
     self.selectedAttrValue[sectionIndex] = @(sender.tag % 100);
     if(self.chooseAttrBlock) {
-        self.chooseAttrBlock(self.selectedAttrValue);
+        self.chooseAttrBlock();
     }
 }
 
