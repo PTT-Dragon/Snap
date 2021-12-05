@@ -174,6 +174,10 @@
     return K_orderReason_domain(url);
 }
 
+- (NSString *)calcfee {
+    return K_order_domain(@"calcfee");
+}
+
 
 @end
 

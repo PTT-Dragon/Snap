@@ -257,6 +257,7 @@
 		4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA026FCAE1400E3C832 /* Enums.m */; };
 		4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA926FCB13300E3C832 /* FMDBManager.m */; };
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
+		4BEB1223275CB98A00D5342A /* ProductCalcFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */; };
 		AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A65275B502C00F34481 /* CategoryRankNoItemsView.m */; };
 		AE5C9A69275B5C7C00F34481 /* SFSearchingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A68275B5C7C00F34481 /* SFSearchingView.m */; };
 		AE5C9A6C275B5D7700F34481 /* SFSearchingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A6B275B5D7700F34481 /* SFSearchingCell.m */; };
@@ -764,6 +765,8 @@
 		4BBFEEA926FCB13300E3C832 /* FMDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDBManager.m; sourceTree = "<group>"; };
 		4BBFEEAE26FCB57A00E3C832 /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		4BBFEEAF26FCB57A00E3C832 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		4BEB1221275CB98A00D5342A /* ProductCalcFeeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCalcFeeModel.h; sourceTree = "<group>"; };
+		4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCalcFeeModel.m; sourceTree = "<group>"; };
 		50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
 		7B387B141A9718B8B8605036 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
 		ABCFEC0B341B688C59EBE3B6 /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1519,6 +1522,8 @@
 				4B818FDC27239F500058038A /* ProductDetailModel.m */,
 				4B818FEA272444560058038A /* ProductSimilarModel.h */,
 				4B818FEB272444560058038A /* ProductSimilarModel.m */,
+				4BEB1221275CB98A00D5342A /* ProductCalcFeeModel.h */,
+				4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2410,6 +2415,7 @@
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				1B3122552732306B0055033D /* CashOutHistoryCell.m in Sources */,
 				1B2AE42F272D8F3700FB23D3 /* CartTitleCell.m in Sources */,
+				4BEB1223275CB98A00D5342A /* ProductCalcFeeModel.m in Sources */,
 				AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */,
 				1B6C5292275B672200A1C617 /* ZLBigImageCell.m in Sources */,
 				1B6C52A5275B672200A1C617 /* ZLImageEditTool.m in Sources */,

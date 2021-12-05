@@ -6,10 +6,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductCalcFeeModel.h"
+#import "addressModel.h"
+#import "ProductDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductCheckoutViewController : UIViewController
+
+@property (nonatomic,strong) ProductCalcFeeModel *feeModel;
+@property (nonatomic,strong) addressModel *addressModel;
+
+- (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
+              attrValues:(NSArray<NSString *> *)attrValues
+                   count: (NSArray<NSNumber *> *) counts;
 
 @end
 

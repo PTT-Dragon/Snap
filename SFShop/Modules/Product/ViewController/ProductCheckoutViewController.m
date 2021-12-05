@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Check Out";
     self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
     [self loadsubviews];
     [self layout];
@@ -40,6 +41,47 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+#pragma mark - Setter
+
+- (void)setAddressModel:(addressModel *)addressModel {
+    _addressModel = addressModel;
+    self.dataModel.address = [NSString stringWithFormat:@"%@  %@\n%@ %@ %@ %@ %@ %@ %@", addressModel.contactName, addressModel.contactNbr, addressModel.postCode, addressModel.contactAddress, addressModel.street, addressModel.district, addressModel.city, addressModel.province, addressModel.country];
+    self.dataModel.email = addressModel.email;
+    [self.tableView reloadData];
+}
+
+- (void)setFeeModel:(ProductCalcFeeModel *)feeModel {
+    _feeModel = feeModel;
+        
+    self.dataModel.priceRp = @"Rp";
+    self.dataModel.deliveryTitle = @"Standard Delivery";
+    self.dataModel.deliveryDes = @"Est.Arrival:2-14 Days";
+    self.dataModel.deliveryPrice = [feeModel.stores.firstObject.logisticsFee floatValue] * 0.001;
+    self.dataModel.totalPrice = [feeModel.totalPrice floatValue] * 0.001;
+    self.dataModel.shopAvailableVouchersCount = 0;
+    [self.tableView reloadData];
+}
+
+- (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
+               attrValues:(NSArray<NSString *> *)attrValues
+                   count: (NSArray<NSNumber *> *) counts {
+    NSMutableArray *arr = [NSMutableArray array];
+    [productModels enumerateObjectsUsingBlock:^(ProductDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        ProductCheckoutSubItemModel *item = [[ProductCheckoutSubItemModel alloc] init];
+        item.storeName = obj.storeName;
+        item.productCategpry = attrValues[idx];
+        item.productTitle = obj.offerName;
+        item.priceRp = @"Rp";
+        item.productPrice = obj.salesPrice;
+        item.productNum = [counts[idx] integerValue];
+        item.productIcon = obj.storeLogoUrl;
+        
+        [arr addObject:item];
+    }];
+    self.dataModel.productList = arr;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Loadsubviews
@@ -149,29 +191,6 @@
 - (ProductCheckoutModel *)dataModel {
     if (_dataModel == nil) {
         _dataModel = ProductCheckoutModel.new;
-        _dataModel.address = @"这是一个测试地址,测试地址\n 第二行是嘎时光 \n 第三行:撒发顺丰啊师傅";
-        _dataModel.email = @"www.baidu.com";
-        ProductCheckoutSubItemModel *item = [[ProductCheckoutSubItemModel alloc] init];
-        item.productCategpry = @"HK";
-        item.productTitle = @"这是标题萨法嘎嘎嘎嘎是嘎贵卅是嘎阿萨是嘎是嘎说";
-        item.productTitle = @"这是标题萨法嘎嘎嘎嘎是嘎贵卅是嘎阿萨是嘎是嘎说";
-        item.priceRp = @"Rp";
-        item.productPrice = 1000.123;
-        item.productNum = 3;
-        item.productIcon = @"https://scpic.chinaz.net/Files/pic/icons128/8090/m6.png";
-        item.storeName = @"storeName";
-        
-        _dataModel.priceRp = @"Rp";
-        _dataModel.deliveryDes = @"萨嘎是个哈看就是高科技啊司空见惯黑科技";
-        _dataModel.deliveryTitle = @"萨嘎了三个哈开始更健康";
-        _dataModel.deliveryPrice = 144;
-        
-        _dataModel.vouchersReduce = 0;
-        _dataModel.promoReduce = 0;
-        _dataModel.availableVouchersCount = 0;
-        _dataModel.productList = @[item,item,item];
-        
-        _dataModel.shopAvailableVouchersCount = 2;
     }
     return _dataModel;
 }
@@ -205,7 +224,7 @@
 }
 
 - (NSMutableArray<NSMutableArray<SFCellCacheModel *> *> *)dataArray {
-    if (_dataArray == nil) {
+//    if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
         NSArray *arr = @[@"ProductCheckoutAddressCell",@"ProductCheckoutGoodsCell",@"ProductCheckoutDeliveryCell",@"ProductCheckoutNoteCell",@"ProductCheckoutVoucherCell"];
         for (NSString *obj in arr) {
@@ -224,7 +243,7 @@
                 [_dataArray addObject:[NSMutableArray arrayWithObject:model]];
             }
         }
-    }
+//    }
     return _dataArray;
 }
 

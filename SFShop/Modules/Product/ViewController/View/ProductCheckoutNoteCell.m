@@ -116,14 +116,14 @@
 #pragma mark - Getter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     if (dataModel.vouchersReduce) {//如果选中优惠券,那么显示优惠券减少的价格
-        self.couponPriceLabel.text = [NSString stringWithFormat:@"- %@ %f",dataModel.priceRp,dataModel.vouchersReduce];
+        self.couponPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.priceRp,dataModel.vouchersReduce];
     } else if (!dataModel.availableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
         self.couponPriceLabel.text = @"Not available";
     } else {
         self.couponPriceLabel.text = [NSString stringWithFormat:@"%ld available",dataModel.availableVouchersCount];
     }
-    self.promoPriceLabel.text = [NSString stringWithFormat:@"- %@ %f",dataModel.priceRp,dataModel.promoReduce];
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"%@ %f",dataModel.priceRp,dataModel.totalPrice];
+    self.promoPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.priceRp,dataModel.promoReduce];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"%@ %.3f",dataModel.priceRp,dataModel.totalPrice];
     [self layout];
 }
 
@@ -180,7 +180,7 @@
 - (UILabel *)promoLabel {
     if (_promoLabel == nil) {
         _promoLabel = [[UILabel alloc] init];
-        _promoLabel.text = @"Store promo";
+        _promoLabel.text = @"Store Promo";
         _promoLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _promoLabel.font = [UIFont systemFontOfSize:14];
         _promoLabel.textAlignment = NSTextAlignmentLeft;

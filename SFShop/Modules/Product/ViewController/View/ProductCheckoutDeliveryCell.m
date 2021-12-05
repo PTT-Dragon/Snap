@@ -71,7 +71,7 @@
 #pragma mark - Getter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     self.titleLabel.text = dataModel.deliveryTitle;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %f",dataModel.priceRp,dataModel.deliveryPrice];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",dataModel.priceRp,dataModel.deliveryPrice];
     self.desLabel.text = dataModel.deliveryDes;
     [self layout];
 }

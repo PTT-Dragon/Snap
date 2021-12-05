@@ -16,6 +16,7 @@
 #import "addressModel.h"
 #import "CartChooseAddressViewController.h"
 #import "CartViewController.h"
+#import "ProductCalcFeeModel.h"
 
 @interface ProductViewController ()
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -40,7 +41,7 @@
 @property (nonatomic, assign) BOOL isCheckingSaleInfo;
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
-
+@property (nonatomic,strong) addressModel *selectedAddressModel;
 
 @end
 
@@ -95,10 +96,15 @@
     vc.view.frame = CGRectMake(0, 0, self.view.jk_width, self.view.jk_height);
     MPWeakSelf(self)
     vc.selBlock = ^(addressModel * model) {
-        weakself.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", model.province, model.city, model.district, model.postCode];
+        weakself.selectedAddressModel = model;
     };
     [self.view addSubview:vc.view];
     [self addChildViewController:vc];
+}
+
+- (void)setSelectedAddressModel:(addressModel *)selectedAddressModel {
+    _selectedAddressModel = selectedAddressModel;
+    self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", selectedAddressModel.province, selectedAddressModel.city, selectedAddressModel.district, selectedAddressModel.postCode];
 }
 
 - (void)request {
@@ -121,7 +127,7 @@
         for (NSDictionary *dic in response) {
             addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
             if ([model.isDefault isEqualToString:@"Y"]) {
-                weakself.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", model.province, model.city, model.district, model.postCode];
+                weakself.selectedAddressModel = model;
             }
             [weakself.addressDataSource addObject:model];
         }
@@ -277,7 +283,6 @@
             @"addon":@"",
             @"isSelected":@"N"
         };
-        MPWeakSelf(self)
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
             [MBProgressHUD autoDismissShowHudMsg: @"Add to cart Success!"];
         } failed:^(NSError * _Nonnull error) {
@@ -291,10 +296,39 @@
         [self showAttrsView];
     } else {
         // TODO: 跳转checkout页
-        [self.attrView removeFromSuperview];
-        self.isCheckingSaleInfo = NO;
-        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        MPWeakSelf(self)
+        NSDictionary *params = @{
+            @"deliveryAddressId": self.selectedAddressModel.deliveryAddressId,
+            @"deliveryMode": self.model.deliveryMode,
+            @"selUserPltCouponId": @"",
+            @"sourceType": @"LJGM", // TODO:此处参考h5
+            @"stores": @[
+                    @{
+                        @"logisticsModeId": @"1",
+                        @"storeId": @(self.model.storeId),
+                        @"products": @[
+                                @{
+                                    @"productId": @([self getSelectedProductId]),
+                                    @"offerCnt": @(self.attrView.count)
+                                }
+                        ]
+                    }
+            ],
+        };
+        [MBProgressHUD showHudMsg:@"Calculating..."];
+        [SFNetworkManager post:SFNet.order.calcfee parameters: params success:^(id  _Nullable response) {
+            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
+            ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
+            [weakself.attrView removeFromSuperview];
+            weakself.isCheckingSaleInfo = NO;
+            ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+            vc.feeModel = feeModel;
+            vc.addressModel = weakself.selectedAddressModel;
+            [vc setProductModels:@[weakself.model] attrValues:@[weakself.variationsLabel.text]  count:@[@(weakself.attrView.count)]];
+            [weakself.navigationController pushViewController:vc animated:YES];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+        }];
     }
 }
 
