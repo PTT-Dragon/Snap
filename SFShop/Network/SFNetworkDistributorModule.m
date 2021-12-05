@@ -41,4 +41,9 @@
     return K_distributor_domain(@"orders");
 }
 
+- (NSString *)orderDetail
+{
+    return K_distributor_domain(@"orders/detail");
+}
+
 @end

@@ -113,8 +113,7 @@
 		1B6C52B1275B672200A1C617 /* ZLPhotoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C5290275B672200A1C617 /* ZLPhotoConfiguration.m */; };
 		1B6C52B7275BC02400A1C617 /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C52B5275BC02400A1C617 /* ImageCollectionViewCell.m */; };
 		1B6C52B8275BC02400A1C617 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B6C52B6275BC02400A1C617 /* ImageCollectionViewCell.xib */; };
-		1B6C52BC275BC1C400A1C617 /* RelationOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C52BA275BC1C400A1C617 /* RelationOrderDetailViewController.m */; };
-		1B6C52BD275BC1C400A1C617 /* RelationOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B6C52BB275BC1C400A1C617 /* RelationOrderDetailViewController.xib */; };
+		1B6C52C1275C704E00A1C617 /* RelationOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C52BE275C704E00A1C617 /* RelationOrderDetailViewController.m */; };
 		1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC3271F192400B30ECC /* CouponModel.m */; };
 		1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC6271FF06500B30ECC /* favoriteModel.m */; };
 		1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */; };
@@ -521,9 +520,9 @@
 		1B6C52B4275BC02400A1C617 /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
 		1B6C52B5275BC02400A1C617 /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		1B6C52B6275BC02400A1C617 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		1B6C52B9275BC1C400A1C617 /* RelationOrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RelationOrderDetailViewController.h; sourceTree = "<group>"; };
-		1B6C52BA275BC1C400A1C617 /* RelationOrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RelationOrderDetailViewController.m; sourceTree = "<group>"; };
-		1B6C52BB275BC1C400A1C617 /* RelationOrderDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelationOrderDetailViewController.xib; sourceTree = "<group>"; };
+		1B6C52BE275C704E00A1C617 /* RelationOrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RelationOrderDetailViewController.m; path = /Users/youting/Snap/SFShop/Components/RelationOrderDetailViewController.m; sourceTree = "<absolute>"; };
+		1B6C52BF275C704E00A1C617 /* RelationOrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RelationOrderDetailViewController.h; path = /Users/youting/Snap/SFShop/Components/RelationOrderDetailViewController.h; sourceTree = "<absolute>"; };
+		1B6C52C0275C704E00A1C617 /* RelationOrderDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RelationOrderDetailViewController.xib; path = /Users/youting/Snap/SFShop/Components/RelationOrderDetailViewController.xib; sourceTree = "<absolute>"; };
 		1B74DAC2271F192400B30ECC /* CouponModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		1B74DAC3271F192400B30ECC /* CouponModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
 		1B74DAC5271FF06500B30ECC /* favoriteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = favoriteModel.h; sourceTree = "<group>"; };
@@ -1251,6 +1250,9 @@
 				1B96475B273E4CC600345DDA /* RelationOrderViewController.m */,
 				1B96475D273E4CF400345DDA /* RelationOrderChildViewController.h */,
 				1B96475E273E4CF400345DDA /* RelationOrderChildViewController.m */,
+				1B6C52BF275C704E00A1C617 /* RelationOrderDetailViewController.h */,
+				1B6C52BE275C704E00A1C617 /* RelationOrderDetailViewController.m */,
+				1B6C52C0275C704E00A1C617 /* RelationOrderDetailViewController.xib */,
 			);
 			path = DistributeCenter;
 			sourceTree = "<group>";
@@ -1447,9 +1449,6 @@
 				1B964760273E4F2F00345DDA /* RelationOrderCell.h */,
 				1B964761273E4F2F00345DDA /* RelationOrderCell.m */,
 				1B964762273E4F2F00345DDA /* RelationOrderCell.xib */,
-				1B6C52B9275BC1C400A1C617 /* RelationOrderDetailViewController.h */,
-				1B6C52BA275BC1C400A1C617 /* RelationOrderDetailViewController.m */,
-				1B6C52BB275BC1C400A1C617 /* RelationOrderDetailViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2111,7 +2110,6 @@
 			files = (
 				1B3122562732306B0055033D /* CashOutHistoryCell.xib in Resources */,
 				1B6C52A9275B672200A1C617 /* ZLPhotoBrowser.bundle in Resources */,
-				1B6C52BD275BC1C400A1C617 /* RelationOrderDetailViewController.xib in Resources */,
 				1B31225B273260980055033D /* CaseOutDetailViewController.xib in Resources */,
 				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
 				1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */,
@@ -2364,7 +2362,6 @@
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
 				4B818FD527239C910058038A /* ProductViewController.m in Sources */,
 				4B1522D5272D432700C3BDD9 /* BaseViewController.m in Sources */,
-				1B6C52BC275BC1C400A1C617 /* RelationOrderDetailViewController.m in Sources */,
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
 				AE8F32BF272E904C008E3DD8 /* ProductCheckoutViewController.m in Sources */,
 				1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */,
@@ -2475,6 +2472,7 @@
 				1B6C529F275B672200A1C617 /* UIImage+ZLPhotoBrowser.m in Sources */,
 				1B74DB3F2726FF3600B30ECC /* RecentlyViewedCell.m in Sources */,
 				1B6C52462758AD8100A1C617 /* CartViewController.m in Sources */,
+				1B6C52C1275C704E00A1C617 /* RelationOrderDetailViewController.m in Sources */,
 				1B6C529E275B672200A1C617 /* ZLPlayer.m in Sources */,
 				AE5C9A6C275B5D7700F34481 /* SFSearchingCell.m in Sources */,
 				AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */,

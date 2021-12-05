@@ -156,4 +156,154 @@ orderItems =             (
  **/
 @end
 
+@interface RelationOrderDetailModel : JSONModel
+/**
+ {
+     createdDate = "2021-10-26 15:29:32";
+     distributorId = 1007;
+     distributorName = Steven;
+     kolCommission = 15096;
+     kolMobilePhone = "173******7044";
+     orderDate = "2021-10-26 15:29:24";
+     orderDetail =     {
+         billAddress =         {
+             certNbr = "<null>";
+             certTypeId = "<null>";
+             contactAddress = "";
+             contactEmail = "16337@163.com";
+             contactFixNbr = "<null>";
+             contactName = "<null>";
+             contactNbr = "<null>";
+             contactStdId = "<null>";
+             postCode = "<null>";
+         };
+         canEvaluate = "<null>";
+         canReview = "<null>";
+         cancelReason = "<null>";
+         completionDate = "2021-11-06 00:00:00";
+         createdDate = "2021-10-26 15:29:24";
+         deductionPrice = 0;
+         deliveryAddress =         {
+             certNbr = "<null>";
+             certTypeId = "<null>";
+             contactAddress = "\U54e6\U54e6\U54e6\U54e6\U54e6, Banua, Kintamani, Kab.Bangli, Bali";
+             contactEmail = "16337@163.com";
+             contactFixNbr = "<null>";
+             contactName = nong;
+             contactNbr = 11111111111;
+             contactStdId = 10077;
+             postCode = 80652;
+         };
+         deliveryDate = "<null>";
+         deliveryMode = A;
+         deliveryState = C;
+         deliverys =         (
+                         {
+                 deliveryDate = "2021-10-26 19:46:29";
+                 deliveryItems =                 (
+                                         {
+                         cnt = 1;
+                         createdDate = "";
+                         productCode = "HJ-ST-NA-A238";
+                         productId = 2428;
+                         productName = "Pulpen cahaya karakter kartun unicorn 0.5mm Dinosaurus Ungu + Unicorn Merah Muda + Dinosaurus Biru + Unicorn Putih + Unicorn Ungu + Unicorn Biru";
+                         productRemark = "{\"Color\":\"Dinosaurus Ungu + Unicorn Merah Muda + Dinosaurus Biru + Unicorn Putih + Unicorn Ungu + Unicorn Biru\"}";
+                         warehouseId = 2;
+                         warehouseName = "\U901a\U7528\U4ed3\U5e93";
+                     }
+                 );
+                 deliveryOrderId = 51002;
+                 logisticsId = 998;
+                 logisticsName = JD;
+                 logisticsUrl = "<null>";
+                 shippingNbr = 7758757;
+                 warehouseName = "\U901a\U7528\U4ed3\U5e93";
+             }
+         );
+         discountPrice = 0;
+         isNeedDelivery = "<null>";
+         leaveMsg = "";
+         logisticsDeductFee = 0;
+         logisticsFee = 0;
+         logisticsModeId = "<null>";
+         logisticsOriFee = 0;
+         offerCnt = 1;
+         offerPrice = 68000;
+         orderId = 98002;
+         orderItems =         (
+                         {
+                 brandId = "<null>";
+                 brandName = "<null>";
+                 canEvaluate = "<null>";
+                 canReturn = "<null>";
+                 canReview = "<null>";
+                 catgId = 239;
+                 catgName = "<null>";
+                 discountPrice = 0;
+                 imagUrl = "/get/resource/HJ-ST-NA-A2381405789823066836992.jpg";
+                 isGift = "<null>";
+                 offerCnt = 1;
+                 offerId = 1250;
+                 offerName = "Pulpen cahaya karakter kartun unicorn 0.5mm";
+                 offerPrice = 68000;
+                 offerType = "<null>";
+                 orderItemId = 98002;
+                 orderPrice = 68000;
+                 parentId = "<null>";
+                 pointExchCharge = 0;
+                 pointPrice = 0;
+                 productCode = "HJ-ST-NA-A238";
+                 productId = 2428;
+                 productName = "Pulpen cahaya karakter kartun unicorn 0.5mm Dinosaurus Ungu + Unicorn Merah Muda + Dinosaurus Biru + Unicorn Putih + Unicorn Ungu + Unicorn Biru";
+                 productRemark = "{\"Color\":\"Dinosaurus Ungu + Unicorn Merah Muda + Dinosaurus Biru + Unicorn Putih + Unicorn Ungu + Unicorn Biru\"}";
+                 returnPrice = "<null>";
+                 serviceTypes = "2,3";
+                 state = C;
+                 storeId = 15;
+                 supplierId = 1;
+                 supplierOfferCode = "<null>";
+                 thirdPartyCodeList = "<null>";
+                 unit = "";
+                 unitPrice = 68000;
+                 vatPrice = 0;
+             }
+         );
+         orderNbr = O202110261529248036;
+         orderPrice = 68000;
+         packageQty = "<null>";
+         paymentMode = A;
+         paymentState = S;
+         payments = "<null>";
+         platformCouponPrice = 0;
+         pointExchCharge = 0;
+         pointPrice = 0;
+         receivedDate = "<null>";
+         returnPrice = "<null>";
+         sellerComments = "<null>";
+         shareBuyOrderId = "<null>";
+         shareBuyOrderNbr = "<null>";
+         state = D;
+         stateDate = "<null>";
+         storeCampaignPrice = 0;
+         storeCouponPrice = 0;
+         storeId = 15;
+         storeName = NeuKoo;
+         thirdPartyCodeList = "<null>";
+         uccAccount = "<null>";
+         vatPrice = 0;
+     };
+     orderId = 98002;
+     orderNbr = O202110261529248036;
+     orderPrice = 68000;
+     settState = Settled;
+     stateDate = "2021-11-14 00:00:00";
+     storeId = 15;
+     storeLogoUrl = "/get/resource/f11460116260238004224.jpg";
+     storeName = NeuKoo;
+     updateDate = "2021-11-14 00:00:00";
+ }
+
+ **/
+@end
+
 NS_ASSUME_NONNULL_END
