@@ -41,11 +41,13 @@
 }
 
 - (void)textFieldDidChangeValue:(NSNotification *)noti {
-    UITextField *textField = (UITextField *)[noti object];
-    if (textField.text.length > 0) {
-        [self.searchingView requestAssociate:textField.text];
-    } else {
-        self.searchingView.hidden = YES;
+    if (self.searchType == SFSearchTypeImmersion) {
+        UITextField *textField = (UITextField *)[noti object];
+        if (textField.text.length > 0) {
+            [self.searchingView requestAssociate:textField.text];
+        } else {
+            self.searchingView.hidden = YES;
+        }
     }
 }
 
@@ -99,8 +101,10 @@
 
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (![self.superview.subviews containsObject:self.searchView]) {
-        [self.superview addSubview:self.searchView];
+    if (self.searchType == SFSearchTypeImmersion) {
+        if (![self.superview.subviews containsObject:self.searchView]) {
+            [self.superview addSubview:self.searchView];
+        }
     }
 //    if (textField.text.length > 0) {
 //        [self.searchingView requestAssociate:textField.text];

@@ -10,6 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, SFSearchType) {
+    SFSearchTypeImmersion,     //沉浸模式 (默认)
+    SFSearchTypeNoneInterface, //无界面模式
+};
+
 @interface SFSearchNav : UIView
 
 /// 初始化
@@ -18,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param rItem 右上角item
 /// @param searchBlock 点击具体内容回调
 - (instancetype)initWithFrame:(CGRect)frame backItme:(SFSearchItem *)bitem rightItem:(SFSearchItem *)rItem searchBlock:(void(^)(NSString *qs))searchBlock;
+
+/// 搜索模式
+@property (nonatomic, readwrite, assign) SFSearchType searchType;
 
 /// 添加搜索数据组
 /// @param sectionData 搜索数据
