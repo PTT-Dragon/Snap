@@ -38,6 +38,35 @@
     return YES;
 }
 
+@end
 
+@implementation EvaluatesModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+
+@implementation ReviewDetailModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+@implementation PurchaseReviewModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+@implementation EvaluatesContentsModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+@implementation ReviewUserInfoModel
 
 @end
+
+

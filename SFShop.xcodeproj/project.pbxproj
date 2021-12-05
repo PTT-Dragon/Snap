@@ -198,6 +198,10 @@
 		1BD8E799275CF69C00130DCC /* RelationOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E796275CF69C00130DCC /* RelationOrderDetailViewController.xib */; };
 		1BD8E79D275D005900130DCC /* AccountActiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E79B275D005900130DCC /* AccountActiveCell.m */; };
 		1BD8E79E275D005900130DCC /* AccountActiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E79C275D005900130DCC /* AccountActiveCell.xib */; };
+		1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7A1275D12CF00130DCC /* ReviewDetailInfoCell.m */; };
+		1BD8E7A4275D12CF00130DCC /* ReviewDetailInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7A2275D12CF00130DCC /* ReviewDetailInfoCell.xib */; };
+		1BD8E7A9275D1B5900130DCC /* ReviewPhrchaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7A7275D1B5900130DCC /* ReviewPhrchaseCell.m */; };
+		1BD8E7AA275D1B5900130DCC /* ReviewPhrchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7A8275D1B5900130DCC /* ReviewPhrchaseCell.xib */; };
 		1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */; };
 		1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */; };
 		1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBE272EC1E00016C2F3 /* CartModel.m */; };
@@ -670,6 +674,12 @@
 		1BD8E79A275D005900130DCC /* AccountActiveCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountActiveCell.h; sourceTree = "<group>"; };
 		1BD8E79B275D005900130DCC /* AccountActiveCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountActiveCell.m; sourceTree = "<group>"; };
 		1BD8E79C275D005900130DCC /* AccountActiveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountActiveCell.xib; sourceTree = "<group>"; };
+		1BD8E7A0275D12CF00130DCC /* ReviewDetailInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewDetailInfoCell.h; sourceTree = "<group>"; };
+		1BD8E7A1275D12CF00130DCC /* ReviewDetailInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewDetailInfoCell.m; sourceTree = "<group>"; };
+		1BD8E7A2275D12CF00130DCC /* ReviewDetailInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailInfoCell.xib; sourceTree = "<group>"; };
+		1BD8E7A6275D1B5900130DCC /* ReviewPhrchaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewPhrchaseCell.h; sourceTree = "<group>"; };
+		1BD8E7A7275D1B5900130DCC /* ReviewPhrchaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewPhrchaseCell.m; sourceTree = "<group>"; };
+		1BD8E7A8275D1B5900130DCC /* ReviewPhrchaseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewPhrchaseCell.xib; sourceTree = "<group>"; };
 		1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderReasonCell.h; sourceTree = "<group>"; };
 		1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderReasonCell.m; sourceTree = "<group>"; };
 		1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderReasonCell.xib; sourceTree = "<group>"; };
@@ -1301,13 +1311,11 @@
 		1B74DADA2721ABAF00B30ECC /* Review */ = {
 			isa = PBXGroup;
 			children = (
+				1BD8E79F275D12A600130DCC /* View */,
 				1B74DADB2721ABC500B30ECC /* ReviewViewController.h */,
 				1B74DADC2721ABC500B30ECC /* ReviewViewController.m */,
 				1B74DADE2721ACD900B30ECC /* ReviewChildViewController.h */,
 				1B74DADF2721ACD900B30ECC /* ReviewChildViewController.m */,
-				1B74DAEA27225EF000B30ECC /* ReviewCell.h */,
-				1B74DAEB27225EF000B30ECC /* ReviewCell.m */,
-				1B74DAEC27225EF000B30ECC /* ReviewCell.xib */,
 				1B787B5D272A354C00E6A983 /* AddReviewViewController.h */,
 				1B787B5E272A354C00E6A983 /* AddReviewViewController.m */,
 				1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */,
@@ -1393,6 +1401,22 @@
 				1B92D1512732815C00E73F98 /* AreaCell.h */,
 				1B92D1522732815C00E73F98 /* AreaCell.m */,
 				1B92D1532732815C00E73F98 /* AreaCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1BD8E79F275D12A600130DCC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B74DAEA27225EF000B30ECC /* ReviewCell.h */,
+				1B74DAEB27225EF000B30ECC /* ReviewCell.m */,
+				1B74DAEC27225EF000B30ECC /* ReviewCell.xib */,
+				1BD8E7A0275D12CF00130DCC /* ReviewDetailInfoCell.h */,
+				1BD8E7A1275D12CF00130DCC /* ReviewDetailInfoCell.m */,
+				1BD8E7A2275D12CF00130DCC /* ReviewDetailInfoCell.xib */,
+				1BD8E7A6275D1B5900130DCC /* ReviewPhrchaseCell.h */,
+				1BD8E7A7275D1B5900130DCC /* ReviewPhrchaseCell.m */,
+				1BD8E7A8275D1B5900130DCC /* ReviewPhrchaseCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2207,12 +2231,14 @@
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1BF00F65272FDC2E0081C8E4 /* DistributorRelationOrderCell.xib in Resources */,
 				1B74DB112724463500B30ECC /* OrderListStateCell.xib in Resources */,
+				1BD8E7AA275D1B5900130DCC /* ReviewPhrchaseCell.xib in Resources */,
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
 				1B964764273E4F2F00345DDA /* RelationOrderCell.xib in Resources */,
 				1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */,
 				1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
 				1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */,
+				1BD8E7A4275D12CF00130DCC /* ReviewDetailInfoCell.xib in Resources */,
 				1B74DB2B27253AD600B30ECC /* DeliveryAddressCell.xib in Resources */,
 				1B6C52B8275BC02400A1C617 /* ImageCollectionViewCell.xib in Resources */,
 				1B478330272AA1FF00F2A945 /* SecurityCenterViewController.xib in Resources */,
@@ -2411,6 +2437,7 @@
 				1B6C52B7275BC02400A1C617 /* ImageCollectionViewCell.m in Sources */,
 				1BF00F59272FD4090081C8E4 /* SFNetworkDistributorModule.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
+				1BD8E7A9275D1B5900130DCC /* ReviewPhrchaseCell.m in Sources */,
 				1B63D459272D212A0062762B /* CartChildViewController.m in Sources */,
 				1B96475C273E4CC600345DDA /* RelationOrderViewController.m in Sources */,
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
@@ -2433,6 +2460,7 @@
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
 				1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */,
 				1B6C52A1275B672200A1C617 /* ZLEditViewController.m in Sources */,
+				1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
 				1B47832A272AA15700F2A945 /* ChangeMobileOrEmailViewController.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,

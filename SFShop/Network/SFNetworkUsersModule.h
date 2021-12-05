@@ -97,6 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFNetworkUsersEvaluateModule : NSObject
 //添加评论
 @property (nonatomic, readwrite, strong) NSString *addEvaluate;
+@property (nonatomic, readwrite, strong) NSString *detail;
 
 @end
 

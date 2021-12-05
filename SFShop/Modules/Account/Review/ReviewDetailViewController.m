@@ -6,9 +6,13 @@
 //
 
 #import "ReviewDetailViewController.h"
+#import "ReviewDetailInfoCell.h"
+#import "OrderModel.h"
+#import "ReviewPhrchaseCell.h"
 
-@interface ReviewDetailViewController ()
-
+@interface ReviewDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) ReviewDetailModel *model;
 @end
 
 @implementation ReviewDetailViewController
@@ -20,16 +24,72 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Review Detail";
+    [self initUI];
+    [self loadDatas];
+}
+- (void)initUI
+{
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+    }];
+    [_tableView registerNib:[UINib nibWithNibName:@"ReviewDetailInfoCell" bundle:nil] forCellReuseIdentifier:@"ReviewDetailInfoCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"ReviewPhrchaseCell" bundle:nil] forCellReuseIdentifier:@"ReviewPhrchaseCell"];
+}
+- (void)loadDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.evaluate.detail parameters:@{@"orderItemId":_orderItemId} success:^(id  _Nullable response) {
+        weakself.model = [ReviewDetailModel yy_modelWithDictionary:response];
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1+self.model.evaluates.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        ReviewDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewDetailInfoCell"];
+        cell.model = self.model;
+        return cell;
+    }
+    EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+    ReviewPhrchaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewPhrchaseCell"];
+    cell.model = evaModel.review;
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        return 300;
+    }
+    return 156;
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        _tableView.backgroundColor = [UIColor whiteColor];
+        if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        else
+        {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        _tableView.estimatedRowHeight = 44;
+    }
+    return _tableView;
 }
-*/
-
 @end

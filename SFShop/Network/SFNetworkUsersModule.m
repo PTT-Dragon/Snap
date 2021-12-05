@@ -114,6 +114,9 @@
 - (NSString *)addEvaluate {
     return K_evaluate_domain(@"");
 }
+- (NSString *)detail {
+    return K_evaluate_domain(@"detail");
+}
 
 
 @end

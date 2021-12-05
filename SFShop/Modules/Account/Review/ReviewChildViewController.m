@@ -9,6 +9,7 @@
 #import "OrderModel.h"
 #import "ReviewCell.h"
 #import "ReviewDetailViewController.h"
+#import "ProductViewController.h"
 
 @interface ReviewChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -61,7 +62,16 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ReviewDetailViewController *vc = [[ReviewDetailViewController alloc] init];
+    OrderModel *model = self.dataSource[indexPath.row];
+    if (_type == 2) {
+        ReviewDetailViewController *vc = [[ReviewDetailViewController alloc] init];
+        vc.orderItemId = model.orderId;
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    orderItemsModel *itemModel = model.orderItems.firstObject;
+    vc.offerId = itemModel.offerId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

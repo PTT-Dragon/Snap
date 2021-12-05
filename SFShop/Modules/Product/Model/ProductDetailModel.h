@@ -49,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, assign) NSInteger productId;
 @property(nonatomic, strong) NSString *productName;
+@property(nonatomic, strong) NSString *productRemark;
 @property(nonatomic, assign) NSInteger salesPrice;
 @property(nonatomic, assign) NSInteger marketPrice;
 @property(nonatomic, assign) NSInteger minBuyCount;
