@@ -9,10 +9,12 @@
 #import "FAQTableCell.h"
 #import "FAQListModel.h"
 #import "FAQDetailViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface FAQChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,assign) NSInteger pageIndex;
 
 
 @end
@@ -32,20 +34,43 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-0);
         make.top.bottom.mas_equalTo(self.view);
     }];
-    [self loadDatas];
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadDatas];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (void)loadDatas
 {
+    _pageIndex = 1;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.h5.faqQuestion parameters:@{@"faqCatgId":_model.faqCatgId} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.h5.faqQuestion parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"faqCatgId":_model.faqCatgId,@"faqName":_searchText} success:^(id  _Nullable response) {
         [weakself.dataSource removeAllObjects];
         NSArray *arr = response[@"list"];
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[FAQQuestionModel alloc] initWithDictionary:dic error:nil]];
         }
         [weakself.tableView reloadData];
+        [weakself.tableView.mj_header endRefreshing];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself.tableView.mj_header endRefreshing];
+    }];
+}
+- (void)loadMoreDatas
+{
+    _pageIndex++;
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.h5.faqQuestion parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"faqCatgId":_model.faqCatgId,@"faqName":_searchText} success:^(id  _Nullable response) {
+        NSArray *arr = response[@"list"];
+        for (NSDictionary *dic in arr) {
+            [weakself.dataSource addObject:[[FAQQuestionModel alloc] initWithDictionary:dic error:nil]];
+        }
+        [weakself.tableView reloadData];
+        [weakself.tableView.mj_footer endRefreshing];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_footer endRefreshing];
     }];
 }
 - (void)setSearchText:(NSString *)searchText

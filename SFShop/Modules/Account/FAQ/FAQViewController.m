@@ -105,6 +105,7 @@
             FAQChildViewController *vc = strongSelf.magicController.viewControllers[strongSelf.currentMenuIndex];
             vc.searchText = qs;
         }];
+        _navSearchView.searchType = SFSearchTypeNoneInterface;
     }
     return _navSearchView;
 }

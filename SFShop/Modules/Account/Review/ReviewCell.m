@@ -44,6 +44,7 @@
 {
     _model = model;
     _evaluationView.hidden = type == 1;
+    _priceLabel.hidden = type == 1;
     _btn2.hidden = type == 1;
     [_btn1 setTitle:type == 1 ? @"REVIEW":@"EDIT REVIEW" forState:0];
     orderItemsModel *itemModel = model.orderItems.firstObject;
