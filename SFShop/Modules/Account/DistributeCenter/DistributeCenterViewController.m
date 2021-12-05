@@ -85,7 +85,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row > 3) {
-        DistributorRankProductModel *model = self.dataSource[indexPath.row-3];
+        DistributorRankProductModel *model = self.dataSource[indexPath.row-4];
         ProductViewController *vc = [[ProductViewController alloc] init];
         vc.offerId = model.offerId.integerValue;
         [self.navigationController pushViewController:vc animated:YES];

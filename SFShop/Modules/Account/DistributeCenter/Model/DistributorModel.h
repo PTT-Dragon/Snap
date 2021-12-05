@@ -113,6 +113,8 @@ width = 1;
  **/
 @end
 
+@class OrderModel;
+
 @interface RelationOrderListModel : JSONModel
 @property (nonatomic,strong) NSArray <RelationOrderItemModel>* orderItems;
 @property (nonatomic,copy) NSString *createdDate;
@@ -156,9 +158,37 @@ orderItems =             (
  **/
 @end
 
+@class OrderDetailModel;
+
 @interface RelationOrderDetailModel : JSONModel
+@property (nonatomic,copy) NSString *createdDate;
+@property (nonatomic,copy) NSString *distributorId;
+@property (nonatomic,copy) NSString *distributorName;
+@property (nonatomic,copy) NSString *kolCommission;
+@property (nonatomic,copy) NSString *kolMobilePhone;
+@property (nonatomic,copy) NSString *orderDate;
+@property (nonatomic,copy) NSString *orderId;
+@property (nonatomic,copy) NSString *orderNbr;
+@property (nonatomic,copy) NSString *orderPrice;
+@property (nonatomic,copy) NSString *settState;
+@property (nonatomic,copy) NSString *stateDate;
+@property (nonatomic,copy) NSString *storeId;
+@property (nonatomic,copy) NSString *storeLogoUrl;
+@property (nonatomic,copy) NSString *storeName;
+@property (nonatomic,copy) NSString *updateDate;
+@property (nonatomic,strong) OrderDetailModel *orderDetail;
+
 /**
  {
+ orderId = 98002;
+ orderNbr = O202110261529248036;
+ orderPrice = 68000;
+ settState = Settled;
+ stateDate = "2021-11-14 00:00:00";
+ storeId = 15;
+ storeLogoUrl = "/get/resource/f11460116260238004224.jpg";
+ storeName = NeuKoo;
+ updateDate = "2021-11-14 00:00:00";
      createdDate = "2021-10-26 15:29:32";
      distributorId = 1007;
      distributorName = Steven;
@@ -292,15 +322,8 @@ orderItems =             (
          uccAccount = "<null>";
          vatPrice = 0;
      };
-     orderId = 98002;
-     orderNbr = O202110261529248036;
-     orderPrice = 68000;
-     settState = Settled;
-     stateDate = "2021-11-14 00:00:00";
-     storeId = 15;
-     storeLogoUrl = "/get/resource/f11460116260238004224.jpg";
-     storeName = NeuKoo;
-     updateDate = "2021-11-14 00:00:00";
+     
+ 
  }
 
  **/

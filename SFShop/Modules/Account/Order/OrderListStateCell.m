@@ -29,7 +29,13 @@
 - (void)setOrderDetailContent:(OrderDetailModel *)model
 {
     _storeNameLabel.text = model.storeName;
-//    [_storeIconImgview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Host,model.storeLogoUrl]]];
+    _storeIconImgview.image = [UIImage imageNamed:@"toko"];
     _statuLabel.text = model.state;
+}
+- (void)setRelationOrderDetailContent:(OrderDetailModel *)model
+{
+    _storeNameLabel.text = model.storeName;
+    _storeIconImgview.image = [UIImage imageNamed:@"toko"];
+    _statuLabel.text = @"";
 }
 @end
