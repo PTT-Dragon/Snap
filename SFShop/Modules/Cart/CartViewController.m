@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Shoppint Cart";
+    self.title = @"Shopping Cart";
     _addressArr = [NSMutableArray array];
     [self loadDatas];
 }

@@ -35,7 +35,8 @@
     _favoriteBtn.selected = model.isCollection;
 }
 - (IBAction)cartAction:(UIButton *)sender {
-    [SFNetworkManager post:SFNet.cart.cart parameters:@{@"storeId":_model.storeId,@"offerId":_model.offerId,@"num":@(1),@"unitPrice":_model.salesPrice,@"contactChannel":@"3",@"addon":@"",@"isSelected":@"N"} success:^(id  _Nullable response) {
+    NSDictionary *params = @{@"storeId":_model.storeId,@"offerId":_model.offerId,@"num":@(1),@"unitPrice":_model.salesPrice,@"contactChannel":@"3",@"addon":@"",@"isSelected":@"N"};
+    [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
     } failed:^(NSError * _Nonnull error) {
         

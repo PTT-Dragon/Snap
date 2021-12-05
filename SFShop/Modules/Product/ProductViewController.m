@@ -15,6 +15,7 @@
 #import "ProductCheckoutViewController.h"
 #import "addressModel.h"
 #import "CartChooseAddressViewController.h"
+#import "CartViewController.h"
 
 @interface ProductViewController ()
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -210,13 +211,70 @@
     }
 }
 
+- (NSInteger)getSelectedProductId {
+    NSMutableArray *selectedAttrs = [NSMutableArray array];
+    MPWeakSelf(self)
+    [self.model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *attrId = obj.attrId;
+        NSString *attrName = obj.attrName;
+        NSUInteger index = weakself.attrView.selectedAttrValue[idx].integerValue;
+        ProductAttrValueModel *attrValueModel = obj.attrValues[index];
+        NSString *value = attrValueModel.value;
+        [selectedAttrs addObject:@{
+            @"attrId": attrId, @"attrName": attrName, @"value": value
+        }];
+    }];
+    __block NSInteger productId;
+    [self.model.products enumerateObjectsUsingBlock:^(ProductItemModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+        [selectedAttrs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+            NSArray *arr = [obj1.prodSpcAttrs jk_filter:^BOOL(ProdSpcAttrsModel *obj3) {
+                return [obj3.attrId isEqualToString: [obj2 jk_stringForKey: @"attrId"]] &&
+                [obj3.attrName isEqualToString: [obj2 jk_stringForKey: @"attrName"]] &&
+                [obj3.value isEqualToString: [obj2 jk_stringForKey: @"value"]];
+            }];
+            if (arr.count == 0) {
+                *stop2 = YES;
+                return;
+            }
+            // 遍历完最后一个，说明找到满足条件的商品了
+            if (idx2 == selectedAttrs.count - 1) {
+                productId = obj1.productId;
+            }
+        }];
+    }];
+    return productId;
+}
+
 #pragma mark - Action
+
+- (IBAction)goToCart:(UIButton *)sender {
+    CartViewController *cartVC = [[CartViewController alloc] init];
+    [self.navigationController pushViewController:cartVC animated:YES];
+}
 
 - (IBAction)addToCart:(UIButton *)sender {
     if (!_isCheckingSaleInfo) {
         [self showAttrsView];
     } else {
         // TODO: 添加购物车
+        NSDictionary *params =
+        @{
+            @"campaignId":@"3",
+            @"num": @(self.attrView.count),
+            @"offerId": @(self.model.offerId),
+            @"productId": @([self getSelectedProductId]),
+            @"storeId": @(self.model.storeId),
+            @"unitPrice": @(self.model.salesPrice),
+            @"contactChannel":@"3",
+            @"addon":@"",
+            @"isSelected":@"N"
+        };
+        MPWeakSelf(self)
+        [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
+            [MBProgressHUD autoDismissShowHudMsg: @"Add to cart Success!"];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg: @"Add to cart failed!"];
+        }];
     }
 }
 
@@ -242,11 +300,11 @@
         [weak_attrView removeFromSuperview];
         weakself.isCheckingSaleInfo = NO;
     };
-    _attrView.chooseAttrBlock = ^(NSMutableArray<NSNumber *> * attrValues) {
+    _attrView.chooseAttrBlock = ^() {
         [weakself.model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             // TODO: 此处暂时仅处理颜色的属性，因为没找到有其他属性的测试数据
             if ([obj.attrName isEqualToString:@"Color"]) {
-                NSInteger selectedColorIndex = attrValues[idx].integerValue;
+                NSInteger selectedColorIndex = weakself.attrView.selectedAttrValue[idx].integerValue;
                 weakself.variationsLabel.text = obj.attrValues[selectedColorIndex].value;
             }
         }];

@@ -32,6 +32,14 @@
 
 @end
 
+@implementation ProductItemModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+@end
+
 @implementation ProductDetailModel
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
