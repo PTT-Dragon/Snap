@@ -8,7 +8,6 @@
 #import "ProductCheckoutGoodsCell.h"
 #import "ProductCheckoutModel.h"
 #import "NSString+Add.h"
-#import "MakeH5Happy.h"
 
 @interface ProductCheckoutGoodsCell ()
 
@@ -89,7 +88,7 @@
     self.typeLabel.text = [NSString stringWithFormat:@"%@",model.productCategpry] ;
     self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",model.priceRp,model.productPrice * 0.001];
     self.numLabel.text = [NSString stringWithFormat:@"x%ld",model.productNum];
-    [self.icon sd_setImageWithURL:[NSURL URLWithString: SFImage(model.productIcon)]];
+    [self.icon sd_setImageWithURL: model.productIcon];
     [self layout];
 }
 

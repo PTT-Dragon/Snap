@@ -178,6 +178,14 @@
     return K_order_domain(@"calcfee");
 }
 
+- (NSString *)save {
+    return K_order_domain(@"save");
+}
+
+- (NSString *)mock {
+    return K_pay_domain(@"mock");
+}
+
 
 @end
 

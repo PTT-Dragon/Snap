@@ -14,13 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductCheckoutViewController : UIViewController
 
-@property (nonatomic,strong) ProductCalcFeeModel *feeModel;
-@property (nonatomic,strong) addressModel *addressModel;
-
 - (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
-              attrValues:(NSArray<NSString *> *)attrValues
+               attrValues:(NSArray<NSString *> *)attrValues
+              productIds:(NSArray<NSNumber *> *) productIds
+            addressModel: (addressModel *)addressModel
+                feeModel:(ProductCalcFeeModel *)feeModel
                    count: (NSArray<NSNumber *> *) counts;
-
 @end
 
 NS_ASSUME_NONNULL_END

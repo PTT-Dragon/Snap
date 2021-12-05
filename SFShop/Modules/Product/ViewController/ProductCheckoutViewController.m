@@ -16,6 +16,7 @@
 #import "NSString+Add.h"
 #import "ProductCheckoutSectionHeader.h"
 #import "ProductCheckoutBuyView.h"
+#import "MakeH5Happy.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -23,6 +24,11 @@
 @property (nonatomic, readwrite, strong) UITableView *tableView;
 @property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFCellCacheModel *> *> *dataArray;
+@property (nonatomic,strong) ProductCalcFeeModel *feeModel;
+@property (nonatomic,strong) addressModel *addressModel;
+@property (nonatomic,strong) NSArray<ProductDetailModel *> *productModels;
+@property (nonatomic,strong) NSArray<NSNumber *> *productBuyCounts;
+@property (nonatomic,strong) NSArray<NSNumber *> *productIds;
 
 @end
 
@@ -45,28 +51,16 @@
 
 #pragma mark - Setter
 
-- (void)setAddressModel:(addressModel *)addressModel {
-    _addressModel = addressModel;
-    self.dataModel.address = [NSString stringWithFormat:@"%@  %@\n%@ %@ %@ %@ %@ %@ %@", addressModel.contactName, addressModel.contactNbr, addressModel.postCode, addressModel.contactAddress, addressModel.street, addressModel.district, addressModel.city, addressModel.province, addressModel.country];
-    self.dataModel.email = addressModel.email;
-    [self.tableView reloadData];
-}
-
-- (void)setFeeModel:(ProductCalcFeeModel *)feeModel {
-    _feeModel = feeModel;
-        
-    self.dataModel.priceRp = @"Rp";
-    self.dataModel.deliveryTitle = @"Standard Delivery";
-    self.dataModel.deliveryDes = @"Est.Arrival:2-14 Days";
-    self.dataModel.deliveryPrice = [feeModel.stores.firstObject.logisticsFee floatValue] * 0.001;
-    self.dataModel.totalPrice = [feeModel.totalPrice floatValue] * 0.001;
-    self.dataModel.shopAvailableVouchersCount = 0;
-    [self.tableView reloadData];
-}
-
 - (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
                attrValues:(NSArray<NSString *> *)attrValues
-                   count: (NSArray<NSNumber *> *) counts {
+               productIds:(NSArray<NSNumber *> *) productIds
+            addressModel: (addressModel *)addressModel
+                feeModel:(ProductCalcFeeModel *)feeModel
+                   count: (NSArray<NSNumber *> *)productBuyCounts {
+    // 商品详情
+    _productModels = productModels;
+    _productBuyCounts = productBuyCounts;
+    _productIds = productIds;
     NSMutableArray *arr = [NSMutableArray array];
     [productModels enumerateObjectsUsingBlock:^(ProductDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ProductCheckoutSubItemModel *item = [[ProductCheckoutSubItemModel alloc] init];
@@ -75,13 +69,61 @@
         item.productTitle = obj.offerName;
         item.priceRp = @"Rp";
         item.productPrice = obj.salesPrice;
-        item.productNum = [counts[idx] integerValue];
-        item.productIcon = obj.storeLogoUrl;
+        item.productNum = [productBuyCounts[idx] integerValue];
+        item.productIcon = SFImage([MakeH5Happy getNonNullCarouselImageOf: obj.carouselImgUrls.firstObject]);
         
         [arr addObject:item];
     }];
     self.dataModel.productList = arr;
+
+    // 地址
+    _addressModel = addressModel;
+    self.dataModel.address = [NSString stringWithFormat:@"%@  %@\n%@ %@ %@ %@ %@ %@ %@", addressModel.contactName, addressModel.contactNbr, addressModel.postCode, addressModel.contactAddress, addressModel.street, addressModel.district, addressModel.city, addressModel.province, addressModel.country];
+    self.dataModel.email = addressModel.email;
+
+    // 费用
+    _feeModel = feeModel;
+        
+    self.dataModel.priceRp = @"Rp";
+    self.dataModel.deliveryTitle = @"Standard Delivery";
+    self.dataModel.deliveryDes = @"Est.Arrival:2-14 Days";
+    self.dataModel.deliveryPrice = [feeModel.stores.firstObject.logisticsFee floatValue] * 0.001;
+    self.dataModel.totalPrice = [feeModel.totalPrice floatValue] * 0.001;
+    self.dataModel.shopAvailableVouchersCount = 0;
+    
     [self.tableView reloadData];
+}
+
+- (void)showPaymentAlert: (NSDictionary *)orderInfo {
+    MPWeakSelf(self)
+    NSArray *orders = (NSArray *)orderInfo[@"orders"];
+    NSString *orderId = [orders.firstObject valueForKey:@"orderId"];
+    NSString *totalPrice = orderInfo[@"totalPrice"];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Order Payment Processing" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *mockAction = [UIAlertAction actionWithTitle:@"Mock Pay" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [MBProgressHUD showHudMsg:@"Mocking pay..."];
+        NSDictionary *params = @{
+            @"paymentChannel": @"1",
+            @"totalPrice": totalPrice,
+            @"paymentMethod": @"1",
+            @"orders": @[orderId]
+        };
+        [SFNetworkManager post:SFNet.order.mock parameters: params success:^(NSDictionary *  _Nullable response) {
+            [MBProgressHUD autoDismissShowHudMsg: @"Mock Pay Success!"];
+            [weakself.navigationController popToRootViewControllerAnimated:YES];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg: @"Mock Pay Failed!"];
+        }];
+    }];
+    [alert addAction:mockAction];
+    UIAlertAction *onlineAction = [UIAlertAction actionWithTitle:@"Online Pay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:onlineAction];
+    UIAlertAction *cencelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cencelAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Loadsubviews
@@ -199,6 +241,37 @@
     if (_buyView == nil) {
         _buyView = [[ProductCheckoutBuyView alloc] init];
         _buyView.backgroundColor = [UIColor whiteColor];
+        MPWeakSelf(self)
+        _buyView.buyBlock = ^{
+            [MBProgressHUD showHudMsg:@"Calculating..."];
+            NSDictionary *params = @{
+                @"billingEmail": weakself.addressModel.email,
+                @"deliveryAddressId": weakself.addressModel.deliveryAddressId,
+                @"deliveryMode": @"A",
+                @"paymentMode": @"A",
+                @"sourceType": @"LJGM",
+                @"totalPrice": weakself.feeModel.totalPrice,
+                @"stores": @[
+                        @{
+                            @"logisticsModeId": @"1",
+                            @"storeId": @(weakself.productModels.firstObject.storeId),
+                            @"leaveMsg": @"", // TODO: 这是备注内容
+                            @"products": @[
+                                    @{
+                                        @"productId": weakself.productIds.firstObject,
+                                        @"offerCnt": weakself.productBuyCounts.firstObject
+                                    }
+                            ]
+                        }
+                ],
+            };
+            [SFNetworkManager post:SFNet.order.save parameters: params success:^(NSDictionary *  _Nullable response) {
+                [MBProgressHUD autoDismissShowHudMsg: @"Save order Success!"];
+                [weakself showPaymentAlert:response];
+            } failed:^(NSError * _Nonnull error) {
+                [MBProgressHUD autoDismissShowHudMsg: @"Save order Failed!"];
+            }];
+        };
     }
     return _buyView;
 }

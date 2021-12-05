@@ -53,7 +53,9 @@
     
 #pragma mark - Event
 - (void)btnClick:(UIButton *)btn {
-    
+    if (self.buyBlock) {
+        self.buyBlock();
+    }
 }
 
 #pragma mark - Get and Set

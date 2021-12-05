@@ -322,9 +322,12 @@
             [weakself.attrView removeFromSuperview];
             weakself.isCheckingSaleInfo = NO;
             ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-            vc.feeModel = feeModel;
-            vc.addressModel = weakself.selectedAddressModel;
-            [vc setProductModels:@[weakself.model] attrValues:@[weakself.variationsLabel.text]  count:@[@(weakself.attrView.count)]];
+            [vc setProductModels:@[weakself.model]
+                      attrValues:@[weakself.variationsLabel.text]
+             productIds:@[@([weakself getSelectedProductId])]
+                    addressModel:weakself.selectedAddressModel
+                        feeModel:feeModel
+                           count:@[@(weakself.attrView.count)]];
             [weakself.navigationController pushViewController:vc animated:YES];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
