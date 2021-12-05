@@ -51,3 +51,7 @@
     return YES;
 }
 @end
+
+@implementation RelationOrderDetailModel
+
+@end

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OrderListStateCell : UITableViewCell
 - (void)setContent:(OrderModel *)model;
 - (void)setOrderDetailContent:(OrderDetailModel *)model;
+- (void)setRelationOrderDetailContent:(OrderDetailModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END
