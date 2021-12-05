@@ -10,6 +10,8 @@
 #import "accountSubCell.h"
 #import "SetLogOutCell.h"
 #import "SecurityCenterViewController.h"
+#import "PolicesViewController.h"
+#import "changeUserInfoVC.h"
 
 @interface setViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -88,6 +90,12 @@
         } failed:^(NSError * _Nonnull error) {
             
         }];
+    }else if (indexPath.section == 1 && indexPath.row == 3){
+        PolicesViewController *vc = [[PolicesViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 0){
+        changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (UITableView *)tableView

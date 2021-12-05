@@ -194,6 +194,10 @@
 		1BC7A2D0272B081E00755832 /* UseCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */; };
 		1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */; };
 		1BD8E78F275CAF7500130DCC /* ReviewDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */; };
+		1BD8E798275CF69C00130DCC /* RelationOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E795275CF69C00130DCC /* RelationOrderDetailViewController.m */; };
+		1BD8E799275CF69C00130DCC /* RelationOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E796275CF69C00130DCC /* RelationOrderDetailViewController.xib */; };
+		1BD8E79D275D005900130DCC /* AccountActiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E79B275D005900130DCC /* AccountActiveCell.m */; };
+		1BD8E79E275D005900130DCC /* AccountActiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E79C275D005900130DCC /* AccountActiveCell.xib */; };
 		1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */; };
 		1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */; };
 		1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBE272EC1E00016C2F3 /* CartModel.m */; };
@@ -528,9 +532,6 @@
 		1B6C52B4275BC02400A1C617 /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
 		1B6C52B5275BC02400A1C617 /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		1B6C52B6275BC02400A1C617 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		1B6C52BE275C704E00A1C617 /* RelationOrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RelationOrderDetailViewController.m; path = /Users/youting/Snap/SFShop/Components/RelationOrderDetailViewController.m; sourceTree = "<absolute>"; };
-		1B6C52BF275C704E00A1C617 /* RelationOrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RelationOrderDetailViewController.h; path = /Users/youting/Snap/SFShop/Components/RelationOrderDetailViewController.h; sourceTree = "<absolute>"; };
-		1B6C52C0275C704E00A1C617 /* RelationOrderDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RelationOrderDetailViewController.xib; path = /Users/youting/Snap/SFShop/Components/RelationOrderDetailViewController.xib; sourceTree = "<absolute>"; };
 		1B6C52C3275C88FD00A1C617 /* RelationOrderDetailProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RelationOrderDetailProductCell.h; sourceTree = "<group>"; };
 		1B6C52C4275C88FD00A1C617 /* RelationOrderDetailProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RelationOrderDetailProductCell.m; sourceTree = "<group>"; };
 		1B6C52C5275C88FD00A1C617 /* RelationOrderDetailProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelationOrderDetailProductCell.xib; sourceTree = "<group>"; };
@@ -663,6 +664,12 @@
 		1BD8E78B275CAF7500130DCC /* ReviewDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewDetailViewController.h; sourceTree = "<group>"; };
 		1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewDetailViewController.m; sourceTree = "<group>"; };
 		1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailViewController.xib; sourceTree = "<group>"; };
+		1BD8E795275CF69C00130DCC /* RelationOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelationOrderDetailViewController.m; sourceTree = "<group>"; };
+		1BD8E796275CF69C00130DCC /* RelationOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelationOrderDetailViewController.xib; sourceTree = "<group>"; };
+		1BD8E797275CF69C00130DCC /* RelationOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelationOrderDetailViewController.h; sourceTree = "<group>"; };
+		1BD8E79A275D005900130DCC /* AccountActiveCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountActiveCell.h; sourceTree = "<group>"; };
+		1BD8E79B275D005900130DCC /* AccountActiveCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountActiveCell.m; sourceTree = "<group>"; };
+		1BD8E79C275D005900130DCC /* AccountActiveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountActiveCell.xib; sourceTree = "<group>"; };
 		1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderReasonCell.h; sourceTree = "<group>"; };
 		1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderReasonCell.m; sourceTree = "<group>"; };
 		1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderReasonCell.xib; sourceTree = "<group>"; };
@@ -1272,9 +1279,9 @@
 				1B96475B273E4CC600345DDA /* RelationOrderViewController.m */,
 				1B96475D273E4CF400345DDA /* RelationOrderChildViewController.h */,
 				1B96475E273E4CF400345DDA /* RelationOrderChildViewController.m */,
-				1B6C52BF275C704E00A1C617 /* RelationOrderDetailViewController.h */,
-				1B6C52BE275C704E00A1C617 /* RelationOrderDetailViewController.m */,
-				1B6C52C0275C704E00A1C617 /* RelationOrderDetailViewController.xib */,
+				1BD8E797275CF69C00130DCC /* RelationOrderDetailViewController.h */,
+				1BD8E795275CF69C00130DCC /* RelationOrderDetailViewController.m */,
+				1BD8E796275CF69C00130DCC /* RelationOrderDetailViewController.xib */,
 			);
 			path = DistributeCenter;
 			sourceTree = "<group>";
@@ -1694,6 +1701,9 @@
 				1B3C122E26FC808F00235294 /* accountSubCell.h */,
 				1B3C122F26FC808F00235294 /* accountSubCell.m */,
 				1B3C123026FC808F00235294 /* accountSubCell.xib */,
+				1BD8E79A275D005900130DCC /* AccountActiveCell.h */,
+				1BD8E79B275D005900130DCC /* AccountActiveCell.m */,
+				1BD8E79C275D005900130DCC /* AccountActiveCell.xib */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -2151,6 +2161,7 @@
 				1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */,
 				1B478326272AA04600F2A945 /* ChangePasswordViewController.xib in Resources */,
 				1B49D13A271D4557002461ED /* changeUserInfoVC.xib in Resources */,
+				1BD8E79E275D005900130DCC /* AccountActiveCell.xib in Resources */,
 				1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */,
 				1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */,
 				1B2AE43D272E8C7700FB23D3 /* CancelOrderChooseReason.xib in Resources */,
@@ -2212,6 +2223,7 @@
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
 				1B787B5727299E5F00E6A983 /* OrderDetailViewController.xib in Resources */,
 				1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */,
+				1BD8E799275CF69C00130DCC /* RelationOrderDetailViewController.xib in Resources */,
 				1B478311272A8CA900F2A945 /* RefundDetailViewController.xib in Resources */,
 				1B787B4D27293AE900E6A983 /* SimilarProductCell.xib in Resources */,
 				1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */,
@@ -2313,6 +2325,7 @@
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1B6C529C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m in Sources */,
+				1BD8E79D275D005900130DCC /* AccountActiveCell.m in Sources */,
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
 				1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */,
 				1BF00F74272FDD770081C8E4 /* DistributorModel.m in Sources */,
@@ -2486,6 +2499,7 @@
 				1B6C52AE275B672200A1C617 /* ZLPhotoActionSheet.m in Sources */,
 				1B6C529A275B672200A1C617 /* ZLProgressView.m in Sources */,
 				1BE94C1F274B762900B588F4 /* PublicShareView.m in Sources */,
+				1BD8E798275CF69C00130DCC /* RelationOrderDetailViewController.m in Sources */,
 				AE8F32C7272E95FA008E3DD8 /* ProductCheckoutGoodsCell.m in Sources */,
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
 				1B6C52A8275B672200A1C617 /* ZLClipItem.m in Sources */,

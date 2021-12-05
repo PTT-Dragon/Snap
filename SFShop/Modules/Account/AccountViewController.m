@@ -16,6 +16,8 @@
 #import "InviteViewController.h"
 #import "FAQViewController.h"
 #import "DistributeCenterViewController.h"
+#import "AccountActiveCell.h"
+#import "InviteViewController.h"
 
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -24,6 +26,8 @@
 @property (nonatomic,assign) double couponCount;
 @property (nonatomic,assign) double favoriteCount;
 @property (nonatomic,assign) double recentCount;
+@property (nonatomic,assign) double showInviteImg;
+@property (nonatomic,copy) NSString *inviteImgUrl;
 @end
 
 @implementation AccountViewController
@@ -37,11 +41,13 @@
     _favoriteCount = 0;
     _recentCount = 0;
     _dataSource = [NSMutableArray array];
-    [_dataSource addObjectsFromArray:@[@{@"image":@"00350_Distributor_Center",@"title":@"Refers"},@{@"image":@"00350_Distributor_Center",@"title":@"Forum"},@{@"image":@"00350_Distributor_Center",@"title":@"Reviews"},@{@"image":@"00350_Distributor_Center",@"title":@"Address"},@{@"image":@"00350_Distributor_Center",@"title":@"Service"},@{@"image":@"00350_Distributor_Center",@"title":@"Policies"},@{@"image":@"00350_Distributor_Center",@"title":@"FAQ"}]];
+    [_dataSource addObjectsFromArray:@[@{@"image":@"add-account",@"title":@"Refers"},@{@"image":@"group",@"title":@"Forum"},@{@"image":@"most-used",@"title":@"Reviews"},@{@"image":@"pin",@"title":@"Address"},@{@"image":@"call-centre",@"title":@"Service"},@{@"image":@"read",@"title":@"Policies"},@{@"image":@"question",@"title":@"FAQ"}]];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountInfoCell" bundle:nil] forCellReuseIdentifier:@"accountInfoCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountOrderCell" bundle:nil] forCellReuseIdentifier:@"accountOrderCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"AccountActiveCell" bundle:nil] forCellReuseIdentifier:@"AccountActiveCell"];
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
@@ -94,12 +100,16 @@
         
     }];
     [SFNetworkManager get:SFNet.invite.activity parameters:@{} success:^(id  _Nullable response) {
-        
+        if ([response[@"success"] isEqualToNumber:@(1)]) {
+            weakself.showInviteImg = YES;
+        }else{
+            weakself.showInviteImg = NO;
+        }
     } failed:^(NSError * _Nonnull error) {
         
     }];
     [SFNetworkManager get:SFNet.invite.img parameters:@{} success:^(id  _Nullable response) {
-        
+        weakself.inviteImgUrl = response[@"data"];
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -118,7 +128,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2+_dataSource.count;
+    return 3+_dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -132,8 +142,16 @@
     }else if (indexPath.row == 1){
         accountOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountOrderCell"];
         return cell;
+    }else if (indexPath.row == 2){
+        AccountActiveCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AccountActiveCell"];
+        if (self.showInviteImg) {
+            [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(self.inviteImgUrl)]];
+        }else{
+            [cell.imgView sd_setImageWithURL:[NSURL URLWithString:@""]];
+        }
+        return cell;
     }
-    NSDictionary *dic = _dataSource[indexPath.row-2];
+    NSDictionary *dic = _dataSource[indexPath.row-3];
     accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
     cell.label.text = dic[@"title"];
     cell.imgView.image = [UIImage imageNamed:dic[@"image"]];
@@ -145,12 +163,18 @@
         return 175;
     }else if (indexPath.row == 1){
         return 134;
+    }else if (indexPath.row == 2){
+        return self.showInviteImg ? 140: 0.01;
     }
     return 56;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row > 1) {
+    if (indexPath.row == 2) {
+        InviteViewController *vc = [[InviteViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (indexPath.row > 2) {
         accountSubCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         if ([cell.label.text isEqualToString:@"Distributor  Center"]) {
             DistributeCenterViewController *vc = [[DistributeCenterViewController alloc] init];

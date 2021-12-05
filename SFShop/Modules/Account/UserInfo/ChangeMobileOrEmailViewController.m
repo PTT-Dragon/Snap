@@ -6,9 +6,14 @@
 //
 
 #import "ChangeMobileOrEmailViewController.h"
+#import "verifyCodeVC.h"
 
 
 @interface ChangeMobileOrEmailViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UITextField *field;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UITextField *field2;
 
 @end
 
@@ -17,16 +22,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = _type == 1 ? @"Change Mobile Number": @"Email";
+    _label.text = _type == 1 ? @"Password": @"Email";
+    _field.placeholder = _type == 1 ? @"Change Mobile Number": @"Email";
+    _label2.hidden = _type == 2;
+    _field2.hidden = _type == 2;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)submitAction:(UIButton *)sender {
+    verifyCodeVC *vc = [[verifyCodeVC alloc] init];
+    vc.type = _type == 1 ? ChangeMobileNumber_Code: ChangeEmail_Code;
+    [self.navigationController pushViewController:vc animated:YES];
 }
-*/
 
 @end

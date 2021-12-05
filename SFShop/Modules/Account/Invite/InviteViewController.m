@@ -37,13 +37,15 @@
 {
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.invite.activityInfo parameters:@{} success:^(id  _Nullable response) {
-        
+        NSArray *arr = response;
+        weakself.imgUrl = arr.firstObject[@"ctnAttachment"];
+        [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         
     }];
     [SFNetworkManager get:SFNet.invite.img parameters:@{} success:^(id  _Nullable response) {
-        weakself.imgUrl = response[@"data"];
-        [weakself.tableView reloadData];
+        
+        
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -58,14 +60,14 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
-    [SFNetworkManager get:SFNet.invite.activityInvShare parameters:@{} success:^(id  _Nullable response) {
-        NSArray *arr = response[@"content"];
-        NSString *url = [arr.firstObject[@"ctnAttachment"]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        weakself.imgUrl = url;
-        [weakself.tableView reloadData];
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
+//    [SFNetworkManager get:SFNet.invite.activityInvShare parameters:@{} success:^(id  _Nullable response) {
+//        NSArray *arr = response[@"content"];
+//        NSString *url = [arr.firstObject[@"ctnAttachment"]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        weakself.imgUrl = url;
+//        [weakself.tableView reloadData];
+//    } failed:^(NSError * _Nonnull error) {
+//
+//    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

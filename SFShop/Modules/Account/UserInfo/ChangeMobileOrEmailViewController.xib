@@ -11,6 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeMobileOrEmailViewController">
             <connections>
+                <outlet property="field" destination="dcM-xF-XyF" id="a32-QG-4pL"/>
+                <outlet property="field2" destination="cUs-fr-W5K" id="DRo-tU-MXM"/>
+                <outlet property="label" destination="2RA-Tb-VAw" id="VE4-U9-Pq6"/>
+                <outlet property="label2" destination="7w3-ge-cbE" id="vzg-t5-coY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,29 +23,63 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RA-Tb-VAw">
-                    <rect key="frame" x="6" y="297" width="56.5" height="15"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-xF-XyF">
-                    <rect key="frame" x="32" y="297" width="350" height="46"/>
+                    <rect key="frame" x="32" y="108" width="350" height="46"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="Df8-8R-b3s"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RA-Tb-VAw">
+                    <rect key="frame" x="55" y="101" width="56.5" height="15"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUs-fr-W5K">
+                    <rect key="frame" x="32" y="176" width="350" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="Sfa-jN-kdT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Mobile Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7w3-ge-cbE">
+                    <rect key="frame" x="54" y="171" width="115" height="15"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKc-Ef-Blc">
+                    <rect key="frame" x="16" y="252" width="382" height="46"/>
+                    <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="8Ai-I1-aNr"/>
+                    </constraints>
+                    <state key="normal" title="Submit"/>
+                    <connections>
+                        <action selector="submitAction:" destination="-1" eventType="touchUpInside" id="vgg-pP-uBK"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="2RA-Tb-VAw" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="253" id="8M8-eY-y0f"/>
+                <constraint firstItem="7w3-ge-cbE" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="54" id="0nZ-6t-aBL"/>
+                <constraint firstItem="cUs-fr-W5K" firstAttribute="trailing" secondItem="dcM-xF-XyF" secondAttribute="trailing" id="58m-8C-ETu"/>
+                <constraint firstItem="uKc-Ef-Blc" firstAttribute="top" secondItem="cUs-fr-W5K" secondAttribute="bottom" constant="30" id="81Y-mj-XPQ"/>
+                <constraint firstItem="2RA-Tb-VAw" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="57" id="8M8-eY-y0f"/>
+                <constraint firstItem="7w3-ge-cbE" firstAttribute="top" secondItem="dcM-xF-XyF" secondAttribute="bottom" constant="17" id="De0-7l-lPb"/>
                 <constraint firstItem="dcM-xF-XyF" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Fxt-dJ-fRQ"/>
-                <constraint firstItem="dcM-xF-XyF" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="253" id="Kzu-bU-0L7"/>
-                <constraint firstItem="2RA-Tb-VAw" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="6" id="e3M-1e-eep"/>
+                <constraint firstItem="dcM-xF-XyF" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="64" id="Kzu-bU-0L7"/>
+                <constraint firstItem="uKc-Ef-Blc" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="Nrn-xh-sgL"/>
+                <constraint firstItem="2RA-Tb-VAw" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="55" id="e3M-1e-eep"/>
+                <constraint firstItem="cUs-fr-W5K" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="32" id="eHr-03-qx4"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="uKc-Ef-Blc" secondAttribute="trailing" constant="16" id="p5c-Ad-6nS"/>
+                <constraint firstItem="cUs-fr-W5K" firstAttribute="top" secondItem="dcM-xF-XyF" secondAttribute="bottom" constant="22" id="qG9-K3-VSg"/>
                 <constraint firstItem="dcM-xF-XyF" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="32" id="uHU-kI-SzU"/>
             </constraints>
             <point key="canvasLocation" x="75" y="64"/>

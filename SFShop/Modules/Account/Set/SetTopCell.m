@@ -10,6 +10,7 @@
 @interface SetTopCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 
 @end
 
@@ -21,6 +22,7 @@
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     self.nameLabel.text = model.userRes.nickName;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
+    self.phoneLabel.text = model.userRes.mobilePhone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

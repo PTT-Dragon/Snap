@@ -19,6 +19,10 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="00350_Distributor_Center" translatesAutoresizingMaskIntoConstraints="NO" id="Elx-gE-VeN">
                         <rect key="frame" x="16" y="16" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="W9a-4w-dfV"/>
+                            <constraint firstAttribute="height" constant="24" id="gwX-MP-jum"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cao-26-bK9">
                         <rect key="frame" x="52" y="21" width="31" height="14.5"/>

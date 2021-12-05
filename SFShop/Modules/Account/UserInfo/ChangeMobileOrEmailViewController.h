@@ -9,6 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+
 @interface ChangeMobileOrEmailViewController : UIViewController
 @property (nonatomic,assign) NSInteger type;//1.mobile  2.email
 @end
