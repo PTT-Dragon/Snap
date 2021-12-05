@@ -8,6 +8,7 @@
 #import "ReviewChildViewController.h"
 #import "OrderModel.h"
 #import "ReviewCell.h"
+#import "ReviewDetailViewController.h"
 
 @interface ReviewChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -60,7 +61,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    ReviewDetailViewController *vc = [[ReviewDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UITableView *)tableView

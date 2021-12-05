@@ -193,6 +193,8 @@
 		1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2C9272AFC9600755832 /* FAQDetailViewController.xib */; };
 		1BC7A2CF272B081E00755832 /* UseCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CD272B081E00755832 /* UseCouponViewController.m */; };
 		1BC7A2D0272B081E00755832 /* UseCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */; };
+		1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */; };
+		1BD8E78F275CAF7500130DCC /* ReviewDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */; };
 		1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */; };
 		1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */; };
 		1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBE272EC1E00016C2F3 /* CartModel.m */; };
@@ -658,6 +660,9 @@
 		1BC7A2CC272B081E00755832 /* UseCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponViewController.h; sourceTree = "<group>"; };
 		1BC7A2CD272B081E00755832 /* UseCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponViewController.m; sourceTree = "<group>"; };
 		1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponViewController.xib; sourceTree = "<group>"; };
+		1BD8E78B275CAF7500130DCC /* ReviewDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewDetailViewController.h; sourceTree = "<group>"; };
+		1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewDetailViewController.m; sourceTree = "<group>"; };
+		1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailViewController.xib; sourceTree = "<group>"; };
 		1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderReasonCell.h; sourceTree = "<group>"; };
 		1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderReasonCell.m; sourceTree = "<group>"; };
 		1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderReasonCell.xib; sourceTree = "<group>"; };
@@ -1297,6 +1302,9 @@
 				1B787B5D272A354C00E6A983 /* AddReviewViewController.h */,
 				1B787B5E272A354C00E6A983 /* AddReviewViewController.m */,
 				1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */,
+				1BD8E78B275CAF7500130DCC /* ReviewDetailViewController.h */,
+				1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */,
+				1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -2161,6 +2169,7 @@
 				1B6C52AB275B672200A1C617 /* ZLPhotoBrowserCell.xib in Resources */,
 				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
 				1B74DB1B2724467100B30ECC /* OrderListItemCell.xib in Resources */,
+				1BD8E78F275CAF7500130DCC /* ReviewDetailViewController.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
 				1B63D463272D238C0062762B /* CartChooseAddressViewController.xib in Resources */,
 				1B2AE442272E8EDD00FB23D3 /* ChooseReasonViewController.xib in Resources */,
@@ -2398,6 +2407,7 @@
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,
 				1B478304272A785200F2A945 /* RefundViewController.m in Sources */,
 				1B6C5299275B672200A1C617 /* ZLPullDownInteractiveTransition.m in Sources */,
+				1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */,
 				1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */,
 				1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
