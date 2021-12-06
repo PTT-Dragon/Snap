@@ -26,7 +26,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLc-P1-STf">
-                        <rect key="frame" x="114" y="14" width="35.5" height="17"/>
+                        <rect key="frame" x="114" y="14" width="241" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -110,6 +110,7 @@
                     <constraint firstAttribute="trailing" secondItem="EW4-XH-ran" secondAttribute="trailing" constant="8" id="ktI-Jw-L4u"/>
                     <constraint firstItem="Taf-9h-jyk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="rwn-kM-0fY"/>
                     <constraint firstAttribute="trailing" secondItem="Px0-iB-ocz" secondAttribute="trailing" constant="20" id="sNv-KU-uQn"/>
+                    <constraint firstAttribute="trailing" secondItem="BLc-P1-STf" secondAttribute="trailing" constant="20" id="zUm-Bt-UmH"/>
                     <constraint firstItem="1L2-I6-FUI" firstAttribute="top" secondItem="y1V-k3-dsk" secondAttribute="top" id="zWu-Zk-fhz"/>
                     <constraint firstItem="Px0-iB-ocz" firstAttribute="centerY" secondItem="jRR-2s-yKw" secondAttribute="centerY" id="zuv-aS-GP4"/>
                 </constraints>

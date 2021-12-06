@@ -9,10 +9,12 @@
 #import "AddressTableViewCell.h"
 #import "AddAddressViewController.h"
 #import "addressModel.h"
+#import <MJRefresh/MJRefresh.h>
 
-@interface AddressViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface AddressViewController ()<UITableViewDelegate,UITableViewDataSource,AddAddressViewControllerDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,assign) NSInteger pageIndex;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
@@ -32,19 +34,43 @@
         make.left.right.mas_equalTo(self.view);
         make.bottom.mas_equalTo(self.bottomView.mas_top);
     }];
-    [self loadDatas];
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadDatas];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (void)loadDatas
 {
+    _pageIndex = 1;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.address.addressList parameters:@{} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.address.addressList parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_header endRefreshing];
+        [weakself.dataSource removeAllObjects];
         for (NSDictionary *dic in response) {
             addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
             [weakself.dataSource addObject:model];
         }
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself.tableView.mj_header endRefreshing];
+    }];
+}
+- (void)loadMoreDatas
+{
+    _pageIndex ++;
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.address.addressList parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_footer endRefreshing];
+        for (NSDictionary *dic in response) {
+            addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
+            [weakself.dataSource addObject:model];
+        }
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_footer endRefreshing];
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -63,7 +89,12 @@
 }
 - (IBAction)addAction:(UIButton *)sender {
     AddAddressViewController *vc = [[AddAddressViewController alloc] init];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)addNewAddressSuccess
+{
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (UITableView *)tableView

@@ -21,6 +21,7 @@
                 <outlet property="phoneField" destination="G8I-e7-lBd" id="l1u-VQ-wK9"/>
                 <outlet property="saveBtn" destination="qWu-vM-18D" id="Jzr-nO-egq"/>
                 <outlet property="schoolBtn" destination="wCC-6K-AcD" id="lJW-iA-rhr"/>
+                <outlet property="selAgreementBtn" destination="jcD-qw-eUR" id="nVU-XL-YIL"/>
                 <outlet property="streetField" destination="Jdd-F9-asL" id="e5O-Lw-tiO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewWidth" destination="LxK-Tz-yos" id="yvd-8V-6Rg"/>
@@ -224,20 +225,25 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcD-qw-eUR">
-                            <rect key="frame" x="26" y="677" width="16" height="16"/>
+                            <rect key="frame" x="18" y="671" width="25" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="16" id="BHA-tG-FTw"/>
-                                <constraint firstAttribute="height" constant="16" id="CzP-cs-LCl"/>
+                                <constraint firstAttribute="width" constant="25" id="BHA-tG-FTw"/>
+                                <constraint firstAttribute="height" constant="25" id="CzP-cs-LCl"/>
                             </constraints>
+                            <state key="normal" image="checkbox-0"/>
+                            <state key="selected" image="checkbox-1"/>
+                            <connections>
+                                <action selector="selAgreementAction:" destination="-1" eventType="touchUpInside" id="4xy-3k-5o3"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have read and agreed to the mySF’s User Agreement and Privacy." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhW-jM-cOD">
-                            <rect key="frame" x="52" y="679" width="321" height="12"/>
+                            <rect key="frame" x="53" y="671.5" width="320" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWu-vM-18D">
-                            <rect key="frame" x="16" y="709" width="364" height="46"/>
+                            <rect key="frame" x="16" y="713.5" width="364" height="46"/>
                             <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="46" id="qAo-fM-jBw"/>
@@ -279,7 +285,7 @@
                         <constraint firstItem="fLu-Z8-KKV" firstAttribute="leading" secondItem="dHs-wd-QWJ" secondAttribute="leading" constant="16" id="TSa-Tt-J24"/>
                         <constraint firstItem="IxV-cw-9Pd" firstAttribute="top" secondItem="Gva-CR-cxG" secondAttribute="bottom" constant="23" id="TcH-BU-rRD"/>
                         <constraint firstItem="Jdd-F9-asL" firstAttribute="top" secondItem="fLu-Z8-KKV" secondAttribute="bottom" constant="23" id="Tq2-HU-kbJ"/>
-                        <constraint firstItem="jcD-qw-eUR" firstAttribute="top" secondItem="4Hy-sW-RTv" secondAttribute="bottom" constant="16" id="UQb-2o-yAk"/>
+                        <constraint firstItem="jcD-qw-eUR" firstAttribute="top" secondItem="4Hy-sW-RTv" secondAttribute="bottom" constant="10" id="UQb-2o-yAk"/>
                         <constraint firstItem="b01-JB-tF2" firstAttribute="top" secondItem="Cxf-5B-R3d" secondAttribute="bottom" constant="30" id="W3w-hQ-RjD"/>
                         <constraint firstItem="G8I-e7-lBd" firstAttribute="leading" secondItem="dHs-wd-QWJ" secondAttribute="leading" constant="16" id="WFK-nN-gEj"/>
                         <constraint firstItem="Cxf-5B-R3d" firstAttribute="leading" secondItem="dHs-wd-QWJ" secondAttribute="leading" constant="16" id="WYl-W7-a1n"/>
@@ -293,7 +299,7 @@
                         <constraint firstItem="G8I-e7-lBd" firstAttribute="top" secondItem="IxV-cw-9Pd" secondAttribute="bottom" constant="23" id="aP7-Sl-CDD"/>
                         <constraint firstAttribute="trailing" secondItem="fLu-Z8-KKV" secondAttribute="trailing" constant="16" id="caH-vv-uP2"/>
                         <constraint firstItem="bcO-PD-dXS" firstAttribute="top" secondItem="2qe-4t-aEt" secondAttribute="top" id="dla-OH-SDx"/>
-                        <constraint firstItem="jcD-qw-eUR" firstAttribute="leading" secondItem="dHs-wd-QWJ" secondAttribute="leading" constant="26" id="edC-AC-vqv"/>
+                        <constraint firstItem="jcD-qw-eUR" firstAttribute="leading" secondItem="dHs-wd-QWJ" secondAttribute="leading" constant="18" id="edC-AC-vqv"/>
                         <constraint firstItem="qWu-vM-18D" firstAttribute="leading" secondItem="dHs-wd-QWJ" secondAttribute="leading" constant="16" id="env-Gg-Hlb"/>
                         <constraint firstItem="0qj-Hx-0mk" firstAttribute="leading" secondItem="dHs-wd-QWJ" secondAttribute="leading" constant="32" id="hXn-MN-ptY"/>
                         <constraint firstItem="wCC-6K-AcD" firstAttribute="top" secondItem="2qe-4t-aEt" secondAttribute="bottom" constant="8" id="iMx-yy-nIQ"/>
@@ -324,6 +330,8 @@
         </view>
     </objects>
     <resources>
+        <image name="checkbox-0" width="200" height="200"/>
+        <image name="checkbox-1" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -49,7 +49,8 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1+self.model.evaluates.count;
+    EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+    return 1+evaModel.review.contents.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

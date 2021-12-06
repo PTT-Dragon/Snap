@@ -69,6 +69,13 @@
 - (NSString *)areaData {
     return K_address_domain(@"");
 }
+- (NSString *)modify {
+    return K_address_domain(@"modify");
+}
+- (NSString *)setAddressModifyOfdeliveryAddressId: (NSString *)deliveryAddressId {
+    NSString *url = [NSString stringWithFormat:@"/delivery/%@/modify", deliveryAddressId];
+    return K_address_domain(url);
+}
 @end
 
 @implementation SFNetworkUsersCouponModule

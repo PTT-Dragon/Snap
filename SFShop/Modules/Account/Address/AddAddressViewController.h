@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol AddAddressViewControllerDelegate <NSObject>
+
+- (void)addNewAddressSuccess;
+
+@end
+
 @interface AddAddressViewController : UIViewController
+@property (nonatomic,assign) id<AddAddressViewControllerDelegate>delegate;
 @property (nonatomic,weak) addressModel *model;
 @end
 

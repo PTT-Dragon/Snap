@@ -28,6 +28,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _skuLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
+    _skuLabel.layer.borderWidth = 1;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];

@@ -25,6 +25,7 @@
 @property (nonatomic,strong) AreaModel *selCityAreaMoel;
 @property (nonatomic,strong) AreaModel *selDistrictAreaMoel;
 @property (nonatomic,strong) AreaModel *selStreetAreaMoel;
+@property (weak, nonatomic) IBOutlet UIButton *selAgreementBtn;
 
 @end
 
@@ -53,6 +54,7 @@
         self.streetField.text = [NSString stringWithFormat:@"%@,%@",_model.street,_model.postCode];
         self.detailField.text = _model.contactAddress;
         self.defaultSwitch.on = [_model.isDefault isEqualToString:@"Y"];
+        self.selAgreementBtn.selected = YES;
     }else{
         
     }
@@ -100,16 +102,50 @@
     _selStreetAreaMoel = streetModel;
     self.streetField.text = streetModel.stdAddr;
 }
+- (IBAction)selAgreementAction:(UIButton *)sender {
+}
 
 - (IBAction)saveAction:(UIButton *)sender {
+    if (!_selAgreementBtn.selected) {
+        [MBProgressHUD autoDismissShowHudMsg:@"Sel Agreement First"];
+        return;
+    }
+    if (_model) {
+        //修改地址
+        [self modifyAction];
+        return;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:_phoneField.text forKey:@"contactNbr"];
     [params setValue:_nameField.text forKey:@"contactName"];
     [params setValue:_defaultSwitch.isOn ? @"Y":@"N"  forKey:@"isDefault"];
     [params setValue:_detailField.text forKey:@"contactAddress"];
-    
+    [params setValue:_selStreetAreaMoel.stdAddrId forKey:@"contactStdId"];
+    [params setValue:_selStreetAreaMoel.zipcode forKey:@"postCode"];
+    MPWeakSelf(self)
     [SFNetworkManager post:SFNet.address.addressList parameters:params success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+        [weakself.delegate addNewAddressSuccess];
+        [weakself.navigationController popViewControllerAnimated:YES];
+    } failed:^(NSError * _Nonnull error) {
         
+    }];
+}
+- (void)modifyAction
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:_phoneField.text forKey:@"contactNbr"];
+    [params setValue:_nameField.text forKey:@"contactName"];
+    [params setValue:_defaultSwitch.isOn ? @"Y":@"N"  forKey:@"isDefault"];
+    [params setValue:_detailField.text forKey:@"contactAddress"];
+    [params setValue:_selStreetAreaMoel ? _selStreetAreaMoel.stdAddrId : _model.contactStdId forKey:@"contactStdId"];
+    [params setValue:_selStreetAreaMoel ? _selStreetAreaMoel.zipcode : _model.postCode forKey:@"postCode"];
+    [params setValue:_model.deliveryAddressId forKey:@"deliveryAddressId"];
+    MPWeakSelf(self)
+    [SFNetworkManager post:[SFNet.address setAddressModifyOfdeliveryAddressId:_model.deliveryAddressId] parameters:params success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:@"MODIFY SUCCESS"];
+        [weakself.delegate addNewAddressSuccess];
+        [weakself.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
         
     }];
