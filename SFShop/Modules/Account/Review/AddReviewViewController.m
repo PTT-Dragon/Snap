@@ -121,12 +121,30 @@
     // 调用相册
     [ac showPreviewAnimated:YES];
 }
+/**
+ {"evaluateItems":[{"orderItemId":50004,"ratingComments":"Ffff ","rate":3,"labelIds":[],"contents":[{"catgType":"B","url":"/get/resource/A3840564-1B7D-4A26-B801-9140CC071E811467785989878583296.jpeg","imgUrl":"","seq":0,"name":"A3840564-1B7D-4A26-B801-9140CC071E81.jpeg"},{"catgType":"B","url":"/get/resource/B8ED63AB-8F24-4AB3-A86F-3FAEEFDE031F1467786024691306496.png","imgUrl":"","seq":1,"name":"B8ED63AB-8F24-4AB3-A86F-3FAEEFDE031F.png"}],"isAnonymous":"Y"}],"store":{"rate":4,"rate1":3,"rate2":5,"storeId":11,"orderId":50004,"isAnonymous":"Y"}}
+ **/
 - (IBAction)submitAction:(UIButton *)sender {
-    [SFNetworkManager post:SFNet.evaluate.addEvaluate parameters:@{} success:^(id  _Nullable response) {
+    NSMutableArray *evaluateItems = [NSMutableArray array];
+    for (NSInteger i = 0; i<_model.orderItems.count; i++) {
+        NSMutableArray *contentsArr = [NSMutableArray array];
+        orderItemsModel *itemModel = _model.orderItems[i];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
+        [dic setValue:_textView.text forKey:@"ratingComments"];
+        [dic setValue:@(_starView.score) forKey:@"rate"];
+    }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [SFNetworkManager post:SFNet.evaluate.addEvaluate parameters:params success:^(id  _Nullable response) {
         
     } failed:^(NSError * _Nonnull error) {
         
     }];
+}
+- (void)publishImage
+{
+    //先上传图片
+    
 }
 - (IBAction)anonymousAction:(UIButton *)sender {
     sender.selected = !sender.selected;
