@@ -31,7 +31,7 @@
 @implementation CartViewController
 - (BOOL)shouldCheckLoggedIn
 {
-    return YES;
+    return NO;
 }
  
 - (void)viewDidLoad {

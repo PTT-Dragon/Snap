@@ -103,6 +103,7 @@
     self.streetField.text = streetModel.stdAddr;
 }
 - (IBAction)selAgreementAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
 }
 
 - (IBAction)saveAction:(UIButton *)sender {

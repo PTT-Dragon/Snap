@@ -62,7 +62,9 @@
         NSMutableArray *container = [NSMutableArray array];
         for (NSDictionary *dict in array) {
             CategoryModel *model = [CategoryModel yy_modelWithDictionary:dict];
-            [container addObject:model.children];
+            if (model.children) {
+                [container addObject:model.children];
+            }
         }
         self.contentCollectionView.dataArray = container;
         [self.cacheDatas setObject:container forKey:[NSString stringWithFormat:@"%ld",parentCatgId]];

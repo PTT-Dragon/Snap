@@ -8,10 +8,17 @@
 #import "CategoryModel.h"
 
 @implementation CategoryInnerModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 @end
 
 @implementation CategoryModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"inner" : @"model"};
