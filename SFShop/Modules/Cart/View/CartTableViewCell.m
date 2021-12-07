@@ -30,6 +30,9 @@
     _subtractBtn.layer.borderWidth = 1;
     _skuLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _skuLabel.layer.borderWidth = 1;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skuAction)];
+    [_skuLabel addGestureRecognizer:tap];
 }
 
 - (void)setModel:(CartItemModel *)model
@@ -41,7 +44,17 @@
     _priceLabel.text = [NSString stringWithFormat:@" RP%.0f",model.salesPrice];
     ProdSpcAttrsModel *skuLabel = model.prodSpcAttrs.firstObject;
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",skuLabel.value];
-    _selBtn.selected = [model.isSelected isEqualToString:@"Y"];
+    if (_isInvalid) {
+        [_selBtn setImage:[UIImage imageNamed:@"block"] forState:0];
+        _selBtn.userInteractionEnabled = NO;
+    }else{
+        _selBtn.selected = [model.isSelected isEqualToString:@"Y"];
+        _selBtn.userInteractionEnabled = YES;
+    }
+}
+- (void)setIsInvalid:(BOOL)isInvalid
+{
+    _isInvalid = isInvalid;
 }
 - (IBAction)selAction:(UIButton *)sender {
     _model.isSelected = sender.selected ? @"N": @"Y";
@@ -49,6 +62,9 @@
     [self cartModifyAction];
 }
 - (IBAction)addAction:(UIButton *)sender {
+    if (_isInvalid) {
+        return;
+    }
     NSInteger i = _model.num.integerValue;
     i++;
     _model.num = [NSString stringWithFormat:@"%ld",i];
@@ -56,6 +72,9 @@
     [self cartModifyAction];
 }
 - (IBAction)subtractAction:(UIButton *)sender {
+    if (_isInvalid) {
+        return;
+    }
     NSInteger i = _model.num.integerValue;
     if (i<2) {
         return;
@@ -64,6 +83,12 @@
     _model.num = [NSString stringWithFormat:@"%ld",i];
     [self setModel:_model];
     [self cartModifyAction];
+}
+- (void)skuAction
+{
+    if (_isInvalid) {
+        return;
+    }
 }
 - (void)cartModifyAction
 {

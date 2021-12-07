@@ -28,6 +28,12 @@
     [_iconImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.logoUrl)]];
     _storeNameLabel.text = model.storeName;
     _offLabel.text = [NSString stringWithFormat:@" RP %.0f OFF ",model.discountPrice];
+    if (_isInvalid) {
+        [_selBtn setImage:[UIImage imageNamed:@"block"] forState:0];
+        _selBtn.userInteractionEnabled = NO;
+        return;
+    }
+    _selBtn.userInteractionEnabled = YES;
     BOOL selAll = YES;
     for (CartItemModel *subModel in model.shoppingCarts) {
         if (![subModel.isSelected isEqualToString:@"Y"]) {
@@ -35,6 +41,10 @@
         }
     }
     _selBtn.selected = selAll;
+}
+- (void)setIsInvalid:(BOOL)isInvalid
+{
+    _isInvalid = isInvalid;
 }
 - (IBAction)selAction:(UIButton *)sender {
     sender.selected = !sender.selected;

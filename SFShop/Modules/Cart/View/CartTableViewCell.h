@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CartTableViewCell : UITableViewCell
 @property (nonatomic,assign) id<CartTableViewCellDelegate>delegate;
 @property (nonatomic,weak) CartItemModel *model;
+@property (nonatomic,assign) BOOL isInvalid;
 @end
 
 NS_ASSUME_NONNULL_END

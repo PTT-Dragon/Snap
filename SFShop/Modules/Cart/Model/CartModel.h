@@ -89,6 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) double platformCouponPrice;
 @property (nonatomic,assign) double storeCampaignPrice;
 @property (nonatomic,strong) NSArray <CartListModel> *validCarts;
+@property (nonatomic,strong) NSArray <CartListModel> *invalidCarts;
 
 @end
 

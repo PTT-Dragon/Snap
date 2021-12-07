@@ -11,10 +11,12 @@
 #import "OrderListStateCell.h"
 #import "OrderModel.h"
 #import "OrderDetailViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource,OrderListBottomCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,assign) NSInteger pageIndex;
 
 @end
 
@@ -34,7 +36,14 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
-    [self loadDatas];
+    
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadDatas];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -59,8 +68,10 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    BOOL showBottomView;
     OrderModel *model = self.dataSource[section];
-    return model.orderItems.count+2;
+    showBottomView = [model.state isEqualToString:@"E"] ? NO:YES;
+    return model.orderItems.count+(showBottomView ? 2: 1);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -92,9 +103,11 @@
 }
 - (void)loadDatas
 {
+    _pageIndex = 1;
     NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.order.list parameters:@{@"state":state} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"state":state} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_header endRefreshing];
         NSArray *arr = response[@"list"];
         if (!kArrayIsEmpty(arr)) {
             for (NSDictionary *dic in arr) {
@@ -103,7 +116,25 @@
             [weakself.tableView reloadData];
         }
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself.tableView.mj_header endRefreshing];
+    }];
+}
+- (void)loadMoreDatas
+{
+    _pageIndex ++;
+    NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"state":state} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_footer endRefreshing];
+        NSArray *arr = response[@"list"];
+        if (!kArrayIsEmpty(arr)) {
+            for (NSDictionary *dic in arr) {
+                [weakself.dataSource addObject:[[OrderModel alloc]initWithDictionary:dic error:nil]];
+            }
+            [weakself.tableView reloadData];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_footer endRefreshing];
     }];
 }
 

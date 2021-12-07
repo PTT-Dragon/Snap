@@ -227,7 +227,7 @@
 }
 - (NSString *)getReceiptOf: (NSString *)orderId
 {
-    NSString *url = [NSString stringWithFormat:@"/receipt/%@", orderId];
+    NSString *url = [NSString stringWithFormat:@"receipt/%@?downloadFlag=N", orderId];
     return K_h5_domain(url);
 }
 

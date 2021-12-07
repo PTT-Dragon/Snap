@@ -18,6 +18,7 @@
 #import "DistributeCenterViewController.h"
 #import "AccountActiveCell.h"
 #import "InviteViewController.h"
+#import "SupportViewController.h"
 
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -189,7 +190,8 @@
             AddressViewController *vc = [[AddressViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([cell.label.text isEqualToString:@"Service"]){
-            
+            SupportViewController *vc = [[SupportViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
         }else if ([cell.label.text isEqualToString:@"Forum"]){
             self.tabBarController.selectedIndex = 2;
         }else if ([cell.label.text isEqualToString:@"Policies"]){

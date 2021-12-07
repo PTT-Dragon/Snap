@@ -35,7 +35,7 @@
 #define K_evaluate_domain(url) [NSString stringWithFormat:@"%@/h5/evaluate/%@",Host,url]
 #define K_refund_domain(url) [NSString stringWithFormat:@"%@/h5/orderapply/%@",Host,url]
 #define K_distributor_domain(url) [NSString stringWithFormat:@"%@/h5/kol/%@",Host,url]
-#define K_h5_domain(url) [NSString stringWithFormat:@"%@/h5/%@",Host,url]
+#define K_h5_domain(url) [NSString stringWithFormat:@"%@h5/%@",Host,url]
 #define K_pay_domain(url) [NSString stringWithFormat:@"%@/h5/pay/%@",Host,url]
 
 

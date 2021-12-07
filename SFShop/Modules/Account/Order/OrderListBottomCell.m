@@ -55,7 +55,7 @@
         vc.model = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }else if ([str isEqualToString:@"RECEIPT"]){
-        [SFNetworkManager get:[SFNet.h5 getReceiptOf:_model.orderId] parameters:@{} success:^(id  _Nullable response) {
+        [SFNetworkManager downloadFile:[SFNet.h5 getReceiptOf:_model.orderId] success:^(id  _Nullable response) {
             
         } failed:^(NSError * _Nonnull error) {
             

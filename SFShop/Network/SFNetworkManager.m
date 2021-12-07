@@ -57,6 +57,41 @@
         !failed?:failed(error);
     }];
 }
+//下载文件
++ (void)downloadFile:(NSString *)url success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed
+{
+    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",@"application/pdf", nil];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]parameters:@{}];
+    [request setValue:model ? model.accessToken: @"" forHTTPHeaderField:@"accessToken"];
+    [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        //拼接缓存目录
+                NSString *downloadDir = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"aaa"];
+                //打开文件管理器
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                //创建Download目录
+                [fileManager createDirectoryAtPath:downloadDir withIntermediateDirectories:YES attributes:nil error:nil];
+                //拼接文件路径
+                NSString *filePath = [downloadDir stringByAppendingPathComponent:response.suggestedFilename];
+                //返回文件位置的URL路径
+                return [NSURL fileURLWithPath:filePath];
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        
+    }];
+//    [manager GET:url parameters:@{} headers:@{@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSError *error;
+//        id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:&error];
+//        !success?:success(obj);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        !failed?:failed(error);
+//    }];
+}
 
 + (void)post:(NSString *)url parametersArr:(nullable NSArray *)parametersArr success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed {
     AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];

@@ -212,6 +212,9 @@
 		1BD8E7C3275F47E500130DCC /* RefundDetailProductInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7C1275F47E500130DCC /* RefundDetailProductInfoCell.xib */; };
 		1BD8E7C7275F532100130DCC /* RefundDetailImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7C5275F532100130DCC /* RefundDetailImagesCell.m */; };
 		1BD8E7C8275F532100130DCC /* RefundDetailImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7C6275F532100130DCC /* RefundDetailImagesCell.xib */; };
+		1BD8E7CD275FA58300130DCC /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7CB275FA58300130DCC /* SupportViewController.m */; };
+		1BD8E7CE275FA58300130DCC /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7CC275FA58300130DCC /* SupportViewController.xib */; };
+		1BD8E7D0275FB8F900130DCC /* PublicShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */; };
 		1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */; };
 		1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */; };
 		1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBE272EC1E00016C2F3 /* CartModel.m */; };
@@ -705,6 +708,10 @@
 		1BD8E7C4275F532000130DCC /* RefundDetailImagesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundDetailImagesCell.h; sourceTree = "<group>"; };
 		1BD8E7C5275F532100130DCC /* RefundDetailImagesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundDetailImagesCell.m; sourceTree = "<group>"; };
 		1BD8E7C6275F532100130DCC /* RefundDetailImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundDetailImagesCell.xib; sourceTree = "<group>"; };
+		1BD8E7CA275FA58300130DCC /* SupportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupportViewController.h; sourceTree = "<group>"; };
+		1BD8E7CB275FA58300130DCC /* SupportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupportViewController.m; sourceTree = "<group>"; };
+		1BD8E7CC275FA58300130DCC /* SupportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
+		1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicShareView.xib; sourceTree = "<group>"; };
 		1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderReasonCell.h; sourceTree = "<group>"; };
 		1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderReasonCell.m; sourceTree = "<group>"; };
 		1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderReasonCell.xib; sourceTree = "<group>"; };
@@ -1461,6 +1468,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1BD8E7C9275FA57000130DCC /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				1BD8E7CA275FA58300130DCC /* SupportViewController.h */,
+				1BD8E7CB275FA58300130DCC /* SupportViewController.m */,
+				1BD8E7CC275FA58300130DCC /* SupportViewController.xib */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		1BDBEB9926FDA11B0018109B /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -1699,6 +1716,7 @@
 				1B92D14927326FC200E73F98 /* PublicAlertView.m */,
 				1BE94C1D274B762900B588F4 /* PublicShareView.h */,
 				1BE94C1E274B762900B588F4 /* PublicShareView.m */,
+				1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1741,6 +1759,7 @@
 		4B9FB9D826FB7A1F00C90790 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				1BD8E7C9275FA57000130DCC /* Support */,
 				1B74DB452728EF5800B30ECC /* Similar */,
 				1B74DB3B2726A33D00B30ECC /* Set */,
 				1B74DB032722BAC500B30ECC /* FAQ */,
@@ -2224,6 +2243,7 @@
 				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
 				1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */,
 				1B478326272AA04600F2A945 /* ChangePasswordViewController.xib in Resources */,
+				1BD8E7CE275FA58300130DCC /* SupportViewController.xib in Resources */,
 				1B49D13A271D4557002461ED /* changeUserInfoVC.xib in Resources */,
 				1BD8E79E275D005900130DCC /* AccountActiveCell.xib in Resources */,
 				1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */,
@@ -2243,6 +2263,7 @@
 				1B6C52D1275C896200A1C617 /* RelationOrderDetailStateCell.xib in Resources */,
 				1B478321272A9F0300F2A945 /* SetLogOutCell.xib in Resources */,
 				1BD8E7C3275F47E500130DCC /* RefundDetailProductInfoCell.xib in Resources */,
+				1BD8E7D0275FB8F900130DCC /* PublicShareView.xib in Resources */,
 				1BF00F60272FDC090081C8E4 /* DistributorInfoCell.xib in Resources */,
 				1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */,
 				1B2AE429272D36F000FB23D3 /* CartTableViewCell.xib in Resources */,
@@ -2439,6 +2460,7 @@
 				1B74DAE42721B6FD00B30ECC /* InviteViewController.m in Sources */,
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
 				1B74DB2527253A3500B30ECC /* DeliveryInformationCell.m in Sources */,
+				1BD8E7CD275FA58300130DCC /* SupportViewController.m in Sources */,
 				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
 				1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */,
 				1BD8E7BD275F377800130DCC /* RefundDetailMethodCell.m in Sources */,

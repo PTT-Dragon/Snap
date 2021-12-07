@@ -41,12 +41,16 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section >= self.cartModel.validCarts.count) {
+        CartListModel *model = self.cartModel.invalidCarts[section-self.cartModel.validCarts.count];
+        return model.shoppingCarts.count+1;
+    }
     CartListModel *model = self.cartModel.validCarts[section];
     return model.shoppingCarts.count+1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.cartModel.validCarts.count;
+    return self.cartModel.validCarts.count+self.cartModel.invalidCarts.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -56,13 +60,28 @@
 {
     if (indexPath.row == 0) {
         CartTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTitleCell"];
-        cell.model = self.cartModel.validCarts[indexPath.section];
+        CartListModel *model;
+        if (indexPath.section >= self.cartModel.validCarts.count) {
+            model = self.cartModel.invalidCarts[indexPath.section-self.cartModel.validCarts.count];
+            cell.isInvalid = YES;
+        }else{
+            model = self.cartModel.validCarts[indexPath.section];
+            cell.isInvalid = NO;
+        }
+        cell.model = model;
         cell.delegate = self;
         return cell;
     }
-    CartListModel *listModel = self.cartModel.validCarts[indexPath.section];
-    CartItemModel *model = listModel.shoppingCarts[indexPath.row-1];
+    CartListModel *listModel;
     CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTableViewCell"];
+    if (indexPath.section >= self.cartModel.validCarts.count) {
+        listModel = self.cartModel.invalidCarts[indexPath.section-self.cartModel.validCarts.count];
+        cell.isInvalid = YES;
+    }else{
+        listModel = self.cartModel.validCarts[indexPath.section];
+        cell.isInvalid = NO;
+    }
+    CartItemModel *model = listModel.shoppingCarts[indexPath.row-1];
     cell.model = model;
     cell.delegate = self;
     return cell;
