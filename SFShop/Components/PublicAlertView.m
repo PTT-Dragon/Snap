@@ -11,6 +11,7 @@
 @property (nonatomic,strong) UIView *bgView;
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) UIButton *btn;
+@property (nonatomic,strong) UIButton *btn2;
 @end
 
 @implementation PublicAlertView
@@ -29,7 +30,7 @@
         
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = RGBColorFrom16(0x000000);
-        _titleLabel.textAlignment = NSTextAlignmentLeft;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.numberOfLines = 0;
         _titleLabel.font = CHINESE_SYSTEM(12);
         _titleLabel.text = title;
@@ -74,7 +75,7 @@
         
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = RGBColorFrom16(0x000000);
-        _titleLabel.textAlignment = NSTextAlignmentLeft;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.numberOfLines = 0;
         _titleLabel.font = CHINESE_SYSTEM(12);
         _titleLabel.text = title;
@@ -102,6 +103,25 @@
             [self removeFromSuperview];
         }];
         
+        _btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btn2.titleLabel.font = CHINESE_BOLD(14);
+        [_btn2 setTitleColor:RGBColorFrom16(0xFF1659) forState:0];
+        _btn2.backgroundColor = [UIColor whiteColor];
+        _btn2.layer.borderWidth = 1;
+        _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+        [_btn2 setTitle:btn2Title forState:0];
+        [_bgView addSubview:_btn2];
+        [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(_bgView.mas_left).offset(24);
+            make.centerX.equalTo(_bgView);
+            make.height.mas_equalTo(46);
+            make.top.mas_equalTo(_btn.mas_bottom).offset(12);
+            make.bottom.mas_equalTo(_bgView.mas_bottom).offset(-24);
+        }];
+        [[_btn2 rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            block2();
+            [self removeFromSuperview];
+        }];
     }
     return self;
 }

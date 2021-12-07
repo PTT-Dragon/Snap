@@ -12,6 +12,7 @@
 #import "SecurityCenterViewController.h"
 #import "PolicesViewController.h"
 #import "changeUserInfoVC.h"
+#import "PublicAlertView.h"
 
 @interface setViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -84,12 +85,17 @@
         SecurityCenterViewController *vc = [[SecurityCenterViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 3){
-        [SFNetworkManager post:SFNet.account.logout success:^(id  _Nullable response) {
-            [MBProgressHUD autoDismissShowHudMsg:@"LogOut Success"];
-            [[FMDBManager sharedInstance] deleteUserData];
-        } failed:^(NSError * _Nonnull error) {
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:@"confirm to logout" btnTitle:@"LOGOUT" block:^{
+            [SFNetworkManager post:SFNet.account.logout success:^(id  _Nullable response) {
+                [MBProgressHUD autoDismissShowHudMsg:@"LogOut Success"];
+                [[FMDBManager sharedInstance] deleteUserData];
+            } failed:^(NSError * _Nonnull error) {
+                
+            }];
+        } btn2Title:@"CANCEL" block2:^{
             
         }];
+        [self.view addSubview:alert];
     }else if (indexPath.section == 1 && indexPath.row == 3){
         PolicesViewController *vc = [[PolicesViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];

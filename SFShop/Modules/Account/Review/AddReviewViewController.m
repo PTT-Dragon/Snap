@@ -125,6 +125,8 @@
  {"evaluateItems":[{"orderItemId":50004,"ratingComments":"Ffff ","rate":3,"labelIds":[],"contents":[{"catgType":"B","url":"/get/resource/A3840564-1B7D-4A26-B801-9140CC071E811467785989878583296.jpeg","imgUrl":"","seq":0,"name":"A3840564-1B7D-4A26-B801-9140CC071E81.jpeg"},{"catgType":"B","url":"/get/resource/B8ED63AB-8F24-4AB3-A86F-3FAEEFDE031F1467786024691306496.png","imgUrl":"","seq":1,"name":"B8ED63AB-8F24-4AB3-A86F-3FAEEFDE031F.png"}],"isAnonymous":"Y"}],"store":{"rate":4,"rate1":3,"rate2":5,"storeId":11,"orderId":50004,"isAnonymous":"Y"}}
  **/
 - (IBAction)submitAction:(UIButton *)sender {
+    [self publishImage];
+    return;
     NSMutableArray *evaluateItems = [NSMutableArray array];
     for (NSInteger i = 0; i<_model.orderItems.count; i++) {
         NSMutableArray *contentsArr = [NSMutableArray array];
@@ -144,7 +146,26 @@
 - (void)publishImage
 {
     //先上传图片
+    [MBProgressHUD showHudMsg:@""];
+    dispatch_group_t group = dispatch_group_create();
     
+    for (id item in _imgArr) {
+        if ([item isKindOfClass:[UIImage class]]) {
+            dispatch_group_enter(group);
+            [SFNetworkManager postImage:SFNet.h5.publishImg image:item success:^(id  _Nullable response) {
+                @synchronized (response) {
+                    
+                }
+                dispatch_group_leave(group);
+            } failed:^(NSError * _Nonnull error) {
+                dispatch_group_leave(group);
+            }];
+            
+        }
+    }
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        
+    });
 }
 - (IBAction)anonymousAction:(UIButton *)sender {
     sender.selected = !sender.selected;

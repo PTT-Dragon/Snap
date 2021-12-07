@@ -8,6 +8,7 @@
 #import "SFNetworkManager.h"
 #import "SFNetworkURL.h"
 #import <AFNetworking/AFNetworking.h>
+#import "NSString+Add.h"
 
 @implementation SFNetworkManager
 
