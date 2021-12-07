@@ -33,4 +33,13 @@
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
     _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.unitPrice];
 }
+- (void)setRefundContent:(RefundDetailItemsModel *)model
+{
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
+    _nameLabel.text = model.productName;
+    NSDictionary *dic = [model.productRemark jk_dictionaryValue];
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
+    _countLabel.text = [NSString stringWithFormat:@"X%@",model.submitNum];
+    _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.unitPrice];
+}
 @end

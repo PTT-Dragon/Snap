@@ -204,6 +204,14 @@
 		1BD8E7AA275D1B5900130DCC /* ReviewPhrchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7A8275D1B5900130DCC /* ReviewPhrchaseCell.xib */; };
 		1BD8E7B3275DFDAD00130DCC /* ReviewAddNewPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7B1275DFDAD00130DCC /* ReviewAddNewPhotoCell.m */; };
 		1BD8E7B4275DFDAD00130DCC /* ReviewAddNewPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7B2275DFDAD00130DCC /* ReviewAddNewPhotoCell.xib */; };
+		1BD8E7B8275F130F00130DCC /* RefundDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7B6275F130E00130DCC /* RefundDetailTitleCell.m */; };
+		1BD8E7B9275F130F00130DCC /* RefundDetailTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7B7275F130E00130DCC /* RefundDetailTitleCell.xib */; };
+		1BD8E7BD275F377800130DCC /* RefundDetailMethodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7BB275F377800130DCC /* RefundDetailMethodCell.m */; };
+		1BD8E7BE275F377800130DCC /* RefundDetailMethodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7BC275F377800130DCC /* RefundDetailMethodCell.xib */; };
+		1BD8E7C2275F47E500130DCC /* RefundDetailProductInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7C0275F47E500130DCC /* RefundDetailProductInfoCell.m */; };
+		1BD8E7C3275F47E500130DCC /* RefundDetailProductInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7C1275F47E500130DCC /* RefundDetailProductInfoCell.xib */; };
+		1BD8E7C7275F532100130DCC /* RefundDetailImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7C5275F532100130DCC /* RefundDetailImagesCell.m */; };
+		1BD8E7C8275F532100130DCC /* RefundDetailImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7C6275F532100130DCC /* RefundDetailImagesCell.xib */; };
 		1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */; };
 		1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */; };
 		1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBE272EC1E00016C2F3 /* CartModel.m */; };
@@ -685,6 +693,18 @@
 		1BD8E7B0275DFDAD00130DCC /* ReviewAddNewPhotoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewAddNewPhotoCell.h; sourceTree = "<group>"; };
 		1BD8E7B1275DFDAD00130DCC /* ReviewAddNewPhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewAddNewPhotoCell.m; sourceTree = "<group>"; };
 		1BD8E7B2275DFDAD00130DCC /* ReviewAddNewPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewAddNewPhotoCell.xib; sourceTree = "<group>"; };
+		1BD8E7B5275F130E00130DCC /* RefundDetailTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundDetailTitleCell.h; sourceTree = "<group>"; };
+		1BD8E7B6275F130E00130DCC /* RefundDetailTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundDetailTitleCell.m; sourceTree = "<group>"; };
+		1BD8E7B7275F130E00130DCC /* RefundDetailTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundDetailTitleCell.xib; sourceTree = "<group>"; };
+		1BD8E7BA275F377800130DCC /* RefundDetailMethodCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundDetailMethodCell.h; sourceTree = "<group>"; };
+		1BD8E7BB275F377800130DCC /* RefundDetailMethodCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundDetailMethodCell.m; sourceTree = "<group>"; };
+		1BD8E7BC275F377800130DCC /* RefundDetailMethodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundDetailMethodCell.xib; sourceTree = "<group>"; };
+		1BD8E7BF275F47E500130DCC /* RefundDetailProductInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundDetailProductInfoCell.h; sourceTree = "<group>"; };
+		1BD8E7C0275F47E500130DCC /* RefundDetailProductInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundDetailProductInfoCell.m; sourceTree = "<group>"; };
+		1BD8E7C1275F47E500130DCC /* RefundDetailProductInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundDetailProductInfoCell.xib; sourceTree = "<group>"; };
+		1BD8E7C4275F532000130DCC /* RefundDetailImagesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundDetailImagesCell.h; sourceTree = "<group>"; };
+		1BD8E7C5275F532100130DCC /* RefundDetailImagesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundDetailImagesCell.m; sourceTree = "<group>"; };
+		1BD8E7C6275F532100130DCC /* RefundDetailImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundDetailImagesCell.xib; sourceTree = "<group>"; };
 		1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderReasonCell.h; sourceTree = "<group>"; };
 		1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderReasonCell.m; sourceTree = "<group>"; };
 		1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderReasonCell.xib; sourceTree = "<group>"; };
@@ -976,6 +996,18 @@
 				1B478313272A957000F2A945 /* RefundProcessCell.h */,
 				1B478314272A957000F2A945 /* RefundProcessCell.m */,
 				1B478315272A957000F2A945 /* RefundProcessCell.xib */,
+				1BD8E7B5275F130E00130DCC /* RefundDetailTitleCell.h */,
+				1BD8E7B6275F130E00130DCC /* RefundDetailTitleCell.m */,
+				1BD8E7B7275F130E00130DCC /* RefundDetailTitleCell.xib */,
+				1BD8E7BA275F377800130DCC /* RefundDetailMethodCell.h */,
+				1BD8E7BB275F377800130DCC /* RefundDetailMethodCell.m */,
+				1BD8E7BC275F377800130DCC /* RefundDetailMethodCell.xib */,
+				1BD8E7BF275F47E500130DCC /* RefundDetailProductInfoCell.h */,
+				1BD8E7C0275F47E500130DCC /* RefundDetailProductInfoCell.m */,
+				1BD8E7C1275F47E500130DCC /* RefundDetailProductInfoCell.xib */,
+				1BD8E7C4275F532000130DCC /* RefundDetailImagesCell.h */,
+				1BD8E7C5275F532100130DCC /* RefundDetailImagesCell.m */,
+				1BD8E7C6275F532100130DCC /* RefundDetailImagesCell.xib */,
 				1B47830A272A838500F2A945 /* refundModel.h */,
 				1B47830B272A838500F2A945 /* refundModel.m */,
 			);
@@ -2210,6 +2242,7 @@
 				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
 				1B6C52D1275C896200A1C617 /* RelationOrderDetailStateCell.xib in Resources */,
 				1B478321272A9F0300F2A945 /* SetLogOutCell.xib in Resources */,
+				1BD8E7C3275F47E500130DCC /* RefundDetailProductInfoCell.xib in Resources */,
 				1BF00F60272FDC090081C8E4 /* DistributorInfoCell.xib in Resources */,
 				1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */,
 				1B2AE429272D36F000FB23D3 /* CartTableViewCell.xib in Resources */,
@@ -2227,6 +2260,7 @@
 				1BD8E7B4275DFDAD00130DCC /* ReviewAddNewPhotoCell.xib in Resources */,
 				1B49D11D27192CFB002461ED /* AddressViewController.xib in Resources */,
 				4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */,
+				1BD8E7BE275F377800130DCC /* RefundDetailMethodCell.xib in Resources */,
 				1B478309272A7B1000F2A945 /* RefundCell.xib in Resources */,
 				1B74DAFA2722A85600B30ECC /* InviteCell.xib in Resources */,
 				1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */,
@@ -2261,6 +2295,7 @@
 				1BD8E799275CF69C00130DCC /* RelationOrderDetailViewController.xib in Resources */,
 				1B478311272A8CA900F2A945 /* RefundDetailViewController.xib in Resources */,
 				1B787B4D27293AE900E6A983 /* SimilarProductCell.xib in Resources */,
+				1BD8E7B9275F130F00130DCC /* RefundDetailTitleCell.xib in Resources */,
 				1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */,
 				1B964759273E494A00345DDA /* IncomeAndExpenseCell.xib in Resources */,
 				1B6C52C7275C88FE00A1C617 /* RelationOrderDetailProductCell.xib in Resources */,
@@ -2268,6 +2303,7 @@
 				1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */,
 				1B49D13F271D478C002461ED /* userInfoGenderView.xib in Resources */,
 				1B74DB4A2728EF7300B30ECC /* SimilarViewController.xib in Resources */,
+				1BD8E7C8275F532100130DCC /* RefundDetailImagesCell.xib in Resources */,
 				1B74DAFF2722A86800B30ECC /* InviteTopCell.xib in Resources */,
 				1BF00F6F272FDC5D0081C8E4 /* DistributorRankCell.xib in Resources */,
 				1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */,
@@ -2405,6 +2441,7 @@
 				1B74DB2527253A3500B30ECC /* DeliveryInformationCell.m in Sources */,
 				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
 				1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */,
+				1BD8E7BD275F377800130DCC /* RefundDetailMethodCell.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
 				1B12A3DD27015EB800DD7BCD /* CouponCenterChildViewController.m in Sources */,
 				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,
@@ -2439,6 +2476,7 @@
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
 				1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */,
+				1BD8E7C7275F532100130DCC /* RefundDetailImagesCell.m in Sources */,
 				1B6C52A4275B672200A1C617 /* ZLNoAuthorityViewController.m in Sources */,
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
 				1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */,
@@ -2450,6 +2488,7 @@
 				1B63D459272D212A0062762B /* CartChildViewController.m in Sources */,
 				1B96475C273E4CC600345DDA /* RelationOrderViewController.m in Sources */,
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
+				1BD8E7C2275F47E500130DCC /* RefundDetailProductInfoCell.m in Sources */,
 				4B818FD527239C910058038A /* ProductViewController.m in Sources */,
 				4B1522D5272D432700C3BDD9 /* BaseViewController.m in Sources */,
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
@@ -2470,6 +2509,7 @@
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
 				1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */,
 				1B6C52A1275B672200A1C617 /* ZLEditViewController.m in Sources */,
+				1BD8E7B8275F130F00130DCC /* RefundDetailTitleCell.m in Sources */,
 				1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
 				1B47832A272AA15700F2A945 /* ChangeMobileOrEmailViewController.m in Sources */,

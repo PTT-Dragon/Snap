@@ -7,17 +7,27 @@
 
 #import "RefundProcessCell.h"
 
+@interface RefundProcessCell ()
+@property (weak, nonatomic) IBOutlet UIView *indicationView;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *content2Label;
+@property (nonatomic,strong) RefundDetailMemosModel *model;
+
+@end
+
 @implementation RefundProcessCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setContent:(RefundDetailMemosModel *)model hideView:(BOOL)hideView
+{
+    _model = model;
+    _timeLabel.text = model.createdDate;
+    _contentLabel.text = model.memoEventName;
+    _content2Label.text = model.comments;
+    _indicationView.hidden = hideView;
 }
-
 @end

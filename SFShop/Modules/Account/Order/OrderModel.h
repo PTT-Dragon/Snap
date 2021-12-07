@@ -166,12 +166,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 @protocol EvaluatesContentsModel <NSObject>
-
-
 @end
 
 @interface EvaluatesContentsModel : JSONModel
 @property (nonatomic,copy) NSString *url;
+@property (nonatomic,copy) NSString *imgUrl;
+
 @end
 @class ProductItemModel;
 

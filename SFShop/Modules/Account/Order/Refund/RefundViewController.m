@@ -9,11 +9,13 @@
 #import "RefundCell.h"
 #import "refundModel.h"
 #import "RefundDetailViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 
 @interface RefundViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,assign) NSInteger pageIndex;
 
 @end
 
@@ -33,7 +35,13 @@
         make.bottom.mas_equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
-    [self loadDatas];
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadDatas];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -60,12 +68,27 @@
 }
 - (void)loadDatas
 {
+    _pageIndex = 1;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"pageIndex":@(0),@"pageSize":@(10)} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_header endRefreshing];
+        [weakself.dataSource removeAllObjects];
         [weakself.dataSource addObjectsFromArray:[refundModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself.tableView.mj_header endRefreshing];
+    }];
+}
+- (void)loadMoreDatas
+{
+    _pageIndex ++;
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_footer endRefreshing];
+        [weakself.dataSource addObjectsFromArray:[refundModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_footer endRefreshing];
     }];
 }
 - (UITableView *)tableView
