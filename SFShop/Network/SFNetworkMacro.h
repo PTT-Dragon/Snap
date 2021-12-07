@@ -37,6 +37,7 @@
 #define K_distributor_domain(url) [NSString stringWithFormat:@"%@/h5/kol/%@",Host,url]
 #define K_h5_domain(url) [NSString stringWithFormat:@"%@h5/%@",Host,url]
 #define K_pay_domain(url) [NSString stringWithFormat:@"%@/h5/pay/%@",Host,url]
+#define K_shareBuy_domain(url) [NSString stringWithFormat:@"%@/h5/sharebuy/%@",Host,url]
 
 
 //*********************************************接口模块👆*********************************************//

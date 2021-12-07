@@ -116,6 +116,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*returnPrice;
 @property (nonatomic,copy) NSString <Optional>*pointPrice;
 @property (nonatomic,copy) NSString <Optional>*receivedDate;
+@property (nonatomic,copy) NSString <Optional>*shareBuyOrderId;
+@property (nonatomic,copy) NSString <Optional>*shareBuyOrderNbr;
 /**
  {
      logisticsDeductFee = 0;

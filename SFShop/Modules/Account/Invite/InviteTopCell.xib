@@ -27,6 +27,9 @@
                         <state key="normal" title="INVITE NOW">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                         </state>
+                        <connections>
+                            <action selector="inviteAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CDi-Hu-nzh"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have successfully invited 3 friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3W-Gw-dRu">
                         <rect key="frame" x="35" y="210" width="250" height="17"/>

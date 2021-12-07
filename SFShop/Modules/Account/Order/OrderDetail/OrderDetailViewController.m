@@ -98,6 +98,19 @@
     [SFNetworkManager get:url parameters:@{} success:^(id  _Nullable response) {
         weakself.model = [[OrderDetailModel alloc] initWithDictionary:response error:nil];
         [weakself handleDatas];
+        if (weakself.model.shareBuyOrderId) {
+            //需要加载团购信息
+            [weakself loadGroupDatas];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+//团购数据
+- (void)loadGroupDatas
+{
+    [SFNetworkManager get:[SFNet.shareBuy getAShareBuyGroupNbr:_model.shareBuyOrderNbr] parameters:@{} success:^(id  _Nullable response) {
+        
     } failed:^(NSError * _Nonnull error) {
         
     }];

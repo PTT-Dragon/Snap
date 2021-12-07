@@ -215,6 +215,7 @@
 		1BD8E7CD275FA58300130DCC /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7CB275FA58300130DCC /* SupportViewController.m */; };
 		1BD8E7CE275FA58300130DCC /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7CC275FA58300130DCC /* SupportViewController.xib */; };
 		1BD8E7D0275FB8F900130DCC /* PublicShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */; };
+		1BD8E7D3275FC0CA00130DCC /* SFNetworkShareBuyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7D2275FC0CA00130DCC /* SFNetworkShareBuyModule.m */; };
 		1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */; };
 		1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */; };
 		1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBE272EC1E00016C2F3 /* CartModel.m */; };
@@ -712,6 +713,8 @@
 		1BD8E7CB275FA58300130DCC /* SupportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupportViewController.m; sourceTree = "<group>"; };
 		1BD8E7CC275FA58300130DCC /* SupportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicShareView.xib; sourceTree = "<group>"; };
+		1BD8E7D1275FC0CA00130DCC /* SFNetworkShareBuyModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkShareBuyModule.h; sourceTree = "<group>"; };
+		1BD8E7D2275FC0CA00130DCC /* SFNetworkShareBuyModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkShareBuyModule.m; sourceTree = "<group>"; };
 		1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderReasonCell.h; sourceTree = "<group>"; };
 		1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderReasonCell.m; sourceTree = "<group>"; };
 		1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderReasonCell.xib; sourceTree = "<group>"; };
@@ -1677,6 +1680,8 @@
 				AE81BE6727020E2400AB4225 /* SFNetworkOffersModule.m */,
 				1BF00F57272FD4090081C8E4 /* SFNetworkDistributorModule.h */,
 				1BF00F58272FD4090081C8E4 /* SFNetworkDistributorModule.m */,
+				1BD8E7D1275FC0CA00130DCC /* SFNetworkShareBuyModule.h */,
+				1BD8E7D2275FC0CA00130DCC /* SFNetworkShareBuyModule.m */,
 				AE81BE1F26FCB2E900AB4225 /* SFNetworkMacro.h */,
 			);
 			path = Network;
@@ -2582,6 +2587,7 @@
 				1B74DADD2721ABC500B30ECC /* ReviewViewController.m in Sources */,
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
 				AEA3296B27240E6800E7827A /* YHRegularLayout.m in Sources */,
+				1BD8E7D3275FC0CA00130DCC /* SFNetworkShareBuyModule.m in Sources */,
 				1B6C5295275B672200A1C617 /* ZLForceTouchPreviewController.m in Sources */,
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */,

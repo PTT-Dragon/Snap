@@ -14,12 +14,107 @@
         <view contentMode="scaleToFill" id="8Cd-je-oHv" customClass="PublicShareView">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MKv-qK-1jN">
+                    <rect key="frame" x="0.0" y="678" width="414" height="184"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yj9-nv-jlt">
+                            <rect key="frame" x="16" y="35" width="38.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="07e-uW-BU8">
+                            <rect key="frame" x="16" y="64" width="382" height="1"/>
+                            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="reP-SW-eIC"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prs-cY-6rw">
+                            <rect key="frame" x="35" y="85" width="63.5" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Facebook" image="facebook">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="btnAction:" destination="8Cd-je-oHv" eventType="touchUpInside" id="pk6-iJ-lwy"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUz-zb-oKZ">
+                            <rect key="frame" x="128.5" y="85" width="63.5" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Whatsapp" image="whatsapp">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="btnAction:" destination="8Cd-je-oHv" eventType="touchUpInside" id="Qej-Cm-4Op"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieT-8o-r2f">
+                            <rect key="frame" x="222" y="85" width="63.5" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Twitter" image="twitter">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="btnAction:" destination="8Cd-je-oHv" eventType="touchUpInside" id="2qe-5T-KW1"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0FQ-YD-7TX">
+                            <rect key="frame" x="315.5" y="85" width="63.5" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Facebook" image="facebook">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="UUz-zb-oKZ" firstAttribute="top" secondItem="Prs-cY-6rw" secondAttribute="top" id="1mc-SU-edg"/>
+                        <constraint firstItem="yj9-nv-jlt" firstAttribute="leading" secondItem="MKv-qK-1jN" secondAttribute="leading" constant="16" id="5xV-yS-qc8"/>
+                        <constraint firstItem="0FQ-YD-7TX" firstAttribute="top" secondItem="ieT-8o-r2f" secondAttribute="top" id="9VP-Se-1hZ"/>
+                        <constraint firstItem="Prs-cY-6rw" firstAttribute="top" secondItem="07e-uW-BU8" secondAttribute="bottom" constant="20" id="AUw-vj-n8z"/>
+                        <constraint firstItem="0FQ-YD-7TX" firstAttribute="bottom" secondItem="ieT-8o-r2f" secondAttribute="bottom" id="Dlh-Zd-F1W"/>
+                        <constraint firstAttribute="trailing" secondItem="0FQ-YD-7TX" secondAttribute="trailing" constant="35" id="SuU-9z-B9L"/>
+                        <constraint firstItem="ieT-8o-r2f" firstAttribute="top" secondItem="UUz-zb-oKZ" secondAttribute="top" id="XCj-dZ-OXa"/>
+                        <constraint firstItem="07e-uW-BU8" firstAttribute="top" secondItem="MKv-qK-1jN" secondAttribute="top" constant="64" id="XLO-qz-weC"/>
+                        <constraint firstAttribute="trailing" secondItem="07e-uW-BU8" secondAttribute="trailing" constant="16" id="XP6-g6-fMo"/>
+                        <constraint firstItem="0FQ-YD-7TX" firstAttribute="width" secondItem="ieT-8o-r2f" secondAttribute="width" id="ZbV-OG-vQn"/>
+                        <constraint firstAttribute="height" constant="184" id="fDj-jk-TeZ"/>
+                        <constraint firstItem="UUz-zb-oKZ" firstAttribute="leading" secondItem="Prs-cY-6rw" secondAttribute="trailing" constant="30" id="ggT-JZ-x3o"/>
+                        <constraint firstItem="yj9-nv-jlt" firstAttribute="top" secondItem="MKv-qK-1jN" secondAttribute="top" constant="35" id="hu1-0p-P1J"/>
+                        <constraint firstItem="07e-uW-BU8" firstAttribute="leading" secondItem="MKv-qK-1jN" secondAttribute="leading" constant="16" id="jBF-Hs-1Tq"/>
+                        <constraint firstItem="ieT-8o-r2f" firstAttribute="bottom" secondItem="UUz-zb-oKZ" secondAttribute="bottom" id="kVh-vi-S7I"/>
+                        <constraint firstItem="UUz-zb-oKZ" firstAttribute="bottom" secondItem="Prs-cY-6rw" secondAttribute="bottom" id="mOY-KQ-Ztp"/>
+                        <constraint firstItem="UUz-zb-oKZ" firstAttribute="width" secondItem="Prs-cY-6rw" secondAttribute="width" id="nMf-Qk-pQP"/>
+                        <constraint firstItem="0FQ-YD-7TX" firstAttribute="leading" secondItem="ieT-8o-r2f" secondAttribute="trailing" constant="30" id="plc-JV-ROq"/>
+                        <constraint firstItem="ieT-8o-r2f" firstAttribute="leading" secondItem="UUz-zb-oKZ" secondAttribute="trailing" constant="30" id="sLo-Ln-BnN"/>
+                        <constraint firstItem="ieT-8o-r2f" firstAttribute="width" secondItem="UUz-zb-oKZ" secondAttribute="width" id="tjt-qy-HiK"/>
+                        <constraint firstItem="Prs-cY-6rw" firstAttribute="leading" secondItem="MKv-qK-1jN" secondAttribute="leading" constant="35" id="xir-DP-d94"/>
+                    </constraints>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="IPJ-y4-B7Y"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="MKv-qK-1jN" firstAttribute="leading" secondItem="IPJ-y4-B7Y" secondAttribute="leading" id="V0m-DE-jsX"/>
+                <constraint firstItem="IPJ-y4-B7Y" firstAttribute="bottom" secondItem="MKv-qK-1jN" secondAttribute="bottom" id="xLB-eW-jcX"/>
+                <constraint firstItem="IPJ-y4-B7Y" firstAttribute="trailing" secondItem="MKv-qK-1jN" secondAttribute="trailing" id="ydN-fM-R4a"/>
+            </constraints>
+            <connections>
+                <outlet property="bgView" destination="MKv-qK-1jN" id="yCZ-jQ-o58"/>
+                <outlet property="facebookBtn" destination="Prs-cY-6rw" id="d5A-FJ-tuL"/>
+                <outlet property="twitterBtn" destination="ieT-8o-r2f" id="Tzv-BZ-cLj"/>
+                <outlet property="whatsappBtn" destination="UUz-zb-oKZ" id="SBd-P2-hQr"/>
+            </connections>
             <point key="canvasLocation" x="248" y="73"/>
         </view>
     </objects>
     <resources>
+        <image name="facebook" width="48" height="48"/>
+        <image name="twitter" width="48" height="48"/>
+        <image name="whatsapp" width="48" height="48"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
