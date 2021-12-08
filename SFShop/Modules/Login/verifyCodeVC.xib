@@ -14,6 +14,7 @@
                 <outlet property="codeView" destination="vY2-95-SQz" id="D2F-CA-j7W"/>
                 <outlet property="contentLabel" destination="ZIX-q0-mIt" id="qep-cj-Jaa"/>
                 <outlet property="countdownLabel" destination="txv-cq-KqF" id="2tv-1U-2Z6"/>
+                <outlet property="recendBtn" destination="oef-f3-KgA" id="YCW-oW-4Q6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -47,10 +48,16 @@
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oef-f3-KgA">
-                    <rect key="frame" x="164" y="414" width="54" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oef-f3-KgA">
+                    <rect key="frame" x="16" y="373" width="382" height="46"/>
+                    <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="rQn-l6-6VZ"/>
+                    </constraints>
+                    <state key="normal" title="Recend"/>
+                    <connections>
+                        <action selector="recendAction:" destination="-1" eventType="touchUpInside" id="rAd-al-5Wq"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
@@ -64,8 +71,11 @@
                 <constraint firstItem="txv-cq-KqF" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="amo-NW-8si"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="vY2-95-SQz" secondAttribute="trailing" constant="60" id="dSi-pu-1PI"/>
                 <constraint firstItem="vY2-95-SQz" firstAttribute="top" secondItem="ZIX-q0-mIt" secondAttribute="bottom" constant="40" id="k2x-Dp-kZT"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="oef-f3-KgA" secondAttribute="trailing" constant="16" id="rnW-kG-w7w"/>
                 <constraint firstItem="vY2-95-SQz" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="tE8-lv-9kZ"/>
                 <constraint firstItem="SH9-68-sBi" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="84" id="vu3-L3-C5E"/>
+                <constraint firstItem="oef-f3-KgA" firstAttribute="top" secondItem="vY2-95-SQz" secondAttribute="bottom" constant="100" id="xW6-BD-Lgf"/>
+                <constraint firstItem="oef-f3-KgA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="yZw-UG-6Ct"/>
             </constraints>
             <point key="canvasLocation" x="90" y="74"/>
         </view>

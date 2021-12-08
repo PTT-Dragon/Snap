@@ -264,6 +264,7 @@
 		1BF00F74272FDD770081C8E4 /* DistributorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F73272FDD770081C8E4 /* DistributorModel.m */; };
 		1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */; };
 		1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */; };
+		1BF56CD02761001000B40CAA /* CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF56CCF2761001000B40CAA /* CountDown.m */; };
 		4B1522CC272D300A00C3BDD9 /* ProductSpecAttrsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */; };
 		4B1522D5272D432700C3BDD9 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522D4272D432700C3BDD9 /* BaseViewController.m */; };
 		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
@@ -798,6 +799,8 @@
 		1BF00F7B2731313F0081C8E4 /* CommissionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommissionViewController.h; sourceTree = "<group>"; };
 		1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommissionViewController.m; sourceTree = "<group>"; };
 		1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommissionViewController.xib; sourceTree = "<group>"; };
+		1BF56CCE2761000F00B40CAA /* CountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountDown.h; sourceTree = "<group>"; };
+		1BF56CCF2761001000B40CAA /* CountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountDown.m; sourceTree = "<group>"; };
 		4B1522CA272D300A00C3BDD9 /* ProductSpecAttrsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductSpecAttrsView.h; sourceTree = "<group>"; };
 		4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductSpecAttrsView.m; sourceTree = "<group>"; };
 		4B1522D3272D432700C3BDD9 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -1738,6 +1741,8 @@
 				1BE94C1D274B762900B588F4 /* PublicShareView.h */,
 				1BE94C1E274B762900B588F4 /* PublicShareView.m */,
 				1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */,
+				1BF56CCE2761000F00B40CAA /* CountDown.h */,
+				1BF56CCF2761001000B40CAA /* CountDown.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2548,6 +2553,7 @@
 				1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */,
 				1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */,
 				1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */,
+				1BF56CD02761001000B40CAA /* CountDown.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
