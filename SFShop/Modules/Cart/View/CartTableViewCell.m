@@ -50,11 +50,9 @@
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",skuLabel.value];
     if (_isInvalid) {
         _selBtn.enabled = NO;
-//        _selBtn.userInteractionEnabled = NO;
     }else{
         _selBtn.enabled = YES;
         _selBtn.selected = [model.isSelected isEqualToString:@"Y"];
-//        _selBtn.userInteractionEnabled = YES;
     }
 }
 - (void)setIsInvalid:(BOOL)isInvalid
@@ -91,7 +89,7 @@
 }
 - (void)skuAction
 {
-    if (_isInvalid) {
+    if (_isInvalid) {//$(MARKETING_VERSION)
         return;
     }
 }

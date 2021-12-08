@@ -34,10 +34,8 @@
     _offLabel.text = [NSString stringWithFormat:@" RP %.0f OFF ",model.discountPrice];
     if (_isInvalid) {
         _selBtn.enabled = NO;
-//        _selBtn.userInteractionEnabled = NO;
         return;
     }
-//    _selBtn.userInteractionEnabled = YES;
     _selBtn.enabled = YES;
     BOOL selAll = YES;
     for (CartItemModel *subModel in model.shoppingCarts) {
