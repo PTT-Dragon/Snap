@@ -61,10 +61,10 @@
                                 <action selector="btnAction:" destination="8Cd-je-oHv" eventType="touchUpInside" id="2qe-5T-KW1"/>
                             </connections>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0FQ-YD-7TX">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0FQ-YD-7TX">
                             <rect key="frame" x="315.5" y="85" width="63.5" height="48"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" title="Facebook" image="facebook">
+                            <state key="normal" title="url" image="00103_ Connect Fill">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
@@ -112,6 +112,7 @@
         </view>
     </objects>
     <resources>
+        <image name="00103_ Connect Fill" width="44" height="44"/>
         <image name="facebook" width="48" height="48"/>
         <image name="twitter" width="48" height="48"/>
         <image name="whatsapp" width="48" height="48"/>

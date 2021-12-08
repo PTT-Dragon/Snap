@@ -33,9 +33,13 @@
 }
 - (IBAction)SMSAction:(id)sender {
     resetPasswordViewController *vc = [[resetPasswordViewController alloc] init];
+    vc.type = 1;
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)eamilAction:(id)sender {
+    resetPasswordViewController *vc = [[resetPasswordViewController alloc] init];
+    vc.type = 2;
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)delAction:(id)sender {
     [self removeFromSuperview];
