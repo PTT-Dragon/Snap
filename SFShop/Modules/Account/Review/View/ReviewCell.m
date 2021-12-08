@@ -8,6 +8,7 @@
 #import "ReviewCell.h"
 #import "StarView.h"
 #import "AddReviewViewController.h"
+#import "AdditionalReviewViewController.h"
 
 @interface ReviewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *storeImgView;
@@ -45,8 +46,14 @@
     _model = model;
     _evaluationView.hidden = type == 1;
     _priceLabel.hidden = type == 1;
-    _btn2.hidden = type == 1;
-    [_btn1 setTitle:type == 1 ? @"REVIEW":@"EDIT REVIEW" forState:0];
+    if ([model.canReview isEqualToString:@"Y"]) {
+        _btn2.hidden = type == 1;
+        [_btn1 setTitle:type == 1 ? @"REVIEW":@"ADDITIONAL REVIEW" forState:0];
+        _btn1.hidden = NO;
+    }else{
+        _btn1.hidden = YES;
+        _btn2.hidden = YES;
+    }
     orderItemsModel *itemModel = model.orderItems.firstObject;
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)]];
     _storeNameLabel.text = model.storeName;
@@ -62,6 +69,12 @@
     
 }
 - (IBAction)btn1Action:(UIButton *)sender {
+    if ([sender.titleLabel.text isEqualToString:@"ADDITIONAL REVIEW"]) {
+        AdditionalReviewViewController *vc = [[AdditionalReviewViewController alloc] init];
+        vc.orderItemId = _model.orderId;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        return;
+    }
     AddReviewViewController *vc = [[AddReviewViewController alloc] init];
     vc.model = _model;
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];

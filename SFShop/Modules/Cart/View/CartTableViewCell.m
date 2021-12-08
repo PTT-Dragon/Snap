@@ -45,6 +45,7 @@
     ProdSpcAttrsModel *skuLabel = model.prodSpcAttrs.firstObject;
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",skuLabel.value];
     if (_isInvalid) {
+        _selBtn.selected = NO;
         [_selBtn setImage:[UIImage imageNamed:@"block"] forState:0];
         _selBtn.userInteractionEnabled = NO;
     }else{
