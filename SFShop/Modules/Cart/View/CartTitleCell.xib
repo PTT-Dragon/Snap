@@ -28,6 +28,7 @@
                                     <constraint firstAttribute="height" constant="16" id="rxV-mQ-Ped"/>
                                 </constraints>
                                 <state key="normal" image="radio-0"/>
+                                <state key="disabled" image="block"/>
                                 <state key="selected" image="radio-1"/>
                                 <connections>
                                     <action selector="selAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Acr-I1-WJT"/>
@@ -94,6 +95,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="block" width="200" height="200"/>
         <image name="radio-0" width="200" height="200"/>
         <image name="radio-1" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
