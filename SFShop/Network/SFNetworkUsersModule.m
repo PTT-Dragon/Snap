@@ -216,6 +216,9 @@
 - (NSString *)agreement {
     return K_h5_domain(@"agreement");
 }
+- (NSString *)pay {
+    return K_h5_domain(@"pay");
+}
 - (NSString *)faqList {
     return K_h5_domain(@"faq/catalog/list");
 }

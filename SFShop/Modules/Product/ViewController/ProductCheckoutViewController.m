@@ -17,6 +17,7 @@
 #import "ProductCheckoutSectionHeader.h"
 #import "ProductCheckoutBuyView.h"
 #import "MakeH5Happy.h"
+#import "PublicWebViewController.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -117,13 +118,29 @@
     }];
     [alert addAction:mockAction];
     UIAlertAction *onlineAction = [UIAlertAction actionWithTitle:@"Online Pay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        [weakself onlinePay];
     }];
     [alert addAction:onlineAction];
     UIAlertAction *cencelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cencelAction];
 
     [self presentViewController:alert animated:YES completion:nil];
+}
+- (void)onlinePay
+{
+    //模拟正式支付
+    NSDictionary *params = @{
+        @"totalPrice": @(129000),
+        @"returnUrl": @"https://www.smartfrenshop.com/paying?type=back&orderId=171008",
+        @"orders": @[@"171008"]
+    };
+    [SFNetworkManager post:SFNet.h5.pay parameters:params success:^(id  _Nullable response) {
+        PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+        vc.url = response[@"urlOrHtml"];
+        [self.navigationController pushViewController:vc animated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 #pragma mark - Loadsubviews

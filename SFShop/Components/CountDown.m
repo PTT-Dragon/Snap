@@ -21,12 +21,12 @@ singleton_implementation(CountDown)
         if(timeout<=0){
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [sender setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [sender setTitle:@"Recend" forState:UIControlStateNormal];
                 sender.enabled = YES;
             });
         }else{
             int seconds = (timeout == 60?60:timeout % 60);
-            NSString *strTime = [NSString stringWithFormat:@"%.2d秒",seconds];
+            NSString *strTime = [NSString stringWithFormat:@"Recend Code in%.2d",seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 sender.enabled = NO;
                 [sender setTitle:strTime forState:UIControlStateNormal];
@@ -40,7 +40,7 @@ singleton_implementation(CountDown)
 -(void)stopCountDown:(UIButton *)sender{
     dispatch_source_cancel(_timer);
     dispatch_async(dispatch_get_main_queue(), ^{
-        [sender setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [sender setTitle:@"Recend" forState:UIControlStateNormal];
         sender.enabled = YES;
     });
 }

@@ -13,6 +13,7 @@
 #import "FavoriteViewController.h"
 #import "LoginViewController.h"
 #import "ZLPhotoBrowser.h"
+#import "PublicWebViewController.h"
 
 @interface accountInfoCell ()
 @property (weak, nonatomic) IBOutlet UIView *couponView;
@@ -147,5 +148,8 @@
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)msgAction:(id)sender {
+    PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+    vc.url = @"https://www.smartfrenshop.com/message-center";
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 @end
