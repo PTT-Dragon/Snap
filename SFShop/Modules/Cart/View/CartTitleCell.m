@@ -20,6 +20,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateSelected];
+    [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
+    [_selBtn setImage:[UIImage imageNamed:@"radio-0"] forState:0];
+    [_selBtn setImage:[UIImage imageNamed:@"radio-1"] forState:1];
 }
 
 - (void)setModel:(CartListModel *)model
@@ -29,11 +33,10 @@
     _storeNameLabel.text = model.storeName;
     _offLabel.text = [NSString stringWithFormat:@" RP %.0f OFF ",model.discountPrice];
     if (_isInvalid) {
-        [_selBtn setImage:[UIImage imageNamed:@"block"] forState:0];
-        _selBtn.userInteractionEnabled = NO;
+        _selBtn.enabled = NO;
         return;
     }
-    _selBtn.userInteractionEnabled = YES;
+    _selBtn.enabled = YES;
     BOOL selAll = YES;
     for (CartItemModel *subModel in model.shoppingCarts) {
         if (![subModel.isSelected isEqualToString:@"Y"]) {
@@ -47,6 +50,9 @@
     _isInvalid = isInvalid;
 }
 - (IBAction)selAction:(UIButton *)sender {
+    if (_isInvalid) {
+        return;
+    }
     sender.selected = !sender.selected;
     [self.delegate selAll:sender.selected storeId:_model.storeId];
 }

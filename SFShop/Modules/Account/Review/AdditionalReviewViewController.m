@@ -1,107 +1,75 @@
 //
-//  AddReviewViewController.m
+//  AdditionalReviewViewController.m
 //  SFShop
 //
-//  Created by 游挺 on 2021/10/28.
+//  Created by 游挺 on 2021/12/8.
 //
 
-#import "AddReviewViewController.h"
-#import "StarView.h"
+#import "AdditionalReviewViewController.h"
 #import "IQTextView.h"
 #import "ReviewAddNewPhotoCell.h"
 #import "ZLPhotoBrowser.h"
 #import "ImageCollectionViewCell.h"
-#import <SDWebImage/SDWebImage.h>
+#import "ProductDetailModel.h"
+#import "ReviewSuccessViewController.h"
 
-@interface AddReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property (weak, nonatomic) IBOutlet UIImageView *storeLogoImgView;
-@property (weak, nonatomic) IBOutlet UIButton *anonymousBtn;
-@property (weak, nonatomic) IBOutlet UILabel *anonymousLabel;
-@property (weak, nonatomic) IBOutlet StarView *starView;
+@interface AdditionalReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewHei;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *skuLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidth;
-@property (weak, nonatomic) IBOutlet UIView *bottomView;
-@property (weak, nonatomic) IBOutlet StarView *starView1;
-@property (weak, nonatomic) IBOutlet StarView *starView2;
-@property (weak, nonatomic) IBOutlet StarView *starView3;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet IQTextView *textView;
-@property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (nonatomic,strong) NSMutableArray *imgArr;//存放图片数组
-@property (nonatomic,strong) NSMutableArray *imgUrlArr;//存放图片url数组
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoCollectionViewHei;
-@property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
-@property (nonatomic,strong) ReviewDetailModel *detailModel;
+@property (nonatomic,strong) NSMutableArray *imgUrlArr;//存放图片数组
+@property (nonatomic,strong) ReviewDetailModel *model;
+
 @end
 
-@implementation AddReviewViewController
-
+@implementation AdditionalReviewViewController
+- (BOOL)shouldCheckLoggedIn
+{
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Review";
-    _imgUrlArr = [NSMutableArray array];
-    _imgArr = [NSMutableArray array];
-    [_imgArr addObject:@"1"];
-    _photoCollectionView.delegate = self;
-    _photoCollectionView.dataSource = self;
-    [_photoCollectionView registerNib:[UINib nibWithNibName:@"ReviewAddNewPhotoCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewAddNewPhotoCell"];
-    [_photoCollectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
+    self.title = @"Additional Review";
     _viewWidth.constant = MainScreen_width;
-    _starView.canSel = YES;
-    _starView.score = 5;
-    _starView1.canSel = YES;
-    _starView1.score = 5;
-    _starView2.canSel = YES;
-    _starView2.score = 5;
-    _starView3.canSel = YES;
-    _starView3.score = 5;
+    _imgArr = [NSMutableArray array];
+    _imgUrlArr = [NSMutableArray array];
+    [_imgArr addObject:@""];
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    [_collectionView registerNib:[UINib nibWithNibName:@"ReviewAddNewPhotoCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewAddNewPhotoCell"];
+    [_collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     _skuLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _skuLabel.layer.borderWidth = 1;
     _textView.layer.borderColor = RGBColorFrom16(0xc4c4c4).CGColor;
     _textView.layer.borderWidth = 1;
-    orderItemsModel *itemModel = _model.orderItems.firstObject;
-    NSDictionary *dic = [itemModel.productRemark jk_dictionaryValue];
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
-    _nameLabel.text = itemModel.productName;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];
-    _storeNameLabel.text = _model.storeName;
-    [_storeLogoImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogoUrl)]];
-    if (self.orderItemId) {
-        [self loadDatas];
-    }
+    [self loadDatas];
 }
 - (void)updateDatas
 {
-    EvaluatesModel *evaModel = self.detailModel.evaluates.firstObject;
-    self.textView.text = evaModel.evaluationComments;
-    self.starView.score = evaModel.rate.integerValue;
-    self.bottomView.hidden = YES;
-    self.anonymousBtn.hidden = YES;
-    self.anonymousLabel.hidden = YES;
-    for (EvaluatesContentsModel *contentModel in evaModel.contents) {
-        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:SFImage(contentModel.url)] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-            if (image) {
-                [self.imgArr addObject:image];
-            }
-            [self.photoCollectionView reloadData];
-        }];
-    }
+    ProductItemModel *productModel = [self.model.evaluates.firstObject product];
+    NSDictionary *dic = [productModel.productRemark jk_dictionaryValue];
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
+    _nameLabel.text = productModel.productName;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(productModel.imgUrl)]];
 }
 - (void)loadDatas
 {
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.evaluate.detail parameters:@{@"orderItemId":_orderItemId} success:^(id  _Nullable response) {
-        weakself.detailModel = [ReviewDetailModel yy_modelWithDictionary:response];
+        weakself.model = [ReviewDetailModel yy_modelWithDictionary:response];
         [weakself updateDatas];
     } failed:^(NSError * _Nonnull error) {
         
     }];
 }
-     
 #pragma mark - UICollectionViewDataSource
-     
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -151,17 +119,11 @@
             [weakself.imgArr addObject:@"1"];
         }
         CGFloat itemHei = (MainScreen_width-32-30)/4;
-        weakself.photoCollectionViewHei.constant = images.count < 4 ? itemHei+5: images.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
-        [weakself.photoCollectionView reloadData];
+        weakself.collectionViewHei.constant = images.count < 4 ? itemHei+5: images.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+        [weakself.collectionView reloadData];
     }];
     // 调用相册
     [ac showPreviewAnimated:YES];
-}
-/**
- {"evaluateItems":[{"orderItemId":50004,"ratingComments":"Ffff ","rate":3,"labelIds":[],"contents":[{"catgType":"B","url":"/get/resource/A3840564-1B7D-4A26-B801-9140CC071E811467785989878583296.jpeg","imgUrl":"","seq":0,"name":"A3840564-1B7D-4A26-B801-9140CC071E81.jpeg"},{"catgType":"B","url":"/get/resource/B8ED63AB-8F24-4AB3-A86F-3FAEEFDE031F1467786024691306496.png","imgUrl":"","seq":1,"name":"B8ED63AB-8F24-4AB3-A86F-3FAEEFDE031F.png"}],"isAnonymous":"Y"}],"store":{"rate":4,"rate1":3,"rate2":5,"storeId":11,"orderId":50004,"isAnonymous":"Y"}}
- **/
-- (IBAction)submitAction:(UIButton *)sender {
-    [self publishImage];
 }
 - (void)publishImage
 {
@@ -190,26 +152,54 @@
         [self publishReview];
     });
 }
+/**
+ {"offerEvaluationId":53001,"reviewComments":"可口可乐了","contents":[{"catgType":"B","url":"/get/resource/CE37A15C-12B9-44EE-AA21-4F678482594E1468413606470225920.jpeg","imgUrl":"","seq":0,"name":"CE37A15C-12B9-44EE-AA21-4F678482594E.jpeg"},{"catgType":"B","url":"/get/resource/AF63FA28-115E-473E-B11D-D375EF9A35991468413640922238976.png","imgUrl":"","seq":1,"name":"AF63FA28-115E-473E-B11D-D375EF9A3599.png"}]}
+ **/
+/**
+ {
+     contents =     (
+                 {
+             catgType = B;
+             imgUrl = "";
+             name = "0CR9CC45-72EC-4522-9D8E-RB8491192E01.jpeg";
+             seq = "";
+             url = "/get/resource/0CR9CC45-72EC-4522-9D8E-RB8491192E011468419742653091840.jpeg";
+         },
+                 {
+             catgType = B;
+             imgUrl = "";
+             name = "0CR9CC45-72EC-4522-9D8E-RB8491192E01.jpeg";
+             seq = "";
+             url = "/get/resource/0CR9CC45-72EC-4522-9D8E-RB8491192E011468419744301453312.jpeg";
+         }
+     );
+     offerEvaluationId = 46026;
+     reviewComments = "\U4eff\U4f5bvvv\U5206";
+ 
+ {"offerEvaluationId":46026,"reviewComments":"可口可乐了","contents":[{"catgType":"B","url":"/get/resource/59DF2549-D94E-4817-9D24-8831F5D005541468420188398555136.jpeg","imgUrl":"","seq":0,"name":"59DF2549-D94E-4817-9D24-8831F5D00554.jpeg"},{"catgType":"B","url":"/get/resource/2ED0B0A0-E568-44D1-B569-237861AD13931468420220203962368.png","imgUrl":"","seq":1,"name":"2ED0B0A0-E568-44D1-B569-237861AD1393.png"}]}
+ }
+
+ **/
 - (void)publishReview
 {
-    NSMutableArray *evaluateItems = [NSMutableArray array];
-    for (NSInteger i = 0; i<_model.orderItems.count; i++) {
-        NSMutableArray *contentsArr = [NSMutableArray array];
-        orderItemsModel *itemModel = _model.orderItems[i];
-        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
-        [dic setValue:_textView.text forKey:@"ratingComments"];
-        [dic setValue:@(_starView.score) forKey:@"rate"];
-    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    for (NSInteger i = 0; i<_model.evaluates.count; i++) {
+        EvaluatesModel *evaModel = _model.evaluates[i];
+        [params setValue:evaModel.offerEvaluationId forKey:@"offerEvaluationId"];
+        [params setValue:_textView.text forKey:@"reviewComments"];
+        [params setValue:_imgUrlArr forKey:@"contents"];
+    }
+    MPWeakSelf(self)
     [SFNetworkManager post:SFNet.evaluate.addEvaluate parameters:params success:^(id  _Nullable response) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:@"Review Success"];
+        ReviewSuccessViewController *vc = [[ReviewSuccessViewController alloc] init];
+        [weakself.navigationController pushViewController:vc animated:YES];
+        [baseTool removeVCFromNavigation:self];
     } failed:^(NSError * _Nonnull error) {
         
     }];
 }
-- (IBAction)anonymousAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
+- (IBAction)submitAction:(id)sender {
+    [self publishImage];
 }
-
 @end

@@ -216,6 +216,10 @@
 		1BD8E7CE275FA58300130DCC /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7CC275FA58300130DCC /* SupportViewController.xib */; };
 		1BD8E7D0275FB8F900130DCC /* PublicShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */; };
 		1BD8E7D3275FC0CA00130DCC /* SFNetworkShareBuyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7D2275FC0CA00130DCC /* SFNetworkShareBuyModule.m */; };
+		1BD8E7D727604FC900130DCC /* AdditionalReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7D527604FC900130DCC /* AdditionalReviewViewController.m */; };
+		1BD8E7D827604FC900130DCC /* AdditionalReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7D627604FC900130DCC /* AdditionalReviewViewController.xib */; };
+		1BD8E7DC27605D0400130DCC /* ReviewSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E7DA27605D0400130DCC /* ReviewSuccessViewController.m */; };
+		1BD8E7DD27605D0400130DCC /* ReviewSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E7DB27605D0400130DCC /* ReviewSuccessViewController.xib */; };
 		1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */; };
 		1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */; };
 		1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB5DBE272EC1E00016C2F3 /* CartModel.m */; };
@@ -715,6 +719,12 @@
 		1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicShareView.xib; sourceTree = "<group>"; };
 		1BD8E7D1275FC0CA00130DCC /* SFNetworkShareBuyModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkShareBuyModule.h; sourceTree = "<group>"; };
 		1BD8E7D2275FC0CA00130DCC /* SFNetworkShareBuyModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkShareBuyModule.m; sourceTree = "<group>"; };
+		1BD8E7D427604FC900130DCC /* AdditionalReviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdditionalReviewViewController.h; sourceTree = "<group>"; };
+		1BD8E7D527604FC900130DCC /* AdditionalReviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdditionalReviewViewController.m; sourceTree = "<group>"; };
+		1BD8E7D627604FC900130DCC /* AdditionalReviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalReviewViewController.xib; sourceTree = "<group>"; };
+		1BD8E7D927605D0400130DCC /* ReviewSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewSuccessViewController.h; sourceTree = "<group>"; };
+		1BD8E7DA27605D0400130DCC /* ReviewSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewSuccessViewController.m; sourceTree = "<group>"; };
+		1BD8E7DB27605D0400130DCC /* ReviewSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewSuccessViewController.xib; sourceTree = "<group>"; };
 		1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelOrderReasonCell.h; sourceTree = "<group>"; };
 		1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelOrderReasonCell.m; sourceTree = "<group>"; };
 		1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelOrderReasonCell.xib; sourceTree = "<group>"; };
@@ -1366,12 +1376,18 @@
 				1B787B5D272A354C00E6A983 /* AddReviewViewController.h */,
 				1B787B5E272A354C00E6A983 /* AddReviewViewController.m */,
 				1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */,
+				1BD8E7D427604FC900130DCC /* AdditionalReviewViewController.h */,
+				1BD8E7D527604FC900130DCC /* AdditionalReviewViewController.m */,
+				1BD8E7D627604FC900130DCC /* AdditionalReviewViewController.xib */,
 				1BD8E78B275CAF7500130DCC /* ReviewDetailViewController.h */,
 				1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */,
 				1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */,
 				1BD8E7B0275DFDAD00130DCC /* ReviewAddNewPhotoCell.h */,
 				1BD8E7B1275DFDAD00130DCC /* ReviewAddNewPhotoCell.m */,
 				1BD8E7B2275DFDAD00130DCC /* ReviewAddNewPhotoCell.xib */,
+				1BD8E7D927605D0400130DCC /* ReviewSuccessViewController.h */,
+				1BD8E7DA27605D0400130DCC /* ReviewSuccessViewController.m */,
+				1BD8E7DB27605D0400130DCC /* ReviewSuccessViewController.xib */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -2271,6 +2287,7 @@
 				1BD8E7D0275FB8F900130DCC /* PublicShareView.xib in Resources */,
 				1BF00F60272FDC090081C8E4 /* DistributorInfoCell.xib in Resources */,
 				1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */,
+				1BD8E7D827604FC900130DCC /* AdditionalReviewViewController.xib in Resources */,
 				1B2AE429272D36F000FB23D3 /* CartTableViewCell.xib in Resources */,
 				1B6C52AB275B672200A1C617 /* ZLPhotoBrowserCell.xib in Resources */,
 				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
@@ -2313,6 +2330,7 @@
 				1B478330272AA1FF00F2A945 /* SecurityCenterViewController.xib in Resources */,
 				1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */,
 				1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */,
+				1BD8E7DD27605D0400130DCC /* ReviewSuccessViewController.xib in Resources */,
 				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
 				1B6C52472758AD8100A1C617 /* CartViewController.xib in Resources */,
 				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
@@ -2525,6 +2543,7 @@
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,
 				1B478304272A785200F2A945 /* RefundViewController.m in Sources */,
+				1BD8E7DC27605D0400130DCC /* ReviewSuccessViewController.m in Sources */,
 				1B6C5299275B672200A1C617 /* ZLPullDownInteractiveTransition.m in Sources */,
 				1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */,
 				1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */,
@@ -2547,6 +2566,7 @@
 				1B6C52AC275B672200A1C617 /* ZLShowBigImgViewController.m in Sources */,
 				1BF00F6E272FDC5D0081C8E4 /* DistributorRankCell.m in Sources */,
 				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
+				1BD8E7D727604FC900130DCC /* AdditionalReviewViewController.m in Sources */,
 				1B6C5298275B672200A1C617 /* ZLInteractiveTrasition.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,

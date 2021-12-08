@@ -8,7 +8,6 @@
 #import "MyCouponChildViewController.h"
 #import "MyCouponCell.h"
 #import "MyCouponStoreCell.h"
-#import "CouponCenterViewController.h"
 #import "CouponModel.h"
 
 @interface MyCouponChildViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -81,8 +80,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 

@@ -153,7 +153,7 @@
                                     <constraint firstAttribute="width" constant="46" id="XLS-q8-5hj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="EDIT">
                                     <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>

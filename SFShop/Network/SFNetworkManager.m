@@ -146,7 +146,7 @@
              @fileName ： 上传到服务器的文件名称
              @mimeType : 上传的文件类型
            */
-        [formData appendPartWithFileData:imageData name:@"file" fileName:@"0CR9CC45-72EC-4522-9D8E-RB8491192E01.jpeg" mimeType:@"image/png"];
+        [formData appendPartWithFileData:imageData name:@"file" fileName:imageData.description mimeType:@"image/png"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

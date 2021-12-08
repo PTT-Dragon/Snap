@@ -10,10 +10,12 @@
 #import "ReviewCell.h"
 #import "ReviewDetailViewController.h"
 #import "ProductViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface ReviewChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,assign) NSInteger pageIndex;
 @end
 
 @implementation ReviewChildViewController
@@ -22,18 +24,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _dataSource = [NSMutableArray array];
-    [self loadDatas];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"ReviewCell" bundle:nil] forCellReuseIdentifier:@"ReviewCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.equalTo(self.view);
     }];
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadDatas];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (void)loadDatas
 {
+    _pageIndex = 1;
     NSString *evaluateFlag = _type == 1 ? @"N": @"Y";
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.order.list parameters:@{@"evaluateFlag":evaluateFlag} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"evaluateFlag":evaluateFlag} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_header endRefreshing];
         NSArray *arr = response[@"list"];
         if (kArrayIsEmpty(arr)) {
             return;
@@ -43,7 +53,26 @@
         }
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself.tableView.mj_header endRefreshing];
+    }];
+}
+- (void)loadMoreDatas
+{
+    _pageIndex ++;
+    NSString *evaluateFlag = _type == 1 ? @"N": @"Y";
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"evaluateFlag":evaluateFlag} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_footer endRefreshing];
+        NSArray *arr = response[@"list"];
+        if (kArrayIsEmpty(arr)) {
+            return;
+        }
+        for (NSDictionary *dic in arr) {
+            [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
+        }
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_footer endRefreshing];
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -58,7 +87,8 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return _type == 1 ? 168: 299;
+    OrderModel *subModel = self.dataSource[indexPath.row];
+    return _type == 1 ? 168: [subModel.canReview isEqualToString:@"Y"] ? 299 : 257;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

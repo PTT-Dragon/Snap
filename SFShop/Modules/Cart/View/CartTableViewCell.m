@@ -33,6 +33,10 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skuAction)];
     [_skuLabel addGestureRecognizer:tap];
+    [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateSelected];
+    [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
+    [_selBtn setImage:[UIImage imageNamed:@"radio-0"] forState:0];
+    [_selBtn setImage:[UIImage imageNamed:@"radio-1"] forState:1];
 }
 
 - (void)setModel:(CartItemModel *)model
@@ -45,11 +49,10 @@
     ProdSpcAttrsModel *skuLabel = model.prodSpcAttrs.firstObject;
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",skuLabel.value];
     if (_isInvalid) {
-        [_selBtn setImage:[UIImage imageNamed:@"block"] forState:0];
-        _selBtn.userInteractionEnabled = NO;
+        _selBtn.enabled = NO;
     }else{
+        _selBtn.enabled = YES;
         _selBtn.selected = [model.isSelected isEqualToString:@"Y"];
-        _selBtn.userInteractionEnabled = YES;
     }
 }
 - (void)setIsInvalid:(BOOL)isInvalid
@@ -86,7 +89,7 @@
 }
 - (void)skuAction
 {
-    if (_isInvalid) {
+    if (_isInvalid) {//$(MARKETING_VERSION)
         return;
     }
 }
