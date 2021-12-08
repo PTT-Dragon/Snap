@@ -11,10 +11,12 @@
 #import "ReviewAddNewPhotoCell.h"
 #import "ZLPhotoBrowser.h"
 #import "ImageCollectionViewCell.h"
+#import <SDWebImage/SDWebImage.h>
 
 @interface AddReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *storeLogoImgView;
 @property (weak, nonatomic) IBOutlet UIButton *anonymousBtn;
+@property (weak, nonatomic) IBOutlet UILabel *anonymousLabel;
 @property (weak, nonatomic) IBOutlet StarView *starView;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -27,9 +29,10 @@
 @property (weak, nonatomic) IBOutlet IQTextView *textView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (nonatomic,strong) NSMutableArray *imgArr;//存放图片数组
+@property (nonatomic,strong) NSMutableArray *imgUrlArr;//存放图片url数组
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoCollectionViewHei;
 @property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
-
+@property (nonatomic,strong) ReviewDetailModel *detailModel;
 @end
 
 @implementation AddReviewViewController
@@ -38,6 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Review";
+    _imgUrlArr = [NSMutableArray array];
     _imgArr = [NSMutableArray array];
     [_imgArr addObject:@"1"];
     _photoCollectionView.delegate = self;
@@ -64,8 +68,40 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];
     _storeNameLabel.text = _model.storeName;
     [_storeLogoImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogoUrl)]];
+    if (self.orderItemId) {
+        [self loadDatas];
+    }
 }
+- (void)updateDatas
+{
+    EvaluatesModel *evaModel = self.detailModel.evaluates.firstObject;
+    self.textView.text = evaModel.evaluationComments;
+    self.starView.score = evaModel.rate.integerValue;
+    self.bottomView.hidden = YES;
+    self.anonymousBtn.hidden = YES;
+    self.anonymousLabel.hidden = YES;
+    for (EvaluatesContentsModel *contentModel in evaModel.contents) {
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:SFImage(contentModel.url)] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+            if (image) {
+                [self.imgArr addObject:image];
+            }
+            [self.photoCollectionView reloadData];
+        }];
+    }
+}
+- (void)loadDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.evaluate.detail parameters:@{@"orderItemId":_orderItemId} success:^(id  _Nullable response) {
+        weakself.detailModel = [ReviewDetailModel yy_modelWithDictionary:response];
+        [weakself updateDatas];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+     
 #pragma mark - UICollectionViewDataSource
+     
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -126,7 +162,36 @@
  **/
 - (IBAction)submitAction:(UIButton *)sender {
     [self publishImage];
-    return;
+}
+- (void)publishImage
+{
+    //先上传图片
+    [MBProgressHUD showHudMsg:@""];
+    dispatch_group_t group = dispatch_group_create();
+    MPWeakSelf(self)
+    __block NSInteger i = 0;
+    for (id item in _imgArr) {
+        if ([item isKindOfClass:[UIImage class]]) {
+            dispatch_group_enter(group);
+            [SFNetworkManager postImage:SFNet.h5.publishImg image:item success:^(id  _Nullable response) {
+                @synchronized (response) {
+                    [weakself.imgUrlArr addObject:@{@"catgType":@"B",@"url":response[@"fullPath"],@"imgUrl":@"",@"seq":@(i),@"name":response[@"fileName"]}];
+                    i++;
+                }
+                dispatch_group_leave(group);
+            } failed:^(NSError * _Nonnull error) {
+                dispatch_group_leave(group);
+            }];
+            
+        }
+    }
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideFromKeyWindow];
+        [self publishReview];
+    });
+}
+- (void)publishReview
+{
     NSMutableArray *evaluateItems = [NSMutableArray array];
     for (NSInteger i = 0; i<_model.orderItems.count; i++) {
         NSMutableArray *contentsArr = [NSMutableArray array];
@@ -142,30 +207,6 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
-}
-- (void)publishImage
-{
-    //先上传图片
-    [MBProgressHUD showHudMsg:@""];
-    dispatch_group_t group = dispatch_group_create();
-    
-    for (id item in _imgArr) {
-        if ([item isKindOfClass:[UIImage class]]) {
-            dispatch_group_enter(group);
-            [SFNetworkManager postImage:SFNet.h5.publishImg image:item success:^(id  _Nullable response) {
-                @synchronized (response) {
-                    
-                }
-                dispatch_group_leave(group);
-            } failed:^(NSError * _Nonnull error) {
-                dispatch_group_leave(group);
-            }];
-            
-        }
-    }
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        
-    });
 }
 - (IBAction)anonymousAction:(UIButton *)sender {
     sender.selected = !sender.selected;

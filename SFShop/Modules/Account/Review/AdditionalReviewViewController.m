@@ -11,6 +11,7 @@
 #import "ZLPhotoBrowser.h"
 #import "ImageCollectionViewCell.h"
 #import "ProductDetailModel.h"
+#import "ReviewSuccessViewController.h"
 
 @interface AdditionalReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewHei;
@@ -129,13 +130,14 @@
     //先上传图片
     [MBProgressHUD showHudMsg:@""];
     dispatch_group_t group = dispatch_group_create();
+    MPWeakSelf(self)
     __block NSInteger i = 0;
     for (id item in _imgArr) {
         if ([item isKindOfClass:[UIImage class]]) {
             dispatch_group_enter(group);
             [SFNetworkManager postImage:SFNet.h5.publishImg image:item success:^(id  _Nullable response) {
                 @synchronized (response) {
-                    [self.imgUrlArr addObject:@{@"catgType":@"B",@"url":response[@"fullPath"],@"imgUrl":@"",@"seq":@(i),@"name":response[@"fileName"]}];
+                    [weakself.imgUrlArr addObject:@{@"catgType":@"B",@"url":response[@"fullPath"],@"imgUrl":@"",@"seq":@(i),@"name":response[@"fileName"]}];
                     i++;
                 }
                 dispatch_group_leave(group);
@@ -190,7 +192,9 @@
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.evaluate.addEvaluate parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"Review Success"];
-        [weakself.navigationController popViewControllerAnimated:YES];
+        ReviewSuccessViewController *vc = [[ReviewSuccessViewController alloc] init];
+        [weakself.navigationController pushViewController:vc animated:YES];
+        [baseTool removeVCFromNavigation:self];
     } failed:^(NSError * _Nonnull error) {
         
     }];

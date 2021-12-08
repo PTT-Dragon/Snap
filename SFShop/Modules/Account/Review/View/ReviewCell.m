@@ -80,5 +80,9 @@
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)btn2Action:(UIButton *)sender {
+    AddReviewViewController *vc = [[AddReviewViewController alloc] init];
+    vc.model = _model;
+    vc.orderItemId = _model.orderId;
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 @end

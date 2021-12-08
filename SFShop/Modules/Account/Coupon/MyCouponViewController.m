@@ -8,38 +8,35 @@
 #import "MyCouponViewController.h"
 #import "MyCouponChildViewController.h"
 #import "CouponCenterChildViewController.h"
+#import <VTMagic/VTMagic.h>
+#import "CouponCenterViewController.h"
 
 @interface MyCouponViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
 @property(nonatomic, strong) NSArray *menuList;
 @property(nonatomic, strong) NSArray *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
+@property (nonatomic,strong) VTMagicController *magicController;
+@property (nonatomic,strong) UIView *bottomView;
+@property (nonatomic,strong) UIButton *couponCenterBtn;
 @end
 
 @implementation MyCouponViewController
-
+- (BOOL)shouldCheckLoggedIn
+{
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"My Coupon";
     self.menuList = @[@"Available", @"Expired", @"Used"];
     self.articleCatgIdList = @[@(CouponType_Available),@(CouponType_Expired),@(CouponType_Used)];
-    self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
-    self.magicView.navigationColor = [UIColor whiteColor];
-    self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
-    self.magicView.sliderHeight = 1.0f;
-    self.magicView.layoutStyle = VTLayoutStyleDivide;
-    self.magicView.switchStyle = VTSwitchStyleDefault;
-    self.magicView.navigationHeight = 40.f;
-    self.magicView.dataSource = self;
-    self.magicView.delegate = self;
+    [self addChildViewController:self.magicController];
+    [self.view addSubview:_magicController.view];
+    _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei-78);
+    [_magicController.magicView reloadData];
+    [self.view addSubview:self.bottomView];
     
-    self.view.frame = CGRectMake(0, 0, MainScreen_width, 100);
-    [self.magicView reloadData];
-    
-}
-- (void)loadView
-{
-    [super loadView];
 }
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
@@ -83,5 +80,46 @@
 
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex {
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
+}
+- (VTMagicController *)magicController
+{
+    if (!_magicController) {
+        _magicController = [[VTMagicController alloc] init];
+        _magicController.magicView.navigationColor = [UIColor whiteColor];
+        _magicController.magicView.sliderColor = [UIColor redColor];
+        _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
+        _magicController.magicView.switchStyle = VTSwitchStyleDefault;
+        _magicController.magicView.navigationHeight = 40.f;
+        _magicController.magicView.dataSource = self;
+        _magicController.magicView.delegate = self;
+        _magicController.magicView.scrollEnabled = NO;
+    }
+    return _magicController;
+}
+- (UIView *)bottomView
+{
+    if (!_bottomView) {
+        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, MainScreen_height-78, MainScreen_width, 78)];
+        _bottomView.backgroundColor = [UIColor whiteColor];
+        [_bottomView addSubview:self.couponCenterBtn];
+    }
+    return _bottomView;
+}
+- (UIButton *)couponCenterBtn
+{
+    if (!_couponCenterBtn) {
+        _couponCenterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _couponCenterBtn.backgroundColor = RGBColorFrom16(0xFF1659);
+        _couponCenterBtn.titleLabel.font = CHINESE_BOLD(14);
+        [_couponCenterBtn setTitle:@"COLLECT MORE COUPONS" forState:0];
+        _couponCenterBtn.frame = CGRectMake(16, 16, MainScreen_width-32, 46);
+        @weakify(self)
+        [[_couponCenterBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self)
+            CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+    }
+    return _couponCenterBtn;
 }
 @end

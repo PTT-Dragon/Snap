@@ -23,8 +23,8 @@
 }
 - (void)setContent:(CouponModel *)model
 {
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogo)]];
-    _nameLabel.text = model.storeName;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogo)] placeholderImage:[UIImage imageNamed:@"get-coupons"]];
+    _nameLabel.text = model.storeName ? model.storeName: @"SF.shop Voucher";
 }
 
 @end

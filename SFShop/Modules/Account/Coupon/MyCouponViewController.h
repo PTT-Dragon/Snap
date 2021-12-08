@@ -5,12 +5,12 @@
 //  Created by 游挺 on 2021/9/26.
 //
 
-#import <UIKit/UIKit.h>
-#import <VTMagic/VTMagic.h>
+#import "BaseViewController.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MyCouponViewController : VTMagicController
+@interface MyCouponViewController : BaseViewController
 
 @end
 

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddReviewViewController">
             <connections>
                 <outlet property="anonymousBtn" destination="fhv-hQ-2yg" id="hRj-nf-gGR"/>
+                <outlet property="anonymousLabel" destination="WVG-v8-uhd" id="fTj-on-ypB"/>
                 <outlet property="bottomView" destination="FVp-G8-o3u" id="OVO-Nk-MMe"/>
                 <outlet property="imgView" destination="cdo-a5-ndh" id="N8R-U9-7mf"/>
                 <outlet property="nameLabel" destination="yu7-VZ-fdN" id="IG9-FZ-qpw"/>

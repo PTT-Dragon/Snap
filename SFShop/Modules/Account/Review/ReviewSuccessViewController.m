@@ -6,21 +6,31 @@
 //
 
 #import "ReviewSuccessViewController.h"
+#import "ReviewViewController.h"
+
 
 @interface ReviewSuccessViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @end
 
 @implementation ReviewSuccessViewController
-
+- (BOOL)shouldCheckLoggedIn
+{
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _btn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+    _btn.layer.borderWidth = 1;
 }
 - (IBAction)toHomeAction:(id)sender {
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (IBAction)toListAction:(id)sender {
+    [baseTool removeVCFromNavigationWithVCNameArr:@[@"AddReviewViewController",@"AdditionalReviewViewController"] currentVC:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*
