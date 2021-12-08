@@ -133,7 +133,7 @@
     id cellModel = self.dataArray[indexPath.section][indexPath.row];
     if ([cellModel isKindOfClass:CategoryRankFilterModel.class]) {
         CategoryRankFilterModel *model = cellModel;
-        width = [model.name calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(200, 32)] + 12 * 2;
+        width = [model.name calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(MainScreen_width - 16 * 2, 32)] + 12 * 2;
     } else if ([cellModel isKindOfClass:CategoryRankPriceModel.class]) {
         return CGSizeMake(MainScreen_width - 16 * 2 , 46);
     }
@@ -153,7 +153,22 @@
     _model = model;
     
     //组装需要显示的数据
-    NSArray *arr = @[model.serviceIds,model.catgIds,model.brandIds,@[model.priceModel],model.evaluations];
+    NSMutableArray *arr = [NSMutableArray array];
+    if (model.serviceIds && model.serviceIds.count > 0) {
+        [arr addObject:model.serviceIds];
+    }
+    if (model.catgIds && model.catgIds.count > 0) {
+        [arr addObject:model.catgIds];
+    }
+    if (model.brandIds && model.brandIds.count > 0) {
+        [arr addObject:model.brandIds];
+    }
+    if (model.priceModel) {
+        [arr addObject:@[model.priceModel]];
+    }
+    if (model.evaluations && model.evaluations.count > 0) {
+        [arr addObject:model.evaluations];
+    }
     for (NSArray *subArr in arr) {
         if (subArr.count) {
             [self.dataArray addObject:[NSMutableArray arrayWithArray:subArr]];

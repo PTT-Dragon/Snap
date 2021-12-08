@@ -63,29 +63,9 @@
     priceModel.minPrice = self.filterCacheModel.minPrice;
     priceModel.maxPrice = self.filterCacheModel.maxPrice;
     self.dataModel.priceModel = priceModel;
-    for (CategoryRankServiceModel *model in self.dataModel.serviceIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.serverId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
+
     for (CategoryRankCategoryModel *model in self.dataModel.catgIds) {
         if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.categoryId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankBrandModel *model in self.dataModel.brandIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.brandId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankEvaluationModel *model in self.dataModel.evaluations) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.evaluationId]) {
             model.isSelected = YES;
             break;
         }
@@ -102,7 +82,20 @@
 - (void)loadDatas
 {
     [SFNetworkManager get:SFNet.favorite.num parameters:@{@"catgFlag":@"Y",@"priceDownFlag":@"Y",@"invalidFlag":@"Y",@"promotionFlag":@"Y"} success:^(id  _Nullable response) {
-        self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
+        NSArray *catgNumList = [response objectForKey:@"catgNumList"];
+        NSMutableArray *catgs = [NSMutableArray array];
+        for (NSDictionary *dict in catgNumList) {
+            NSString *catgId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"catgId"]];
+            NSString *catgName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"catgName"]];
+            CategoryRankCategoryModel *model = [[CategoryRankCategoryModel alloc] init];
+            model.idStr = catgId;
+            model.name = catgName;
+            model.catgName = catgName;
+            [catgs addObject:model];
+        }
+        
+        self.dataModel = [[CategoryRankModel alloc] init];
+        self.dataModel.catgIds = catgs;
     } failed:^(NSError * _Nonnull error) {
         
     }];

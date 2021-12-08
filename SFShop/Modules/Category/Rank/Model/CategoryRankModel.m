@@ -19,6 +19,7 @@
 - (NSArray<CategoryRankEvaluationModel *> *)evaluations {
     NSMutableArray *result = [NSMutableArray array];
     NSInteger fullStar = self.evaluationAvgs.intValue;
+    if (fullStar <= 0) {return nil;}
     if (!(fullStar > 0 && fullStar <= 100)) {//最多支持100颗🌟评价系统 (默认5🌟)
         fullStar = 5;
     }
