@@ -84,4 +84,62 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface ProductEvalationReplayModel : JSONModel
+@property(nonatomic, strong) NSString *replyComments;
+@property(nonatomic, strong) NSString *replyDate;
+@property(nonatomic, strong) NSString *storeName;
+@property(nonatomic, strong) NSString *storeLogoUrl;
+@property(nonatomic, strong) NSString *usefulCnt;
+@end
+
+@interface ProductEvalationModel : JSONModel
+@property(nonatomic, strong) NSString *offerEvaluationId;
+@property(nonatomic, strong) NSString *userId;
+@property(nonatomic, strong) NSString *userName;
+@property(nonatomic, strong) NSString *offerId;
+@property(nonatomic, strong) NSString *offerName;
+@property(nonatomic, strong) NSString *productId;
+@property(nonatomic, strong) NSString *productName;
+@property(nonatomic, strong) NSString *attrValues;
+@property(nonatomic, strong) NSString *productImgUrl;
+@property(nonatomic, strong) NSString *isAnonymous;
+@property(nonatomic, strong) NSString *rate;
+@property(nonatomic, strong) NSString *evaluationComments;
+@property(nonatomic, strong) NSString *createdDate;
+@property(nonatomic, strong) NSString *userLogo;
+@property(nonatomic, strong) ProductEvalationReplayModel *reply;
+/**
+ "offerEvaluationId": 54005,
+             "userId": 1224,
+             "userName": "wcttest2@qq.com",
+             "offerId": 1491,
+             "offerName": "Pompa air listrik, untuk minum air ,bentuk lebih besar, perangkat penghisap tekanan air, perangkat pompa air otomatis, Dispenser Air Portabel , perangkat bisa diisi ulang daya.",
+             "productId": 2891,
+             "productName": "Pompa air listrik, untuk minum air ,bentuk lebih besar, perangkat penghisap tekanan air, perangkat pompa air otomatis, Dispenser Air Portabel , perangkat bisa diisi ulang daya. KT012 Hitam",
+             "attrValues": "KT012 Hitam",
+             "productImgUrl": "/get/resource/KT012-black1423114793488879616.jpg",
+             "isAnonymous": "N",
+             "rate": 5,
+             "evaluationComments": "Positive review given by system default",
+             "createdDate": "2021-11-30 01:00:00",
+             "usefulCnt": 0,
+             "isUseful": "N",
+             "userLogo": "/get/resource/218BA32D-2BD6-4E02-B7FE-729FABDBF7C91455344634011193344.jpeg",
+             "evaluationContents": [],
+             "review": null,
+             "reply": {
+                 "replyComments": "1",
+                 "replyDate": "2021-11-30 10:05:35",
+                 "storeName": "NeuKoo",
+                 "storeLogoUrl": "/get/resource/f11460116260238004224.jpg",
+                 "contents": null,
+                 "usefulCnt": 0,
+                 "isUseful": null
+             },
+             "labelNames": []
+         }
+ **/
+
+@end
+
 NS_ASSUME_NONNULL_END

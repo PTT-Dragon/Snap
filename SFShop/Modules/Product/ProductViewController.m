@@ -17,8 +17,9 @@
 #import "CartChooseAddressViewController.h"
 #import "CartViewController.h"
 #import "ProductCalcFeeModel.h"
+#import "ProductEvalationCell.h"
 
-@interface ProductViewController ()
+@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
@@ -35,7 +36,9 @@
 // TODO:暂时写死，后面估计会根据deliveryMode存在映射关系？
 @property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *variationsLabel;
-
+@property (weak, nonatomic) IBOutlet UITableView *evalationTableview;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableviewHie;
+@property(nonatomic, strong) NSMutableArray<ProductEvalationModel *> *evalationArr;
 @property (nonatomic, strong) WKWebView *detailWebView;
 @property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
 @property (nonatomic, assign) BOOL isCheckingSaleInfo;
@@ -53,11 +56,14 @@
     
     self.title = @"Product Detail";
     self.view.backgroundColor = [UIColor whiteColor];
+    _evalationArr = [NSMutableArray array];
+    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
     [self request];
     [self requestSimilar];
     [self setupSubViews];
     [self requestProductRecord];
     [self requestAddressInfo];
+    [self requestEvaluationsList];
     [self addActions];
 }
 
@@ -136,7 +142,18 @@
     }];
 
 }
-
+- (void)requestEvaluationsList
+{
+    //评论列表
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.offer.evaluationList parameters:@{@"offerId":@(_offerId),@"pageIndex":@(1),@"pageSize":@(2)} success:^(id  _Nullable response) {
+        weakself.evalationArr = [ProductEvalationModel arrayOfModelsFromDictionaries:response[@"list"] error:nil];
+        [weakself.evalationTableview reloadData];
+        weakself.tableviewHie.constant = [weakself calucateTableviewHei];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 - (void)requestProductRecord
 {
     //商品浏览记录
@@ -258,6 +275,27 @@
     }];
     return productId;
 }
+
+
+#pragma mark - tableview.delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _evalationArr.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 10;
+}
+- (CGFloat)calucateTableviewHei
+{
+    return 100;
+}
+
 
 #pragma mark - Action
 

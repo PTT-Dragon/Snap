@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, copy) NSString *stock;
 
+@property (nonatomic, readonly, copy) NSString *evaluationList;
+
+
+
 - (NSString *)getDetailOf: (NSInteger)offerId;
 
 

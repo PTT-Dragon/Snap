@@ -192,6 +192,8 @@
 		1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2C9272AFC9600755832 /* FAQDetailViewController.xib */; };
 		1BC7A2CF272B081E00755832 /* UseCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CD272B081E00755832 /* UseCouponViewController.m */; };
 		1BC7A2D0272B081E00755832 /* UseCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */; };
+		1BD10C332761DE4300BFC1AD /* ProductEvalationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */; };
+		1BD10C342761DE4300BFC1AD /* ProductEvalationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */; };
 		1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */; };
 		1BD8E78F275CAF7500130DCC /* ReviewDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */; };
 		1BD8E798275CF69C00130DCC /* RelationOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E795275CF69C00130DCC /* RelationOrderDetailViewController.m */; };
@@ -686,6 +688,9 @@
 		1BC7A2CC272B081E00755832 /* UseCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponViewController.h; sourceTree = "<group>"; };
 		1BC7A2CD272B081E00755832 /* UseCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponViewController.m; sourceTree = "<group>"; };
 		1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponViewController.xib; sourceTree = "<group>"; };
+		1BD10C302761DE4300BFC1AD /* ProductEvalationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductEvalationCell.h; sourceTree = "<group>"; };
+		1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductEvalationCell.m; sourceTree = "<group>"; };
+		1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductEvalationCell.xib; sourceTree = "<group>"; };
 		1BD8E78B275CAF7500130DCC /* ReviewDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewDetailViewController.h; sourceTree = "<group>"; };
 		1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewDetailViewController.m; sourceTree = "<group>"; };
 		1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailViewController.xib; sourceTree = "<group>"; };
@@ -1625,6 +1630,9 @@
 			children = (
 				4B1522CA272D300A00C3BDD9 /* ProductSpecAttrsView.h */,
 				4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */,
+				1BD10C302761DE4300BFC1AD /* ProductEvalationCell.h */,
+				1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */,
+				1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2362,6 +2370,7 @@
 				1B787B4D27293AE900E6A983 /* SimilarProductCell.xib in Resources */,
 				1BD8E7B9275F130F00130DCC /* RefundDetailTitleCell.xib in Resources */,
 				1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */,
+				1BD10C342761DE4300BFC1AD /* ProductEvalationCell.xib in Resources */,
 				1B964759273E494A00345DDA /* IncomeAndExpenseCell.xib in Resources */,
 				1B6C52C7275C88FE00A1C617 /* RelationOrderDetailProductCell.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
@@ -2642,6 +2651,7 @@
 				1B49D13D271D477F002461ED /* userInfoGenderView.m in Sources */,
 				AEA32968272400B000E7827A /* CategoryRankFilterViewController.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
+				1BD10C332761DE4300BFC1AD /* ProductEvalationCell.m in Sources */,
 				1B478320272A9F0300F2A945 /* SetLogOutCell.m in Sources */,
 				1BF56CD42761A5B100B40CAA /* ResetPasswordDoViewController.m in Sources */,
 				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,

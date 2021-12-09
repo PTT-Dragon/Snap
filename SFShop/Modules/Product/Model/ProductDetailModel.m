@@ -47,3 +47,17 @@
 }
 
 @end
+
+@implementation ProductEvalationReplayModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+@end
+
+@implementation ProductEvalationModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+@end
