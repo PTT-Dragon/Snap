@@ -73,3 +73,19 @@
 }
 
 @end
+
+@implementation ProductEvalationLabelsModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+- (float)width
+{
+    return [self.labelName calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter limitSize:CGSizeMake(MAXFLOAT, 62)]+24;
+}
+@end
+
+@implementation ProductEvalationDetailModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end

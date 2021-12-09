@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PublicWebViewController : UIViewController
 @property (nonatomic,copy) NSString *url;
+@property (nonatomic,copy) NSString *sysAccount;
+
 @end
 
 NS_ASSUME_NONNULL_END

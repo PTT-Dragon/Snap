@@ -70,6 +70,9 @@
 		1B49D145271D5C14002461ED /* RecentlyViewedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D143271D5C14002461ED /* RecentlyViewedViewController.m */; };
 		1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49D144271D5C14002461ED /* RecentlyViewedViewController.xib */; };
 		1B49D14A271EAA05002461ED /* addressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D149271EAA03002461ED /* addressModel.m */; };
+		1B6246612761FCAE00009DE2 /* ProductReviewChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6246602761FCAE00009DE2 /* ProductReviewChildViewController.m */; };
+		1B62466527624D9E00009DE2 /* ProductReviewLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B62466327624D9E00009DE2 /* ProductReviewLabelCell.m */; };
+		1B62466627624D9E00009DE2 /* ProductReviewLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B62466427624D9E00009DE2 /* ProductReviewLabelCell.xib */; };
 		1B63D459272D212A0062762B /* CartChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B63D458272D21290062762B /* CartChildViewController.m */; };
 		1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B63D460272D238C0062762B /* CartChooseAddressViewController.m */; };
 		1B63D463272D238C0062762B /* CartChooseAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B63D461272D238C0062762B /* CartChooseAddressViewController.xib */; };
@@ -481,6 +484,11 @@
 		1B49D144271D5C14002461ED /* RecentlyViewedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentlyViewedViewController.xib; sourceTree = "<group>"; };
 		1B49D148271EAA03002461ED /* addressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = addressModel.h; sourceTree = "<group>"; };
 		1B49D149271EAA03002461ED /* addressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = addressModel.m; sourceTree = "<group>"; };
+		1B62465F2761FCAE00009DE2 /* ProductReviewChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewChildViewController.h; sourceTree = "<group>"; };
+		1B6246602761FCAE00009DE2 /* ProductReviewChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductReviewChildViewController.m; sourceTree = "<group>"; };
+		1B62466227624D9E00009DE2 /* ProductReviewLabelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewLabelCell.h; sourceTree = "<group>"; };
+		1B62466327624D9E00009DE2 /* ProductReviewLabelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductReviewLabelCell.m; sourceTree = "<group>"; };
+		1B62466427624D9E00009DE2 /* ProductReviewLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductReviewLabelCell.xib; sourceTree = "<group>"; };
 		1B63D457272D21290062762B /* CartChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChildViewController.h; sourceTree = "<group>"; };
 		1B63D458272D21290062762B /* CartChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChildViewController.m; sourceTree = "<group>"; };
 		1B63D45F272D238C0062762B /* CartChooseAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChooseAddressViewController.h; sourceTree = "<group>"; };
@@ -1503,6 +1511,11 @@
 				1BD10C3A2761F4B100BFC1AD /* ProductReviewViewController.h */,
 				1BD10C3B2761F4B100BFC1AD /* ProductReviewViewController.m */,
 				1BD10C3C2761F4B100BFC1AD /* ProductReviewViewController.xib */,
+				1B62465F2761FCAE00009DE2 /* ProductReviewChildViewController.h */,
+				1B6246602761FCAE00009DE2 /* ProductReviewChildViewController.m */,
+				1B62466227624D9E00009DE2 /* ProductReviewLabelCell.h */,
+				1B62466327624D9E00009DE2 /* ProductReviewLabelCell.m */,
+				1B62466427624D9E00009DE2 /* ProductReviewLabelCell.xib */,
 			);
 			path = ProductReview;
 			sourceTree = "<group>";
@@ -2338,6 +2351,7 @@
 				1BF00F60272FDC090081C8E4 /* DistributorInfoCell.xib in Resources */,
 				1B49D12727194CD9002461ED /* AddAddressViewController.xib in Resources */,
 				1BD8E7D827604FC900130DCC /* AdditionalReviewViewController.xib in Resources */,
+				1B62466627624D9E00009DE2 /* ProductReviewLabelCell.xib in Resources */,
 				1B2AE429272D36F000FB23D3 /* CartTableViewCell.xib in Resources */,
 				1B6C52AB275B672200A1C617 /* ZLPhotoBrowserCell.xib in Resources */,
 				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
@@ -2620,6 +2634,7 @@
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
 				1B6C52A2275B672200A1C617 /* ZLCollectionCell.m in Sources */,
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
+				1B6246612761FCAE00009DE2 /* ProductReviewChildViewController.m in Sources */,
 				1B478308272A7B1000F2A945 /* RefundCell.m in Sources */,
 				1B6C52AC275B672200A1C617 /* ZLShowBigImgViewController.m in Sources */,
 				1BF00F6E272FDC5D0081C8E4 /* DistributorRankCell.m in Sources */,
@@ -2640,6 +2655,7 @@
 				AEA329742724571F00E7827A /* CategoryRankFilterHeader.m in Sources */,
 				1B478325272AA04600F2A945 /* ChangePasswordViewController.m in Sources */,
 				AE81BDD826FB6E7000AB4225 /* AppDelegate.m in Sources */,
+				1B62466527624D9E00009DE2 /* ProductReviewLabelCell.m in Sources */,
 				1B74DB2F27253AF900B30ECC /* OrderPayInfoCell.m in Sources */,
 				1BF00F5F272FDC090081C8E4 /* DistributorInfoCell.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,

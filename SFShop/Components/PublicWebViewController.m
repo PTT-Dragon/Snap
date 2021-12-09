@@ -28,6 +28,17 @@
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+//    NSString * userContent = [NSString stringWithFormat:@"h5Token:%@",model.accessToken];
+    // 设置localStorage
+    NSString *jsString = [NSString stringWithFormat:@"localStorage.setItem('h5Token', '%@')", model.accessToken];
+    // 移除localStorage
+    // NSString *jsString = @"localStorage.removeItem('userContent')";
+    // 获取localStorage
+    // NSString *jsString = @"localStorage.getItem('userContent')";
+    [self.webView evaluateJavaScript:jsString completionHandler:nil];
+//    NSString *jsFounction = [NSString stringWithFormat:@"sysAccount('%@')", _sysAccount];
+//    [self.webView evaluateJavaScript:jsFounction completionHandler:nil];
     [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         NSString *newUserAgent = [result stringByAppendingFormat:@"/%@",@"app/CYLON-APP"];
         [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];

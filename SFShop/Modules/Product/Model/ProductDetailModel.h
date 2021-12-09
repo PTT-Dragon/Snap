@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ProdSpcAttrsModel;
 @protocol ProductItemModel;
 @protocol EvaluatesContentsModel;
+@protocol ProductEvalationLabelsModel;
+
 
 
 @interface ProductCarouselImgModel: JSONModel
@@ -145,6 +147,30 @@ NS_ASSUME_NONNULL_BEGIN
          }
  **/
 
+@end
+
+@interface ProductEvalationLabelsModel : JSONModel
+@property (nonatomic,copy) NSString *labelId;
+@property (nonatomic,copy) NSString *labelName;
+@property (nonatomic,assign) BOOL sel;
+@property (nonatomic,assign) float width;
+@end
+
+@interface ProductEvalationDetailModel : JSONModel
+@property (nonatomic,assign) float oneStarCnt;
+@property (nonatomic,assign) float twoStarCnt;
+@property (nonatomic,assign) float threeStarCnt;
+@property (nonatomic,assign) float fourStarCnt;
+@property (nonatomic,assign) float fiveStarCnt;
+@property (nonatomic,assign) NSInteger positiveEvaluationCnt;
+@property (nonatomic,assign) NSInteger negativeEvaluationCnt;
+@property (nonatomic,assign) NSInteger imgEvaluationCnt;
+@property (nonatomic,assign) NSInteger videoEvaluationCnt;
+@property (nonatomic,assign) NSInteger mediaEvaluationCnt;
+@property (nonatomic,assign) NSInteger evaluationCnt;
+@property (nonatomic,copy) NSString *evaluationAvg;
+@property (nonatomic,copy) NSString *evaluationRate;
+@property (nonatomic,strong) NSArray <ProductEvalationLabelsModel>*evaluationLabels;
 @end
 
 

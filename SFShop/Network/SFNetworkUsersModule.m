@@ -128,6 +128,11 @@
 - (NSString *)detail {
     return K_evaluate_domain(@"detail");
 }
+- (NSString *)getEvaluateOf: (NSString *)evaluateId
+{
+    NSString *url = [NSString stringWithFormat:@"evaluations/%@", evaluateId];
+    return K_offers_domain(url);
+}
 
 
 @end

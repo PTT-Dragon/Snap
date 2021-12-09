@@ -19,6 +19,8 @@
 #import "ProductCalcFeeModel.h"
 #import "ProductEvalationCell.h"
 #import "ProductEvalationTitleCell.h"
+#import "PublicWebViewController.h"
+#import "ProductReviewViewController.h"
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -307,6 +309,12 @@
     ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
     return model.itemHie;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProductReviewViewController *vc = [[ProductReviewViewController alloc] init];
+    vc.evaluationsId = [NSString stringWithFormat:@"%ld",self.model.offerId];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (CGFloat)calucateTableviewHei
 {
     CGFloat hei = 0;
@@ -347,6 +355,12 @@
             [MBProgressHUD autoDismissShowHudMsg: @"Add to cart failed!"];
         }];
     }
+}
+- (IBAction)messageAction:(UIButton *)sender {
+    PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+    vc.url = [NSString stringWithFormat:@"https://smartfrenshop.com/chat?sysAccount=%@",_model.uccAccount];
+    vc.sysAccount = _model.uccAccount;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)buyNow:(UIButton *)sender {
