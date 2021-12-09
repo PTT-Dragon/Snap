@@ -8,6 +8,7 @@
 #import "OrderListBottomCell.h"
 #import "CancelOrderViewController.h"
 #import "PublicWebViewController.h"
+#import "PDFReader.h"
 
 @interface OrderListBottomCell ()
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
@@ -55,16 +56,16 @@
         vc.model = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }else if ([str isEqualToString:@"RECEIPT"]){
-        [SFNetworkManager downloadFile:[SFNet.h5 getReceiptOf:_model.orderId] success:^(id  _Nullable response) {
-            
-        } failed:^(NSError * _Nonnull error) {
-            
+        [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
+            //返回错误和本地地址
         }];
+//
 //        PublicWebViewController *vc = [[PublicWebViewController alloc] init];
 //        vc.url = [SFNet.h5 getReceiptOf:_model.orderId];
 //        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }
 }
+
 //数组转为json字符串
 - (NSString *)arrayToJSONString:(NSArray *)array {
     

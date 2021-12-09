@@ -351,6 +351,7 @@
 		AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329862729A0F700E7827A /* SFSearchItem.m */; };
 		AEA3298A272AEE9500E7827A /* SFSearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA32989272AEE9500E7827A /* SFSearchCollectionCell.m */; };
 		AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3298E272AF2C700E7827A /* SFSearchModel.m */; };
+		AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE3FC912761D8EC00A96E2A /* PDFReader.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
@@ -974,6 +975,8 @@
 		AEA32989272AEE9500E7827A /* SFSearchCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchCollectionCell.m; sourceTree = "<group>"; };
 		AEA3298D272AF2C700E7827A /* SFSearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchModel.h; sourceTree = "<group>"; };
 		AEA3298E272AF2C700E7827A /* SFSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchModel.m; sourceTree = "<group>"; };
+		AEE3FC902761D8EC00A96E2A /* PDFReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFReader.h; sourceTree = "<group>"; };
+		AEE3FC912761D8EC00A96E2A /* PDFReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFReader.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1717,6 +1720,8 @@
 				4BBFEEAF26FCB57A00E3C832 /* UserModel.m */,
 				4B818FE4272435E30058038A /* MakeH5Happy.h */,
 				4B818FE5272435E30058038A /* MakeH5Happy.m */,
+				AEE3FC902761D8EC00A96E2A /* PDFReader.h */,
+				AEE3FC912761D8EC00A96E2A /* PDFReader.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2428,6 +2433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */,
 				1B6C52A3275B672200A1C617 /* ZLVideoPlayerControl.m in Sources */,
 				AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */,
 				1B6C52A7275B672200A1C617 /* ZLDrawItem.m in Sources */,
@@ -2848,7 +2854,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
-				DEVELOPMENT_TEAM = 45TSGW46CH;
+				DEVELOPMENT_TEAM = 3E4LSSERGY;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SFShop/Const/PrefixHeader.pch";
 				INFOPLIST_FILE = SFShop/Info.plist;
