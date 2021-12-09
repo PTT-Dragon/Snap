@@ -194,6 +194,8 @@
 		1BC7A2D0272B081E00755832 /* UseCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */; };
 		1BD10C332761DE4300BFC1AD /* ProductEvalationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */; };
 		1BD10C342761DE4300BFC1AD /* ProductEvalationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */; };
+		1BD10C382761E80100BFC1AD /* ProductEvalationTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD10C362761E80000BFC1AD /* ProductEvalationTitleCell.m */; };
+		1BD10C392761E80100BFC1AD /* ProductEvalationTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD10C372761E80000BFC1AD /* ProductEvalationTitleCell.xib */; };
 		1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */; };
 		1BD8E78F275CAF7500130DCC /* ReviewDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */; };
 		1BD8E798275CF69C00130DCC /* RelationOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E795275CF69C00130DCC /* RelationOrderDetailViewController.m */; };
@@ -691,6 +693,9 @@
 		1BD10C302761DE4300BFC1AD /* ProductEvalationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductEvalationCell.h; sourceTree = "<group>"; };
 		1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductEvalationCell.m; sourceTree = "<group>"; };
 		1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductEvalationCell.xib; sourceTree = "<group>"; };
+		1BD10C352761E80000BFC1AD /* ProductEvalationTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductEvalationTitleCell.h; sourceTree = "<group>"; };
+		1BD10C362761E80000BFC1AD /* ProductEvalationTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductEvalationTitleCell.m; sourceTree = "<group>"; };
+		1BD10C372761E80000BFC1AD /* ProductEvalationTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductEvalationTitleCell.xib; sourceTree = "<group>"; };
 		1BD8E78B275CAF7500130DCC /* ReviewDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewDetailViewController.h; sourceTree = "<group>"; };
 		1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewDetailViewController.m; sourceTree = "<group>"; };
 		1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailViewController.xib; sourceTree = "<group>"; };
@@ -1633,6 +1638,9 @@
 				1BD10C302761DE4300BFC1AD /* ProductEvalationCell.h */,
 				1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */,
 				1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */,
+				1BD10C352761E80000BFC1AD /* ProductEvalationTitleCell.h */,
+				1BD10C362761E80000BFC1AD /* ProductEvalationTitleCell.m */,
+				1BD10C372761E80000BFC1AD /* ProductEvalationTitleCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2375,6 +2383,7 @@
 				1B6C52C7275C88FE00A1C617 /* RelationOrderDetailProductCell.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
 				1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */,
+				1BD10C392761E80100BFC1AD /* ProductEvalationTitleCell.xib in Resources */,
 				1B49D13F271D478C002461ED /* userInfoGenderView.xib in Resources */,
 				1B74DB4A2728EF7300B30ECC /* SimilarViewController.xib in Resources */,
 				1BD8E7C8275F532100130DCC /* RefundDetailImagesCell.xib in Resources */,
@@ -2582,6 +2591,7 @@
 				1BF56CD02761001000B40CAA /* CountDown.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
+				1BD10C382761E80100BFC1AD /* ProductEvalationTitleCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
 				1BD8E7B3275DFDAD00130DCC /* ReviewAddNewPhotoCell.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,

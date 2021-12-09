@@ -18,6 +18,7 @@
 #import "CartViewController.h"
 #import "ProductCalcFeeModel.h"
 #import "ProductEvalationCell.h"
+#import "ProductEvalationTitleCell.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -58,6 +59,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     _evalationArr = [NSMutableArray array];
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
+    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
+    
     [self request];
     [self requestSimilar];
     [self setupSubViews];
@@ -280,20 +283,26 @@
 #pragma mark - tableview.delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _evalationArr.count;
+    return _evalationArr.count+1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        ProductEvalationTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationTitleCell"];
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@(%@)",@"1",@"2"];
+        return cell;
+    }
     ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
+    cell.model = self.evalationArr[indexPath.row-1];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 10;
+    return indexPath.row == 0 ? 50: 100;
 }
 - (CGFloat)calucateTableviewHei
 {
-    return 100;
+    return 200;
 }
 
 
