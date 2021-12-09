@@ -10,6 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ResetPasswordDoViewController : BaseViewController
+@property (nonatomic,copy) NSString *account;
+@property (nonatomic,copy) NSString *code;
 
 @end
 

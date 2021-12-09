@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *phoneModify;
 @property (nonatomic, readwrite, strong) NSString *logout;
 @property (nonatomic, readwrite, strong) NSString *userInfo;
+@property (nonatomic, readwrite, strong) NSString *resetPwd;
+
 
 
 @end

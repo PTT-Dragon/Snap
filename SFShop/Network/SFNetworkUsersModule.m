@@ -42,6 +42,10 @@
 - (NSString *)logout {
     return K_users_domain(@"logout");
 }
+- (NSString *)resetPwd
+{
+    return K_users_domain(@"pwd/reset");
+}
 
 @end
 

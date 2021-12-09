@@ -32,6 +32,7 @@
             //已注册
             verifyCodeVC *vc = [[verifyCodeVC alloc] init];
             vc.account = weakself.field.text;
+            vc.type = Forget_Code;
             [weakself.navigationController pushViewController:vc animated:YES];
         }
     } failed:^(NSError * _Nonnull error) {

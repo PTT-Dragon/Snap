@@ -9,6 +9,7 @@
 #import "HWTFCodeBView.h"
 #import "AES128Util.h"
 #import "CountDown.h"
+#import "ResetPasswordDoViewController.h"
 
 @interface verifyCodeVC ()<HWTFCodeBViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
@@ -58,7 +59,7 @@
         }else if (weakself.type == SignUp_Code){
             [weakself signUp];
         }else if (weakself.type == Forget_Code){
-            
+            [weakself forgetPassword];
         }
     } failed:^(NSError * _Nonnull error) {
         
@@ -98,7 +99,10 @@
 }
 - (void)forgetPassword
 {
-    
+    ResetPasswordDoViewController *vc = [[ResetPasswordDoViewController alloc] init];
+    vc.code = _codeView.code;
+    vc.account = _account;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)recendAction:(UIButton *)sender {
     [self getCode];
