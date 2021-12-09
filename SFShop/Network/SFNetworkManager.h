@@ -31,8 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)post:(NSString *)url parametersArr:(nullable NSArray *)parametersArr success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed;
 //上传图片
 + (void)postImage:(NSString *)url image:(nullable UIImage *)image success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed;
-//下载文件
-+ (void)downloadFile:(NSString *)url success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed;
+//下载PDF
++ (void)downloadPDF:(NSString *)url success:(void(^)(NSURL *fileURL))success failed:(void(^)(NSError *error))failed;
 @end
 
 NS_ASSUME_NONNULL_END
