@@ -20,6 +20,7 @@
 #import "ProductEvalationCell.h"
 #import "ProductEvalationTitleCell.h"
 
+
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
@@ -46,6 +47,7 @@
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 @property (nonatomic,strong) addressModel *selectedAddressModel;
+@property (nonatomic,copy) NSNumber *allEvaCount;//评价总数
 
 @end
 
@@ -151,6 +153,7 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.offer.evaluationList parameters:@{@"offerId":@(_offerId),@"pageIndex":@(1),@"pageSize":@(2)} success:^(id  _Nullable response) {
         weakself.evalationArr = [ProductEvalationModel arrayOfModelsFromDictionaries:response[@"list"] error:nil];
+        weakself.allEvaCount = response[@"total"];
         [weakself.evalationTableview reloadData];
         weakself.tableviewHie.constant = [weakself calucateTableviewHei];
     } failed:^(NSError * _Nonnull error) {
@@ -289,7 +292,7 @@
 {
     if (indexPath.row == 0) {
         ProductEvalationTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationTitleCell"];
-        cell.contentLabel.text = [NSString stringWithFormat:@"%@(%@)",@"1",@"2"];
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@(%@)",@"5",_allEvaCount];
         return cell;
     }
     ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
@@ -298,11 +301,19 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? 50: 100;
+    if (indexPath.row == 0) {
+        return 50;
+    }
+    ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
+    return model.itemHie;
 }
 - (CGFloat)calucateTableviewHei
 {
-    return 200;
+    CGFloat hei = 0;
+    for (ProductEvalationModel *itemModel in self.evalationArr) {
+        hei += itemModel.itemHie;
+    }
+    return hei+50;
 }
 
 

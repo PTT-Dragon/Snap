@@ -7,6 +7,7 @@
 
 #import "JSONModel.h"
 #import "CartModel.h"
+#import "OrderModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ProductAttrValueModel;
 @protocol ProdSpcAttrsModel;
 @protocol ProductItemModel;
+@protocol EvaluatesContentsModel;
+
 
 @interface ProductCarouselImgModel: JSONModel
 
@@ -108,6 +111,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString *createdDate;
 @property(nonatomic, strong) NSString *userLogo;
 @property(nonatomic, strong) ProductEvalationReplayModel *reply;
+@property(nonatomic,assign) CGFloat itemHie;
+@property (nonatomic,strong) NSArray <EvaluatesContentsModel>*evaluationContents;
 /**
  "offerEvaluationId": 54005,
              "userId": 1224,
@@ -141,5 +146,6 @@ NS_ASSUME_NONNULL_BEGIN
  **/
 
 @end
+
 
 NS_ASSUME_NONNULL_END

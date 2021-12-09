@@ -105,6 +105,7 @@
             <connections>
                 <outlet property="bgView" destination="gnU-QT-7Jc" id="oDS-p9-LLC"/>
                 <outlet property="collectionView" destination="Hwy-Ad-FAS" id="oHY-pd-r9h"/>
+                <outlet property="collectionViewHei" destination="LLz-AH-ZhE" id="NO5-vZ-adt"/>
                 <outlet property="contentLabel" destination="tpe-8q-hoh" id="ZfH-a5-xok"/>
                 <outlet property="imgView" destination="zc8-hg-QAr" id="BJw-JQ-f5q"/>
                 <outlet property="nameLabel" destination="YXO-in-Vyq" id="3Ev-rp-R5y"/>
