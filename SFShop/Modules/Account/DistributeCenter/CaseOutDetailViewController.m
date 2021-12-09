@@ -36,7 +36,7 @@
         _chargeBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
     }
 }
-- (IBAction)chargeAction:(UIButton *)sender {
+- (IBAction)chargeAction:(UIButton *)sender {    
     verifyCodeVC *vc = [[verifyCodeVC alloc] init];
     vc.type = CashOut_Code;
     [self.navigationController pushViewController:vc animated:YES];

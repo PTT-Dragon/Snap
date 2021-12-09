@@ -45,6 +45,8 @@
             //未注册
             verifyCodeVC *vc = [[verifyCodeVC alloc] init];
             vc.account = weakself.PhoneField.text;
+            vc.type = SignUp_Code;
+            vc.password = weakself.passwordField.text;
             [weakself.navigationController pushViewController:vc animated:YES];
         }
     } failed:^(NSError * _Nonnull error) {

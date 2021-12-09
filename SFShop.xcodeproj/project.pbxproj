@@ -265,6 +265,8 @@
 		1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */; };
 		1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */; };
 		1BF56CD02761001000B40CAA /* CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF56CCF2761001000B40CAA /* CountDown.m */; };
+		1BF56CD42761A5B100B40CAA /* ResetPasswordDoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF56CD22761A5B100B40CAA /* ResetPasswordDoViewController.m */; };
+		1BF56CD52761A5B100B40CAA /* ResetPasswordDoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF56CD32761A5B100B40CAA /* ResetPasswordDoViewController.xib */; };
 		4B1522CC272D300A00C3BDD9 /* ProductSpecAttrsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */; };
 		4B1522D5272D432700C3BDD9 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522D4272D432700C3BDD9 /* BaseViewController.m */; };
 		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
@@ -801,6 +803,9 @@
 		1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommissionViewController.xib; sourceTree = "<group>"; };
 		1BF56CCE2761000F00B40CAA /* CountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountDown.h; sourceTree = "<group>"; };
 		1BF56CCF2761001000B40CAA /* CountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountDown.m; sourceTree = "<group>"; };
+		1BF56CD12761A5B100B40CAA /* ResetPasswordDoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetPasswordDoViewController.h; sourceTree = "<group>"; };
+		1BF56CD22761A5B100B40CAA /* ResetPasswordDoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordDoViewController.m; sourceTree = "<group>"; };
+		1BF56CD32761A5B100B40CAA /* ResetPasswordDoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordDoViewController.xib; sourceTree = "<group>"; };
 		4B1522CA272D300A00C3BDD9 /* ProductSpecAttrsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductSpecAttrsView.h; sourceTree = "<group>"; };
 		4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductSpecAttrsView.m; sourceTree = "<group>"; };
 		4B1522D3272D432700C3BDD9 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -1509,6 +1514,9 @@
 				1BDBEBA726FDB8690018109B /* resetPasswordViewController.h */,
 				1BDBEBA826FDB8690018109B /* resetPasswordViewController.m */,
 				1BDBEBA926FDB8690018109B /* resetPasswordViewController.xib */,
+				1BF56CD12761A5B100B40CAA /* ResetPasswordDoViewController.h */,
+				1BF56CD22761A5B100B40CAA /* ResetPasswordDoViewController.m */,
+				1BF56CD32761A5B100B40CAA /* ResetPasswordDoViewController.xib */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -2361,6 +2369,7 @@
 				1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */,
 				AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */,
 				1B6C52AA275B672200A1C617 /* ZLPhotoActionSheet.xib in Resources */,
+				1BF56CD52761A5B100B40CAA /* ResetPasswordDoViewController.xib in Resources */,
 				1B74DB162724466100B30ECC /* OrderListBottomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2626,6 +2635,7 @@
 				AEA32968272400B000E7827A /* CategoryRankFilterViewController.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
 				1B478320272A9F0300F2A945 /* SetLogOutCell.m in Sources */,
+				1BF56CD42761A5B100B40CAA /* ResetPasswordDoViewController.m in Sources */,
 				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,
 				1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */,
 				1B6C52AE275B672200A1C617 /* ZLPhotoActionSheet.m in Sources */,

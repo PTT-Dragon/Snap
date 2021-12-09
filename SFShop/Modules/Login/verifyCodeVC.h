@@ -12,6 +12,8 @@ typedef enum : NSUInteger {
     CashOut_Code = 1,
     ChangeMobileNumber_Code = 2,
     ChangeEmail_Code = 3,
+    SignUp_Code = 4,
+    Forget_Code = 5,
     
 } LoginType;
 
@@ -20,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface verifyCodeVC : UIViewController
 @property (nonatomic,strong) NSDictionary *cashOutInfoDic;//提现资料
 @property (nonatomic,copy) NSString *account;
+@property (nonatomic,copy) NSString *password;
 @property (nonatomic,assign) LoginType type;
 @end
 

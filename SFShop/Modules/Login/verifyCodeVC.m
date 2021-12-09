@@ -24,6 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _codeView.delegate = self;
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    self.contentLabel.text = [NSString stringWithFormat:@"Your code was sent to %@",_account ? _account: model.userRes.mobilePhone];
     [self getCode];
 }
 - (void)getCode
@@ -53,11 +55,14 @@
         }else if (weakself.type == CashOut_Code){
             //提现
             [weakself cashOutAction];
+        }else if (weakself.type == SignUp_Code){
+            [weakself signUp];
+        }else if (weakself.type == Forget_Code){
+            
         }
     } failed:^(NSError * _Nonnull error) {
         
     }];
-    
 }
 - (void)login
 {
@@ -73,9 +78,6 @@
         
     }];
 }
-- (IBAction)recendAction:(UIButton *)sender {
-    [self getCode];
-}
 - (void)cashOutAction
 {
     [SFNetworkManager post:SFNet.distributor.createCashOut parameters:@{} success:^(id  _Nullable response) {
@@ -83,6 +85,23 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
+}
+- (void)signUp
+{
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.account.userInfo parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_password),@"code":_codeView.code,@"captcha":@""} success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:@"Sign Up Success!"];
+        [weakself.navigationController popToRootViewControllerAnimated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)forgetPassword
+{
+    
+}
+- (IBAction)recendAction:(UIButton *)sender {
+    [self getCode];
 }
 
 
