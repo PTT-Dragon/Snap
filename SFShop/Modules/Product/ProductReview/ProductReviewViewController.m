@@ -145,8 +145,9 @@
         }
     }
     [_collectionView reloadData];
-    ProductReviewChildViewController *vc = self.magicController.viewControllers[_currentMenuIndex];
-    [vc.tableView.mj_header beginRefreshing];
+    for (ProductReviewChildViewController *subVc in self.magicController.viewControllers) {
+        [subVc.tableView.mj_header beginRefreshing];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
