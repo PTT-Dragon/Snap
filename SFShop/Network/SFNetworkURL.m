@@ -61,9 +61,10 @@ static SFNetworkURL *_instance = nil;
     
     for (int i = 0; i < names.count; i ++) {
         NSString *name = names[i];
+        if (!name || !name.length) {continue;}
         NSString *type = classTypes[i];
         Class cls = NSClassFromString(type);
-        SEL sel = NSSelectorFromString([NSString stringWithFormat:@"set%@:",name.capitalizedString]);
+        SEL sel = NSSelectorFromString([NSString stringWithFormat:@"set%@:",[[name substringToIndex:1].capitalizedString stringByAppendingString:[name substringFromIndex:1]]]);
         if ([self respondsToSelector:sel]) {
             [self performSelector:sel withObject:[cls new]];
         }
