@@ -1,0 +1,38 @@
+//
+//  MessageModel.h
+//  SFShop
+//
+//  Created by 游挺 on 2021/12/10.
+//
+
+#import <JSONModel/JSONModel.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@protocol MessageUnreadModel;
+
+@interface MessageUnreadModel : JSONModel
+@property (nonatomic,copy) NSString *socialCode;
+@property (nonatomic,copy) NSString *flowNo;
+@property (nonatomic,copy) NSString *message;
+@property (nonatomic,copy) NSString *createDate;
+@property (nonatomic,copy) NSString *contentType;
+@property (nonatomic,assign) NSInteger unreadNum;
+@property (nonatomic,copy) NSString *storeId;
+@property (nonatomic,copy) NSString *storeName;
+@property (nonatomic,copy) NSString *storeLogoUrl;
+@end
+
+@interface MessageContactModel : JSONModel
+@property (nonatomic,assign) NSInteger unreadNum;
+@property (nonatomic,copy) NSString *sendTime;
+@property (nonatomic,copy) NSString *content;
+@end
+@interface MessageModel : JSONModel
+@property (nonatomic,strong) NSArray <MessageUnreadModel>*unreadMessages;
+@property (nonatomic,strong) MessageContactModel *contactMessage;
+@end
+
+
+
+NS_ASSUME_NONNULL_END

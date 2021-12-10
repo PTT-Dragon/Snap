@@ -46,6 +46,11 @@
 {
     return K_users_domain(@"pwd/reset");
 }
+- (NSString *)messageList
+{
+    return K_users_domain(@"inbox/stat");
+}
+
 
 @end
 

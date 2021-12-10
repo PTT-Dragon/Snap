@@ -77,6 +77,9 @@
 		1B62466C2762608000009DE2 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B62466A2762608000009DE2 /* MessageViewController.xib */; };
 		1B6246702762613B00009DE2 /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B62466E2762613B00009DE2 /* MessageListCell.m */; };
 		1B6246712762613B00009DE2 /* MessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B62466F2762613B00009DE2 /* MessageListCell.xib */; };
+		1B6246742762E8F500009DE2 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6246732762E8F500009DE2 /* MessageModel.m */; };
+		1B6246772762F0FD00009DE2 /* MessageOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6246762762F0FD00009DE2 /* MessageOrderListViewController.m */; };
+		1B62467C2762F13C00009DE2 /* MessageListOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B62467B2762F13C00009DE2 /* MessageListOrderCell.m */; };
 		1B63D459272D212A0062762B /* CartChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B63D458272D21290062762B /* CartChildViewController.m */; };
 		1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B63D460272D238C0062762B /* CartChooseAddressViewController.m */; };
 		1B63D463272D238C0062762B /* CartChooseAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B63D461272D238C0062762B /* CartChooseAddressViewController.xib */; };
@@ -499,6 +502,12 @@
 		1B62466D2762613B00009DE2 /* MessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListCell.h; sourceTree = "<group>"; };
 		1B62466E2762613B00009DE2 /* MessageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListCell.m; sourceTree = "<group>"; };
 		1B62466F2762613B00009DE2 /* MessageListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageListCell.xib; sourceTree = "<group>"; };
+		1B6246722762E8F500009DE2 /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		1B6246732762E8F500009DE2 /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		1B6246752762F0FD00009DE2 /* MessageOrderListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageOrderListViewController.h; sourceTree = "<group>"; };
+		1B6246762762F0FD00009DE2 /* MessageOrderListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageOrderListViewController.m; sourceTree = "<group>"; };
+		1B62467A2762F13C00009DE2 /* MessageListOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListOrderCell.h; sourceTree = "<group>"; };
+		1B62467B2762F13C00009DE2 /* MessageListOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListOrderCell.m; sourceTree = "<group>"; };
 		1B63D457272D21290062762B /* CartChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChildViewController.h; sourceTree = "<group>"; };
 		1B63D458272D21290062762B /* CartChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChildViewController.m; sourceTree = "<group>"; };
 		1B63D45F272D238C0062762B /* CartChooseAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChooseAddressViewController.h; sourceTree = "<group>"; };
@@ -1215,14 +1224,36 @@
 		1B6246672762606B00009DE2 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				1B6246792762F10B00009DE2 /* View */,
+				1B6246782762F10400009DE2 /* Model */,
 				1B6246682762608000009DE2 /* MessageViewController.h */,
 				1B6246692762608000009DE2 /* MessageViewController.m */,
 				1B62466A2762608000009DE2 /* MessageViewController.xib */,
+				1B6246752762F0FD00009DE2 /* MessageOrderListViewController.h */,
+				1B6246762762F0FD00009DE2 /* MessageOrderListViewController.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		1B6246782762F10400009DE2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B6246722762E8F500009DE2 /* MessageModel.h */,
+				1B6246732762E8F500009DE2 /* MessageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B6246792762F10B00009DE2 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				1B62466D2762613B00009DE2 /* MessageListCell.h */,
 				1B62466E2762613B00009DE2 /* MessageListCell.m */,
 				1B62466F2762613B00009DE2 /* MessageListCell.xib */,
+				1B62467A2762F13C00009DE2 /* MessageListOrderCell.h */,
+				1B62467B2762F13C00009DE2 /* MessageListOrderCell.m */,
 			);
-			path = Message;
+			path = View;
 			sourceTree = "<group>";
 		};
 		1B6C52362758619600A1C617 /* WebViewJavascriptBridge */ = {
@@ -2612,6 +2643,7 @@
 				1B74DB2A27253AD600B30ECC /* DeliveryAddressCell.m in Sources */,
 				1B49D145271D5C14002461ED /* RecentlyViewedViewController.m in Sources */,
 				1BDBEBC52700B85A0018109B /* MyCouponViewController.m in Sources */,
+				1B6246742762E8F500009DE2 /* MessageModel.m in Sources */,
 				1BC7A2CA272AFC9600755832 /* FAQDetailViewController.m in Sources */,
 				1B6C523F2758619600A1C617 /* WebViewJavascriptBridge_JS.m in Sources */,
 				AE5C9A69275B5C7C00F34481 /* SFSearchingView.m in Sources */,
@@ -2642,6 +2674,7 @@
 				1B478304272A785200F2A945 /* RefundViewController.m in Sources */,
 				1BD10C3D2761F4B100BFC1AD /* ProductReviewViewController.m in Sources */,
 				1BD8E7DC27605D0400130DCC /* ReviewSuccessViewController.m in Sources */,
+				1B62467C2762F13C00009DE2 /* MessageListOrderCell.m in Sources */,
 				1B6C5299275B672200A1C617 /* ZLPullDownInteractiveTransition.m in Sources */,
 				1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */,
 				1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */,
@@ -2671,6 +2704,7 @@
 				1B6C5298275B672200A1C617 /* ZLInteractiveTrasition.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,
+				1B6246772762F0FD00009DE2 /* MessageOrderListViewController.m in Sources */,
 				1B74DB0C2724420A00B30ECC /* OrderChildViewController.m in Sources */,
 				1B74DB022722B68100B30ECC /* InviteModel.m in Sources */,
 				1B787B5B272A34FE00E6A983 /* SetTopCell.m in Sources */,
