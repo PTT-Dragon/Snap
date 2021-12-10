@@ -195,6 +195,14 @@
 		1B96475F273E4CF400345DDA /* RelationOrderChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B96475E273E4CF400345DDA /* RelationOrderChildViewController.m */; };
 		1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B964761273E4F2F00345DDA /* RelationOrderCell.m */; };
 		1B964764273E4F2F00345DDA /* RelationOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B964762273E4F2F00345DDA /* RelationOrderCell.xib */; };
+		1BB1CB5F2763415C008D71DF /* FlashSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */; };
+		1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */; };
+		1BB1CB63276341B6008D71DF /* SFNetworkFlashSaleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB62276341B6008D71DF /* SFNetworkFlashSaleModule.m */; };
+		1BB1CB6927634477008D71DF /* FlashSaleChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6727634477008D71DF /* FlashSaleChildViewController.m */; };
+		1BB1CB6A27634477008D71DF /* FlashSaleChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6827634477008D71DF /* FlashSaleChildViewController.xib */; };
+		1BB1CB6D276344DF008D71DF /* FlashSaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6C276344DF008D71DF /* FlashSaleModel.m */; };
+		1BB1CB7127634DF6008D71DF /* FlashSaleProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */; };
+		1BB1CB7227634DF6008D71DF /* FlashSaleProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */; };
 		1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2B9272AF1E400755832 /* FAQViewController.m */; };
 		1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BA272AF1E400755832 /* FAQViewController.xib */; };
 		1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BE272AF27C00755832 /* FAQChildViewController.m */; };
@@ -710,6 +718,19 @@
 		1B964760273E4F2F00345DDA /* RelationOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RelationOrderCell.h; sourceTree = "<group>"; };
 		1B964761273E4F2F00345DDA /* RelationOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RelationOrderCell.m; sourceTree = "<group>"; };
 		1B964762273E4F2F00345DDA /* RelationOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelationOrderCell.xib; sourceTree = "<group>"; };
+		1BB1CB5C2763415C008D71DF /* FlashSaleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleViewController.h; sourceTree = "<group>"; };
+		1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleViewController.m; sourceTree = "<group>"; };
+		1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleViewController.xib; sourceTree = "<group>"; };
+		1BB1CB61276341B5008D71DF /* SFNetworkFlashSaleModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFNetworkFlashSaleModule.h; sourceTree = "<group>"; };
+		1BB1CB62276341B6008D71DF /* SFNetworkFlashSaleModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFNetworkFlashSaleModule.m; sourceTree = "<group>"; };
+		1BB1CB6627634477008D71DF /* FlashSaleChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleChildViewController.h; sourceTree = "<group>"; };
+		1BB1CB6727634477008D71DF /* FlashSaleChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleChildViewController.m; sourceTree = "<group>"; };
+		1BB1CB6827634477008D71DF /* FlashSaleChildViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleChildViewController.xib; sourceTree = "<group>"; };
+		1BB1CB6B276344DF008D71DF /* FlashSaleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleModel.h; sourceTree = "<group>"; };
+		1BB1CB6C276344DF008D71DF /* FlashSaleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleModel.m; sourceTree = "<group>"; };
+		1BB1CB6E27634DF6008D71DF /* FlashSaleProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleProductCell.h; sourceTree = "<group>"; };
+		1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleProductCell.m; sourceTree = "<group>"; };
+		1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleProductCell.xib; sourceTree = "<group>"; };
 		1BC7A2B8272AF1E400755832 /* FAQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
 		1BC7A2B9272AF1E400755832 /* FAQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
 		1BC7A2BA272AF1E400755832 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
@@ -1567,6 +1588,40 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1BB1CB5B276340FE008D71DF /* FlashSale */ = {
+			isa = PBXGroup;
+			children = (
+				1BB1CB65276342EF008D71DF /* View */,
+				1BB1CB64276342EA008D71DF /* Model */,
+				1BB1CB5C2763415C008D71DF /* FlashSaleViewController.h */,
+				1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */,
+				1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */,
+				1BB1CB6627634477008D71DF /* FlashSaleChildViewController.h */,
+				1BB1CB6727634477008D71DF /* FlashSaleChildViewController.m */,
+				1BB1CB6827634477008D71DF /* FlashSaleChildViewController.xib */,
+			);
+			path = FlashSale;
+			sourceTree = "<group>";
+		};
+		1BB1CB64276342EA008D71DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1BB1CB6B276344DF008D71DF /* FlashSaleModel.h */,
+				1BB1CB6C276344DF008D71DF /* FlashSaleModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1BB1CB65276342EF008D71DF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1BB1CB6E27634DF6008D71DF /* FlashSaleProductCell.h */,
+				1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */,
+				1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1BD10C2F2761D4C100BFC1AD /* ProductReview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1819,6 +1874,8 @@
 				1BF00F58272FD4090081C8E4 /* SFNetworkDistributorModule.m */,
 				1BD8E7D1275FC0CA00130DCC /* SFNetworkGroupBuyModule.h */,
 				1BD8E7D2275FC0CA00130DCC /* SFNetworkGroupBuyModule.m */,
+				1BB1CB61276341B5008D71DF /* SFNetworkFlashSaleModule.h */,
+				1BB1CB62276341B6008D71DF /* SFNetworkFlashSaleModule.m */,
 				AE81BE1F26FCB2E900AB4225 /* SFNetworkMacro.h */,
 			);
 			path = Network;
@@ -2074,6 +2131,7 @@
 		AE81BE2326FE0D5B00AB4225 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				1BB1CB5B276340FE008D71DF /* FlashSale */,
 				AE81BE6927020F3300AB4225 /* Rank */,
 				AE81BE4A26FF621000AB4225 /* View */,
 				AE81BE4626FF619500AB4225 /* Model */,
@@ -2403,6 +2461,7 @@
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */,
 				1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */,
+				1BB1CB7227634DF6008D71DF /* FlashSaleProductCell.xib in Resources */,
 				1B74DB2627253A3500B30ECC /* DeliveryInformationCell.xib in Resources */,
 				1B2AE435272E3FD200FB23D3 /* CancelOrderViewController.xib in Resources */,
 				4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */,
@@ -2434,6 +2493,7 @@
 				4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */,
 				1BD8E7BE275F377800130DCC /* RefundDetailMethodCell.xib in Resources */,
 				1B478309272A7B1000F2A945 /* RefundCell.xib in Resources */,
+				1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */,
 				1B74DAFA2722A85600B30ECC /* InviteCell.xib in Resources */,
 				1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */,
 				1B74DAEE27225EF000B30ECC /* ReviewCell.xib in Resources */,
@@ -2468,6 +2528,7 @@
 				1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */,
 				1BD8E799275CF69C00130DCC /* RelationOrderDetailViewController.xib in Resources */,
 				1B478311272A8CA900F2A945 /* RefundDetailViewController.xib in Resources */,
+				1BB1CB6A27634477008D71DF /* FlashSaleChildViewController.xib in Resources */,
 				1B787B4D27293AE900E6A983 /* SimilarProductCell.xib in Resources */,
 				1BD8E7B9275F130F00130DCC /* RefundDetailTitleCell.xib in Resources */,
 				1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */,
@@ -2590,6 +2651,7 @@
 				AE81BE592702001700AB4225 /* MBProgressHUD+Prompt.m in Sources */,
 				1B92D15A2733CA9B00E73F98 /* a.m in Sources */,
 				1B74DAF92722A85600B30ECC /* InviteCell.m in Sources */,
+				1BB1CB6927634477008D71DF /* FlashSaleChildViewController.m in Sources */,
 				AE8F32CA272E962B008E3DD8 /* ProductCheckoutDeliveryCell.m in Sources */,
 				1B92D1542732815C00E73F98 /* AreaCell.m in Sources */,
 				1B6C529D275B672200A1C617 /* ZLCustomCamera.m in Sources */,
@@ -2719,7 +2781,9 @@
 				1B74DB022722B68100B30ECC /* InviteModel.m in Sources */,
 				1B787B5B272A34FE00E6A983 /* SetTopCell.m in Sources */,
 				1BC7A2CF272B081E00755832 /* UseCouponViewController.m in Sources */,
+				1BB1CB6D276344DF008D71DF /* FlashSaleModel.m in Sources */,
 				1B74DAED27225EF000B30ECC /* ReviewCell.m in Sources */,
+				1BB1CB7127634DF6008D71DF /* FlashSaleProductCell.m in Sources */,
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				1BC7A2C5272AF50500755832 /* FAQListModel.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
@@ -2777,6 +2841,7 @@
 				AE8F32C7272E95FA008E3DD8 /* ProductCheckoutGoodsCell.m in Sources */,
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
 				1B6C52A8275B672200A1C617 /* ZLClipItem.m in Sources */,
+				1BB1CB63276341B6008D71DF /* SFNetworkFlashSaleModule.m in Sources */,
 				AE80F26E2732EB9100A2D8DE /* ProductCheckoutBuyView.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
 				1B47832F272AA1FF00F2A945 /* SecurityCenterViewController.m in Sources */,
@@ -2795,6 +2860,7 @@
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
 				1B6C52A0275B672200A1C617 /* ToastUtils.m in Sources */,
 				1BF00F69272FDC4B0081C8E4 /* DistribitorRankTopCell.m in Sources */,
+				1BB1CB5F2763415C008D71DF /* FlashSaleViewController.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
 				1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */,
 				1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */,

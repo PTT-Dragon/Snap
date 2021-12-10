@@ -38,6 +38,7 @@
 #define K_h5_domain(url) [NSString stringWithFormat:@"%@h5/%@",Host,url]
 #define K_pay_domain(url) [NSString stringWithFormat:@"%@/h5/pay/%@",Host,url]
 #define K_groupBuy_domain(url) [NSString stringWithFormat:@"%@/h5/sharebuy/%@",Host,url]
+#define K_flashSale_domain(url) [NSString stringWithFormat:@"%@/h5/flsale/%@",Host,url]
 
 
 //*********************************************接口模块👆*********************************************//

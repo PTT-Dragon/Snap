@@ -25,4 +25,11 @@
     _label.layer.borderColor = model.sel ? RGBColorFrom16(0xFF1659).CGColor: RGBColorFrom16(0xC4C4C4).CGColor;
     _label.textColor = model.sel ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0xC4C4C4);
 }
+- (void)setCtgModel:(FlashSaleCtgModel *)ctgModel
+{
+    _ctgModel = ctgModel;
+    _label.text = ctgModel.catalogName;
+    _label.layer.borderColor = ctgModel.sel ? RGBColorFrom16(0xFF1659).CGColor: RGBColorFrom16(0xC4C4C4).CGColor;
+    _label.textColor = ctgModel.sel ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0xC4C4C4);
+}
 @end

@@ -7,11 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductDetailModel.h"
+#import "FlashSaleModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductReviewLabelCell : UICollectionViewCell
 @property (nonatomic,strong) ProductEvalationLabelsModel *model;
+@property (nonatomic,strong) FlashSaleCtgModel *ctgModel;
 @end
 
 NS_ASSUME_NONNULL_END

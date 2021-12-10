@@ -12,6 +12,7 @@
 #import "SFNetworkOffersModule.h"
 #import "SFNetworkDistributorModule.h"
 #import "SFNetworkGroupBuyModule.h"
+#import "SFNetworkFlashSaleModule.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -68,6 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 分销模块
 @property (nonatomic, readwrite, strong) SFNetworkDistributorModule *distributor;
+
+/// 限时抢购模块
+@property (nonatomic, readwrite, strong) SFNetworkFlashSaleModule *flashSale;
 
 
 

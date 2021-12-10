@@ -10,6 +10,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "WKWebViewJavascriptBridge.h"
 #import "CouponCenterViewController.h"
+#import "FlashSaleViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -105,6 +106,11 @@
         return;
     }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/search-page"]){
         
+    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/spike"]){
+        FlashSaleViewController *vc = [[FlashSaleViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     decisionHandler(WKNavigationActionPolicyAllow);
 }
