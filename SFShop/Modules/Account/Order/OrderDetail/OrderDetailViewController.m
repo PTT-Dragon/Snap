@@ -109,7 +109,7 @@
 //团购数据
 - (void)loadGroupDatas
 {
-    [SFNetworkManager get:[SFNet.shareBuy getAShareBuyGroupNbr:_model.shareBuyOrderNbr] parameters:@{} success:^(id  _Nullable response) {
+    [SFNetworkManager get:[SFNet.groupbuy getGroupBuyGroupNbr:_model.shareBuyOrderNbr] parameters:@{} success:^(id  _Nullable response) {
         
     } failed:^(NSError * _Nonnull error) {
         

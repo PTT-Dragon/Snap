@@ -27,10 +27,35 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSInteger unreadNum;
 @property (nonatomic,copy) NSString *sendTime;
 @property (nonatomic,copy) NSString *content;
+@property (nonatomic,copy) NSString *state;
+@property (nonatomic,copy) NSString *subject;
+
 @end
 @interface MessageModel : JSONModel
 @property (nonatomic,strong) NSArray <MessageUnreadModel>*unreadMessages;
 @property (nonatomic,strong) MessageContactModel *contactMessage;
+@end
+
+@interface MessageStoreModel : JSONModel
+@property (nonatomic,copy) NSString *storeId;
+@property (nonatomic,copy) NSString *storeName;
+@property (nonatomic,copy) NSString *logoUrl;
+@end
+@interface MessageProductModel : JSONModel
+@property (nonatomic,copy) NSString *productId;
+@property (nonatomic,copy) NSString *productName;
+@property (nonatomic,copy) NSString *imgUrl;
+@property (nonatomic,copy) NSString *productNum;
+@end
+
+@interface MessageOrderListModel : JSONModel
+@property (nonatomic,assign) NSInteger relaType;
+@property (nonatomic,copy) NSString *relaObjId;
+@property (nonatomic,copy) NSString *content;
+@property (nonatomic,strong) MessageContactModel *message;
+@property (nonatomic,strong) MessageProductModel *product;
+@property (nonatomic,strong) MessageStoreModel *store;
+
 @end
 
 

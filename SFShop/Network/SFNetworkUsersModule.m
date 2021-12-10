@@ -51,6 +51,11 @@
     return K_users_domain(@"inbox/stat");
 }
 
+- (NSString *)message
+{
+    return K_users_domain(@"inbox/message");
+}
+
 
 @end
 

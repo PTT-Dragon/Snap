@@ -9,9 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SFNetworkShareBuyModule : NSObject
+@interface SFNetworkGroupBuyModule : NSObject
 @property (nonatomic, readonly, copy) NSString *group;
-- (NSString *)getAShareBuyGroupNbr: (NSString *)GroupNbr;
+
+- (NSString *)getGroupBuyGroupNbr: (NSString *)GroupNbr;
+
 @end
 
 NS_ASSUME_NONNULL_END

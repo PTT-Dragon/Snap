@@ -8,6 +8,7 @@
 #import "MessageViewController.h"
 #import "MessageListCell.h"
 #import "MessageModel.h"
+#import "MessageOrderListViewController.h"
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -62,7 +63,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    MessageOrderListViewController *vc = [[MessageOrderListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UITableView *)tableView
