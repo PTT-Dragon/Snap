@@ -31,13 +31,6 @@
     [button setBackgroundImage:[UIImage imageNamed:@"rank_filters"] forState:UIControlStateNormal];
     [self.view addSubview:button];
     UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
-    //    self.navigationItem.rightBarButtonItem = rightItem;
-    
-    //增加了一个spaceItem元素,用来控制customView距离右边的间距
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    
-    //rightBarButtonItem中包装的button距离它父控件,也就是rightBarButtonItem的值是5,当我们把width设置为-15后,相当于把整个rightBarButtonItem向右移动了10
-    spaceItem.width = -15;
     self.navigationItem.rightBarButtonItems = @[rightItem];
     self.menuList = @[@"All", @"Pricedown", @"Promotion"];
     

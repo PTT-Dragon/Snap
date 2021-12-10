@@ -22,6 +22,16 @@
     // Initialization code
 }
 
+- (void)setModel:(OrderGroupModel *)model
+{
+    _model = model;
+    ReviewUserInfoModel *userModel = model.groupMembers.firstObject;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(userModel.photo)]];
+    if ([model.state isEqualToString:@"C"]) {
+        [_shareBtn setTitle:@"VIEW MORE GROUP BUY OFFER" forState:0];
+        _stateLabel.text = @"Grouped";
+    }
+}
 
 
 - (IBAction)shareAction:(UIButton *)sender {

@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *areaData;
 @property (nonatomic, readwrite, strong) NSString *modify;
 - (NSString *)setAddressModifyOfdeliveryAddressId: (NSString *)deliveryAddressId;
+- (NSString *)setAddressDeleteOfdeliveryAddressId: (NSString *)deliveryAddressId;
 @end
 
 @interface SFNetworkUsersCouponModule : NSObject

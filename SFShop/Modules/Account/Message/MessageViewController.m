@@ -24,6 +24,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Message";
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self action:@selector(clearUnreadMessage) forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(0 , 0, 22, 22);
+    [button setBackgroundImage:[UIImage imageNamed:@"clear"] forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItems = @[rightItem];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageListCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,6 +80,19 @@
 {
     [SFNetworkManager post:SFNet.account.readMessage parameters:@{@"busiScope":@"CM"} success:^(id  _Nullable response) {
         
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)clearUnreadMessage
+{
+    NSMutableArray *arr = [NSMutableArray array];
+    for (MessageUnreadModel *itemModel in _model.unreadMessages) {
+        [arr addObject:itemModel.flowNo];
+    }
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.account.readMessage parameters:@{@"busiScope":@"CM",@"flowNos":arr} success:^(id  _Nullable response) {
+        [weakself loadDatas];
     } failed:^(NSError * _Nonnull error) {
         
     }];

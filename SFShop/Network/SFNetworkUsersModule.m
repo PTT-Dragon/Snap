@@ -93,6 +93,10 @@
     NSString *url = [NSString stringWithFormat:@"/delivery/%@/modify", deliveryAddressId];
     return K_address_domain(url);
 }
+- (NSString *)setAddressDeleteOfdeliveryAddressId: (NSString *)deliveryAddressId {
+    NSString *url = [NSString stringWithFormat:@"/delivery/%@/delete", deliveryAddressId];
+    return K_address_domain(url);
+}
 @end
 
 @implementation SFNetworkUsersCouponModule

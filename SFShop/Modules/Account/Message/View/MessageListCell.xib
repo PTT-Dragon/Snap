@@ -49,14 +49,24 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UCH-UC-eOb">
+                        <rect key="frame" x="16" y="73" width="288" height="1"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="vYL-AJ-rZ8"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="upT-Ah-6Xg" firstAttribute="bottom" secondItem="pJK-bB-wlf" secondAttribute="bottom" id="3yy-xJ-dYg"/>
+                    <constraint firstAttribute="trailing" secondItem="UCH-UC-eOb" secondAttribute="trailing" constant="16" id="DUy-vW-V1m"/>
                     <constraint firstItem="hba-Cf-Fvj" firstAttribute="leading" secondItem="pJK-bB-wlf" secondAttribute="trailing" constant="8" id="IfS-pe-Deb"/>
                     <constraint firstItem="hba-Cf-Fvj" firstAttribute="top" secondItem="pJK-bB-wlf" secondAttribute="top" id="LmX-dV-LLg"/>
                     <constraint firstItem="gi7-0W-eYx" firstAttribute="centerY" secondItem="hba-Cf-Fvj" secondAttribute="centerY" id="Tl8-T2-o0y"/>
+                    <constraint firstAttribute="bottom" secondItem="UCH-UC-eOb" secondAttribute="bottom" id="Yfe-47-Hyq"/>
                     <constraint firstItem="pJK-bB-wlf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="kXJ-RA-ITb"/>
                     <constraint firstItem="upT-Ah-6Xg" firstAttribute="leading" secondItem="pJK-bB-wlf" secondAttribute="trailing" constant="8" id="pQq-AH-0Is"/>
+                    <constraint firstItem="UCH-UC-eOb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="qeC-4I-Caa"/>
                     <constraint firstItem="KGN-N2-VhR" firstAttribute="centerY" secondItem="upT-Ah-6Xg" secondAttribute="centerY" id="rbo-pq-vfB"/>
                     <constraint firstAttribute="trailing" secondItem="upT-Ah-6Xg" secondAttribute="trailing" constant="44" id="uyS-ab-odq"/>
                     <constraint firstAttribute="trailing" secondItem="KGN-N2-VhR" secondAttribute="trailing" constant="15" id="zKG-te-9F3"/>

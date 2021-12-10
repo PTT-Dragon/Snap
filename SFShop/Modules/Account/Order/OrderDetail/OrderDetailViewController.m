@@ -56,15 +56,17 @@
         [cell setContent:self.model];
         return cell;
     }else if (indexPath.section == 1){
-        OrderDetailGroupBuyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderDetailGroupBuyCell"];
-        return cell;
-    }else if (indexPath.section == 2){
         DeliveryAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeliveryAddressCell"];
         [cell setContent:self.model];
+        return cell;
+    }else if (indexPath.section == 2){
+        OrderDetailGroupBuyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderDetailGroupBuyCell"];
+        cell.model = self.groupModel;
         return cell;
     }else if (indexPath.section == 3){
         if (indexPath.row == 0) {
             OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
+            [cell setOrderDetailContent:self.model];
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
@@ -81,11 +83,11 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 1: section == 1 ? self.groupModel ? 1:0: section == 2 ? 1: section == 3 ? self.model.orderItems.count+1 : self.dataSource.count;
+    return section == 0 ? 1: section == 2 ? self.groupModel ? 1:0: section == 1 ? 1: section == 3 ? self.model.orderItems.count+1 : self.dataSource.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == 0 ? 112: indexPath.section == 1 ? 156: indexPath.section == 2 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: indexPath.section == 3 ? 154:  30;
+    return indexPath.section == 0 ? 112: indexPath.section == 2 ? 156: indexPath.section == 1 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: indexPath.section == 3 ? 154:  30;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -118,7 +120,7 @@
     MPWeakSelf(self)
     [SFNetworkManager get:[SFNet.groupbuy getGroupBuyGroupNbr:_model.shareBuyOrderNbr] parameters:@{} success:^(id  _Nullable response) {
         weakself.groupModel = [OrderGroupModel yy_modelWithDictionary:response];
-        
+        [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         
     }];
