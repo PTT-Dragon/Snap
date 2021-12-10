@@ -12,6 +12,7 @@
 #import "OrderListStateCell.h"
 #import "OrderListItemCell.h"
 #import "OrderModel.h"
+#import "OrderDetailGroupBuyCell.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -20,6 +21,7 @@
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (nonatomic,strong) OrderDetailModel *model;
+@property (nonatomic,strong) OrderGroupModel *groupModel;
 @end
 
 @implementation OrderDetailViewController
@@ -38,6 +40,7 @@
     [_tableView registerNib:[UINib nibWithNibName:@"OrderPayInfoCell" bundle:nil] forCellReuseIdentifier:@"OrderPayInfoCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"OrderDetailGroupBuyCell" bundle:nil] forCellReuseIdentifier:@"OrderDetailGroupBuyCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
@@ -53,10 +56,13 @@
         [cell setContent:self.model];
         return cell;
     }else if (indexPath.section == 1){
+        OrderDetailGroupBuyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderDetailGroupBuyCell"];
+        return cell;
+    }else if (indexPath.section == 2){
         DeliveryAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeliveryAddressCell"];
         [cell setContent:self.model];
         return cell;
-    }else if (indexPath.section == 2){
+    }else if (indexPath.section == 3){
         if (indexPath.row == 0) {
             OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
             return cell;
@@ -71,15 +77,15 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;//self.dataSource.count;
+    return 5;//self.dataSource.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 1: section == 1 ? 1: section == 2 ? self.model.orderItems.count+1 : self.dataSource.count;
+    return section == 0 ? 1: section == 1 ? self.groupModel ? 1:0: section == 2 ? 1: section == 3 ? self.model.orderItems.count+1 : self.dataSource.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == 0 ? 112: indexPath.section == 1 ? 170: (indexPath.section == 2 && indexPath.row == 0) ? 40: indexPath.section == 2 ? 154:  30;
+    return indexPath.section == 0 ? 112: indexPath.section == 2 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: indexPath.section == 3 ? 154:  30;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -109,7 +115,9 @@
 //团购数据
 - (void)loadGroupDatas
 {
+    MPWeakSelf(self)
     [SFNetworkManager get:[SFNet.groupbuy getGroupBuyGroupNbr:_model.shareBuyOrderNbr] parameters:@{} success:^(id  _Nullable response) {
+        weakself.groupModel = [OrderGroupModel yy_modelWithDictionary:response];
         
     } failed:^(NSError * _Nonnull error) {
         

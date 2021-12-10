@@ -63,8 +63,19 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        [self readMessage];
+    }
     MessageOrderListViewController *vc = [[MessageOrderListViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)readMessage
+{
+    [SFNetworkManager post:SFNet.account.readMessage parameters:@{@"busiScope":@"CM"} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (UITableView *)tableView

@@ -39,6 +39,14 @@
 }
 
 @end
+@implementation OrderGroupModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+
+@end
 
 @implementation EvaluatesModel
 + (BOOL)propertyIsOptional:(NSString *)propertyName

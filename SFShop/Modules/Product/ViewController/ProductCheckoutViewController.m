@@ -118,7 +118,7 @@
     }];
     [alert addAction:mockAction];
     UIAlertAction *onlineAction = [UIAlertAction actionWithTitle:@"Online Pay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [weakself onlinePay];
+        [weakself onlinePayWithTotalPrice:totalPrice orderId:orderId];
     }];
     [alert addAction:onlineAction];
     UIAlertAction *cencelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -126,13 +126,13 @@
 
     [self presentViewController:alert animated:YES completion:nil];
 }
-- (void)onlinePay
+- (void)onlinePayWithTotalPrice:(NSString *)totalPrice orderId:(NSString *)orderId
 {
     //模拟正式支付
     NSDictionary *params = @{
-        @"totalPrice": @(129000),
-        @"returnUrl": @"https://www.smartfrenshop.com/paying?type=back&orderId=171008",
-        @"orders": @[@"171008"]
+        @"totalPrice": totalPrice,
+        @"returnUrl": [NSString stringWithFormat:@"https://www.smartfrenshop.com/paying?type=back&orderId=%@",orderId],
+        @"orders": @[orderId]
     };
     [SFNetworkManager post:SFNet.h5.pay parameters:params success:^(id  _Nullable response) {
         PublicWebViewController *vc = [[PublicWebViewController alloc] init];

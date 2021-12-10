@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *resetPwd;
 @property (nonatomic, readwrite, strong) NSString *messageList;
 @property (nonatomic, readwrite, strong) NSString *message;
+@property (nonatomic, readwrite, strong) NSString *readMessage;
 
 
 

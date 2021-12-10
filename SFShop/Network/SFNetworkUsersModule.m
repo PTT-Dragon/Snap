@@ -50,7 +50,10 @@
 {
     return K_users_domain(@"inbox/stat");
 }
-
+- (NSString *)readMessage
+{
+    return K_users_domain(@"inbox/read");
+}
 - (NSString *)message
 {
     return K_users_domain(@"inbox/message");
