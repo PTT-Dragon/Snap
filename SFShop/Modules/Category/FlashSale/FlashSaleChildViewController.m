@@ -30,6 +30,7 @@
     [_tableView registerNib:[UINib nibWithNibName:@"FlashSaleProductCell" bundle:nil] forCellReuseIdentifier:@"FlashSaleProductCell"];
     _dateLabel.text = _selDateModel.effDate;
     [self loadCtgDatas];
+    [self loadDatas];
 }
 - (void)loadCtgDatas
 {
@@ -91,7 +92,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FlashSaleProductCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FlashSaleProductCell"];
+    cell.model = self.dataSource[indexPath.row];
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 172;
 }
 
 @end
