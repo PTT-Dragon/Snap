@@ -9,6 +9,6 @@
 
 @implementation MessageListOrderCell
 
-- (ins)
+
 
 @end
