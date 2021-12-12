@@ -12,6 +12,11 @@
 
 @interface accountOrderCell ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UILabel *toShipCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *returnCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *RatingCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toReceiveCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toPayCountLabel;
 
 @end
 
@@ -25,9 +30,19 @@
             [(UIButton *)subView SG_imagePositionStyle:SGImagePositionStyleTop spacing:5];
         }
     }
+    _toShipCountLabel.layer.borderWidth = 1;
+    _toShipCountLabel.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     [self drawShadow];
 }
-
+- (void)setNumModel:(OrderNumModel *)numModel
+{
+    _numModel = numModel;
+    _toShipCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toDeliveryNum];
+    _toPayCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toPayNum];
+    _toReceiveCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toReceiveNum];
+    _RatingCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toRatingNum];
+    _returnCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.returnsNum];
+}
 - (void)drawShadow
 {
     _bgView.layer.masksToBounds = NO;//默认值为NO。不能设置为YES，否则阴影无法出现。

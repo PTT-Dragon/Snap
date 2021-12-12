@@ -19,6 +19,7 @@
 #import "AccountActiveCell.h"
 #import "InviteViewController.h"
 #import "SupportViewController.h"
+#import "OrderModel.h"
 
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -29,6 +30,7 @@
 @property (nonatomic,assign) double recentCount;
 @property (nonatomic,assign) double showInviteImg;
 @property (nonatomic,copy) NSString *inviteImgUrl;
+@property (nonatomic,strong) OrderNumModel *orderNumModel;
 @end
 
 @implementation AccountViewController
@@ -100,6 +102,12 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
+    [SFNetworkManager get:SFNet.order.num parameters:@{} success:^(id  _Nullable response) {
+        weakself.orderNumModel = [OrderNumModel yy_modelWithDictionary:response];
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
     [SFNetworkManager get:SFNet.invite.activity parameters:@{} success:^(id  _Nullable response) {
         if ([response[@"success"] isEqualToNumber:@(1)]) {
             weakself.showInviteImg = YES;
@@ -142,6 +150,7 @@
         return cell;
     }else if (indexPath.row == 1){
         accountOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountOrderCell"];
+        cell.numModel = self.orderNumModel;
         return cell;
     }else if (indexPath.row == 2){
         AccountActiveCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AccountActiveCell"];

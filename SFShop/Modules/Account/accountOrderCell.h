@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface accountOrderCell : UITableViewCell
-
+@property (nonatomic,strong) OrderNumModel *numModel;
 @end
 
 NS_ASSUME_NONNULL_END

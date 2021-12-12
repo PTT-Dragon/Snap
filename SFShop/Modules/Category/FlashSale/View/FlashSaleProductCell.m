@@ -38,6 +38,6 @@
     _offLabel.text = [NSString stringWithFormat:@" %@%% ",model.discountPercent];
     _rateLabel.text = [NSString stringWithFormat:@"%@ (%ld)",model.evaluationAvg,model.evaluationCnt];
     _processLabel.text = [NSString stringWithFormat:@"%ld Terjual",model.productCmpSaleNum];
-    _processWidth.constant = (MainScreen_width-224)*model.productSalePercent;
+    _processWidth.constant = (MainScreen_width-224)*model.productCmpSaleNum/model.stockNum;
 }
 @end

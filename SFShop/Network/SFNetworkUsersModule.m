@@ -221,6 +221,10 @@
 - (NSString *)mock {
     return K_pay_domain(@"mock");
 }
+- (NSString *)num {
+    return K_order_domain(@"status/num");
+}
+
 
 
 @end

@@ -228,4 +228,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface OrderNumModel : JSONModel
+@property (nonatomic,assign) NSInteger toPayNum;
+@property (nonatomic,assign) NSInteger toDeliveryNum;
+@property (nonatomic,assign) NSInteger toReceiveNum;
+@property (nonatomic,assign) NSInteger completedNum;
+@property (nonatomic,assign) NSInteger toRatingNum;
+@property (nonatomic,assign) NSInteger toComfirmNum;
+@property (nonatomic,assign) NSInteger canceledNum;
+@property (nonatomic,assign) NSInteger returnsNum;
+
+@end
+
 NS_ASSUME_NONNULL_END
