@@ -30,6 +30,9 @@
     if ([model.state isEqualToString:@"C"]) {
         [_shareBtn setTitle:@"VIEW MORE GROUP BUY OFFER" forState:0];
         _stateLabel.text = @"Grouped";
+    }else if ([model.state isEqualToString:@"B"]){
+        [_shareBtn setTitle:@"INVITE FRIENDS" forState:0];
+        _stateLabel.text = @"1 more buyer required Expire in";
     }
 }
 
