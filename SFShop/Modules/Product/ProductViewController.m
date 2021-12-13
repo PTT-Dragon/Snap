@@ -399,7 +399,8 @@
              productIds:@[@([weakself getSelectedProductId])]
                     addressModel:weakself.selectedAddressModel
                         feeModel:feeModel
-                           count:@[@(weakself.attrView.count)]];
+                           count:@[@(weakself.attrView.count)]
+                      sourceType:@"LJGM"];
             [weakself.navigationController pushViewController:vc animated:YES];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];

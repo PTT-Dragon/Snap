@@ -82,7 +82,7 @@
 
 #pragma mark - Getter
 - (void)setCellModel:(SFCellCacheModel *)cellModel {
-    
+    super.cellModel = cellModel;
     ProductCheckoutSubItemModel *model = cellModel.obj;
     self.titleLabel.text = model.productTitle;
     self.typeLabel.text = [NSString stringWithFormat:@"%@",model.productCategpry] ;

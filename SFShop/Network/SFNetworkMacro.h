@@ -10,9 +10,9 @@
 
 //*********************************************接口域名👇*********************************************//
 #ifdef DEBUG
-#define Host @"https://www.smartfrenshop.com/"
+#define Host @"https://www.smartfrenshop.com"
 #else
-#define Host @"https://www.smartfrenshop.com/"
+#define Host @"https://www.smartfrenshop.com"
 #endif
 
 #define SFImage(v) ([[NSString stringWithFormat:@"%@%@",Host,v] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]])

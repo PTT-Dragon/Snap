@@ -57,7 +57,8 @@
                productIds:(NSArray<NSNumber *> *) productIds
             addressModel: (addressModel *)addressModel
                 feeModel:(ProductCalcFeeModel *)feeModel
-                   count: (NSArray<NSNumber *> *)productBuyCounts {
+                   count: (NSArray<NSNumber *> *)productBuyCounts
+              sourceType:(NSString *)sourceType {
     // 商品详情
     _productModels = productModels;
     _productBuyCounts = productBuyCounts;
@@ -76,6 +77,8 @@
         [arr addObject:item];
     }];
     self.dataModel.productList = arr;
+    
+    self.dataModel.sourceType = sourceType;
 
     // 地址
     _addressModel = addressModel;
@@ -175,6 +178,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SFCellCacheModel *cellModel = self.dataArray[indexPath.section][indexPath.row];
     ProductCheckoutBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellModel.cellId];
+    cell.updateDataBlock = ^(ProductCheckoutModel * _Nonnull dataModel, SFCellCacheModel * _Nonnull cellModel) {
+        self.addressModel.email = dataModel.email;
+        //其他更新..
+    };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.dataModel = self.dataModel;
     cell.cellModel = cellModel;
@@ -260,25 +267,42 @@
         _buyView.backgroundColor = [UIColor whiteColor];
         MPWeakSelf(self)
         _buyView.buyBlock = ^{
+            
+            if (!weakself.addressModel.deliveryAddressId || [weakself.addressModel.deliveryAddressId isEqualToString:@""]) {
+                [MBProgressHUD autoDismissShowHudMsg:@"Please select your address"];
+                return;
+            }
+            
+            if (!weakself.addressModel.email ||  [weakself.addressModel.email isEqualToString:@""]) {
+                [MBProgressHUD autoDismissShowHudMsg:@"Please enter your email"];
+                return;
+            }
+            
+            NSMutableArray *products = [NSMutableArray array];
+            for (int i = 0; i < weakself.productIds.count; i ++) {
+                NSNumber *idN = weakself.productIds[i];
+                NSNumber *count = weakself.productBuyCounts[i];
+                [products addObject:@{@"productId":idN,@"offerCnt":count,@"inCmpIdList":@[]}];
+            }
+            
             [MBProgressHUD showHudMsg:@"Calculating..."];
             NSDictionary *params = @{
                 @"billingEmail": weakself.addressModel.email,
                 @"deliveryAddressId": weakself.addressModel.deliveryAddressId,
                 @"deliveryMode": @"A",
                 @"paymentMode": @"A",
-                @"sourceType": @"LJGM",
+                @"sourceType": self.dataModel.sourceType,
                 @"totalPrice": weakself.feeModel.totalPrice,
+                @"storeSiteId":[NSNull null],
+                @"selUserPltCouponId":[NSNull null],
                 @"stores": @[
                         @{
                             @"logisticsModeId": @"1",
+                            @"campaignGifts":@[],
+                            @"orderPrice":weakself.feeModel.totalPrice,
                             @"storeId": @(weakself.productModels.firstObject.storeId),
                             @"leaveMsg": @"", // TODO: 这是备注内容
-                            @"products": @[
-                                    @{
-                                        @"productId": weakself.productIds.firstObject,
-                                        @"offerCnt": weakself.productBuyCounts.firstObject
-                                    }
-                            ]
+                            @"products": products
                         }
                 ],
             };

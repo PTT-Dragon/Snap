@@ -70,6 +70,7 @@
 
 #pragma mark - Getter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
+    super.dataModel = dataModel;
     self.titleLabel.text = dataModel.deliveryTitle;
     self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",dataModel.priceRp,dataModel.deliveryPrice];
     self.desLabel.text = dataModel.deliveryDes;
@@ -124,6 +125,10 @@
         [_nextBtn setImage:[UIImage imageNamed:@"right-scroll"] forState:UIControlStateNormal];
     }
     return _nextBtn;
+}
+
+- (void)btnClick:(UIButton *)btn {
+    
 }
 
 @end

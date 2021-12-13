@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface ProductCheckoutModel : NSObject
+
+//购买类型
+@property (nonatomic, readwrite, strong) NSString *sourceType;
+
 //地址
 @property (nonatomic, readwrite, strong) NSString *address;//地址
 @property (nonatomic, readwrite, strong) NSString *email;//邮箱

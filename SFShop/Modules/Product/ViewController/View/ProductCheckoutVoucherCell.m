@@ -61,6 +61,7 @@
 
 #pragma mark - Get and Set
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
+    super.dataModel = dataModel;
     if (!dataModel.shopAvailableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
         self.subTitleLabel.text = @"Not available";
     } else {

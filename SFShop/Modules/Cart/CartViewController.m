@@ -9,6 +9,8 @@
 #import "addressModel.h"
 #import "CartChooseAddressViewController.h"
 #import "CartChildViewController.h"
+#import "ProductCheckoutViewController.h"
+#import "CartModel.h"
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -26,6 +28,7 @@
 @property (nonatomic,strong) UILabel *preferentialAmountLabel;
 @property (nonatomic,strong) UILabel *totalAmountLabel;
 @property (nonatomic,strong) VTMagicController *magicController;
+@property (nonatomic,strong) CartModel *cartModel;
 @end
 
 @implementation CartViewController
@@ -162,9 +165,78 @@
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
 }
 
+- (void)btnClick:(UIButton *)btn {
+    // TODO: 跳转checkout页
+    MPWeakSelf(self)
+    NSArray <CartListModel *> *items = self.cartModel.validCarts;
+    NSString *deliveryMode = [[items.firstObject shoppingCarts].firstObject deliveryMode];//派送模式
+    NSString *storeId = [items.firstObject storeId];//购买id
+    NSMutableArray *products = [NSMutableArray array];
+    NSMutableArray *productDetailModels = [NSMutableArray array];
+    NSMutableArray *attrValues = [NSMutableArray array];
+    NSMutableArray *productIds = [NSMutableArray array];
+    NSMutableArray *counts = [NSMutableArray array];
+    for (CartListModel *model in items) {
+        for (CartItemModel *cartItem in model.shoppingCarts) {
+            //判断是否选中..真牛逼
+            if ([cartItem.isSelected isEqualToString:@"Y"]) {
+                [products addObject:@{@"productId":cartItem.productId,@"offerCnt":cartItem.num}];
+                ProductDetailModel *subModel = [[ProductDetailModel alloc] init];
+                subModel.storeName = model.storeName;
+                subModel.offerName = cartItem.productName;
+                subModel.salesPrice = cartItem.salesPrice;
+                subModel.storeId = model.storeId.intValue;
+                ProductCarouselImgModel *img = [[ProductCarouselImgModel alloc] init];
+                img.imgUrl = cartItem.imgUrl;
+                subModel.carouselImgUrls = @[img];
+                [productDetailModels addObject:subModel];
+                [counts addObject:@(cartItem.num.intValue)];
+                [attrValues addObject:@"测试分类"];
+                [productIds addObject:cartItem.productId];
+            }
+        }
+    }
+    
+    if (!self.selAddModel.deliveryAddressId ||  [self.selAddModel.deliveryAddressId isEqualToString:@""]) {
+        [MBProgressHUD autoDismissShowHudMsg:@"请稍后再试"];
+        return;
+    }
+    
+    NSDictionary *params = @{
+        @"deliveryAddressId": self.selAddModel.deliveryAddressId,
+        @"deliveryMode":deliveryMode,
+        @"selUserPltCouponId": @"",
+        @"sourceType": @"GWCGM", // TODO:此处参考h5
+        @"stores": @[
+                @{
+                    @"storeId": storeId,
+                    @"products": products
+                }
+        ],
+    };
+    
+    [MBProgressHUD showHudMsg:@"Calculating..."];
+    [SFNetworkManager post:SFNet.order.calcfee parameters: params success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
+        ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
+        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+        [vc setProductModels:productDetailModels
+                  attrValues:attrValues
+                  productIds:productIds
+                addressModel:weakself.selAddModel
+                    feeModel:feeModel
+                       count:counts
+                  sourceType:@"GWCGM"];
+        [weakself.navigationController pushViewController:vc animated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+    }];
+}
+
 #pragma mark - 计算购物车选中总价
 - (void)calculateAmount:(CartModel *)model
 {
+    self.cartModel = model;
     self.amountLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalPrice];
     self.totalAmountLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalPrice];
     self.priceLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalOfferPrice];
@@ -243,6 +315,7 @@
         _checkBtn.backgroundColor = RGBColorFrom16(0xFF1659);
         [_checkBtn setTitle:@"CHECK OUT" forState:0];
         _checkBtn.titleLabel.font = CHINESE_BOLD(14);
+        [_checkBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _checkBtn;
 }
