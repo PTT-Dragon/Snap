@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *offLabel;
 @property (weak, nonatomic) IBOutlet UILabel *marketLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (nonatomic,strong) CategoryRankPageInfoListModel *model;
 
 @end
 
@@ -31,6 +32,7 @@
 }
 - (void)setContent:(CategoryRankPageInfoListModel *)model
 {
+    _model = model;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.offerName;
     _priceLabel.text = [NSString stringWithFormat:@"RP %ld",model.salesPrice];
@@ -39,6 +41,11 @@
     _offLabel.text = [NSString stringWithFormat:@" %@ ",model.discountPercent];
 }
 - (IBAction)spCartAction:(UIButton *)sender {
+    [SFNetworkManager post:SFNet.cart.cart parameters:@{@"isSelected":@"N",@"contactChannel":@"3",@"addon":@"",@"productId":_model.productId?_model.productId:@"",@"storeId":@(_model.storeId),@"offerId":@(_model.offerId),@"num":@(1),@"unitPrice":@(_model.salesPrice)} success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+    }];
 }
 
 @end

@@ -32,16 +32,24 @@
     }
     _toShipCountLabel.layer.borderWidth = 1;
     _toShipCountLabel.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+    _toPayCountLabel.layer.borderWidth = 1;
+    _toPayCountLabel.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+    _toReceiveCountLabel.layer.borderWidth = 1;
+    _toReceiveCountLabel.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+    _RatingCountLabel.layer.borderWidth = 1;
+    _RatingCountLabel.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+    _returnCountLabel.layer.borderWidth = 1;
+    _returnCountLabel.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     [self drawShadow];
 }
 - (void)setNumModel:(OrderNumModel *)numModel
 {
     _numModel = numModel;
     _toShipCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toDeliveryNum];
-    _toPayCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toPayNum];
-    _toReceiveCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toReceiveNum];
-    _RatingCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toRatingNum];
-    _returnCountLabel.text = numModel.toDeliveryNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.returnsNum];
+    _toPayCountLabel.text = numModel.toPayNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toPayNum];
+    _toReceiveCountLabel.text = numModel.toReceiveNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toReceiveNum];
+    _RatingCountLabel.text = numModel.toRatingNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.toRatingNum];
+    _returnCountLabel.text = numModel.returnsNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",(long)numModel.returnsNum];
 }
 - (void)drawShadow
 {
