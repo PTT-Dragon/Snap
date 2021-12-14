@@ -115,6 +115,7 @@
 
 #pragma mark - Getter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
+    super.dataModel = dataModel;
     if (dataModel.vouchersReduce) {//如果选中优惠券,那么显示优惠券减少的价格
         self.couponPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.priceRp,dataModel.vouchersReduce];
     } else if (!dataModel.availableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券

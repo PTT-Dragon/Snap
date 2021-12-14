@@ -8,7 +8,7 @@
 #import "ProductCheckoutAddressCell.h"
 #import "CustomTextField.h"
 
-@interface ProductCheckoutAddressCell ()
+@interface ProductCheckoutAddressCell ()<UITextFieldDelegate>
 
 @property (nonatomic, readwrite, strong) UIView *bgView;
 @property (nonatomic, readwrite, strong) UIView *sectionLine;
@@ -70,8 +70,17 @@
     }];
 }
 
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (![self.dataModel.email isEqualToString:textField.text]) {
+        self.dataModel.email = textField.text;
+        !self.updateDataBlock?: self.updateDataBlock(self.dataModel, self.cellModel);
+    }
+}
+
 #pragma mark - Getter & Setter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
+    super.dataModel = dataModel;
     self.addressLabel.text = dataModel.address;
     self.emailTF.text = dataModel.email;
     [self layout];
@@ -118,11 +127,14 @@
 - (CustomTextField *)emailTF {
     if (_emailTF == nil) {
         _emailTF = [[CustomTextField alloc] init];
+        _emailTF.text = self.dataModel.email;
         _emailTF.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _emailTF.font = [UIFont systemFontOfSize:12];
         _emailTF.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
+        _emailTF.delegate = self;
     }
     return _emailTF;
 }
+
 
 @end
