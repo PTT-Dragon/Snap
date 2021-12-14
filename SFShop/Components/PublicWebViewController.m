@@ -11,6 +11,9 @@
 #import "WKWebViewJavascriptBridge.h"
 #import "CouponCenterViewController.h"
 #import "FlashSaleViewController.h"
+#import "SFSearchView.h"
+#import "MessageViewController.h"
+#import "ProductViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -111,7 +114,26 @@
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
+    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/search-page"]){
+        
+        return;
+    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/message-center"]){
+        MessageViewController *vc = [[MessageViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"https://www.smartfrenshop.com/product/detail/"].location != NSNotFound){
+        ProductViewController *vc = [[ProductViewController alloc] init];
+        NSString *offerId;
+        NSRange range1 = [navigationAction.request.URL.absoluteString rangeOfString:@"https://www.smartfrenshop.com/product/detail/"];
+        NSRange range2 = [navigationAction.request.URL.absoluteString rangeOfString:@"?"];
+        offerId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.length, range2.location-range1.length)];
+        vc.offerId = offerId.integerValue;
+        [self.navigationController pushViewController:vc animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
+
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 

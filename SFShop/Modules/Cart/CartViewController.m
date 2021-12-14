@@ -39,11 +39,27 @@
     // Do any additional setup after loading the view.
     self.title = @"Shopping Cart";
     _addressArr = [NSMutableArray array];
-    [self loadDatas];
+    [self updateDatas];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+- (void)updateDatas
+{
+    FMDBManager *dbManager = [FMDBManager sharedInstance];
+    
+    @weakify(self)
+    [RACObserve(dbManager, currentUser) subscribeNext:^(id  _Nullable x) {
+        @strongify(self)
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        if (!model || [model.accessToken isEqualToString:@""]) {
+            //登出状态
+            [self loadDatas];
+        }else{
+            [self loadDatas];
+        }
+    }];
 }
 - (void)loadDatas
 {
@@ -79,18 +95,6 @@
     [self.view addSubview:_magicController.view];
     _magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
     [_magicController.magicView reloadData];
-    
-//    self.magicView.frame = CGRectMake(0, navBarHei, MainScreen_width, self.view.jk_height-20);
-//    self.magicView.navigationColor = [UIColor whiteColor];
-//    self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#000000"];
-//    self.magicView.sliderHeight = 1.0f;
-//    self.magicView.layoutStyle = VTLayoutStyleDivide;
-//    self.magicView.switchStyle = VTSwitchStyleDefault;
-//    self.magicView.navigationHeight = 40.f;
-//    self.magicView.dataSource = self;
-//    self.magicView.delegate = self;
-//    self.magicView.scrollEnabled = NO;
-//    [self.magicView reloadData];
     [self.view addSubview:self.bottomView];
 }
 - (void)updateAddress

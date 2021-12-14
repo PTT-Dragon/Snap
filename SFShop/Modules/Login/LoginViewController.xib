@@ -19,6 +19,7 @@
                 <outlet property="passwordField" destination="CPB-84-N7c" id="RsJ-uv-MX6"/>
                 <outlet property="phoneBtn" destination="tGN-iU-kgh" id="k5y-5M-s5D"/>
                 <outlet property="phoneIndicationView" destination="4hr-nO-DjP" id="WI5-vd-Op7"/>
+                <outlet property="secureBtn" destination="sNg-2V-2oq" id="T9Z-yZ-Qgy"/>
                 <outlet property="signUpBtn" destination="ZI4-Cb-XjV" id="Ybb-yx-ftc"/>
                 <outlet property="view" destination="WDr-re-6Pw" id="1gL-52-0gV"/>
             </connections>
@@ -145,6 +146,9 @@
                     </constraints>
                     <state key="normal" image="eye-open-0"/>
                     <state key="selected" image="hide-0"/>
+                    <connections>
+                        <action selector="secureAction:" destination="-1" eventType="touchUpInside" id="H2S-YZ-bG9"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdd-wW-aLM">
                     <rect key="frame" x="166" y="498" width="82" height="27"/>

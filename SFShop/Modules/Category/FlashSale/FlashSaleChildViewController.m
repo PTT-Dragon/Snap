@@ -8,6 +8,7 @@
 #import "FlashSaleChildViewController.h"
 #import "ProductReviewLabelCell.h"
 #import "FlashSaleProductCell.h"
+#import "ProductViewController.h"
 
 @interface FlashSaleChildViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -98,6 +99,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 172;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FlashSaleProductModel *model = self.dataSource[indexPath.row];
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = model.offerId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -36,8 +36,8 @@
     _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.specialPrice];
     _OriginalPriceLabel.text = [NSString stringWithFormat:@"%@",model.salesPrice];
     _offLabel.text = [NSString stringWithFormat:@" %@%% ",model.discountPercent];
-    _rateLabel.text = [NSString stringWithFormat:@"%@ (%ld)",model.evaluationAvg,model.evaluationCnt];
-    _processLabel.text = [NSString stringWithFormat:@"%ld Terjual",model.productCmpSaleNum];
-    _processWidth.constant = (MainScreen_width-224)*model.productCmpSaleNum/model.stockNum;
+    _rateLabel.text = [NSString stringWithFormat:@"%@ (%f)",model.evaluationAvg,model.evaluationCnt];
+    _processLabel.text = [NSString stringWithFormat:@"%.2f%% Terjual",model.productSalePercent/100];
+    _processWidth.constant = (MainScreen_width-224)*model.productSalePercent/10000;
 }
 @end

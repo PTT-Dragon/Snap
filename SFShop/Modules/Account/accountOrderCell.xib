@@ -50,6 +50,9 @@
                                 <state key="normal" title="To Receive" image="delivery-2">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2Sd-oX-0BU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="1005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNM-QF-3IG">
                                 <rect key="frame" x="203" y="31" width="62.5" height="81"/>
@@ -57,6 +60,9 @@
                                 <state key="normal" title="Rating" image="chat-fill">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sJK-BZ-5on"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsb-hE-gyw">
                                 <rect key="frame" x="265.5" y="31" width="62.5" height="81"/>
@@ -74,6 +80,9 @@
                                 <state key="normal" title="To Ship" image="组 64598">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="csu-wm-kjL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXb-7r-1rp">
                                 <rect key="frame" x="15" y="31" width="62.5" height="81"/>
@@ -81,6 +90,9 @@
                                 <state key="normal" title="To Pay" image="card-2">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yFd-Tf-F9F"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfk-dZ-b2F">
                                 <rect key="frame" x="320" y="46" width="0.0" height="0.0"/>

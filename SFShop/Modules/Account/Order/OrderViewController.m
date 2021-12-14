@@ -34,7 +34,8 @@
     self.magicView.dataSource = self;
     self.magicView.delegate = self;
     self.magicView.scrollEnabled = NO;
-    
+    self.currentPage = self.selType == OrderListType_All ? 1: 2;
+    self.currentMenuIndex = self.currentPage;
     self.view.frame = CGRectMake(0, 0, MainScreen_width, 100);
     [self.magicView reloadData];
     

@@ -78,6 +78,13 @@
             [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
         }
             break;
+        case 1002:
+        {
+            OrderViewController *vc = [[OrderViewController alloc] init];
+            vc.selType = OrderListType_ToPay;
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        }
+            break;
         case 1006:
         {
             RefundViewController *vc = [[RefundViewController alloc] init];

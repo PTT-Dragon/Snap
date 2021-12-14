@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *signUpBtn;
+@property (weak, nonatomic) IBOutlet UIButton *secureBtn;
 
 @end
 
@@ -70,6 +71,10 @@
 - (IBAction)otpAction:(id)sender {
     LoginViaOTP *vc = [[LoginViaOTP alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (IBAction)secureAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    _passwordField.secureTextEntry = sender.selected;
 }
 
 
