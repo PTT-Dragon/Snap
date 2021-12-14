@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *signUpBtn;
 @property (weak, nonatomic) IBOutlet UIButton *secureBtn;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
 
 @end
 
@@ -30,18 +31,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"Login";
+    [self.passwordField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+    [self.accountField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+}
+- (void)changedTextField:(UITextField *)textField
+{
+    if (![_passwordField.text isEqualToString:@""] && ![_accountField.text isEqualToString:@""]) {
+        self.loginBtn.backgroundColor = RGBColorFrom16(0xFF1659);
+    }else{
+        self.loginBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+    }
 }
 - (IBAction)phoneAction:(UIButton *)sender {
     sender.selected = YES;
     _emailBtn.selected = NO;
     _phoneIndicationView.backgroundColor = [UIColor blackColor];
     _emailIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
+    _label1.text = @" Phone number ";
 }
 - (IBAction)emailAction:(UIButton *)sender {
     sender.selected = YES;
     _phoneBtn.selected = NO;
     _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
     _emailIndicationView.backgroundColor = [UIColor blackColor];
+    _label1.text = @" Email ";
 }
 - (IBAction)loginAction:(id)sender {
     //wcttest1@qq.com/smart123  17366287044 Abc@1234
