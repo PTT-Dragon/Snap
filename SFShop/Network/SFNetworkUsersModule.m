@@ -225,7 +225,9 @@
     return K_order_domain(@"status/num");
 }
 
-
+- (NSString *)logistics {
+    return K_order_domain(@"logistics");
+}
 
 @end
 

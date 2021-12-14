@@ -11,6 +11,7 @@
 #import "CartChildViewController.h"
 #import "ProductCheckoutViewController.h"
 #import "CartModel.h"
+#import "OrderLogisticsModel.h"
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -201,16 +202,15 @@
         }
     }
     
-    if (!self.selAddModel.deliveryAddressId ||  [self.selAddModel.deliveryAddressId isEqualToString:@""]) {
+    if (!self.selAddModel.deliveryAddressId ||  [self.selAddModel.deliveryAddressId isEqualToString:@""]
+        || !storeId || [storeId isEqualToString:@""]) {
         [MBProgressHUD autoDismissShowHudMsg:@"请稍后再试"];
         return;
     }
     
-    NSDictionary *params = @{
+    NSDictionary *logisticsParams = @{
         @"deliveryAddressId": self.selAddModel.deliveryAddressId,
         @"deliveryMode":deliveryMode,
-        @"selUserPltCouponId": @"",
-        @"sourceType": @"GWCGM", // TODO:此处参考h5
         @"stores": @[
                 @{
                     @"storeId": storeId,
@@ -218,20 +218,31 @@
                 }
         ],
     };
+    NSMutableDictionary *calcfeeParams = [NSMutableDictionary dictionaryWithDictionary:logisticsParams];
+    [calcfeeParams addEntriesFromDictionary:@{
+        @"sourceType": @"GWCGM", // TODO:此处参考h5
+    }];
     
     [MBProgressHUD showHudMsg:@"Calculating..."];
-    [SFNetworkManager post:SFNet.order.calcfee parameters: params success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
         ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
-        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-        [vc setProductModels:productDetailModels
-                  attrValues:attrValues
-                  productIds:productIds
-                addressModel:weakself.selAddModel
-                    feeModel:feeModel
-                       count:counts
-                  sourceType:@"GWCGM"];
-        [weakself.navigationController pushViewController:vc animated:YES];
+        [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable responseInner) {
+            NSDictionary *data = ((NSArray *)responseInner).firstObject;
+            OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
+            ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+            [vc setProductModels:productDetailModels
+                      attrValues:attrValues
+                      productIds:productIds
+                  logisticsModel:logisticsModel
+                    addressModel:weakself.selAddModel
+                        feeModel:feeModel
+                           count:counts
+                      sourceType:@"GWCGM"];
+            [weakself.navigationController pushViewController:vc animated:YES];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+        }];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
     }];

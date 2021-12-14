@@ -90,6 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *save;
 @property (nonatomic, readwrite, strong) NSString *mock;
 @property (nonatomic, readwrite, strong) NSString *num;
+@property (nonatomic, readwrite, strong) NSString *logistics;
 - (NSString *)getReasonlOf: (NSString *)eventId;
 
 @end

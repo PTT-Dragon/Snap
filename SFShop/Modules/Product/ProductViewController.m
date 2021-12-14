@@ -369,11 +369,9 @@
     } else {
         // TODO: 跳转checkout页
         MPWeakSelf(self)
-        NSDictionary *params = @{
+        NSDictionary *logisticsParams = @{
             @"deliveryAddressId": self.selectedAddressModel.deliveryAddressId,
             @"deliveryMode": self.model.deliveryMode,
-            @"selUserPltCouponId": @"",
-            @"sourceType": @"LJGM", // TODO:此处参考h5
             @"stores": @[
                     @{
                         @"logisticsModeId": @"1",
@@ -387,21 +385,34 @@
                     }
             ],
         };
+        
+        NSMutableDictionary *calcfeeParams = [NSMutableDictionary dictionaryWithDictionary:logisticsParams];
+        [calcfeeParams addEntriesFromDictionary:@{
+            @"sourceType": @"LJGM", // TODO:此处参考h5
+        }];
+        
         [MBProgressHUD showHudMsg:@"Calculating..."];
-        [SFNetworkManager post:SFNet.order.calcfee parameters: params success:^(id  _Nullable response) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
+        [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
             ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
-            [weakself.attrView removeFromSuperview];
-            weakself.isCheckingSaleInfo = NO;
-            ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-            [vc setProductModels:@[weakself.model]
-                      attrValues:@[weakself.variationsLabel.text]
-             productIds:@[@([weakself getSelectedProductId])]
-                    addressModel:weakself.selectedAddressModel
-                        feeModel:feeModel
-                           count:@[@(weakself.attrView.count)]
-                      sourceType:@"LJGM"];
-            [weakself.navigationController pushViewController:vc animated:YES];
+            [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable responseInner) {
+                NSDictionary *data = ((NSArray *)responseInner).firstObject;
+                OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
+                [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
+                [weakself.attrView removeFromSuperview];
+                weakself.isCheckingSaleInfo = NO;
+                ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+                [vc setProductModels:@[weakself.model]
+                          attrValues:@[weakself.variationsLabel.text]
+                 productIds:@[@([weakself getSelectedProductId])]
+                      logisticsModel:logisticsModel
+                        addressModel:weakself.selectedAddressModel
+                            feeModel:feeModel
+                               count:@[@(weakself.attrView.count)]
+                          sourceType:@"LJGM"];
+                [weakself.navigationController pushViewController:vc animated:YES];
+            } failed:^(NSError * _Nonnull error) {
+                [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+            }];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
         }];

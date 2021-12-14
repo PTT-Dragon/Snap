@@ -56,6 +56,7 @@
 - (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
                attrValues:(NSArray<NSString *> *)attrValues
                productIds:(NSArray<NSNumber *> *) productIds
+          logisticsModel:(OrderLogisticsModel *)logisticsModel
             addressModel: (addressModel *)addressModel
                 feeModel:(ProductCalcFeeModel *)feeModel
                    count: (NSArray<NSNumber *> *)productBuyCounts
@@ -89,11 +90,12 @@
     // 费用
     _feeModel = feeModel;
         
+    OrderLogisticsItem * logisticsItem = logisticsModel.logistics.firstObject;
     self.dataModel.priceRp = @"Rp";
-    self.dataModel.deliveryTitle = @"Standard Delivery";
-    self.dataModel.deliveryDes = @"Est.Arrival:2-14 Days";
-    self.dataModel.deliveryPrice = [feeModel.stores.firstObject.logisticsFee floatValue] * 0.001;
-    self.dataModel.totalPrice = [feeModel.totalPrice floatValue] * 0.001;
+    self.dataModel.deliveryTitle = logisticsItem.logisticsModeName;
+    self.dataModel.deliveryDes = [NSString stringWithFormat:@"Est.Arrival %@-%@ Days",logisticsItem.minDeliveryDays,logisticsItem.maxDeliveryDays];
+    self.dataModel.deliveryPrice = [logisticsItem.logisticsFee floatValue] * 0.001;
+    self.dataModel.totalPrice = ([feeModel.totalPrice floatValue] + [logisticsItem.logisticsFee floatValue])  * 0.001;
     self.dataModel.shopAvailableVouchersCount = 0;
     
     [self.tableView reloadData];
@@ -292,15 +294,15 @@
                 @"deliveryAddressId": weakself.addressModel.deliveryAddressId,
                 @"deliveryMode": @"A",
                 @"paymentMode": @"A",
-                @"sourceType": @"LJGM",//weakself.dataModel.sourceType,
-                @"totalPrice": weakself.feeModel.totalPrice,
+                @"sourceType": weakself.dataModel.sourceType,
+                @"totalPrice": @(weakself.dataModel.totalPrice * 1000),
                 @"storeSiteId":@"",
                 @"selUserPltCouponId":@"",
                 @"stores": @[
                         @{
                             @"logisticsModeId": @"1",
                             @"campaignGifts":@[],
-                            @"orderPrice":weakself.feeModel.totalPrice,
+                            @"orderPrice": @(weakself.dataModel.totalPrice * 1000),
                             @"storeId": @(weakself.productModels.firstObject.storeId),
                             @"leaveMsg": @"", // TODO: 这是备注内容
                             @"products": products
