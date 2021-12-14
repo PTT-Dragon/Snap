@@ -58,6 +58,10 @@
         make.centerY.mas_equalTo(0);
     }];
 }
+- (void)btnClick:(UIButton *)btn
+{
+    
+}
 
 #pragma mark - Get and Set
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {

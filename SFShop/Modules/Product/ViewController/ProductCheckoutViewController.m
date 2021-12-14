@@ -18,6 +18,7 @@
 #import "ProductCheckoutBuyView.h"
 #import "MakeH5Happy.h"
 #import "PublicWebViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -291,10 +292,10 @@
                 @"deliveryAddressId": weakself.addressModel.deliveryAddressId,
                 @"deliveryMode": @"A",
                 @"paymentMode": @"A",
-                @"sourceType": self.dataModel.sourceType,
+                @"sourceType": @"LJGM",//weakself.dataModel.sourceType,
                 @"totalPrice": weakself.feeModel.totalPrice,
-                @"storeSiteId":[NSNull null],
-                @"selUserPltCouponId":[NSNull null],
+                @"storeSiteId":@"",
+                @"selUserPltCouponId":@"",
                 @"stores": @[
                         @{
                             @"logisticsModeId": @"1",
@@ -310,7 +311,12 @@
                 [MBProgressHUD autoDismissShowHudMsg: @"Save order Success!"];
                 [weakself showPaymentAlert:response];
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg: @"Save order Failed!"];
+                NSData *responseData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+                NSString * receive = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+                //字符串再生成NSData
+                NSData *data = [receive dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+                [MBProgressHUD autoDismissShowHudMsg: dict[@"message"]];
             }];
         };
     }

@@ -26,6 +26,7 @@
 @property (nonatomic,strong) AreaModel *selDistrictAreaMoel;
 @property (nonatomic,strong) AreaModel *selStreetAreaMoel;
 @property (weak, nonatomic) IBOutlet UIButton *selAgreementBtn;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
 
 @end
 
@@ -55,6 +56,7 @@
         self.detailField.text = _model.contactAddress;
         self.defaultSwitch.on = [_model.isDefault isEqualToString:@"Y"];
         self.selAgreementBtn.selected = YES;
+        self.emailField.text = _model.email;
     }else{
         
     }
@@ -123,6 +125,7 @@
     [params setValue:_detailField.text forKey:@"contactAddress"];
     [params setValue:_selStreetAreaMoel.stdAddrId forKey:@"contactStdId"];
     [params setValue:_selStreetAreaMoel.zipcode forKey:@"postCode"];
+    [params setValue:_emailField.text forKey:@"email"];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.address.addressList parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
@@ -142,6 +145,7 @@
     [params setValue:_selStreetAreaMoel ? _selStreetAreaMoel.stdAddrId : _model.contactStdId forKey:@"contactStdId"];
     [params setValue:_selStreetAreaMoel ? _selStreetAreaMoel.zipcode : _model.postCode forKey:@"postCode"];
     [params setValue:_model.deliveryAddressId forKey:@"deliveryAddressId"];
+    [params setValue:_emailField.text forKey:@"email"];
     MPWeakSelf(self)
     [SFNetworkManager post:[SFNet.address setAddressModifyOfdeliveryAddressId:_model.deliveryAddressId] parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"MODIFY SUCCESS"];

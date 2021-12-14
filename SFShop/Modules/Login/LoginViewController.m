@@ -48,6 +48,7 @@
     _phoneIndicationView.backgroundColor = [UIColor blackColor];
     _emailIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
     _label1.text = @" Phone number ";
+    _accountField.placeholder = @"Phone number";
 }
 - (IBAction)emailAction:(UIButton *)sender {
     sender.selected = YES;
@@ -55,6 +56,7 @@
     _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
     _emailIndicationView.backgroundColor = [UIColor blackColor];
     _label1.text = @" Email ";
+    _accountField.placeholder = @"Email";
 }
 - (IBAction)loginAction:(id)sender {
     //wcttest1@qq.com/smart123  17366287044 Abc@1234
