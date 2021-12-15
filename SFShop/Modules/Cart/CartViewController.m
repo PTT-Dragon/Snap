@@ -43,7 +43,7 @@
     // Do any additional setup after loading the view.
     self.title = @"Shopping Cart";
     _addressArr = [NSMutableArray array];
-    [self updateDatas];
+    [self updateDatas];NSLocalizedString(@"test", nil);
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

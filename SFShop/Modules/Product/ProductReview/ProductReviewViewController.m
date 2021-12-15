@@ -11,7 +11,6 @@
 #import <VTMagic/VTMagic.h>
 #import "ProductDetailModel.h"
 #import "ProductReviewLabelCell.h"
-#import "NSString+Add.h"
 #import <MJRefresh/MJRefresh.h>
 
 

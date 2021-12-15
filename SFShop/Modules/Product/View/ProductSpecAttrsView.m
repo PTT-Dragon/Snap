@@ -7,7 +7,6 @@
 
 #import "ProductSpecAttrsView.h"
 #import "MakeH5Happy.h"
-#import "NSString+Add.h"
 
 @interface ProductSpecAttrsView()
 

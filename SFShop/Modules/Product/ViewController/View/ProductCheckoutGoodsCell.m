@@ -7,7 +7,6 @@
 
 #import "ProductCheckoutGoodsCell.h"
 #import "ProductCheckoutModel.h"
-#import "NSString+Add.h"
 
 @interface ProductCheckoutGoodsCell ()
 

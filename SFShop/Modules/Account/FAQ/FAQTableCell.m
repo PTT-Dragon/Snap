@@ -6,7 +6,6 @@
 //
 
 #import "FAQTableCell.h"
-#import "NSString+Add.h"
 
 
 @interface FAQTableCell ()

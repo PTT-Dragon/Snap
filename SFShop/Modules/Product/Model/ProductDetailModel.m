@@ -6,7 +6,6 @@
 //
 
 #import "ProductDetailModel.h"
-#import "NSString+Add.h"
 
 @implementation ProductCarouselImgModel
 

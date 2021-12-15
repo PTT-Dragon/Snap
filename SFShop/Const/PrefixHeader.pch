@@ -29,5 +29,6 @@
 #import <ReactiveObjC.h>
 #import "AES128Util.h"
 #import "Enums.h"
+#import "NSString+Add.h"
 
 #endif /* PrefixHeader_pch */

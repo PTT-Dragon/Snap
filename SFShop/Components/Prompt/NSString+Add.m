@@ -8,6 +8,7 @@
 
 #import "NSString+Add.h"
 #import <CommonCrypto/CommonDigest.h>
+#import <AFNetworking/AFNetworking.h>
 
 @implementation NSString (Add)
 
@@ -189,6 +190,16 @@
 @end
 
 @implementation NSMutableString (Add)
+
++ (NSDictionary *)getErrorMessage:(NSError *)error;
+{
+    NSData *responseData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+    NSString * receive = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+    //字符串再生成NSData
+    NSData *data = [receive dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    return dict;
+}
 
 - (NSArray<NSValue *> *)rangeArrWithLeftStr:(NSString *)leftStr rightStr:(NSString *)rightStr removeLabel:(BOOL)isRemoveLabel{
     NSMutableArray *array = [NSMutableArray array];

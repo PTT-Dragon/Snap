@@ -9,7 +9,6 @@
 #import "YHRegularLayout.h"
 #import "CategoryRankFilterItem.h"
 #import "CategoryRankModel.h"
-#import "NSString+Add.h"
 #import "UIButton+EnlargeTouchArea.h"
 #import "CategoryRankFilterHeader.h"
 #import "CategoryRankFilterInputItem.h"

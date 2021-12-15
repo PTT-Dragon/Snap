@@ -7,7 +7,6 @@
 //
 
 #import "BCLoadingView.h"
-#import "NSString+Add.h"
 
 @interface BCLoadingView ()
 @property (nonatomic, readwrite, strong) UIView * maskView;                     //整个遮罩层，和承载视图位置大小一致，决定能否响应用户操作

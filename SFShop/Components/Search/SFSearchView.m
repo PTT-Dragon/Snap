@@ -10,7 +10,6 @@
 #import "SFSearchCollectionCell.h"
 #import "SFSearchSectionHeadView.h"
 #import "SFSearchModel.h"
-#import "NSString+Add.h"
 
 @interface SFSearchView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, readwrite, strong) UICollectionView *collectionView;

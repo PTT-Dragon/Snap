@@ -6,7 +6,6 @@
 //
 
 #import "CategoryRankCell.h"
-#import "NSString+Add.h"
 
 @interface CategoryRankCell ()
 

@@ -98,6 +98,8 @@
  */
 - (NSArray<NSValue *> *)rangeArrWithLeftStr:(NSString *)leftStr rightStr:(NSString *)rightStr removeLabel:(BOOL)isRemoveLabel;
 
++ (NSDictionary *)getErrorMessage:(NSError *)error;
+
 
 //字符串不同颜色
 + (NSMutableAttributedString *)difereentColorStr:(NSString *)str Color:(UIColor *)color range:(NSRange)range;

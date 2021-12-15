@@ -13,7 +13,6 @@
 #import "ProductCheckoutVoucherCell.h"
 #import "ProductCheckoutModel.h"
 #import "SFCellCacheModel.h"
-#import "NSString+Add.h"
 #import "ProductCheckoutSectionHeader.h"
 #import "ProductCheckoutBuyView.h"
 #import "MakeH5Happy.h"
@@ -145,7 +144,7 @@
         vc.url = response[@"urlOrHtml"];
         [self.navigationController pushViewController:vc animated:YES];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
@@ -313,12 +312,7 @@
                 [MBProgressHUD autoDismissShowHudMsg: @"Save order Success!"];
                 [weakself showPaymentAlert:response];
             } failed:^(NSError * _Nonnull error) {
-                NSData *responseData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-                NSString * receive = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
-                //字符串再生成NSData
-                NSData *data = [receive dataUsingEncoding:NSUTF8StringEncoding];
-                NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-                [MBProgressHUD autoDismissShowHudMsg: dict[@"message"]];
+                [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
             }];
         };
     }

@@ -6,7 +6,6 @@
 //
 
 #import "FlashSaleModel.h"
-#import "NSString+Add.h"
 
 @implementation FlashSaleModel
 

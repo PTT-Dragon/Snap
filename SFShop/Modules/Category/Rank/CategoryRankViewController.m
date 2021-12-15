@@ -9,7 +9,6 @@
 #import "CommunityWaterfallLayout.h"
 #import "CategoryRankModel.h"
 #import "CategoryRankCell.h"
-#import "NSString+Add.h"
 #import <MJRefresh/MJRefresh.h>
 #import "CategoryRankHeadSelectorView.h"
 #import "CategoryRankFilterViewController.h"

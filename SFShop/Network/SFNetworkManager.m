@@ -8,8 +8,8 @@
 #import "SFNetworkManager.h"
 #import "SFNetworkURL.h"
 #import <AFNetworking/AFNetworking.h>
-#import "NSString+Add.h"
 #import <dispatch/dispatch.h>
+#import "LoginViewController.h"
 
 @implementation SFNetworkManager
 
@@ -27,10 +27,19 @@
         return [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
     }];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
+    MPWeakSelf(self)
     [manager POST:url parameters:parameters headers:@{@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:nil];
         !success?:success(obj);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSData *responseData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+        NSString * receive = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+        //字符串再生成NSData
+        NSData *data = [receive dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        if ([dict[@"code"] isEqualToString:@"BUYER-WEB-06003"]) {
+            [weakself toLogin];
+        }
         !failed?:failed(error);
     }];
 }
@@ -50,11 +59,20 @@
 //    securityPolicy.validatesDomainName = NO;
 //    manager.securityPolicy = securityPolicy;
     UserModel *model = [FMDBManager sharedInstance].currentUser;
+    MPWeakSelf(self)
     [manager GET:url parameters:parameters headers:@{@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error;
         id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:&error];
         !success?:success(obj);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSData *responseData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+        NSString * receive = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+        //字符串再生成NSData
+        NSData *data = [receive dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        if ([dict[@"code"] isEqualToString:@"BUYER-WEB-06003"]) {
+            [weakself toLogin];
+        }
         !failed?:failed(error);
     }];
 }
@@ -91,9 +109,6 @@
         return [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
     }];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
-    
-    
-      
     NSError *parseError = nil;
 
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parametersArr options:NSJSONWritingPrettyPrinted  error:&parseError];
@@ -107,10 +122,19 @@
                                                               options:NSJSONReadingMutableContainers
                                
                                                                 error:&parseError];
+    MPWeakSelf(self)
     [manager POST:url parameters:jsonDic headers:@{@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:nil];
         !success?:success(obj);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSData *responseData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+        NSString * receive = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+        //字符串再生成NSData
+        NSData *data = [receive dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        if ([dict[@"code"] isEqualToString:@"BUYER-WEB-06003"]) {
+            [weakself toLogin];
+        }
         !failed?:failed(error);
     }];
 }
@@ -145,4 +169,14 @@
     }];
 }
 
+
++ (void)toLogin
+{
+    UIViewController *vc = [baseTool getCurrentVC];
+    if ([vc isKindOfClass:[LoginViewController class]]) {
+        return;
+    }
+    LoginViewController *loginVc = [[LoginViewController alloc] init];
+    [[baseTool getCurrentVC].navigationController pushViewController:loginVc animated:YES];
+}
 @end
