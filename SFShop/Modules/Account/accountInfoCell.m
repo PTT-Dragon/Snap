@@ -54,10 +54,14 @@
         //登出状态
         self.nameLabel.text = @"Login Or Register";
         self.nameLabel.userInteractionEnabled = YES;
+        self.imgVIew.image = [UIImage imageNamed:@"account-black"];
+        self.couponLabel.text = @"--";
+        self.WhishlistLabel.text = @"--";
+        self.RecentlyLabel.text = @"--";
     }else{
         self.nameLabel.userInteractionEnabled = NO;
         self.nameLabel.text = model.userName;
-        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
+        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"account-black"]];
     }
 }
 - (void)setCouponCount:(NSInteger)couponCount

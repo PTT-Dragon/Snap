@@ -107,6 +107,8 @@
     CategoryRankPageInfoListModel *model = self.dataArray[indexPath.row-2];
     GroupProductViewController *vc = [[GroupProductViewController alloc] init];
     vc.offerId = model.offerId;
+    cmpShareBuysModel *buyModel = model.campaigns.cmpShareBuys.firstObject;
+    vc.campaignId = buyModel.campaignId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter

@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFNetworkGroupBuyModule : NSObject
 @property (nonatomic, readonly, copy) NSString *group;
+@property (nonatomic, readonly, copy) NSString *groups;
 
 - (NSString *)getGroupBuyGroupNbr: (NSString *)GroupNbr;
 

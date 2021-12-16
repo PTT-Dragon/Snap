@@ -9,13 +9,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface ObjValueModel : JSONModel
+@property (nonatomic,copy) NSString *maskValue;
+@property (nonatomic, readwrite, assign) NSInteger objId;
+@end
+
+@interface CatgRelaModel : JSONModel
+@property (nonatomic,copy) NSString *objType;
+@property (nonatomic, readwrite, strong) ObjValueModel *objValue;
+@end
+
 @interface CategoryInnerModel : NSObject
 @property (nonatomic, readwrite, assign) NSInteger catgId;
 @property (nonatomic, readwrite, assign) NSInteger seq;
 @property (nonatomic, readwrite, assign) NSInteger parentCatgId;
 @property (nonatomic, readwrite, copy) NSString *catgName;
-@property (nonatomic, readwrite, copy) NSString *catgRela;
 @property (nonatomic, readwrite, copy) NSString *imgUrl;
+@property (nonatomic, readwrite, strong) CatgRelaModel *catgRela;
 @end
 
 @interface CategoryModel : NSObject

@@ -94,7 +94,7 @@
     self.dataModel.deliveryTitle = logisticsItem.logisticsModeName;
     self.dataModel.deliveryDes = [NSString stringWithFormat:@"Est.Arrival %@-%@ Days",logisticsItem.minDeliveryDays,logisticsItem.maxDeliveryDays];
     self.dataModel.deliveryPrice = [logisticsItem.logisticsFee floatValue] * 0.001;
-    self.dataModel.totalPrice = ([feeModel.totalPrice floatValue] + [logisticsItem.logisticsFee floatValue])  * 0.001;
+    self.dataModel.totalPrice = ([feeModel.totalOfferPrice floatValue] + [logisticsItem.logisticsFee floatValue])  * 0.001;
     self.dataModel.shopAvailableVouchersCount = 0;
     
     [self.tableView reloadData];

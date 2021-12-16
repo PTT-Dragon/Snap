@@ -14,6 +14,10 @@
 {
     return K_groupBuy_domain(@"group");
 }
+- (NSString *)groups
+{
+    return K_groupBuy_domain(@"groups");
+}
 - (NSString *)getGroupBuyGroupNbr:(NSString *)GroupNbr
 {
     NSString *url = [NSString stringWithFormat:@"group/%@",GroupNbr];

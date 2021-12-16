@@ -7,6 +7,20 @@
 
 #import "CategoryModel.h"
 
+@implementation ObjValueModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+@implementation CatgRelaModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+
+
 @implementation CategoryInnerModel
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {

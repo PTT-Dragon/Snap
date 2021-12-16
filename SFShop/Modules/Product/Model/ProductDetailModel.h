@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface cmpShareBuysModel : JSONModel
-@property (nonatomic,copy) NSString *campaignId;
+@property (nonatomic,assign) NSInteger campaignId;
 @property (nonatomic,copy) NSString *productId;
 @property (nonatomic,copy) NSString *useCoupon;
 @property (nonatomic,assign) NSInteger shareByNum;

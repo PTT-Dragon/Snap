@@ -76,7 +76,8 @@
 
 #pragma mark - UICollectionDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    CategoryModel *model = [self.sideTableView.dataArray objectAtIndex:indexPath.row];
+    NSArray <CategoryModel *>*arr = [self.contentCollectionView.dataArray objectAtIndex:indexPath.section];
+    CategoryModel *model = arr[indexPath.row];
     CategoryRankViewController *rank = [[CategoryRankViewController alloc] init];
     rank.model = model;
     [self.navigationController pushViewController:rank animated:YES];

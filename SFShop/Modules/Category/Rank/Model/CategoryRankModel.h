@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CategoryRankFilterCacheModel.h"
+#import "ProductDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class CategoryRankServiceModel;
@@ -143,6 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
         @property (nonatomic, readwrite, strong) NSArray *labels;//怀疑是数组 null
         @property (nonatomic, readwrite, strong) NSArray<CategoryRankPageInfoListImgModel *> *imgs;
         @property (nonatomic, readwrite, strong) NSArray<CategoryRankPageInfoListServiceModel *> *services;
+        @property (nonatomic, readwrite, strong) ProductCampaignsInfoModel *campaigns;
 #pragma mark - 手动添加属性
         @property (nonatomic, readwrite, assign) CGFloat height;
         @end

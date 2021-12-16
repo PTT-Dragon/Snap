@@ -20,7 +20,7 @@
 #import "InviteViewController.h"
 #import "SupportViewController.h"
 #import "OrderModel.h"
-
+#import "LoginViewController.h"
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -67,7 +67,15 @@
         UserModel *model = [FMDBManager sharedInstance].currentUser;
         if (!model || [model.accessToken isEqualToString:@""]) {
             //登出状态
+            self.orderNumModel = nil;
             [self.tableView reloadData];
+            LoginViewController *vc = [[LoginViewController alloc] init];
+            MPWeakSelf(vc)
+            vc.didLoginBlock = ^{
+                [weakvc.navigationController popToRootViewControllerAnimated:YES];
+//                self.tabBarController.selectedIndex = 0;
+            };
+            [self.navigationController pushViewController:vc animated:YES];
         }else{
             if (model.userRes.distributorDto) {
                 [self.dataSource insertObject:@{@"image":@"00350_Distributor_Center",@"title":@"Distributor  Center"} atIndex:0];

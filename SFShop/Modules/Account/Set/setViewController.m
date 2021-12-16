@@ -85,10 +85,12 @@
         SecurityCenterViewController *vc = [[SecurityCenterViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 3){
+        MPWeakSelf(self)
         PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:@"confirm to logout" btnTitle:@"LOGOUT" block:^{
             [SFNetworkManager post:SFNet.account.logout success:^(id  _Nullable response) {
                 [MBProgressHUD autoDismissShowHudMsg:@"LogOut Success"];
                 [[FMDBManager sharedInstance] deleteUserData];
+                [baseTool removeVCFromNavigation:weakself];                
             } failed:^(NSError * _Nonnull error) {
                 
             }];

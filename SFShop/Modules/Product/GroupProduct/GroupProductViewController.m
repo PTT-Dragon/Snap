@@ -68,6 +68,7 @@
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
     self.individualBuyBtn.titleLabel.numberOfLines = 2;
+    self.buyBtn.titleLabel.numberOfLines = 2;
     
     [self request];
     [self requestSimilar];
@@ -77,6 +78,7 @@
     [self requestEvaluationsList];
     [self addActions];
     [self requestCampaignsInfo];
+    [self requestGroupInfo];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -142,6 +144,15 @@
     MPWeakSelf(self)
     [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":@(_offerId)} success:^(id  _Nullable response) {
         weakself.campaignsModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
+- (void)requestGroupInfo
+{
+    //已经开始的团队列表
+    [SFNetworkManager get:SFNet.groupbuy.groups parameters:@{@"offerId":@(_offerId),@"campaignId":@(_campaignId),@"pageSize":@(5),@"pageIndex":@(1)} success:^(id  _Nullable response) {
+        
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
@@ -237,6 +248,7 @@
     self.variationsLabel.text = [self getVariationsString];
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
     [self.individualBuyBtn setTitle:[NSString stringWithFormat:@"RP %ld\nIndividual buy",model.marketPrice] forState:0];
+    [self.individualBuyBtn setTitle:[NSString stringWithFormat:@"RP %ld\nShare buy",model.salesPrice] forState:0];
 }
 - (void)setCampaignsModel:(ProductCampaignsInfoModel *)campaignsModel
 {
@@ -353,27 +365,58 @@
     [self.navigationController pushViewController:cartVC animated:YES];
 }
 
-- (IBAction)addToCart:(UIButton *)sender {
+- (IBAction)individualBuy:(UIButton *)sender {
     if (!_isCheckingSaleInfo) {
         [self showAttrsView];
     } else {
-        // TODO: 添加购物车
-        NSDictionary *params =
-        @{
-            @"campaignId":@"3",
-            @"num": @(self.attrView.count),
-            @"offerId": @(self.model.offerId),
-            @"productId": @([self getSelectedProductId]),
-            @"storeId": @(self.model.storeId),
-            @"unitPrice": @(self.model.salesPrice),
-            @"contactChannel":@"3",
-            @"addon":@"",
-            @"isSelected":@"N"
+        // TODO: 跳转checkout页
+        MPWeakSelf(self)
+        NSDictionary *logisticsParams = @{
+            @"deliveryAddressId": self.selectedAddressModel.deliveryAddressId,
+            @"deliveryMode": self.model.deliveryMode,
+            @"stores": @[
+                    @{
+                        @"logisticsModeId": @"1",
+                        @"storeId": @(self.model.storeId),
+                        @"products": @[
+                                @{
+                                    @"productId": @([self getSelectedProductId]),
+                                    @"offerCnt": @(self.attrView.count)
+                                }
+                        ]
+                    }
+            ],
         };
-        [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Add to cart Success!"];
+        
+        NSMutableDictionary *calcfeeParams = [NSMutableDictionary dictionaryWithDictionary:logisticsParams];
+        [calcfeeParams addEntriesFromDictionary:@{
+            @"sourceType": @"LJGM", // TODO:此处参考h5
+        }];
+        
+        [MBProgressHUD showHudMsg:@"Calculating..."];
+        [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
+            ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
+            [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable responseInner) {
+                NSDictionary *data = ((NSArray *)responseInner).firstObject;
+                OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
+                [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
+                [weakself.attrView removeFromSuperview];
+                weakself.isCheckingSaleInfo = NO;
+                ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+                [vc setProductModels:@[weakself.model]
+                          attrValues:@[weakself.variationsLabel.text]
+                 productIds:@[@([weakself getSelectedProductId])]
+                      logisticsModel:logisticsModel
+                        addressModel:weakself.selectedAddressModel
+                            feeModel:feeModel
+                               count:@[@(weakself.attrView.count)]
+                          sourceType:@"LJGM"];
+                [weakself.navigationController pushViewController:vc animated:YES];
+            } failed:^(NSError * _Nonnull error) {
+                [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+            }];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Add to cart failed!"];
+            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
         }];
     }
 }
@@ -400,7 +443,8 @@
                         @"products": @[
                                 @{
                                     @"productId": @([self getSelectedProductId]),
-                                    @"offerCnt": @(self.attrView.count)
+                                    @"offerCnt": @(self.attrView.count),
+                                    @"inCmpIdList":@[]
                                 }
                         ]
                     }

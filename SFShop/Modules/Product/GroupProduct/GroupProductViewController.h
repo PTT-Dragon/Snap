@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GroupProductViewController : UIViewController
 @property (nonatomic, assign) NSInteger offerId;
+@property (nonatomic, assign) NSInteger campaignId;
 @end
 
 NS_ASSUME_NONNULL_END
