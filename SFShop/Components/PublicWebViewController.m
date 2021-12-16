@@ -14,6 +14,7 @@
 #import "SFSearchView.h"
 #import "MessageViewController.h"
 #import "ProductViewController.h"
+#import "GroupListViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -22,13 +23,18 @@
 @end
 
 @implementation PublicWebViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (_isHome) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     self.configuration = configuration;
-    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei) configuration:_configuration];
+    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, _isHome ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? statuBarHei: navBarHei)) configuration:_configuration];
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
@@ -58,6 +64,10 @@
     [_jsBridge registerHandler:@"COUPON" handler:^(id data, WVJBResponseCallback responseCallback) {
         
     }];
+}
+- (void)setIsHome:(BOOL)isHome
+{
+    _isHome = isHome;
 }
 #pragma mark - WKNavigationDelegate
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
@@ -129,6 +139,11 @@
         NSRange range2 = [navigationAction.request.URL.absoluteString rangeOfString:@"?"];
         offerId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.length, range2.location-range1.length)];
         vc.offerId = offerId.integerValue;
+        [self.navigationController pushViewController:vc animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"http://www.smartfrenshop.com/product/GroupBuy"]){
+        GroupListViewController *vc = [[GroupListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;

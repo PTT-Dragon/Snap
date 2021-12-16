@@ -72,7 +72,7 @@
         [self refreshNoItemsStatus];
         [self.collectionView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
         if ([self.collectionView.mj_header isRefreshing]) {
             [self.collectionView.mj_header endRefreshing];
         }

@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, copy) NSString *evaluationList;
 
+@property (nonatomic, readonly, copy) NSString *campaigns;
+
+
+
 
 
 - (NSString *)getDetailOf: (NSInteger)offerId;

@@ -38,7 +38,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.navigationController.navigationBar.hidden = YES;
     self.title = @"Account";
     _couponCount = 0;
     _favoriteCount = 0;

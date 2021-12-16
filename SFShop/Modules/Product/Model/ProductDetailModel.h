@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ProductItemModel;
 @protocol EvaluatesContentsModel;
 @protocol ProductEvalationLabelsModel;
+@protocol cmpShareBuysModel;
 
 
 
@@ -171,6 +172,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *evaluationAvg;
 @property (nonatomic,copy) NSString *evaluationRate;
 @property (nonatomic,strong) NSArray <ProductEvalationLabelsModel>*evaluationLabels;
+@end
+
+@interface cmpShareBuysModel : JSONModel
+@property (nonatomic,copy) NSString *campaignId;
+@property (nonatomic,copy) NSString *productId;
+@property (nonatomic,copy) NSString *useCoupon;
+@property (nonatomic,assign) NSInteger shareByNum;
+@property (nonatomic,assign) double shareBuyPrice;
+@property (nonatomic,assign) double discountPercent;
+@property (nonatomic,assign) NSInteger buyAmtLimit;
+@end
+
+@interface ProductCampaignsInfoModel : JSONModel
+@property (nonatomic,strong) NSArray *cmpBuygetns;
+@property (nonatomic,strong) NSArray <cmpShareBuysModel>*cmpShareBuys;
 @end
 
 

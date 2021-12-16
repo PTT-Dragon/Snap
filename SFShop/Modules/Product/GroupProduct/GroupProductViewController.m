@@ -1,11 +1,11 @@
 //
-//  ProductViewController.m
+//  GroupProductViewController.m
 //  SFShop
 //
-//  Created by Jacue on 2021/10/23.
+//  Created by 游挺 on 2021/12/16.
 //
 
-#import "ProductViewController.h"
+#import "GroupProductViewController.h"
 #import "ProductDetailModel.h"
 #import "ProductSimilarModel.h"
 #import <iCarousel/iCarousel.h>
@@ -22,14 +22,14 @@
 #import "PublicWebViewController.h"
 #import "ProductReviewViewController.h"
 
-
-@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface GroupProductViewController ()
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
-@property (weak, nonatomic) IBOutlet UIButton *addCartBtn;
+@property (weak, nonatomic) IBOutlet UIButton *individualBuyBtn;
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
 @property(nonatomic, strong) ProductDetailModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *discountLabel;
 @property (weak, nonatomic) IBOutlet iCarousel *carouselImgView;
 @property (weak, nonatomic) IBOutlet UILabel *salesPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *marketPriceLabel;
@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *variationsLabel;
 @property (weak, nonatomic) IBOutlet UITableView *evalationTableview;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableviewHie;
+@property (weak, nonatomic) IBOutlet UILabel *groupCountLabel;
 
 @property(nonatomic, strong) NSMutableArray<ProductEvalationModel *> *evalationArr;
 @property (nonatomic, strong) WKWebView *detailWebView;
@@ -50,11 +51,12 @@
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 @property (nonatomic,strong) addressModel *selectedAddressModel;
+@property (nonatomic,strong) ProductCampaignsInfoModel *campaignsModel;
 @property (nonatomic,copy) NSNumber *allEvaCount;//评价总数
 
 @end
 
-@implementation ProductViewController
+@implementation GroupProductViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,6 +67,7 @@
     _evalationArr = [NSMutableArray array];
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
+    self.individualBuyBtn.titleLabel.numberOfLines = 2;
     
     [self request];
     [self requestSimilar];
@@ -73,6 +76,7 @@
     [self requestAddressInfo];
     [self requestEvaluationsList];
     [self addActions];
+    [self requestCampaignsInfo];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,6 +135,15 @@
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
         NSLog(@"get product detail failed");
+    }];
+}
+- (void)requestCampaignsInfo
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":@(_offerId)} success:^(id  _Nullable response) {
+        weakself.campaignsModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
@@ -192,8 +205,8 @@
     self.cartBtn.layer.borderColor = [[UIColor jk_colorWithHexString:@"#cccccc"] CGColor];
     self.messageBtn.layer.borderWidth = 0.5;
     self.messageBtn.layer.borderColor = [[UIColor jk_colorWithHexString:@"#cccccc"] CGColor];
-    self.addCartBtn.layer.borderWidth = 1;
-    self.addCartBtn.layer.borderColor = [[UIColor jk_colorWithHexString:@"#ff1659"] CGColor];
+    self.individualBuyBtn.layer.borderWidth = 1;
+    self.individualBuyBtn.layer.borderColor = [[UIColor jk_colorWithHexString:@"#ff1659"] CGColor];
     [self.buyBtn setBackgroundColor: [UIColor jk_colorWithHexString:@"#ff1659"]];
     
     _carouselImgView.type = iCarouselTypeLinear;
@@ -223,6 +236,13 @@
     self.subheadNameLabel.text = model.subheadName;
     self.variationsLabel.text = [self getVariationsString];
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+    [self.individualBuyBtn setTitle:[NSString stringWithFormat:@"RP %ld\nIndividual buy",model.marketPrice] forState:0];
+}
+- (void)setCampaignsModel:(ProductCampaignsInfoModel *)campaignsModel
+{
+    cmpShareBuysModel *model = campaignsModel.cmpShareBuys.firstObject;
+    self.discountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
+    self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
 }
 
 - (NSString *)getVariationsString {
@@ -464,5 +484,4 @@
     [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf:self.model.carouselImgUrls[index]])]];
     return iv;
 }
-
 @end

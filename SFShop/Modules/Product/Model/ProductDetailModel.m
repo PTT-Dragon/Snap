@@ -88,3 +88,16 @@
     return YES;
 }
 @end
+@implementation ProductCampaignsInfoModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+
+@implementation cmpShareBuysModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+
+

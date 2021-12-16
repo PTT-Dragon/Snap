@@ -25,6 +25,9 @@
 - (NSString *)evaluationList {
     return K_offers_domain(@"evaluations/list");
 }
+- (NSString *)campaigns {
+    return K_offers_domain(@"campaigns");
+}
 
 - (NSString *)getDetailOf: (NSInteger)offerId {
     NSString *url = [NSString stringWithFormat:@"detail/%ld", offerId];

@@ -27,12 +27,12 @@
     BaseNavigationController *accountNav = [[BaseNavigationController alloc]initWithRootViewController:accountVC];
     accountNav.tabBarItem.title = @"Account";
     accountNav.tabBarItem.image = [UIImage imageNamed:@"account_tab_icon"];
-//    HomeViewController *homeVC = [[HomeViewController alloc] init];
     PublicWebViewController *homeVc = [[PublicWebViewController alloc] init];
+    homeVc.isHome = YES;
     BaseNavigationController *homeNav = [[BaseNavigationController alloc]initWithRootViewController:homeVc];
     homeVc.url = @"https://www.smartfrenshop.com/main/home";
-    homeVc.navigationController.navigationBar.hidden = YES;
-    homeNav.navigationBar.hidden = YES;
+//    homeVc.navigationController.navigationBar.hidden = YES;
+//    homeNav.navigationBar.hidden = YES;
     homeNav.tabBarItem.title = @"Home";
     homeNav.tabBarItem.image = [UIImage imageNamed:@"home_tab_icon"];
     CartViewController *cartVC = [[CartViewController alloc] init];
