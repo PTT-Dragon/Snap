@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol CartTableViewCellDelegate <NSObject>
 
-- (void)refreshData;
+- (void)modifyCartInfoWithDic:(NSDictionary *)dic;
 
 @end
 

@@ -98,7 +98,7 @@
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     //删除
-    CartItemModel *model = [self.cartModel.validCarts[indexPath.section] shoppingCarts][indexPath.row-1];
+    CartItemModel *model = indexPath.section < self.cartModel.validCarts.count ? [self.cartModel.validCarts[indexPath.section] shoppingCarts][indexPath.row-1] : [self.cartModel.invalidCarts[indexPath.section-self.cartModel.validCarts.count] shoppingCarts][indexPath.row-1] ;
     MPWeakSelf(self)
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
@@ -167,9 +167,15 @@
 {
     [self.delegate calculateAmount:self.cartModel];
 }
-- (void)refreshData
+- (void)modifyCartInfoWithDic:(NSDictionary *)dic
 {
-    [self loadDatas];
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":@[dic]} success:^(id  _Nullable response) {
+        [weakself loadDatas];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+    [self.tableView reloadData];
 }
 - (void)selAll:(BOOL)selAll storeId:(nonnull NSString *)storeId
 {
@@ -181,6 +187,7 @@
                 NSDictionary *dic = [itemModel toDictionary];
                 [modifyArr addObject:dic];
             }
+            [self.tableView reloadData];
             MPWeakSelf(self)
             [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
                 [weakself loadDatas];

@@ -103,7 +103,11 @@
 - (void)showPaymentAlert: (NSDictionary *)orderInfo {
     MPWeakSelf(self)
     NSArray *orders = (NSArray *)orderInfo[@"orders"];
-    NSString *orderId = [orders.firstObject valueForKey:@"orderId"];
+    NSMutableArray *orderIds = [NSMutableArray array];
+    for (NSDictionary *dic in orders) {
+        [orderIds addObject:dic[@"orderId"]];
+    }
+//    NSString *orderId = [orders.firstObject valueForKey:@"orderId"];
     NSString *totalPrice = orderInfo[@"totalPrice"];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Order Payment Processing" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *mockAction = [UIAlertAction actionWithTitle:@"Mock Pay" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -112,7 +116,7 @@
             @"paymentChannel": @"1",
             @"totalPrice": totalPrice,
             @"paymentMethod": @"1",
-            @"orders": @[orderId]
+            @"orders": orderIds
         };
         [SFNetworkManager post:SFNet.order.mock parameters: params success:^(NSDictionary *  _Nullable response) {
             [MBProgressHUD autoDismissShowHudMsg: @"Mock Pay Success!"];
@@ -123,7 +127,7 @@
     }];
     [alert addAction:mockAction];
     UIAlertAction *onlineAction = [UIAlertAction actionWithTitle:@"Online Pay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [weakself onlinePayWithTotalPrice:totalPrice orderId:orderId];
+        [weakself onlinePayWithTotalPrice:totalPrice orderId:orderIds];
     }];
     [alert addAction:onlineAction];
     UIAlertAction *cencelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -131,13 +135,13 @@
 
     [self presentViewController:alert animated:YES completion:nil];
 }
-- (void)onlinePayWithTotalPrice:(NSString *)totalPrice orderId:(NSString *)orderId
-{
+- (void)onlinePayWithTotalPrice:(NSString *)totalPrice orderId:(NSArray *)orderIds
+{//{"orders":["178013","178014"],"totalPrice":106000,"returnUrl":"https://www.smartfrenshop.com/paying?type=back&orderId=178013"}
     //模拟正式支付
     NSDictionary *params = @{
         @"totalPrice": totalPrice,
-        @"returnUrl": [NSString stringWithFormat:@"https://www.smartfrenshop.com/paying?type=back&orderId=%@",orderId],
-        @"orders": @[orderId]
+        @"returnUrl": [NSString stringWithFormat:@"https://www.smartfrenshop.com/paying?type=back&orderId=%@",orderIds.firstObject],
+        @"orders": orderIds
     };
     [SFNetworkManager post:SFNet.h5.pay parameters:params success:^(id  _Nullable response) {
         PublicWebViewController *vc = [[PublicWebViewController alloc] init];

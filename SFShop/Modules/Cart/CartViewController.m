@@ -94,7 +94,9 @@
     [self.view addSubview:_addressBtn];
     [self updateAddress];
     
-    self.menuList = @[@"All", @"Drop in price"];
+    NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count];
+    NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%ld)",self.cartModel.validCarts.count];
+    self.menuList = @[allCount, dropCount];
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
     _magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
@@ -256,6 +258,10 @@
     self.totalAmountLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalPrice];
     self.priceLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalOfferPrice];
     self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-RP %.f",model.totalDiscount];
+    NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count];
+    NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%ld)",self.cartModel.validCarts.count];
+    self.menuList = @[allCount,dropCount];
+    [self.magicController.magicView reloadMenuTitles];
 }
 
 

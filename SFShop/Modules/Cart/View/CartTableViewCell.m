@@ -61,7 +61,6 @@
 }
 - (IBAction)selAction:(UIButton *)sender {
     _model.isSelected = sender.selected ? @"N": @"Y";
-    [self setModel:_model];
     [self cartModifyAction];
 }
 - (IBAction)addAction:(UIButton *)sender {
@@ -96,11 +95,6 @@
 - (void)cartModifyAction
 {
     NSDictionary *dic = [_model toDictionary];
-    MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":@[dic]} success:^(id  _Nullable response) {
-        [weakself.delegate refreshData];
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
+    [self.delegate modifyCartInfoWithDic:dic];
 }
 @end
