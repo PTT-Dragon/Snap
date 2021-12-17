@@ -21,6 +21,8 @@
 #import "ProductEvalationTitleCell.h"
 #import "PublicWebViewController.h"
 #import "ProductReviewViewController.h"
+#import "ProductGroupListCell.h"
+#import "ProductGroupTitleCell.h"
 
 @interface GroupProductViewController ()
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -43,6 +45,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *evalationTableview;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableviewHie;
 @property (weak, nonatomic) IBOutlet UILabel *groupCountLabel;
+@property (weak, nonatomic) IBOutlet UITableView *groupTableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupTableViewHei;
+
 
 @property(nonatomic, strong) NSMutableArray<ProductEvalationModel *> *evalationArr;
 @property (nonatomic, strong) WKWebView *detailWebView;
@@ -52,6 +57,7 @@
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 @property (nonatomic,strong) addressModel *selectedAddressModel;
 @property (nonatomic,strong) ProductCampaignsInfoModel *campaignsModel;
+@property (nonatomic,strong) ProductGroupModel *groupModel;
 @property (nonatomic,copy) NSNumber *allEvaCount;//评价总数
 
 @end
@@ -67,6 +73,9 @@
     _evalationArr = [NSMutableArray array];
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
+    [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupListCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupListCell"];
+    [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupTitleCell"];
+    
     self.individualBuyBtn.titleLabel.numberOfLines = 2;
     self.buyBtn.titleLabel.numberOfLines = 2;
     
@@ -151,8 +160,9 @@
 - (void)requestGroupInfo
 {
     //已经开始的团队列表
+    MPWeakSelf(self)
     [SFNetworkManager get:SFNet.groupbuy.groups parameters:@{@"offerId":@(_offerId),@"campaignId":@(_campaignId),@"pageSize":@(5),@"pageIndex":@(1)} success:^(id  _Nullable response) {
-        
+        weakself.groupModel = [ProductGroupModel yy_modelWithDictionary:response];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
@@ -252,9 +262,16 @@
 }
 - (void)setCampaignsModel:(ProductCampaignsInfoModel *)campaignsModel
 {
+    _campaignsModel = campaignsModel;
     cmpShareBuysModel *model = campaignsModel.cmpShareBuys.firstObject;
     self.discountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
     self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
+}
+- (void)setGroupModel:(ProductGroupModel *)groupModel
+{
+    _groupModel = groupModel;
+    [self.groupTableView reloadData];
+    self.groupTableViewHei.constant = [self calucateGroupTableviewHei];
 }
 
 - (NSString *)getVariationsString {
@@ -321,32 +338,57 @@
 #pragma mark - tableview.delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _evalationArr.count+1;
+    if (tableView == _evalationTableview) {
+        return _evalationArr.count+1;
+    }
+    return self.groupModel.list.count+1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        ProductEvalationTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationTitleCell"];
-        cell.contentLabel.text = [NSString stringWithFormat:@"%@(%@)",@"5",_allEvaCount];
+    if (tableView == _evalationTableview) {
+        if (indexPath.row == 0) {
+            ProductEvalationTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationTitleCell"];
+            cell.contentLabel.text = [NSString stringWithFormat:@"%@(%@)",@"5",_allEvaCount];
+            return cell;
+        }
+        ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
+        cell.model = self.evalationArr[indexPath.row-1];
         return cell;
     }
-    ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
-    cell.model = self.evalationArr[indexPath.row-1];
+    if (indexPath.row == 0) {
+        ProductGroupTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductGroupTitleCell"];
+        cell.label.text = [NSString stringWithFormat:@"%ld people share buy, click to join",self.groupModel.total];
+        return cell;
+    }
+    ProductGroupListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductGroupListCell"];
+    cell.model = self.groupModel.list[indexPath.row-1];
+    MPWeakSelf(self)
+    cell.joinBlock = ^{
+        [weakself buyNow:self.buyBtn];
+    };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == _evalationTableview) {
+        if (indexPath.row == 0) {
+            return 50;
+        }
+        ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
+        return model.itemHie;
+    }
     if (indexPath.row == 0) {
         return 50;
     }
-    ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
-    return model.itemHie;
+    return 47;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductReviewViewController *vc = [[ProductReviewViewController alloc] init];
-    vc.evaluationsId = [NSString stringWithFormat:@"%ld",self.model.offerId];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (tableView == _evalationTableview) {
+        ProductReviewViewController *vc = [[ProductReviewViewController alloc] init];
+        vc.evaluationsId = [NSString stringWithFormat:@"%ld",self.model.offerId];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 - (CGFloat)calucateTableviewHei
 {
@@ -354,6 +396,11 @@
     for (ProductEvalationModel *itemModel in self.evalationArr) {
         hei += itemModel.itemHie;
     }
+    return hei+50;
+}
+- (CGFloat)calucateGroupTableviewHei
+{
+    CGFloat hei = self.groupModel.list.count * 47;
     return hei+50;
 }
 
@@ -444,7 +491,7 @@
                                 @{
                                     @"productId": @([self getSelectedProductId]),
                                     @"offerCnt": @(self.attrView.count),
-                                    @"inCmpIdList":@[]
+                                    @"inCmpIdList":@[@(_campaignId)]
                                 }
                         ]
                     }

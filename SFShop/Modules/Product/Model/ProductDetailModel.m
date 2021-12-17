@@ -99,5 +99,17 @@
     return YES;
 }
 @end
+@implementation ProductGroupListModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+@implementation ProductGroupModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+
+
 
 

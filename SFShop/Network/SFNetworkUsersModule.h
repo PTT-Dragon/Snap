@@ -99,6 +99,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readwrite, strong) NSString *num;
 @property (nonatomic, readwrite, strong) NSString *list;
+@property (nonatomic, readwrite, strong) NSString *delete;
+
 
 
 @end

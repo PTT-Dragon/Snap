@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol EvaluatesContentsModel;
 @protocol ProductEvalationLabelsModel;
 @protocol cmpShareBuysModel;
+@protocol ProductGroupListModel;
+
 
 
 
@@ -189,5 +191,71 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray <cmpShareBuysModel>*cmpShareBuys;
 @end
 
+
+@interface ProductGroupListModel : JSONModel
+@property (nonatomic,copy) NSString *memberQty;
+@property (nonatomic,copy) NSString *nickName;
+@property (nonatomic,copy) NSString *photo;
+@property (nonatomic,copy) NSString *shareBuyOrderId;
+@property (nonatomic,copy) NSString *shareBuyOrderNbr;
+@property (nonatomic,copy) NSString *shareByNum;
+@end
+
+@interface ProductGroupModel : JSONModel
+@property (nonatomic,strong) NSArray <ProductGroupListModel>*list;
+@property (nonatomic,assign) NSInteger total;
+/**
+ {
+     endRow = 2;
+     firstPage = 1;
+     hasNextPage = 0;
+     hasPreviousPage = 0;
+     isFirstPage = 1;
+     isLastPage = 1;
+     lastPage = 1;
+     list =     (
+                 {
+             memberQty = 1;
+             nickName = hyy1994;
+             photo = "/get/resource/0CR9CC45-72EC-4522-9D8E-RB8491192E011467123501889622016.jpeg";
+             shareBuyOrderId = 79003;
+             shareBuyOrderNbr = G202112161413289975;
+             shareByNum = 2;
+         },
+                 {
+             memberQty = 1;
+             nickName = hyy1994;
+             photo = "/get/resource/0CR9CC45-72EC-4522-9D8E-RB8491192E011467123501889622016.jpeg";
+             shareBuyOrderId = 80007;
+             shareBuyOrderNbr = G202112161740346230;
+             shareByNum = 2;
+         },
+                 {
+             memberQty = 1;
+             nickName = hyy1994;
+             photo = "/get/resource/0CR9CC45-72EC-4522-9D8E-RB8491192E011467123501889622016.jpeg";
+             shareBuyOrderId = 79006;
+             shareBuyOrderNbr = G202112161934063490;
+             shareByNum = 2;
+         }
+     );
+     navigateFirstPage = 1;
+     navigateLastPage = 1;
+     navigatePages = 8;
+     navigatepageNums =     (
+         1
+     );
+     nextPage = 0;
+     pageNum = 1;
+     pageSize = 5;
+     pages = 1;
+     prePage = 0;
+     size = 3;
+     startRow = 0;
+     total = 3;
+ }
+
+ **/
+@end
 
 NS_ASSUME_NONNULL_END

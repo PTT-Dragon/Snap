@@ -240,6 +240,9 @@
 - (NSString *)list {
     return K_recent_domain(@"recent/list");
 }
+- (NSString *)delete {
+    return K_recent_domain(@"recent/delete");
+}
 
 
 @end
