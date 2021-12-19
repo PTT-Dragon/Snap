@@ -194,6 +194,8 @@
 		1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5A272A34FE00E6A983 /* SetTopCell.xib */; };
 		1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B787B5E272A354C00E6A983 /* AddReviewViewController.m */; };
 		1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */; };
+		1B78865D276C7E74009A080A /* ProductReviewReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78865B276C7E74009A080A /* ProductReviewReplyCell.m */; };
+		1B78865E276C7E74009A080A /* ProductReviewReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B78865C276C7E74009A080A /* ProductReviewReplyCell.xib */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
@@ -735,6 +737,9 @@
 		1B787B5D272A354C00E6A983 /* AddReviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewViewController.h; sourceTree = "<group>"; };
 		1B787B5E272A354C00E6A983 /* AddReviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewViewController.m; sourceTree = "<group>"; };
 		1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewViewController.xib; sourceTree = "<group>"; };
+		1B78865A276C7E74009A080A /* ProductReviewReplyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewReplyCell.h; sourceTree = "<group>"; };
+		1B78865B276C7E74009A080A /* ProductReviewReplyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductReviewReplyCell.m; sourceTree = "<group>"; };
+		1B78865C276C7E74009A080A /* ProductReviewReplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductReviewReplyCell.xib; sourceTree = "<group>"; };
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
@@ -1693,6 +1698,9 @@
 				1B552EBD276C721B0086604B /* ProductReviewDetailViewController.h */,
 				1B552EBE276C721B0086604B /* ProductReviewDetailViewController.m */,
 				1B552EBF276C721B0086604B /* ProductReviewDetailViewController.xib */,
+				1B78865A276C7E74009A080A /* ProductReviewReplyCell.h */,
+				1B78865B276C7E74009A080A /* ProductReviewReplyCell.m */,
+				1B78865C276C7E74009A080A /* ProductReviewReplyCell.xib */,
 			);
 			path = ProductReview;
 			sourceTree = "<group>";
@@ -2626,6 +2634,7 @@
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
 				1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */,
 				1BD8E7A4275D12CF00130DCC /* ReviewDetailInfoCell.xib in Resources */,
+				1B78865E276C7E74009A080A /* ProductReviewReplyCell.xib in Resources */,
 				1B74DB2B27253AD600B30ECC /* DeliveryAddressCell.xib in Resources */,
 				1B6C52B8275BC02400A1C617 /* ImageCollectionViewCell.xib in Resources */,
 				1B478330272AA1FF00F2A945 /* SecurityCenterViewController.xib in Resources */,
@@ -2886,6 +2895,7 @@
 				1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
 				1B47832A272AA15700F2A945 /* ChangeMobileOrEmailViewController.m in Sources */,
+				1B78865D276C7E74009A080A /* ProductReviewReplyCell.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
 				1B6C52A2275B672200A1C617 /* ZLCollectionCell.m in Sources */,
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
