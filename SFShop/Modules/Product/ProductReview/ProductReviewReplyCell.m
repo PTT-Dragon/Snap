@@ -5,7 +5,15 @@
 //  Created by 游挺 on 2021/12/17.
 //
 
-#import "ProductReviewReplyCell.h"nfg
+#import "ProductReviewReplyCell.h"
+
+@interface ProductReviewReplyCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+
+@end
 
 @implementation ProductReviewReplyCell
 
@@ -13,11 +21,12 @@
     [super awakeFromNib];
     // Initialization code
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setModel:(ProductEvalationReplayModel *)model
+{
+    _model = model;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)]];
+    _nameLabel.text = model.storeName;
+    _timeLabel.text = model.replyDate;
+    _contentLabel.text = model.replyComments;
 }
-
 @end

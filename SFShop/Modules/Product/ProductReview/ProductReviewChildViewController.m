@@ -9,6 +9,7 @@
 #import "ProductDetailModel.h"
 #import "ProductEvalationCell.h"
 #import <MJRefresh/MJRefresh.h>
+#import "ProductReviewDetailViewController.h"
 
 @interface ProductReviewChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,assign) NSInteger pageIndex;
@@ -83,7 +84,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    ProductEvalationModel *model = self.evalationArr[indexPath.row];
+    ProductReviewDetailViewController *vc = [[ProductReviewDetailViewController alloc] init];
+    vc.model = model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

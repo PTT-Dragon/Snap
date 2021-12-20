@@ -98,6 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString *storeName;
 @property(nonatomic, strong) NSString *storeLogoUrl;
 @property(nonatomic, strong) NSString *usefulCnt;
+@property(nonatomic,assign) CGFloat itemHie;
 @end
 
 @interface ProductEvalationModel : JSONModel

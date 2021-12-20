@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductReviewDetailViewController">
             <connections>
+                <outlet property="imgView" destination="EtV-Gf-gXu" id="2lO-cu-TVw"/>
+                <outlet property="nameLabel" destination="r1v-co-6YL" id="RlZ-Vb-Xva"/>
+                <outlet property="skuLabel" destination="cPm-hA-Rxa" id="fwZ-iK-NTR"/>
                 <outlet property="tableView" destination="B20-oT-gkJ" id="UZG-JJ-Hql"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

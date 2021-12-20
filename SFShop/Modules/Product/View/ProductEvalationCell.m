@@ -7,6 +7,7 @@
 
 #import "ProductEvalationCell.h"
 #import "ImageCollectionViewCell.h"
+#import "KSPhotoBrowser.h"
 
 @interface ProductEvalationCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -46,7 +47,17 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_width)];
+    [self.contentView addSubview:imgView];
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+    [self.model.evaluationContents enumerateObjectsUsingBlock:^(EvaluatesContentsModel *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        KSPhotoItem *item = [KSPhotoItem itemWithSourceView:imgView imageUrl:[NSURL URLWithString:SFImage(obj.url)]];
+        [arr addObject:item];
+    }];
+    UIView *bottomView = [[UIView alloc] init];
+    bottomView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    KSPhotoBrowser *browser = [KSPhotoBrowser browserWithPhotoItems:arr selectedIndex:indexPath.row bottomView:bottomView];
+    [browser showFromViewController:[baseTool getCurrentVC]];
 }
 
 #pragma mark - UICollectionViewDataSource

@@ -19,6 +19,7 @@
                 <outlet property="deliveryLabel" destination="4Me-5e-Gsz" id="anj-nw-b8k"/>
                 <outlet property="detailViewHeader" destination="Sh5-6B-V3T" id="8Fb-HR-30Q"/>
                 <outlet property="evalationTableview" destination="GgT-97-s4m" id="o2F-vV-Mnd"/>
+                <outlet property="infoCellTop" destination="rbz-dD-88Y" id="91J-g2-Ggs"/>
                 <outlet property="marketPriceLabel" destination="h95-ML-yMl" id="4vu-QJ-bfs"/>
                 <outlet property="messageBtn" destination="rmQ-y4-MWr" id="cqv-ag-v7U"/>
                 <outlet property="offerNameLabel" destination="xH6-hl-n8N" id="6qQ-LE-cCA"/>

@@ -52,7 +52,14 @@
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return YES;
 }
-
+- (CGFloat)itemHie
+{
+    //计算label高度
+    CGFloat labelHei = 0;
+    labelHei = [self.replyComments calHeightWithFont:[UIFont systemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-48, MAXFLOAT)];
+    
+    return (labelHei+56) > 84 ? labelHei+56: 84;
+}
 @end
 
 @implementation ProductEvalationModel

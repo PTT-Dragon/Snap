@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *variationsLabel;
 @property (weak, nonatomic) IBOutlet UITableView *evalationTableview;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableviewHie;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoCellTop;
 
 @property(nonatomic, strong) NSMutableArray<ProductEvalationModel *> *evalationArr;
 @property (nonatomic, strong) WKWebView *detailWebView;

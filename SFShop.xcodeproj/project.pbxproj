@@ -199,6 +199,30 @@
 		1B82AE33276F7B7F00D75E00 /* CommunityEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE32276F7B7F00D75E00 /* CommunityEvaluateCell.m */; };
 		1B82AE3727701F4F00D75E00 /* ArticleEvaluateBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE3527701F4F00D75E00 /* ArticleEvaluateBottomCell.m */; };
 		1B82AE3827701F4F00D75E00 /* ArticleEvaluateBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B82AE3627701F4F00D75E00 /* ArticleEvaluateBottomCell.xib */; };
+		1B82AE4A27707CB500D75E00 /* KSPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE4027707CB500D75E00 /* KSPhotoView.m */; };
+		1B82AE4B27707CB500D75E00 /* KSProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE4127707CB500D75E00 /* KSProgressLayer.m */; };
+		1B82AE4C27707CB500D75E00 /* KSPhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE4227707CB500D75E00 /* KSPhotoItem.m */; };
+		1B82AE4D27707CB500D75E00 /* KSPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE4327707CB500D75E00 /* KSPhotoBrowser.m */; };
+		1B82AECF277080B700D75E00 /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE9D277080B700D75E00 /* YYDiskCache.m */; };
+		1B82AED0277080B700D75E00 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE9F277080B700D75E00 /* YYCache.m */; };
+		1B82AED1277080B700D75E00 /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEA3277080B700D75E00 /* YYKVStorage.m */; };
+		1B82AED2277080B700D75E00 /* YYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEA4277080B700D75E00 /* YYMemoryCache.m */; };
+		1B82AED6277080B700D75E00 /* YYAnimatedImageView+yy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEAD277080B700D75E00 /* YYAnimatedImageView+yy.m */; };
+		1B82AED7277080B700D75E00 /* YYSpriteSheetImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEAE277080B700D75E00 /* YYSpriteSheetImage.m */; };
+		1B82AED8277080B700D75E00 /* YYImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEB0277080B700D75E00 /* YYImage.m */; };
+		1B82AED9277080B700D75E00 /* YYImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEB1277080B700D75E00 /* YYImageCoder.m */; };
+		1B82AEDA277080B700D75E00 /* YYFrameImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEB2277080B700D75E00 /* YYFrameImage.m */; };
+		1B82AEDB277080B700D75E00 /* YYAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEB3277080B700D75E00 /* YYAnimatedImageView.m */; };
+		1B82AEDE277080B700D75E00 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1B82AEB9277080B700D75E00 /* README.md */; };
+		1B82AEDF277080B700D75E00 /* YYImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEBB277080B700D75E00 /* YYImageCache.m */; };
+		1B82AEE0277080B700D75E00 /* YYWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEBC277080B700D75E00 /* YYWebImageManager.m */; };
+		1B82AEE1277080B700D75E00 /* _YYWebImageSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEC1277080B700D75E00 /* _YYWebImageSetter.m */; };
+		1B82AEE2277080B700D75E00 /* UIButton+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEC8277080B700D75E00 /* UIButton+YYWebImage.m */; };
+		1B82AEE3277080B700D75E00 /* UIImageView+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AEC9277080B700D75E00 /* UIImageView+YYWebImage.m */; };
+		1B82AEE4277080B700D75E00 /* MKAnnotationView+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AECA277080B700D75E00 /* MKAnnotationView+YYWebImage.m */; };
+		1B82AEE5277080B700D75E00 /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AECB277080B700D75E00 /* UIImage+YYWebImage.m */; };
+		1B82AEE6277080B700D75E00 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AECC277080B700D75E00 /* CALayer+YYWebImage.m */; };
+		1B82AEE7277080B700D75E00 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AECE277080B700D75E00 /* YYWebImageOperation.m */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
@@ -748,6 +772,59 @@
 		1B82AE3427701F4F00D75E00 /* ArticleEvaluateBottomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleEvaluateBottomCell.h; sourceTree = "<group>"; };
 		1B82AE3527701F4F00D75E00 /* ArticleEvaluateBottomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleEvaluateBottomCell.m; sourceTree = "<group>"; };
 		1B82AE3627701F4F00D75E00 /* ArticleEvaluateBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleEvaluateBottomCell.xib; sourceTree = "<group>"; };
+		1B82AE3D27707CB500D75E00 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1B82AE3E27707CB500D75E00 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1B82AE4027707CB500D75E00 /* KSPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPhotoView.m; sourceTree = "<group>"; };
+		1B82AE4127707CB500D75E00 /* KSProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSProgressLayer.m; sourceTree = "<group>"; };
+		1B82AE4227707CB500D75E00 /* KSPhotoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPhotoItem.m; sourceTree = "<group>"; };
+		1B82AE4327707CB500D75E00 /* KSPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPhotoBrowser.m; sourceTree = "<group>"; };
+		1B82AE4427707CB500D75E00 /* KSPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPhotoView.h; sourceTree = "<group>"; };
+		1B82AE4527707CB500D75E00 /* KSPhotoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPhotoItem.h; sourceTree = "<group>"; };
+		1B82AE4627707CB500D75E00 /* KSProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSProgressLayer.h; sourceTree = "<group>"; };
+		1B82AE4727707CB500D75E00 /* KSPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPhotoBrowser.h; sourceTree = "<group>"; };
+		1B82AE9D277080B700D75E00 /* YYDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDiskCache.m; sourceTree = "<group>"; };
+		1B82AE9E277080B700D75E00 /* YYKVStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKVStorage.h; sourceTree = "<group>"; };
+		1B82AE9F277080B700D75E00 /* YYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCache.m; sourceTree = "<group>"; };
+		1B82AEA0277080B700D75E00 /* YYMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMemoryCache.h; sourceTree = "<group>"; };
+		1B82AEA1277080B700D75E00 /* YYDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDiskCache.h; sourceTree = "<group>"; };
+		1B82AEA2277080B700D75E00 /* YYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCache.h; sourceTree = "<group>"; };
+		1B82AEA3277080B700D75E00 /* YYKVStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYKVStorage.m; sourceTree = "<group>"; };
+		1B82AEA4277080B700D75E00 /* YYMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMemoryCache.m; sourceTree = "<group>"; };
+		1B82AEA5277080B700D75E00 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1B82AEA6277080B700D75E00 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1B82AEAA277080B700D75E00 /* YYImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYImage.h; sourceTree = "<group>"; };
+		1B82AEAB277080B700D75E00 /* YYImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYImageCoder.h; sourceTree = "<group>"; };
+		1B82AEAC277080B700D75E00 /* YYFrameImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFrameImage.h; sourceTree = "<group>"; };
+		1B82AEAD277080B700D75E00 /* YYAnimatedImageView+yy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYAnimatedImageView+yy.m"; sourceTree = "<group>"; };
+		1B82AEAE277080B700D75E00 /* YYSpriteSheetImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYSpriteSheetImage.m; sourceTree = "<group>"; };
+		1B82AEAF277080B700D75E00 /* YYAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAnimatedImageView.h; sourceTree = "<group>"; };
+		1B82AEB0277080B700D75E00 /* YYImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImage.m; sourceTree = "<group>"; };
+		1B82AEB1277080B700D75E00 /* YYImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImageCoder.m; sourceTree = "<group>"; };
+		1B82AEB2277080B700D75E00 /* YYFrameImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFrameImage.m; sourceTree = "<group>"; };
+		1B82AEB3277080B700D75E00 /* YYAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAnimatedImageView.m; sourceTree = "<group>"; };
+		1B82AEB4277080B700D75E00 /* YYSpriteSheetImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYSpriteSheetImage.h; sourceTree = "<group>"; };
+		1B82AEB5277080B700D75E00 /* YYAnimatedImageView+yy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYAnimatedImageView+yy.h"; sourceTree = "<group>"; };
+		1B82AEB6277080B700D75E00 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1B82AEB9277080B700D75E00 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1B82AEBB277080B700D75E00 /* YYImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImageCache.m; sourceTree = "<group>"; };
+		1B82AEBC277080B700D75E00 /* YYWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageManager.m; sourceTree = "<group>"; };
+		1B82AEBD277080B700D75E00 /* YYWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImageOperation.h; sourceTree = "<group>"; };
+		1B82AEBE277080B700D75E00 /* YYImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYImageCache.h; sourceTree = "<group>"; };
+		1B82AEBF277080B700D75E00 /* YYWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImageManager.h; sourceTree = "<group>"; };
+		1B82AEC1277080B700D75E00 /* _YYWebImageSetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _YYWebImageSetter.m; sourceTree = "<group>"; };
+		1B82AEC2277080B700D75E00 /* UIButton+YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+YYWebImage.h"; sourceTree = "<group>"; };
+		1B82AEC3277080B700D75E00 /* UIImageView+YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+YYWebImage.h"; sourceTree = "<group>"; };
+		1B82AEC4277080B700D75E00 /* CALayer+YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+YYWebImage.h"; sourceTree = "<group>"; };
+		1B82AEC5277080B700D75E00 /* UIImage+YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+YYWebImage.h"; sourceTree = "<group>"; };
+		1B82AEC6277080B700D75E00 /* MKAnnotationView+YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+YYWebImage.h"; sourceTree = "<group>"; };
+		1B82AEC7277080B700D75E00 /* _YYWebImageSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _YYWebImageSetter.h; sourceTree = "<group>"; };
+		1B82AEC8277080B700D75E00 /* UIButton+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YYWebImage.m"; sourceTree = "<group>"; };
+		1B82AEC9277080B700D75E00 /* UIImageView+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+YYWebImage.m"; sourceTree = "<group>"; };
+		1B82AECA277080B700D75E00 /* MKAnnotationView+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+YYWebImage.m"; sourceTree = "<group>"; };
+		1B82AECB277080B700D75E00 /* UIImage+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YYWebImage.m"; sourceTree = "<group>"; };
+		1B82AECC277080B700D75E00 /* CALayer+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+YYWebImage.m"; sourceTree = "<group>"; };
+		1B82AECD277080B700D75E00 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
+		1B82AECE277080B700D75E00 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
@@ -1645,6 +1722,127 @@
 			path = Similar;
 			sourceTree = "<group>";
 		};
+		1B82AE3C27707CB500D75E00 /* KSPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				1B82AE3D27707CB500D75E00 /* LICENSE */,
+				1B82AE3E27707CB500D75E00 /* README.md */,
+				1B82AE3F27707CB500D75E00 /* KSPhotoBrowser */,
+			);
+			path = KSPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		1B82AE3F27707CB500D75E00 /* KSPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				1B82AE4027707CB500D75E00 /* KSPhotoView.m */,
+				1B82AE4127707CB500D75E00 /* KSProgressLayer.m */,
+				1B82AE4227707CB500D75E00 /* KSPhotoItem.m */,
+				1B82AE4327707CB500D75E00 /* KSPhotoBrowser.m */,
+				1B82AE4427707CB500D75E00 /* KSPhotoView.h */,
+				1B82AE4527707CB500D75E00 /* KSPhotoItem.h */,
+				1B82AE4627707CB500D75E00 /* KSProgressLayer.h */,
+				1B82AE4727707CB500D75E00 /* KSPhotoBrowser.h */,
+			);
+			path = KSPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		1B82AE9B277080B700D75E00 /* YYCache */ = {
+			isa = PBXGroup;
+			children = (
+				1B82AE9C277080B700D75E00 /* YYCache */,
+				1B82AEA5277080B700D75E00 /* LICENSE */,
+				1B82AEA6277080B700D75E00 /* README.md */,
+			);
+			path = YYCache;
+			sourceTree = "<group>";
+		};
+		1B82AE9C277080B700D75E00 /* YYCache */ = {
+			isa = PBXGroup;
+			children = (
+				1B82AE9D277080B700D75E00 /* YYDiskCache.m */,
+				1B82AE9E277080B700D75E00 /* YYKVStorage.h */,
+				1B82AE9F277080B700D75E00 /* YYCache.m */,
+				1B82AEA0277080B700D75E00 /* YYMemoryCache.h */,
+				1B82AEA1277080B700D75E00 /* YYDiskCache.h */,
+				1B82AEA2277080B700D75E00 /* YYCache.h */,
+				1B82AEA3277080B700D75E00 /* YYKVStorage.m */,
+				1B82AEA4277080B700D75E00 /* YYMemoryCache.m */,
+			);
+			path = YYCache;
+			sourceTree = "<group>";
+		};
+		1B82AEA7277080B700D75E00 /* YYImage */ = {
+			isa = PBXGroup;
+			children = (
+				1B82AEA9277080B700D75E00 /* YYImage */,
+				1B82AEB6277080B700D75E00 /* README.md */,
+			);
+			path = YYImage;
+			sourceTree = "<group>";
+		};
+		1B82AEA9277080B700D75E00 /* YYImage */ = {
+			isa = PBXGroup;
+			children = (
+				1B82AEAA277080B700D75E00 /* YYImage.h */,
+				1B82AEAB277080B700D75E00 /* YYImageCoder.h */,
+				1B82AEAC277080B700D75E00 /* YYFrameImage.h */,
+				1B82AEAD277080B700D75E00 /* YYAnimatedImageView+yy.m */,
+				1B82AEAE277080B700D75E00 /* YYSpriteSheetImage.m */,
+				1B82AEAF277080B700D75E00 /* YYAnimatedImageView.h */,
+				1B82AEB0277080B700D75E00 /* YYImage.m */,
+				1B82AEB1277080B700D75E00 /* YYImageCoder.m */,
+				1B82AEB2277080B700D75E00 /* YYFrameImage.m */,
+				1B82AEB3277080B700D75E00 /* YYAnimatedImageView.m */,
+				1B82AEB4277080B700D75E00 /* YYSpriteSheetImage.h */,
+				1B82AEB5277080B700D75E00 /* YYAnimatedImageView+yy.h */,
+			);
+			path = YYImage;
+			sourceTree = "<group>";
+		};
+		1B82AEB7277080B700D75E00 /* YYWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				1B82AEB9277080B700D75E00 /* README.md */,
+				1B82AEBA277080B700D75E00 /* YYWebImage */,
+			);
+			path = YYWebImage;
+			sourceTree = "<group>";
+		};
+		1B82AEBA277080B700D75E00 /* YYWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				1B82AEBB277080B700D75E00 /* YYImageCache.m */,
+				1B82AEBC277080B700D75E00 /* YYWebImageManager.m */,
+				1B82AEBD277080B700D75E00 /* YYWebImageOperation.h */,
+				1B82AEBE277080B700D75E00 /* YYImageCache.h */,
+				1B82AEBF277080B700D75E00 /* YYWebImageManager.h */,
+				1B82AEC0277080B700D75E00 /* Categories */,
+				1B82AECD277080B700D75E00 /* YYWebImage.h */,
+				1B82AECE277080B700D75E00 /* YYWebImageOperation.m */,
+			);
+			path = YYWebImage;
+			sourceTree = "<group>";
+		};
+		1B82AEC0277080B700D75E00 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1B82AEC1277080B700D75E00 /* _YYWebImageSetter.m */,
+				1B82AEC2277080B700D75E00 /* UIButton+YYWebImage.h */,
+				1B82AEC3277080B700D75E00 /* UIImageView+YYWebImage.h */,
+				1B82AEC4277080B700D75E00 /* CALayer+YYWebImage.h */,
+				1B82AEC5277080B700D75E00 /* UIImage+YYWebImage.h */,
+				1B82AEC6277080B700D75E00 /* MKAnnotationView+YYWebImage.h */,
+				1B82AEC7277080B700D75E00 /* _YYWebImageSetter.h */,
+				1B82AEC8277080B700D75E00 /* UIButton+YYWebImage.m */,
+				1B82AEC9277080B700D75E00 /* UIImageView+YYWebImage.m */,
+				1B82AECA277080B700D75E00 /* MKAnnotationView+YYWebImage.m */,
+				1B82AECB277080B700D75E00 /* UIImage+YYWebImage.m */,
+				1B82AECC277080B700D75E00 /* CALayer+YYWebImage.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		1B96474B273A6D2C00345DDA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2024,6 +2222,10 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1B82AE9B277080B700D75E00 /* YYCache */,
+				1B82AEA7277080B700D75E00 /* YYImage */,
+				1B82AEB7277080B700D75E00 /* YYWebImage */,
+				1B82AE3C27707CB500D75E00 /* KSPhotoBrowser */,
 				1B6C524A275B672200A1C617 /* ZLPhotoBrowser */,
 				1B6C52362758619600A1C617 /* WebViewJavascriptBridge */,
 				AE8F32D7272EA3D2008E3DD8 /* Cell */,
@@ -2643,6 +2845,7 @@
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
 				1B964764273E4F2F00345DDA /* RelationOrderCell.xib in Resources */,
 				1B552EAF276B36CC0086604B /* GroupFilterCell.xib in Resources */,
+				1B82AEDE277080B700D75E00 /* README.md in Resources */,
 				1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */,
 				1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
@@ -2765,13 +2968,16 @@
 				1B6C52CB275C894C00A1C617 /* RelationOrderDetailInfoCell.m in Sources */,
 				1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */,
 				AE8F32D6272EA117008E3DD8 /* ProductCheckoutBaseCell.m in Sources */,
+				1B82AE4D27707CB500D75E00 /* KSPhotoBrowser.m in Sources */,
 				1BC7A2C2272AF48600755832 /* FAQTableCell.m in Sources */,
 				AE8F32CD272E9670008E3DD8 /* ProductCheckoutNoteCell.m in Sources */,
 				1B74DAD82721A7A400B30ECC /* PolicesDetailViewController.m in Sources */,
 				1B74DAE827224E4600B30ECC /* OrderModel.m in Sources */,
+				1B82AEDF277080B700D75E00 /* YYImageCache.m in Sources */,
 				4B818FDD27239F510058038A /* ProductDetailModel.m in Sources */,
 				1B92D14F27327F4400E73F98 /* ChooseAreaViewController.m in Sources */,
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
+				1B82AEE6277080B700D75E00 /* CALayer+YYWebImage.m in Sources */,
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1B6C529C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				1BD8E79D275D005900130DCC /* AccountActiveCell.m in Sources */,
@@ -2783,6 +2989,7 @@
 				1B74DB332725ABB700B30ECC /* UIButton+SGImagePosition.m in Sources */,
 				1BF00F64272FDC2E0081C8E4 /* DistributorRelationOrderCell.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
+				1B82AED2277080B700D75E00 /* YYMemoryCache.m in Sources */,
 				1B552EB5276C3A700086604B /* ProductGroupListCell.m in Sources */,
 				1B2AE43C272E8C7700FB23D3 /* CancelOrderChooseReason.m in Sources */,
 				1B74DB21272539BC00B30ECC /* OrderDetailViewController.m in Sources */,
@@ -2795,6 +3002,7 @@
 				1B92D1542732815C00E73F98 /* AreaCell.m in Sources */,
 				1B6C529D275B672200A1C617 /* ZLCustomCamera.m in Sources */,
 				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
+				1B82AEE0277080B700D75E00 /* YYWebImageManager.m in Sources */,
 				1B6C52B0275B672200A1C617 /* ZLEditVideoController.m in Sources */,
 				AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */,
 				1BD2A622276B0CF200F994C5 /* GroupListViewController.m in Sources */,
@@ -2813,9 +3021,11 @@
 				1B62468027632AFB00009DE2 /* OrderDetailGroupBuyCell.m in Sources */,
 				1B6C5291275B672200A1C617 /* UIControl+EnlargeTouchArea.m in Sources */,
 				4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */,
+				1B82AED6277080B700D75E00 /* YYAnimatedImageView+yy.m in Sources */,
 				1B6C523E2758619600A1C617 /* WKWebViewJavascriptBridge.m in Sources */,
 				1B6246702762613B00009DE2 /* MessageListCell.m in Sources */,
 				AE68D68B272AFAF900CF544C /* SFSearchSectionHeadView.m in Sources */,
+				1B82AEDB277080B700D75E00 /* YYAnimatedImageView.m in Sources */,
 				1B6C5294275B672200A1C617 /* ZLPhotoBrowserCell.m in Sources */,
 				1B478316272A957000F2A945 /* RefundProcessCell.m in Sources */,
 				1B47830C272A838500F2A945 /* refundModel.m in Sources */,
@@ -2837,6 +3047,7 @@
 				1B6C5296275B672200A1C617 /* ZLPhotoManager.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */,
+				1B82AEE7277080B700D75E00 /* YYWebImageOperation.m in Sources */,
 				1B6C5297275B672200A1C617 /* ZLAnimateTransition.m in Sources */,
 				1B552EAE276B36CC0086604B /* GroupFilterCell.m in Sources */,
 				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
@@ -2844,6 +3055,7 @@
 				1B787B4C27293AE900E6A983 /* SimilarProductCell.m in Sources */,
 				AE8F32DD272EF0B2008E3DD8 /* ProductCheckoutSectionHeader.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
+				1B82AEDA277080B700D75E00 /* YYFrameImage.m in Sources */,
 				AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */,
 				AE5C9A6F275B5F3800F34481 /* SFSearchingModel.m in Sources */,
 				AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */,
@@ -2865,6 +3077,7 @@
 				1B552E9F276B14F10086604B /* GroupBuyListCell.m in Sources */,
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
+				1B82AED0277080B700D75E00 /* YYCache.m in Sources */,
 				1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */,
 				1BD8E7C7275F532100130DCC /* RefundDetailImagesCell.m in Sources */,
 				1B6C52A4275B672200A1C617 /* ZLNoAuthorityViewController.m in Sources */,
@@ -2905,8 +3118,10 @@
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
 				1BD8E7B3275DFDAD00130DCC /* ReviewAddNewPhotoCell.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
+				1B82AE4B27707CB500D75E00 /* KSProgressLayer.m in Sources */,
 				1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */,
 				1B6C52A1275B672200A1C617 /* ZLEditViewController.m in Sources */,
+				1B82AECF277080B700D75E00 /* YYDiskCache.m in Sources */,
 				1BD8E7B8275F130F00130DCC /* RefundDetailTitleCell.m in Sources */,
 				1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
@@ -2917,6 +3132,7 @@
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
 				1B6246612761FCAE00009DE2 /* ProductReviewChildViewController.m in Sources */,
 				1B478308272A7B1000F2A945 /* RefundCell.m in Sources */,
+				1B82AEE4277080B700D75E00 /* MKAnnotationView+YYWebImage.m in Sources */,
 				1B6C52AC275B672200A1C617 /* ZLShowBigImgViewController.m in Sources */,
 				1BF00F6E272FDC5D0081C8E4 /* DistributorRankCell.m in Sources */,
 				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
@@ -2925,6 +3141,7 @@
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,
 				1B6246772762F0FD00009DE2 /* MessageOrderListViewController.m in Sources */,
+				1B82AE4A27707CB500D75E00 /* KSPhotoView.m in Sources */,
 				1B74DB0C2724420A00B30ECC /* OrderChildViewController.m in Sources */,
 				1B74DB022722B68100B30ECC /* InviteModel.m in Sources */,
 				1B787B5B272A34FE00E6A983 /* SetTopCell.m in Sources */,
@@ -2934,7 +3151,9 @@
 				1BB1CB7127634DF6008D71DF /* FlashSaleProductCell.m in Sources */,
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				1BC7A2C5272AF50500755832 /* FAQListModel.m in Sources */,
+				1B82AED8277080B700D75E00 /* YYImage.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
+				1B82AEE5277080B700D75E00 /* UIImage+YYWebImage.m in Sources */,
 				1B2AE434272E3FD200FB23D3 /* CancelOrderViewController.m in Sources */,
 				AEA329742724571F00E7827A /* CategoryRankFilterHeader.m in Sources */,
 				1B478325272AA04600F2A945 /* ChangePasswordViewController.m in Sources */,
@@ -2945,6 +3164,7 @@
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
 				1B3122552732306B0055033D /* CashOutHistoryCell.m in Sources */,
 				1B2AE42F272D8F3700FB23D3 /* CartTitleCell.m in Sources */,
+				1B82AEE1277080B700D75E00 /* _YYWebImageSetter.m in Sources */,
 				4BEB1223275CB98A00D5342A /* ProductCalcFeeModel.m in Sources */,
 				AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */,
 				1B6C5292275B672200A1C617 /* ZLBigImageCell.m in Sources */,
@@ -2966,6 +3186,7 @@
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
 				AEA3296B27240E6800E7827A /* YHRegularLayout.m in Sources */,
 				1BD8E7D3275FC0CA00130DCC /* SFNetworkGroupBuyModule.m in Sources */,
+				1B82AEE2277080B700D75E00 /* UIButton+YYWebImage.m in Sources */,
 				1B6C5295275B672200A1C617 /* ZLForceTouchPreviewController.m in Sources */,
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */,
@@ -2974,9 +3195,12 @@
 				AE4C6C012768E76B006788FE /* OrderLogisticsModel.m in Sources */,
 				1B6C5293275B672200A1C617 /* ZLAlbumListController.m in Sources */,
 				1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */,
+				1B82AED9277080B700D75E00 /* YYImageCoder.m in Sources */,
 				AE6CFFB02721C09E008F18B5 /* CategoryRankHeadSelectorView.m in Sources */,
+				1B82AED1277080B700D75E00 /* YYKVStorage.m in Sources */,
 				1B49D13D271D477F002461ED /* userInfoGenderView.m in Sources */,
 				AEA32968272400B000E7827A /* CategoryRankFilterViewController.m in Sources */,
+				1B82AE4C27707CB500D75E00 /* KSPhotoItem.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
 				1BD10C332761DE4300BFC1AD /* ProductEvalationCell.m in Sources */,
 				1B478320272A9F0300F2A945 /* SetLogOutCell.m in Sources */,
@@ -3000,6 +3224,7 @@
 				4B818FEC272444560058038A /* ProductSimilarModel.m in Sources */,
 				1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */,
 				1B74DB442728EB1A00B30ECC /* RecentlyModel.m in Sources */,
+				1B82AEE3277080B700D75E00 /* UIImageView+YYWebImage.m in Sources */,
 				1B49D139271D4557002461ED /* changeUserInfoVC.m in Sources */,
 				1B6C52A6275B672200A1C617 /* ZLBrushBoardImageView.m in Sources */,
 				1B96475F273E4CF400345DDA /* RelationOrderChildViewController.m in Sources */,
@@ -3028,6 +3253,7 @@
 				1B6C52C6275C88FE00A1C617 /* RelationOrderDetailProductCell.m in Sources */,
 				AE8F32C4272E95BD008E3DD8 /* ProductCheckoutAddressCell.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
+				1B82AED7277080B700D75E00 /* YYSpriteSheetImage.m in Sources */,
 				AEA3297A2725391A00E7827A /* CategoryRankFilterCacheModel.m in Sources */,
 				AE81BDE926FB6E7300AB4225 /* main.m in Sources */,
 				AE81BE3526FF318900AB4225 /* SFNetworkPageModule.m in Sources */,
