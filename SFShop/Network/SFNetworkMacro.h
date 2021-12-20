@@ -23,6 +23,7 @@
 #define K_pages_domain(url) [NSString stringWithFormat:@"%@/h5/pages/%@",Host,url]
 #define K_articles_domain(url) [NSString stringWithFormat:@"%@/h5/articles/%@",Host,url]
 #define K_articles_evaluate_domain(url) [NSString stringWithFormat:@"%@/h5/articles/%@/evaluate",Host,url]
+#define K_articles_evaluates_domain(url) [NSString stringWithFormat:@"%@/h5/articles/evaluate/%@",Host,url]
 #define K_offers_domain(url) [NSString stringWithFormat:@"%@/h5/offers/%@",Host,url]
 #define K_address_domain(url) [NSString stringWithFormat:@"%@/h5/address/%@",Host,url]
 #define K_cart_domain(url) [NSString stringWithFormat:@"%@/h5/carts/%@",Host,url]

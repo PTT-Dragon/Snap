@@ -197,6 +197,8 @@
 		1B78865D276C7E74009A080A /* ProductReviewReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78865B276C7E74009A080A /* ProductReviewReplyCell.m */; };
 		1B78865E276C7E74009A080A /* ProductReviewReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B78865C276C7E74009A080A /* ProductReviewReplyCell.xib */; };
 		1B82AE33276F7B7F00D75E00 /* CommunityEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE32276F7B7F00D75E00 /* CommunityEvaluateCell.m */; };
+		1B82AE3727701F4F00D75E00 /* ArticleEvaluateBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE3527701F4F00D75E00 /* ArticleEvaluateBottomCell.m */; };
+		1B82AE3827701F4F00D75E00 /* ArticleEvaluateBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B82AE3627701F4F00D75E00 /* ArticleEvaluateBottomCell.xib */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
@@ -743,6 +745,9 @@
 		1B78865C276C7E74009A080A /* ProductReviewReplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductReviewReplyCell.xib; sourceTree = "<group>"; };
 		1B82AE31276F7B7F00D75E00 /* CommunityEvaluateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityEvaluateCell.h; sourceTree = "<group>"; };
 		1B82AE32276F7B7F00D75E00 /* CommunityEvaluateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityEvaluateCell.m; sourceTree = "<group>"; };
+		1B82AE3427701F4F00D75E00 /* ArticleEvaluateBottomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleEvaluateBottomCell.h; sourceTree = "<group>"; };
+		1B82AE3527701F4F00D75E00 /* ArticleEvaluateBottomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleEvaluateBottomCell.m; sourceTree = "<group>"; };
+		1B82AE3627701F4F00D75E00 /* ArticleEvaluateBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleEvaluateBottomCell.xib; sourceTree = "<group>"; };
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
@@ -1921,6 +1926,9 @@
 				4B192DB527094FC20029D89F /* ArticleProductCell.xib */,
 				1B82AE31276F7B7F00D75E00 /* CommunityEvaluateCell.h */,
 				1B82AE32276F7B7F00D75E00 /* CommunityEvaluateCell.m */,
+				1B82AE3427701F4F00D75E00 /* ArticleEvaluateBottomCell.h */,
+				1B82AE3527701F4F00D75E00 /* ArticleEvaluateBottomCell.m */,
+				1B82AE3627701F4F00D75E00 /* ArticleEvaluateBottomCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2590,6 +2598,7 @@
 				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
 				1B6C52D1275C896200A1C617 /* RelationOrderDetailStateCell.xib in Resources */,
 				1B478321272A9F0300F2A945 /* SetLogOutCell.xib in Resources */,
+				1B82AE3827701F4F00D75E00 /* ArticleEvaluateBottomCell.xib in Resources */,
 				1BD8E7C3275F47E500130DCC /* RefundDetailProductInfoCell.xib in Resources */,
 				1BD8E7D0275FB8F900130DCC /* PublicShareView.xib in Resources */,
 				1BF00F60272FDC090081C8E4 /* DistributorInfoCell.xib in Resources */,
@@ -2862,6 +2871,7 @@
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
 				1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */,
 				1B27A4C7272F8C7F0042AD30 /* PublicWebViewController.m in Sources */,
+				1B82AE3727701F4F00D75E00 /* ArticleEvaluateBottomCell.m in Sources */,
 				1B6C52B7275BC02400A1C617 /* ImageCollectionViewCell.m in Sources */,
 				1BF00F59272FD4090081C8E4 /* SFNetworkDistributorModule.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,

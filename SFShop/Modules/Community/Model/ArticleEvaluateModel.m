@@ -13,5 +13,8 @@
 
 
 @implementation ArticleEvaluateModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 @end

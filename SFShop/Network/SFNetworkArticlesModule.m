@@ -25,6 +25,10 @@
     NSString *url = [NSString stringWithFormat:@"%@/evaluate/add",K_articles_domain(articleId)];
     return url;
 }
+- (NSString *)likeEvaluatelOf: (NSString *)articleId {
+    NSString *url = [NSString stringWithFormat:@"%@/useful",K_articles_evaluates_domain(articleId)];
+    return url;
+}
 
 - (NSString *)getEvaluateOf: (NSString *)articleId {
     return K_articles_evaluate_domain(articleId);

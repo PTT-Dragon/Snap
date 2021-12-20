@@ -14,11 +14,13 @@
 #import <WebKit/WebKit.h>
 #import "MakeH5Happy.h"
 #import "CommunityEvaluateCell.h"
+#import "ArticleEvaluateBottomCell.h"
 //#import <SJVideoPlayer/SJVideoPlayer.h>
 
-@interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource>
+@interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property(nonatomic, strong) ArticleDetailModel *model;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateTableViewHei;
 @property(nonatomic, strong) NSMutableArray<ArticleEvaluateModel *> *evaluateArray;
 @property (weak, nonatomic) IBOutlet UITableView *evaluateTableView;
 @property (weak, nonatomic) IBOutlet UITextField *replyField;
@@ -32,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *createDateLabel;
 @property (nonatomic, strong) WKWebView *detailWebView;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
+@property (weak, nonatomic) IBOutlet UIScrollView *bgScrollview;
+@property (nonatomic,strong) ArticleEvaluateModel *selEvaluateModel;//回复
 
 @end
 
@@ -82,6 +86,7 @@
         make.height.mas_equalTo(50);
     }];
     [_evaluateTableView registerClass:[CommunityEvaluateCell class] forCellReuseIdentifier:@"CommunityEvaluateCell"];
+    [_evaluateTableView registerNib:[UINib nibWithNibName:@"ArticleEvaluateBottomCell" bundle:nil] forCellReuseIdentifier:@"ArticleEvaluateBottomCell"];
 }
 
 - (void)request {
@@ -109,6 +114,8 @@
         [MBProgressHUD hideFromKeyWindow];
         NSError *error;
         self.evaluateArray = [ArticleEvaluateModel arrayOfModelsFromDictionaries:response error:&error];
+        self.evaluateTableViewHei.constant = [self calculateTableViewHei];
+        [self.evaluateTableView reloadData];
         NSLog(@"get article evaluate success");
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
@@ -168,25 +175,111 @@
     }
 }
 - (IBAction)sendAction:(UIButton *)sender {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (_selEvaluateModel) {
+        [params setValue:_selEvaluateModel.model.articleEvalId forKey:@"articleEvalId"];
+    }
+    [params setValue:_replyField.text forKey:@"evalComments"];
     [MBProgressHUD showHudMsg:@"Send..."];
-    [SFNetworkManager post:[SFNet.article addEvaluatelOf:self.articleId] parameters:@{@"evalComments":_replyField.text} success:^(id  _Nullable response) {
+    MPWeakSelf(self)
+    [SFNetworkManager post:[SFNet.article addEvaluatelOf:self.articleId] parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
+        [weakself requestArticleEvaluate];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];
     }];
 }
 
 #pragma mark - tableview.delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.evaluateArray.count;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    ArticleEvaluateModel *model = self.evaluateArray[section];
+    return model.showAll ? model.children.count+2: (model.children.count>0 ? 1:0) +1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CommunityEvaluateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommunityEvaluateCell"];
+    ArticleEvaluateModel *model = self.evaluateArray[indexPath.section];
+    if (indexPath.row == 0) {
+        CommunityEvaluateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommunityEvaluateCell"];
+        cell.model = model.model;
+        cell.type = 1;
+        return cell;
+    }
+    if (model.showAll) {
+        if (indexPath.row == model.children.count+1) {
+            ArticleEvaluateBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArticleEvaluateBottomCell"];
+            [cell setContent:model.children.count showAll:model.showAll];
+            return cell;
+        }
+        CommunityEvaluateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommunityEvaluateCell"];
+        cell.model = model.children[indexPath.row-1].model;
+        cell.type = 2;
+        return cell;
+    }
+    ArticleEvaluateBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArticleEvaluateBottomCell"];
+    [cell setContent:model.children.count showAll:model.showAll];
     return cell;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ArticleEvaluateModel *model = self.evaluateArray[indexPath.section];
+    if (indexPath.row == 0) {
+        return [model.model.evalComments calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-66, MAXFLOAT)]+39;
+    }
+    if (model.showAll) {
+        if (indexPath.row == model.children.count+1) {
+            return 32;
+        }
+        return [[model.children[indexPath.row-1].model evalComments] calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-94, MAXFLOAT)]+39;
+    }
+    return 32;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        _selEvaluateModel = self.evaluateArray[indexPath.section];
+        [self.replyField becomeFirstResponder];
+        return;
+    }
+    ArticleEvaluateModel *model = self.evaluateArray[indexPath.section];
+    if (model.showAll) {
+        if (indexPath.row == model.children.count+1) {
+            model.showAll = NO;
+            [self.evaluateTableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }else{
+//            [self.replyField becomeFirstResponder];
+        }
+    }else{
+        model.showAll = YES;
+        [self.evaluateTableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+- (CGFloat)calculateTableViewHei
+{
+    __block CGFloat hei = 0;
+    [self.evaluateArray enumerateObjectsUsingBlock:^(ArticleEvaluateModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        hei += ([obj.model.evalComments calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-66, MAXFLOAT)]+39);
+        if (obj.showAll) {
+            [obj.children enumerateObjectsUsingBlock:^(ArticleEvaluateModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                hei += ([obj.model.evalComments calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-66, MAXFLOAT)]+39);
+            }];
+        }
+        if (obj.children.count > 0) {
+            hei += 32;
+        }
+    }];
+    return hei;
+}
 
+#pragma mark - textfiled.delegate
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    _selEvaluateModel = nil;
+}
 
 #pragma mark - iCarouselDataSource
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel {

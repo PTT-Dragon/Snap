@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) ArticleEvaluateChildrenModel *model;
 @property(nonatomic, strong) NSArray <ArticleEvaluateModel *> <ArticleEvaluateModel, Optional> *children;
-
+@property (nonatomic,assign) BOOL showAll;
 
 @end
 
