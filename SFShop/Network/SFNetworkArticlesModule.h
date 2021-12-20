@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)getEvaluateOf: (NSString *)articleId;
 
+- (NSString *)addEvaluatelOf: (NSString *)articleId;
+
 @end
 
 NS_ASSUME_NONNULL_END

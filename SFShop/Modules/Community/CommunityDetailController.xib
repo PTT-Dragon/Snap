@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,9 +13,12 @@
             <connections>
                 <outlet property="articlePictures" destination="07e-s8-zvL" id="5BB-uY-GRR"/>
                 <outlet property="createDateLabel" destination="AOp-MV-uBK" id="CXm-aS-dVp"/>
+                <outlet property="evaluateTableView" destination="Jfs-zv-loa" id="q29-Fz-BcV"/>
                 <outlet property="productContainer" destination="FQO-bo-3yB" id="F5S-6c-axG"/>
                 <outlet property="replyCntLabel" destination="hBF-Sj-xTu" id="v9w-L3-wmb"/>
+                <outlet property="replyField" destination="OYo-KJ-5CZ" id="AMV-AC-T7c"/>
                 <outlet property="scrollContentView" destination="2FK-SL-g3c" id="lav-DE-7xv"/>
+                <outlet property="sendBtn" destination="KQ8-wY-lkL" id="wCX-mx-bbt"/>
                 <outlet property="usefulCntLabel" destination="a1k-O7-XZY" id="bzB-sK-1rN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewCntLabel" destination="4k8-Yw-xoO" id="fqi-0c-S9h"/>
@@ -23,11 +26,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="boY-Fj-fn6">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="1922"/>
                     <subviews>
                         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FK-SL-g3c">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="732"/>
@@ -121,26 +124,76 @@
                                 <constraint firstItem="hBF-Sj-xTu" firstAttribute="centerY" secondItem="U6H-cO-m8M" secondAttribute="centerY" id="wcU-C5-PdE"/>
                             </constraints>
                         </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jfs-zv-loa">
+                            <rect key="frame" x="0.0" y="732" width="414" height="128"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="xOq-Ne-y18"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="Ei6-Gh-jD4"/>
+                                <outlet property="delegate" destination="-1" id="JhO-DJ-rhO"/>
+                            </connections>
+                        </tableView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="2FK-SL-g3c" firstAttribute="top" secondItem="boY-Fj-fn6" secondAttribute="top" id="4fr-DR-8YD"/>
-                        <constraint firstAttribute="bottom" secondItem="2FK-SL-g3c" secondAttribute="bottom" id="9Qa-D1-xii"/>
+                        <constraint firstItem="Jfs-zv-loa" firstAttribute="top" secondItem="2FK-SL-g3c" secondAttribute="bottom" id="OMc-2Z-QX8"/>
+                        <constraint firstAttribute="trailing" secondItem="Jfs-zv-loa" secondAttribute="trailing" id="QBY-wH-0K3"/>
                         <constraint firstAttribute="trailing" secondItem="2FK-SL-g3c" secondAttribute="trailing" id="fka-Zf-ZyE"/>
                         <constraint firstItem="2FK-SL-g3c" firstAttribute="leading" secondItem="boY-Fj-fn6" secondAttribute="leading" id="gTP-FQ-xt1"/>
+                        <constraint firstAttribute="bottom" secondItem="Jfs-zv-loa" secondAttribute="bottom" id="llh-SR-vGA"/>
+                        <constraint firstItem="Jfs-zv-loa" firstAttribute="leading" secondItem="boY-Fj-fn6" secondAttribute="leading" id="ptU-Db-iWf"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="qB9-1U-GYW"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="oPm-dy-EeP"/>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cci-3u-5Ve">
+                    <rect key="frame" x="0.0" y="1888" width="414" height="78"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add comment…" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYo-KJ-5CZ">
+                            <rect key="frame" x="15" y="17" width="307" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="DM9-fx-dqF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ8-wY-lkL">
+                            <rect key="frame" x="366" y="23" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="ARk-V5-pIc"/>
+                            </constraints>
+                            <state key="normal" image="sent-fill"/>
+                            <connections>
+                                <action selector="sendAction:" destination="-1" eventType="touchUpInside" id="hit-vy-gbf"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="KQ8-wY-lkL" firstAttribute="leading" secondItem="OYo-KJ-5CZ" secondAttribute="trailing" constant="44" id="04C-YD-YwX"/>
+                        <constraint firstItem="KQ8-wY-lkL" firstAttribute="centerY" secondItem="Cci-3u-5Ve" secondAttribute="centerY" id="D8B-tX-1Eg"/>
+                        <constraint firstAttribute="trailing" secondItem="KQ8-wY-lkL" secondAttribute="trailing" constant="16" id="OuA-JO-CE2"/>
+                        <constraint firstItem="OYo-KJ-5CZ" firstAttribute="leading" secondItem="Cci-3u-5Ve" secondAttribute="leading" constant="15" id="S6P-OH-ELN"/>
+                        <constraint firstItem="OYo-KJ-5CZ" firstAttribute="centerY" secondItem="Cci-3u-5Ve" secondAttribute="centerY" id="Xw5-e0-CQg"/>
+                        <constraint firstAttribute="height" constant="78" id="yh2-J1-LIY"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="GJf-Rq-Lru"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="GJf-Rq-Lru" firstAttribute="trailing" secondItem="Cci-3u-5Ve" secondAttribute="trailing" id="529-ch-pOq"/>
                 <constraint firstItem="boY-Fj-fn6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Rhb-39-8cs"/>
                 <constraint firstItem="2FK-SL-g3c" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="S6G-fL-9Lj"/>
-                <constraint firstAttribute="bottom" secondItem="boY-Fj-fn6" secondAttribute="bottom" id="Wz7-1Q-oOm"/>
+                <constraint firstItem="Cci-3u-5Ve" firstAttribute="leading" secondItem="GJf-Rq-Lru" secondAttribute="leading" id="UCm-Kj-jAf"/>
+                <constraint firstAttribute="bottom" secondItem="boY-Fj-fn6" secondAttribute="bottom" constant="78" id="Wz7-1Q-oOm"/>
                 <constraint firstItem="boY-Fj-fn6" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="owc-Nr-WIC"/>
+                <constraint firstItem="Cci-3u-5Ve" firstAttribute="bottom" secondItem="GJf-Rq-Lru" secondAttribute="bottom" id="sm0-8v-v4U"/>
                 <constraint firstItem="boY-Fj-fn6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="u0u-kk-k2p"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="137.68115942028987" y="57.589285714285708"/>
         </view>
     </objects>
@@ -148,6 +201,7 @@
         <image name="eye" width="12" height="12"/>
         <image name="heart" width="12" height="12"/>
         <image name="message" width="12" height="12"/>
+        <image name="sent-fill" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

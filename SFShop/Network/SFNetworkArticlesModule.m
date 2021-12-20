@@ -21,6 +21,11 @@
     return K_articles_domain(articleId);
 }
 
+- (NSString *)addEvaluatelOf: (NSString *)articleId {
+    NSString *url = [NSString stringWithFormat:@"%@/evaluate/add",K_articles_domain(articleId)];
+    return url;
+}
+
 - (NSString *)getEvaluateOf: (NSString *)articleId {
     return K_articles_evaluate_domain(articleId);
 }

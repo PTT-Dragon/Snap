@@ -13,12 +13,15 @@
 #import "ProductViewController.h"
 #import <WebKit/WebKit.h>
 #import "MakeH5Happy.h"
+#import "CommunityEvaluateCell.h"
 //#import <SJVideoPlayer/SJVideoPlayer.h>
 
-@interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource>
+@interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic, strong) ArticleDetailModel *model;
 @property(nonatomic, strong) NSMutableArray<ArticleEvaluateModel *> *evaluateArray;
+@property (weak, nonatomic) IBOutlet UITableView *evaluateTableView;
+@property (weak, nonatomic) IBOutlet UITextField *replyField;
 @property(nonatomic, strong) UIImageView *headIV;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet iCarousel *articlePictures;
@@ -28,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIView *productContainer;
 @property (weak, nonatomic) IBOutlet UILabel *createDateLabel;
 @property (nonatomic, strong) WKWebView *detailWebView;
+@property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 
 @end
 
@@ -77,7 +81,7 @@
         make.right.equalTo(self.scrollContentView).offset(-16);
         make.height.mas_equalTo(50);
     }];
-
+    [_evaluateTableView registerClass:[CommunityEvaluateCell class] forCellReuseIdentifier:@"CommunityEvaluateCell"];
 }
 
 - (void)request {
@@ -162,6 +166,25 @@
             make.bottom.equalTo(self.productContainer.mas_top).offset(-20);
         }];
     }
+}
+- (IBAction)sendAction:(UIButton *)sender {
+    [MBProgressHUD showHudMsg:@"Send..."];
+    [SFNetworkManager post:[SFNet.article addEvaluatelOf:self.articleId] parameters:@{@"evalComments":_replyField.text} success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD hideFromKeyWindow];
+    }];
+}
+
+#pragma mark - tableview.delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CommunityEvaluateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommunityEvaluateCell"];
+    return cell;
 }
 
 
