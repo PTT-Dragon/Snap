@@ -112,14 +112,12 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
     NSLog(@"%@",navigationAction.request.URL.absoluteString);
-    if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/coupon-center"]) {
+    if ([navigationAction.request.URL.absoluteString rangeOfString :@"coupon-center"].location != NSNotFound) {
         CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/search-page"]){
-        
-    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/spike"]){
+    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/spike"].location != NSNotFound){
         FlashSaleViewController *vc = [[FlashSaleViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
@@ -127,22 +125,26 @@
     }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/search-page"]){
         
         return;
-    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/message-center"]){
+    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/message-center"].location != NSNotFound){
         MessageViewController *vc = [[MessageViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"https://www.smartfrenshop.com/product/detail/"].location != NSNotFound){
+    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/product/detail/"].location != NSNotFound){
         ProductViewController *vc = [[ProductViewController alloc] init];
         NSString *offerId;
-        NSRange range1 = [navigationAction.request.URL.absoluteString rangeOfString:@"https://www.smartfrenshop.com/product/detail/"];
+        NSRange range1 = [navigationAction.request.URL.absoluteString rangeOfString:[NSString stringWithFormat:@"%@%@",Host,@"/product/detail/"]];
         NSRange range2 = [navigationAction.request.URL.absoluteString rangeOfString:@"?"];
-        offerId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.length, range2.location-range1.length)];
+        if (range2.location != NSNotFound) {
+            offerId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.length, range2.location-range1.length)];
+        }else{
+            offerId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.length, navigationAction.request.URL.absoluteString.length-range1.length)];
+        }
         vc.offerId = offerId.integerValue;
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"http://www.smartfrenshop.com/product/GroupBuy"]){
+    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/GroupBuy"].location != NSNotFound){
         GroupListViewController *vc = [[GroupListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);

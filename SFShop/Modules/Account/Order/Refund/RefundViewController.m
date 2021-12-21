@@ -74,7 +74,7 @@
     [MBProgressHUD showHudMsg:@""];
     _pageIndex = 1;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"q":_searchBar.text,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         [weakself.tableView.mj_header endRefreshing];
         [weakself.dataSource removeAllObjects];
@@ -90,7 +90,7 @@
     [MBProgressHUD showHudMsg:@""];
     _pageIndex ++;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"q":_searchBar.text,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         [weakself.tableView.mj_footer endRefreshing];
         [weakself.dataSource addObjectsFromArray:[refundModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
@@ -102,7 +102,7 @@
 }
 
 #pragma mark - search.delegate
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self.tableView.mj_header beginRefreshing];
 }
