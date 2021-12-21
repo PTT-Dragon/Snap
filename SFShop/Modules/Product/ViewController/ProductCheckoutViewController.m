@@ -295,20 +295,21 @@
             }
             
             [MBProgressHUD showHudMsg:@"Calculating..."];
+            NSNumber *totalPrice = [NSNumber numberWithLong:weakself.dataModel.totalPrice * 1000];
             NSDictionary *params = @{
                 @"billingEmail": weakself.addressModel.email,
                 @"deliveryAddressId": weakself.addressModel.deliveryAddressId,
                 @"deliveryMode": @"A",
                 @"paymentMode": @"A",
                 @"sourceType": weakself.dataModel.sourceType,
-                @"totalPrice": @(weakself.dataModel.totalPrice * 1000),
+                @"totalPrice": totalPrice,
                 @"storeSiteId":@"",
                 @"selUserPltCouponId":@"",
                 @"stores": @[
                         @{
                             @"logisticsModeId": @"1",
                             @"campaignGifts":@[],
-                            @"orderPrice": @(weakself.dataModel.totalPrice * 1000),
+                            @"orderPrice":totalPrice,
                             @"storeId": @(weakself.productModels.firstObject.storeId),
                             @"leaveMsg": @"", // TODO: 这是备注内容
                             @"products": products
