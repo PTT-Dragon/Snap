@@ -8,6 +8,7 @@
 #import "ProductReviewDetailViewController.h"
 #import "ProductEvalationCell.h"
 #import "ProductReviewReplyCell.h"
+#import "ProductViewController.h"
 
 @interface ProductReviewDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -29,6 +30,8 @@
     self.nameLabel.text = self.model.productName;
 //    NSDictionary *dic = [self.model.productName jk_dictionaryValue];
 //    self.skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toProductDetail)];
+    [_imgView addGestureRecognizer:tap];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -54,5 +57,10 @@
 {
     
 }
-
+- (void)toProductDetail
+{
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = [self.model.offerId integerValue];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end

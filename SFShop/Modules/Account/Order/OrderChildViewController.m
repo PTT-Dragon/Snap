@@ -21,7 +21,10 @@
 @end
 
 @implementation OrderChildViewController
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -96,6 +99,11 @@
     return view;
 }
 
+- (void)setType:(OrderListType)type
+{
+    _type = type;
+    [self.tableView.mj_header beginRefreshing];
+}
 #pragma mark - cell.delegate
 - (void)refreshDatas
 {
@@ -137,6 +145,7 @@
         [weakself.tableView.mj_footer endRefreshing];
     }];
 }
+
 
 - (UITableView *)tableView
 {

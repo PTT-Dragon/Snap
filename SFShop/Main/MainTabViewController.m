@@ -30,7 +30,7 @@
     PublicWebViewController *homeVc = [[PublicWebViewController alloc] init];
     homeVc.isHome = YES;
     BaseNavigationController *homeNav = [[BaseNavigationController alloc]initWithRootViewController:homeVc];
-    homeVc.url = @"https://www.smartfrenshop.com/main/home";
+    homeVc.url = @"http://47.243.193.90:8064/main/home";
 //    homeVc.navigationController.navigationBar.hidden = YES;
 //    homeNav.navigationBar.hidden = YES;
     homeNav.tabBarItem.title = @"Home";

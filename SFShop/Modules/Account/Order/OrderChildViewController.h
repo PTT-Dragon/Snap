@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderChildViewController : UIViewController
 @property (nonatomic,assign) OrderListType type;
+@property (nonatomic,copy) NSString *searchText;
 @end
 
 NS_ASSUME_NONNULL_END

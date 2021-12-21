@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OrderViewController : VTMagicController
+@interface OrderViewController : UIViewController
 @property (nonatomic,assign) OrderListType selType;
 @end
 

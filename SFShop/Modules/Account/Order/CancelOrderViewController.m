@@ -89,10 +89,12 @@
         return;
     }
     MPWeakSelf(self)
+    [MBProgressHUD showHudMsg:@""];
     [SFNetworkManager post:SFNet.order.cancelOrder parameters:@{@"orderId":_model.orderId,@"cancelReasonId":_selReasonModel.orderReasonId,@"cancelReason":_selReasonModel.orderReasonName} success:^(id  _Nullable response) {
+        [weakself.navigationController popViewControllerAnimated:YES];
         [MBProgressHUD autoDismissShowHudMsg:@"Cancel Success"];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 

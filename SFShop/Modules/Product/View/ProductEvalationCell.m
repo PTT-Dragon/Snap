@@ -8,6 +8,7 @@
 #import "ProductEvalationCell.h"
 #import "ImageCollectionViewCell.h"
 #import "KSPhotoBrowser.h"
+#import "StarView.h"
 
 @interface ProductEvalationCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -56,6 +57,23 @@
     }];
     UIView *bottomView = [[UIView alloc] init];
     bottomView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 30, MainScreen_width-32, 44)];
+    label.numberOfLines = 0;
+    label.font = CHINESE_SYSTEM(14);
+    label.textColor = [UIColor whiteColor];
+    label.text = self.model.productName;
+    [bottomView addSubview:label];
+    StarView *starView = [[StarView alloc] initWithFrame:CGRectMake(16, label.jk_bottom+10, 200, 14)];
+    starView.canSel = NO;
+    starView.score = [self.model.rate integerValue];
+    [bottomView addSubview:starView];
+    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, starView.jk_bottom+10, MainScreen_width-32, 144)];
+    contentLabel.numberOfLines = 0;
+    contentLabel.font = CHINESE_SYSTEM(14);
+    contentLabel.textColor = [UIColor whiteColor];
+    contentLabel.text = self.model.evaluationComments;
+    [bottomView addSubview:contentLabel];
+    
     KSPhotoBrowser *browser = [KSPhotoBrowser browserWithPhotoItems:arr selectedIndex:indexPath.row bottomView:bottomView];
     [browser showFromViewController:[baseTool getCurrentVC]];
 }

@@ -12,10 +12,12 @@
 #import <MJRefresh/MJRefresh.h>
 
 
-@interface RefundViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface RefundViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger pageIndex;
+@property (nonatomic,strong) UIView *searchView;
+@property (nonatomic,strong) UISearchBar *searchBar;
 
 @end
 
@@ -27,13 +29,14 @@
     self.title = @"Refund & Return";
     _dataSource = [NSMutableArray array];
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    [self.view addSubview:self.searchView];
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"RefundCell" bundle:nil] forCellReuseIdentifier:@"RefundCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.bottom.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+70);
     }];
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self loadDatas];
@@ -68,29 +71,42 @@
 }
 - (void)loadDatas
 {
+    [MBProgressHUD showHudMsg:@""];
     _pageIndex = 1;
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
         [weakself.tableView.mj_header endRefreshing];
         [weakself.dataSource removeAllObjects];
         [weakself.dataSource addObjectsFromArray:[refundModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD hideFromKeyWindow];
         [weakself.tableView.mj_header endRefreshing];
     }];
 }
 - (void)loadMoreDatas
 {
+    [MBProgressHUD showHudMsg:@""];
     _pageIndex ++;
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
         [weakself.tableView.mj_footer endRefreshing];
         [weakself.dataSource addObjectsFromArray:[refundModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD hideFromKeyWindow];
         [weakself.tableView.mj_footer endRefreshing];
     }];
 }
+
+#pragma mark - search.delegate
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [self.tableView.mj_header beginRefreshing];
+}
+
 - (UITableView *)tableView
 {
     if (!_tableView) {
@@ -110,5 +126,23 @@
         _tableView.estimatedRowHeight = 44;
     }
     return _tableView;
+}
+- (UIView *)searchView
+{
+    if (!_searchView) {
+        _searchView = [[UIView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, 70)];
+        _searchView.backgroundColor = [UIColor whiteColor];
+        [_searchView addSubview:self.searchBar];
+    }
+    return _searchView;
+}
+- (UISearchBar *)searchBar
+{
+    if (!_searchBar) {
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(16, 13, MainScreen_width-32, 46)];
+        _searchBar.placeholder = @"Search";
+        _searchBar.delegate = self;
+    }
+    return _searchBar;
 }
 @end

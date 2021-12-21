@@ -46,6 +46,26 @@
         } failed:^(NSError * _Nonnull error) {
             
         }];
+    }else if ([str isEqualToString:@"RE-BUY"]){
+        //未完成
+        [MBProgressHUD showHudMsg:@""];
+        NSDictionary *params =
+        @{
+            @"campaignId":@"3",
+            @"num": @(1),
+            @"offerId": self.model.orderId,
+            @"productId": self.model.storeId,
+            @"storeId": self.model.storeId,
+            @"unitPrice": self.model,
+            @"contactChannel":@"3",
+            @"addon":@"",
+            @"isSelected":@"N"
+        };
+        [SFNetworkManager post:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
+            
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
     }
 }
 - (IBAction)btn2Action:(UIButton *)sender {

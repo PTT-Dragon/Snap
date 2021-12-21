@@ -259,6 +259,9 @@
     self.priceLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalOfferPrice];
     self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-RP %.f",model.totalDiscount];
     NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count];
+    /**
+        降价标签的数量未完成 因为没数据
+     **/
     NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%ld)",self.cartModel.validCarts.count];
     self.menuList = @[allCount,dropCount];
     [self.magicController.magicView reloadMenuTitles];
