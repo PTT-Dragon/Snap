@@ -18,6 +18,7 @@
 #import "MakeH5Happy.h"
 #import "PublicWebViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import "AddressViewController.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -83,7 +84,7 @@
 
     // 地址
     _addressModel = addressModel;
-    self.dataModel.address = [NSString stringWithFormat:@"%@  %@\n%@ %@ %@ %@ %@ %@ %@", addressModel.contactName, addressModel.contactNbr, addressModel.postCode, addressModel.contactAddress, addressModel.street, addressModel.district, addressModel.city, addressModel.province, addressModel.country];
+    self.dataModel.address = addressModel.customAddress;
     self.dataModel.email = addressModel.email;
 
     // 费用
@@ -190,6 +191,15 @@
     cell.updateDataBlock = ^(ProductCheckoutModel * _Nonnull dataModel, SFCellCacheModel * _Nonnull cellModel) {
         self.addressModel.email = dataModel.email;
         //其他更新..
+    };
+    cell.addressBlock = ^(ProductCheckoutModel * _Nonnull dataModel, SFCellCacheModel * _Nonnull cellModel) {
+        AddressViewController *vc = [[AddressViewController alloc] init];
+        vc.addressBlock = ^(addressModel * _Nonnull model) {
+            self.dataModel.address = model.customAddress;
+            self.dataModel.email = model.email;
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
     };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.dataModel = self.dataModel;
