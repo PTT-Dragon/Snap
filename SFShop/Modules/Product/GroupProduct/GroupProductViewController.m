@@ -182,7 +182,6 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
-
 }
 - (void)requestEvaluationsList
 {

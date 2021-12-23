@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @property (weak, nonatomic) IBOutlet UIScrollView *bgScrollview;
 @property (nonatomic,strong) ArticleEvaluateModel *selEvaluateModel;//回复
+@property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 
 @end
 
@@ -132,6 +133,7 @@
     self.usefulCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.usefulCnt];
     self.replyCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.replyCnt];
     self.createDateLabel.text = self.model.createdDate;
+    self.likeBtn.selected = [model.isUseful isEqualToString:@"Y"];
     
     if (self.model.products.count > 0) {
         [self.productContainer.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -174,6 +176,23 @@
         }];
     }
 }
+- (IBAction)likeAction:(UIButton *)sender {
+    [MBProgressHUD showHudMsg:@""];
+    MPWeakSelf(self)
+    [SFNetworkManager post:[SFNet.article likeArticlesOf:self.articleId] parameters:@{@"action":[self.model.isUseful isEqualToString:@"Y"] ? @"C": @"A"} success:^(id  _Nullable response) {
+        if (sender.selected) {
+            weakself.model.usefulCnt = weakself.model.usefulCnt-1;
+            weakself.model.isUseful = @"N";
+        }else{
+            weakself.model.usefulCnt = weakself.model.usefulCnt+1;
+            weakself.model.isUseful = @"Y";
+        }
+        [weakself setModel:weakself.model];
+        [MBProgressHUD hideFromKeyWindow];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
 - (IBAction)sendAction:(UIButton *)sender {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (_selEvaluateModel) {
@@ -184,6 +203,8 @@
     MPWeakSelf(self)
     [SFNetworkManager post:[SFNet.article addEvaluatelOf:self.articleId] parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
+        [weakself.replyField resignFirstResponder];
+        weakself.replyField.text = @"";
         [weakself requestArticleEvaluate];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];

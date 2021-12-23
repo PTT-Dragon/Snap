@@ -38,6 +38,33 @@
     }
     return self;
 }
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+- (NSString *)genderStr
+{
+    return [self.gender isEqualToString:@"M"] ? @"MALE": [self.gender isEqualToString:@"F"] ? @"FEMALE": @"Secrecy";
+}
+- (NSString *)birthdayDayStr
+{
+    // 时间字符串
+    NSString *string = self.birthdayDay;
+
+    // 日期格式化类
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    // 设置日期格式(为了转换成功)
+    fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *date = [fmt dateFromString:string];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设置格式：zzz表示时区
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //NSDate转NSString
+    NSString *currentDateString = [dateFormatter stringFromDate:date];
+
+    return currentDateString;
+}
 
 @end
 

@@ -15,6 +15,8 @@
 #import "MessageViewController.h"
 #import "ProductViewController.h"
 #import "GroupListViewController.h"
+#import "ProductDetailModel.h"
+#import "GroupProductViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -131,7 +133,6 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/product/detail/"].location != NSNotFound){
-        ProductViewController *vc = [[ProductViewController alloc] init];
         NSString *offerId;
         NSRange range1 = [navigationAction.request.URL.absoluteString rangeOfString:[NSString stringWithFormat:@"%@%@",Host,@"/product/detail/"]];
         NSRange range2 = [navigationAction.request.URL.absoluteString rangeOfString:@"?"];
@@ -140,8 +141,7 @@
         }else{
             offerId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.length, navigationAction.request.URL.absoluteString.length-range1.length)];
         }
-        vc.offerId = offerId.integerValue;
-        [self.navigationController pushViewController:vc animated:YES];
+        [self requestProductInfoWithOfferId:offerId];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/GroupBuy"].location != NSNotFound){
@@ -154,6 +154,32 @@
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
+/**
+ 获取商品的活动信息
+ **/
+- (void)requestProductInfoWithOfferId:(NSString *)offerId
+{
+    [MBProgressHUD showHudMsg:@"加载中"];
+    MPWeakSelf(self)
+    [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":offerId} success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        ProductCampaignsInfoModel *campaignsModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];
+        if (campaignsModel.cmpShareBuys) {
+            //该商品参与团购活动
+            GroupProductViewController *vc = [[GroupProductViewController alloc] init];
+            cmpShareBuysModel *subModel = campaignsModel.cmpShareBuys.firstObject;
+            vc.campaignId = subModel.campaignId;
+            vc.offerId = [offerId integerValue];
+            [weakself.navigationController pushViewController:vc animated:YES];
+        }else{
+            ProductViewController *vc = [[ProductViewController alloc] init];
+            vc.offerId = offerId.integerValue;
+            [weakself.navigationController pushViewController:vc animated:YES];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
 #pragma mark - WKUIDelegate
 // 创建一个新的WebView
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{

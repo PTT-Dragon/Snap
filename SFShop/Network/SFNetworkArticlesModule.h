@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)likeEvaluatelOf: (NSString *)articleId;
 
+- (NSString *)likeArticlesOf: (NSString *)articleId;
+
 @end
 
 NS_ASSUME_NONNULL_END

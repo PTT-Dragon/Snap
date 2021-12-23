@@ -135,7 +135,7 @@
     [SFNetworkManager postImage:SFNet.h5.publishImg image:image success:^(id  _Nullable response) {
         [weakself modifyUserInfoWithFileName:response[@"fullPath"]];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)modifyUserInfoWithFileName:(NSString *)fileName
