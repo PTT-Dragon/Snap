@@ -13,6 +13,7 @@
 #import "PolicesViewController.h"
 #import "changeUserInfoVC.h"
 #import "PublicAlertView.h"
+#import "AddressViewController.h"
 
 @interface setViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -103,6 +104,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 0){
         changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 1 && indexPath.row == 1){
+        AddressViewController *vc = [[AddressViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

@@ -176,6 +176,7 @@
     if ([vc isKindOfClass:[LoginViewController class]]) {
         return;
     }
+    [[FMDBManager sharedInstance] deleteUserData];
     LoginViewController *loginVc = [[LoginViewController alloc] init];
     loginVc.didLoginBlock = ^{
         [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
