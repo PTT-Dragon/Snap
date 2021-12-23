@@ -12,7 +12,7 @@
 #ifdef DEBUG
 #define Host @"http://47.243.193.90:8064"
 #else
-#define Host @"https://www.smartfrenshop.com"
+#define Host @"http://47.243.193.90:8064"
 #endif
 
 #define SFImage(v) ([[NSString stringWithFormat:@"%@%@",Host,v] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]])

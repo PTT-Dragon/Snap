@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 //评分次数
 @property(nonatomic, copy) NSString <Optional> * evaluationCnt;
 
+@property(nonatomic, copy) NSString <Optional> * offerId;
+
+
+
 
 
 @end

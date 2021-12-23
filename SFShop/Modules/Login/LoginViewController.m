@@ -59,11 +59,11 @@
     _accountField.placeholder = @"Email";
 }
 - (IBAction)loginAction:(id)sender {
-    //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234
+    //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234 _accountField.text login_aes_128_cbc_encrypt(_passwordField.text)
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":_accountField.text,@"pwd":login_aes_128_cbc_encrypt(_passwordField.text)} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"A1customer@A1.com",@"pwd":login_aes_128_cbc_encrypt(@"Abc@1234")} success:^(id  _Nullable response) {
         NSError *error = nil;
-        [[FMDBManager sharedInstance] deleteUserData];
+//        [[FMDBManager sharedInstance] deleteUserData];
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
         [[FMDBManager sharedInstance] insertUser:model ofAccount:weakself.accountField.text];

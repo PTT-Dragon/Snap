@@ -9,6 +9,7 @@
 #import "ProductSimilarModel.h"
 #import "CommunityWaterfallLayout.h"
 #import "SimilarProductCell.h"
+#import "ProductViewController.h"
 
 @interface SimilarViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, CommunityWaterfallLayoutProtocol>
 @property (nonatomic,strong) NSMutableArray *dataSource;
@@ -57,7 +58,9 @@
 #pragma mark - btn.action
 
 - (IBAction)buyAction:(UIButton *)sender {
-    
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = [self.model.offerId integerValue];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - getter
@@ -80,7 +83,10 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    ProductSimilarModel *model = self.dataSource[indexPath.row];
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = [model.offerId integerValue];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource
