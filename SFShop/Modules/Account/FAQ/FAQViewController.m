@@ -102,7 +102,7 @@
         __weak __typeof(self)weakSelf = self;
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, 44) backItme:nil rightItem:nil searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
-            FAQChildViewController *vc = strongSelf.magicController.viewControllers[strongSelf.currentMenuIndex];
+            FAQChildViewController *vc = strongSelf.magicController.currentViewController;
             vc.searchText = qs;
         }];
         _navSearchView.searchType = SFSearchTypeNoneInterface;

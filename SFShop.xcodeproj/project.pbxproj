@@ -338,6 +338,11 @@
 		1BF00F74272FDD770081C8E4 /* DistributorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F73272FDD770081C8E4 /* DistributorModel.m */; };
 		1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */; };
 		1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */; };
+		1BF4DD402774615900972265 /* NSDictionary+em.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD3F2774615900972265 /* NSDictionary+em.m */; };
+		1BF4DD4A2774644600972265 /* NSObject+SwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD422774644600972265 /* NSObject+SwizzleMethod.m */; };
+		1BF4DD4B2774644600972265 /* NSArray+ErrorHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD432774644600972265 /* NSArray+ErrorHandle.m */; };
+		1BF4DD4C2774644600972265 /* NSMutableArray+ErrorHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD452774644600972265 /* NSMutableArray+ErrorHandle.m */; };
+		1BF4DD4D2774644600972265 /* NSArray+SortedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD482774644600972265 /* NSArray+SortedString.m */; };
 		1BF56CD02761001000B40CAA /* CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF56CCF2761001000B40CAA /* CountDown.m */; };
 		1BF56CD42761A5B100B40CAA /* ResetPasswordDoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF56CD22761A5B100B40CAA /* ResetPasswordDoViewController.m */; };
 		1BF56CD52761A5B100B40CAA /* ResetPasswordDoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF56CD32761A5B100B40CAA /* ResetPasswordDoViewController.xib */; };
@@ -1015,6 +1020,16 @@
 		1BF00F7B2731313F0081C8E4 /* CommissionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommissionViewController.h; sourceTree = "<group>"; };
 		1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommissionViewController.m; sourceTree = "<group>"; };
 		1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommissionViewController.xib; sourceTree = "<group>"; };
+		1BF4DD3E2774615800972265 /* NSDictionary+em.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+em.h"; sourceTree = "<group>"; };
+		1BF4DD3F2774615900972265 /* NSDictionary+em.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+em.m"; sourceTree = "<group>"; };
+		1BF4DD422774644600972265 /* NSObject+SwizzleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SwizzleMethod.m"; sourceTree = "<group>"; };
+		1BF4DD432774644600972265 /* NSArray+ErrorHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ErrorHandle.m"; sourceTree = "<group>"; };
+		1BF4DD442774644600972265 /* NSArray+SortedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SortedString.h"; sourceTree = "<group>"; };
+		1BF4DD452774644600972265 /* NSMutableArray+ErrorHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+ErrorHandle.m"; sourceTree = "<group>"; };
+		1BF4DD462774644600972265 /* NSArray+ErrorHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ErrorHandle.h"; sourceTree = "<group>"; };
+		1BF4DD472774644600972265 /* NSObject+SwizzleMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SwizzleMethod.h"; sourceTree = "<group>"; };
+		1BF4DD482774644600972265 /* NSArray+SortedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SortedString.m"; sourceTree = "<group>"; };
+		1BF4DD492774644600972265 /* NSMutableArray+ErrorHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ErrorHandle.h"; sourceTree = "<group>"; };
 		1BF56CCE2761000F00B40CAA /* CountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountDown.h; sourceTree = "<group>"; };
 		1BF56CCF2761001000B40CAA /* CountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountDown.m; sourceTree = "<group>"; };
 		1BF56CD12761A5B100B40CAA /* ResetPasswordDoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetPasswordDoViewController.h; sourceTree = "<group>"; };
@@ -2075,6 +2090,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1BF4DD412774644600972265 /* nsArray */ = {
+			isa = PBXGroup;
+			children = (
+				1BF4DD462774644600972265 /* NSArray+ErrorHandle.h */,
+				1BF4DD432774644600972265 /* NSArray+ErrorHandle.m */,
+				1BF4DD442774644600972265 /* NSArray+SortedString.h */,
+				1BF4DD482774644600972265 /* NSArray+SortedString.m */,
+				1BF4DD492774644600972265 /* NSMutableArray+ErrorHandle.h */,
+				1BF4DD452774644600972265 /* NSMutableArray+ErrorHandle.m */,
+				1BF4DD472774644600972265 /* NSObject+SwizzleMethod.h */,
+				1BF4DD422774644600972265 /* NSObject+SwizzleMethod.m */,
+			);
+			path = nsArray;
+			sourceTree = "<group>";
+		};
 		1DFF059EB8FC08129B2B863F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2523,6 +2553,9 @@
 		AE81BE562701FFDC00AB4225 /* Prompt */ = {
 			isa = PBXGroup;
 			children = (
+				1BF4DD412774644600972265 /* nsArray */,
+				1BF4DD3E2774615800972265 /* NSDictionary+em.h */,
+				1BF4DD3F2774615900972265 /* NSDictionary+em.m */,
 				1B74DB322725ABB700B30ECC /* UIButton+SGImagePosition.h */,
 				1B74DB312725ABB700B30ECC /* UIButton+SGImagePosition.m */,
 				AEA329632723FA3500E7827A /* UIButton+EnlargeTouchArea.h */,
@@ -3084,6 +3117,7 @@
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
 				1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */,
 				1B27A4C7272F8C7F0042AD30 /* PublicWebViewController.m in Sources */,
+				1BF4DD4B2774644600972265 /* NSArray+ErrorHandle.m in Sources */,
 				1B82AE3727701F4F00D75E00 /* ArticleEvaluateBottomCell.m in Sources */,
 				1B6C52B7275BC02400A1C617 /* ImageCollectionViewCell.m in Sources */,
 				1BF00F59272FD4090081C8E4 /* SFNetworkDistributorModule.m in Sources */,
@@ -3126,6 +3160,7 @@
 				1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
 				1B47832A272AA15700F2A945 /* ChangeMobileOrEmailViewController.m in Sources */,
+				1BF4DD4D2774644600972265 /* NSArray+SortedString.m in Sources */,
 				1B78865D276C7E74009A080A /* ProductReviewReplyCell.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
 				1B6C52A2275B672200A1C617 /* ZLCollectionCell.m in Sources */,
@@ -3174,6 +3209,7 @@
 				AEA3298427299CDF00E7827A /* SFSearchNav.m in Sources */,
 				4B818FE6272435E30058038A /* MakeH5Happy.m in Sources */,
 				4B1522CC272D300A00C3BDD9 /* ProductSpecAttrsView.m in Sources */,
+				1BF4DD402774615900972265 /* NSDictionary+em.m in Sources */,
 				1B6C52B1275B672200A1C617 /* ZLPhotoConfiguration.m in Sources */,
 				1B49D11C27192CFB002461ED /* AddressViewController.m in Sources */,
 				1B6C52AD275B672200A1C617 /* ZLThumbnailViewController.m in Sources */,
@@ -3205,6 +3241,7 @@
 				1BD10C332761DE4300BFC1AD /* ProductEvalationCell.m in Sources */,
 				1B478320272A9F0300F2A945 /* SetLogOutCell.m in Sources */,
 				1BF56CD42761A5B100B40CAA /* ResetPasswordDoViewController.m in Sources */,
+				1BF4DD4A2774644600972265 /* NSObject+SwizzleMethod.m in Sources */,
 				4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */,
 				1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */,
 				1B552EA9276B358A0086604B /* GroupTopImgCell.m in Sources */,
@@ -3246,6 +3283,7 @@
 				1B6C52462758AD8100A1C617 /* CartViewController.m in Sources */,
 				1B6C52D0275C896200A1C617 /* RelationOrderDetailStateCell.m in Sources */,
 				1B6C529E275B672200A1C617 /* ZLPlayer.m in Sources */,
+				1BF4DD4C2774644600972265 /* NSMutableArray+ErrorHandle.m in Sources */,
 				AE5C9A6C275B5D7700F34481 /* SFSearchingCell.m in Sources */,
 				1B552EBA276C3D470086604B /* ProductGroupTitleCell.m in Sources */,
 				AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */,
@@ -3449,7 +3487,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SFShop/Const/PrefixHeader.pch";
@@ -3471,7 +3509,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SFShop/Const/PrefixHeader.pch";

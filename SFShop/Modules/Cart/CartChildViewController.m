@@ -141,17 +141,21 @@
     return @"删除";
 }
 
-
+//_addModel ? _addModel.contactStdId: @""
 - (void)loadDatas
-{//_addModel.deliveryAddressId
+{
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.cart.cart parameters:@{@"reduceFlag":_reduceFlag ? @"true": @"false",@"stdAddrId":_addModel.contactStdId} success:^(id  _Nullable response) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:_reduceFlag ? @"true": @"false" forKey:@"reduceFlag"];
+    [params setValue:_addModel.contactStdId forKey:@"stdAddrId"];
+    [SFNetworkManager get:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
         weakself.cartModel = [[CartModel alloc] initWithDictionary:response error:nil];
         [weakself.tableView reloadData];
         [weakself.tableView.mj_header endRefreshing];
         [weakself calculateAmount];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)addToFavoriteWithID:(NSString *)offerId

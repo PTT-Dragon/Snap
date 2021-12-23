@@ -59,9 +59,9 @@
     _accountField.placeholder = @"Email";
 }
 - (IBAction)loginAction:(id)sender {
-    //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234 _accountField.text login_aes_128_cbc_encrypt(_passwordField.text)
+    //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":@"A1customer@A1.com",@"pwd":login_aes_128_cbc_encrypt(@"Abc@1234")} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":_accountField.text,@"pwd":login_aes_128_cbc_encrypt(_passwordField.text)} success:^(id  _Nullable response) {
         NSError *error = nil;
 //        [[FMDBManager sharedInstance] deleteUserData];
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
