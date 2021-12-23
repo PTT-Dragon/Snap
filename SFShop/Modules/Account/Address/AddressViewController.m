@@ -8,7 +8,6 @@
 #import "AddressViewController.h"
 #import "AddressTableViewCell.h"
 #import "AddAddressViewController.h"
-#import "addressModel.h"
 #import <MJRefresh/MJRefresh.h>
 
 @interface AddressViewController ()<UITableViewDelegate,UITableViewDataSource,AddAddressViewControllerDelegate>
@@ -29,7 +28,7 @@
     _dataSource = [NSMutableArray array];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"AddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"AddressTableViewCell"];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) { 
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
         make.left.right.mas_equalTo(self.view);
         make.bottom.mas_equalTo(self.bottomView.mas_top);
@@ -114,6 +113,13 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"删除";
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    addressModel *model = self.dataSource[indexPath.row];
+    [self.navigationController popViewControllerAnimated:YES];
+    !self.addressBlock?:self.addressBlock(model);
+}
+
 - (void)deleteCellWithRow:(NSInteger)row
 {
     addressModel *model = self.dataSource[row];
@@ -125,6 +131,9 @@
         
     }];
 }
+
+
+
 - (IBAction)addAction:(UIButton *)sender {
     AddAddressViewController *vc = [[AddAddressViewController alloc] init];
     vc.delegate = self;

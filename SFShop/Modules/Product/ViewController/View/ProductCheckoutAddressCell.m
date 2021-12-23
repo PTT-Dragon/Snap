@@ -7,6 +7,7 @@
 
 #import "ProductCheckoutAddressCell.h"
 #import "CustomTextField.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface ProductCheckoutAddressCell ()<UITextFieldDelegate>
 
@@ -78,6 +79,11 @@
     }
 }
 
+#pragma mark - #EVENT
+- (void)extendClick {
+    !self.addressBlock?:self.addressBlock(self.dataModel,self.cellModel);
+}
+
 #pragma mark - Getter & Setter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     super.dataModel = dataModel;
@@ -118,8 +124,9 @@
 - (UIButton *)addressExtend {
     if (_addressExtend == nil) {
         _addressExtend = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_addressExtend setEnlargeEdgeWithTop:10 right:10 bottom:10 left:200];
         [_addressExtend setImage:[UIImage imageNamed:@"right-scroll"] forState:UIControlStateNormal];
-        [_addressExtend addTarget:self action:@selector(extendClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_addressExtend addTarget:self action:@selector(extendClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addressExtend;
 }

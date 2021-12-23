@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString <Optional>*street;
 @property(nonatomic,copy) NSDictionary *addressLabelList;
 
+/// 自定义拼接字符串
+@property(nonatomic, readwrite, strong) NSString *customAddress;
+
 @end
 
 @interface AreaModel : JSONModel

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
 @property (nonatomic, readwrite, strong) SFCellCacheModel *cellModel;
 @property (nonatomic, readwrite, copy) void(^updateDataBlock)(ProductCheckoutModel *dataModel,SFCellCacheModel *cellModel);
+@property (nonatomic, readwrite, copy) void(^addressBlock)(ProductCheckoutModel *dataModel,SFCellCacheModel *cellModel);
 
 @end
 
