@@ -9,7 +9,7 @@
 #import "CategoryRankModel.h"
 #import "GroupFilterCell.h"
 #import "GroupBuyListCell.h"
-#import "GroupProductViewController.h"
+#import "ProductViewController.h"
 #import "GroupTopImgCell.h"
 #import <MJRefresh/MJRefresh.h>
 #import "CategoryRankFilterViewController.h"
@@ -105,10 +105,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryRankPageInfoListModel *model = self.dataArray[indexPath.row-2];
-    GroupProductViewController *vc = [[GroupProductViewController alloc] init];
+    ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = model.offerId;
-    cmpShareBuysModel *buyModel = model.campaigns.cmpShareBuys.firstObject;
-    vc.campaignId = buyModel.campaignId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter

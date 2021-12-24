@@ -70,11 +70,7 @@
     
     self.title = @"Product Detail";
     self.view.backgroundColor = [UIColor whiteColor];
-    _evalationArr = [NSMutableArray array];
-    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
-    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
-    [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupListCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupListCell"];
-    [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupTitleCell"];
+    
     
     self.individualBuyBtn.titleLabel.numberOfLines = 2;
     self.buyBtn.titleLabel.numberOfLines = 2;
@@ -243,6 +239,11 @@
         make.left.right.equalTo(self.scrollContentView);
         make.height.mas_equalTo(200);
     }];
+    _evalationArr = [NSMutableArray array];
+    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
+    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
+    [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupListCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupListCell"];
+    [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupTitleCell"];
 }
 
 - (void)setModel:(ProductDetailModel *)model {

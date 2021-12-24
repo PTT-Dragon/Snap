@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ProductSpecAttrsView : UIView
 
 typedef void(^Block)(void);
-typedef void(^ChooseAttrBlock)();
+typedef void(^ChooseAttrBlock)(void);
 
 @property(nonatomic, strong) ProductDetailModel *model;
 @property (nonatomic, copy) Block dismissBlock;

@@ -16,7 +16,6 @@
 #import "ProductViewController.h"
 #import "GroupListViewController.h"
 #import "ProductDetailModel.h"
-#import "GroupProductViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -141,7 +140,10 @@
         }else{
             offerId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.length, navigationAction.request.URL.absoluteString.length-range1.length)];
         }
-        [self requestProductInfoWithOfferId:offerId];
+        ProductViewController *vc = [[ProductViewController alloc] init];
+        vc.offerId = offerId.integerValue;
+        [self.navigationController pushViewController:vc animated:YES];
+//        [self requestProductInfoWithOfferId:offerId];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/GroupBuy"].location != NSNotFound){
@@ -164,7 +166,7 @@
     [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":offerId} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         ProductCampaignsInfoModel *campaignsModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];
-        if (campaignsModel.cmpShareBuys) {
+        if (campaignsModel.cmpShareBuys.count > 0) {
             //该商品参与团购活动
             GroupProductViewController *vc = [[GroupProductViewController alloc] init];
             cmpShareBuysModel *subModel = campaignsModel.cmpShareBuys.firstObject;

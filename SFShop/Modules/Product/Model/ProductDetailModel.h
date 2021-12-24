@@ -8,6 +8,7 @@
 #import "JSONModel.h"
 #import "CartModel.h"
 #import "OrderModel.h"
+#import "FlashSaleModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ProductEvalationLabelsModel;
 @protocol cmpShareBuysModel;
 @protocol ProductGroupListModel;
+@protocol FlashSaleDateModel;
 
 
 
@@ -190,6 +192,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ProductCampaignsInfoModel : JSONModel
 @property (nonatomic,strong) NSArray *cmpBuygetns;
 @property (nonatomic,strong) NSArray <cmpShareBuysModel>*cmpShareBuys;
+@property (nonatomic,strong) NSArray <FlashSaleDateModel>*cmpFlashSales;
+
 @end
 
 

@@ -21,6 +21,9 @@
 #import "ProductEvalationTitleCell.h"
 #import "PublicWebViewController.h"
 #import "ProductReviewViewController.h"
+#import "ProductGroupListCell.h"
+#import "ProductGroupTitleCell.h"
+
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -43,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *evalationTableview;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableviewHie;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoCellTop;
+@property (weak, nonatomic) IBOutlet UIButton *usefulBtn;
 
 @property(nonatomic, strong) NSMutableArray<ProductEvalationModel *> *evalationArr;
 @property (nonatomic, strong) WKWebView *detailWebView;
@@ -51,7 +55,27 @@
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 @property (nonatomic,strong) addressModel *selectedAddressModel;
+@property (nonatomic,strong) ProductItemModel *selProductModel;
 @property (nonatomic,copy) NSNumber *allEvaCount;//评价总数
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
+@property (weak, nonatomic) IBOutlet UILabel *flashSaleStateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *flashSaleBeginTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeStateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *secondLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minuteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hourLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *flashSaleProcessViewWidth;
+@property (weak, nonatomic) IBOutlet UIView *groupInfoView;
+@property (weak, nonatomic) IBOutlet UIView *flashSaleInfoView;
+@property (nonatomic,strong) ProductCampaignsInfoModel *campaignsModel;
+@property (nonatomic, strong) dispatch_source_t timer;//倒计时
+@property (weak, nonatomic) IBOutlet UITableView *groupTableView;
+@property (nonatomic,strong) ProductGroupModel *groupModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupTableViewHei;
+@property (weak, nonatomic) IBOutlet UILabel *groupSalePriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *groupMarketPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *groupDiscountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *groupCountLabel;
 
 @end
 
@@ -63,9 +87,6 @@
     
     self.title = @"Product Detail";
     self.view.backgroundColor = [UIColor whiteColor];
-    _evalationArr = [NSMutableArray array];
-    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
-    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
     
     [self request];
     [self requestSimilar];
@@ -74,6 +95,7 @@
     [self requestAddressInfo];
     [self requestEvaluationsList];
     [self addActions];
+    [self requestCampaigns];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -134,6 +156,39 @@
         NSLog(@"get product detail failed");
     }];
 }
+- (void)requestCampaigns
+{
+    [MBProgressHUD showHudMsg:@"加载中"];
+    MPWeakSelf(self)
+    [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":@(_offerId)} success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        weakself.campaignsModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];
+        if (weakself.campaignsModel.cmpFlashSales.count > 0) {
+            //说明是参与抢购活动
+            [weakself layoutFlashSaleSubView];
+        }else if (weakself.campaignsModel.cmpShareBuys.count > 0){
+            //拼团活动
+            [weakself requestGroupInfo];
+        }
+        
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
+- (void)requestGroupInfo
+{
+    //已经开始的团队列表
+    MPWeakSelf(self)
+    /**
+     先用第一个 需要匹配
+     **/
+    cmpShareBuysModel *subMode = self.campaignsModel.cmpShareBuys.firstObject;
+    [SFNetworkManager get:SFNet.groupbuy.groups parameters:@{@"offerId":@(_offerId),@"campaignId":@(subMode.campaignId),@"pageSize":@(5),@"pageIndex":@(1)} success:^(id  _Nullable response) {
+        weakself.groupModel = [ProductGroupModel yy_modelWithDictionary:response];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
 
 - (void)requestAddressInfo {
     self.addressDataSource = [NSMutableArray array];
@@ -176,7 +231,7 @@
 
 - (void)requestSimilar {
     [MBProgressHUD showHudMsg:@"加载中"];
-    [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", self.offerId]} success:^(id  _Nullable response) {
+    [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", (long)self.offerId]} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSError *error;
         self.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
@@ -211,6 +266,69 @@
         make.left.right.equalTo(self.scrollContentView);
         make.height.mas_equalTo(200);
     }];
+    _evalationArr = [NSMutableArray array];
+    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
+    [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
+    [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupListCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupListCell"];
+    [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupTitleCell"];
+}
+- (void)layoutFlashSaleSubView
+{
+    //抢购活动UI
+    self.flashSaleInfoView.hidden = NO;
+    self.groupInfoView.hidden = YES;
+    self.viewTop.constant = 64;
+    self.addCartBtn.hidden = YES;
+    FlashSaleDateModel *model = self.campaignsModel.cmpFlashSales.firstObject;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *nowDate = [formatter dateFromString:model.now];
+    NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
+    
+    NSDate *effDate = [formatter dateFromString:model.effDate];
+    NSTimeInterval effTimeInterval = [effDate timeIntervalSince1970];
+    
+    NSDate *expDate = [formatter dateFromString:model.expDate];
+    NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
+    if (effTimeInterval > timeInterval) {
+        //未开始
+        self.timeStateLabel.text = @"Star in";
+        self.flashSaleStateLabel.text = @"Star From";
+        self.flashSaleBeginTimeLabel.text = model.effDate;
+    }else if (expTimeInterval > timeInterval){
+        //进行中
+        self.flashSaleStateLabel.text = [NSString stringWithFormat:@"RP %.0f",model.specialPrice];
+        self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%%  Sold",model.flsaleSaleQtyPercent];
+        self.timeStateLabel.text = @"Ends in";
+        MPWeakSelf(self)
+        __block NSInteger timeout = expTimeInterval - timeInterval; // 倒计时时间
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+        dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){
+            
+            dispatch_source_cancel(weakself.timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+            });
+    }else{
+        NSInteger days = (int)(timeout/(3600*24));
+        NSInteger hours = (int)((timeout-days*24*3600)/3600);
+        NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
+        NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakself.hourLabel.text = [NSString stringWithFormat:@"%02d",hours+days*24];
+        weakself.minuteLabel.text = [NSString stringWithFormat:@"%02ld",minute];
+        weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
+            });
+        timeout--;
+                }
+            });
+        dispatch_resume(_timer);
+    }else{
+        //已结束
+    }
 }
 
 - (void)setModel:(ProductDetailModel *)model {
@@ -224,6 +342,29 @@
     self.subheadNameLabel.text = model.subheadName;
     self.variationsLabel.text = [self getVariationsString];
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+    self.selProductModel = model.products.firstObject;
+}
+- (void)setSelProductModel:(ProductItemModel *)selProductModel
+{
+    _selProductModel = selProductModel;
+    self.usefulBtn.selected = [selProductModel.isCollection isEqualToString:@"1"];
+}
+- (void)setGroupModel:(ProductGroupModel *)groupModel
+{
+    _groupModel = groupModel;
+    [self.groupTableView reloadData];
+    self.groupTableViewHei.constant = [self calucateGroupTableviewHei];
+    self.flashSaleInfoView.hidden = YES;
+    self.groupInfoView.hidden = NO;
+    self.viewTop.constant = 64;
+    /**
+     先取第一个 需匹配
+     ***/
+    cmpShareBuysModel *model = self.campaignsModel.cmpShareBuys.firstObject;
+    self.groupDiscountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
+    self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
+    self.groupSalePriceLabel.text = [NSString stringWithFormat:@"RP %.0f",model.shareBuyPrice];
+    self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",_selProductModel.salesPrice];
 }
 
 - (NSString *)getVariationsString {
@@ -290,32 +431,57 @@
 #pragma mark - tableview.delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _evalationArr.count+1;
+    if (tableView == _evalationTableview) {
+        return _evalationArr.count+1;
+    }
+    return self.groupModel.list.count == 0 ? 0: self.groupModel.list.count+1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        ProductEvalationTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationTitleCell"];
-        cell.contentLabel.text = [NSString stringWithFormat:@"%@(%@)",@"5",_allEvaCount];
+    if (tableView == _evalationTableview) {
+        if (indexPath.row == 0) {
+            ProductEvalationTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationTitleCell"];
+            cell.contentLabel.text = [NSString stringWithFormat:@"%@(%@)",@"5",_allEvaCount];
+            return cell;
+        }
+        ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
+        cell.model = self.evalationArr[indexPath.row-1];
         return cell;
     }
-    ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
-    cell.model = self.evalationArr[indexPath.row-1];
+    if (indexPath.row == 0) {
+        ProductGroupTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductGroupTitleCell"];
+        cell.label.text = [NSString stringWithFormat:@"%ld people share buy, click to join",self.groupModel.total];
+        return cell;
+    }
+    ProductGroupListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductGroupListCell"];
+    cell.model = self.groupModel.list[indexPath.row-1];
+    MPWeakSelf(self)
+    cell.joinBlock = ^{
+        [weakself buyNow:self.buyBtn];
+    };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == _evalationTableview) {
+        if (indexPath.row == 0) {
+            return 50;
+        }
+        ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
+        return model.itemHie;
+    }
     if (indexPath.row == 0) {
         return 50;
     }
-    ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
-    return model.itemHie;
+    return 47;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductReviewViewController *vc = [[ProductReviewViewController alloc] init];
-    vc.evaluationsId = [NSString stringWithFormat:@"%ld",self.model.offerId];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (tableView == _evalationTableview) {
+        ProductReviewViewController *vc = [[ProductReviewViewController alloc] init];
+        vc.evaluationsId = [NSString stringWithFormat:@"%ld",self.model.offerId];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 - (CGFloat)calucateTableviewHei
 {
@@ -325,10 +491,37 @@
     }
     return hei+50;
 }
+- (CGFloat)calucateGroupTableviewHei
+{
+    CGFloat hei = self.groupModel.list.count * 47;
+    return self.groupModel.list.count == 0 ? 0: hei+50;
+}
 
 
 #pragma mark - Action
 
+- (IBAction)usefulAction:(UIButton *)sender {
+    MPWeakSelf(self)
+    [MBProgressHUD showHudMsg:@""];
+    if ([self.selProductModel.isCollection isEqualToString:@"1"]) {
+        [SFNetworkManager post:SFNet.favorite.del parameters:@{@"productIdList":@[@(_selProductModel.productId)]} success:^(id  _Nullable response) {
+            [MBProgressHUD hideFromKeyWindow];
+            weakself.selProductModel.isCollection = @"0";
+            [weakself setSelProductModel:weakself.selProductModel];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+    }else{
+        [SFNetworkManager post:SFNet.favorite.favorite parametersArr:@[@{@"offerId":@(_model.offerId),@"productId":@(_selProductModel.productId)}] success:^(id  _Nullable response) {
+            [MBProgressHUD hideFromKeyWindow];
+            weakself.selProductModel.isCollection = @"1";
+            [weakself setSelProductModel:weakself.selProductModel];
+            [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+    }
+}
 - (IBAction)goToCart:(UIButton *)sender {
     CartViewController *cartVC = [[CartViewController alloc] init];
     [self.navigationController pushViewController:cartVC animated:YES];

@@ -21,6 +21,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *expDate;
 @property (nonatomic,copy) NSString *activityTimeInterval;
 @property (nonatomic,copy) NSString *now;
+@property (nonatomic,copy) NSString *productId;
+@property (nonatomic,assign) float discountPercent;
+@property (nonatomic,assign) float flsaleSaleQtyPercent;
+@property (nonatomic,assign) float specialPrice;
+@property (nonatomic,assign) NSInteger stockNum;
+
+
+
 @end
 
 @interface ProductImgContentModel : JSONModel
