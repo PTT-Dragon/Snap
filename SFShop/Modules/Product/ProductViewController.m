@@ -145,23 +145,24 @@
 }
 
 - (void)request {
-    [MBProgressHUD showHudMsg:@"加载中"];
+    MBProgressHUD *hud = [MBProgressHUD showHudMsg:@"加载中"];
     [SFNetworkManager get: [SFNet.offer getDetailOf: self.offerId] success:^(id  _Nullable response) {
-        [MBProgressHUD hideFromKeyWindow];
+        [hud hideAnimated:YES];
         NSError *error;
         self.model = [[ProductDetailModel alloc] initWithDictionary: response error: &error];
         NSLog(@"get product detail success");
     } failed:^(NSError * _Nonnull error) {
+        [hud hideAnimated:YES];
         [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
         NSLog(@"get product detail failed");
     }];
 }
 - (void)requestCampaigns
 {
-    [MBProgressHUD showHudMsg:@"加载中"];
+    MBProgressHUD *hud = [MBProgressHUD showHudMsg:@"加载中"];
     MPWeakSelf(self)
     [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":@(_offerId)} success:^(id  _Nullable response) {
-        [MBProgressHUD hideFromKeyWindow];
+        [hud hideAnimated:YES];
         weakself.campaignsModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];
         if (weakself.campaignsModel.cmpFlashSales.count > 0) {
             //说明是参与抢购活动
@@ -172,6 +173,7 @@
         }
         
     } failed:^(NSError * _Nonnull error) {
+        [hud hideAnimated:YES];
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
@@ -230,13 +232,14 @@
 }
 
 - (void)requestSimilar {
-    [MBProgressHUD showHudMsg:@"加载中"];
+    MBProgressHUD *hud = [MBProgressHUD showHudMsg:@"加载中"];
     [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", (long)self.offerId]} success:^(id  _Nullable response) {
-        [MBProgressHUD hideFromKeyWindow];
+        [hud hideAnimated:YES];
         NSError *error;
         self.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
         NSLog(@"get similar success");
     } failed:^(NSError * _Nonnull error) {
+        [hud hideAnimated:YES];
         [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
         NSLog(@"get similarfailed");
     }];
