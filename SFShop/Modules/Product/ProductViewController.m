@@ -23,7 +23,7 @@
 #import "ProductReviewViewController.h"
 #import "ProductGroupListCell.h"
 #import "ProductGroupTitleCell.h"
-#import "CategoryRankCell.h"
+#import "ProductionRecommendCell.h"
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
@@ -76,7 +76,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupMarketPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupDiscountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupCountLabel;
-@property (weak, nonatomic) IBOutlet UICollectionView *recommendCollectionView;
+@property (strong, nonatomic) UICollectionView *recommendCollectionView;
 
 @end
 
@@ -232,12 +232,14 @@
 }
 
 - (void)requestSimilar {
+    MPWeakSelf(self)
     MBProgressHUD *hud = [MBProgressHUD showHudMsg:@"加载中"];
     [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", (long)self.offerId]} success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
         NSError *error;
-        self.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
-        [self.recommendCollectionView reloadData];
+        weakself.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
+        [weakself.recommendCollectionView reloadData];
+        [weakself updateConstraints];
         NSLog(@"get similar success");
     } failed:^(NSError * _Nonnull error) {
         [hud hideAnimated:YES];
@@ -265,29 +267,48 @@
     self.detailWebView.scrollView.scrollEnabled = NO;
     [self.detailWebView.scrollView addObserver:self forKeyPath:@"contentSize" options: NSKeyValueObservingOptionNew context:nil];
     [self.scrollContentView addSubview:self.detailWebView];
-    [self.detailWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.detailViewHeader.mas_bottom);
-        make.left.right.equalTo(self.scrollContentView);
-        make.height.mas_equalTo(200);
-    }];
+
     _evalationArr = [NSMutableArray array];
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
     [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupListCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupListCell"];
     [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupTitleCell"];
     
-    [_recommendCollectionView registerClass:[CategoryRankCell class] forCellWithReuseIdentifier:@"CategoryRankCell"];
+    [_recommendCollectionView registerClass:[ProductionRecommendCell class] forCellWithReuseIdentifier:@"ProductionRecommendCell"];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.headerReferenceSize = CGSizeZero;
     layout.footerReferenceSize = CGSizeZero;
-    layout.minimumLineSpacing = KScale(16);
-    layout.minimumInteritemSpacing = KScale(16);
-    layout.sectionInset = UIEdgeInsetsMake(KScale(8), KScale(8), KScale(8), KScale(8));
-    layout.itemSize = CGSizeMake((MainScreen_width - 45) / 2, (MainScreen_width - 45) / 2 + 150);
-    [_recommendCollectionView setCollectionViewLayout:layout];
-
+    layout.minimumLineSpacing = 16;
+    layout.minimumInteritemSpacing = 16;
+    layout.sectionInset = UIEdgeInsetsMake(8, 20, 8, 20);
+    layout.itemSize = CGSizeMake((MainScreen_width - 60) / 2, (MainScreen_width - 60) / 2 + 120);
+    _recommendCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    _recommendCollectionView.backgroundColor = [UIColor whiteColor];
+    _recommendCollectionView.delegate = self;
+    _recommendCollectionView.dataSource = self;
+    [_recommendCollectionView registerClass:[ProductionRecommendCell class] forCellWithReuseIdentifier:@"ProductionRecommendCell"];
+    [self.scrollContentView addSubview:self.recommendCollectionView];
 }
+
+- (void)updateConstraints {
+    CGFloat height = self.detailWebView.scrollView.contentSize.height;
+    CGFloat collectionViewHeight = ceil(self.similarList.count / 2.0) * ((MainScreen_width - 60) / 2 + 120 + 16) + 16;
+
+    [self.detailWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.detailViewHeader.mas_bottom);
+        make.left.right.equalTo(self.scrollContentView);
+        make.height.mas_equalTo(height);
+    }];
+
+    [self.recommendCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.detailWebView.mas_bottom).offset(12);
+        make.left.right.equalTo(self.scrollContentView);
+        make.height.mas_equalTo(collectionViewHeight);
+        make.bottom.lessThanOrEqualTo(self.scrollContentView).offset(-12);
+    }];
+}
+
 - (void)layoutFlashSaleSubView
 {
     //抢购活动UI
@@ -334,7 +355,7 @@
         NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
         NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
         dispatch_async(dispatch_get_main_queue(), ^{
-            weakself.hourLabel.text = [NSString stringWithFormat:@"%02d",hours+days*24];
+            weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
         weakself.minuteLabel.text = [NSString stringWithFormat:@"%02ld",minute];
         weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
             });
@@ -405,13 +426,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if (object == self.detailWebView.scrollView && [keyPath isEqualToString:@"contentSize"]) {
-        CGFloat height = self.detailWebView.scrollView.contentSize.height;
-        [self.detailWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.detailViewHeader.mas_bottom);
-            make.left.right.equalTo(self.scrollContentView);
-            make.height.mas_equalTo(height);
-            make.bottom.lessThanOrEqualTo(self.scrollContentView).offset(-20);
-        }];
+        [self updateConstraints];
     }
 }
 
@@ -456,9 +471,16 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CategoryRankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankCell" forIndexPath:indexPath];
-//    cell.model = self.dataArray[indexPath.section][indexPath.row];
+    ProductionRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProductionRecommendCell" forIndexPath:indexPath];
+    cell.model = self.similarList[indexPath.row];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = self.similarList[indexPath.row].offerId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - tableview.delegate

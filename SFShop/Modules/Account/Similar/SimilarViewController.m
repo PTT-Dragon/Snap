@@ -85,7 +85,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ProductSimilarModel *model = self.dataSource[indexPath.row];
     ProductViewController *vc = [[ProductViewController alloc] init];
-    vc.offerId = [model.offerId integerValue];
+    vc.offerId = model.offerId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
