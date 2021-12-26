@@ -72,6 +72,9 @@
 - (NSString *)del {
     return K_cart_domain(@"delete");
 }
+- (NSString *)coupons {
+    return K_cart_domain(@"coupons");
+}
 - (NSString *)collection {
     return K_cart_domain(@"usercollection");
 }
