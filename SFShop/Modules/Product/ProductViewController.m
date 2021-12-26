@@ -23,10 +23,10 @@
 #import "ProductReviewViewController.h"
 #import "ProductGroupListCell.h"
 #import "ProductGroupTitleCell.h"
+#import "CategoryRankCell.h"
 
 
-
-@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
@@ -76,6 +76,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupMarketPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupDiscountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupCountLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *recommendCollectionView;
 
 @end
 
@@ -237,6 +238,7 @@
         [hud hideAnimated:YES];
         NSError *error;
         self.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
+        [self.recommendCollectionView reloadData];
         NSLog(@"get similar success");
     } failed:^(NSError * _Nonnull error) {
         [hud hideAnimated:YES];
@@ -274,6 +276,18 @@
     [_evalationTableview registerNib:[UINib nibWithNibName:@"ProductEvalationTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationTitleCell"];
     [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupListCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupListCell"];
     [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupTitleCell"];
+    
+    [_recommendCollectionView registerClass:[CategoryRankCell class] forCellWithReuseIdentifier:@"CategoryRankCell"];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    layout.headerReferenceSize = CGSizeZero;
+    layout.footerReferenceSize = CGSizeZero;
+    layout.minimumLineSpacing = KScale(16);
+    layout.minimumInteritemSpacing = KScale(16);
+    layout.sectionInset = UIEdgeInsetsMake(KScale(8), KScale(8), KScale(8), KScale(8));
+    layout.itemSize = CGSizeMake((MainScreen_width - 45) / 2, (MainScreen_width - 45) / 2 + 150);
+    [_recommendCollectionView setCollectionViewLayout:layout];
+
 }
 - (void)layoutFlashSaleSubView
 {
@@ -430,6 +444,17 @@
     return productId;
 }
 
+#pragma mark - UICollectionView delegate & dataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.similarList.count == 0 ? 0 : self.similarList.count;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CategoryRankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankCell" forIndexPath:indexPath];
+//    cell.model = self.dataArray[indexPath.section][indexPath.row];
+    return cell;
+}
 
 #pragma mark - tableview.delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
