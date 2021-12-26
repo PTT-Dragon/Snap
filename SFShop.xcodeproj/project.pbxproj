@@ -70,6 +70,8 @@
 		1B49D145271D5C14002461ED /* RecentlyViewedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D143271D5C14002461ED /* RecentlyViewedViewController.m */; };
 		1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49D144271D5C14002461ED /* RecentlyViewedViewController.xib */; };
 		1B49D14A271EAA05002461ED /* addressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D149271EAA03002461ED /* addressModel.m */; };
+		1B53A2B527785D2700FB00C7 /* CartChooseCouponView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B53A2B427785D2600FB00C7 /* CartChooseCouponView.m */; };
+		1B53A2B727785D2E00FB00C7 /* CartChooseCouponView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B53A2B627785D2E00FB00C7 /* CartChooseCouponView.xib */; };
 		1B552E9F276B14F10086604B /* GroupBuyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B552E9D276B14F10086604B /* GroupBuyListCell.m */; };
 		1B552EA0276B14F10086604B /* GroupBuyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B552E9E276B14F10086604B /* GroupBuyListCell.xib */; };
 		1B552EA4276B22C80086604B /* GroupProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B552EA2276B22C80086604B /* GroupProductViewController.m */; };
@@ -555,6 +557,9 @@
 		1B49D144271D5C14002461ED /* RecentlyViewedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentlyViewedViewController.xib; sourceTree = "<group>"; };
 		1B49D148271EAA03002461ED /* addressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = addressModel.h; sourceTree = "<group>"; };
 		1B49D149271EAA03002461ED /* addressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = addressModel.m; sourceTree = "<group>"; };
+		1B53A2B327785D2600FB00C7 /* CartChooseCouponView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChooseCouponView.h; sourceTree = "<group>"; };
+		1B53A2B427785D2600FB00C7 /* CartChooseCouponView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChooseCouponView.m; sourceTree = "<group>"; };
+		1B53A2B627785D2E00FB00C7 /* CartChooseCouponView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartChooseCouponView.xib; sourceTree = "<group>"; };
 		1B552E9C276B14F10086604B /* GroupBuyListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupBuyListCell.h; sourceTree = "<group>"; };
 		1B552E9D276B14F10086604B /* GroupBuyListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupBuyListCell.m; sourceTree = "<group>"; };
 		1B552E9E276B14F10086604B /* GroupBuyListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupBuyListCell.xib; sourceTree = "<group>"; };
@@ -2040,6 +2045,9 @@
 				1B90F95F272B992E003A047A /* UseCouponProductCell.xib */,
 				1B74DAC2271F192400B30ECC /* CouponModel.h */,
 				1B74DAC3271F192400B30ECC /* CouponModel.m */,
+				1B53A2B327785D2600FB00C7 /* CartChooseCouponView.h */,
+				1B53A2B427785D2600FB00C7 /* CartChooseCouponView.m */,
+				1B53A2B627785D2E00FB00C7 /* CartChooseCouponView.xib */,
 			);
 			path = Coupon;
 			sourceTree = "<group>";
@@ -2806,6 +2814,7 @@
 				1B3122562732306B0055033D /* CashOutHistoryCell.xib in Resources */,
 				1B6C52A9275B672200A1C617 /* ZLPhotoBrowser.bundle in Resources */,
 				1B31225B273260980055033D /* CaseOutDetailViewController.xib in Resources */,
+				1B53A2B727785D2E00FB00C7 /* CartChooseCouponView.xib in Resources */,
 				1BDBEBB526FF60C00018109B /* LoginAlertView.xib in Resources */,
 				1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */,
 				1B478326272AA04600F2A945 /* ChangePasswordViewController.xib in Resources */,
@@ -3163,6 +3172,7 @@
 				1BF4DD4D2774644600972265 /* NSArray+SortedString.m in Sources */,
 				1B78865D276C7E74009A080A /* ProductReviewReplyCell.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
+				1B53A2B527785D2700FB00C7 /* CartChooseCouponView.m in Sources */,
 				1B6C52A2275B672200A1C617 /* ZLCollectionCell.m in Sources */,
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
 				1B6246612761FCAE00009DE2 /* ProductReviewChildViewController.m in Sources */,

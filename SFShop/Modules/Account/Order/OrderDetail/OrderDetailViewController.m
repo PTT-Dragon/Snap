@@ -25,7 +25,11 @@
 @end
 
 @implementation OrderDetailViewController
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -129,6 +133,13 @@
 {
     [_dataSource addObjectsFromArray:@[@{@"coupon":self.model.storeCouponPrice},@{@"Store promo":self.model.storeCampaignPrice},@{@"Platform Voucher":self.model.discountPrice},@{@"Delivery Total":self.model.deliveryState},@{@"Total Payment":self.model.offerPrice}]];
     [self.tableView reloadData];
+}
+- (void)layoutSubviews
+{
+    if ([self.model.state isEqualToString:@"B"]) {
+        [self.btn1 setTitle:@"" forState:0];
+        [self.btn2 setTitle:@"" forState:0];
+    }
 }
 - (UITableView *)tableView
 {

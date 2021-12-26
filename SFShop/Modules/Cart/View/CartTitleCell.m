@@ -56,4 +56,7 @@
     sender.selected = !sender.selected;
     [self.delegate selAll:sender.selected storeId:_model.storeId];
 }
+- (IBAction)couponAction:(UIButton *)sender {
+    [self.delegate selCouponWithStoreId:_model.storeId];
+}
 @end

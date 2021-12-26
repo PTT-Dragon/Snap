@@ -9,6 +9,7 @@
 #import "CartTableViewCell.h"
 #import "CartTitleCell.h"
 #import <MJRefresh/MJRefresh.h>
+#import "CartChooseCouponView.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -46,7 +47,7 @@
         return model.shoppingCarts.count+1;
     }
     CartListModel *model = self.cartModel.validCarts[section];
-    return model.shoppingCarts.count+1;
+    return model.shoppingCarts.count+1+model.campaignGroups.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -81,7 +82,12 @@
         listModel = self.cartModel.validCarts[indexPath.section];
         cell.isInvalid = NO;
     }
-    CartItemModel *model = listModel.shoppingCarts[indexPath.row-1];
+    CartItemModel *model;
+    if (indexPath.row > listModel.shoppingCarts.count) {
+        model = listModel.campaignGroups[indexPath.row-1-listModel.shoppingCarts.count];
+    }else{
+        model = listModel.shoppingCarts[indexPath.row-1];
+    }
     cell.model = model;
     cell.delegate = self;
     return cell;
@@ -158,6 +164,17 @@
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
+- (void)loadCouponsDatas
+{
+    [MBProgressHUD showHudMsg:@""];
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.cart.coupons parameters:@{} success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        [weakself showCouponsView];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
 - (void)addToFavoriteWithID:(NSString *)offerId
 {
     //添加到收藏列表
@@ -181,6 +198,13 @@
     }];
     [self.tableView reloadData];
 }
+- (void)showCouponsView
+{
+    CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    [self.view addSubview:view];
+}
+#pragma mark - delegate
 - (void)selAll:(BOOL)selAll storeId:(nonnull NSString *)storeId
 {
     NSMutableArray *modifyArr = [NSMutableArray array];
@@ -200,6 +224,10 @@
             }];
         }
     }
+}
+- (void)selCouponWithStoreId:(NSString *)storeId
+{
+    [self loadCouponsDatas];
 }
 - (UITableView *)tableView
 {

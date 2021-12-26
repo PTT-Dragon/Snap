@@ -60,11 +60,28 @@
                                 <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfM-NY-SbM">
+                                <rect key="frame" x="233" y="14.5" width="100" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="21o-RS-54Q"/>
+                                    <constraint firstAttribute="height" constant="19" id="xnn-Of-jUN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Coupons" image="right-scroll">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="couponAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cpz-Js-Bjb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wRO-ee-qdu" firstAttribute="top" secondItem="ZcW-FH-IIA" secondAttribute="top" constant="16" id="0Lg-jx-kHD"/>
                             <constraint firstItem="gnT-YZ-mU4" firstAttribute="leading" secondItem="wRO-ee-qdu" secondAttribute="trailing" constant="10" id="T27-gH-5jx"/>
+                            <constraint firstAttribute="trailing" secondItem="wfM-NY-SbM" secondAttribute="trailing" constant="10" id="cfa-9m-A6K"/>
                             <constraint firstItem="KN5-62-ZdT" firstAttribute="centerY" secondItem="gnT-YZ-mU4" secondAttribute="centerY" id="cxF-5I-1Vl"/>
                             <constraint firstItem="x5R-y6-jzR" firstAttribute="centerY" secondItem="yzc-Gv-CUo" secondAttribute="centerY" id="eRf-7q-Dsv"/>
                             <constraint firstAttribute="trailing" secondItem="x5R-y6-jzR" secondAttribute="trailing" constant="25" id="lgS-7Q-RFw"/>
@@ -72,6 +89,7 @@
                             <constraint firstAttribute="bottom" secondItem="yzc-Gv-CUo" secondAttribute="bottom" constant="9" id="ozc-x2-zZd"/>
                             <constraint firstItem="KN5-62-ZdT" firstAttribute="leading" secondItem="gnT-YZ-mU4" secondAttribute="trailing" constant="4" id="rKR-6e-9Yd"/>
                             <constraint firstItem="gnT-YZ-mU4" firstAttribute="top" secondItem="ZcW-FH-IIA" secondAttribute="top" constant="16" id="smp-p5-pcA"/>
+                            <constraint firstItem="wfM-NY-SbM" firstAttribute="centerY" secondItem="KN5-62-ZdT" secondAttribute="centerY" id="t1m-Jv-yCJ"/>
                             <constraint firstItem="wRO-ee-qdu" firstAttribute="leading" secondItem="ZcW-FH-IIA" secondAttribute="leading" constant="20" id="u9e-iI-Rm7"/>
                         </constraints>
                     </view>
@@ -98,6 +116,7 @@
         <image name="block" width="200" height="200"/>
         <image name="radio-0" width="200" height="200"/>
         <image name="radio-1" width="200" height="200"/>
+        <image name="right-scroll" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -207,7 +207,6 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
-
 }
 - (void)requestEvaluationsList
 {
@@ -242,7 +241,7 @@
         NSLog(@"get similar success");
     } failed:^(NSError * _Nonnull error) {
         [hud hideAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+        [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"message"]];
         NSLog(@"get similarfailed");
     }];
 }
@@ -347,6 +346,24 @@
         //已结束
     }
 }
+- (void)layoutGroupSubViews
+{
+    [self.groupTableView reloadData];
+    self.groupTableViewHei.constant = [self calucateGroupTableviewHei];
+    self.flashSaleInfoView.hidden = YES;
+    self.groupInfoView.hidden = NO;
+    self.viewTop.constant = 64;
+    [self.campaignsModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (model.productId.integerValue == _selProductModel.productId) {
+            //找到当前显示的商品
+            self.groupDiscountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
+            self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
+            self.groupSalePriceLabel.text = [NSString stringWithFormat:@"RP %.0f",model.shareBuyPrice];
+            self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",_selProductModel.salesPrice];
+        }
+    }];
+    
+}
 
 - (void)setModel:(ProductDetailModel *)model {
     _model = model;
@@ -369,19 +386,7 @@
 - (void)setGroupModel:(ProductGroupModel *)groupModel
 {
     _groupModel = groupModel;
-    [self.groupTableView reloadData];
-    self.groupTableViewHei.constant = [self calucateGroupTableviewHei];
-    self.flashSaleInfoView.hidden = YES;
-    self.groupInfoView.hidden = NO;
-    self.viewTop.constant = 64;
-    /**
-     先取第一个 需匹配
-     ***/
-    cmpShareBuysModel *model = self.campaignsModel.cmpShareBuys.firstObject;
-    self.groupDiscountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
-    self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
-    self.groupSalePriceLabel.text = [NSString stringWithFormat:@"RP %.0f",model.shareBuyPrice];
-    self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",_selProductModel.salesPrice];
+    [self layoutGroupSubViews];
 }
 
 - (NSString *)getVariationsString {

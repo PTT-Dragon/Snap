@@ -112,17 +112,24 @@
 - (void)loadDatas
 {
     _pageIndex = 1;
-    NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
+    NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B,F,G": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:_searchText forKey:@"q"];
+    [params setValue:@(_pageIndex) forKey:@"pageIndex"];
+    [params setValue:@(20) forKey:@"pageSize"];
+    [params setValue:state forKey:@"states"];
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"state":state} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.order.list parameters:params success:^(id  _Nullable response) {
+        [weakself.dataSource removeAllObjects];
         [weakself.tableView.mj_header endRefreshing];
         NSArray *arr = response[@"list"];
         if (!kArrayIsEmpty(arr)) {
             for (NSDictionary *dic in arr) {
                 [weakself.dataSource addObject:[[OrderModel alloc]initWithDictionary:dic error:nil]];
             }
-            [weakself.tableView reloadData];
+         
         }
+        [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
     }];
@@ -130,20 +137,30 @@
 - (void)loadMoreDatas
 {
     _pageIndex ++;
-    NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
+    NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B,F,G": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:_searchText forKey:@"q"];
+    [params setValue:@(_pageIndex) forKey:@"pageIndex"];
+    [params setValue:@(20) forKey:@"pageSize"];
+    [params setValue:state forKey:@"states"];
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"state":state} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.order.list parameters:params success:^(id  _Nullable response) {
         [weakself.tableView.mj_footer endRefreshing];
         NSArray *arr = response[@"list"];
         if (!kArrayIsEmpty(arr)) {
             for (NSDictionary *dic in arr) {
                 [weakself.dataSource addObject:[[OrderModel alloc]initWithDictionary:dic error:nil]];
-            }
-            [weakself.tableView reloadData];
+            }            
         }
+        [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_footer endRefreshing];
     }];
+}
+- (void)setSearchText:(NSString *)searchText
+{
+    _searchText = searchText;
+    [self.tableView.mj_header beginRefreshing];
 }
 
 
