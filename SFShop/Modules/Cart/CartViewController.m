@@ -95,7 +95,7 @@
     [self updateAddress];
     
     NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count];
-    NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%ld)",self.cartModel.validCarts.count];
+    NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%ld)",0];
     self.menuList = @[allCount, dropCount];
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];

@@ -59,8 +59,8 @@
 {
     NSString *all = [NSString stringWithFormat:@"ALL(%ld)",self.orderNumModel.toPayNum+self.orderNumModel.toReceiveNum+self.orderNumModel.toDeliveryNum+self.orderNumModel.completedNum+self.orderNumModel.canceledNum];
     NSString *topay = [NSString stringWithFormat:@"ToPay(%ld)",self.orderNumModel.toPayNum];
-    NSString *toship = [NSString stringWithFormat:@"ToShip(%ld)",self.orderNumModel.toReceiveNum];
-    NSString *shiped = [NSString stringWithFormat:@"ToReceive(%ld)",self.orderNumModel.toDeliveryNum];
+    NSString *toship = [NSString stringWithFormat:@"ToShip(%ld)",self.orderNumModel.toDeliveryNum];
+    NSString *shiped = [NSString stringWithFormat:@"ToReceive(%ld)",self.orderNumModel.toReceiveNum];
     NSString *complete = [NSString stringWithFormat:@"Completed(%ld)",self.orderNumModel.completedNum];
     NSString *cancel = [NSString stringWithFormat:@"Canceled(%ld)",self.orderNumModel.canceledNum];
     self.menuList = @[all,topay,toship,shiped,complete,cancel];
@@ -142,7 +142,8 @@
         __weak __typeof(self)weakSelf = self;
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
-            
+            OrderChildViewController *vc = self.magicController.currentViewController;
+            vc.searchText = qs;
         }];
     }
     return _navSearchView;
