@@ -9,20 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol CartListModel <NSObject>
+@protocol CartListModel;
+@protocol CartItemModel;
+@protocol ProdSpcAttrsModel;
+@protocol CartCampaignsModel;
 
-
-@end
-
-@protocol CartItemModel <NSObject>
-
-
-@end
-
-@protocol ProdSpcAttrsModel <NSObject>
-
-
-@end
 
 @interface ProdSpcAttrsModel : JSONModel
 @property (nonatomic,copy) NSString *value;
@@ -60,6 +51,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray <ProdSpcAttrsModel> *prodSpcAttrs;
 @end
 
+@interface CartCampaignsModel : JSONModel
+@property (nonatomic,strong) NSArray <CartItemModel> *shoppingCarts;
+@end
+
+
 @interface CartListModel : JSONModel
 @property (nonatomic,copy) NSString *storeId;
 @property (nonatomic,copy) NSString *storeName;
@@ -75,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) double storeCouponPrice;
 @property (nonatomic,assign) double platformCouponPrice;
 @property (nonatomic,strong) NSArray <CartItemModel> *shoppingCarts;
-@property (nonatomic,strong) NSArray <CartItemModel> *campaignGroups;
+@property (nonatomic,strong) NSArray <CartCampaignsModel> *campaignGroups;
 
 
 @end

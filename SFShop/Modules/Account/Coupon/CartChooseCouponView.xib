@@ -25,10 +25,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcV-XG-Kzh">
-                            <rect key="frame" x="370" y="10" width="33" height="33"/>
+                            <rect key="frame" x="381" y="10" width="22" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="33" id="LKo-bo-48Y"/>
-                                <constraint firstAttribute="width" constant="33" id="e7d-cy-FMr"/>
+                                <constraint firstAttribute="height" constant="22" id="LKo-bo-48Y"/>
+                                <constraint firstAttribute="width" constant="22" id="e7d-cy-FMr"/>
                             </constraints>
                             <state key="normal" title="Button" image="nav_close"/>
                             <connections>
@@ -38,10 +38,6 @@
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kEJ-LQ-wrr">
                             <rect key="frame" x="0.0" y="60" width="414" height="337"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="1fU-9j-hU7"/>
-                                <outlet property="delegate" destination="-1" id="4yL-bh-V6m"/>
-                            </connections>
                         </tableView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>

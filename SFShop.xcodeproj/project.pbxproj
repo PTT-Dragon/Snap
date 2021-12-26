@@ -72,6 +72,8 @@
 		1B49D14A271EAA05002461ED /* addressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49D149271EAA03002461ED /* addressModel.m */; };
 		1B53A2B527785D2700FB00C7 /* CartChooseCouponView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B53A2B427785D2600FB00C7 /* CartChooseCouponView.m */; };
 		1B53A2B727785D2E00FB00C7 /* CartChooseCouponView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B53A2B627785D2E00FB00C7 /* CartChooseCouponView.xib */; };
+		1B53A2BA2778ACC200FB00C7 /* CartChoosePromotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B53A2B92778ACC200FB00C7 /* CartChoosePromotion.m */; };
+		1B53A2BC2778ACC900FB00C7 /* CartChoosePromotion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B53A2BB2778ACC900FB00C7 /* CartChoosePromotion.xib */; };
 		1B552E9F276B14F10086604B /* GroupBuyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B552E9D276B14F10086604B /* GroupBuyListCell.m */; };
 		1B552EA0276B14F10086604B /* GroupBuyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B552E9E276B14F10086604B /* GroupBuyListCell.xib */; };
 		1B552EA4276B22C80086604B /* GroupProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B552EA2276B22C80086604B /* GroupProductViewController.m */; };
@@ -560,6 +562,9 @@
 		1B53A2B327785D2600FB00C7 /* CartChooseCouponView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChooseCouponView.h; sourceTree = "<group>"; };
 		1B53A2B427785D2600FB00C7 /* CartChooseCouponView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChooseCouponView.m; sourceTree = "<group>"; };
 		1B53A2B627785D2E00FB00C7 /* CartChooseCouponView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartChooseCouponView.xib; sourceTree = "<group>"; };
+		1B53A2B82778ACC200FB00C7 /* CartChoosePromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartChoosePromotion.h; sourceTree = "<group>"; };
+		1B53A2B92778ACC200FB00C7 /* CartChoosePromotion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartChoosePromotion.m; sourceTree = "<group>"; };
+		1B53A2BB2778ACC900FB00C7 /* CartChoosePromotion.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartChoosePromotion.xib; sourceTree = "<group>"; };
 		1B552E9C276B14F10086604B /* GroupBuyListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupBuyListCell.h; sourceTree = "<group>"; };
 		1B552E9D276B14F10086604B /* GroupBuyListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupBuyListCell.m; sourceTree = "<group>"; };
 		1B552E9E276B14F10086604B /* GroupBuyListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupBuyListCell.xib; sourceTree = "<group>"; };
@@ -1588,6 +1593,9 @@
 				1B2AE420272D274300FB23D3 /* CartChooseAddressCell.h */,
 				1B2AE421272D274300FB23D3 /* CartChooseAddressCell.m */,
 				1B2AE422272D274300FB23D3 /* CartChooseAddressCell.xib */,
+				1B53A2B82778ACC200FB00C7 /* CartChoosePromotion.h */,
+				1B53A2B92778ACC200FB00C7 /* CartChoosePromotion.m */,
+				1B53A2BB2778ACC900FB00C7 /* CartChoosePromotion.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2832,6 +2840,7 @@
 				1B3C122826FC706000235294 /* LoginViewController.xib in Resources */,
 				1B49D12227193181002461ED /* AddressTableViewCell.xib in Resources */,
 				1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */,
+				1B53A2BC2778ACC900FB00C7 /* CartChoosePromotion.xib in Resources */,
 				1BB1CB7227634DF6008D71DF /* FlashSaleProductCell.xib in Resources */,
 				1BD2A623276B0CF200F994C5 /* GroupListViewController.xib in Resources */,
 				1B74DB2627253A3500B30ECC /* DeliveryInformationCell.xib in Resources */,
@@ -3160,6 +3169,7 @@
 				1BD10C382761E80100BFC1AD /* ProductEvalationTitleCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
 				1BD8E7B3275DFDAD00130DCC /* ReviewAddNewPhotoCell.m in Sources */,
+				1B53A2BA2778ACC200FB00C7 /* CartChoosePromotion.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
 				1B82AE4B27707CB500D75E00 /* KSProgressLayer.m in Sources */,
 				1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */,

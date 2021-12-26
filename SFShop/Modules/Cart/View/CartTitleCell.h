@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CartTitleCellDelegate <NSObject>
 
 - (void)selAll:(BOOL)selAll storeId:(NSString *)storeId;
-- (void)selCouponWithStoreId:(NSString *)storeId;
+- (void)selCouponWithStoreId:(NSString *)storeId productArr:(NSArray *)arr;
 @end
 
 @interface CartTitleCell : UITableViewCell

@@ -28,6 +28,13 @@
 
 @end
 
+@implementation CartCampaignsModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+
 @implementation CartModel
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {

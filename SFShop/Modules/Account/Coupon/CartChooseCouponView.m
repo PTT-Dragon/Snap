@@ -17,11 +17,15 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
     [_tableView registerNib:[UINib nibWithNibName:@"MyCouponCell" bundle:nil] forCellReuseIdentifier:@"MyCouponCell"];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyCouponCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCouponCell"];
+    [cell setContent:_couponDataSource[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -30,7 +34,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return _couponDataSource.count;
 }
 
 - (IBAction)closeAction:(id)sender {

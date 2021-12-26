@@ -57,6 +57,15 @@
     [self.delegate selAll:sender.selected storeId:_model.storeId];
 }
 - (IBAction)couponAction:(UIButton *)sender {
-    [self.delegate selCouponWithStoreId:_model.storeId];
+    NSMutableArray *arr = [NSMutableArray array];
+    [_model.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+        [_model.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+            }];
+        }];
+    }];
+    [self.delegate selCouponWithStoreId:_model.storeId productArr:arr];
 }
 @end

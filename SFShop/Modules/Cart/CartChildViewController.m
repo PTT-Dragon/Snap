@@ -10,10 +10,12 @@
 #import "CartTitleCell.h"
 #import <MJRefresh/MJRefresh.h>
 #import "CartChooseCouponView.h"
+#import "CouponModel.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) NSMutableArray <CouponModel *>*couponDataSource;
 @property (nonatomic,strong) CartModel *cartModel;
 
 @end
@@ -47,7 +49,8 @@
         return model.shoppingCarts.count+1;
     }
     CartListModel *model = self.cartModel.validCarts[section];
-    return model.shoppingCarts.count+1+model.campaignGroups.count;
+    CartCampaignsModel *campaignsModel = model.campaignGroups.firstObject;
+    return model.shoppingCarts.count+1+campaignsModel.shoppingCarts.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -84,7 +87,8 @@
     }
     CartItemModel *model;
     if (indexPath.row > listModel.shoppingCarts.count) {
-        model = listModel.campaignGroups[indexPath.row-1-listModel.shoppingCarts.count];
+        CartCampaignsModel *campaignsModel = listModel.campaignGroups.firstObject;
+        model = campaignsModel.shoppingCarts[indexPath.row-listModel.shoppingCarts.count-1];
     }else{
         model = listModel.shoppingCarts[indexPath.row-1];
     }
@@ -164,12 +168,16 @@
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
-- (void)loadCouponsDatas
+- (void)loadCouponsDatasWithStoreId:(NSString *)storeId productArr:(NSArray *)productArr
 {
     [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.cart.coupons parameters:@{} success:^(id  _Nullable response) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:storeId forKey:@"storeId"];
+    [params setValue:productArr forKey:@"products"];
+    [SFNetworkManager post:SFNet.cart.coupons parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
+        weakself.couponDataSource = [CouponModel arrayOfModelsFromDictionaries:response error:nil];
         [weakself showCouponsView];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
@@ -202,7 +210,8 @@
 {
     CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
     view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-    [self.view addSubview:view];
+    view.couponDataSource = self.couponDataSource;
+    [[baseTool getCurrentVC].view addSubview:view];
 }
 #pragma mark - delegate
 - (void)selAll:(BOOL)selAll storeId:(nonnull NSString *)storeId
@@ -225,9 +234,9 @@
         }
     }
 }
-- (void)selCouponWithStoreId:(NSString *)storeId
+- (void)selCouponWithStoreId:(NSString *)storeId productArr:(nonnull NSArray *)arr
 {
-    [self loadCouponsDatas];
+    [self loadCouponsDatasWithStoreId:storeId productArr:arr];
 }
 - (UITableView *)tableView
 {
