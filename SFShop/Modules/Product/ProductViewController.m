@@ -597,22 +597,37 @@
     } else {
         // TODO: 跳转checkout页
         MPWeakSelf(self)
-        NSDictionary *logisticsParams = @{
-            @"deliveryAddressId": self.selectedAddressModel.deliveryAddressId,
-            @"deliveryMode": self.model.deliveryMode,
-            @"stores": @[
-                    @{
-                        @"logisticsModeId": @"1",
-                        @"storeId": @(self.model.storeId),
-                        @"products": @[
-                                @{
-                                    @"productId": @([self getSelectedProductId]),
-                                    @"offerCnt": @(self.attrView.count)
-                                }
-                        ]
-                    }
-            ],
-        };
+        NSMutableDictionary *logisticsParams = [NSMutableDictionary dictionary];
+        [logisticsParams setValue:self.selectedAddressModel.deliveryAddressId forKey:@"deliveryAddressId"];
+        [logisticsParams setValue:self.model.deliveryMode forKey:@"deliveryMode"];
+        [logisticsParams setValue:@[
+            @{
+                @"logisticsModeId": @"1",
+                @"storeId": @(self.model.storeId),
+                @"products": @[
+                        @{
+                            @"productId": @([self getSelectedProductId]),
+                            @"offerCnt": @(self.attrView.count)
+                        }
+                ]
+            }
+    ] forKey:@"stores"];
+//        NSDictionary *logisticsParams = @{
+//            @"deliveryAddressId": self.selectedAddressModel.deliveryAddressId,
+//            @"deliveryMode": self.model.deliveryMode,
+//            @"stores": @[
+//                    @{
+//                        @"logisticsModeId": @"1",
+//                        @"storeId": @(self.model.storeId),
+//                        @"products": @[
+//                                @{
+//                                    @"productId": @([self getSelectedProductId]),
+//                                    @"offerCnt": @(self.attrView.count)
+//                                }
+//                        ]
+//                    }
+//            ],
+//        };
         
         NSMutableDictionary *calcfeeParams = [NSMutableDictionary dictionaryWithDictionary:logisticsParams];
         [calcfeeParams addEntriesFromDictionary:@{
