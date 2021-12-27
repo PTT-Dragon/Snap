@@ -16,6 +16,7 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) NSMutableArray <CouponModel *>*couponDataSource;
+@property (nonatomic,strong) NSMutableArray *campaignsDataSource;
 @property (nonatomic,strong) CartModel *cartModel;
 
 @end
@@ -49,8 +50,12 @@
         return model.shoppingCarts.count+1;
     }
     CartListModel *model = self.cartModel.validCarts[section];
-    CartCampaignsModel *campaignsModel = model.campaignGroups.firstObject;
-    return model.shoppingCarts.count+1+campaignsModel.shoppingCarts.count;
+    NSArray *arr = self.campaignsDataSource[section];
+    __block NSInteger count = 0;
+    [arr enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        count += obj.shoppingCarts.count;
+    }];
+    return model.shoppingCarts.count+1+arr.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -62,6 +67,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%ld-----%ld",indexPath.section,indexPath.row);
     if (indexPath.row == 0) {
         CartTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTitleCell"];
         CartListModel *model;
@@ -87,8 +93,9 @@
     }
     CartItemModel *model;
     if (indexPath.row > listModel.shoppingCarts.count) {
-        CartCampaignsModel *campaignsModel = listModel.campaignGroups.firstObject;
-        model = campaignsModel.shoppingCarts[indexPath.row-listModel.shoppingCarts.count-1];
+        NSArray <CartCampaignsModel *>*arr = self.campaignsDataSource[indexPath.section];
+        CartCampaignsModel *campaignsModel = arr[indexPath.row-listModel.shoppingCarts.count-1];
+        model = campaignsModel.shoppingCarts.firstObject;
     }else{
         model = listModel.shoppingCarts[indexPath.row-1];
     }
@@ -107,8 +114,26 @@
     return 10;
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
+    if (indexPath.row == 0) {
+        return nil;
+    }
     //删除
-    CartItemModel *model = indexPath.section < self.cartModel.validCarts.count ? [self.cartModel.validCarts[indexPath.section] shoppingCarts][indexPath.row-1] : [self.cartModel.invalidCarts[indexPath.section-self.cartModel.validCarts.count] shoppingCarts][indexPath.row-1] ;
+    CartListModel *listModel;
+    if (indexPath.section >= self.cartModel.validCarts.count) {
+        listModel = self.cartModel.invalidCarts[indexPath.section-self.cartModel.validCarts.count];
+        
+    }else{
+        listModel = self.cartModel.validCarts[indexPath.section];
+        
+    }
+    CartItemModel *model;
+    if (indexPath.row > listModel.shoppingCarts.count) {
+        NSArray <CartCampaignsModel *>*arr = self.campaignsDataSource[indexPath.section];
+        CartCampaignsModel *campaignsModel = arr[indexPath.row-listModel.shoppingCarts.count-1];
+        model = campaignsModel.shoppingCarts.firstObject;
+    }else{
+        model = listModel.shoppingCarts[indexPath.row-1];
+    }
     MPWeakSelf(self)
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
@@ -150,8 +175,6 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"删除";
 }
-
-//_addModel ? _addModel.contactStdId: @""
 - (void)loadDatas
 {
     MPWeakSelf(self)
@@ -160,12 +183,24 @@
     [params setValue:_addModel.contactStdId forKey:@"stdAddrId"];
     [SFNetworkManager get:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
         weakself.cartModel = [[CartModel alloc] initWithDictionary:response error:nil];
+        [weakself handleDatas];
         [weakself.tableView reloadData];
         [weakself.tableView.mj_header endRefreshing];
         [weakself calculateAmount];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
+- (void)handleDatas
+{
+    self.campaignsDataSource = [NSMutableArray array];
+    [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableArray <CartCampaignsModel *>*arr = [NSMutableArray array];
+        [obj.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [arr addObject:obj];
+        }];
+        [self.campaignsDataSource addObject:arr];
     }];
 }
 - (void)loadCouponsDatasWithStoreId:(NSString *)storeId productArr:(NSArray *)productArr

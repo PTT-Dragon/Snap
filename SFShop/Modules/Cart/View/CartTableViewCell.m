@@ -6,6 +6,7 @@
 //
 
 #import "CartTableViewCell.h"
+#import "CartChoosePromotion.h"
 
 @interface CartTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *additonBtn;

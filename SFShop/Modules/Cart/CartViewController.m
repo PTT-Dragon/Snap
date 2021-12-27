@@ -68,15 +68,18 @@
 - (void)loadDatas
 {
     MPWeakSelf(self)
+    [MBProgressHUD showHudMsg:@""];
     [SFNetworkManager get:SFNet.address.addressList parameters:@{} success:^(id  _Nullable response) {
         NSError *error;
+        [MBProgressHUD hideFromKeyWindow];
+        [weakself.addressArr removeAllObjects];
         [weakself.addressArr addObjectsFromArray:[addressModel arrayOfModelsFromDictionaries:response error:&error]];
         addressModel *model =  weakself.addressArr.firstObject;
         weakself.selAddModel = model;
         weakself.selAddModel.sel = YES;
         [weakself initUI];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD hideFromKeyWindow];
     }];
 }
 - (void)initUI
@@ -105,7 +108,11 @@
 }
 - (void)updateAddress
 {
-    [_addressBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@%@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street,_selAddModel.contactAddress] forState:0];
+    if (!_selAddModel) {
+        [_addressBtn setTitle:@"Set You Address" forState:0];
+    }else{
+        [_addressBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@%@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street,_selAddModel.contactAddress] forState:0];
+    }
     for (addressModel *model in self.addressArr) {
         if ([model.deliveryAddressId isEqualToString:_selAddModel.deliveryAddressId]) {
             model.sel = YES;
