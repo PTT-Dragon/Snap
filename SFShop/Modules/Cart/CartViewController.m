@@ -265,7 +265,13 @@
     self.totalAmountLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalPrice];
     self.priceLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalOfferPrice];
     self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-RP %.f",model.totalDiscount];
-    NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count];
+    __block NSInteger count = 0;
+    [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.campaignGroups enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            count += 1;
+        }];
+    }];
+    NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count+count];
     /**
         降价标签的数量未完成 因为没数据
      **/
