@@ -89,7 +89,7 @@
  @param msg 提示的信息
  */
 + (void )autoDismissShowHudMsg:(NSString *)msg {
-    [MBProgressHUD autoDismissShowHudMsg:msg andDismissDuration:1];
+    [MBProgressHUD autoDismissShowHudMsg:msg andDismissDuration:2];
 }
 
 /**

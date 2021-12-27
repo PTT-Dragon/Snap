@@ -81,11 +81,13 @@
     _threeCountLabel.text = [NSString stringWithFormat:@"%.0f",self.model.threeStarCnt];
     _fourCountLabel.text = [NSString stringWithFormat:@"%.0f",self.model.fourStarCnt];
     _fiveCountLabel.text = [NSString stringWithFormat:@"%.0f",self.model.fiveStarCnt];
-    _fiveWidth.constant = self.model.fiveStarCnt/self.model.evaluationCnt*120;
-    _fourWidth.constant = self.model.fourStarCnt/self.model.evaluationCnt*120;
-    _threeWidth.constant = self.model.threeStarCnt/self.model.evaluationCnt*120;
-    _twoWidth.constant = self.model.twoStarCnt/self.model.evaluationCnt*120;
-    _oneWidth.constant = self.model.oneStarCnt/self.model.evaluationCnt*120;
+    if (self.model.evaluationCnt != 0) {
+        _fiveWidth.constant = self.model.fiveStarCnt/self.model.evaluationCnt*120;
+        _fourWidth.constant = self.model.fourStarCnt/self.model.evaluationCnt*120;
+        _threeWidth.constant = self.model.threeStarCnt/self.model.evaluationCnt*120;
+        _twoWidth.constant = self.model.twoStarCnt/self.model.evaluationCnt*120;
+        _oneWidth.constant = self.model.oneStarCnt/self.model.evaluationCnt*120;
+    }
     [_collectionView reloadData];
 }
 /// VTMagicViewDataSource

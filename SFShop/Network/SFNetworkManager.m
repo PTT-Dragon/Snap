@@ -38,7 +38,7 @@
         NSData *data = [receive dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         if ([dict[@"code"] isEqualToString:@"BUYER-WEB-06003"]) {
-            [weakself performSelector:@selector(toLogin) withObject:nil afterDelay:0.1];
+            [weakself performSelector:@selector(toLogin) withObject:nil afterDelay:0.5];
         }
         !failed?:failed(error);
     }];
@@ -71,7 +71,7 @@
         NSData *data = [receive dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         if ([dict[@"code"] isEqualToString:@"BUYER-WEB-06003"]) {
-            [weakself performSelector:@selector(toLogin) withObject:nil afterDelay:0.1];
+            [weakself performSelector:@selector(toLogin) withObject:nil afterDelay:0.5];
         }
         !failed?:failed(error);
     }];
@@ -133,7 +133,7 @@
         NSData *data = [receive dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         if ([dict[@"code"] isEqualToString:@"BUYER-WEB-06003"]) {
-            [weakself performSelector:@selector(toLogin) withObject:nil afterDelay:0.1];
+            [weakself performSelector:@selector(toLogin) withObject:nil afterDelay:0.5];
         }
         !failed?:failed(error);
     }];

@@ -42,7 +42,7 @@
     [SFNetworkManager post:SFNet.account.getCode parameters:params success:^(id  _Nullable response) {
         [[CountDown sharedCountDown] countDown:120 andObject:weakself.recendBtn];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 //完成输入验证码
@@ -62,7 +62,7 @@
             [weakself forgetPassword];
         }
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)login
@@ -76,7 +76,7 @@
         [[FMDBManager sharedInstance] insertUser:model ofAccount:@"hxf01@qq.com"];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)cashOutAction
@@ -89,12 +89,13 @@
 }
 - (void)signUp
 {
+    [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.userInfo parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_password),@"code":_codeView.code,@"captcha":@""} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"Sign Up Success!"];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)forgetPassword

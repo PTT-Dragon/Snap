@@ -17,6 +17,7 @@
 #import "GroupProductViewController.h"
 #import "GroupListViewController.h"
 #import "ProductDetailModel.h"
+#import "CategoryRankViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -149,6 +150,17 @@
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/GroupBuy"].location != NSNotFound){
         GroupListViewController *vc = [[GroupListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/list/"].location != NSNotFound){
+        NSRange range1 = [navigationAction.request.URL.absoluteString rangeOfString:@"product/list/"];
+        NSString *categoryId = @"";
+        categoryId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.location+range1.length, navigationAction.request.URL.absoluteString.length-range1.location-range1.length)];
+        CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+        CategoryModel *model = [[CategoryModel alloc] init];
+        model.inner.catgRela.objValue.objId = categoryId.integerValue;
+        vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;

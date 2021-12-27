@@ -84,7 +84,7 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if ([viewController isKindOfClass: [BaseViewController class]]) {
-        if ([(BaseViewController *)viewController shouldCheckLoggedIn] && ![[FMDBManager sharedInstance] currentUser]) {
+        if ([(BaseViewController *)viewController shouldCheckLoggedIn] && ![[FMDBManager sharedInstance] currentUser] && ![viewController isKindOfClass:[LoginViewController class]]) {
             LoginViewController *vc = [[LoginViewController alloc] init];
             MPWeakSelf(self)
             vc.didLoginBlock = ^{
