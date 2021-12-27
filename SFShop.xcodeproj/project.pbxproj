@@ -377,6 +377,8 @@
 		4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA926FCB13300E3C832 /* FMDBManager.m */; };
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
 		4BEB1223275CB98A00D5342A /* ProductCalcFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */; };
+		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
+		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
 		AE4C6C012768E76B006788FE /* OrderLogisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4C6C002768E76A006788FE /* OrderLogisticsModel.m */; };
 		AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A65275B502C00F34481 /* CategoryRankNoItemsView.m */; };
 		AE5C9A69275B5C7C00F34481 /* SFSearchingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A68275B5C7C00F34481 /* SFSearchingView.m */; };
@@ -1099,6 +1101,10 @@
 		4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCalcFeeModel.m; sourceTree = "<group>"; };
 		50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
 		7B387B141A9718B8B8605036 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
+		8E4821FA277A14F000857FF5 /* EmptyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyModel.h; sourceTree = "<group>"; };
+		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
+		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
+		8E4821FE277A150A00857FF5 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
 		ABCFEC0B341B688C59EBE3B6 /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
 		AE4C6BFF2768E76A006788FE /* OrderLogisticsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderLogisticsModel.h; sourceTree = "<group>"; };
 		AE4C6C002768E76A006788FE /* OrderLogisticsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderLogisticsModel.m; sourceTree = "<group>"; };
@@ -2216,6 +2222,7 @@
 		4B9FB9C626FB780700C90790 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8E4821F6277A134300857FF5 /* EmptyView */,
 				4B818FC8272394D90058038A /* Product */,
 				AE81BE2326FE0D5B00AB4225 /* Category */,
 				4B9FB9D826FB7A1F00C90790 /* Account */,
@@ -2427,6 +2434,17 @@
 				50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		8E4821F6277A134300857FF5 /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				8E4821FD277A150900857FF5 /* EmptyView.h */,
+				8E4821FE277A150A00857FF5 /* EmptyView.m */,
+				8E4821FA277A14F000857FF5 /* EmptyModel.h */,
+				8E4821FB277A14F000857FF5 /* EmptyModel.m */,
+			);
+			path = EmptyView;
 			sourceTree = "<group>";
 		};
 		AE81BDCA26FB6E7000AB4225 = {
@@ -3279,6 +3297,7 @@
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
 				1B6C52A8275B672200A1C617 /* ZLClipItem.m in Sources */,
 				1BB1CB63276341B6008D71DF /* SFNetworkFlashSaleModule.m in Sources */,
+				8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */,
 				AE80F26E2732EB9100A2D8DE /* ProductCheckoutBuyView.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,
 				1B47832F272AA1FF00F2A945 /* SecurityCenterViewController.m in Sources */,
@@ -3295,6 +3314,7 @@
 				1B31225A273260980055033D /* CaseOutDetailViewController.m in Sources */,
 				1B74DB102724463500B30ECC /* OrderListStateCell.m in Sources */,
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
+				8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */,
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
 				1B6C52A0275B672200A1C617 /* ToastUtils.m in Sources */,
 				1BF00F69272FDC4B0081C8E4 /* DistribitorRankTopCell.m in Sources */,

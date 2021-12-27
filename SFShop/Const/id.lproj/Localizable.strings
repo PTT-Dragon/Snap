@@ -502,3 +502,17 @@
 //  "LIKE": "Like",
 //  "AGENT_SERVICE": "Agent Service",
 //  "ITEM": "Item"
+"Empty_Tip_NoPage": "Oops! Page does not found."
+"Empty_Tip_NoNetWork": "Internet error, please try later."
+"Empty_Tip_NoShoppingCar": "There are no items in this cart."
+"Empty_Tip_NoProduct": "Sorry, no related products were found."
+"Empty_Tip_NoDiscount": "You haven’t earned any coupons."
+"Empty_Tip_NoOrder": "No Orders."
+"Empty_Tip_Nofavorite": "No favorite products currently selected."
+"Empty_Tip_NoReview": "You haven’t viewed any items in the past 30 days."
+"Empty_Tip_NoAddress": "Seems like you haven’t saved any address yet!"
+"Empty_Tip_NoPurchase": "You don’t have any purchase to review."
+"Empty_Tip_NoMessage": "You don’t have any messages."
+"Empty_Tip_NoEvent": "The event will start soon, please come back later."
+"Empty_Tip_NoPrize": "The event has ended, looking forward to your next participation."
+"Error_system_loading": "Pemeliharaan system Silahkan coba lagi nanti"
