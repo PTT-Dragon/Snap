@@ -11,11 +11,14 @@
 #import "ReviewDetailViewController.h"
 #import "ProductViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "EmptyView.h"
 
 @interface ReviewChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger pageIndex;
+@property (nonatomic,strong) EmptyView *emptyView;
+
 @end
 
 @implementation ReviewChildViewController
@@ -36,6 +39,11 @@
         [self loadMoreDatas];
     }];
     [self.tableView.mj_header beginRefreshing];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
 }
 - (void)loadDatas
 {
@@ -45,6 +53,7 @@
     [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"evaluateFlag":evaluateFlag} success:^(id  _Nullable response) {
         [weakself.tableView.mj_header endRefreshing];
         NSArray *arr = response[@"list"];
+        [weakself showEmptyView];
         if (kArrayIsEmpty(arr)) {
             return;
         }
@@ -53,9 +62,19 @@
         }
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
+        [weakself showEmptyView];
         [weakself.tableView.mj_header endRefreshing];
     }];
 }
+
+- (void)showEmptyView {
+    if (self.dataSource.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
+}
+
 - (void)loadMoreDatas
 {
     _pageIndex ++;
@@ -125,4 +144,14 @@
     }
     return _tableView;
 }
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoPurchaseType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
+}
+
 @end

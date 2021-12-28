@@ -9,6 +9,7 @@
 #import "AddressTableViewCell.h"
 #import "AddAddressViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "EmptyView.h"
 
 @interface AddressViewController ()<UITableViewDelegate,UITableViewDataSource,AddAddressViewControllerDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -16,6 +17,7 @@
 @property (nonatomic,assign) NSInteger pageIndex;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (nonatomic,strong) EmptyView *emptyView;
 
 @end
 
@@ -40,6 +42,11 @@
 //        [self loadMoreDatas];
 //    }];
     [self.tableView.mj_header beginRefreshing];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.tableView.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
 }
 - (void)updateUserInfo
 {
@@ -60,10 +67,20 @@
         }
         [weakself.tableView reloadData];
         [weakself updateUserInfo];
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
     }];
 }
+
+- (void)showEmptyView {
+    if (self.dataSource.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
+}
+
 - (void)loadMoreDatas
 {
     _pageIndex ++;
@@ -134,8 +151,9 @@
     [SFNetworkManager post:[SFNet.address setAddressDeleteOfdeliveryAddressId:model.deliveryAddressId] parameters:@{} success:^(id  _Nullable response) {
         [weakself.dataSource removeObjectAtIndex:row];
         [weakself.tableView reloadData];
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself showEmptyView];
     }];
 }
 
@@ -162,13 +180,21 @@
         _tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
         if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        else
-        {
+        } else {
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
         _tableView.estimatedRowHeight = 44;
     }
     return _tableView;
 }
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoAddressType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
+}
+
 @end

@@ -11,6 +11,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "CartChooseCouponView.h"
 #import "CouponModel.h"
+#import "EmptyView.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -18,6 +19,7 @@
 @property (nonatomic,strong) NSMutableArray <CouponModel *>*couponDataSource;
 @property (nonatomic,strong) NSMutableArray *campaignsDataSource;
 @property (nonatomic,strong) CartModel *cartModel;
+@property (nonatomic, strong) EmptyView *emptyView;
 
 @end
 
@@ -41,6 +43,11 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
         make.bottom.mas_equalTo(self.view.mas_bottom);
+    }];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -187,11 +194,22 @@
         [weakself.tableView reloadData];
         [weakself.tableView.mj_header endRefreshing];
         [weakself calculateAmount];
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
+        [weakself showEmptyView];
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
+
+- (void)showEmptyView {
+    if (self.cartModel.validCarts.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
+}
+
 - (void)handleDatas
 {
     self.campaignsDataSource = [NSMutableArray array];
@@ -293,4 +311,14 @@
     }
     return _tableView;
 }
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoShoppingCarType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
+}
+
 @end

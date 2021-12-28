@@ -17,8 +17,10 @@
 #import "SFSearchView.h"
 #import "ProductViewController.h"
 #import "CategoryRankNoItemsView.h"
+#import "EmptyView.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
+
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @property (nonatomic, readwrite, strong) UICollectionView *collectionView;
 @property (nonatomic, readwrite, strong) CategoryRankHeadSelectorView *headSelectorView;
@@ -29,7 +31,8 @@
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic, readwrite, assign) BOOL showType;//显示类型 0:colletion 1:list
-@property (nonatomic, readwrite, strong) CategoryRankNoItemsView *noItemsView;
+@property (nonatomic,strong) EmptyView *emptyView;
+
 @end
 
 @implementation CategoryRankViewController
@@ -79,6 +82,7 @@
         if ([self.collectionView.mj_footer isRefreshing]) {
             [self.collectionView.mj_footer endRefreshing];
         }
+        [self refreshNoItemsStatus];
     }];
 }
 
@@ -86,7 +90,6 @@
     [self.view addSubview:self.navSearchView];
     [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.collectionView];
-    [self.view addSubview:self.noItemsView];
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
         [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
@@ -98,11 +101,13 @@
     }];
     
     [self.collectionView.mj_header beginRefreshing];
+    [self.view addSubview:self.emptyView];
 }
 
 - (void)layout {
-    [self.noItemsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.right.mas_equalTo(self.collectionView);
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.collectionView.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.collectionView);
     }];
 }
 
@@ -153,9 +158,9 @@
 
 - (void)refreshNoItemsStatus {
     if (!self.dataArray.count) {
-        self.noItemsView.hidden = NO;
+        self.emptyView.hidden = NO;
     } else {
-        self.noItemsView.hidden = YES;
+        self.emptyView.hidden = YES;
     }
 }
 
@@ -205,14 +210,6 @@
 }
 
 #pragma mark - Get and Set
-- (CategoryRankNoItemsView *)noItemsView {
-    if (_noItemsView == nil) {
-        _noItemsView = [[CategoryRankNoItemsView alloc] init];
-        _noItemsView.hidden = YES;
-        _noItemsView.backgroundColor = UIColor.whiteColor;
-    }
-    return _noItemsView;
-}
 
 - (SFSearchNav *)navSearchView {
     if (_navSearchView == nil) {
@@ -311,4 +308,14 @@
     }
     return _filterCacheModel;
 }
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoProductType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
+}
+
 @end

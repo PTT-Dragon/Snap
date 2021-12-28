@@ -9,10 +9,13 @@
 #import "MyCouponCell.h"
 #import "MyCouponStoreCell.h"
 #import "CouponModel.h"
+#import "EmptyView.h"
 
 @interface MyCouponChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) EmptyView *emptyView;
+
 @end
 
 @implementation MyCouponChildViewController
@@ -30,6 +33,11 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
     [self loadDatas];
 }
 - (void)loadDatas
@@ -42,10 +50,20 @@
             [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
         }
         [weakself.tableView reloadData];
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself showEmptyView];
     }];
 }
+
+- (void)showEmptyView {
+    if (self.dataSource.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyCouponCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCouponCell"];
@@ -104,4 +122,14 @@
     }
     return _tableView;
 }
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoDiscountType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
+}
+
 @end
