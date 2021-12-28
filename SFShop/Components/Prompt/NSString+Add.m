@@ -187,6 +187,47 @@
 }
 
 
+#pragma mark - 字符串校验
+//校验密码是否符合
+- (BOOL)passwordTextCheck
+{
+    NSInteger alength = [self length];
+
+    BOOL hasUppercase = false;
+    BOOL hasLowercas = false;
+    BOOL hasNumber = false;
+    BOOL hasIllegal = false;
+    for (int i = 0; i<alength; i++) {
+        char commitChar = [self characterAtIndex:i];
+        if((commitChar>64)&&(commitChar<91)){
+            hasUppercase = YES;
+            NSLog(@"字符串中含有大写英文字母");
+        }else if((commitChar>96)&&(commitChar<123)){
+            hasLowercas = YES;
+            NSLog(@"字符串中含有小写英文字母");
+        }else if((commitChar>47)&&(commitChar<58)){
+            hasNumber = YES;
+            NSLog(@"字符串中含有数字");
+        }else{
+            hasIllegal = YES;
+            NSLog(@"字符串中含有非法字符");
+        }
+    }
+    return (hasUppercase && hasLowercas && hasNumber && hasIllegal);
+}
+//校验手机号是否符合
+- (BOOL)phoneTextCheck;
+{
+    return YES;
+}
+- (BOOL)emailTextCheck
+{
+    NSString*emailRegex =@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+
+    NSPredicate*emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+
+    return[emailTest evaluateWithObject:self];
+}
 @end
 
 @implementation NSMutableString (Add)
@@ -263,5 +304,7 @@
     }
     return attributedString;
 }
+
+
 
 @end

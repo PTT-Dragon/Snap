@@ -10,6 +10,7 @@
 #import "AES128Util.h"
 #import "CountDown.h"
 #import "ResetPasswordDoViewController.h"
+#import "LoginViewController.h"
 
 @interface verifyCodeVC ()<HWTFCodeBViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
@@ -93,7 +94,7 @@
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.userInfo parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_password),@"code":_codeView.code,@"captcha":@""} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"Sign Up Success!"];
-        [weakself.navigationController popToRootViewControllerAnimated:YES];
+        [weakself toLogin];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
@@ -104,6 +105,12 @@
     vc.code = _codeView.code;
     vc.account = _account;
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)toLogin
+{
+    LoginViewController *vc = [[LoginViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    [baseTool removeVCFromNavigationWithVCNameArr:@[@"SignUpViewController",@"verifyCodeVC",@"LoginViewController"] currentVC:self];
 }
 - (IBAction)recendAction:(UIButton *)sender {
     [self getCode];

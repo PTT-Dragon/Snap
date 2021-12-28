@@ -46,6 +46,7 @@
     _selectionMode = NO;
     [self initUI];
     [self loadDatas];
+    [self changeModeAction:self.clickBtn];
 }
 - (void)initUI
 {

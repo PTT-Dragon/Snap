@@ -88,12 +88,16 @@
     
     self.title = @"Product Detail";
     self.view.backgroundColor = [UIColor whiteColor];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (model && ![model.accessToken isEqualToString:@""]) {
+        //只有在登录的情况下才去请求
+        [self requestAddressInfo];
+    }
     
     [self request];
     [self requestSimilar];
     [self setupSubViews];
     [self requestProductRecord];
-    [self requestAddressInfo];
     [self requestEvaluationsList];
     [self addActions];
     [self requestCampaigns];

@@ -85,7 +85,20 @@
  @return NSArray<NSRange>
  */
 - (NSArray<NSValue *> *)rangeArrWithLeftStr:(NSString *)leftStr rightStr:(NSString *)rightStr;
+
+
+#pragma mark - 字符串校验
+//校验密码是否符合
+- (BOOL)passwordTextCheck;
+//校验手机号是否符合
+- (BOOL)phoneTextCheck;
+//校验邮箱是否符合
+- (BOOL)emailTextCheck;
+
+
 @end
+
+
 
 @interface NSMutableString (Add)
 /**
@@ -107,4 +120,8 @@
 + (NSMutableAttributedString *)difereentFontStr:(NSString *)str font:(UIFont *)font changeText:(NSString *)changeText;
 + (NSMutableAttributedString *)difereentAttr:(NSDictionary *)attrDic str:(NSString *)str changeText:(NSString *)changeText;
 +(NSMutableAttributedString *)stringWithHighLightSubstring:(NSString *)totalString substring:(NSString *)substring color:(UIColor *)color;
+
+
+
+
 @end

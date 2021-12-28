@@ -24,7 +24,7 @@
     self.title = @"Security Center";
     _dataSource = [NSMutableArray array];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
-    [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":@"Change Password"},@{@"image":@"",@"title":@"Change Mobile Number",@"subTitle":([model.userRes.mobilePhone isEqualToString:@""] || !model.userRes.mobilePhone) ? @"Not Set": @""},@{@"image":@"",@"title":@"Change Email",@"subTitle":([model.userRes.email isEqualToString:@""] || !model.userRes.email) ? @"Not Set": @""}]];
+    [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":@"Change Password"},@{@"image":@"",@"title":@"Change Mobile Number",@"subTitle":([model.userRes.mobilePhone isEqualToString:@""] || !model.userRes.mobilePhone) ? @"Not Set": model.userRes.mobilePhone},@{@"image":@"",@"title":@"Change Email",@"subTitle":([model.userRes.email isEqualToString:@""] || !model.userRes.email) ? @"Not Set": model.userRes.email}]];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

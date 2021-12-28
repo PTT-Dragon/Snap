@@ -56,12 +56,21 @@
     [self.view addSubview:genderView];
 }
 - (IBAction)saveAction:(id)sender {
+    [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.account.modify parameters:@{@"birthdayDay":_selectDateStr ? _selectDateStr:@"",@"nickName":_nameField.text,@"gender":_gender?_gender:@""} success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"修改成功"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (_selectDateStr) {
+        [params setValue:_selectDateStr forKey:@"birthdayDay"];
+    }
+    if (_gender) {
+        [params setValue:_selectDateStr forKey:@"birthdayDay"];
+    }
+    [params setValue:_nameField.text forKey:@"nickName"];
+    [SFNetworkManager post:SFNet.account.modify parameters:params success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:@"Set Successful"];
         [weakself loadUserInfo];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)loadUserInfo

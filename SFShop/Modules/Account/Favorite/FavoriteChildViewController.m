@@ -45,11 +45,8 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.favorite.favorite parameters:@{@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         [weakself.tableView.mj_header endRefreshing];
-        NSArray *arr = response[@"list"];
         [weakself.dataSource removeAllObjects];
-        for (NSDictionary *dic in arr) {
-            [weakself.dataSource addObject:[[favoriteModel alloc] initWithDictionary:dic error:nil]];
-        }
+        [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
@@ -61,10 +58,7 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.favorite.favorite parameters:@{@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         [weakself.tableView.mj_footer endRefreshing];
-        NSArray *arr = response[@"list"];
-        for (NSDictionary *dic in arr) {
-            [weakself.dataSource addObject:[[favoriteModel alloc] initWithDictionary:dic error:nil]];
-        }
+        [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_footer endRefreshing];

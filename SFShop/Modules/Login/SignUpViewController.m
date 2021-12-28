@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signUpBtn;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
+@property (weak, nonatomic) IBOutlet UILabel *passwordQesLabel;
 
 @end
 
@@ -23,6 +24,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Sign Up";
+    [self layoutSubviews];
+}
+- (void)layoutSubviews
+{
+    self.passwordField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
+    self.passwordField.layer.borderWidth = 1;
+    self.PhoneField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
+    self.PhoneField.layer.borderWidth = 1;
     [self.PhoneField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     [self.passwordField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
 }
@@ -33,10 +42,24 @@
     }else{
         [_signUpBtn setBackgroundColor:RGBColorFrom16(0xFFE5EB)];
     }
+    if (textField == _passwordField) {
+        if (![self.passwordField.text passwordTextCheck]) {
+            _passwordField.layer.borderColor = RGBColorFrom16(0xC40000).CGColor;
+            [_signUpBtn setBackgroundColor:RGBColorFrom16(0xFFE5EB)];
+            _passwordQesLabel.textColor = RGBColorFrom16(0xFFE5EB);
+            _signUpBtn.userInteractionEnabled = NO;
+        }else{
+            _passwordField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
+            _passwordQesLabel.textColor = RGBColorFrom16(0x7b7b7b);
+            _signUpBtn.userInteractionEnabled = YES;
+        }
+    }else if (textField == _PhoneField){
+        
+    }
 }
 - (IBAction)signUpAction:(id)sender {
-    //q1Q-
     if ([_PhoneField.text isEqualToString:@""] || [_passwordField.text isEqualToString:@""]) {
+        
         return;
     }
     MPWeakSelf(self)
@@ -48,6 +71,8 @@
             vc.type = SignUp_Code;
             vc.password = weakself.passwordField.text;
             [weakself.navigationController pushViewController:vc animated:YES];
+        }else{
+            [MBProgressHUD autoDismissShowHudMsg:@"账号已经存在"];
         }
     } failed:^(NSError * _Nonnull error) {
         

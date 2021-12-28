@@ -22,11 +22,18 @@
 @end
 
 @implementation setViewController
-
+- (BOOL)shouldCheckLoggedIn
+{
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"Setting";
+    [self layoutSubviews];
+}
+- (void)layoutSubviews
+{
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     _dataSource = [NSMutableArray array];
     [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":@"My Address"},@{@"image":@"",@"title":@"Security Center"},@{@"image":@"",@"title":@"Language"},@{@"image":@"",@"title":@"Policies"}]];
@@ -39,6 +46,7 @@
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 4;
@@ -105,7 +113,7 @@
     }else if (indexPath.section == 0){
         changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.section == 1 && indexPath.row == 1){
+    }else if (indexPath.section == 1 && indexPath.row == 0){
         AddressViewController *vc = [[AddressViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }

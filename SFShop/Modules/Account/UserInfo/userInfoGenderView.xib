@@ -127,6 +127,7 @@
                 <constraint firstItem="D77-pf-FEn" firstAttribute="leading" secondItem="Day-i6-nax" secondAttribute="leading" id="xTX-5E-a7y"/>
             </constraints>
             <connections>
+                <outlet property="bgView" destination="D77-pf-FEn" id="f12-pi-8rc"/>
                 <outlet property="femaleBtn" destination="PpC-YH-eKZ" id="049-dV-1SM"/>
                 <outlet property="maleBtn" destination="NiH-25-73X" id="gsz-Ap-dgK"/>
                 <outlet property="secrecyBtn" destination="ADd-Dw-EC0" id="WFn-L5-dl3"/>

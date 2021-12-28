@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface userInfoGenderView : UIView
+
 @property (nonatomic,assign) id<userInfoGenderViewDelegate>delegate;
 @end
 

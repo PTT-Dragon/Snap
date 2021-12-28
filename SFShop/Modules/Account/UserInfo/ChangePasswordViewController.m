@@ -26,6 +26,9 @@
         [MBProgressHUD autoDismissShowHudMsg:@"xxxx"];
         return;
     }
+    if (![_PasswordField.text passwordTextCheck]) {
+        
+    }
     [SFNetworkManager post:SFNet.account.pwdModify parameters:@{@"newPwd":_PasswordField.text,@"oldPwd":_currentField.text} success:^(id  _Nullable response) {
         
     } failed:^(NSError * _Nonnull error) {

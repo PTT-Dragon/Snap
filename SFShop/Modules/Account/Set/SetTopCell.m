@@ -19,12 +19,19 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    self.nameLabel.text = model.userRes.nickName;
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
-    self.phoneLabel.text = model.userRes.mobilePhone;
+    [self updateDatas];
 }
-
+- (void)updateDatas
+{
+    FMDBManager *dbManager = [FMDBManager sharedInstance];
+    @weakify(self)
+    [RACObserve(dbManager, currentUser) subscribeNext:^(UserModel *  _Nullable model) {
+        @strongify(self)
+        self.nameLabel.text = model.userRes.nickName;
+        [self.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)]];
+        self.phoneLabel.text = model.userRes.mobilePhone;
+    }];
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
