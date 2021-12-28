@@ -41,6 +41,12 @@
 //    }];
     [self.tableView.mj_header beginRefreshing];
 }
+- (void)updateUserInfo
+{
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    [[FMDBManager sharedInstance] updateUser:model ofAccount:model.account];
+    
+}
 - (void)loadDatas
 {
     _pageIndex = 1;
@@ -53,6 +59,7 @@
             [weakself.dataSource addObject:model];
         }
         [weakself.tableView reloadData];
+        [weakself updateUserInfo];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
     }];

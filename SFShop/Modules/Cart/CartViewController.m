@@ -44,6 +44,8 @@
     self.title = @"Shopping Cart";
     _addressArr = [NSMutableArray array];
     [self updateDatas];NSLocalizedString(@"test", nil);
+    [self initUI];
+    [self updateSubviews];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -52,20 +54,13 @@
 - (void)updateDatas
 {
     FMDBManager *dbManager = [FMDBManager sharedInstance];
-    
     @weakify(self)
     [RACObserve(dbManager, currentUser) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
-        UserModel *model = [FMDBManager sharedInstance].currentUser;
-        if (!model || [model.accessToken isEqualToString:@""]) {
-            //登出状态
-            [self loadDatas];
-        }else{
-            [self loadDatas];
-        }
+        [self loadAddressDatas];
     }];
 }
-- (void)loadDatas
+- (void)loadAddressDatas
 {
     MPWeakSelf(self)
     [MBProgressHUD showHudMsg:@""];
@@ -77,26 +72,14 @@
         addressModel *model =  weakself.addressArr.firstObject;
         weakself.selAddModel = model;
         weakself.selAddModel.sel = YES;
-        [weakself initUI];
+        [weakself updateSubviews];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD hideFromKeyWindow];
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)initUI
 {
-    _addressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addressBtn.frame = CGRectMake(0, navBarHei, MainScreen_width, 40);
-    _addressBtn.backgroundColor = [UIColor whiteColor];
-    _addressBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
-    _addressBtn.titleLabel.numberOfLines = 0;
-    [_addressBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        [self toAddressListVC];
-    }];
-    [_addressBtn setTitleColor:RGBColorFrom16(0x7b7b7b) forState:0];
-    _addressBtn.titleLabel.font = CHINESE_SYSTEM(13);
-    [self.view addSubview:_addressBtn];
-    [self updateAddress];
-    
+    [self.view addSubview:self.addressBtn];
     NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count];
     NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%ld)",0];
     self.menuList = @[allCount, dropCount];
@@ -105,6 +88,10 @@
     _magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
     [_magicController.magicView reloadData];
     [self.view addSubview:self.bottomView];
+}
+- (void)updateSubviews
+{
+    [self updateAddress];
 }
 - (void)updateAddress
 {
@@ -213,7 +200,7 @@
     
     if (!self.selAddModel.deliveryAddressId ||  [self.selAddModel.deliveryAddressId isEqualToString:@""]
         || !storeId || [storeId isEqualToString:@""]) {
-        [MBProgressHUD autoDismissShowHudMsg:@"请稍后再试"];
+        [MBProgressHUD autoDismissShowHudMsg:@"Set You Address"];
         return;
     }
     
@@ -435,5 +422,20 @@
     }
     return _magicController;
 }
-
+- (UIButton *)addressBtn
+{
+    if (!_addressBtn) {
+        _addressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _addressBtn.frame = CGRectMake(0, navBarHei, MainScreen_width, 40);
+        _addressBtn.backgroundColor = [UIColor whiteColor];
+        _addressBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
+        _addressBtn.titleLabel.numberOfLines = 0;
+        [_addressBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            [self toAddressListVC];
+        }];
+        [_addressBtn setTitleColor:RGBColorFrom16(0x7b7b7b) forState:0];
+        _addressBtn.titleLabel.font = CHINESE_SYSTEM(13);
+    }
+    return _addressBtn;
+}
 @end
