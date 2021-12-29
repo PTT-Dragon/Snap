@@ -9,6 +9,7 @@
 #import <JTCalendar/JTCalendar.h>
 #import "RecentlyViewedCell.h"
 #import "RecentlyModel.h"
+#import "EmptyView.h"
 
 @interface RecentlyViewedViewController ()<JTCalendarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -27,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHei;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) EmptyView *emptyView;
 
 @end
 
@@ -60,6 +62,12 @@
         make.top.mas_equalTo(_calendarContentView.mas_bottom).offset(20);
     }];
     [self.tableView registerNib:[UINib nibWithNibName:@"RecentlyViewedCell" bundle:nil] forCellReuseIdentifier:@"RecentlyViewedCell"];
+    
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.tableView.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
 }
 - (void)loadDatas
 {
@@ -76,9 +84,18 @@
             }
             [weakself.tableView reloadData];
         }
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself showEmptyView];
     }];
+}
+
+- (void)showEmptyView {
+    if (self.dataSource.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
 }
 
 #pragma mark - tableView.delegate
@@ -327,4 +344,14 @@
     }
     return _tableView;
 }
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoReviewType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
+}
+
 @end

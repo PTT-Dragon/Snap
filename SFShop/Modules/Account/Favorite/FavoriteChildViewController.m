@@ -9,11 +9,14 @@
 #import "FavoriteTableViewCell.h"
 #import "favoriteModel.h"
 #import <MJRefresh/MJRefresh.h>
+#import "EmptyView.h"
 
 @interface FavoriteChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger pageIndex;
+@property (nonatomic,strong) EmptyView *emptyView;
+
 @end
 
 @implementation FavoriteChildViewController
@@ -38,6 +41,11 @@
         [self loadMoreDatas];
     }];
     [self.tableView.mj_header beginRefreshing];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
 }
 - (void)loadDatas
 {
@@ -48,10 +56,21 @@
         [weakself.dataSource removeAllObjects];
         [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
+        [weakself showEmptyView];
         [weakself.tableView.mj_header endRefreshing];
     }];
 }
+
+- (void)showEmptyView {
+    if (self.dataSource.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
+}
+
 - (void)loadMoreDatas
 {
     self.pageIndex ++;
@@ -164,4 +183,15 @@
     }
     return _tableView;
 }
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNofavoriteType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
+}
+
+
 @end

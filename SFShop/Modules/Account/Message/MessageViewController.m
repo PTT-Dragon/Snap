@@ -9,10 +9,13 @@
 #import "MessageListCell.h"
 #import "MessageModel.h"
 #import "MessageOrderListViewController.h"
+#import "EmptyView.h"
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) MessageModel *model;
+@property (nonatomic,strong) EmptyView *emptyView;
+
 @end
 
 @implementation MessageViewController
@@ -37,6 +40,11 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.tableView.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
     [self loadDatas];
 }
 - (void)loadDatas
@@ -45,9 +53,18 @@
     [SFNetworkManager get:SFNet.account.messageList parameters:@{} success:^(id  _Nullable response) {
         weakself.model = [MessageModel yy_modelWithDictionary:response];
         [weakself.tableView reloadData];
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself showEmptyView];
     }];
+}
+
+- (void)showEmptyView {
+//    if (self.model.count > 0) {
+//        self.emptyView.hidden = YES;
+//    } else {
+//        self.emptyView.hidden = NO;
+//    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -118,4 +135,15 @@
     }
     return _tableView;
 }
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoMessageType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
+}
+
+
 @end

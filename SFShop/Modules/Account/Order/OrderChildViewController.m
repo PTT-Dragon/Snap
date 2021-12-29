@@ -12,11 +12,13 @@
 #import "OrderModel.h"
 #import "OrderDetailViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "EmptyView.h"
 
 @interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource,OrderListBottomCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger pageIndex;
+@property (nonatomic,strong) EmptyView *emptyView;
 
 @end
 
@@ -47,6 +49,11 @@
         [self loadMoreDatas];
     }];
     [self.tableView.mj_header beginRefreshing];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -130,10 +137,21 @@
          
         }
         [weakself.tableView reloadData];
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
+        [weakself showEmptyView];
         [weakself.tableView.mj_header endRefreshing];
     }];
 }
+
+- (void)showEmptyView {
+    if (self.dataSource.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
+}
+
 - (void)loadMoreDatas
 {
     _pageIndex ++;
@@ -184,4 +202,14 @@
     }
     return _tableView;
 }
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoOrderType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
+}
+
 @end
