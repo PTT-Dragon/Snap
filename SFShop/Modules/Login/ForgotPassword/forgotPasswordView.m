@@ -7,11 +7,14 @@
 
 #import "forgotPasswordView.h"
 #import "resetPasswordViewController.h"
+#import "ChangePasswordViewController.h"
+
 
 @interface forgotPasswordView ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIButton *smsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -32,9 +35,14 @@
     [_emailBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -90, 0, 50)];
 }
 - (IBAction)SMSAction:(id)sender {
-    resetPasswordViewController *vc = [[resetPasswordViewController alloc] init];
-    vc.type = 1;
-    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    if (_type == resetType) {
+        resetPasswordViewController *vc = [[resetPasswordViewController alloc] init];
+        vc.type = 1;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if (_type == forgetType){
+        ChangePasswordViewController *vc = [[ChangePasswordViewController alloc] init];
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }
 }
 - (IBAction)eamilAction:(id)sender {
     resetPasswordViewController *vc = [[resetPasswordViewController alloc] init];

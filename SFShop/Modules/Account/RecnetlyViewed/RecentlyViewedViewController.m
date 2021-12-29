@@ -13,8 +13,10 @@
 @interface RecentlyViewedViewController ()<JTCalendarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableDictionary *_eventsByDate;
-    
+    NSDate *_minDate;
+    NSDate *_maxDate;
     NSDate *_dateSelected;
+    NSDate *_todayDate;
     BOOL _selectionMode;
 }
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
@@ -38,10 +40,12 @@
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
     [self createRandomEvents];
+    [self createMinAndMaxDate];
     
     [_calendarManager setMenuView:_calendarMenuView];
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
+    
     _dateSelected = [NSDate date];
     _selectionMode = NO;
     [self initUI];
@@ -197,7 +201,10 @@
         }
     }
 }
-
+- (BOOL)calendar:(JTCalendarManager *)calendar canDisplayPageWithDate:(NSDate *)date
+{
+    return [_calendarManager.dateHelper date:date isEqualOrAfter:_minDate andEqualOrBefore:_maxDate];
+}
 #pragma mark - CalendarManager delegate - Page mangement
 
 // Used to limit the date for the calendar, optional
@@ -211,7 +218,16 @@
 {
     //    NSLog(@"Previous page loaded");
 }
-
+- (void)createMinAndMaxDate
+{
+    _todayDate = [NSDate date];
+    
+    // Min date will be 2 month before today
+    _minDate = [_calendarManager.dateHelper addToDate:_todayDate months:-1];
+    
+    // Max date will be 2 month after today
+    _maxDate = [_calendarManager.dateHelper addToDate:_todayDate months:0];
+}
 #pragma mark - Fake data
 
 // Used only to have a key for _eventsByDate

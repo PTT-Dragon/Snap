@@ -9,8 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface forgotPasswordView : UIView
+typedef enum :NSUInteger{
+    forgetType,
+    resetType
+}changePasswordType;
 
+@interface forgotPasswordView : UIView
+@property (nonatomic,assign) changePasswordType type;
 @end
 
 NS_ASSUME_NONNULL_END

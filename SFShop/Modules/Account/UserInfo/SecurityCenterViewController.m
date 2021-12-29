@@ -9,6 +9,7 @@
 #import "accountSubCell.h"
 #import "ChangePasswordViewController.h"
 #import "ChangeMobileOrEmailViewController.h"
+#import "forgotPasswordView.h"
 
 @interface SecurityCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -52,8 +53,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        ChangePasswordViewController *vc = [[ChangePasswordViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        forgotPasswordView *view = [[NSBundle mainBundle] loadNibNamed:@"" owner:self options:nil].firstObject;
+        view.type = forgetType;
+        view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+        [self.view addSubview:view];
+        
     }else if (indexPath.row == 1){
         ChangeMobileOrEmailViewController *vc = [[ChangeMobileOrEmailViewController alloc] init];
         vc.type = 1;

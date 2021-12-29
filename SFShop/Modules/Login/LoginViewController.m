@@ -80,6 +80,7 @@
 }
 - (IBAction)forgotAction:(id)sender {
     forgotPasswordView *view = [[NSBundle mainBundle] loadNibNamed:@"forgotPasswordView" owner:self options:nil].firstObject;
+    view.type = resetType;
     view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
     [self.view addSubview:view];
 }
