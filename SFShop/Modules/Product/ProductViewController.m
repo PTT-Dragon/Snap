@@ -86,7 +86,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"Product Detail";
+    self.title = kLocalizedString(@"Product_detail");
     self.view.backgroundColor = [UIColor whiteColor];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (model && ![model.accessToken isEqualToString:@""]) {
@@ -150,7 +150,7 @@
 }
 
 - (void)request {
-    MBProgressHUD *hud = [MBProgressHUD showHudMsg:@"加载中"];
+    MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get: [SFNet.offer getDetailOf: self.offerId] success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
         NSError *error;
@@ -164,7 +164,7 @@
 }
 - (void)requestCampaigns
 {
-    MBProgressHUD *hud = [MBProgressHUD showHudMsg:@"加载中"];
+    MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     MPWeakSelf(self)
     [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":@(_offerId)} success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
@@ -237,7 +237,7 @@
 
 - (void)requestSimilar {
     MPWeakSelf(self)
-    MBProgressHUD *hud = [MBProgressHUD showHudMsg:@"加载中"];
+    MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", (long)self.offerId]} success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
         NSError *error;
@@ -334,14 +334,14 @@
     NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
     if (effTimeInterval > timeInterval) {
         //未开始
-        self.timeStateLabel.text = @"Star in";
-        self.flashSaleStateLabel.text = @"Star From";
+        self.timeStateLabel.text = kLocalizedString(@"Star_in");
+        self.flashSaleStateLabel.text = kLocalizedString(@"Star_from");
         self.flashSaleBeginTimeLabel.text = model.effDate;
     }else if (expTimeInterval > timeInterval){
         //进行中
-        self.flashSaleStateLabel.text = [NSString stringWithFormat:@"RP %.0f",model.specialPrice];
+        self.flashSaleStateLabel.text = [NSString stringWithFormat:@"%@ %.0f", kLocalizedString(@"Rp"), model.specialPrice];
         self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%%  Sold",model.flsaleSaleQtyPercent];
-        self.timeStateLabel.text = @"Ends in";
+        self.timeStateLabel.text = kLocalizedString(@"Ends_in");
         MPWeakSelf(self)
         __block NSInteger timeout = expTimeInterval - timeInterval; // 倒计时时间
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -384,7 +384,7 @@
             //找到当前显示的商品
             self.groupDiscountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
-            self.groupSalePriceLabel.text = [NSString stringWithFormat:@"RP %.0f",model.shareBuyPrice];
+            self.groupSalePriceLabel.text = [NSString stringWithFormat:@"%@ %.0f", kLocalizedString(@"Rp"),model.shareBuyPrice];
             self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",_selProductModel.salesPrice];
         }
     }];
@@ -394,8 +394,8 @@
 - (void)setModel:(ProductDetailModel *)model {
     _model = model;
     [self.carouselImgView reloadData];
-    self.salesPriceLabel.text = [NSString stringWithFormat:@"Rp %ld", model.salesPrice];
-    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"Rp %ld", model.marketPrice]];
+    self.salesPriceLabel.text = [NSString stringWithFormat:@"%@ %ld", kLocalizedString(@"Rp"), model.salesPrice];
+    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@ %ld", kLocalizedString(@"Rp"), model.marketPrice]];
     [marketPriceStr addAttribute: NSStrikethroughStyleAttributeName value:@2 range: NSMakeRange(0, marketPriceStr.length)];
     self.marketPriceLabel.attributedText = marketPriceStr;
     self.offerNameLabel.text = model.offerName;
@@ -475,7 +475,7 @@
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader" forIndexPath:indexPath];
         UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 5, 150, 30)];
-        title.text = @"Recommendations";
+        title.text = kLocalizedString(@"Recommendations");
         title.font = [UIFont boldSystemFontOfSize:17];
         title.textColor = [UIColor blackColor];
         [view addSubview: title];
@@ -623,9 +623,9 @@
             @"isSelected":@"N"
         };
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Add to cart Success!"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Add to cart failed!"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_failed")];
         }];
     }
 }
@@ -679,13 +679,13 @@
             @"sourceType": @"LJGM", // TODO:此处参考h5
         }];
         
-        [MBProgressHUD showHudMsg:@"Calculating..."];
+        [MBProgressHUD showHudMsg:kLocalizedString(@"Calculating")];
         [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
             ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
             [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable responseInner) {
                 NSDictionary *data = ((NSArray *)responseInner).firstObject;
                 OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
-                [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Calcfee_Success")];
                 [weakself.attrView removeFromSuperview];
                 weakself.isCheckingSaleInfo = NO;
                 ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
@@ -699,10 +699,10 @@
                           sourceType:@"LJGM"];
                 [weakself.navigationController pushViewController:vc animated:YES];
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Logistics_failed")];
             }];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Calcfee_failed")];
         }];
     }
 }

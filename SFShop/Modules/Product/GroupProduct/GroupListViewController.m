@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Group buy";
+    self.title = kLocalizedString(@"Group_buy");
     [self initUI];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.pageIndex = 1;
@@ -83,7 +83,7 @@
                     case CategoryRankTypeSales:
                     case CategoryRankTypePriceDescending:
                     case CategoryRankTypePriceAscending: {
-                        [MBProgressHUD showHudMsg:@"加载中"];
+                        [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
                         strongSelf.currentType = type;
                         [strongSelf.tableView.mj_header beginRefreshing];
                     }

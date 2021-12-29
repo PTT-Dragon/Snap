@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Check Out";
+    self.title = kLocalizedString(@"Check_out");
     self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
     [self loadsubviews];
     [self layout];
@@ -71,7 +71,7 @@
         item.storeName = obj.storeName;
         item.productCategpry = attrValues[idx];
         item.productTitle = obj.offerName;
-        item.priceRp = @"Rp";
+        item.priceRp = kLocalizedString(@"Rp");
         item.productPrice = obj.salesPrice;
         item.productNum = [productBuyCounts[idx] integerValue];
         item.productIcon = SFImage([MakeH5Happy getNonNullCarouselImageOf: obj.carouselImgUrls.firstObject]);
@@ -91,9 +91,9 @@
     _feeModel = feeModel;
         
     OrderLogisticsItem * logisticsItem = logisticsModel.logistics.firstObject;
-    self.dataModel.priceRp = @"Rp";
+    self.dataModel.priceRp = kLocalizedString(@"Rp");
     self.dataModel.deliveryTitle = logisticsItem.logisticsModeName;
-    self.dataModel.deliveryDes = [NSString stringWithFormat:@"Est.Arrival %@-%@ Days",logisticsItem.minDeliveryDays,logisticsItem.maxDeliveryDays];
+    self.dataModel.deliveryDes = [NSString stringWithFormat:@"%@ %@-%@ %@", kLocalizedString(@"Est_arrival"), logisticsItem.minDeliveryDays, logisticsItem.maxDeliveryDays, kLocalizedString(@"Days")];
     self.dataModel.deliveryPrice = [logisticsItem.logisticsFee floatValue] * 0.001;
     /**
      结算总价这边我做了修改 测试是正常
@@ -113,9 +113,9 @@
     }
 //    NSString *orderId = [orders.firstObject valueForKey:@"orderId"];
     NSString *totalPrice = orderInfo[@"totalPrice"];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Order Payment Processing" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *mockAction = [UIAlertAction actionWithTitle:@"Mock Pay" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [MBProgressHUD showHudMsg:@"Mocking pay..."];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedString(@"Order_payment_processing") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *mockAction = [UIAlertAction actionWithTitle:kLocalizedString(@"Mock_pay") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [MBProgressHUD showHudMsg:kLocalizedString(@"Mock_pay")];
         NSDictionary *params = @{
             @"paymentChannel": @"1",
             @"totalPrice": totalPrice,
@@ -123,10 +123,10 @@
             @"orders": orderIds
         };
         [SFNetworkManager post:SFNet.order.mock parameters: params success:^(NSDictionary *  _Nullable response) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Mock Pay Success!"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Mock_pay_success")];
             [weakself.navigationController popToRootViewControllerAnimated:YES];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Mock Pay Failed!"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Mock_pay_failed")];
         }];
     }];
     [alert addAction:mockAction];
@@ -134,7 +134,7 @@
         [weakself onlinePayWithTotalPrice:totalPrice orderId:orderIds];
     }];
     [alert addAction:onlineAction];
-    UIAlertAction *cencelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cencelAction = [UIAlertAction actionWithTitle:kLocalizedString(@"Cancel") style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cencelAction];
 
     [self presentViewController:alert animated:YES completion:nil];
@@ -288,12 +288,12 @@
         _buyView.buyBlock = ^{
             
             if (!weakself.addressModel.deliveryAddressId || [weakself.addressModel.deliveryAddressId isEqualToString:@""]) {
-                [MBProgressHUD autoDismissShowHudMsg:@"Please select your address"];
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Please_select_your_address")];
                 return;
             }
             
             if (!weakself.addressModel.email ||  [weakself.addressModel.email isEqualToString:@""]) {
-                [MBProgressHUD autoDismissShowHudMsg:@"Please enter your email"];
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Please_enter_your_email")];
                 return;
             }
             
@@ -304,7 +304,7 @@
                 [products addObject:@{@"productId":idN,@"offerCnt":count,@"inCmpIdList":@[]}];
             }
             
-            [MBProgressHUD showHudMsg:@"Calculating..."];
+            [MBProgressHUD showHudMsg:kLocalizedString(@"Calculating")];
             NSNumber *totalPrice = [NSNumber numberWithLong:weakself.dataModel.totalPrice * 1000];
             NSDictionary *params = @{
                 @"billingEmail": weakself.addressModel.email,
@@ -327,7 +327,7 @@
                 ],
             };
             [SFNetworkManager post:SFNet.order.save parameters: params success:^(NSDictionary *  _Nullable response) {
-                [MBProgressHUD autoDismissShowHudMsg: @"Save order Success!"];
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Save_order_success")];
                 [weakself showPaymentAlert:response];
             } failed:^(NSError * _Nonnull error) {
                 [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];

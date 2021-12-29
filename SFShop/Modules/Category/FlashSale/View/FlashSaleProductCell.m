@@ -33,11 +33,11 @@
     _model = model;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.productImg)]];
     _nameLabel.text = model.productName;
-    _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.specialPrice];
+    _priceLabel.text = [NSString stringWithFormat:@"%@ %@", kLocalizedString(@"Rp"),model.specialPrice];
     _OriginalPriceLabel.text = [NSString stringWithFormat:@"%@",model.salesPrice];
     _offLabel.text = [NSString stringWithFormat:@" %@%% ",model.discountPercent];
     _rateLabel.text = [NSString stringWithFormat:@"%@ (%f)",model.evaluationAvg,model.evaluationCnt];
-    _processLabel.text = [NSString stringWithFormat:@"%.2f%% Terjual",model.productSalePercent/100];
+    _processLabel.text = [NSString stringWithFormat:@"%.2f%% %@",model.productSalePercent/100, kLocalizedString(@"Terjual")];
     _processWidth.constant = (MainScreen_width-224)*model.productSalePercent/10000;
 }
 @end

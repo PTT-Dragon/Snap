@@ -131,11 +131,11 @@
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
     self.titleLabel.text = _model.offerName;
-    self.priceLabel.text = [NSString stringWithFormat:@"Rp%@", [[NSString stringWithFormat:@"%ld",_model.salesPrice] thousandthFormat]] ;
+    self.priceLabel.text = [NSString stringWithFormat:@"%@%@", kLocalizedString(@"Rp"), [[NSString stringWithFormat:@"%ld",_model.salesPrice] thousandthFormat]] ;
     self.discountLabel.text = [NSString stringWithFormat:@"%ld%%",_model.discountPercent];
 
     NSAttributedString *attrStr =
-    [[NSAttributedString alloc]initWithString: [NSString stringWithFormat:@"Rp %@", [[NSString stringWithFormat:@"%ld",_model.marketPrice] thousandthFormat]] attributes:
+    [[NSAttributedString alloc]initWithString: [NSString stringWithFormat:@"%@ %@", kLocalizedString(@"Rp"), [[NSString stringWithFormat:@"%ld",_model.marketPrice] thousandthFormat]] attributes:
     @{NSFontAttributeName:[UIFont systemFontOfSize:10],
       NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
       NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
@@ -200,7 +200,7 @@
 - (UILabel *)promoTypeLabel {
     if (_promoTypeLabel == nil) {
         _promoTypeLabel = [[UILabel alloc] init];
-        _promoTypeLabel.text = @"SPECIAL PROMO";
+        _promoTypeLabel.text = kLocalizedString(@"Special_promo");
         _promoTypeLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
         _promoTypeLabel.font = [UIFont systemFontOfSize:8];
         _promoTypeLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];

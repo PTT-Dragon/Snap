@@ -25,7 +25,7 @@
     // Do any additional setup after loading the view.
     AccountViewController *accountVC = [[AccountViewController alloc] init];
     BaseNavigationController *accountNav = [[BaseNavigationController alloc]initWithRootViewController:accountVC];
-    accountNav.tabBarItem.title = @"Account";
+    accountNav.tabBarItem.title = kLocalizedString(@"Account");
     accountNav.tabBarItem.image = [UIImage imageNamed:@"account_tab_icon"];
     PublicWebViewController *homeVc = [[PublicWebViewController alloc] init];
     homeVc.isHome = YES;
@@ -33,21 +33,21 @@
     homeVc.url = @"http://47.243.193.90:8064/main/home";
 //    homeVc.navigationController.navigationBar.hidden = YES;
 //    homeNav.navigationBar.hidden = YES;
-    homeNav.tabBarItem.title = @"Home";
+    homeNav.tabBarItem.title = kLocalizedString(@"Home");
     homeNav.tabBarItem.image = [UIImage imageNamed:@"home_tab_icon"];
     CartViewController *cartVC = [[CartViewController alloc] init];
-    cartVC.tabBarItem.title = @"Cart";
+    cartVC.tabBarItem.title = kLocalizedString(@"Cart");
     cartVC.tabBarItem.image = [UIImage imageNamed:@"cart_tab_icon"];
     BaseNavigationController *CartNav = [[BaseNavigationController alloc]initWithRootViewController:cartVC];
     CommunityViewController *communityVC = [[CommunityViewController alloc] init];
     BaseNavigationController *communityNav = [[BaseNavigationController alloc]initWithRootViewController:communityVC];
-    communityNav.tabBarItem.title = @"Community";
+    communityNav.tabBarItem.title = kLocalizedString(@"Community");
     communityNav.tabBarItem.image = [UIImage imageNamed:@"community_tab_icon"];
     
     //分类
     CategoryViewController *categoryVc = [[CategoryViewController alloc] init];
     BaseNavigationController *categoryNav = [[BaseNavigationController alloc]initWithRootViewController:categoryVc];
-    categoryNav.tabBarItem.title = @"Category";
+    categoryNav.tabBarItem.title = kLocalizedString(@"Category");
     categoryNav.tabBarItem.image = [UIImage imageNamed:@"category_tab_icon"];
     
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
