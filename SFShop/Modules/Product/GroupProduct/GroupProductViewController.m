@@ -133,7 +133,7 @@
 }
 
 - (void)request {
-    [MBProgressHUD showHudMsg:@"加载中"];
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get: [SFNet.offer getDetailOf: self.offerId] success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSError *error;
@@ -203,7 +203,7 @@
 }
 
 - (void)requestSimilar {
-    [MBProgressHUD showHudMsg:@"加载中"];
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", self.offerId]} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSError *error;
@@ -440,13 +440,13 @@
             @"sourceType": @"LJGM", // TODO:此处参考h5
         }];
         
-        [MBProgressHUD showHudMsg:@"Calculating..."];
+        [MBProgressHUD showHudMsg:kLocalizedString(@"Calculating")];
         [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
             ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
             [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable responseInner) {
                 NSDictionary *data = ((NSArray *)responseInner).firstObject;
                 OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
-                [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Calcfee_Success")];
                 [weakself.attrView removeFromSuperview];
                 weakself.isCheckingSaleInfo = NO;
                 ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
@@ -460,10 +460,10 @@
                           sourceType:@"LJGM"];
                 [weakself.navigationController pushViewController:vc animated:YES];
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Logistics_failed")];
             }];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Calcfee_failed")];
         }];
     }
 }
@@ -503,13 +503,13 @@
             @"sourceType": @"LJGM", // TODO:此处参考h5
         }];
         
-        [MBProgressHUD showHudMsg:@"Calculating..."];
+        [MBProgressHUD showHudMsg:kLocalizedString(@"Calculating")];
         [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
             ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
             [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable responseInner) {
                 NSDictionary *data = ((NSArray *)responseInner).firstObject;
                 OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
-                [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Calcfee_Success")];
                 [weakself.attrView removeFromSuperview];
                 weakself.isCheckingSaleInfo = NO;
                 ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
@@ -523,10 +523,10 @@
                           sourceType:@"LJGM"];
                 [weakself.navigationController pushViewController:vc animated:YES];
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Logistics_failed")];
             }];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Calcfee_failed")];
         }];
     }
 }

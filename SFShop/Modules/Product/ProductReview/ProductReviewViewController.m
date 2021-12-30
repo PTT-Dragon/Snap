@@ -46,10 +46,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Review";
+    self.title = kLocalizedString(@"Review");
     _collectionView.delegate = self;_collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"ProductReviewLabelCell" bundle:nil] forCellWithReuseIdentifier:@"ProductReviewLabelCell"];
-    self.menuList = @[@"All", @"Picture",@"Positive Review",@"Nagative Review"];
+    self.menuList = @[
+        kLocalizedString(@"All"),
+        kLocalizedString(@"Picture"),
+        kLocalizedString(@"Positive_review"),
+        kLocalizedString(@"Nagative_review")
+    ];
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
     _magicController.view.frame = CGRectMake(0, 260, MainScreen_width, MainScreen_height-navBarHei-260);

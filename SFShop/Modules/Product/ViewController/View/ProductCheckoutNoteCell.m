@@ -119,7 +119,7 @@
     if (dataModel.vouchersReduce) {//如果选中优惠券,那么显示优惠券减少的价格
         self.couponPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.priceRp,dataModel.vouchersReduce];
     } else if (!dataModel.availableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
-        self.couponPriceLabel.text = @"Not available";
+        self.couponPriceLabel.text = kLocalizedString(@"Not_available");
     } else {
         self.couponPriceLabel.text = [NSString stringWithFormat:@"%ld available",dataModel.availableVouchersCount];
     }
@@ -139,7 +139,7 @@
 - (UILabel *)noteLabel {
     if (_noteLabel == nil) {
         _noteLabel = [[UILabel alloc] init];
-        _noteLabel.text = @"Notes";
+        _noteLabel.text = kLocalizedString(@"Notes");
         _noteLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _noteLabel.font = [UIFont systemFontOfSize:14];
         _noteLabel.textAlignment = NSTextAlignmentLeft;
@@ -150,7 +150,7 @@
 - (UILabel *)couponLabel {
     if (_couponLabel == nil) {
         _couponLabel = [[UILabel alloc] init];
-        _couponLabel.text = @"Voucher";
+        _couponLabel.text = kLocalizedString(@"Voucher");
         _couponLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _couponLabel.font = [UIFont systemFontOfSize:14];
         _couponLabel.textAlignment = NSTextAlignmentLeft;
@@ -181,7 +181,7 @@
 - (UILabel *)promoLabel {
     if (_promoLabel == nil) {
         _promoLabel = [[UILabel alloc] init];
-        _promoLabel.text = @"Store Promo";
+        _promoLabel.text = kLocalizedString(@"Store_promo");
         _promoLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _promoLabel.font = [UIFont systemFontOfSize:14];
         _promoLabel.textAlignment = NSTextAlignmentLeft;
@@ -203,7 +203,7 @@
 - (UILabel *)totalLabel {
     if (_totalLabel == nil) {
         _totalLabel = [[UILabel alloc] init];
-        _totalLabel.text = @"Total";
+        _totalLabel.text = kLocalizedString(@"Total");
         _totalLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _totalLabel.font = [UIFont boldSystemFontOfSize:14];
         _totalLabel.textAlignment = NSTextAlignmentLeft;

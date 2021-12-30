@@ -107,7 +107,7 @@
     UILabel *quantityLabel = [[UILabel alloc] init];
     quantityLabel.font = [UIFont boldSystemFontOfSize:16];
     [quantityLabel setTextColor: [UIColor blackColor]];
-    quantityLabel.text = @"Quantity";
+    quantityLabel.text = kLocalizedString(@"Quantity");
     [self addSubview:quantityLabel];
     [quantityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView).offset(16);
@@ -182,7 +182,7 @@
     }];
     [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf:self.model.carouselImgUrls[0]])]];
     self.titleLabel.text = model.offerName;
-    self.priceLabel.text = [NSString stringWithFormat:@"Rp %ld", (long)model.salesPrice];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@ %ld", kLocalizedString(@"Rp"), (long)model.salesPrice];
     // TODO: 此处先固定，后续根据库存接口数据调整
     self.stockLabel.text = @"stock: 25";
     

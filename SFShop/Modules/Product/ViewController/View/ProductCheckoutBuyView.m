@@ -79,7 +79,7 @@
         _desLabel.textAlignment = NSTextAlignmentLeft;
         _desLabel.textColor = [UIColor jk_colorWithHexString:@"#999999"];
         _desLabel.font = [UIFont systemFontOfSize:10];
-        _desLabel.text = @"Total";
+        _desLabel.text = kLocalizedString(@"Total");
     }
     return _desLabel;
 }
@@ -90,7 +90,7 @@
         [_buyBtn setBackgroundColor:[UIColor jk_colorWithHexString:@"#FF1659"]];
         [_buyBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         _buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        [_buyBtn setTitle:@"PLACE ORDER" forState:UIControlStateNormal];
+        [_buyBtn setTitle:kLocalizedString(@"Place_order") forState:UIControlStateNormal];
         [_buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     return _buyBtn;

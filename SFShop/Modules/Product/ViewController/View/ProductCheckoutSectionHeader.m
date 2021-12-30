@@ -57,7 +57,7 @@
     if ([cellModel.cellId isEqualToString:@"ProductCheckoutAddressCell"]) {
         self.titleLabel.hidden = NO;
         self.icon.hidden = NO;
-        self.titleLabel.text = @"Delivery Address";
+        self.titleLabel.text = kLocalizedString(@"Delivery_address");
         self.icon.image = [UIImage imageNamed:@"checkout_address"];
     } else if ([cellModel.cellId isEqualToString:@"ProductCheckoutGoodsCell"]) {
         self.titleLabel.hidden = NO;
@@ -68,7 +68,7 @@
     } else if ([cellModel.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
         self.titleLabel.hidden = NO;
         self.icon.hidden = NO;
-        self.titleLabel.text = @"Delivery";
+        self.titleLabel.text = kLocalizedString(@"Delivery");
         self.icon.image = [UIImage imageNamed:@"checkout_delivery"];
     } else if ([cellModel.cellId isEqualToString:@"ProductCheckoutNoteCell"] ||
                [cellModel.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {

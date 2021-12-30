@@ -67,9 +67,9 @@
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     super.dataModel = dataModel;
     if (!dataModel.shopAvailableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
-        self.subTitleLabel.text = @"Not available";
+        self.subTitleLabel.text = kLocalizedString(@"Not_available");
     } else {
-        self.subTitleLabel.text = [NSString stringWithFormat:@"%ld available",dataModel.shopAvailableVouchersCount];
+        self.subTitleLabel.text = [NSString stringWithFormat:@"%ld %@",dataModel.shopAvailableVouchersCount, kLocalizedString(@"Available")];
     }
 }
 
@@ -93,7 +93,7 @@
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.text = @"SF.shop.Voucher";
+        _titleLabel.text = kLocalizedString(@"SF_shop_Voucher");
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _titleLabel.font = [UIFont systemFontOfSize:14];
         _titleLabel.textAlignment = NSTextAlignmentLeft;

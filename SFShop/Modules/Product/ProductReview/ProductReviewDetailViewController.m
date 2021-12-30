@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Review Detail";
+    self.title = kLocalizedString(@"Review_detail");
     [self.tableView registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ProductReviewReplyCell" bundle:nil] forCellReuseIdentifier:@"ProductReviewReplyCell"];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(self.model.productImgUrl)]];
