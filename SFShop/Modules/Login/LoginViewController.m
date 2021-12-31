@@ -9,6 +9,7 @@
 #import "SignUpViewController.h"
 #import "forgotPasswordView.h"
 #import "LoginViaOTP.h"
+#import "UITextField+expand.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -22,27 +23,51 @@
 @property (weak, nonatomic) IBOutlet UIButton *signUpBtn;
 @property (weak, nonatomic) IBOutlet UIButton *secureBtn;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (nonatomic,assign) NSInteger type;//登录方式   1.手机登录  2.邮箱登录
 
 @end
 
 @implementation LoginViewController
+static BOOL _accountSuccess = NO;
+static BOOL _passwordSuccess = NO;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"Login";
+    [self layoutSubviews];
+}
+- (void)layoutSubviews
+{
+    _type = 1;
+    self.loginBtn.userInteractionEnabled = NO;
+    self.passwordField.layer.borderWidth = 1;
+    self.accountField.layer.borderWidth = 1;
     [self.passwordField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     [self.accountField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
 }
 - (void)changedTextField:(UITextField *)textField
 {
-    if (![_passwordField.text isEqualToString:@""] && ![_accountField.text isEqualToString:@""]) {
+    if (textField == _accountField) {
+        if (_type == 1) {
+            _accountSuccess = [textField textFieldState:CHECKPHONETYPE labels:@[_label1]];
+        }else{
+            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE labels:@[_label1]];
+        }
+    }else{
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE labels:@[_label2]];
+    }
+    if (_accountSuccess && _passwordSuccess) {
         self.loginBtn.backgroundColor = RGBColorFrom16(0xFF1659);
+        self.loginBtn.userInteractionEnabled = YES;
     }else{
         self.loginBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+        self.loginBtn.userInteractionEnabled = NO;
     }
 }
 - (IBAction)phoneAction:(UIButton *)sender {
+    _type = 1;
     sender.selected = YES;
     _emailBtn.selected = NO;
     _phoneIndicationView.backgroundColor = [UIColor blackColor];
@@ -51,6 +76,7 @@
     _accountField.placeholder = @"Phone number";
 }
 - (IBAction)emailAction:(UIButton *)sender {
+    _type = 2;
     sender.selected = YES;
     _phoneBtn.selected = NO;
     _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
@@ -71,6 +97,8 @@
             weakself.didLoginBlock();
         }
     } failed:^(NSError * _Nonnull error) {
+        weakself.loginBtn.userInteractionEnabled = NO;
+        weakself.loginBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }

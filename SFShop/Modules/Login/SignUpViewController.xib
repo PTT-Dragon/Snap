@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController">
             <connections>
                 <outlet property="PhoneField" destination="q7E-wH-GUA" id="sZ2-On-kn7"/>
+                <outlet property="accountQesLabel" destination="pga-vw-wt3" id="Xeg-1B-yt5"/>
                 <outlet property="passwordField" destination="N8J-oG-r1A" id="cC8-V6-3An"/>
                 <outlet property="passwordLabel" destination="NBr-4t-cJn" id="tb5-WV-zo5"/>
                 <outlet property="passwordQesLabel" destination="rDk-OG-nhi" id="GBG-uV-9vR"/>
@@ -26,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N8J-oG-r1A">
-                    <rect key="frame" x="16" y="177" width="382" height="46"/>
+                    <rect key="frame" x="16" y="194" width="382" height="46"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="gR9-54-LYe"/>
                     </constraints>
@@ -48,7 +49,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oI-2T-sZk">
-                    <rect key="frame" x="24" y="446" width="366" height="46"/>
+                    <rect key="frame" x="24" y="463" width="366" height="46"/>
                     <color key="backgroundColor" red="1" green="0.8980392157" blue="0.92156862750000001" alpha="1" colorSpace="deviceRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="Me3-QW-I89"/>
@@ -67,14 +68,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Password  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBr-4t-cJn">
-                    <rect key="frame" x="32" y="170" width="68" height="15"/>
+                    <rect key="frame" x="32" y="185" width="68" height="15"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a27-4w-ekI">
-                    <rect key="frame" x="147.5" y="512" width="119" height="27"/>
+                    <rect key="frame" x="147.5" y="529" width="119" height="27"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="Have account?Login">
                         <color key="titleColor" red="1" green="0.086274509803921567" blue="0.34901960784313724" alpha="1" colorSpace="deviceRGB"/>
@@ -84,7 +85,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum 8 characters with numeric, upper case and lower case" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDk-OG-nhi">
-                    <rect key="frame" x="53.5" y="228" width="307" height="12"/>
+                    <rect key="frame" x="30" y="245" width="307" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account using this number does not exist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pga-vw-wt3">
+                    <rect key="frame" x="30" y="159" width="200" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -95,15 +102,17 @@
             <constraints>
                 <constraint firstItem="q7E-wH-GUA" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="64" id="2cd-C3-t8u"/>
                 <constraint firstItem="rDk-OG-nhi" firstAttribute="top" secondItem="N8J-oG-r1A" secondAttribute="bottom" constant="5" id="3kc-26-jVc"/>
-                <constraint firstItem="rDk-OG-nhi" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="9ON-Bk-Tnf"/>
                 <constraint firstItem="5oI-2T-sZk" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Axc-XH-SC1"/>
-                <constraint firstItem="N8J-oG-r1A" firstAttribute="top" secondItem="q7E-wH-GUA" secondAttribute="bottom" constant="23" id="CTu-RT-iw2"/>
+                <constraint firstItem="N8J-oG-r1A" firstAttribute="top" secondItem="q7E-wH-GUA" secondAttribute="bottom" constant="40" id="CTu-RT-iw2"/>
+                <constraint firstItem="pga-vw-wt3" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="F1Q-th-Smr"/>
                 <constraint firstItem="a27-4w-ekI" firstAttribute="top" secondItem="5oI-2T-sZk" secondAttribute="bottom" constant="20" id="GOG-Yz-PjH"/>
                 <constraint firstItem="5oI-2T-sZk" firstAttribute="top" secondItem="N8J-oG-r1A" secondAttribute="bottom" constant="223" id="GbO-8s-GF2"/>
-                <constraint firstItem="NBr-4t-cJn" firstAttribute="top" secondItem="q7E-wH-GUA" secondAttribute="bottom" constant="16" id="HCY-1X-PNl"/>
+                <constraint firstItem="NBr-4t-cJn" firstAttribute="top" secondItem="q7E-wH-GUA" secondAttribute="bottom" constant="31" id="HCY-1X-PNl"/>
                 <constraint firstItem="5oI-2T-sZk" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="24" id="PLU-tq-law"/>
+                <constraint firstItem="rDk-OG-nhi" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="Qab-Op-lSE"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="q7E-wH-GUA" secondAttribute="trailing" constant="16" id="RK0-gA-H27"/>
                 <constraint firstItem="q7E-wH-GUA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="RZP-0k-ccq"/>
+                <constraint firstItem="pga-vw-wt3" firstAttribute="top" secondItem="q7E-wH-GUA" secondAttribute="bottom" constant="5" id="Tpi-VJ-Gq5"/>
                 <constraint firstItem="N8J-oG-r1A" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="YVv-Ty-ZWJ"/>
                 <constraint firstItem="NBr-4t-cJn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="32" id="eod-qA-FUz"/>
                 <constraint firstItem="a27-4w-ekI" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="g3j-QI-QH4"/>

@@ -253,7 +253,6 @@
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Please input the correct phone number or email.",
 //  "THIS_PHONE_NUMBER" = "This phone number",
 //  "THIS_EMAIL_ADDRESS" = "This email address",
-//  "IS_ALREADY_REGISTERED" = "is already registered.",
 //  "PHONE" = "Phone",
 //  "MEMBERSHIP_AGREEMENT" = "Membership Agreement",
 //  "PLEASE_INPUT" = "Please Input",
@@ -569,5 +568,6 @@
 //"Cancel" = "Cancel";
 //"Cancel" = "Cancel";
 //"Cancel" = "Cancel";
+"IS_ALREADY_REGISTERED" = "is already registered.";
 
 

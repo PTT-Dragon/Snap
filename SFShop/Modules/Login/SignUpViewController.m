@@ -7,6 +7,7 @@
 
 #import "SignUpViewController.h"
 #import "verifyCodeVC.h"
+#import "UITextField+expand.h"
 
 @interface SignUpViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *PhoneField;
@@ -15,10 +16,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *passwordQesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *accountQesLabel;
 
 @end
 
 @implementation SignUpViewController
+static BOOL _accountSuccess = NO;
+static BOOL _passwordSuccess = NO;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,31 +41,20 @@
 }
 -(void)changedTextField:(UITextField *)textField
 {
-    if (![_PhoneField.text isEqualToString:@""] && ![_passwordField.text isEqualToString:@""]) {
-        [_signUpBtn setBackgroundColor:RGBColorFrom16(0xFF1659)];
-    }else{
-        [_signUpBtn setBackgroundColor:RGBColorFrom16(0xFFE5EB)];
+    if (textField == _PhoneField) {
+        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE labels:@[_phoneLabel,_accountQesLabel]];
+    }else if (textField == _passwordField){
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE labels:@[_passwordLabel,_passwordQesLabel]];
     }
-    if (textField == _passwordField) {
-        if (![self.passwordField.text passwordTextCheck]) {
-            _passwordField.layer.borderColor = RGBColorFrom16(0xC40000).CGColor;
-            [_signUpBtn setBackgroundColor:RGBColorFrom16(0xFFE5EB)];
-            _passwordQesLabel.textColor = RGBColorFrom16(0xFFE5EB);
-            _signUpBtn.userInteractionEnabled = NO;
-        }else{
-            _passwordField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
-            _passwordQesLabel.textColor = RGBColorFrom16(0x7b7b7b);
-            _signUpBtn.userInteractionEnabled = YES;
-        }
-    }else if (textField == _PhoneField){
-        
+    if (_accountSuccess && _passwordSuccess) {
+        self.signUpBtn.backgroundColor = RGBColorFrom16(0xFF1659);
+        self.signUpBtn.userInteractionEnabled = YES;
+    }else{
+        self.signUpBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+        self.signUpBtn.userInteractionEnabled = NO;
     }
 }
 - (IBAction)signUpAction:(id)sender {
-    if ([_PhoneField.text isEqualToString:@""] || [_passwordField.text isEqualToString:@""]) {
-        
-        return;
-    }
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.check parameters:@{@"account":_PhoneField.text} success:^(id  _Nullable response) {
         if ([response[@"isExisting"] isEqualToString:@"0"]) {
@@ -72,10 +65,12 @@
             vc.password = weakself.passwordField.text;
             [weakself.navigationController pushViewController:vc animated:YES];
         }else{
-            [MBProgressHUD autoDismissShowHudMsg:@"账号已经存在"];
+            weakself.signUpBtn.userInteractionEnabled = NO;
+            self.signUpBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"IS_ALREADY_REGISTERED")];
         }
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (IBAction)loginAction:(id)sender {

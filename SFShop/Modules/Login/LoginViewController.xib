@@ -16,6 +16,7 @@
                 <outlet property="emailIndicationView" destination="pYJ-Me-RM6" id="U6e-G0-Rig"/>
                 <outlet property="forgetBtn" destination="KTg-PS-qni" id="WLo-9u-c3T"/>
                 <outlet property="label1" destination="LpW-bW-dO8" id="Jva-Jg-UrT"/>
+                <outlet property="label2" destination="6I6-Aq-Xhn" id="hhN-54-8f1"/>
                 <outlet property="loginBtn" destination="MdG-AI-YDO" id="26U-JE-TSF"/>
                 <outlet property="passwordField" destination="CPB-84-N7c" id="RsJ-uv-MX6"/>
                 <outlet property="phoneBtn" destination="tGN-iU-kgh" id="k5y-5M-s5D"/>

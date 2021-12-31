@@ -253,7 +253,6 @@
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Harap masukkan alamat email atau no. telephone yang benar.",
 //  "THIS_PHONE_NUMBER" = "Nomor telepon ini",
 //  "THIS_EMAIL_ADDRESS" = "Alamat email ini",
-//  "IS_ALREADY_REGISTERED" = "Sudah terdaftar",
 //  "PHONE" = "Telephone",
 //  "MEMBERSHIP_AGREEMENT" = "Syarat membership",
 //  "PLEASE_INPUT" = "Mohon masukan",
@@ -564,4 +563,4 @@
 "Add_to_cart_success" = "Add to cart Success!";
 "Add_to_cart_failed" = "Add to cart Failed!";
 "Terjual" = "Terjual";
-
+"IS_ALREADY_REGISTERED" = "Sudah terdaftar";

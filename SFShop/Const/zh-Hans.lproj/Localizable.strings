@@ -253,7 +253,6 @@
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "请输入正确的手机号或邮箱.",
 //  "THIS_PHONE_NUMBER" = "这个手机号",
 //  "THIS_EMAIL_ADDRESS" = "这个邮箱",
-//  "IS_ALREADY_REGISTERED" = "已经注册.",
 //  "PHONE" = "手机",
 //  "MEMBERSHIP_AGREEMENT" = "会员注册协议.",
 //  "PLEASE_INPUT" = "请输入",
@@ -564,4 +563,5 @@
 "Add_to_cart_success" = "Add to cart Success!";
 "Add_to_cart_failed" = "Add to cart Failed!";
 "Terjual" = "Terjual";
+"IS_ALREADY_REGISTERED" = "已经注册.";
 
