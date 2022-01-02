@@ -2319,6 +2319,7 @@
 		4B9FB9C626FB780700C90790 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8EACB68B2781ECED0066BD3A /* Share */,
 				8E4821F6277A134300857FF5 /* EmptyView */,
 				4B818FC8272394D90058038A /* Product */,
 				AE81BE2326FE0D5B00AB4225 /* Category */,
@@ -2698,6 +2699,13 @@
 				8EACB67D2781E7F50066BD3A /* UTDID.framework */,
 			);
 			path = thirdparties_ios_1.0.5;
+			sourceTree = "<group>";
+		};
+		8EACB68B2781ECED0066BD3A /* Share */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		AE81BDCA26FB6E7000AB4225 = {
