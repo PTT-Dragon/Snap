@@ -16,10 +16,4 @@ target 'SFShop' do
   pod 'iCarousel'
   pod 'ReactiveObjC'
   pod 'SJVideoPlayer'
-  pod 'UMCommon'
-  pod 'UMDevice'
-  pod 'UMShare/Social/Facebook'
-  pod 'UMShare/Social/Twitter'
-  pod 'UMShare/Social/WhatsApp'
-  pod 'UMShare/Social/Instagram'
 end 

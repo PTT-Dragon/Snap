@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 #import "MainTabViewController.h"
-//#import<UMShare/UMShare.h>
+#import<UMShare/UMShare.h>
 
 @interface AppDelegate ()
 
@@ -20,9 +20,9 @@
 
     //网络请求demo
     [self netDemo];
-//    [self initUmeng];
-//    [self confitUShareSettings];
-//    [self configUSharePlatforms];
+    [self initUmeng];
+    [self confitUShareSettings];
+    [self configUSharePlatforms];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.backgroundColor = [UIColor whiteColor];
