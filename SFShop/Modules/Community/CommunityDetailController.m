@@ -91,7 +91,7 @@
 }
 
 - (void)request {
-    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")]];
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [self requestArticleDetail];
     [self requestArticleEvaluate];
 }
