@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "MainTabViewController.h"
+//#import<UMShare/UMShare.h>
 
 @interface AppDelegate ()
 
@@ -19,6 +20,9 @@
 
     //网络请求demo
     [self netDemo];
+//    [self initUmeng];
+//    [self confitUShareSettings];
+//    [self configUSharePlatforms];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -37,5 +41,31 @@
 //        NSLog(@"");
 //    }];
 }
+
+//-(BOOL)application:(UIApplication*)application handleOpenURL:(NSURL *)url
+//{
+//    BOOL result =[[UMSocialManager defaultManager] handleOpenURL:url];
+//if(!result){
+//// 其他如支付等SDK的回调
+//}
+//return result;
+//}
+
+- (void)initUmeng {
+//    +(void)initWithAppkey:(NSString*)appKey channel:(NSString*)channel;
+}
+- (void)confitUShareSettings {
+ 
+}
+
+- (void)configUSharePlatforms {
+    /* 设置Twitter的appKey和appSecret */
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Twitter appKey:@"fB5tvRpna1CKK97xZUslbxiet"  appSecret:@"YcbSvseLIwZ4hZg9YmgJPP5uWzd4zr6BpBKGZhf07zzh3oj62K" redirectURL:nil];
+    /* 设置Facebook的appKey和UrlString */
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Facebook appKey:@"506027402887373"  appSecret:nil redirectURL:@"http://www.umeng.com/social"];
+
+
+}
+
 
 @end
