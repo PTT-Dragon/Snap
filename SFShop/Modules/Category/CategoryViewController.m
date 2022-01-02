@@ -55,7 +55,7 @@
 }
 
 - (void)loadContentDatas:(NSInteger)parentCatgId {
-    [MBProgressHUD showHudMsg:@"加载中"];
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"parentCatgId":@(parentCatgId)} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSArray *array = response;

@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    self.title = @"Community";
+    self.title = kLocalizedString(@"Community");
 
     self.container = [[CommunityTabContainer alloc] init];
     [self addChildViewController: self.container];
@@ -57,7 +57,7 @@
 }
 
 - (void)request {
-    [MBProgressHUD showHudMsg:@"加载中"];
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get: SFNet.article.articleCatgs parameters: nil success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSArray *recCatgs = [(NSDictionary *)response objectForKey:@"recCatgs"];

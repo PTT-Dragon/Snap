@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Help Center";
+    self.title = kLocalizedString(@"Help_center");
     self.titleLabel.text = self.model.faqName;
     NSAttributedString *attributedString1 = [[NSAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",_model.contentM] dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 //    NSAttributedString *attributedString2 = [[NSAttributedString alloc] initWithData:[_model.contentP dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];

@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Coupon Center";
+    self.title = kLocalizedString(@"Coupon_Center");
     _dataSource = [NSMutableArray array];
     _titleList = [NSMutableArray array];
     [self loadDatas];

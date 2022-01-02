@@ -277,7 +277,7 @@
                 case CategoryRankTypeSales:
                 case CategoryRankTypePriceDescending:
                 case CategoryRankTypePriceAscending: {
-                    [MBProgressHUD showHudMsg:@"加载中"];
+                    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
                     strongSelf.currentType = type;
                     [strongSelf.collectionView.mj_header beginRefreshing];
                 }

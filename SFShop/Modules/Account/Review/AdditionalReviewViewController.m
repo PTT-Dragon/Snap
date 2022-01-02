@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Additional Review";
+    self.title = kLocalizedString(@"Additional_review");
     _viewWidth.constant = MainScreen_width;
     _imgArr = [NSMutableArray array];
     _imgUrlArr = [NSMutableArray array];

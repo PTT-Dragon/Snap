@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Policies";
+    self.title = kLocalizedString(@"Policies");
     _dataSource = [NSMutableArray array];
     [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":@"Membership Agreement"},@{@"image":@"",@"title":@"Teams Conditions & Privacy Policy"}]];    
     [self.view addSubview:self.tableView];

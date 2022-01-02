@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Help Center";
+    self.title = kLocalizedString(@"Help_center");
     _dataSource = [NSMutableArray array];
     [self loadDatas];
 }

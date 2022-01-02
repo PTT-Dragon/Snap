@@ -52,7 +52,7 @@
 - (IBAction)favoriteAction:(UIButton *)sender {
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.favorite.favorite parametersArr:@[@{@"offerId":_model.offerId}] success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_SUCCESS")];
         weakself.model.isCollection = !weakself.model.isCollection;
         [weakself setContent:weakself.model];
     } failed:^(NSError * _Nonnull error) {

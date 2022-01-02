@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Security Center";
+    self.title = kLocalizedString(@"Security_center");
     _dataSource = [NSMutableArray array];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":@"Change Password"},@{@"image":@"",@"title":@"Change Mobile Number",@"subTitle":([model.userRes.mobilePhone isEqualToString:@""] || !model.userRes.mobilePhone) ? @"Not Set": model.userRes.mobilePhone},@{@"image":@"",@"title":@"Change Email",@"subTitle":([model.userRes.email isEqualToString:@""] || !model.userRes.email) ? @"Not Set": model.userRes.email}]];

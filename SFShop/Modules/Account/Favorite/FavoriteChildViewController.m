@@ -136,7 +136,7 @@
  
 // 修改编辑按钮文字
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"删除";
+    return kLocalizedString(@"Delete");
 }
 
 #pragma mark -
@@ -145,7 +145,7 @@
     favoriteModel *model = self.dataSource[row];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.favorite.del parameters:@{@"productIdList":@[model.productId]} success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"删除成功"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Delete_success")];
         [weakself.dataSource removeObjectAtIndex:row];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {

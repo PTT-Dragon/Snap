@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Similar Products";
+    self.title = kLocalizedString(@"Similar_products");
     _dataSource = [NSMutableArray array];
     self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"SimilarProductCell" bundle:nil] forCellWithReuseIdentifier:@"SimilarProductCell"];

@@ -53,7 +53,7 @@
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.text = @"Sorry, no related products were found.";
+        _titleLabel.text = kLocalizedString(@"No_product_tip");
         _titleLabel.numberOfLines = 0;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = UIColor.blackColor;

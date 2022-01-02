@@ -277,7 +277,7 @@
 - (UILabel *)promoTypeLabel {
     if (_promoTypeLabel == nil) {
         _promoTypeLabel = [[UILabel alloc] init];
-        _promoTypeLabel.text = @"SPECIAL PROMO";
+        _promoTypeLabel.text = kLocalizedString(@"Special_promo");
         _promoTypeLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
         _promoTypeLabel.font = [UIFont systemFontOfSize:8];
         _promoTypeLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];

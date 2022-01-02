@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Review Detail";
+    self.title = kLocalizedString(@"Review_detail");
     [self initUI];
     [self loadDatas];
 }

@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Message";
+    self.title = kLocalizedString(@"Message");
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self action:@selector(clearUnreadMessage) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0 , 0, 22, 22);

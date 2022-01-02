@@ -21,8 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     if (_type == 2) {
-        _label.text = @"A verification code will be sent to your email address. Please enter your registered email.";
-        _field.placeholder = @"Email";
+        _label.text = kLocalizedString(@"verification_email_code");
+        _field.placeholder = kLocalizedString(@"Email");
     }
 }
 - (IBAction)sendAction:(UIButton *)sender {

@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"My Orders";
+    self.title = kLocalizedString(@"My_orders");
     self.menuList = @[@"All", @"ToPay", @"ToShip",@"ToReceive",@"Completed",@"Canceled"];
     self.typeList = @[@(OrderListType_All),@(OrderListType_ToPay),@(OrderListType_ToShip),@(OrderListType_ToReceive),@(OrderListType_Successful),@(OrderListType_Cancel)];
     [self addChildViewController:self.magicController];

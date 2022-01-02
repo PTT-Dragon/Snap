@@ -28,11 +28,11 @@
     ReviewUserInfoModel *userModel = model.groupMembers.firstObject;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(userModel.photo)]];
     if ([model.state isEqualToString:@"C"]) {
-        [_shareBtn setTitle:@"VIEW MORE GROUP BUY OFFER" forState:0];
-        _stateLabel.text = @"Grouped";
+        [_shareBtn setTitle:kLocalizedString(@"view_more_group") forState:0];
+        _stateLabel.text = kLocalizedString(@"Grouped");
     }else if ([model.state isEqualToString:@"B"]){
-        [_shareBtn setTitle:@"INVITE FRIENDS" forState:0];
-        _stateLabel.text = @"1 more buyer required Expire in";
+        [_shareBtn setTitle:kLocalizedString(@"") forState:0];
+        _stateLabel.text = kLocalizedString(@"expire_one_tip");
     }
 }
 

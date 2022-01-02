@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Setting";
+    self.title = kLocalizedString(@"Setting");
     [self layoutSubviews];
 }
 - (void)layoutSubviews
@@ -67,7 +67,7 @@
         return cell;
     }else if (indexPath.section == 2){
         accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
-        cell.label.text = @"Share Shop";
+        cell.label.text = kLocalizedString(@"Share_shop");
         return cell;
     }
     SetLogOutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetLogOutCell"];

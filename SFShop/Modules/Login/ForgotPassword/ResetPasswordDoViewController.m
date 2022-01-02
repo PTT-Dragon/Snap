@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Reset Password";
+    self.title = kLocalizedString(@"Reset_password");
     [_pwdField addTarget:self action:@selector(tfEditingChanged:) forControlEvents:(UIControlEventEditingChanged)];
     [_confirmPwdField addTarget:self action:@selector(tfEditingChanged:) forControlEvents:(UIControlEventEditingChanged)];
 }
@@ -38,12 +38,12 @@
 }
 - (IBAction)resetAction:(UIButton *)sender {
     if (![_pwdField.text isEqualToString:_confirmPwdField.text]) {
-        [MBProgressHUD autoDismissShowHudMsg:@"Confirm password"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Confirm_password")];
         return;
     }
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.resetPwd parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_pwdField.text),@"code":_code,@"confirmPwd":login_aes_128_cbc_encrypt(_confirmPwdField.text)} success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"Reset Success!"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Reset_success")];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
         

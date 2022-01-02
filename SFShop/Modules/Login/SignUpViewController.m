@@ -27,7 +27,7 @@ static BOOL _passwordSuccess = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Sign Up";
+    self.title = kLocalizedString(@"Sign_Up");
     [self layoutSubviews];
 }
 - (void)layoutSubviews

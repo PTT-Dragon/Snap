@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Cash Out";
+    self.title = kLocalizedString(@"Cash_out");
     [self.bankField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     [self.accountField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     [self.accountNameField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
