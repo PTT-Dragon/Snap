@@ -66,10 +66,18 @@
 #pragma mark - Get and Set
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     super.dataModel = dataModel;
-    if (!dataModel.shopAvailableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
+    NSInteger shopAvailableVouchersCount = dataModel.couponsModel.pltAvailableCoupons.count;
+    if (!shopAvailableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
         self.subTitleLabel.text = kLocalizedString(@"Not_available");
+        self.subTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     } else {
-        self.subTitleLabel.text = [NSString stringWithFormat:@"%ld %@",dataModel.shopAvailableVouchersCount, kLocalizedString(@"Available")];
+        if (dataModel.currentPltCoupon) {
+            self.subTitleLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.priceRp,dataModel.currentPltCoupon.discountAmount / 1000.0];
+            self.subTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
+        } else {
+            self.subTitleLabel.text = [NSString stringWithFormat:@"%ld %@",shopAvailableVouchersCount, kLocalizedString(@"Available")];
+            self.subTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
+        }
     }
 }
 

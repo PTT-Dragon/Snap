@@ -12,6 +12,7 @@
 #import "ProductCheckoutViewController.h"
 #import "CartModel.h"
 #import "OrderLogisticsModel.h"
+#import "CouponsAvailableModel.h"
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -220,28 +221,76 @@
     }];
     
     [MBProgressHUD showHudMsg:@"Calculating..."];
-    [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Success!"];
-        ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
-        [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable responseInner) {
-            NSDictionary *data = ((NSArray *)responseInner).firstObject;
-            OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
-            ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-            [vc setProductModels:productDetailModels
-                      attrValues:attrValues
-                      productIds:productIds
-                  logisticsModel:logisticsModel
-                    addressModel:weakself.selAddModel
-                        feeModel:feeModel
-                           count:counts
-                      sourceType:@"GWCGM"];
-            [weakself.navigationController pushViewController:vc animated:YES];
+    __block ProductCalcFeeModel *feeModel = nil;
+    __block OrderLogisticsModel *logisticsModel = nil;
+    __block CouponsAvailableModel *couponsModel = nil;
+    dispatch_group_t group = dispatch_group_create();
+    //请求结算数据
+    
+    dispatch_group_enter(group);
+    dispatch_group_async(group, dispatch_get_main_queue(), ^{
+        [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
+            feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
+            dispatch_group_leave(group);
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+            dispatch_group_leave(group);
+        }];
+    });
+    
+    //请求配送数据
+    dispatch_group_enter(group);
+    dispatch_group_async(group, dispatch_get_main_queue(), ^{
+        [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable response) {
+            NSDictionary *data = ((NSArray *)response).firstObject;
+            logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
+            dispatch_group_leave(group);
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+            dispatch_group_leave(group);
         }];
-    } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
-    }];
+    });
+    
+    //请求商品优惠券数据
+    dispatch_group_enter(group);
+    dispatch_group_async(group, dispatch_get_main_queue(), ^{
+        [SFNetworkManager post:SFNet.order.couponsAvailable parameters:logisticsParams success:^(id  _Nullable response) {
+            couponsModel = [[CouponsAvailableModel alloc] initWithDictionary:response error:nil];
+            dispatch_group_leave(group);
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+            dispatch_group_leave(group);
+        }];
+    });
+
+    //获取数据,并进入结算页面
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideFromKeyWindow];
+        if (!feeModel) {
+            return;
+        }
+        
+        if (!logisticsModel) {
+            return;
+        }
+        
+        if (!couponsModel) {
+            NSLog(@"");
+        }
+        
+        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+        [vc setProductModels:productDetailModels
+                  attrValues:attrValues
+                  productIds:productIds
+              logisticsModel:logisticsModel
+                 couponModel:couponsModel
+                addressModel:weakself.selAddModel
+                    feeModel:feeModel
+                       count:counts
+                  sourceType:@"GWCGM"];
+        [weakself.navigationController pushViewController:vc animated:YES];
+    });
+
 }
 
 #pragma mark - 计算购物车选中总价

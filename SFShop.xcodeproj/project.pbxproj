@@ -409,6 +409,9 @@
 		8EACB6862781E92D0066BD3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EACB6852781E92D0066BD3A /* libsqlite3.0.tbd */; };
 		8EACB6882781E9350066BD3A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EACB6872781E9350066BD3A /* WebKit.framework */; };
 		8EACB68A2781E93C0066BD3A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EACB6892781E93C0066BD3A /* SystemConfiguration.framework */; };
+		AE43BF5F2781F4DF006D7135 /* CouponsAvailableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE43BF5E2781F4DF006D7135 /* CouponsAvailableModel.m */; };
+		AE43BF632782DBF2006D7135 /* CouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE43BF622782DBF2006D7135 /* CouponsViewController.m */; };
+		AE43BF672782DCB7006D7135 /* CouponsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE43BF662782DCB7006D7135 /* CouponsCell.m */; };
 		AE4C6C012768E76B006788FE /* OrderLogisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4C6C002768E76A006788FE /* OrderLogisticsModel.m */; };
 		AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A65275B502C00F34481 /* CategoryRankNoItemsView.m */; };
 		AE5C9A69275B5C7C00F34481 /* SFSearchingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C9A68275B5C7C00F34481 /* SFSearchingView.m */; };
@@ -1172,6 +1175,12 @@
 		8EACB6872781E9350066BD3A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		8EACB6892781E93C0066BD3A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		ABCFEC0B341B688C59EBE3B6 /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
+		AE43BF5D2781F4DF006D7135 /* CouponsAvailableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponsAvailableModel.h; sourceTree = "<group>"; };
+		AE43BF5E2781F4DF006D7135 /* CouponsAvailableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponsAvailableModel.m; sourceTree = "<group>"; };
+		AE43BF612782DBF2006D7135 /* CouponsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponsViewController.h; sourceTree = "<group>"; };
+		AE43BF622782DBF2006D7135 /* CouponsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponsViewController.m; sourceTree = "<group>"; };
+		AE43BF652782DCB7006D7135 /* CouponsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponsCell.h; sourceTree = "<group>"; };
+		AE43BF662782DCB7006D7135 /* CouponsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponsCell.m; sourceTree = "<group>"; };
 		AE4C6BFF2768E76A006788FE /* OrderLogisticsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderLogisticsModel.h; sourceTree = "<group>"; };
 		AE4C6C002768E76A006788FE /* OrderLogisticsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderLogisticsModel.m; sourceTree = "<group>"; };
 		AE5C9A64275B502C00F34481 /* CategoryRankNoItemsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankNoItemsView.h; sourceTree = "<group>"; };
@@ -2288,6 +2297,7 @@
 		4B818FC8272394D90058038A /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				AE43BF602782DBE5006D7135 /* Coupons */,
 				1BD2A619276B099500F994C5 /* FlashSaleProduct */,
 				1BD2A618276AED3800F994C5 /* GroupProduct */,
 				1BD10C2F2761D4C100BFC1AD /* ProductReview */,
@@ -2706,6 +2716,34 @@
 			children = (
 			);
 			path = Share;
+        };
+		AE43BF602782DBE5006D7135 /* Coupons */ = {
+			isa = PBXGroup;
+			children = (
+				AE43BF682782DCC9006D7135 /* Model */,
+				AE43BF642782DC9A006D7135 /* View */,
+				AE43BF612782DBF2006D7135 /* CouponsViewController.h */,
+				AE43BF622782DBF2006D7135 /* CouponsViewController.m */,
+			);
+			path = Coupons;
+			sourceTree = "<group>";
+		};
+		AE43BF642782DC9A006D7135 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE43BF652782DCB7006D7135 /* CouponsCell.h */,
+				AE43BF662782DCB7006D7135 /* CouponsCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE43BF682782DCC9006D7135 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE43BF5D2781F4DF006D7135 /* CouponsAvailableModel.h */,
+				AE43BF5E2781F4DF006D7135 /* CouponsAvailableModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AE81BDCA26FB6E7000AB4225 = {
@@ -3369,6 +3407,7 @@
 				AE68D68B272AFAF900CF544C /* SFSearchSectionHeadView.m in Sources */,
 				1B82AEDB277080B700D75E00 /* YYAnimatedImageView.m in Sources */,
 				1B6C5294275B672200A1C617 /* ZLPhotoBrowserCell.m in Sources */,
+				AE43BF672782DCB7006D7135 /* CouponsCell.m in Sources */,
 				1B478316272A957000F2A945 /* RefundProcessCell.m in Sources */,
 				1B47830C272A838500F2A945 /* refundModel.m in Sources */,
 				AEA3297E2727053F00E7827A /* SFSearchView.m in Sources */,
@@ -3392,6 +3431,7 @@
 				1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */,
 				1B82AEE7277080B700D75E00 /* YYWebImageOperation.m in Sources */,
 				1B6C5297275B672200A1C617 /* ZLAnimateTransition.m in Sources */,
+				AE43BF632782DBF2006D7135 /* CouponsViewController.m in Sources */,
 				1B552EAE276B36CC0086604B /* GroupFilterCell.m in Sources */,
 				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
 				1BDBEB9C26FDA1360018109B /* forgotPasswordView.m in Sources */,
@@ -3551,6 +3591,7 @@
 				1B82AE4C27707CB500D75E00 /* KSPhotoItem.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
 				1BD10C332761DE4300BFC1AD /* ProductEvalationCell.m in Sources */,
+				AE43BF5F2781F4DF006D7135 /* CouponsAvailableModel.m in Sources */,
 				1B478320272A9F0300F2A945 /* SetLogOutCell.m in Sources */,
 				1BF56CD42761A5B100B40CAA /* ResetPasswordDoViewController.m in Sources */,
 				1BF4DD4A2774644600972265 /* NSObject+SwizzleMethod.m in Sources */,

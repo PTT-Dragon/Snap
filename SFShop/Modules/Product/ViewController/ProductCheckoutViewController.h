@@ -10,6 +10,7 @@
 #import "addressModel.h"
 #import "ProductDetailModel.h"
 #import "OrderLogisticsModel.h"
+#import "CouponsAvailableModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
               attrValues:(NSArray<NSString *> *)attrValues
               productIds:(NSArray<NSNumber *> *) productIds
           logisticsModel:(OrderLogisticsModel *)logisticsModel
+             couponModel:(CouponsAvailableModel *)couponModel
             addressModel: (addressModel *)addressModel
                 feeModel:(ProductCalcFeeModel *)feeModel
                    count: (NSArray<NSNumber *> *) counts
