@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CouponsAvailableModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 //商品选项
@@ -39,11 +40,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 //最后提示信息相关
 @property (nonatomic, readwrite, strong) NSString *notes;//备注
-@property (nonatomic, readwrite, assign) NSInteger availableVouchersCount;//有效优惠券数量
-@property (nonatomic, readwrite, assign) float vouchersReduce;//当前优惠券降价
 @property (nonatomic, readwrite, assign) float promoReduce;//促销降价
 @property (nonatomic, readwrite, assign) float totalPrice;//总价
-@property (nonatomic, readwrite, assign) NSInteger shopAvailableVouchersCount;//商店总的有效优惠券数量
+
+//优惠券
+@property (nonatomic, readwrite, strong) CouponsAvailableModel *couponsModel;//数据源
+@property (nonatomic, readwrite, strong) CouponItem *currentStoreCoupon;//当前商店优惠券
+@property (nonatomic, readwrite, strong) CouponItem *currentPltCoupon;//平台优惠券
+
 @end
 
 NS_ASSUME_NONNULL_END

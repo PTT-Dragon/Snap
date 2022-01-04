@@ -145,7 +145,7 @@
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
         [SFNetworkManager post:SFNet.cart.del parameters:@{@"cartIds":@[model.shoppingCartId]} success:^(id  _Nullable response) {
-            [MBProgressHUD autoDismissShowHudMsg:@"DELETE SUCCESS"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Delete_success")];
             [weakself loadDatas];
         } failed:^(NSError * _Nonnull error) {
             
@@ -180,7 +180,7 @@
  
 // 修改编辑按钮文字
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"删除";
+    return kLocalizedString(@"Delete");
 }
 - (void)loadDatas
 {

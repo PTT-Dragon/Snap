@@ -29,12 +29,12 @@
         _labelLeading.priority = 250;
         _labelTrailing.priority = 750;
         _imgView.image = [UIImage imageNamed:@"swipe-up"];
-        _contentLabel.text = @"Hide";
+        _contentLabel.text = kLocalizedString(@"Hide");
     }else{
         _labelLeading.priority = 750;
         _labelTrailing.priority = 250;
         _imgView.image = [UIImage imageNamed:@"swipe-down"];
-        _contentLabel.text = [NSString stringWithFormat:@"View replies (%ld)",count];
+        _contentLabel.text = [NSString stringWithFormat:@"%@ (%ld)", kLocalizedString(@"View_replies"), count];
     }
 }
 @end

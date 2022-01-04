@@ -1,7 +1,6 @@
-
+source 'https://cdn.cocoapods.org'
 
 target 'SFShop' do
-  
   pod 'AFNetworking'
   pod 'Masonry'
   pod 'MBProgressHUD'

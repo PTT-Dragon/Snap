@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Recently Viewed";
+    self.title = kLocalizedString(@"Recently_Viewed");
     _dataSource = [NSMutableArray array];
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
@@ -142,7 +142,7 @@
 }
 // 修改编辑按钮文字
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"删除";
+    return kLocalizedString(@"Delete");
 }
 
 #pragma mark - CalendarManager delegate

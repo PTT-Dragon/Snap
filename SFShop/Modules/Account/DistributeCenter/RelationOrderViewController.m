@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Relation Order";
+    self.title = kLocalizedString(@"Relation_Order");
     self.menuList = @[@"Pending", @"Settled"];
     
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, self.view.jk_height);

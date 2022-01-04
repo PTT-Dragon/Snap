@@ -232,6 +232,10 @@
     return K_order_domain(@"logistics");
 }
 
+- (NSString *)couponsAvailable {
+    return K_order_domain(@"coupons/available");
+}
+
 
 @end
 

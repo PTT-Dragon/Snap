@@ -454,6 +454,7 @@
                           attrValues:@[weakself.variationsLabel.text]
                  productIds:@[@([weakself getSelectedProductId])]
                       logisticsModel:logisticsModel
+                         couponModel:nil
                         addressModel:weakself.selectedAddressModel
                             feeModel:feeModel
                                count:@[@(weakself.attrView.count)]
@@ -517,6 +518,7 @@
                           attrValues:@[weakself.variationsLabel.text]
                  productIds:@[@([weakself getSelectedProductId])]
                       logisticsModel:logisticsModel
+                         couponModel:nil
                         addressModel:weakself.selectedAddressModel
                             feeModel:feeModel
                                count:@[@(weakself.attrView.count)]

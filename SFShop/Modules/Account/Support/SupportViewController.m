@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Support";
+    self.title = kLocalizedString(@"Support");
 }
 - (IBAction)emailAction:(id)sender {
     NSString *recipients = @"mailto:ysy@flyrise.cn?subject=Hello from California!";

@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Cash Out History";
+    self.title = kLocalizedString(@"Cash_Out_History");
     _dataSource = [NSMutableArray array];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"CashOutHistoryCell" bundle:nil] forCellReuseIdentifier:@"CashOutHistoryCell"];

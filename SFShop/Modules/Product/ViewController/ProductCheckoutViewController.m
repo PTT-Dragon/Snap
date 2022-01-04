@@ -19,6 +19,7 @@
 #import "PublicWebViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import "AddressViewController.h"
+#import "CouponsViewController.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -57,6 +58,7 @@
                attrValues:(NSArray<NSString *> *)attrValues
                productIds:(NSArray<NSNumber *> *) productIds
           logisticsModel:(OrderLogisticsModel *)logisticsModel
+             couponModel:(CouponsAvailableModel *)couponModel
             addressModel: (addressModel *)addressModel
                 feeModel:(ProductCalcFeeModel *)feeModel
                    count: (NSArray<NSNumber *> *)productBuyCounts
@@ -81,6 +83,9 @@
     self.dataModel.productList = arr;
     
     self.dataModel.sourceType = sourceType;
+    
+    //优惠券
+    self.dataModel.couponsModel = couponModel;
 
     // 地址
     _addressModel = addressModel;
@@ -98,9 +103,7 @@
     /**
      结算总价这边我做了修改 测试是正常
      **/
-    self.dataModel.totalPrice = ([feeModel.totalOfferPrice floatValue] + [logisticsItem.logisticsFee floatValue] - feeModel.totalDiscount.floatValue)  * 0.001;
-    self.dataModel.shopAvailableVouchersCount = 0;
-    
+    self.dataModel.totalPrice = ([feeModel.totalOfferPrice floatValue] + [logisticsItem.logisticsFee floatValue] - feeModel.totalDiscount.floatValue)  * 0.001;    
     [self.tableView reloadData];
 }
 
@@ -201,6 +204,26 @@
         };
         [self.navigationController pushViewController:vc animated:YES];
     };
+    __weak __typeof(self)weakSelf = self;
+    cell.eventBlock = ^(ProductCheckoutModel * _Nonnull dataModel, SFCellCacheModel * _Nonnull cellModel, ProductCheckoutCellEvent event) {
+        switch (event) {
+            case ProductCheckoutCellEvent_GotoStoreVoucher: {
+                CouponsViewController *vc = [[CouponsViewController alloc] init];
+                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+                vc.dataArray = self.dataModel.couponsModel.storeAvailableCoupons.firstObject.availableCoupons.mutableCopy;
+                vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
+                    __strong __typeof(weakSelf)strongSelf = weakSelf;
+                    strongSelf.dataModel.currentStoreCoupon = item;
+                    [strongSelf.tableView reloadData];
+                };
+                [self presentViewController:vc animated:YES completion:nil];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.dataModel = self.dataModel;
     cell.cellModel = cellModel;
@@ -247,8 +270,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-
+    SFCellCacheModel *model = self.dataArray[indexPath.section][indexPath.row];
+    if ([model.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
+        __weak __typeof(self)weakSelf = self;
+        CouponsViewController *vc = [[CouponsViewController alloc] init];
+        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+        vc.dataArray = self.dataModel.couponsModel.pltAvailableCoupons.mutableCopy;
+        vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            strongSelf.dataModel.currentPltCoupon = item;
+            [strongSelf.tableView reloadData];
+        };
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

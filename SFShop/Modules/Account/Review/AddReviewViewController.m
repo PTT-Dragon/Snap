@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Review";
+    self.title = kLocalizedString(@"Review");
     _imgUrlArr = [NSMutableArray array];
     _imgArr = [NSMutableArray array];
     [_imgArr addObject:@"1"];

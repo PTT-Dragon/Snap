@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Account";
+    self.title = kLocalizedString(@"Account");
     _couponCount = 0;
     _favoriteCount = 0;
     _recentCount = 0;

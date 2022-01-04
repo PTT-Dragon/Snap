@@ -91,7 +91,7 @@
 }
 
 - (void)request {
-    [MBProgressHUD showHudMsg:@"加载中"];
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [self requestArticleDetail];
     [self requestArticleEvaluate];
 }

@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Commission";
+    self.title = kLocalizedString(@"Commission");
     _dataSource = [NSMutableArray array];
     [_dataSource addObjectsFromArray:@[@{@"image":@"00326： My Wallet ／ Wallet",@"title":@"Cash Out"},@{@"image":@"00327： Piggy Bank ／ Savings",@"title":@"Income & Expense"},@{@"image":@"00348_ Cash Out History",@"title":@"Cash Out History"}]];
     [self.view addSubview:self.tableView];

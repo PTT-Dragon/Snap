@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Message";
+    self.title = kLocalizedString(@"Message");
     _busiScope = @"CM";
     _dataSource = [NSMutableArray array];
     [self.view addSubview:self.tableView];

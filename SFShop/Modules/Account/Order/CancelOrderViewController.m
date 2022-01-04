@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Cancellation Request";
+    self.title = kLocalizedString(@"Cancellation_Request");
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];

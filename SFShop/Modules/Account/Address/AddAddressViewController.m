@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Modify Address";
+    self.title = kLocalizedString(@"Modify_Address");
     _homeBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _homeBtn.layer.borderWidth = 1;
     _officeBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
@@ -148,7 +148,7 @@
     [params setValue:_emailField.text forKey:@"email"];
     MPWeakSelf(self)
     [SFNetworkManager post:[SFNet.address setAddressModifyOfdeliveryAddressId:_model.deliveryAddressId] parameters:params success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"MODIFY SUCCESS"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
         [weakself.delegate addNewAddressSuccess];
         [weakself.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {

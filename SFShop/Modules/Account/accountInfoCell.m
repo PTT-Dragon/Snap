@@ -52,7 +52,7 @@
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (!model || [model.accessToken isEqualToString:@""]) {
         //登出状态
-        self.nameLabel.text = @"Login Or Register";
+        self.nameLabel.text = kLocalizedString(@"Login_Or_Register");
         self.nameLabel.userInteractionEnabled = YES;
         self.imgVIew.image = [UIImage imageNamed:@"account-black"];
         self.couponLabel.text = @"--";

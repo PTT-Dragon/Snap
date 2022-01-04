@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Service Detail";
+    self.title = kLocalizedString(@"Service_Detail");
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"RefundProcessCell" bundle:nil] forCellReuseIdentifier:@"RefundProcessCell"];

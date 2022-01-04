@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Review";
+    self.title = kLocalizedString(@"Review");
     self.menuList = @[@"To Review", @"Rated"];
     
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);

@@ -37,6 +37,6 @@
     _contentLabel.text = contactModel.content;
     _timeLabel.text = contactModel.sendTime;
     _unreadLabel.text = contactModel.unreadNum == 0 ? @"": [NSString stringWithFormat:@" %ld ",contactModel.unreadNum];
-    _nameLabel.text = @"Order & Logistics";
+    _nameLabel.text = kLocalizedString(@"Order_Logistics");
 }
 @end

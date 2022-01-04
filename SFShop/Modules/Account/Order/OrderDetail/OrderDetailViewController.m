@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Order Details";
+    self.title = kLocalizedString(@"Order_details");
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
     _dataSource = [NSMutableArray array];

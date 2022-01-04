@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Distributor Center";
+    self.title = kLocalizedString(@"Distributor_center");
     _selType = 1;
     _dataSource = [NSMutableArray array];
     [self.view addSubview:self.tableView];

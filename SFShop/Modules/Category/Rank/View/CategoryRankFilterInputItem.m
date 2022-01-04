@@ -80,7 +80,7 @@
     if (_minField == nil) {
         _minField = [[CustomTextField alloc] init];
         _minField.userInteractionEnabled = YES;
-        _minField.placeholder = @"Min";
+        _minField.placeholder = kLocalizedString(@"Min");
         _minField.textColor = [UIColor blackColor];
         _minField.font = [UIFont systemFontOfSize:16];
         _minField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
@@ -94,7 +94,7 @@
 - (CustomTextField *)maxField {
     if (_maxField == nil) {
         _maxField = [[CustomTextField alloc] init];
-        _maxField.placeholder = @"Max";
+        _maxField.placeholder = kLocalizedString(@"Max");
         _maxField.textColor = [UIColor blackColor];
         _maxField.font = [UIFont systemFontOfSize:16];
         _maxField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;

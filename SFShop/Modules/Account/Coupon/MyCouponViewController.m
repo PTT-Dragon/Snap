@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"My Coupon";
+    self.title = kLocalizedString(@"My_coupon");
     self.menuList = @[@"Available", @"Expired", @"Used"];
     self.articleCatgIdList = @[@(CouponType_Available),@(CouponType_Expired),@(CouponType_Used)];
     [self addChildViewController:self.magicController];

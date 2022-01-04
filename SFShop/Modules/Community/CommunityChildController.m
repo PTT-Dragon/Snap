@@ -38,7 +38,7 @@
 }
 
 - (void)request {
-    [MBProgressHUD showHudMsg:@"加载中"];
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     NSDictionary *param = @{
         @"articleCatgId": self.articleCatgId,
         @"pageIndex": @"0",

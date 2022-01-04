@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Change Password";
+    self.title = kLocalizedString(@"Change_Password");
 }
 - (IBAction)changeAction:(id)sender {
     if (![_PasswordField.text isEqualToString:_confirmPassword.text]) {

@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Order Details";
+    self.title = kLocalizedString(@"Order_details");
     _infomationArr = [NSMutableArray array];
     _productInfoArr = [NSMutableArray array];
     [self initUI];

@@ -35,7 +35,7 @@ static BOOL _passwordSuccess = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Login";
+    self.title = kLocalizedString(@"Login");
     [self layoutSubviews];
 }
 - (void)layoutSubviews
@@ -72,8 +72,8 @@ static BOOL _passwordSuccess = NO;
     _emailBtn.selected = NO;
     _phoneIndicationView.backgroundColor = [UIColor blackColor];
     _emailIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
-    _label1.text = @" Phone number ";
-    _accountField.placeholder = @"Phone number";
+    _label1.text = kLocalizedString(@"Phone_number");
+    _accountField.placeholder = kLocalizedString(@"Phone_number");
 }
 - (IBAction)emailAction:(UIButton *)sender {
     _type = 2;
@@ -81,8 +81,8 @@ static BOOL _passwordSuccess = NO;
     _phoneBtn.selected = NO;
     _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
     _emailIndicationView.backgroundColor = [UIColor blackColor];
-    _label1.text = @" Email ";
-    _accountField.placeholder = @"Email";
+    _label1.text = kLocalizedString(@"Email");
+    _accountField.placeholder = kLocalizedString(@"Email");
 }
 - (IBAction)loginAction:(id)sender {
     //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234

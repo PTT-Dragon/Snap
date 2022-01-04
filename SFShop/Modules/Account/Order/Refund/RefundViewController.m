@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Refund & Return";
+    self.title = kLocalizedString(@"Refund_Return");
     _dataSource = [NSMutableArray array];
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.searchView];
@@ -140,7 +140,7 @@
 {
     if (!_searchBar) {
         _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(16, 13, MainScreen_width-32, 46)];
-        _searchBar.placeholder = @"Search";
+        _searchBar.placeholder = kLocalizedString(@"Search");
         _searchBar.delegate = self;
     }
     return _searchBar;

@@ -45,33 +45,33 @@
     _countLabel.text = [NSString stringWithFormat:@"X%@",itemsModel.submitNum];
     _priceLabel.text = [NSString stringWithFormat:@"RP %@",itemsModel.unitPrice];
     if ([model.eventId isEqualToString:@"2"]) {
-        _stateLabel.text = @"Return";
+        _stateLabel.text = kLocalizedString(@"Return");
     }else if ([model.eventId isEqualToString:@"3"]){
-        _stateLabel.text = @"Refund";
+        _stateLabel.text = kLocalizedString(@"Refund");
     }else if ([model.eventId isEqualToString:@"4"]){
-        _stateLabel.text = @"Exchange";
+        _stateLabel.text = kLocalizedString(@"Exchange");
     }
     if ([model.state isEqualToString:@"B"]) {
         //拒绝
-        _statuLabel.text = @"Rejection";
-        _contentLabel.text = @"Refund is not supported for damaged goods";
+        _statuLabel.text = kLocalizedString(@"Rejection");
+        _contentLabel.text = kLocalizedString(@"return_tip");
         _viewHei.constant = 52;
         _btn.hidden = NO;
     }else if ([model.state isEqualToString:@"A"]){
         //待审核
-        _statuLabel.text = @"Pending Review";
+        _statuLabel.text = kLocalizedString(@"Pending_Review");
         _contentLabel.text = @"";
         _viewHei.constant = 30;
         _btn.hidden = NO;
     }else if ([model.state isEqualToString:@"A"]){
         //待填写物流信息
-        _statuLabel.text = @"Waiting For Return";
+        _statuLabel.text = kLocalizedString(@"waitReturn_tip");
         _contentLabel.text = @"";
         _viewHei.constant = 30;
         _btn.hidden = NO;
     }else if ([model.state isEqualToString:@"E"]){
         //待退款
-        _statuLabel.text = @"Waiting For Return";
+        _statuLabel.text = kLocalizedString(@"waitReturn_tip");
         _contentLabel.text = [NSString stringWithFormat:@"%@",model.orderApplyCode];
         _viewHei.constant = 52;
         _btn.hidden = NO;

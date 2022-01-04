@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Personal Information";
+    self.title = kLocalizedString(@"Personal_information");
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     _selectDateStr = model.userRes.birthdayDayStr;
     _gender = model.userRes.genderStr;
