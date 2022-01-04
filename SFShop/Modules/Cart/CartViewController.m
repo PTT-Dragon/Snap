@@ -271,7 +271,8 @@
 - (UIView *)bottomView
 {
     if (!_bottomView) {
-        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.jk_height-78, MainScreen_width, 78)];
+        CGFloat a = self.view.jk_height;
+        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, MainScreen_height-tabbarHei-navBarHei-78, MainScreen_width, 78)];
         _bottomView.backgroundColor = [UIColor whiteColor];
         [_bottomView addSubview:self.checkBtn];
         [_bottomView addSubview:self.amountLabel];
