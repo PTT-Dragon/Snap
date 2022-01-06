@@ -10,3 +10,7 @@
 @implementation favoriteModel
 
 @end
+
+@implementation favoriteVCModel
+
+@end

@@ -15,6 +15,7 @@
 @property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
+@property (nonatomic, readwrite, strong) NSMutableArray *dataSource;
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 
 @end
@@ -33,7 +34,11 @@
     UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItems = @[rightItem];
     self.menuList = @[@"All", @"Pricedown", @"Promotion"];
-    
+    for (NSInteger idx = 0; idx<self.menuList.count; idx++) {
+        favoriteVCModel *model = [[favoriteVCModel alloc] init];
+        model.type = idx == 0 ? ALLTYPE: idx == 1 ? PRICEDOWNTYPE: PROMOTIONTYPE;
+        [self.dataSource addObject:model];
+    }
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#000000"];
@@ -45,6 +50,7 @@
     self.magicView.delegate = self;
     self.magicView.scrollEnabled = NO;
     [self.magicView reloadData];
+    
     [self loadDatas];
 }
 - (void)jumpToFilterDetail
@@ -68,7 +74,8 @@
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
         FavoriteChildViewController *vc = self.childViewControllers[self.currentPage];
-        
+//        vc.vcModel.catgId = model.catgIds.firstObject;
+//        vc.vcModel.maxPrice =
     };
     [self presentViewController:filterVc animated:YES completion:nil];
 }
@@ -121,6 +128,7 @@
     if (!gridViewController) {
         gridViewController = [[FavoriteChildViewController alloc] init];
     }
+    gridViewController.vcModel = self.dataSource[pageIndex];
     return gridViewController;
 }
 
@@ -145,5 +153,12 @@
         self.filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
     }
     return _filterCacheModel;
+}
+- (NSMutableArray *)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [NSMutableArray array];
+    }
+    return _dataSource;
 }
 @end

@@ -85,7 +85,6 @@
 //  "COUPON_CENTER" = "领券中心",
 //  "SHOPPING_CART" = "购物车",
 //  "ADD_TO_CART" = "加入购物车",
-//  "ADD_TO_CART_SUCCESS" = "加入购物车成功",
 //  "FIND_SIMILAR" = "查找相似",
 //  "EMAIL" = "邮件",
 //  "MOBILE_NUMBER" = "手机号码",
@@ -560,7 +559,6 @@
 "Star_from" = "Star From";
 "Ends_in" = "Ends in";
 "Recommendations" = "Recommendations";
-"Add_to_cart_success" = "Add to cart Success!";
 "Add_to_cart_failed" = "Add to cart Failed!";
 "Terjual" = "Terjual";
 "IS_ALREADY_REGISTERED" = "已经注册.";
@@ -636,3 +634,4 @@
 "Max" = "Max";
 "Max" = "Max";
 "Max" = "Max";
+"ADD_TO_CART_SUCCESS" = "加入购物车成功";

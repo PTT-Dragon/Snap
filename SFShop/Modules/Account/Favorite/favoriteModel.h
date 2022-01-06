@@ -9,6 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum :NSUInteger{
+    ALLTYPE,
+    PRICEDOWNTYPE,
+    PROMOTIONTYPE
+}FavoriteType;
+
 @interface favoriteModel : JSONModel
 @property (nonatomic,copy) NSString <Optional>*brandId;
 @property (nonatomic,copy) NSString <Optional>*brandName;
@@ -34,36 +40,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*storeName;
 @property (nonatomic,copy) NSString <Optional>*topDate;
 @property (nonatomic,copy) NSString <Optional>*userCollectionOfferId;
-/**
- {
-brandId = 202;
-brandName = OPPO;
-currencySymbol = Rp;
-cutRate = "0%";
-evaluationAvg = 5;
-evaluationCnt = 4;
-evaluationRate = 1;
-goodsIntroduce = "<null>";
-imgUrl = "/get/resource/\U4e3b\U56fe 21405803944797671424.jpg";
-labels =             (
-);
-markdownPrice = 0;
-marketPrice = 1599000;
-offerId = 1206;
-offerName = "Oppo Enco Q1 TWS";
-offerType = P;
-productId = 2328;
-productName = "Oppo Enco Q1 TWS JERUK";
-salesCnt = 8;
-salesPrice = 1440000;
-storeId = 15;
-storeLogoUrl = "/get/resource/f11450338409762656256.jpg";
-storeName = NeuKoo;
-subheadName = "";
-topDate = "2021-10-17 20:42:05";
-userCollectionOfferId = 20001;
-}
- **/
+@end
+
+@interface favoriteVCModel : JSONModel
+@property (nonatomic,assign) FavoriteType type;
+@property (nonatomic,assign) float maxPrice;
+@property (nonatomic,assign) float minPrice;
+@property (nonatomic,assign) NSInteger catgId;
+
 @end
 
 NS_ASSUME_NONNULL_END

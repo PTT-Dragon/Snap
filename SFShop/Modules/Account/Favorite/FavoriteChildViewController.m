@@ -7,9 +7,9 @@
 
 #import "FavoriteChildViewController.h"
 #import "FavoriteTableViewCell.h"
-#import "favoriteModel.h"
 #import <MJRefresh/MJRefresh.h>
 #import "EmptyView.h"
+#import "ProductViewController.h"
 
 @interface FavoriteChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -51,7 +51,15 @@
 {
     self.pageIndex = 1;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.favorite.favorite parameters:@{@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@(self.pageIndex) forKey:@"pageIndex"];
+    [params setValue:@(10) forKey:@"pageSize"];
+    if (_vcModel.type == PRICEDOWNTYPE) {
+        [params setValue:@"Y" forKey:@"priceDownFlag"];
+    }else if (_vcModel.type == PROMOTIONTYPE){
+        [params setValue:@"Y" forKey:@"promotionFlag"];
+    }
+    [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
         [weakself.tableView.mj_header endRefreshing];
         [weakself.dataSource removeAllObjects];
         [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
@@ -75,7 +83,15 @@
 {
     self.pageIndex ++;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.favorite.favorite parameters:@{@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@(self.pageIndex) forKey:@"pageIndex"];
+    [params setValue:@(10) forKey:@"pageSize"];
+    if (_vcModel.type == PRICEDOWNTYPE) {
+        [params setValue:@"Y" forKey:@"priceDownFlag"];
+    }else if (_vcModel.type == PROMOTIONTYPE){
+        [params setValue:@"Y" forKey:@"promotionFlag"];
+    }
+    [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
         [weakself.tableView.mj_footer endRefreshing];
         [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
@@ -137,6 +153,13 @@
 // 修改编辑按钮文字
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return kLocalizedString(@"Delete");
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    favoriteModel *model = self.dataSource[indexPath.row];
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = model.offerId.integerValue;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -

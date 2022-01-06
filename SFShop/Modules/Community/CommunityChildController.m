@@ -51,7 +51,8 @@
         [self.collectionView reloadData];
         NSLog(@"get articles success");
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+        [MBProgressHUD hideFromKeyWindow];
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"error"]];
         NSLog(@"get articles failed");
     }];
 }

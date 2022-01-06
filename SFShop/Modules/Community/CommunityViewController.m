@@ -69,7 +69,8 @@
         }];
         [self setupMagicView];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+        [MBProgressHUD hideFromKeyWindow];
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"error"]];
     }];
 }
 
