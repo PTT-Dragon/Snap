@@ -77,13 +77,13 @@
     NSString *selDay = [formatter1 stringFromDate:_dateSelected];
     [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":selDay,@"endDate":selDay} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
+        [weakself.dataSource removeAllObjects];
         if (!kArrayIsEmpty(arr)) {
-            [weakself.dataSource removeAllObjects];
             for (NSDictionary *dic in arr) {
                 [weakself.dataSource addObject:[[RecentlyModel alloc] initWithDictionary:dic error:nil]];
             }
-            [weakself.tableView reloadData];
         }
+        [weakself.tableView reloadData];
         [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself showEmptyView];
@@ -188,6 +188,13 @@
 
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
 {
+    if ([dayView.date compare:_todayDate] == NSOrderedDescending) {
+        return;
+    }
+    NSTimeInterval timeInterval = [_todayDate timeIntervalSinceDate:dayView.date];
+    if (timeInterval/86400 > 30) {
+        return;
+    }
     _dateSelected = dayView.date;
     [self loadDatas];
     

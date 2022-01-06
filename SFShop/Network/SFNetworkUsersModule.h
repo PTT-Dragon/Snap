@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *pwdpolicy;
 @property (nonatomic, readwrite, strong) NSString *pwdModify;
 @property (nonatomic, readwrite, strong) NSString *bindEmail;
+@property (nonatomic, readwrite, strong) NSString *emailModify;
 @property (nonatomic, readwrite, strong) NSString *phoneModify;
 @property (nonatomic, readwrite, strong) NSString *logout;
 @property (nonatomic, readwrite, strong) NSString *userInfo;

@@ -87,7 +87,6 @@
 //  "ADD_TO_CART" = "Tambah ke keranjang",
 //  "ADD_TO_CART_SUCCESS" = "Sukses menambahkan ke troli",
 //  "FIND_SIMILAR" = "Temukan yang serupa",
-//  "EMAIL" = "Email",
 //  "MOBILE_NUMBER" = "No. telephone",
 //  "NEW_MOBILE_NUMBER" = "No. telephone baru",
 //  "ADDRESS" = "Alamat",
@@ -111,7 +110,6 @@
 //  "SET_SUCCESSFUL" = "Setelan Berhasil",
 //  "DOWNLOAD" = "Downloading",
 //  "SUBMIT" = "Kirim",
-//  "EMAIL_ERROR_2" = "Mohon masukkan alamat email yang benar",
 //  "FORGOT_PWD" = "Lupa Kata Sandi",
 //  "SETTING" = "Pengaturan",
 //  "LOGIN" = "Gabung",
@@ -119,7 +117,6 @@
 //  "LOGIN_FACEBOOK" = "Facebook",
 //  "LOGIN_GOOGLE" = "Google",
 //  "LOGIN_SENT_CODE" = "Kode terkirim",
-//  "LOGIN_INVALID_PHONE" = "Please input the correct phone number.",
 //  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "Kata sandi tidak sesuai",
 //  "DONT_HAVE_ACCOUNT" = "Belum punya akun?",
 //  "SIGN_UP" = "Daftar",
@@ -194,8 +191,6 @@
 //  "DATEOFBIRTH" = "tanggal lahir",
 //  "SECURITY_CENTER" = "Pusat Keamanan",
 //  "CHANGE_PASS" = "Ganti kata sandi",
-//  "CHANGE_MOBILE" = "Ubah No. telephone",
-//  "CHANGE_EMAIL" = "Ganti e-mail",
 //  "STOCK_SHORTAGE" = "Stok limited",
 //  "INVITE_FRIEND" = "Undang Teman",
 //  "INVITATION_RECORD" = "Catatan undangan",
@@ -246,14 +241,12 @@
 //  "CONFIRM_PWD" = "Confirm New Password",
 //  "RE_ENTER_NEW_PASSWORD" = "Masukkan kembali kata sandi baru",
 //  "PASSWORD_NOT_MATCH" = "Kata sandi tidak cocok.",
-//  "ACCOUNT_DOES_NOT_EXIST" = "Akun tidak ada",
 //  "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "Re-set ulang sukses. Silahkan masuk kembali.",
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Harap masukkan nomor ponsel yang benar.",
 //  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Harap masukkan alamat email yang benar.",
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Harap masukkan alamat email atau no. telephone yang benar.",
 //  "THIS_PHONE_NUMBER" = "Nomor telepon ini",
 //  "THIS_EMAIL_ADDRESS" = "Alamat email ini",
-//  "PHONE" = "Telephone",
 //  "MEMBERSHIP_AGREEMENT" = "Syarat membership",
 //  "PLEASE_INPUT" = "Mohon masukan",
 //  "SAFETY_VERIFICATION" = "Verifikasi keamanan",
@@ -418,7 +411,6 @@
 //  "RESET_WITH_SMS" = "SETEL ULANG DENGAN SMS",
 //  "RESET_WITH_EMAIL" = "SETEL ULANG DENGAN EMAIL",
 //  "RESET_PASSWORD" = "Setel Ulang Kata Sandi",
-//  "RESET_PASSWORD_SMS" = "Kode verifikasi akan dikirim ke alamat sms Anda. Silahkan masukkan sms yang anda daftarkan.",
 //  "RESET_PASSWORD_EMAIL" = "Kode verifikasi akan dikirim ke alamat email Anda. Silakan masukkan email Anda yang terdaftar.",
 //  "SERVICE_TYPE" = "Jenis Layanan",
 //  "REFUND_SUCCESSFUL" = "Pengembalian Dana Berhasil",
@@ -624,7 +616,11 @@
 "Hide" = "Hide";
 "View_replies" = "View replies";
 "verification_email_code" = "A verification code will be sent to your email address. Please enter your registered email.";
+"RESET_PASSWORD_SMS" = "Kode verifikasi akan dikirim ke alamat sms Anda. Silahkan masukkan sms yang anda daftarkan.";
+"LOGIN_INVALID_PHONE" = "Please input the correct phone number.";
+"EMAIL_ERROR_2" = "Mohon masukkan alamat email yang benar";
 "Email" = "Email";
+"PHONE" = "Telephone";
 "Reset_password" = "Reset Password";
 "Confirm_password" = "Confirm password";
 "Reset_success" = "Reset Success!";
@@ -636,3 +632,9 @@
 "Max" = "Max";
 "Max" = "Max";
 "Max" = "Max";
+"ACCOUNT_DOES_NOT_EXIST" = "Akun tidak ada";
+"PASSWORD" = "Password";
+"EMAIL" = "Email";
+"CHANGE_MOBILE" = "Ubah No. telephone";
+"CHANGE_EMAIL" = "Ganti e-mail";
+

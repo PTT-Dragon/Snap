@@ -86,7 +86,6 @@
 //  "SHOPPING_CART" = "购物车",
 //  "ADD_TO_CART" = "加入购物车",
 //  "FIND_SIMILAR" = "查找相似",
-//  "EMAIL" = "邮件",
 //  "MOBILE_NUMBER" = "手机号码",
 //  "NEW_MOBILE_NUMBER" = "新手机号码",
 //  "ADDRESS" = "地址",
@@ -110,7 +109,7 @@
 //  "SET_SUCCESSFUL" = "设置成功",
 //  "DOWNLOAD" = "下载中",
 //  "SUBMIT" = "提交",
-//  "EMAIL_ERROR_2" = "请输入正确的邮件地址",
+
 //  "FORGOT_PWD" = "忘记密码",
 //  "SETTING" = "设置",
 //  "LOGIN" = "登录",
@@ -118,7 +117,6 @@
 //  "LOGIN_FACEBOOK" = "脸书",
 //  "LOGIN_GOOGLE" = "谷歌",
 //  "LOGIN_SENT_CODE" = "已发送验证码",
-//  "LOGIN_INVALID_PHONE" = "请输入正确的手机号",
 //  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "两次输入的密码不一致。",
 //  "DONT_HAVE_ACCOUNT" = "还没有账号？",
 //  "SIGN_UP" = "注册",
@@ -193,8 +191,7 @@
 //  "DATEOFBIRTH" = "出生日期",
 //  "SECURITY_CENTER" = "安全中心",
 //  "CHANGE_PASS" = "修改密码",
-//  "CHANGE_MOBILE" = "修改手机号",
-//  "CHANGE_EMAIL" = "修改邮箱",
+
 //  "STOCK_SHORTAGE" = "库存不足",
 //  "INVITE_FRIEND" = "邀请有礼",
 //  "INVITATION_RECORD" = "邀请记录",
@@ -245,14 +242,12 @@
 //  "CONFIRM_PWD" = "确认密码",
 //  "RE_ENTER_NEW_PASSWORD" = "重新输入新密码",
 //  "PASSWORD_NOT_MATCH" = "密码不一致",
-//  "ACCOUNT_DOES_NOT_EXIST" = "账户不存在.",
 //  "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "重置成功请重新登录",
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "请输入正确的手机号.",
 //  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "请输入正确的邮箱.",
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "请输入正确的手机号或邮箱.",
 //  "THIS_PHONE_NUMBER" = "这个手机号",
 //  "THIS_EMAIL_ADDRESS" = "这个邮箱",
-//  "PHONE" = "手机",
 //  "MEMBERSHIP_AGREEMENT" = "会员注册协议.",
 //  "PLEASE_INPUT" = "请输入",
 //  "SAFETY_VERIFICATION" = "安全政策",
@@ -417,7 +412,6 @@
 //  "RESET_WITH_SMS" = "通过短信重置密码",
 //  "RESET_WITH_EMAIL" = "通过邮箱重置密码",
 //  "RESET_PASSWORD" = "重置密码",
-//  "RESET_PASSWORD_SMS" = "验证码将发送到你的手机，请输入注册的手机号.",
 //  "RESET_PASSWORD_EMAIL" = "验证码将发送到你的邮箱，请输入注册的邮箱.",
 //  "SERVICE_TYPE" = "服务类型",
 //  "REFUND_SUCCESSFUL" = "退款成功",
@@ -622,7 +616,9 @@
 "Hide" = "Hide";
 "View_replies" = "View replies";
 "verification_email_code" = "A verification code will be sent to your email address. Please enter your registered email.";
+"RESET_PASSWORD_SMS" = "验证码将发送到你的手机，请输入注册的手机号.";
 "Email" = "Email";
+"PHONE" = "手机";
 "Reset_password" = "Reset Password";
 "Confirm_password" = "Confirm password";
 "Reset_success" = "Reset Success!";
@@ -635,3 +631,10 @@
 "Max" = "Max";
 "Max" = "Max";
 "ADD_TO_CART_SUCCESS" = "加入购物车成功";
+"EMAIL_ERROR_2" = "请输入正确的邮件地址";
+"LOGIN_INVALID_PHONE" = "请输入正确的手机号";
+"ACCOUNT_DOES_NOT_EXIST" = "账户不存在.";
+"PASSWORD" = "密码";
+"EMAIL" = "邮件";
+"CHANGE_MOBILE" = "修改手机号";
+"CHANGE_EMAIL" = "修改邮箱";

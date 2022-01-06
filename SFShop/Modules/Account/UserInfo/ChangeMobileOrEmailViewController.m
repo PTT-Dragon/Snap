@@ -22,11 +22,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = _type == 1 ? @"Change Mobile Number": @"Email";
-    _label.text = _type == 1 ? @"Password": @"Email";
-    _field.placeholder = _type == 1 ? @"Change Mobile Number": @"Email";
-    _label2.hidden = _type == 2;
-    _field2.hidden = _type == 2;
+    [self layoutSubviews];
+    
+}
+- (void)layoutSubviews
+{
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (_type == 1) {
+        self.title = kLocalizedString(@"CHANGE_MOBILE");
+        _label.text = kLocalizedString(@"PASSWORD");
+        _field.placeholder = kLocalizedString(@"CHANGE_MOBILE");
+        _label2.hidden = YES;
+        _field2.hidden = YES;
+        if (model.userRes.mobilePhone && ![model.userRes.mobilePhone isEqualToString:@""]) {
+            _field.placeholder = model.userRes.mobilePhone;
+        }
+    }else{
+        self.title = kLocalizedString(@"CHANGE_EMAIL");
+        _label.text = kLocalizedString(@"EMAIL");
+        _field.placeholder = kLocalizedString(@"CHANGE_EMAIL");
+        _label2.hidden = YES;
+        _field2.hidden = YES;
+        if (model.userRes.email && ![model.userRes.email isEqualToString:@""]) {
+            _field.placeholder = model.userRes.email;
+        }
+    }
 }
 - (IBAction)submitAction:(UIButton *)sender {
     verifyCodeVC *vc = [[verifyCodeVC alloc] init];

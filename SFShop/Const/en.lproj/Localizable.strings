@@ -87,7 +87,6 @@
 //  "ADD_TO_CART" = "Add to Cart",
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！",
 //  "FIND_SIMILAR" = "Find Similar",
-//  "EMAIL" = "Email",
 //  "MOBILE_NUMBER" = "Mobile Number",
 //  "NEW_MOBILE_NUMBER" = "New Mobile Number",
 //  "ADDRESS" = "Address",
@@ -106,12 +105,10 @@
 //  "SIGN_IN" = "Sign in",
 //  "OUT_OF_STOCK" = "Out of Stock",
 //  "MY_COUPON" = "My Voucher",
-//  "PASSWORD" = "Password",
 //  "CURRENT_PWD" = "Current Password",
 //  "SET_SUCCESSFUL" = "Set Successfully!",
 //  "DOWNLOAD" = "Downloading",
 //  "SUBMIT" = "Submit",
-//  "EMAIL_ERROR_2" = "Please input the correct email address.",
 //  "FORGOT_PWD" = "Forgot Password",
 //  "SETTING" = "Setting",
 //  "LOGIN" = "Login",
@@ -119,7 +116,6 @@
 //  "LOGIN_FACEBOOK" = "Facebook",
 //  "LOGIN_GOOGLE" = "Google",
 //  "LOGIN_SENT_CODE" = "sent code",
-//  "LOGIN_INVALID_PHONE" = "Please input the correct phone number.",
 //  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "The two passwords do not match.",
 //  "DONT_HAVE_ACCOUNT" = "Don’t have an account yet?",
 //  "SIGN_UP" = "Sign Up",
@@ -194,8 +190,6 @@
 //  "DATEOFBIRTH" = "Date of Birth",
 //  "SECURITY_CENTER" = "Security Center",
 //  "CHANGE_PASS" = "Change Password",
-//  "CHANGE_MOBILE" = "Change Mobile Number",
-//  "CHANGE_EMAIL" = "Change Email",
 //  "STOCK_SHORTAGE" = "Limited stocks",
 //  "INVITE_FRIEND" = "Invite Friend",
 //  "INVITATION_RECORD" = "Invitation Record",
@@ -246,14 +240,12 @@
 //  "CONFIRM_PWD" = "Confirm New Password",
 //  "RE_ENTER_NEW_PASSWORD" = "Re-enter new password",
 //  "PASSWORD_NOT_MATCH" = "Password not match.",
-//  "ACCOUNT_DOES_NOT_EXIST" = "Account does not exist.",
 //  "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "Reset successfully. Please re-login.",
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Please input the correct mobile phone.",
 //  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Please input the correct email.",
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Please input the correct phone number or email.",
 //  "THIS_PHONE_NUMBER" = "This phone number",
 //  "THIS_EMAIL_ADDRESS" = "This email address",
-//  "PHONE" = "Phone",
 //  "MEMBERSHIP_AGREEMENT" = "Membership Agreement",
 //  "PLEASE_INPUT" = "Please Input",
 //  "SAFETY_VERIFICATION" = "Security verification",
@@ -418,7 +410,6 @@
 //  "RESET_WITH_SMS" = "RESET WITH SMS",
 //  "RESET_WITH_EMAIL" = "RESET WITH EMAIL",
 //  "RESET_PASSWORD" = "Reset Password",
-//  "RESET_PASSWORD_SMS" = "A verification code will be sent to your sms address. Please enter your registered sms.",
 //  "RESET_PASSWORD_EMAIL" = "A verification code will be sent to your email address. Please enter your registered email.",
 //  "SERVICE_TYPE" = "Service Type",
 //  "REFUND_SUCCESSFUL" = "Refund Successful",
@@ -624,7 +615,9 @@
 "Hide" = "Hide";
 "View_replies" = "View replies";
 "verification_email_code" = "A verification code will be sent to your email address. Please enter your registered email.";
+"RESET_PASSWORD_SMS" = "A verification code will be sent to your sms address. Please enter your registered sms.";
 "Email" = "Email";
+"PHONE" = "Phone";
 "Reset_password" = "Reset Password";
 "Confirm_password" = "Confirm password";
 "Reset_success" = "Reset Success!";
@@ -636,4 +629,11 @@
 "Max" = "Max";
 "Max" = "Max";
 "Max" = "Max";
+"EMAIL_ERROR_2" = "Please input the correct email address.";
+"LOGIN_INVALID_PHONE" = "Please input the correct phone number.";
+"ACCOUNT_DOES_NOT_EXIST" = "Account does not exist.";
+"PASSWORD" = "Password";
+"EMAIL" = "Email";
+"CHANGE_MOBILE" = "Change Mobile Number";
+"CHANGE_EMAIL" = "Change Email";
 

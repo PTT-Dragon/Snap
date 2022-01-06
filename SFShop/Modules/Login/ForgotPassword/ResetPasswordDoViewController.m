@@ -6,6 +6,7 @@
 //
 
 #import "ResetPasswordDoViewController.h"
+#import "UITextField+expand.h"
 
 @interface ResetPasswordDoViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
@@ -13,10 +14,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (weak, nonatomic) IBOutlet UIButton *resetBtn;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *label3;
+@property (weak, nonatomic) IBOutlet UILabel *label4;
 
 @end
 
 @implementation ResetPasswordDoViewController
+static BOOL _passwordSuccess1 = NO;
+static BOOL _passwordSuccess2 = NO;
+
 - (BOOL)shouldCheckLoggedIn
 {
     return NO;
@@ -25,28 +33,39 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Reset_password");
+    _pwdField.layer.borderWidth = 1;
+    _confirmPwdField.layer.borderWidth = 1;
     [_pwdField addTarget:self action:@selector(tfEditingChanged:) forControlEvents:(UIControlEventEditingChanged)];
     [_confirmPwdField addTarget:self action:@selector(tfEditingChanged:) forControlEvents:(UIControlEventEditingChanged)];
 }
 - (void)tfEditingChanged:(UITextField *)field
 {
-    if (![_pwdField.text isEqualToString:@""] && ![_confirmPwdField.text isEqualToString:@""]) {
-        _resetBtn.backgroundColor = RGBColorFrom16(0xFF1659);
+    if (field == _pwdField) {
+        _passwordSuccess1 = [field textFieldState:CHECKPASSWORDTYPE labels:@[_label1,_label2]];
     }else{
-        _resetBtn.backgroundColor = RGBColorFrom16(0xFFe5eb);
+        _passwordSuccess2 = [field textFieldState:CHECKPASSWORDTYPE labels:@[_label3,_label4]];
     }
+    if (_passwordSuccess2 && _passwordSuccess1) {
+        self.resetBtn.backgroundColor = RGBColorFrom16(0xFF1659);
+        self.resetBtn.userInteractionEnabled = YES;
+    }else{
+        self.resetBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+        self.resetBtn.userInteractionEnabled = NO;
+    }
+    
 }
 - (IBAction)resetAction:(UIButton *)sender {
     if (![_pwdField.text isEqualToString:_confirmPwdField.text]) {
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Confirm_password")];
         return;
     }
+    [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.resetPwd parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_pwdField.text),@"code":_code,@"confirmPwd":login_aes_128_cbc_encrypt(_confirmPwdField.text)} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Reset_success")];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"error"]];
     }];
 }
 

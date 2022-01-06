@@ -89,6 +89,10 @@
     _magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
     [_magicController.magicView reloadData];
     [self.view addSubview:self.bottomView];
+    [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(self.view);
+        make.height.mas_equalTo(78);
+    }];
 }
 - (void)updateSubviews
 {
@@ -320,8 +324,7 @@
 - (UIView *)bottomView
 {
     if (!_bottomView) {
-        CGFloat a = self.view.jk_height;
-        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, MainScreen_height-tabbarHei-navBarHei-78, MainScreen_width, 78)];
+        _bottomView = [[UIView alloc] init];
         _bottomView.backgroundColor = [UIColor whiteColor];
         [_bottomView addSubview:self.checkBtn];
         [_bottomView addSubview:self.amountLabel];

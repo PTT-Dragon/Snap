@@ -61,6 +61,10 @@
             [weakself signUp];
         }else if (weakself.type == Forget_Code){
             [weakself forgetPassword];
+        }else if (weakself.type == ChangeMobileNumber_Code){
+            
+        }else if (weakself.type == ChangeEmail_Code){
+            
         }
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
@@ -111,6 +115,22 @@
     LoginViewController *vc = [[LoginViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     [baseTool removeVCFromNavigationWithVCNameArr:@[@"SignUpViewController",@"verifyCodeVC",@"LoginViewController"] currentVC:self];
+}
+- (void)changeUserPhone
+{
+    [SFNetworkManager post:SFNet.account.phoneModify parameters:@{} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)changeUserEmail
+{
+    [SFNetworkManager post:SFNet.account.emailModify parameters:@{} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (IBAction)recendAction:(UIButton *)sender {
     [self getCode];

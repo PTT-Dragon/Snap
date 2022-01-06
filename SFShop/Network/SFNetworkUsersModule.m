@@ -36,6 +36,9 @@
 - (NSString *)bindEmail {
     return K_users_domain(@"email/binding");
 }
+- (NSString *)emailModify {
+    return K_users_domain(@"email/modify");
+}
 - (NSString *)phoneModify {
     return K_users_domain(@"phone/modify");
 }
