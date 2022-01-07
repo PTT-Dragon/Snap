@@ -32,6 +32,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = kLocalizedString(@"My_orders");
+    [self layoutSubviews];
+    [self loadOrderNum];
+}
+- (void)layoutSubviews
+{
     self.menuList = @[@"All", @"ToPay", @"ToShip",@"ToReceive",@"Completed",@"Canceled"];
     self.typeList = @[@(OrderListType_All),@(OrderListType_ToPay),@(OrderListType_ToShip),@(OrderListType_ToReceive),@(OrderListType_Successful),@(OrderListType_Cancel)];
     [self addChildViewController:self.magicController];
@@ -39,9 +44,11 @@
     _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei);
     self.magicController.currentPage = self.selType == OrderListType_All ? 1: 2;
     self.currentMenuIndex = self.magicController.currentPage;
+    [self.magicController switchToPage:self.currentMenuIndex animated:0];
     [_magicController.magicView reloadData];
+    NSInteger page = self.selType == OrderListType_All ? 0: self.selType == OrderListType_ToPay ? 1: self.selType == OrderListType_ToShip ? 2: self.selType == OrderListType_ToReceive ? 3: 0;
+    [self.magicController switchToPage:page animated:YES];
     [self.view addSubview:self.navSearchView];
-    [self loadOrderNum];
 }
 - (void)loadOrderNum
 {

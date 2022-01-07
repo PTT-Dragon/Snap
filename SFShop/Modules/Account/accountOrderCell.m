@@ -9,6 +9,7 @@
 #import "OrderViewController.h"
 #import "UIButton+SGImagePosition.h"
 #import "RefundViewController.h"
+#import "ReviewViewController.h"
 
 @interface accountOrderCell ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -82,6 +83,26 @@
         {
             OrderViewController *vc = [[OrderViewController alloc] init];
             vc.selType = OrderListType_ToPay;
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1003:
+        {
+            OrderViewController *vc = [[OrderViewController alloc] init];
+            vc.selType = OrderListType_ToShip;
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1004:
+        {
+            OrderViewController *vc = [[OrderViewController alloc] init];
+            vc.selType = OrderListType_ToReceive;
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1005:
+        {
+            ReviewViewController *vc = [[ReviewViewController alloc] init];
             [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
         }
             break;
