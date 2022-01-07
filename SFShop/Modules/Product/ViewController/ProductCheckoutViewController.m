@@ -20,6 +20,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "AddressViewController.h"
 #import "CouponsViewController.h"
+#import "DeleveryViewController.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -53,7 +54,6 @@
 }
 
 #pragma mark - Setter
-
 - (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
                attrValues:(NSArray<NSString *> *)attrValues
                productIds:(NSArray<NSNumber *> *) productIds
@@ -212,6 +212,18 @@
                 vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
                 vc.dataArray = self.dataModel.couponsModel.storeAvailableCoupons.firstObject.availableCoupons.mutableCopy;
                 vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
+                    __strong __typeof(weakSelf)strongSelf = weakSelf;
+                    strongSelf.dataModel.currentStoreCoupon = item;
+                    [strongSelf.tableView reloadData];
+                };
+                [self presentViewController:vc animated:YES completion:nil];
+            }
+                break;
+            case  ProductCheckoutCellEvent_GotoDelivery: {
+                DeleveryViewController *vc = [[DeleveryViewController alloc] init];
+                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+                vc.dataArray = self.dataModel.couponsModel.storeAvailableCoupons.firstObject.availableCoupons.mutableCopy;
+                vc.selectedDeleveryBlock = ^(CouponItem * _Nullable item) {
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
                     strongSelf.dataModel.currentStoreCoupon = item;
                     [strongSelf.tableView reloadData];

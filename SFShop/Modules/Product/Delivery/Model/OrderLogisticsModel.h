@@ -16,6 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *logisticsFee;//配送价格
 @property (nonatomic, readwrite, strong) NSString *minDeliveryDays;//送达最小天数
 @property (nonatomic, readwrite, strong) NSString *maxDeliveryDays;//送达最大天数
+
+//自定义,是否被选中
+@property (nonatomic, readwrite, assign) BOOL isSelected;
+@property (nonatomic, readwrite, strong) NSString *monetary;//货币
+@property (nonatomic, readonly, strong) NSString *priceStr;//价格字符串
+@property (nonatomic, readonly, strong) NSString *dateStr;//配送日期
+
 @end
 
 @interface OrderLogisticsModel : JSONModel

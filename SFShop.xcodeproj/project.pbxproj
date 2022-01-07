@@ -475,6 +475,10 @@
 		AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3298E272AF2C700E7827A /* SFSearchModel.m */; };
 		AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE3FC912761D8EC00A96E2A /* PDFReader.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
+		AEEC0BA6278818160071F059 /* CheckoutInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BA5278818160071F059 /* CheckoutInputData.m */; };
+		AEEC0BA9278834040071F059 /* CheckoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BA8278834040071F059 /* CheckoutManager.m */; };
+		AEEC0BAD27883C140071F059 /* DeleveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BAC27883C140071F059 /* DeleveryViewController.m */; };
+		AEEC0BB227883D090071F059 /* DeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BB127883D080071F059 /* DeliveryCell.m */; };
 		FE308100C144BF144EAB95E5 /* libPods-SFShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E56812568047A87A9E20FE0E /* libPods-SFShop.a */; };
 /* End PBXBuildFile section */
 
@@ -1308,6 +1312,14 @@
 		AEE3FC912761D8EC00A96E2A /* PDFReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFReader.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
+		AEEC0BA4278818160071F059 /* CheckoutInputData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckoutInputData.h; sourceTree = "<group>"; };
+		AEEC0BA5278818160071F059 /* CheckoutInputData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckoutInputData.m; sourceTree = "<group>"; };
+		AEEC0BA7278834040071F059 /* CheckoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckoutManager.h; sourceTree = "<group>"; };
+		AEEC0BA8278834040071F059 /* CheckoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckoutManager.m; sourceTree = "<group>"; };
+		AEEC0BAB27883C140071F059 /* DeleveryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleveryViewController.h; sourceTree = "<group>"; };
+		AEEC0BAC27883C140071F059 /* DeleveryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleveryViewController.m; sourceTree = "<group>"; };
+		AEEC0BB027883D080071F059 /* DeliveryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeliveryCell.h; sourceTree = "<group>"; };
+		AEEC0BB127883D080071F059 /* DeliveryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeliveryCell.m; sourceTree = "<group>"; };
 		E56812568047A87A9E20FE0E /* libPods-SFShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SFShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -2297,6 +2309,7 @@
 		4B818FC8272394D90058038A /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				AEEC0BAA27883BD30071F059 /* Delivery */,
 				AE43BF602782DBE5006D7135 /* Coupons */,
 				1BD2A619276B099500F994C5 /* FlashSaleProduct */,
 				1BD2A618276AED3800F994C5 /* GroupProduct */,
@@ -2320,8 +2333,6 @@
 				4B818FEB272444560058038A /* ProductSimilarModel.m */,
 				4BEB1221275CB98A00D5342A /* ProductCalcFeeModel.h */,
 				4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */,
-				AE4C6BFF2768E76A006788FE /* OrderLogisticsModel.h */,
-				AE4C6C002768E76A006788FE /* OrderLogisticsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2716,7 +2727,8 @@
 			children = (
 			);
 			path = Share;
-        };
+			sourceTree = "<unknown>";
+		};
 		AE43BF602782DBE5006D7135 /* Coupons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2973,6 +2985,10 @@
 			children = (
 				AE8F32D1272E96B2008E3DD8 /* ProductCheckoutModel.h */,
 				AE8F32D2272E96B2008E3DD8 /* ProductCheckoutModel.m */,
+				AEEC0BA7278834040071F059 /* CheckoutManager.h */,
+				AEEC0BA8278834040071F059 /* CheckoutManager.m */,
+				AEEC0BA4278818160071F059 /* CheckoutInputData.h */,
+				AEEC0BA5278818160071F059 /* CheckoutInputData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3035,6 +3051,35 @@
 				AE5C9A6E275B5F3800F34481 /* SFSearchingModel.m */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		AEEC0BAA27883BD30071F059 /* Delivery */ = {
+			isa = PBXGroup;
+			children = (
+				AEEC0BAF27883CBF0071F059 /* View */,
+				AEEC0BAE27883C3F0071F059 /* Model */,
+				AEEC0BAB27883C140071F059 /* DeleveryViewController.h */,
+				AEEC0BAC27883C140071F059 /* DeleveryViewController.m */,
+			);
+			path = Delivery;
+			sourceTree = "<group>";
+		};
+		AEEC0BAE27883C3F0071F059 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE4C6BFF2768E76A006788FE /* OrderLogisticsModel.h */,
+				AE4C6C002768E76A006788FE /* OrderLogisticsModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AEEC0BAF27883CBF0071F059 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AEEC0BB027883D080071F059 /* DeliveryCell.h */,
+				AEEC0BB127883D080071F059 /* DeliveryCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3407,6 +3452,7 @@
 				AE68D68B272AFAF900CF544C /* SFSearchSectionHeadView.m in Sources */,
 				1B82AEDB277080B700D75E00 /* YYAnimatedImageView.m in Sources */,
 				1B6C5294275B672200A1C617 /* ZLPhotoBrowserCell.m in Sources */,
+				AEEC0BAD27883C140071F059 /* DeleveryViewController.m in Sources */,
 				AE43BF672782DCB7006D7135 /* CouponsCell.m in Sources */,
 				1B478316272A957000F2A945 /* RefundProcessCell.m in Sources */,
 				1B47830C272A838500F2A945 /* refundModel.m in Sources */,
@@ -3431,6 +3477,7 @@
 				1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */,
 				1B82AEE7277080B700D75E00 /* YYWebImageOperation.m in Sources */,
 				1B6C5297275B672200A1C617 /* ZLAnimateTransition.m in Sources */,
+				AEEC0BA9278834040071F059 /* CheckoutManager.m in Sources */,
 				AE43BF632782DBF2006D7135 /* CouponsViewController.m in Sources */,
 				1B552EAE276B36CC0086604B /* GroupFilterCell.m in Sources */,
 				1B74DAD42721A03800B30ECC /* PolicesViewController.m in Sources */,
@@ -3507,6 +3554,7 @@
 				1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */,
 				1B6C52A1275B672200A1C617 /* ZLEditViewController.m in Sources */,
 				1B82AECF277080B700D75E00 /* YYDiskCache.m in Sources */,
+				AEEC0BB227883D090071F059 /* DeliveryCell.m in Sources */,
 				1BD8E7B8275F130F00130DCC /* RefundDetailTitleCell.m in Sources */,
 				1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
@@ -3535,6 +3583,7 @@
 				1BC7A2CF272B081E00755832 /* UseCouponViewController.m in Sources */,
 				1BB1CB6D276344DF008D71DF /* FlashSaleModel.m in Sources */,
 				1B74DAED27225EF000B30ECC /* ReviewCell.m in Sources */,
+				AEEC0BA6278818160071F059 /* CheckoutInputData.m in Sources */,
 				1BB1CB7127634DF6008D71DF /* FlashSaleProductCell.m in Sources */,
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				1BC7A2C5272AF50500755832 /* FAQListModel.m in Sources */,
@@ -3843,7 +3892,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.4;
-				DEVELOPMENT_TEAM = 45TSGW46CH;
+				DEVELOPMENT_TEAM = 3E4LSSERGY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SFShop/Components/Umeng/share/share_ios_6.10.4/UMSocialUI",
@@ -3883,7 +3932,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.4;
-				DEVELOPMENT_TEAM = 45TSGW46CH;
+				DEVELOPMENT_TEAM = 3E4LSSERGY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SFShop/Components/Umeng/share/share_ios_6.10.4/UMSocialUI",
