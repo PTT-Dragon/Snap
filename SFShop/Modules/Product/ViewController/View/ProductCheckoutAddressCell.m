@@ -73,22 +73,22 @@
 
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (![self.dataModel.email isEqualToString:textField.text]) {
-        self.dataModel.email = textField.text;
-        !self.updateDataBlock?: self.updateDataBlock(self.dataModel, self.cellModel);
+    if (![self.dataModel.addressModel.email isEqualToString:textField.text]) {
+        self.dataModel.addressModel.email = textField.text;
+        !self.eventBlock?: self.eventBlock(self.dataModel, self.cellModel,ProductCheckoutCellEvent_UpdateEmail);
     }
 }
 
 #pragma mark - #EVENT
 - (void)extendClick {
-    !self.addressBlock?:self.addressBlock(self.dataModel,self.cellModel);
+    !self.eventBlock?:self.eventBlock(self.dataModel,self.cellModel,ProductCheckoutCellEvent_GotoAddress);
 }
 
 #pragma mark - Getter & Setter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     super.dataModel = dataModel;
-    self.addressLabel.text = dataModel.address;
-    self.emailTF.text = dataModel.email;
+    self.addressLabel.text = dataModel.addressModel.customAddress;
+    self.emailTF.text = dataModel.addressModel.email;
     [self layout];
 }
 
@@ -134,7 +134,7 @@
 - (CustomTextField *)emailTF {
     if (_emailTF == nil) {
         _emailTF = [[CustomTextField alloc] init];
-        _emailTF.text = self.dataModel.email;
+        _emailTF.text = self.dataModel.addressModel.email;
         _emailTF.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _emailTF.font = [UIFont systemFontOfSize:12];
         _emailTF.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];

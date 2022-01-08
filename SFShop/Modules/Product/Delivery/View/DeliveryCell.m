@@ -1,26 +1,25 @@
 //
-//  ProductCheckoutDeliveryCell.m
+//  DeliveryCell.m
 //  SFShop
 //
-//  Created by MasterFly on 2021/10/31.
+//  Created by YouHui on 2022/1/7.
 //
 
-#import "ProductCheckoutDeliveryCell.h"
+#import "DeliveryCell.h"
 
-@interface ProductCheckoutDeliveryCell ()
+@interface DeliveryCell ()
 @property (nonatomic, readwrite, strong) UIView *bgView;
+@property (nonatomic, readwrite, strong) UIView *leftBgView;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
 @property (nonatomic, readwrite, strong) UILabel *priceLabel;
 @property (nonatomic, readwrite, strong) UILabel *desLabel;
-@property (nonatomic, readwrite, strong) UIButton *nextBtn;
-
 @end
 
-@implementation ProductCheckoutDeliveryCell
+@implementation DeliveryCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.contentView.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
+        self.contentView.backgroundColor = [UIColor whiteColor];
         [self loadubsviews];
         [self layout];
     }
@@ -29,60 +28,75 @@
 
 - (void)loadubsviews {
     [self.contentView addSubview:self.bgView];
-    [self.bgView addSubview:self.titleLabel];
     [self.bgView addSubview:self.priceLabel];
-    [self.bgView addSubview:self.desLabel];
-    [self.bgView addSubview:self.nextBtn];
+    [self.bgView addSubview:self.leftBgView];
+    [self.leftBgView addSubview:self.titleLabel];
+    [self.leftBgView addSubview:self.desLabel];
 }
 
 - (void)layout {
     [self.bgView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(16);
-        make.right.mas_equalTo(-16);
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-15);
         make.top.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
     }];
     
-    [self.nextBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
-        make.height.mas_equalTo(16);
-        make.width.mas_equalTo(16);
+    [self.leftBgView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.equalTo(self.priceLabel.mas_left).offset(-10);
+        make.centerY.mas_equalTo(0);
+        make.top.equalTo(self.titleLabel);
+        make.bottom.equalTo(self.desLabel);
     }];
-    
+
     [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self.nextBtn);
-        make.right.equalTo(self.nextBtn.mas_left).offset(-1);
+        make.right.mas_equalTo(-15);
+        make.centerY.mas_equalTo(0);
     }];
     
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self.nextBtn);
-        make.left.mas_equalTo(20);
-        make.right.lessThanOrEqualTo(self.priceLabel.mas_left).offset(-10);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
     }];
     
     [self.desLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(8);
-        make.left.mas_equalTo(20);
-        make.height.mas_equalTo(14);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
     }];
 }
 
 #pragma mark - Getter
-- (void)setDataModel:(ProductCheckoutModel *)dataModel {
-    super.dataModel = dataModel;
-    self.titleLabel.text = dataModel.currentLogisticsItem.logisticsModeName;
-    self.priceLabel.text = dataModel.currentLogisticsItem.priceStr;
-    self.desLabel.text = dataModel.currentLogisticsItem.dateStr;
+- (void)setItem:(OrderLogisticsItem *)item {
+    _item = item;
+    self.titleLabel.text = item.logisticsModeName;
+    self.priceLabel.text = item.priceStr;
+    self.desLabel.text = item.dateStr;
     [self layout];
+    
+    if (item.isSelected) {
+        self.bgView.layer.borderColor = [UIColor jk_colorWithHexString:@"#FF1659"].CGColor;
+    } else {
+        self.bgView.layer.borderColor = [UIColor jk_colorWithHexString:@"#CCCCCC"].CGColor;
+    }
 }
 
 - (UIView *)bgView {
     if (_bgView == nil) {
         _bgView = [[UIView alloc] init];
+        _bgView.layer.borderWidth = 1;
         _bgView.backgroundColor = [UIColor whiteColor];
     }
     return _bgView;
+}
+
+- (UIView *)leftBgView {
+    if (_leftBgView == nil) {
+        _leftBgView = [[UIView alloc] init];
+        _leftBgView.backgroundColor = [UIColor whiteColor];
+    }
+    return _leftBgView;
 }
 
 - (UILabel *)titleLabel {
@@ -116,14 +130,6 @@
         _desLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _desLabel;
-}
-
-- (UIButton *)nextBtn {
-    if (_nextBtn == nil) {
-        _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_nextBtn setImage:[UIImage imageNamed:@"right-scroll"] forState:UIControlStateNormal];
-    }
-    return _nextBtn;
 }
 
 @end

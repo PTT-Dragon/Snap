@@ -13,6 +13,7 @@
 #import "CartModel.h"
 #import "OrderLogisticsModel.h"
 #import "CouponsAvailableModel.h"
+#import "CheckoutManager.h"
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -181,6 +182,8 @@
     NSMutableArray *productDetailModels = [NSMutableArray array];
     NSMutableArray *attrValues = [NSMutableArray array];
     NSMutableArray *productIds = [NSMutableArray array];
+    NSMutableArray *productNums = [NSMutableArray array];
+
     NSMutableArray *counts = [NSMutableArray array];
     for (CartListModel *model in items) {
         for (CartItemModel *cartItem in model.shoppingCarts) {
@@ -199,6 +202,7 @@
                 [counts addObject:@(cartItem.num.intValue)];
                 [attrValues addObject:@"测试分类"];
                 [productIds addObject:cartItem.productId];
+                [productNums addObject:cartItem.num];
             }
         }
     }
@@ -209,67 +213,30 @@
         return;
     }
     
-    NSDictionary *logisticsParams = @{
-        @"deliveryAddressId": self.selAddModel.deliveryAddressId,
-        @"deliveryMode":deliveryMode,
-        @"stores": @[
-                @{
-                    @"storeId": storeId,
-                    @"products": products
-                }
-        ],
-    };
-    NSMutableDictionary *calcfeeParams = [NSMutableDictionary dictionaryWithDictionary:logisticsParams];
-    [calcfeeParams addEntriesFromDictionary:@{
-        @"sourceType": @"GWCGM", // TODO:此处参考h5
-    }];
-    
-    [MBProgressHUD showHudMsg:@"Calculating..."];
-    __block ProductCalcFeeModel *feeModel = nil;
-    __block OrderLogisticsModel *logisticsModel = nil;
-    __block CouponsAvailableModel *couponsModel = nil;
-    dispatch_group_t group = dispatch_group_create();
-    //请求结算数据
-    
-    dispatch_group_enter(group);
-    dispatch_group_async(group, dispatch_get_main_queue(), ^{
-        [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
-            feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
-            dispatch_group_leave(group);
-        } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
-            dispatch_group_leave(group);
-        }];
-    });
-    
-    //请求配送数据
-    dispatch_group_enter(group);
-    dispatch_group_async(group, dispatch_get_main_queue(), ^{
-        [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable response) {
-            NSDictionary *data = ((NSArray *)response).firstObject;
-            logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
-            dispatch_group_leave(group);
-        } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
-            dispatch_group_leave(group);
-        }];
-    });
-    
-    //请求商品优惠券数据
-    dispatch_group_enter(group);
-    dispatch_group_async(group, dispatch_get_main_queue(), ^{
-        [SFNetworkManager post:SFNet.order.couponsAvailable parameters:logisticsParams success:^(id  _Nullable response) {
-            couponsModel = [[CouponsAvailableModel alloc] initWithDictionary:response error:nil];
-            dispatch_group_leave(group);
-        } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
-            dispatch_group_leave(group);
-        }];
-    });
+//    NSDictionary *logisticsParams = @{
+//        @"deliveryAddressId": self.selAddModel.deliveryAddressId,
+//        @"deliveryMode":deliveryMode,
+//        @"stores": @[
+//                @{
+//                    @"storeId": storeId,
+//                    @"products": products
+//                }
+//        ],
+//    };
+//    NSMutableDictionary *calcfeeParams = [NSMutableDictionary dictionaryWithDictionary:logisticsParams];
+//    [calcfeeParams addEntriesFromDictionary:@{
+//        @"sourceType": @"GWCGM", // TODO:此处参考h5
+//    }];
 
-    //获取数据,并进入结算页面
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideFromKeyWindow];
+    ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+    CheckoutInputData *data = [CheckoutInputData initWithLogisticsModeId:nil
+                                  deliveryAddressId:self.selAddModel.deliveryAddressId
+                                       deliveryMode:deliveryMode
+                                            storeId:storeId
+                                         sourceType:@"GWCGM"
+                                         productIds:productIds
+                                        productNums:productNums];
+    [CheckoutManager.shareInstance loadCheckoutData:data complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel, CouponsAvailableModel * _Nonnull couponsModel) {
         if (!feeModel) {
             return;
         }
@@ -281,8 +248,6 @@
         if (!couponsModel) {
             NSLog(@"");
         }
-        
-        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
         [vc setProductModels:productDetailModels
                   attrValues:attrValues
                   productIds:productIds
@@ -293,7 +258,7 @@
                        count:counts
                   sourceType:@"GWCGM"];
         [weakself.navigationController pushViewController:vc animated:YES];
-    });
+    }];
 
 }
 
