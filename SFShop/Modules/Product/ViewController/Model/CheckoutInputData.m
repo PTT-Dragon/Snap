@@ -7,10 +7,7 @@
 
 #import "CheckoutInputData.h"
 
-
 @interface CheckoutInputData ()
-@property (nonatomic, readwrite, strong) NSString *logisticsModeId;//物流模式id
-@property (nonatomic, readwrite, strong) NSString *deliveryAddressId;//配送地址id
 @property (nonatomic, readwrite, strong) NSString *deliveryMode;//配送模型
 @property (nonatomic, readwrite, strong) NSString *storeId;//商店id
 @property (nonatomic, readwrite, strong) NSString *sourceType;//类型 LJGM 等参考H5

@@ -12,7 +12,7 @@
 #define KDeleveryCellFooter 13
 #define KDeleveryTitleHeight 50
 
-@interface DeleveryViewController ()
+@interface DeleveryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, readwrite, strong) UIView *maskView;
 @property (nonatomic, readwrite, strong) UITableView *tableView;
 @property (nonatomic, readwrite, strong) UILabel *titleView;
@@ -115,10 +115,10 @@
     if (_titleView == nil) {
         _titleView = [[UILabel alloc] init];
         _titleView.backgroundColor = [UIColor whiteColor];
-        _titleView.text = @"Coupons";
+        _titleView.text = @"Delivery Method";
         _titleView.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _titleView.textAlignment = NSTextAlignmentCenter;
-        _titleView.font = [UIFont systemFontOfSize:14];
+        _titleView.font = [UIFont boldSystemFontOfSize:16];
     }
     return _titleView;
 }

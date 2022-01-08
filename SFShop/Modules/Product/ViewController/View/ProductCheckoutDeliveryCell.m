@@ -71,9 +71,9 @@
 #pragma mark - Getter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     super.dataModel = dataModel;
-    self.titleLabel.text = dataModel.deliveryTitle;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",dataModel.priceRp,dataModel.deliveryPrice];
-    self.desLabel.text = dataModel.deliveryDes;
+    self.titleLabel.text = dataModel.currentLogisticsItem.logisticsModeName;
+    self.priceLabel.text = dataModel.currentLogisticsItem.priceStr;
+    self.desLabel.text = dataModel.currentLogisticsItem.dateStr;
     [self layout];
 }
 
@@ -121,14 +121,9 @@
 - (UIButton *)nextBtn {
     if (_nextBtn == nil) {
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_nextBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_nextBtn setImage:[UIImage imageNamed:@"right-scroll"] forState:UIControlStateNormal];
     }
     return _nextBtn;
-}
-
-- (void)btnClick:(UIButton *)btn {
-    !self.eventBlock?:self.eventBlock(self.dataModel, self.cellModel, ProductCheckoutCellEvent_GotoDelivery);
 }
 
 @end

@@ -13,16 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger,  ProductCheckoutCellEvent) {
     ProductCheckoutCellEvent_GotoStoreVoucher,
-    ProductCheckoutCellEvent_GotoDelivery,
+    ProductCheckoutCellEvent_GotoAddress,
+    ProductCheckoutCellEvent_UpdateEmail,
 };
 
 @interface ProductCheckoutBaseCell : UITableViewCell
 
 @property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
 @property (nonatomic, readwrite, strong) SFCellCacheModel *cellModel;
-@property (nonatomic, readwrite, copy) void(^updateDataBlock)(ProductCheckoutModel *dataModel,SFCellCacheModel *cellModel);
-@property (nonatomic, readwrite, copy) void(^addressBlock)(ProductCheckoutModel *dataModel,SFCellCacheModel *cellModel);
-
 
 /// cell 事件回调,通过cellid 和枚举来区分事件
 @property (nonatomic, readwrite, copy) void(^eventBlock)(ProductCheckoutModel *dataModel,SFCellCacheModel *cellModel, ProductCheckoutCellEvent event);

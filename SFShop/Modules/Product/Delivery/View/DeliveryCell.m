@@ -36,14 +36,14 @@
 
 - (void)layout {
     [self.bgView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(16);
-        make.right.mas_equalTo(-16);
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-15);
         make.top.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
     }];
     
     [self.leftBgView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(16);
+        make.left.mas_equalTo(15);
         make.right.equalTo(self.priceLabel.mas_left).offset(-10);
         make.centerY.mas_equalTo(0);
         make.top.equalTo(self.titleLabel);
@@ -51,18 +51,18 @@
     }];
 
     [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-16);
+        make.right.mas_equalTo(-15);
         make.centerY.mas_equalTo(0);
     }];
     
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
+        make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
     }];
     
     [self.desLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(8);
-        make.left.mas_equalTo(20);
+        make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
     }];
 }
@@ -74,11 +74,18 @@
     self.priceLabel.text = item.priceStr;
     self.desLabel.text = item.dateStr;
     [self layout];
+    
+    if (item.isSelected) {
+        self.bgView.layer.borderColor = [UIColor jk_colorWithHexString:@"#FF1659"].CGColor;
+    } else {
+        self.bgView.layer.borderColor = [UIColor jk_colorWithHexString:@"#CCCCCC"].CGColor;
+    }
 }
 
 - (UIView *)bgView {
     if (_bgView == nil) {
         _bgView = [[UIView alloc] init];
+        _bgView.layer.borderWidth = 1;
         _bgView.backgroundColor = [UIColor whiteColor];
     }
     return _bgView;
