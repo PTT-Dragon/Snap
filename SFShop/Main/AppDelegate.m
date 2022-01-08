@@ -47,8 +47,6 @@
 }
 
 - (void)receiveLanguageChangeNotification:(NSNotification *)sender {
-    [MBProgressHUD autoDismissShowHudMsg:@"切换中" andDismissDuration:3];
-    
     MainTabViewController *tab = [[MainTabViewController alloc] init];
     self.window.rootViewController = tab;
 }

@@ -8,17 +8,13 @@
 #import "NSBundle+Language.h"
 #import "BaseViewController.h"
 
-static NSBundle *stringBundle = nil;
-
 @implementation NSBundle (Language)
 
 + (instancetype)ffStringBundleWithLanguage:(NSString *)language {
-    if (!stringBundle) {
-        NSBundle *bundle = [NSBundle bundleForClass:[BaseViewController class]];
-        NSString *bundlePath = [bundle.resourcePath stringByAppendingPathComponent:@"LanguageBundle.bundle"];
-        NSBundle *root_bundle = [NSBundle bundleWithPath:bundlePath];
-        stringBundle = [NSBundle bundleWithPath:[root_bundle pathForResource:language ofType:@"lproj"]];
-    }
+    NSBundle *bundle = [NSBundle bundleForClass:[BaseViewController class]];
+    NSString *bundlePath = [bundle.resourcePath stringByAppendingPathComponent:@"LanguageBundle.bundle"];
+    NSBundle *root_bundle = [NSBundle bundleWithPath:bundlePath];
+    NSBundle *stringBundle = [NSBundle bundleWithPath:[root_bundle pathForResource:language ofType:@"lproj"]];
     return stringBundle;
 }
 
