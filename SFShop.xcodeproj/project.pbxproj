@@ -266,7 +266,6 @@
 		1BD10C392761E80100BFC1AD /* ProductEvalationTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD10C372761E80000BFC1AD /* ProductEvalationTitleCell.xib */; };
 		1BD10C3D2761F4B100BFC1AD /* ProductReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD10C3B2761F4B100BFC1AD /* ProductReviewViewController.m */; };
 		1BD10C3E2761F4B100BFC1AD /* ProductReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD10C3C2761F4B100BFC1AD /* ProductReviewViewController.xib */; };
-		1BD2A6102769C49800F994C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BD2A6122769C49800F994C5 /* Localizable.strings */; };
 		1BD2A61D276B0A0900F994C5 /* FlashSaleProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD2A61B276B0A0900F994C5 /* FlashSaleProductViewController.m */; };
 		1BD2A61E276B0A0A00F994C5 /* FlashSaleProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD2A61C276B0A0900F994C5 /* FlashSaleProductViewController.xib */; };
 		1BD2A622276B0CF200F994C5 /* GroupListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD2A620276B0CF200F994C5 /* GroupListViewController.m */; };
@@ -409,6 +408,10 @@
 		8EACB6862781E92D0066BD3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EACB6852781E92D0066BD3A /* libsqlite3.0.tbd */; };
 		8EACB6882781E9350066BD3A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EACB6872781E9350066BD3A /* WebKit.framework */; };
 		8EACB68A2781E93C0066BD3A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EACB6892781E93C0066BD3A /* SystemConfiguration.framework */; };
+		8EE28FAC27887B420051DF85 /* LanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE28FAB27887B420051DF85 /* LanguageViewController.m */; };
+		8EE292212789AA400051DF85 /* LanguageBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EE292202789AA400051DF85 /* LanguageBundle.bundle */; };
+		8EE292242789AAA10051DF85 /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE292232789AAA10051DF85 /* NSBundle+Language.m */; };
+		8EE292272789AB3C0051DF85 /* FFLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE292262789AB3C0051DF85 /* FFLocalization.m */; };
 		AE43BF5F2781F4DF006D7135 /* CouponsAvailableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE43BF5E2781F4DF006D7135 /* CouponsAvailableModel.m */; };
 		AE43BF632782DBF2006D7135 /* CouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE43BF622782DBF2006D7135 /* CouponsViewController.m */; };
 		AE43BF672782DCB7006D7135 /* CouponsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE43BF662782DCB7006D7135 /* CouponsCell.m */; };
@@ -943,9 +946,6 @@
 		1BD2A60D2769C43A00F994C5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		1BD2A60E2769C47000F994C5 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1BD2A60F2769C47000F994C5 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
-		1BD2A6112769C49800F994C5 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1BD2A6132769C4BA00F994C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1BD2A6142769C4BB00F994C5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1BD2A6162769C55F00F994C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1BD2A61A276B0A0900F994C5 /* FlashSaleProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleProductViewController.h; sourceTree = "<group>"; };
 		1BD2A61B276B0A0900F994C5 /* FlashSaleProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleProductViewController.m; sourceTree = "<group>"; };
@@ -1174,6 +1174,13 @@
 		8EACB6852781E92D0066BD3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		8EACB6872781E9350066BD3A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		8EACB6892781E93C0066BD3A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8EE28FAA27887B420051DF85 /* LanguageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageViewController.h; sourceTree = "<group>"; };
+		8EE28FAB27887B420051DF85 /* LanguageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageViewController.m; sourceTree = "<group>"; };
+		8EE292202789AA400051DF85 /* LanguageBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LanguageBundle.bundle; sourceTree = "<group>"; };
+		8EE292222789AAA10051DF85 /* NSBundle+Language.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
+		8EE292232789AAA10051DF85 /* NSBundle+Language.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
+		8EE292252789AB3C0051DF85 /* FFLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFLocalization.h; sourceTree = "<group>"; };
+		8EE292262789AB3C0051DF85 /* FFLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFLocalization.m; sourceTree = "<group>"; };
 		ABCFEC0B341B688C59EBE3B6 /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
 		AE43BF5D2781F4DF006D7135 /* CouponsAvailableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponsAvailableModel.h; sourceTree = "<group>"; };
 		AE43BF5E2781F4DF006D7135 /* CouponsAvailableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponsAvailableModel.m; sourceTree = "<group>"; };
@@ -2454,6 +2461,7 @@
 		4B9FB9D826FB7A1F00C90790 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				8EE28FA927887B2D0051DF85 /* Language */,
 				1B6246672762606B00009DE2 /* Message */,
 				1BD8E7C9275FA57000130DCC /* Support */,
 				1B74DB452728EF5800B30ECC /* Similar */,
@@ -2529,7 +2537,11 @@
 				1BDBEB8E26FCB7590018109B /* PrefixHeader.pch */,
 				1BDBEBAC26FDC8400018109B /* baseTool.h */,
 				1BDBEBAD26FDC8400018109B /* baseTool.m */,
-				1BD2A6122769C49800F994C5 /* Localizable.strings */,
+				8EE292202789AA400051DF85 /* LanguageBundle.bundle */,
+				8EE292222789AAA10051DF85 /* NSBundle+Language.h */,
+				8EE292232789AAA10051DF85 /* NSBundle+Language.m */,
+				8EE292252789AB3C0051DF85 /* FFLocalization.h */,
+				8EE292262789AB3C0051DF85 /* FFLocalization.m */,
 			);
 			path = Const;
 			sourceTree = "<group>";
@@ -2716,7 +2728,17 @@
 			children = (
 			);
 			path = Share;
-        };
+			sourceTree = "<unknown>";
+		};
+		8EE28FA927887B2D0051DF85 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				8EE28FAA27887B420051DF85 /* LanguageViewController.h */,
+				8EE28FAB27887B420051DF85 /* LanguageViewController.m */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
 		AE43BF602782DBE5006D7135 /* Coupons */ = {
 			isa = PBXGroup;
 			children = (
@@ -3213,7 +3235,6 @@
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				1B6C52CC275C894C00A1C617 /* RelationOrderDetailInfoCell.xib in Resources */,
 				1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */,
-				1BD2A6102769C49800F994C5 /* Localizable.strings in Resources */,
 				1BD10C3E2761F4B100BFC1AD /* ProductReviewViewController.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1BF00F65272FDC2E0081C8E4 /* DistributorRelationOrderCell.xib in Resources */,
@@ -3234,6 +3255,7 @@
 				1B478330272AA1FF00F2A945 /* SecurityCenterViewController.xib in Resources */,
 				1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */,
 				1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */,
+				8EE292212789AA400051DF85 /* LanguageBundle.bundle in Resources */,
 				8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */,
 				1BD8E7DD27605D0400130DCC /* ReviewSuccessViewController.xib in Resources */,
 				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
@@ -3418,6 +3440,7 @@
 				1BD8E7CD275FA58300130DCC /* SupportViewController.m in Sources */,
 				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
 				1B71AE5E277D840A0088D94A /* UITextField+expand.m in Sources */,
+				8EE292242789AAA10051DF85 /* NSBundle+Language.m in Sources */,
 				1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */,
 				1BD8E7BD275F377800130DCC /* RefundDetailMethodCell.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
@@ -3570,6 +3593,7 @@
 				AE81BE4526FF605100AB4225 /* CategoryContentCollectionView.m in Sources */,
 				1B12A3DA27015E9100DD7BCD /* CouponCenterViewController.m in Sources */,
 				1BDBEB8D26FCB24C0018109B /* BaseNavigationController.m in Sources */,
+				8EE28FAC27887B420051DF85 /* LanguageViewController.m in Sources */,
 				1B74DADD2721ABC500B30ECC /* ReviewViewController.m in Sources */,
 				1B3C123126FC808F00235294 /* accountSubCell.m in Sources */,
 				AEA3296B27240E6800E7827A /* YHRegularLayout.m in Sources */,
@@ -3589,6 +3613,7 @@
 				1B49D13D271D477F002461ED /* userInfoGenderView.m in Sources */,
 				AEA32968272400B000E7827A /* CategoryRankFilterViewController.m in Sources */,
 				1B82AE4C27707CB500D75E00 /* KSPhotoItem.m in Sources */,
+				8EE292272789AB3C0051DF85 /* FFLocalization.m in Sources */,
 				1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */,
 				1BD10C332761DE4300BFC1AD /* ProductEvalationCell.m in Sources */,
 				AE43BF5F2781F4DF006D7135 /* CouponsAvailableModel.m in Sources */,
@@ -3687,16 +3712,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1BD2A6122769C49800F994C5 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BD2A6112769C49800F994C5 /* id */,
-				1BD2A6132769C4BA00F994C5 /* en */,
-				1BD2A6142769C4BB00F994C5 /* zh-Hans */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		AE81BDDF26FB6E7000AB4225 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -24,12 +24,15 @@
     [self initUmeng];
     [self confitUShareSettings];
     [self configUSharePlatforms];
-    
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     MainTabViewController *tab = [[MainTabViewController alloc] init];
     self.window.rootViewController = tab;
     [self.window makeKeyAndVisible];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangeNotification:)
+                                                 name:@"KLanguageChange"
+                                               object:nil];
     return YES;
 }
 
@@ -41,6 +44,13 @@
 //    } failed:^(NSError * _Nonnull error) {
 //        NSLog(@"");
 //    }];
+}
+
+- (void)receiveLanguageChangeNotification:(NSNotification *)sender {
+    [MBProgressHUD autoDismissShowHudMsg:@"切换中" andDismissDuration:3];
+    
+    MainTabViewController *tab = [[MainTabViewController alloc] init];
+    self.window.rootViewController = tab;
 }
 
 -(BOOL)application:(UIApplication*)application handleOpenURL:(NSURL *)url {
