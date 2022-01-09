@@ -42,19 +42,38 @@
 }
 
 - (NSMutableDictionary *)logisticsParams {
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    if (self.deliveryAddressId.length > 0) {
-        [params setObject:self.deliveryAddressId forKey:@"deliveryAddressId"];
-    }
-    if (self.deliveryMode.length > 0) {
-        [params setObject:self.deliveryMode forKey:@"deliveryMode"];
-    }
+    NSMutableDictionary *params = self.outter;
+    [params setObject:@[self.innner] forKey:@"stores"];
+    return params;
+}
+
+- (NSMutableDictionary *)couponsAvailableParams {
+    return self.logisticsParams;
+}
+
+- (NSDictionary *)calcfeeParams {
+    NSMutableDictionary *params = self.outter;
+    [params setObject:self.sourceType forKey:@"sourceType"];
+    if (self.selUserPltCouponId.length > 0) {[params setObject:self.selUserPltCouponId forKey:@"selUserPltCouponId"];}
     
+    NSMutableDictionary *store = self.innner;
+    if (self.selUserCouponId.length > 0) {[store setObject:self.selUserCouponId forKey:@"selUserCouponId"];}
+    if (self.logisticsModeId.length > 0) {[store setObject:self.logisticsModeId forKey:@"logisticsModeId"];}
+    [params setObject:@[store] forKey:@"stores"];
+    return params;
+}
+
+#pragma mark - Private
+- (NSMutableDictionary *)outter {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (self.deliveryAddressId.length > 0) {[params setObject:self.deliveryAddressId forKey:@"deliveryAddressId"];}
+    if (self.deliveryMode.length > 0) {[params setObject:self.deliveryMode forKey:@"deliveryMode"];}
+    return params;
+}
+
+- (NSMutableDictionary *)innner {
     NSMutableDictionary *stores = [NSMutableDictionary dictionary];
     [stores setObject:self.storeId forKey:@"storeId"];
-    if (self.logisticsModeId.length > 0) {
-        [stores setObject:self.logisticsModeId forKey:@"logisticsModeId"];
-    }
     NSMutableArray *products = [NSMutableArray array];
     for (int i = 0; i < self.productIds.count; i ++) {
         NSString *productId = self.productIds[i];
@@ -64,18 +83,7 @@
         }
     }
     [stores setObject:products forKey:@"products"];
-    [params setObject:@[stores] forKey:@"stores"];
-    return params;
-}
-
-- (NSMutableDictionary *)couponsAvailableParams {
-    return self.logisticsParams;
-}
-
-- (NSDictionary *)calcfeeParams {
-    NSMutableDictionary *params = self.logisticsParams;
-    [params setObject:self.sourceType forKey:@"sourceType"];
-    return params;
+    return stores;
 }
 
 @end

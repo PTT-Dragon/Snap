@@ -21,6 +21,7 @@
 #import "AddressViewController.h"
 #import "CouponsViewController.h"
 #import "DeleveryViewController.h"
+#import "CheckoutManager.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -28,7 +29,6 @@
 @property (nonatomic, readwrite, strong) UITableView *tableView;
 @property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFCellCacheModel *> *> *dataArray;
-@property (nonatomic,strong) ProductCalcFeeModel *feeModel;
 @property (nonatomic,strong) NSArray<ProductDetailModel *> *productModels;
 @property (nonatomic,strong) NSArray<NSNumber *> *productBuyCounts;
 @property (nonatomic,strong) NSArray<NSNumber *> *productIds;
@@ -43,7 +43,6 @@
     self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
     [self loadsubviews];
     [self layout];
-    self.buyView.dataModel = self.dataModel;
     // Do any additional setup after loading the view.
 }
 
@@ -88,22 +87,22 @@
     //优惠券
     self.dataModel.couponsModel = couponModel;
 
-    // 地址
+    //地址
     self.dataModel.addressModel = addressModel;
     
     //配送
-    OrderLogisticsItem * logisticsItem = logisticsModel.logistics.firstObject;
-    logisticsItem.isSelected = YES;
     self.dataModel.logisticsModel = logisticsModel;
-    self.dataModel.currentLogisticsItem = logisticsItem;
 
-    // 费用
-    _feeModel = feeModel;
-    
-    /**
-     结算总价这边我做了修改 测试是正常
-     **/
-    self.dataModel.totalPrice = ([feeModel.totalOfferPrice floatValue] + [logisticsItem.logisticsFee floatValue] - feeModel.totalDiscount.floatValue)  * 0.001;    
+    //费用
+    self.dataModel.feeModel = feeModel;
+
+    //刷新价格
+    [self refreshCalFee];
+}
+
+//刷新价格
+- (void)refreshCalFee {
+    self.buyView.dataModel = self.dataModel;
     [self.tableView reloadData];
 }
 
@@ -196,12 +195,26 @@
         switch (event) {
             case ProductCheckoutCellEvent_GotoStoreVoucher: {
                 CouponsViewController *vc = [[CouponsViewController alloc] init];
+                NSMutableArray *availableCoupons = self.dataModel.couponsModel.storeAvailableCoupons.firstObject.availableCoupons.mutableCopy;
+                if (!availableCoupons.count) {
+                    [MBProgressHUD autoDismissShowHudMsg:@"None Coupons"];
+                    return;
+                }
                 vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-                vc.dataArray = self.dataModel.couponsModel.storeAvailableCoupons.firstObject.availableCoupons.mutableCopy;
+                vc.dataArray = availableCoupons;
                 vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
                     strongSelf.dataModel.currentStoreCoupon = item;
-                    [strongSelf.tableView reloadData];
+                    NSString *userCouponId = nil;
+                    if (item.userCouponId > 0) {
+                        userCouponId = [NSString stringWithFormat:@"%ld",item.userCouponId];
+                    }
+                    [MBProgressHUD showHudMsg:@""];
+                    [CheckoutManager.shareInstance calfeeBySelUserCouponId:userCouponId complete:^(ProductCalcFeeModel * _Nonnull feeModel) {
+                        strongSelf.dataModel.feeModel = feeModel;
+                        [strongSelf refreshCalFee];
+                        [MBProgressHUD hideFromKeyWindow];
+                    }];
                 };
                 [self presentViewController:vc animated:YES completion:nil];
             }
@@ -209,8 +222,15 @@
             case ProductCheckoutCellEvent_GotoAddress: {
                 AddressViewController *vc = [[AddressViewController alloc] init];
                 vc.addressBlock = ^(addressModel * _Nonnull model) {
-                    self.dataModel.addressModel = model;
-                    [self.tableView reloadData];
+                    __strong __typeof(weakSelf)strongSelf = weakSelf;
+                    strongSelf.dataModel.addressModel = model;
+                    [MBProgressHUD showHudMsg:@""];
+                    [CheckoutManager.shareInstance calfeeByAddress:model.deliveryAddressId complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel) {
+                        strongSelf.dataModel.logisticsModel = logisticsModel;
+                        strongSelf.dataModel.feeModel = feeModel;
+                        [strongSelf refreshCalFee];
+                        [MBProgressHUD hideFromKeyWindow];
+                    }];
                 };
                 [self.navigationController pushViewController:vc animated:YES];
             }
@@ -272,23 +292,47 @@
     SFCellCacheModel *model = self.dataArray[indexPath.section][indexPath.row];
     __weak __typeof(self)weakSelf = self;
     if ([model.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
+        NSMutableArray *pltAvailableCoupons = self.dataModel.couponsModel.pltAvailableCoupons.mutableCopy;
+        if (!pltAvailableCoupons.count) {
+            [MBProgressHUD autoDismissShowHudMsg:@"None Vouchers"];
+            return;
+        }
         CouponsViewController *vc = [[CouponsViewController alloc] init];
         vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-        vc.dataArray = self.dataModel.couponsModel.pltAvailableCoupons.mutableCopy;
+        vc.dataArray = pltAvailableCoupons;
         vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
             strongSelf.dataModel.currentPltCoupon = item;
-            [strongSelf.tableView reloadData];
+            NSString *userCouponId = nil;
+            if (item.userCouponId > 0) {
+                userCouponId = [NSString stringWithFormat:@"%ld",item.userCouponId];
+            }
+            [MBProgressHUD showHudMsg:@""];
+            [CheckoutManager.shareInstance calfeeBySelUserPltCouponId:userCouponId complete:^(ProductCalcFeeModel * _Nonnull feeModel) {
+                strongSelf.dataModel.feeModel = feeModel;
+                [strongSelf refreshCalFee];
+                [MBProgressHUD hideFromKeyWindow];
+            }];
         };
         [self presentViewController:vc animated:YES completion:nil];
     } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
+        NSMutableArray *logisticsModel = self.dataModel.logisticsModel.logistics.mutableCopy;
+        if (!logisticsModel.count) {
+            [MBProgressHUD autoDismissShowHudMsg:@"None Delivery"];
+            return;
+        }
         DeleveryViewController *vc = [[DeleveryViewController alloc] init];
         vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-        vc.dataArray = self.dataModel.logisticsModel.logistics.mutableCopy;
+        vc.dataArray = logisticsModel;
         vc.selectedDeleveryBlock = ^(OrderLogisticsItem * _Nullable item) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
             strongSelf.dataModel.currentLogisticsItem = item;
-            [strongSelf.tableView reloadData];
+            [MBProgressHUD showHudMsg:@""];
+            [CheckoutManager.shareInstance calfeeByLogistic:item.logisticsModeId complete:^(ProductCalcFeeModel * _Nonnull feeModel) {
+                strongSelf.dataModel.feeModel = feeModel;
+                [strongSelf refreshCalFee];
+                [MBProgressHUD hideFromKeyWindow];
+            }];
         };
         [self presentViewController:vc animated:YES completion:nil];
     }
@@ -348,7 +392,7 @@
             }
             
             [MBProgressHUD showHudMsg:kLocalizedString(@"Calculating")];
-            NSNumber *totalPrice = [NSNumber numberWithLong:weakself.dataModel.totalPrice * 1000];
+            NSNumber *totalPrice = [NSNumber numberWithLong:weakself.dataModel.feeModel.totalPrice.longLongValue];
             NSDictionary *params = @{
                 @"billingEmail": weakself.dataModel.addressModel.email,
                 @"deliveryAddressId": weakself.dataModel.addressModel.deliveryAddressId,

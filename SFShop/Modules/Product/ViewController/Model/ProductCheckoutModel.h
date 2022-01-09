@@ -9,6 +9,7 @@
 #import "CouponsAvailableModel.h"
 #import "OrderLogisticsModel.h"
 #import "addressModel.h"
+#import "ProductCalcFeeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 //商品选项
@@ -34,8 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 //最后提示信息相关
 @property (nonatomic, readwrite, strong) NSString *notes;//备注
-@property (nonatomic, readwrite, assign) float promoReduce;//促销降价
-@property (nonatomic, readwrite, assign) float totalPrice;//总价
+
+/*
+ 结算数据
+ 1、⚠️不能为nil
+ */
+@property (nonatomic, readwrite, strong) ProductCalcFeeModel *feeModel;
+
 
 /*
  地址数据

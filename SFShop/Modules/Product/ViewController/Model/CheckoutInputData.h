@@ -12,9 +12,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckoutInputData : NSObject
-
-@property (nonatomic, readwrite, strong) NSString *logisticsModeId;//物流id
-@property (nonatomic, readwrite, strong) NSString *deliveryAddressId;//地址id
+#pragma mark - 不需要初始化的可选参数
+@property (nonatomic, readwrite, strong, nullable) NSString *logisticsModeId;//物流id
+@property (nonatomic, readwrite, strong, nullable) NSString *deliveryAddressId;//地址id
+@property (nonatomic, readwrite, strong, nullable) NSString *selUserCouponId;//店铺优惠券id
+@property (nonatomic, readwrite, strong, nullable) NSString *selUserPltCouponId;//平台优惠券id
 
 /// 初始化 CheckoutData ⚠️ productIds 个数需要和 productNums 一致
 /// @param logisticsModeId 物流id

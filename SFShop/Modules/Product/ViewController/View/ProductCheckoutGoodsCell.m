@@ -63,6 +63,7 @@
         make.left.equalTo(self.icon.mas_right).offset(10);
         make.height.mas_equalTo(20);
         make.width.mas_equalTo([self.typeLabel.text calWidthWithLabel:self.typeLabel] + 16);
+        make.right.mas_lessThanOrEqualTo(-20);
     }];
     
     [self.numLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

@@ -30,3 +30,9 @@
 }
 
 @end
+
+@implementation NSString (ProductCalcFeeModel)
+- (CGFloat)fee {
+    return self.floatValue / 1000.0;
+}
+@end

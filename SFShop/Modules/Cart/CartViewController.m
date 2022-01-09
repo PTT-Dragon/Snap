@@ -200,34 +200,15 @@
                 subModel.carouselImgUrls = @[img];
                 [productDetailModels addObject:subModel];
                 [counts addObject:@(cartItem.num.intValue)];
-                [attrValues addObject:@"测试分类"];
+                ProdSpcAttrsModel *spcModel = cartItem.prodSpcAttrs.firstObject;
+                [attrValues addObject:spcModel.value];
                 [productIds addObject:cartItem.productId];
                 [productNums addObject:cartItem.num];
             }
         }
     }
     
-    if (!self.selAddModel.deliveryAddressId ||  [self.selAddModel.deliveryAddressId isEqualToString:@""]
-        || !storeId || [storeId isEqualToString:@""]) {
-        [MBProgressHUD autoDismissShowHudMsg:@"Set You Address"];
-        return;
-    }
-    
-//    NSDictionary *logisticsParams = @{
-//        @"deliveryAddressId": self.selAddModel.deliveryAddressId,
-//        @"deliveryMode":deliveryMode,
-//        @"stores": @[
-//                @{
-//                    @"storeId": storeId,
-//                    @"products": products
-//                }
-//        ],
-//    };
-//    NSMutableDictionary *calcfeeParams = [NSMutableDictionary dictionaryWithDictionary:logisticsParams];
-//    [calcfeeParams addEntriesFromDictionary:@{
-//        @"sourceType": @"GWCGM", // TODO:此处参考h5
-//    }];
-
+    NSAssert(storeId.length > 0, @"storeId 不能为空");
     ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
     CheckoutInputData *data = [CheckoutInputData initWithLogisticsModeId:nil
                                   deliveryAddressId:self.selAddModel.deliveryAddressId
@@ -240,14 +221,7 @@
         if (!feeModel) {
             return;
         }
-        
-        if (!logisticsModel) {
-            return;
-        }
-        
-        if (!couponsModel) {
-            NSLog(@"");
-        }
+    
         [vc setProductModels:productDetailModels
                   attrValues:attrValues
                   productIds:productIds
