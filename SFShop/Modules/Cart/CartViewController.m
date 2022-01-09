@@ -210,13 +210,13 @@
     
     NSAssert(storeId.length > 0, @"storeId 不能为空");
     ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-    CheckoutInputData *data = [CheckoutInputData initWithLogisticsModeId:nil
-                                  deliveryAddressId:self.selAddModel.deliveryAddressId
-                                       deliveryMode:deliveryMode
-                                            storeId:storeId
-                                         sourceType:@"GWCGM"
-                                         productIds:productIds
-                                        productNums:productNums];
+    CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selAddModel.deliveryAddressId
+                                                              deliveryMode:deliveryMode
+                                                                   storeId:storeId
+                                                                sourceType:@"GWCGM"
+                                                                productIds:productIds
+                                                               productNums:productNums
+                                                              inCmpIdLists:nil];
     [CheckoutManager.shareInstance loadCheckoutData:data complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel, CouponsAvailableModel * _Nonnull couponsModel) {
         if (!feeModel) {
             return;

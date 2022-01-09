@@ -24,7 +24,7 @@
 #import "ProductGroupListCell.h"
 #import "ProductGroupTitleCell.h"
 #import "ProductionRecommendCell.h"
-
+#import "CheckoutManager.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -642,68 +642,35 @@
     } else {
         // TODO: 跳转checkout页
         MPWeakSelf(self)
-        NSMutableDictionary *logisticsParams = [NSMutableDictionary dictionary];
-        [logisticsParams setValue:self.selectedAddressModel.deliveryAddressId forKey:@"deliveryAddressId"];
-        [logisticsParams setValue:self.model.deliveryMode forKey:@"deliveryMode"];
-        [logisticsParams setValue:@[
-            @{
-                @"logisticsModeId": @"1",
-                @"storeId": @(self.model.storeId),
-                @"products": @[
-                        @{
-                            @"productId": @([self getSelectedProductId]),
-                            @"offerCnt": @(self.attrView.count)
-                        }
-                ]
+        NSArray *productIds = @[[NSString stringWithFormat:@"%ld",self.getSelectedProductId]];
+        NSArray *productNums = @[@(self.attrView.count)];
+        NSAssert(self.model.storeId > 0, @"storeId 不能为空");
+        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
+        CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selectedAddressModel.deliveryAddressId
+                                                                  deliveryMode:self.model.deliveryMode
+                                                                       storeId:[NSString stringWithFormat:@"%ld",self.model.storeId]
+                                                                    sourceType:@"LJGM"
+                                                                    productIds:productIds
+                                                                   productNums:productNums
+                                                                  inCmpIdLists:nil];
+        [CheckoutManager.shareInstance loadCheckoutData:data complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel, CouponsAvailableModel * _Nonnull couponsModel) {
+            if (!feeModel) {
+                return;
             }
-    ] forKey:@"stores"];
-//        NSDictionary *logisticsParams = @{
-//            @"deliveryAddressId": self.selectedAddressModel.deliveryAddressId,
-//            @"deliveryMode": self.model.deliveryMode,
-//            @"stores": @[
-//                    @{
-//                        @"logisticsModeId": @"1",
-//                        @"storeId": @(self.model.storeId),
-//                        @"products": @[
-//                                @{
-//                                    @"productId": @([self getSelectedProductId]),
-//                                    @"offerCnt": @(self.attrView.count)
-//                                }
-//                        ]
-//                    }
-//            ],
-//        };
+            
+            [weakself.attrView removeFromSuperview];
+            weakself.isCheckingSaleInfo = NO;
         
-        NSMutableDictionary *calcfeeParams = [NSMutableDictionary dictionaryWithDictionary:logisticsParams];
-        [calcfeeParams addEntriesFromDictionary:@{
-            @"sourceType": @"LJGM", // TODO:此处参考h5
-        }];
-        
-        [MBProgressHUD showHudMsg:kLocalizedString(@"Calculating")];
-        [SFNetworkManager post:SFNet.order.calcfee parameters: calcfeeParams success:^(id  _Nullable response) {
-            ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
-            [SFNetworkManager post:SFNet.order.logistics parameters:logisticsParams success:^(id  _Nullable responseInner) {
-                NSDictionary *data = ((NSArray *)responseInner).firstObject;
-                OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:data error:nil];
-                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Calcfee_Success")];
-                [weakself.attrView removeFromSuperview];
-                weakself.isCheckingSaleInfo = NO;
-                ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-                [vc setProductModels:@[weakself.model]
-                          attrValues:@[weakself.variationsLabel.text]
-                 productIds:@[@([weakself getSelectedProductId])]
-                      logisticsModel:logisticsModel
-                         couponModel:nil
-                        addressModel:weakself.selectedAddressModel
-                            feeModel:feeModel
-                               count:@[@(weakself.attrView.count)]
-                          sourceType:@"LJGM"];
-                [weakself.navigationController pushViewController:vc animated:YES];
-            } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Logistics_failed")];
-            }];
-        } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Calcfee_failed")];
+            [vc setProductModels:@[weakself.model]
+                      attrValues:@[weakself.variationsLabel.text]
+                      productIds:productIds
+                  logisticsModel:logisticsModel
+                     couponModel:couponsModel
+                    addressModel:weakself.selectedAddressModel
+                        feeModel:feeModel
+                           count:productNums
+                      sourceType:@"LJGM"];
+            [weakself.navigationController pushViewController:vc animated:YES];
         }];
     }
 }

@@ -13,17 +13,19 @@
 @property (nonatomic, readwrite, strong) NSString *sourceType;//类型 LJGM 等参考H5
 @property (nonatomic, readwrite, strong) NSArray<NSString *> *productIds;//产品id数组
 @property (nonatomic, readwrite, strong) NSArray<NSNumber *> *productNums;//购买产品对应的数量
+@property (nonatomic, readwrite, strong) NSArray<NSNumber *> *inCmpIdLists;//购买产品对应的折扣,目前一个商品暂时对应一个折扣,若有多个,需要修改
+
 @end
 
 @implementation CheckoutInputData
 
-+ (instancetype)initWithLogisticsModeId:(NSString *)logisticsModeId
-                      deliveryAddressId:(NSString *)deliveryAddressId
-                           deliveryMode:(NSString *)deliveryMode
-                                storeId:(NSString *)storeId
-                             sourceType:(NSString *)sourceType
-                             productIds:(NSArray<NSString *> *)productIds
-                            productNums:(NSArray<NSNumber *> *)productNums {
++ (instancetype)initWithDeliveryAddressId:(NSString *)deliveryAddressId
+                             deliveryMode:(NSString *)deliveryMode
+                                  storeId:(NSString *)storeId
+                               sourceType:(NSString *)sourceType
+                               productIds:(NSArray<NSString *> *)productIds
+                              productNums:(NSArray<NSNumber *> *)productNums
+                             inCmpIdLists:(nullable NSArray<NSNumber *> *)inCmpIdLists {
     NSAssert(storeId.length > 0, @"storeId 不能为空");
     NSAssert(sourceType.length > 0, @"sourceType 不能为空");
     NSAssert(productIds.count > 0, @"productIds 不能为空");
@@ -31,13 +33,13 @@
     NSAssert(productNums.count == productIds.count, @"productNums 和 productIds 个数不一致");
 
     CheckoutInputData *data = [[CheckoutInputData alloc] init];
-    data.logisticsModeId = logisticsModeId;
     data.deliveryAddressId = deliveryAddressId;
     data.deliveryMode = deliveryMode;
     data.storeId = storeId;
     data.sourceType = sourceType;
     data.productIds = productIds;
     data.productNums = productNums;
+    data.inCmpIdLists = inCmpIdLists;
     return data;
 }
 
@@ -79,7 +81,11 @@
         NSString *productId = self.productIds[i];
         NSNumber *offerCnt = self.productNums[i];
         if (productId.length > 0 && offerCnt.intValue > 0) {
-            [products addObject:@{@"productId":productId,@"offerCnt":offerCnt}];
+            if (self.inCmpIdLists.count > i && self.inCmpIdLists[i].intValue > 0) {
+                [products addObject:@{@"productId":productId,@"offerCnt":offerCnt,@"inCmpIdList":@[self.inCmpIdLists[i]]}];
+            } else {
+                [products addObject:@{@"productId":productId,@"offerCnt":offerCnt}];
+            }
         }
     }
     [stores setObject:products forKey:@"products"];
