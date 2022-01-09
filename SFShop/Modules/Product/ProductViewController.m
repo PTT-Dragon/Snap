@@ -669,6 +669,9 @@
                     addressModel:weakself.selectedAddressModel
                         feeModel:feeModel
                            count:productNums
+                    inCmpIdLists:nil
+                    deliveryMode:weakself.model.deliveryMode
+                        currency:kLocalizedString(@"Rp")
                       sourceType:@"LJGM"];
             [weakself.navigationController pushViewController:vc animated:YES];
         }];

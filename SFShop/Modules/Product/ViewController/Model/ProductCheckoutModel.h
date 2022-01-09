@@ -10,6 +10,7 @@
 #import "OrderLogisticsModel.h"
 #import "addressModel.h"
 #import "ProductCalcFeeModel.h"
+#import "ProductDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 //商品选项
@@ -24,8 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface ProductCheckoutModel : NSObject
+//商品model
+@property (nonatomic, readwrite, strong) NSArray<ProductDetailModel *> *productModels;
+//商品个数
+@property (nonatomic, readwrite, strong) NSArray<NSNumber *> *productBuyCounts;
+//商品id
+@property (nonatomic, readwrite, strong) NSArray<NSNumber *> *productIds;
+//商品折扣id
+@property (nonatomic, readwrite, strong) NSArray<NSNumber *> *inCmpIdList;
 //价格单位
-@property (nonatomic, readwrite, assign) NSString *priceRp;
+@property (nonatomic, readwrite, assign) NSString *currency;
+//配送模型
+@property (nonatomic, readwrite, assign) NSString *deliveryMode;
 
 //购买类型
 @property (nonatomic, readwrite, strong) NSString *sourceType;

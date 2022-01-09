@@ -9,7 +9,7 @@
 #import "CustomTextField.h"
 #import "UIButton+EnlargeTouchArea.h"
 
-@interface ProductCheckoutNoteCell ()
+@interface ProductCheckoutNoteCell ()<UITextFieldDelegate>
 @property (nonatomic, readwrite, strong) UIView *bgView;
 @property (nonatomic, readwrite, strong) UIView *sectionLine;
 @property (nonatomic, readwrite, strong) UILabel *noteLabel;
@@ -119,13 +119,18 @@
     !self.eventBlock?:self.eventBlock(self.dataModel, self.cellModel, ProductCheckoutCellEvent_GotoStoreVoucher);
 }
 
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.dataModel.notes = textField.text;
+}
+
 #pragma mark - Getter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     super.dataModel = dataModel;
     NSInteger availableVouchersCount = dataModel.couponsModel.storeAvailableCoupons.firstObject.availableCoupons.count;
     if (dataModel.currentStoreCoupon) {//如果选中优惠券,那么显示优惠券减少的价格
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        self.couponPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.priceRp,dataModel.feeModel.storeCouponPrice.fee];
+        self.couponPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.currency,dataModel.feeModel.storeCouponPrice.fee];
     } else if (!availableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
         self.couponPriceLabel.text = kLocalizedString(@"Not_available");
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
@@ -133,8 +138,8 @@
         self.couponPriceLabel.text = [NSString stringWithFormat:@"%ld available",availableVouchersCount];
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     }
-    self.promoPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.priceRp,dataModel.feeModel.storeCampaignPrice.fee];
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"%@ %.3f",dataModel.priceRp,dataModel.feeModel.stores.firstObject.storeOrderPrice.fee];
+    self.promoPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.currency,dataModel.feeModel.storeCampaignPrice.fee];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"%@ %.3f",dataModel.currency,dataModel.feeModel.stores.firstObject.storeOrderPrice.fee];
     [self layout];
 }
 
@@ -239,6 +244,7 @@
         _noteTF.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _noteTF.font = [UIFont systemFontOfSize:12];
         _noteTF.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
+        _noteTF.delegate = self;
     }
     return _noteTF;
 }

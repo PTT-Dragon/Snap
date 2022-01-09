@@ -73,10 +73,7 @@
 
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (![self.dataModel.addressModel.email isEqualToString:textField.text]) {
-        self.dataModel.addressModel.email = textField.text;
-        !self.eventBlock?: self.eventBlock(self.dataModel, self.cellModel,ProductCheckoutCellEvent_UpdateEmail);
-    }
+    self.dataModel.addressModel.email = textField.text;
 }
 
 #pragma mark - #EVENT

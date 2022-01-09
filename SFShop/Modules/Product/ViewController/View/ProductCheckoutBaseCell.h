@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger,  ProductCheckoutCellEvent) {
     ProductCheckoutCellEvent_GotoStoreVoucher,
     ProductCheckoutCellEvent_GotoAddress,
-    ProductCheckoutCellEvent_UpdateEmail,
 };
 
 @interface ProductCheckoutBaseCell : UITableViewCell

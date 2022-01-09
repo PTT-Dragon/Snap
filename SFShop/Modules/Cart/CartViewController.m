@@ -230,6 +230,9 @@
                 addressModel:weakself.selAddModel
                     feeModel:feeModel
                        count:counts
+                inCmpIdLists:nil
+                deliveryMode:deliveryMode
+                    currency:kLocalizedString(@"Rp")
                   sourceType:@"GWCGM"];
         [weakself.navigationController pushViewController:vc animated:YES];
     }];
