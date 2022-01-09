@@ -44,7 +44,7 @@
 //    } failed:^(NSError * _Nonnull error) {
 //        NSLog(@"");
 //    }];
-}
+ }
 
 - (void)receiveLanguageChangeNotification:(NSNotification *)sender {
     MainTabViewController *tab = [[MainTabViewController alloc] init];

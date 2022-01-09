@@ -60,7 +60,7 @@
 
 #pragma mark - Get and Set
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",dataModel.priceRp,dataModel.totalPrice];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",dataModel.priceRp,dataModel.feeModel.totalPrice.fee];
 }
 
 - (UILabel *)priceLabel {
