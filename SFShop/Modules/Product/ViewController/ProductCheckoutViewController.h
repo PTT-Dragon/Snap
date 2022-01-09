@@ -11,6 +11,7 @@
 #import "ProductDetailModel.h"
 #import "OrderLogisticsModel.h"
 #import "CouponsAvailableModel.h"
+#import "CheckoutInputData.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
                 feeModel:(ProductCalcFeeModel *)feeModel
                    count: (NSArray<NSNumber *> *) counts
               sourceType:(NSString *)sourceType;
+
 @end
 
 NS_ASSUME_NONNULL_END

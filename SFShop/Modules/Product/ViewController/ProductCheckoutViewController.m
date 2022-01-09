@@ -20,6 +20,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "AddressViewController.h"
 #import "CouponsViewController.h"
+#import "DeleveryViewController.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -28,7 +29,6 @@
 @property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFCellCacheModel *> *> *dataArray;
 @property (nonatomic,strong) ProductCalcFeeModel *feeModel;
-@property (nonatomic,strong) addressModel *addressModel;
 @property (nonatomic,strong) NSArray<ProductDetailModel *> *productModels;
 @property (nonatomic,strong) NSArray<NSNumber *> *productBuyCounts;
 @property (nonatomic,strong) NSArray<NSNumber *> *productIds;
@@ -53,7 +53,6 @@
 }
 
 #pragma mark - Setter
-
 - (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
                attrValues:(NSArray<NSString *> *)attrValues
                productIds:(NSArray<NSNumber *> *) productIds
@@ -84,22 +83,23 @@
     
     self.dataModel.sourceType = sourceType;
     
+    self.dataModel.priceRp = kLocalizedString(@"Rp");
+    
     //优惠券
     self.dataModel.couponsModel = couponModel;
 
     // 地址
-    _addressModel = addressModel;
-    self.dataModel.address = addressModel.customAddress;
-    self.dataModel.email = addressModel.email;
+    self.dataModel.addressModel = addressModel;
+    
+    //配送
+    OrderLogisticsItem * logisticsItem = logisticsModel.logistics.firstObject;
+    logisticsItem.isSelected = YES;
+    self.dataModel.logisticsModel = logisticsModel;
+    self.dataModel.currentLogisticsItem = logisticsItem;
 
     // 费用
     _feeModel = feeModel;
-        
-    OrderLogisticsItem * logisticsItem = logisticsModel.logistics.firstObject;
-    self.dataModel.priceRp = kLocalizedString(@"Rp");
-    self.dataModel.deliveryTitle = logisticsItem.logisticsModeName;
-    self.dataModel.deliveryDes = [NSString stringWithFormat:@"%@ %@-%@ %@", kLocalizedString(@"Est_arrival"), logisticsItem.minDeliveryDays, logisticsItem.maxDeliveryDays, kLocalizedString(@"Days")];
-    self.dataModel.deliveryPrice = [logisticsItem.logisticsFee floatValue] * 0.001;
+    
     /**
      结算总价这边我做了修改 测试是正常
      **/
@@ -191,19 +191,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SFCellCacheModel *cellModel = self.dataArray[indexPath.section][indexPath.row];
     ProductCheckoutBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellModel.cellId];
-    cell.updateDataBlock = ^(ProductCheckoutModel * _Nonnull dataModel, SFCellCacheModel * _Nonnull cellModel) {
-        self.addressModel.email = dataModel.email;
-        //其他更新..
-    };
-    cell.addressBlock = ^(ProductCheckoutModel * _Nonnull dataModel, SFCellCacheModel * _Nonnull cellModel) {
-        AddressViewController *vc = [[AddressViewController alloc] init];
-        vc.addressBlock = ^(addressModel * _Nonnull model) {
-            self.dataModel.address = model.customAddress;
-            self.dataModel.email = model.email;
-            [self.tableView reloadData];
-        };
-        [self.navigationController pushViewController:vc animated:YES];
-    };
     __weak __typeof(self)weakSelf = self;
     cell.eventBlock = ^(ProductCheckoutModel * _Nonnull dataModel, SFCellCacheModel * _Nonnull cellModel, ProductCheckoutCellEvent event) {
         switch (event) {
@@ -219,7 +206,19 @@
                 [self presentViewController:vc animated:YES completion:nil];
             }
                 break;
+            case ProductCheckoutCellEvent_GotoAddress: {
+                AddressViewController *vc = [[AddressViewController alloc] init];
+                vc.addressBlock = ^(addressModel * _Nonnull model) {
+                    self.dataModel.addressModel = model;
+                    [self.tableView reloadData];
+                };
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case  ProductCheckoutCellEvent_UpdateEmail: {
                 
+            }
+                break;
             default:
                 break;
         }
@@ -271,14 +270,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SFCellCacheModel *model = self.dataArray[indexPath.section][indexPath.row];
+    __weak __typeof(self)weakSelf = self;
     if ([model.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
-        __weak __typeof(self)weakSelf = self;
         CouponsViewController *vc = [[CouponsViewController alloc] init];
         vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
         vc.dataArray = self.dataModel.couponsModel.pltAvailableCoupons.mutableCopy;
         vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
             strongSelf.dataModel.currentPltCoupon = item;
+            [strongSelf.tableView reloadData];
+        };
+        [self presentViewController:vc animated:YES completion:nil];
+    } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
+        DeleveryViewController *vc = [[DeleveryViewController alloc] init];
+        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+        vc.dataArray = self.dataModel.logisticsModel.logistics.mutableCopy;
+        vc.selectedDeleveryBlock = ^(OrderLogisticsItem * _Nullable item) {
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            strongSelf.dataModel.currentLogisticsItem = item;
             [strongSelf.tableView reloadData];
         };
         [self presentViewController:vc animated:YES completion:nil];
@@ -289,7 +298,7 @@
     SFCellCacheModel *model = self.dataArray[indexPath.section][indexPath.row];
     if (!model.height) {
         if ([model.cellId isEqualToString:@"ProductCheckoutAddressCell"]) {
-            CGFloat addressHeight = [self.dataModel.address calHeightWithFont:[UIFont boldSystemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - 66 - 16 * 2, 200)];
+            CGFloat addressHeight = [self.dataModel.addressModel.customAddress calHeightWithFont:[UIFont boldSystemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - 66 - 16 * 2, 200)];
             CGFloat mailHeight = 30;
             model.height = 21 + addressHeight + 12 + mailHeight + 16;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutGoodsCell"]) {
@@ -321,12 +330,12 @@
         MPWeakSelf(self)
         _buyView.buyBlock = ^{
             
-            if (!weakself.addressModel.deliveryAddressId || [weakself.addressModel.deliveryAddressId isEqualToString:@""]) {
+            if (!weakself.dataModel.addressModel.deliveryAddressId || [weakself.dataModel.addressModel.deliveryAddressId isEqualToString:@""]) {
                 [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Please_select_your_address")];
                 return;
             }
             
-            if (!weakself.addressModel.email ||  [weakself.addressModel.email isEqualToString:@""]) {
+            if (!weakself.dataModel.addressModel.email ||  [weakself.dataModel.addressModel.email isEqualToString:@""]) {
                 [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Please_enter_your_email")];
                 return;
             }
@@ -341,8 +350,8 @@
             [MBProgressHUD showHudMsg:kLocalizedString(@"Calculating")];
             NSNumber *totalPrice = [NSNumber numberWithLong:weakself.dataModel.totalPrice * 1000];
             NSDictionary *params = @{
-                @"billingEmail": weakself.addressModel.email,
-                @"deliveryAddressId": weakself.addressModel.deliveryAddressId,
+                @"billingEmail": weakself.dataModel.addressModel.email,
+                @"deliveryAddressId": weakself.dataModel.addressModel.deliveryAddressId,
                 @"deliveryMode": @"A",
                 @"paymentMode": @"A",
                 @"sourceType": weakself.dataModel.sourceType,

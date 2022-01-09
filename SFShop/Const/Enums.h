@@ -44,6 +44,10 @@ typedef NS_ENUM(NSInteger, EmptyViewType) {
     EmptyViewNoPrizeType = 13 // 无奖品
 };
 
+static NSString * kLanguageChinese = @"zh-Hans";
+static NSString * kLanguageEnglish = @"en";
+static NSString * kLanguageHindi = @"id";
+
 @interface Enums : NSObject
 
 @end

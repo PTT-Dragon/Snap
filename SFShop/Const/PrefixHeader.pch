@@ -30,5 +30,6 @@
 #import "AES128Util.h"
 #import "Enums.h"
 #import "NSString+Add.h"
+#import "FFLocalization.h"
 
 #endif /* PrefixHeader_pch */

@@ -354,5 +354,3 @@ dispatch_async(dispatch_get_main_queue(), block);\
 #else
 #define NSLog(...) {}
 #endif  
-
-#define kLocalizedString(string) NSLocalizedString(string, nil)

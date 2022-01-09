@@ -21,6 +21,7 @@
 #import "SupportViewController.h"
 #import "OrderModel.h"
 #import "LoginViewController.h"
+#import "LanguageViewController.h"
 
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -46,7 +47,16 @@
     _favoriteCount = 0;
     _recentCount = 0;
     _dataSource = [NSMutableArray array];
-    [_dataSource addObjectsFromArray:@[@{@"image":@"add-account",@"title":@"Refers"},@{@"image":@"group",@"title":@"Forum"},@{@"image":@"most-used",@"title":@"Reviews"},@{@"image":@"pin",@"title":@"Address"},@{@"image":@"call-centre",@"title":@"Service"},@{@"image":@"read",@"title":@"Policies"},@{@"image":@"question",@"title":@"FAQ"}]];
+    [_dataSource addObjectsFromArray:
+         @[@{@"image":@"add-account",@"title":@"Refers"},
+           @{@"image":@"group",@"title":@"Forum"},
+           @{@"image":@"most-used",@"title":@"Reviews"},
+           @{@"image":@"pin",@"title":@"Address"},
+           @{@"image":@"call-centre",@"title":@"Service"},
+           @{@"image":@"read",@"title":@"Policies"},
+           @{@"image":@"question",@"title":@"FAQ"},
+           @{@"image":@"read",@"title":@"Language"}]
+    ];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountInfoCell" bundle:nil] forCellReuseIdentifier:@"accountInfoCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
@@ -218,6 +228,9 @@
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([cell.label.text isEqualToString:@"FAQ"]){
             FAQViewController *vc = [[FAQViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([cell.label.text isEqualToString:@"Language"]) {
+            LanguageViewController *vc = [[LanguageViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
