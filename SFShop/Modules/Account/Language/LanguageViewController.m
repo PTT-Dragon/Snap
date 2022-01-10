@@ -30,7 +30,7 @@
 }
 
 - (void)initView {
-    self.title = kLocalizedString(@"Language");
+    self.title = kLocalizedString(@"LANGUGE");
     [self.view addSubview:self.chineseBtn];
     [self.view addSubview:self.englishBtn];
     [self.view addSubview:self.hindiBtn];
@@ -40,17 +40,20 @@
 - (void)initLayout {
     [self.chineseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+10);
-        make.left.right.mas_equalTo(self.view);
+        make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.height.mas_equalTo(50);
+        make.width.mas_equalTo(130);
     }];
     [self.englishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.chineseBtn.mas_bottom).offset(10);
-        make.left.right.mas_equalTo(self.view);
+        make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.height.mas_equalTo(50);
+        make.width.mas_equalTo(130);
     }];
     [self.hindiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.englishBtn.mas_bottom).offset(10);
-        make.left.right.mas_equalTo(self.view);
+        make.left.mas_equalTo(self.view.mas_left).offset(16);
+        make.width.mas_equalTo(130);
         make.height.mas_equalTo(50);
     }];
 }
@@ -60,25 +63,28 @@
     if ([language isEqualToString:kLanguageChinese]) {
         [self.checkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.chineseBtn.mas_top);
-            make.size.mas_equalTo(CGSizeMake(50, 50));
+            make.size.mas_equalTo(CGSizeMake(30, 30));
             make.right.mas_equalTo(self.view.mas_right).offset(-10);
         }];
+        [self.chineseBtn setTitleColor:RGBColorFrom16(0x1296db) forState:0];
     } else if ([language isEqualToString:kLanguageEnglish]) {
         [self.checkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.englishBtn.mas_top);
-            make.size.mas_equalTo(CGSizeMake(50, 50));
+            make.size.mas_equalTo(CGSizeMake(30, 30));
             make.right.mas_equalTo(self.view.mas_right).offset(-10);
         }];
+        [self.englishBtn setTitleColor:RGBColorFrom16(0x1296db) forState:0];
     } else if ([language isEqualToString:kLanguageHindi]) {
         [self.checkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.hindiBtn.mas_top);
-            make.size.mas_equalTo(CGSizeMake(50, 50));
+            make.size.mas_equalTo(CGSizeMake(30, 30));
             make.right.mas_equalTo(self.view.mas_right).offset(-10);
         }];
+        [self.hindiBtn setTitleColor:RGBColorFrom16(0x1296db) forState:0];
     } else {
         [self.checkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.chineseBtn.mas_top);
-            make.size.mas_equalTo(CGSizeMake(50, 50));
+            make.size.mas_equalTo(CGSizeMake(30, 30));
             make.right.mas_equalTo(self.view.mas_right).offset(-10);
         }];
     }
@@ -120,9 +126,8 @@
         [_chineseBtn setTitle:@"中文" forState:UIControlStateNormal];
         [_chineseBtn addTarget:self action:@selector(chineseBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [_chineseBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        [_chineseBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
         _chineseBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        _chineseBtn.layer.borderColor = UIColor.blackColor.CGColor;
-        _chineseBtn.layer.borderWidth = 1;
     }
     return _chineseBtn;
 }
@@ -134,8 +139,7 @@
         [_englishBtn addTarget:self action:@selector(englishBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [_englishBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         _englishBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        _englishBtn.layer.borderColor = UIColor.blackColor.CGColor;
-        _englishBtn.layer.borderWidth = 1;
+        [_englishBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
     }
     return _englishBtn;
 }
@@ -147,16 +151,15 @@
         [_hindiBtn addTarget:self action:@selector(hindiBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [_hindiBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         _hindiBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        _hindiBtn.layer.borderColor = UIColor.blackColor.CGColor;
-        _hindiBtn.layer.borderWidth = 1;
+        [_hindiBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
     }
     return _hindiBtn;
 }
 
 - (UIImageView *)checkImageView {
     if (!_checkImageView) {
-        _checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_checkbox_check"]];
-        _checkImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_checkbox_check-1"]];
+        _checkImageView.contentMode = UIViewContentModeScaleAspectFill;
         _checkImageView.layer.masksToBounds = YES;
     }
     return _checkImageView;

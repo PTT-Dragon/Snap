@@ -95,7 +95,6 @@
 //  "OK" = "OK",
 //  "SAVE" = "Save",
 //  "SAVEPROFILE" = "Save Profile",
-//  "CANCEL" = "Cancel",
 //  "CONFIRM" = "Confirm",
 //  "SELECT" = "Select",
 //  "AREA" = "Area",
@@ -366,7 +365,6 @@
 //  "SELECT_REASON" = "Please select Reason",
 //  "FLASH" = "Flash",
 //  "GROUP" = "Group",
-//  "LANGUGE" = "Language",
 //  "NO_LOGISTICS" = "No logistics",
 //  "QUEUING_UP" = "Queuing up, please wait…",
 //  "HOT_SALE" = "Hot sale, please try later…",
@@ -636,3 +634,5 @@
 "SHARE_BUY" = "Group Buy";
 "THIS_EMAIL_ADDRESS" = "This email address";
 "THIS_PHONE_NUMBER" = "This phone number";
+"CANCEL" = "Cancel";
+"LANGUGE" = "Language";

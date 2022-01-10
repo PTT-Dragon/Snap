@@ -8,7 +8,7 @@
 #import "LoginViaOTP.h"
 #import "verifyCodeVC.h"
 
-@interface LoginViaOTP ()
+@interface LoginViaOTP ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *field;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 

@@ -112,9 +112,11 @@
 }
 - (void)toLogin
 {
-    LoginViewController *vc = [[LoginViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    [baseTool removeVCFromNavigationWithVCNameArr:@[@"SignUpViewController",@"verifyCodeVC",@"LoginViewController"] currentVC:self];
+    [self.navigationController.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[LoginViewController class]]) {
+            [self.navigationController popToViewController:obj animated:YES];
+        }
+    }];
 }
 - (void)changeUserPhone
 {

@@ -17,15 +17,15 @@
 - (BOOL)textFieldState:(UITextFieldShowType)type editType:(UITextFieldEditType)editType labels:(NSArray <UILabel *>*)labels
 {
     if (type == CHECKPHONETYPE) {
-        if ([self.text phoneTextCheck]) {
-            //手机规则符合
-            self.layer.borderColor = defaultColor.CGColor;
-            [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                obj.textColor = defaultColor;
-                obj.hidden = YES;
-            }];
-            return YES;            
-        }else{
+//        if ([self.text phoneTextCheck]) {
+//            //手机规则符合
+//            self.layer.borderColor = defaultColor.CGColor;
+//            [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                obj.textColor = defaultColor;
+//                obj.hidden = NO;
+//            }];
+//            return YES;
+//        }else{
             if (editType == ENDEDITTYPE) {
                 if ([self.text isEqualToString:@""]) {
                     self.layer.borderColor = defaultColor.CGColor;
@@ -43,22 +43,22 @@
                     }];
                 }
             }else{
-                self.layer.borderColor = highlightColor.CGColor;
+                self.layer.borderColor = defaultColor.CGColor;
                 [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    obj.textColor = highlightColor;
+                    obj.textColor = defaultColor;
                     obj.hidden = NO;
                 }];
             }
-        }
+//        }
     }else if (type == CHECKPASSWORDTYPE){
-        if ([self.text passwordTextCheck]) {
-            self.layer.borderColor = defaultColor.CGColor;
-            [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                obj.textColor = defaultColor;
-                obj.hidden = YES;
-            }];
-            return YES;
-        }else{
+//        if ([self.text passwordTextCheck]) {
+//            self.layer.borderColor = defaultColor.CGColor;
+//            [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                obj.textColor = defaultColor;
+//                obj.hidden = YES;
+//            }];
+//            return YES;
+//        }else{
             if (editType == ENDEDITTYPE) {
                 if ([self.text isEqualToString:@""]) {
                     self.layer.borderColor = defaultColor.CGColor;
@@ -76,22 +76,22 @@
                     }];
                 }
             }else{
-                self.layer.borderColor = highlightColor.CGColor;
+                self.layer.borderColor = defaultColor.CGColor;
                 [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    obj.textColor = highlightColor;
+                    obj.textColor = defaultColor;
                     obj.hidden = NO;
                 }];
             }
-        }
+//        }
     }else if (type == CHECKEMAILTYPE){
-        if ([self.text emailTextCheck]) {
-            self.layer.borderColor = defaultColor.CGColor;
-            [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                obj.textColor = defaultColor;
-                obj.hidden = YES;
-            }];
-            return YES;
-        }else{
+//        if ([self.text emailTextCheck]) {
+//            self.layer.borderColor = defaultColor.CGColor;
+//            [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                obj.textColor = defaultColor;
+//                obj.hidden = YES;
+//            }];
+//            return YES;
+//        }else{
             if (editType == ENDEDITTYPE) {
                 if ([self.text isEqualToString:@""]) {
                     self.layer.borderColor = defaultColor.CGColor;
@@ -109,15 +109,15 @@
                     }];
                 }
             }else{
-                self.layer.borderColor = highlightColor.CGColor;
+                self.layer.borderColor = defaultColor.CGColor;
                 [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    obj.textColor = highlightColor;
+                    obj.textColor = defaultColor;
                     obj.hidden = NO;
                 }];
             }
-        }
+//        }
     }
-    return NO;
+    return ![self.text isEqualToString:@""];
 }
 - (void)endEditingWithlabels:(NSArray <UILabel *>*)labels
 {

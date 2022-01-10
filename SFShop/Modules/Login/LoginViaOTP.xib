@@ -34,6 +34,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="bsX-ew-dnN"/>
+                    </connections>
                 </textField>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAa-Wl-A7q">
                     <rect key="frame" x="16" y="339" width="382" height="46"/>

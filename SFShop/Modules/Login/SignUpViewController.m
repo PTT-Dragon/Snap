@@ -43,9 +43,9 @@ static BOOL _passwordSuccess = NO;
 -(void)changedTextField:(UITextField *)textField
 {
     if (textField == _PhoneField) {
-        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:EIDTTYPE labels:@[_phoneLabel,_accountQesLabel]];
+        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:EIDTTYPE labels:@[_phoneLabel]];
     }else if (textField == _passwordField){
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_passwordLabel,_passwordQesLabel]];
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_passwordLabel]];
     }
     if (_accountSuccess && _passwordSuccess) {
         self.signUpBtn.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -53,6 +53,22 @@ static BOOL _passwordSuccess = NO;
     }else{
         self.signUpBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
         self.signUpBtn.userInteractionEnabled = NO;
+    }
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == _PhoneField) {
+        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:BEGINEDITTYPE labels:@[_phoneLabel]];
+    }else if (textField == _passwordField){
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:BEGINEDITTYPE labels:@[_passwordLabel]];
+    }
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == _PhoneField) {
+        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:ENDEDITTYPE labels:@[_phoneLabel]];
+    }else if (textField == _passwordField){
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:ENDEDITTYPE labels:@[_passwordLabel]];
     }
 }
 - (IBAction)signUpAction:(id)sender {
@@ -70,10 +86,10 @@ static BOOL _passwordSuccess = NO;
             weakself.signUpBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"IS_ALREADY_REGISTERED")];
             BOOL isEmail = [self.PhoneField.text rangeOfString:@"@"].location != NSNotFound;
-            NSString *str = isEmail ? [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_PHONE_NUMBER"),kLocalizedString(@"IS_ALREADY_REGISTERED")]: [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_PHONE_NUMBER"),kLocalizedString(@"IS_ALREADY_REGISTERED")];
-            PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:str btnTitle:@"" block:^{
+            NSString *str = isEmail ? [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_EMAIL_ADDRESS"),kLocalizedString(@"IS_ALREADY_REGISTERED")]: [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_PHONE_NUMBER"),kLocalizedString(@"IS_ALREADY_REGISTERED")];
+            PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:str btnTitle:kLocalizedString(@"Login") block:^{
                 [weakself.navigationController popViewControllerAnimated:YES];
-            } btn2Title:@"" block2:^{
+            } btn2Title:kLocalizedString(@"CANCEL") block2:^{
                 
             }];
             [self.view addSubview:alert];
