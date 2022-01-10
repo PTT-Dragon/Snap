@@ -98,6 +98,7 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-10);
     }];
     [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageChinese];
+    [self changeLanguageWithId:@"2"];
 }
 
 - (void)englishBtnAction {
@@ -108,6 +109,7 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-10);
     }];
     [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageEnglish];
+    [self changeLanguageWithId:@"1"];
 }
 
 - (void)hindiBtnAction {
@@ -118,6 +120,15 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-10);
     }];
     [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageHindi];
+    [self changeLanguageWithId:@"3"];
+}
+- (void)changeLanguageWithId:(NSString *)languageId
+{
+    [SFNetworkManager post:[SFNet.account setLanguageWithId:languageId] parameters:@{} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (UIButton *)chineseBtn {

@@ -37,17 +37,10 @@
     [_btn2 setTitle:[self getBtn2StrWithState:model.state] forState:0];
 }
 - (IBAction)btn1Action:(UIButton *)sender {
-    NSString *str = sender.titleLabel.text;
-    if ([str isEqualToString:@"CONFIRM"]) {
-        //确认订单收货
-        MPWeakSelf(self)
-        NSString *a = [self arrayToJSONString:@[_model.orderId]];
-        [SFNetworkManager post:SFNet.order.confirmOrder parameters:@{@"orderIds":a} success:^(id  _Nullable response) {
-            [weakself.delegate refreshDatas];
-        } failed:^(NSError * _Nonnull error) {
-            
-        }];
-    }else if ([str isEqualToString:@"RE-BUY"]){
+    NSString *state = _model.state;
+    if ([state isEqualToString:@"A"]) {
+        //付款
+    }else if ([state isEqualToString:@"B"] || [state isEqualToString:@"E"]){
         //未完成
         [MBProgressHUD showHudMsg:@""];
         orderItemsModel *itemsModel = self.model.orderItems.firstObject;
@@ -70,16 +63,25 @@
             [MBProgressHUD hideFromKeyWindow];
             [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
         }];
+    }else if ([state isEqualToString:@"C"]){
+        //确认订单收货
+        MPWeakSelf(self)
+        NSString *a = [self arrayToJSONString:@[_model.orderId]];
+        [SFNetworkManager post:SFNet.order.confirmOrder parameters:@{@"orderIds":a} success:^(id  _Nullable response) {
+            [weakself.delegate refreshDatas];
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
     }
 }
 - (IBAction)btn2Action:(UIButton *)sender {
-    NSString *str = sender.titleLabel.text;
-    if ([str isEqualToString:@"CANCEL"]) {
+    NSString *state = _model.state;
+    if ([state isEqualToString:@"F"]) {
         //取消订单
         CancelOrderViewController *vc = [[CancelOrderViewController alloc] init];
         vc.model = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
-    }else if ([str isEqualToString:@"RECEIPT"]){
+    }else if ([state isEqualToString:@"B"]){
         [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
             //返回错误和本地地址
         }];

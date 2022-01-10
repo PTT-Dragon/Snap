@@ -61,6 +61,11 @@
 {
     return K_users_domain(@"inbox/message");
 }
+- (NSString *)setLanguageWithId:(NSString *)languageId
+{
+    NSString *url = [NSString stringWithFormat:@"deflangs/%@",languageId];
+    return K_users_domain(url);
+}
 
 
 @end
