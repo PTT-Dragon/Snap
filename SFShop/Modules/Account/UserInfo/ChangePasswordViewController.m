@@ -42,11 +42,11 @@ static BOOL _passwordSuccess3 = NO;
 - (void)changedTextField:(UITextField *)textField
 {
     if (textField == _currentField) {
-        _passwordSuccess1 = [textField textFieldState:CHECKPASSWORDTYPE labels:@[_label1]];
+        _passwordSuccess1 = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label1]];
     }else if(textField == _PasswordField){
-        _passwordSuccess2 = [textField textFieldState:CHECKPASSWORDTYPE labels:@[_label2]];
+        _passwordSuccess2 = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label2]];
     }else{
-        _passwordSuccess3 = [textField textFieldState:CHECKPASSWORDTYPE labels:@[_label3]];
+        _passwordSuccess3 = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label3]];
     }
     if (_passwordSuccess1 && _passwordSuccess2 && _passwordSuccess3) {
         self.btn.backgroundColor = RGBColorFrom16(0xFF1659);

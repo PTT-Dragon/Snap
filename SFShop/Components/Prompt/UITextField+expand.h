@@ -15,9 +15,15 @@ typedef enum:NSUInteger {
     CHECKPASSWORDTYPE
 }UITextFieldShowType;
 
+typedef enum:NSUInteger {
+    EIDTTYPE,
+    ENDEDITTYPE,
+    BEGINEDITTYPE
+}UITextFieldEditType;
+
 @interface UITextField (expand)
 
-- (BOOL)textFieldState:(UITextFieldShowType)type labels:(NSArray <UILabel *>*)labels;
+- (BOOL)textFieldState:(UITextFieldShowType)type editType:(UITextFieldEditType)editType labels:(NSArray <UILabel *>*)labels;
 
 - (UITextField *)textFieldState:(UITextFieldShowType)type label:(UILabel *)label button:(UIButton *)button;
 

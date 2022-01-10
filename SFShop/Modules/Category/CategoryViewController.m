@@ -10,11 +10,13 @@
 #import "CategoryModel.h"
 #import "CategoryContentCollectionView.h"
 #import "CategoryRankViewController.h"
+#import "SFSearchNav.h"
 
 @interface CategoryViewController ()<UITableViewDelegate>
 @property (nonatomic, readwrite, strong) CategorySideTableView *sideTableView;//侧边栏
 @property (nonatomic, readwrite, strong) CategoryContentCollectionView *contentCollectionView;//内容栏
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cacheDatas;//缓存数据
+@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @end
 
 @implementation CategoryViewController
@@ -30,10 +32,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)loadsubviews {
+    [self.view addSubview:self.navSearchView];
     [self.view addSubview:self.sideTableView];
     [self.view addSubview:self.contentCollectionView];
 }
@@ -131,5 +134,26 @@
     }
     return _cacheDatas;
 }
-
+- (SFSearchNav *)navSearchView {
+    if (_navSearchView == nil) {
+        SFSearchItem *backItem = [SFSearchItem new];
+        backItem.icon = @"nav_back";
+        backItem.itemActionBlock = ^(SFSearchModel *model,BOOL isSelected) {
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+        SFSearchItem *rightItem = [SFSearchItem new];
+        rightItem.icon = @"nav_addition";
+        rightItem.selectedIcon = @"nav_addtion_list";
+        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
+            
+        };
+        __weak __typeof(self)weakSelf = self;
+        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
+            __weak __typeof(weakSelf)strongSelf = weakSelf;
+            
+        }];
+        _navSearchView.searchType = SFSearchTypeNoneInterface;
+    }
+    return _navSearchView;
+}
 @end

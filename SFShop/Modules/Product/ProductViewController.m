@@ -175,6 +175,9 @@
         }else if (weakself.campaignsModel.cmpShareBuys.count > 0){
             //拼团活动
             [weakself requestGroupInfo];
+        }else if (weakself.campaignsModel.coupons > 0){
+            //有可使用红包
+            [weakself layoutCouponSubviews];
         }
         
     } failed:^(NSError * _Nonnull error) {
@@ -254,6 +257,10 @@
 
 
 - (void)setupSubViews {
+    self.addCartBtn.titleLabel.numberOfLines = 2;
+    self.buyBtn.titleLabel.numberOfLines = 2;
+    self.buyBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.addCartBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.cartBtn.layer.borderWidth = 0.5;
     self.cartBtn.layer.borderColor = [[UIColor jk_colorWithHexString:@"#cccccc"] CGColor];
     self.messageBtn.layer.borderWidth = 0.5;
@@ -379,8 +386,8 @@
     self.flashSaleInfoView.hidden = YES;
     self.groupInfoView.hidden = NO;
     self.viewTop.constant = 64;
-    [self.buyBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"")] forState:0];
-    [self.cartBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
+    [self.buyBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"SHARE_BUY")] forState:0];
+    [self.addCartBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
     [self.campaignsModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         if (model.productId.integerValue == _selProductModel.productId) {
             //找到当前显示的商品
@@ -390,6 +397,9 @@
             self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",_selProductModel.salesPrice];
         }
     }];
+}
+- (void)layoutCouponSubviews
+{
     
 }
 

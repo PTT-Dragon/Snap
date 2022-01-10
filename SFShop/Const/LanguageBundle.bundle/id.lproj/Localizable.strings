@@ -245,8 +245,6 @@
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Harap masukkan nomor ponsel yang benar.",
 //  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Harap masukkan alamat email yang benar.",
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Harap masukkan alamat email atau no. telephone yang benar.",
-//  "THIS_PHONE_NUMBER" = "Nomor telepon ini",
-//  "THIS_EMAIL_ADDRESS" = "Alamat email ini",
 //  "MEMBERSHIP_AGREEMENT" = "Syarat membership",
 //  "PLEASE_INPUT" = "Mohon masukan",
 //  "SAFETY_VERIFICATION" = "Verifikasi keamanan",
@@ -637,4 +635,6 @@
 "CHANGE_EMAIL" = "Ganti e-mail";
 "INDIVIDUAL_BUY" = "pembelian individu";
 "SHARE_BUY" = "Join group";
+"THIS_EMAIL_ADDRESS" = "Alamat email ini";
+"THIS_PHONE_NUMBER" = "Nomor telepon ini";
 

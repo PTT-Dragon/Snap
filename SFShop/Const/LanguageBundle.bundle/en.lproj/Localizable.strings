@@ -244,8 +244,6 @@
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Please input the correct mobile phone.",
 //  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Please input the correct email.",
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Please input the correct phone number or email.",
-//  "THIS_PHONE_NUMBER" = "This phone number",
-//  "THIS_EMAIL_ADDRESS" = "This email address",
 //  "MEMBERSHIP_AGREEMENT" = "Membership Agreement",
 //  "PLEASE_INPUT" = "Please Input",
 //  "SAFETY_VERIFICATION" = "Security verification",
@@ -636,3 +634,5 @@
 "CHANGE_EMAIL" = "Change Email";
 "INDIVIDUAL_BUY" = "Individual buy";
 "SHARE_BUY" = "Group Buy";
+"THIS_EMAIL_ADDRESS" = "This email address";
+"THIS_PHONE_NUMBER" = "This phone number";

@@ -159,7 +159,13 @@
         categoryId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.location+range1.length, navigationAction.request.URL.absoluteString.length-range1.location-range1.length)];
         CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
         CategoryModel *model = [[CategoryModel alloc] init];
-        model.inner.catgRela.objValue.objId = categoryId.integerValue;
+        CategoryInnerModel *innerModel = [[CategoryInnerModel alloc] init];
+        CatgRelaModel *relaModel = [[CatgRelaModel alloc] init];
+        ObjValueModel *objModel = [[ObjValueModel alloc] init];
+        objModel.objId = categoryId.integerValue;
+        relaModel.objValue = objModel;
+        innerModel.catgRela = relaModel;
+        model.inner = innerModel;
         vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);

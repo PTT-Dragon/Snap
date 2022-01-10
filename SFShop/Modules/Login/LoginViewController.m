@@ -11,7 +11,7 @@
 #import "LoginViaOTP.h"
 #import "UITextField+expand.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailBtn;
 @property (weak, nonatomic) IBOutlet UIView *emailIndicationView;
@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (nonatomic,assign) NSInteger type;//登录方式   1.手机登录  2.邮箱登录
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel2;
 
 @end
 
@@ -51,12 +53,12 @@ static BOOL _passwordSuccess = NO;
 {
     if (textField == _accountField) {
         if (_type == 1) {
-            _accountSuccess = [textField textFieldState:CHECKPHONETYPE labels:@[_label1]];
+            _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:EIDTTYPE labels:@[_label1,_tipLabel1]];
         }else{
-            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE labels:@[_label1]];
+            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:EIDTTYPE labels:@[_label1,_tipLabel1]];
         }
     }else{
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE labels:@[_label2]];
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label2,_tipLabel2]];
     }
     if (_accountSuccess && _passwordSuccess) {
         self.loginBtn.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -66,9 +68,34 @@ static BOOL _passwordSuccess = NO;
         self.loginBtn.userInteractionEnabled = NO;
     }
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == _accountField) {
+        if (_type == 1) {
+            _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:BEGINEDITTYPE labels:@[_label1,_tipLabel1]];
+        }else{
+            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:BEGINEDITTYPE labels:@[_label1,_tipLabel1]];
+        }
+    }else if (textField == _passwordField){
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:BEGINEDITTYPE labels:@[_label2,_tipLabel2]];
+    }
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == _accountField) {
+        if (_type == 1) {
+            _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:ENDEDITTYPE labels:@[_label1,_tipLabel1]];
+        }else{
+            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:ENDEDITTYPE labels:@[_label1,_tipLabel1]];
+        }
+    }else if (textField == _passwordField){
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:ENDEDITTYPE labels:@[_label2,_tipLabel2]];
+    }
+}
 - (IBAction)phoneAction:(UIButton *)sender {
     _type = 1;
     sender.selected = YES;
+    _tipLabel1.text = @"Account using this number does not exist";
     _emailBtn.selected = NO;
     _phoneIndicationView.backgroundColor = [UIColor blackColor];
     _emailIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
@@ -77,6 +104,7 @@ static BOOL _passwordSuccess = NO;
 }
 - (IBAction)emailAction:(UIButton *)sender {
     _type = 2;
+    _tipLabel1.text = @"Account using this email does not exist";
     sender.selected = YES;
     _phoneBtn.selected = NO;
     _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);

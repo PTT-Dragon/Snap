@@ -8,6 +8,7 @@
 #import "SignUpViewController.h"
 #import "verifyCodeVC.h"
 #import "UITextField+expand.h"
+#import "PublicAlertView.h"
 
 @interface SignUpViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *PhoneField;
@@ -42,9 +43,9 @@ static BOOL _passwordSuccess = NO;
 -(void)changedTextField:(UITextField *)textField
 {
     if (textField == _PhoneField) {
-        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE labels:@[_phoneLabel,_accountQesLabel]];
+        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:EIDTTYPE labels:@[_phoneLabel,_accountQesLabel]];
     }else if (textField == _passwordField){
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE labels:@[_passwordLabel,_passwordQesLabel]];
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_passwordLabel,_passwordQesLabel]];
     }
     if (_accountSuccess && _passwordSuccess) {
         self.signUpBtn.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -66,8 +67,16 @@ static BOOL _passwordSuccess = NO;
             [weakself.navigationController pushViewController:vc animated:YES];
         }else{
             weakself.signUpBtn.userInteractionEnabled = NO;
-            self.signUpBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+            weakself.signUpBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"IS_ALREADY_REGISTERED")];
+            BOOL isEmail = [self.PhoneField.text rangeOfString:@"@"].location != NSNotFound;
+            NSString *str = isEmail ? [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_PHONE_NUMBER"),kLocalizedString(@"IS_ALREADY_REGISTERED")]: [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_PHONE_NUMBER"),kLocalizedString(@"IS_ALREADY_REGISTERED")];
+            PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:str btnTitle:@"" block:^{
+                [weakself.navigationController popViewControllerAnimated:YES];
+            } btn2Title:@"" block2:^{
+                
+            }];
+            [self.view addSubview:alert];
         }
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];

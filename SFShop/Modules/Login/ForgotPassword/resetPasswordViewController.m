@@ -39,9 +39,9 @@ static BOOL _accountSuccess = NO;
 - (void)changedTextField:(UITextField *)textField
 {
     if (_type == 2) {
-        _accountSuccess = [textField textFieldState:CHECKEMAILTYPE labels:@[_explainLabel]];
+        _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:EIDTTYPE labels:@[_explainLabel]];
     }else{
-        _accountSuccess = [textField textFieldState:CHECKPHONETYPE labels:@[_explainLabel]];
+        _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:EIDTTYPE labels:@[_explainLabel]];
     }
     if (_accountSuccess) {
         self.sendBtn.backgroundColor = RGBColorFrom16(0xFF1659);

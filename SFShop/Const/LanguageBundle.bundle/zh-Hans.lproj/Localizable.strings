@@ -246,8 +246,6 @@
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "请输入正确的手机号.",
 //  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "请输入正确的邮箱.",
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "请输入正确的手机号或邮箱.",
-//  "THIS_PHONE_NUMBER" = "这个手机号",
-//  "THIS_EMAIL_ADDRESS" = "这个邮箱",
 //  "MEMBERSHIP_AGREEMENT" = "会员注册协议.",
 //  "PLEASE_INPUT" = "请输入",
 //  "SAFETY_VERIFICATION" = "安全政策",
@@ -631,5 +629,7 @@
 "EMAIL" = "邮件";
 "CHANGE_MOBILE" = "修改手机号";
 "CHANGE_EMAIL" = "修改邮箱";
-"INDIVIDUAL_BUY" = "个人购买"
+"INDIVIDUAL_BUY" = "个人购买";
 "SHARE_BUY" = "拼团";
+"THIS_PHONE_NUMBER" = "这个手机号";
+"THIS_EMAIL_ADDRESS" = "这个邮箱";

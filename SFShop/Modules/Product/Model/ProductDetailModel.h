@@ -9,6 +9,7 @@
 #import "CartModel.h"
 #import "OrderModel.h"
 #import "FlashSaleModel.h"
+#import "CouponModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol cmpShareBuysModel;
 @protocol ProductGroupListModel;
 @protocol FlashSaleDateModel;
+@protocol CouponModel;
 
 
 
@@ -193,7 +195,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray *cmpBuygetns;
 @property (nonatomic,strong) NSArray <cmpShareBuysModel>*cmpShareBuys;
 @property (nonatomic,strong) NSArray <FlashSaleDateModel>*cmpFlashSales;
-
+@property (nonatomic,strong) NSArray <CouponModel>*coupons;
 @end
 
 
