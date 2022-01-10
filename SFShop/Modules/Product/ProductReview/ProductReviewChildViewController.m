@@ -84,6 +84,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ProductEvalationModel *model = self.evalationArr[indexPath.row];
     ProductReviewDetailViewController *vc = [[ProductReviewDetailViewController alloc] init];
     vc.model = model;

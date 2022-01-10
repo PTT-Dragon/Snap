@@ -69,6 +69,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == _model.orderItems.count+1) {
         ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
         vc.delegate = self;

@@ -85,6 +85,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     RelationOrderListModel *model = self.dataSource[indexPath.row];
     RelationOrderDetailViewController *vc = [[RelationOrderDetailViewController alloc] init];
     vc.orderId = model.orderId;

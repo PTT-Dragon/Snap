@@ -90,6 +90,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OrderModel *model = self.dataSource[indexPath.section];
     OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
     vc.orderId = model.orderId;

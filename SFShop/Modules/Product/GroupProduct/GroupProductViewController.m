@@ -385,6 +385,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (tableView == _evalationTableview) {
         ProductReviewViewController *vc = [[ProductReviewViewController alloc] init];
         vc.evaluationsId = [NSString stringWithFormat:@"%ld",self.model.offerId];

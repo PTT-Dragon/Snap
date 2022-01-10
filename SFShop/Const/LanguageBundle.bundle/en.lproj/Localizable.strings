@@ -304,9 +304,7 @@
 //  "SPECIFICATION" = "Specification",
 //  "DETAIL" = "Detail",
 //  "CART" = "Cart",
-//  "SHARE_BUY" = "Group Buy",
 //  "COUPONS" = "Vouchers",
-//  "INDIVIDUAL_BUY" = "Individual buy",
 //  "ONLY_SHOW_5_SHARE" = "Only show 5 share",
 //  "PEOPLE_SHORT" = "People Short",
 //  "JOIN" = "Join",
@@ -636,4 +634,5 @@
 "EMAIL" = "Email";
 "CHANGE_MOBILE" = "Change Mobile Number";
 "CHANGE_EMAIL" = "Change Email";
-
+"INDIVIDUAL_BUY" = "Individual buy";
+"SHARE_BUY" = "Group Buy";

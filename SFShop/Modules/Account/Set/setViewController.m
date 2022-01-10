@@ -14,6 +14,7 @@
 #import "changeUserInfoVC.h"
 #import "PublicAlertView.h"
 #import "AddressViewController.h"
+#import "LanguageViewController.h"
 
 @interface setViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -90,8 +91,12 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1 && indexPath.row == 1) {
         SecurityCenterViewController *vc = [[SecurityCenterViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 1 && indexPath.row == 2){
+        LanguageViewController *vc = [[LanguageViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 3){
         MPWeakSelf(self)

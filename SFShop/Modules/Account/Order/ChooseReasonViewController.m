@@ -42,6 +42,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CancelOrderReasonModel *model = self.dataSource[indexPath.row];
     [self.delegate chooseReason:model];
     [self dismissViewControllerAnimated:YES completion:^{

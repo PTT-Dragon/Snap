@@ -156,6 +156,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     favoriteModel *model = self.dataSource[indexPath.row];
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = model.offerId.integerValue;

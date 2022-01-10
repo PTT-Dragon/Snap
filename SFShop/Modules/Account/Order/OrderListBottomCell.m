@@ -9,6 +9,7 @@
 #import "CancelOrderViewController.h"
 #import "PublicWebViewController.h"
 #import "PDFReader.h"
+#import "CartViewController.h"
 
 @interface OrderListBottomCell ()
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
@@ -49,22 +50,25 @@
     }else if ([str isEqualToString:@"RE-BUY"]){
         //未完成
         [MBProgressHUD showHudMsg:@""];
+        orderItemsModel *itemsModel = self.model.orderItems.firstObject;
         NSDictionary *params =
         @{
-            @"campaignId":@"3",
             @"num": @(1),
             @"offerId": self.model.orderId,
-            @"productId": self.model.storeId,
+            @"productId": itemsModel.productId,
             @"storeId": self.model.storeId,
-            @"unitPrice": self.model,
-            @"contactChannel":@"3",
+            @"unitPrice": itemsModel.offerId,
             @"addon":@"",
-            @"isSelected":@"N"
+            @"isSelected":@"Y",
+            @"contactChannel":@"3"
         };
+        MPWeakSelf(self)
         [SFNetworkManager post:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
-            
+            [MBProgressHUD hideFromKeyWindow];
+            [weakself toCart];
         } failed:^(NSError * _Nonnull error) {
-            
+            [MBProgressHUD hideFromKeyWindow];
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }
 }
@@ -79,11 +83,12 @@
         [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
             //返回错误和本地地址
         }];
-//
-//        PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-//        vc.url = [SFNet.h5 getReceiptOf:_model.orderId];
-//        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }
+}
+- (void)toCart
+{
+    CartViewController *vc = [[CartViewController alloc] init];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 
 //数组转为json字符串
@@ -108,7 +113,7 @@
     }else if ([state isEqualToString:@"D"]){
         str = @"BUY AGAIN";
     }else if ([state isEqualToString:@"E"]){
-        str = @"BUY AGAIN";
+        str = @"RE-BUY";
     }else if ([state isEqualToString:@"F"]){
         str = @"BUY NOW";
     }

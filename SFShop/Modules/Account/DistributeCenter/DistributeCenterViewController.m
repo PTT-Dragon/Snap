@@ -84,6 +84,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row > 3) {
         DistributorRankProductModel *model = self.dataSource[indexPath.row-4];
         ProductViewController *vc = [[ProductViewController alloc] init];

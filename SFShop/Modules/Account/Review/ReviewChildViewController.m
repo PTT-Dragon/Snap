@@ -111,6 +111,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OrderModel *model = self.dataSource[indexPath.row];
     if (_type == 2) {
         ReviewDetailViewController *vc = [[ReviewDetailViewController alloc] init];

@@ -305,9 +305,7 @@
 //  "SPECIFICATION" = "Spesifikasi",
 //  "DETAIL" = "Detail",
 //  "CART" = "Keranjang",
-//  "SHARE_BUY" = "Join group",
 //  "COUPONS" = "Kupon",
-//  "INDIVIDUAL_BUY" = "pembelian individu",
 //  "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru",
 //  "PEOPLE_SHORT" = "Kurang pembeli",
 //  "JOIN" = "Join",
@@ -637,4 +635,6 @@
 "EMAIL" = "Email";
 "CHANGE_MOBILE" = "Ubah No. telephone";
 "CHANGE_EMAIL" = "Ganti e-mail";
+"INDIVIDUAL_BUY" = "pembelian individu";
+"SHARE_BUY" = "Join group";
 

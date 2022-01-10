@@ -10,6 +10,7 @@
 #import "CategoryRankFilterViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "UseCouponProductCell.h"
+#import "ProductViewController.h"
 
 @interface UseCouponViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *couponNameLabel;
@@ -76,7 +77,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    CategoryRankPageInfoListModel *model = self.dataArray[indexPath.section];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = model.offerId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter {

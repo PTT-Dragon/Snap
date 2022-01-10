@@ -275,6 +275,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     AreaModel *model = self.dataSource[indexPath.row];
     if (!_selProvinceAreaMoel || !_selProvinceAreaMoel.addrLevelId) {
         _selProvinceAreaMoel = model;

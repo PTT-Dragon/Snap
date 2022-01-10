@@ -48,6 +48,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic = _dataSource[indexPath.row];
     PolicesDetailViewController *vc = [[PolicesDetailViewController alloc] init];
     vc.title = dic[@"title"];

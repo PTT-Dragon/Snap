@@ -200,6 +200,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 2) {
         InviteViewController *vc = [[InviteViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];

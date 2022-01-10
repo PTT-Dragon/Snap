@@ -306,9 +306,7 @@
 //  "SPECIFICATION" = "规格",
 //  "DETAIL" = "详情",
 //  "CART" = "购物车",
-//  "SHARE_BUY" = "拼团",
 //  "COUPONS" = "优惠券",
-//  "INDIVIDUAL_BUY" = "个人购买",
 //  "ONLY_SHOW_5_SHARE" = "只展示最近的5组拼团活动",
 //  "PEOPLE_SHORT" = "缺少人数",
 //  "JOIN" = "加入",
@@ -633,3 +631,5 @@
 "EMAIL" = "邮件";
 "CHANGE_MOBILE" = "修改手机号";
 "CHANGE_EMAIL" = "修改邮箱";
+"INDIVIDUAL_BUY" = "个人购买"
+"SHARE_BUY" = "拼团";

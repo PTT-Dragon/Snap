@@ -104,6 +104,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CategoryRankPageInfoListModel *model = self.dataArray[indexPath.row-2];
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = model.offerId;

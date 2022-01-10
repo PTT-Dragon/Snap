@@ -64,6 +64,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     refundModel *model = self.dataSource[indexPath.row];
     RefundDetailViewController *vc = [[RefundDetailViewController alloc] init];
     vc.orderApplyId = model.orderApplyId;

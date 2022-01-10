@@ -379,6 +379,8 @@
     self.flashSaleInfoView.hidden = YES;
     self.groupInfoView.hidden = NO;
     self.viewTop.constant = 64;
+    [self.buyBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"")] forState:0];
+    [self.cartBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
     [self.campaignsModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         if (model.productId.integerValue == _selProductModel.productId) {
             //找到当前显示的商品
@@ -555,6 +557,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (tableView == _evalationTableview) {
         ProductReviewViewController *vc = [[ProductReviewViewController alloc] init];
         vc.evaluationsId = [NSString stringWithFormat:@"%ld",self.model.offerId];

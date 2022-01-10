@@ -95,6 +95,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FAQQuestionModel *model = self.dataSource[indexPath.row];
     FAQDetailViewController *vc = [[FAQDetailViewController alloc] init];
     vc.model = model;

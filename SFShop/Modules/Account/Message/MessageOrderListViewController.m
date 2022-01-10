@@ -55,6 +55,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MessageOrderListModel *model = self.dataSource[indexPath.row];
     OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
     vc.orderId = model.relaObjId;
