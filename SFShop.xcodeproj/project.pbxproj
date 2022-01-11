@@ -381,6 +381,7 @@
 		8E11A8CB278DCD57005D1FC3 /* ProductionRecomandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */; };
 		8E11A8CE278DD14D005D1FC3 /* UIViewController+parentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */; };
 		8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */; };
+		8E11A8D4278DD6C9005D1FC3 /* CartEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8D3278DD6C9005D1FC3 /* CartEmptyView.m */; };
 		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
 		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
 		8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */; };
@@ -1155,6 +1156,8 @@
 		8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+parentViewController.m"; sourceTree = "<group>"; };
 		8E11A8CF278DD1F4005D1FC3 /* UIView+Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Response.h"; sourceTree = "<group>"; };
 		8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Response.m"; sourceTree = "<group>"; };
+		8E11A8D2278DD6C9005D1FC3 /* CartEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartEmptyView.h; sourceTree = "<group>"; };
+		8E11A8D3278DD6C9005D1FC3 /* CartEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartEmptyView.m; sourceTree = "<group>"; };
 		8E4821FA277A14F000857FF5 /* EmptyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyModel.h; sourceTree = "<group>"; };
 		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
 		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
@@ -1741,6 +1744,8 @@
 				1B53A2B82778ACC200FB00C7 /* CartChoosePromotion.h */,
 				1B53A2B92778ACC200FB00C7 /* CartChoosePromotion.m */,
 				1B53A2BB2778ACC900FB00C7 /* CartChoosePromotion.xib */,
+				8E11A8D2278DD6C9005D1FC3 /* CartEmptyView.h */,
+				8E11A8D3278DD6C9005D1FC3 /* CartEmptyView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3437,6 +3442,7 @@
 				1B6C52A7275B672200A1C617 /* ZLDrawItem.m in Sources */,
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
+				8E11A8D4278DD6C9005D1FC3 /* CartEmptyView.m in Sources */,
 				1B6C52CB275C894C00A1C617 /* RelationOrderDetailInfoCell.m in Sources */,
 				1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */,
 				AE8F32D6272EA117008E3DD8 /* ProductCheckoutBaseCell.m in Sources */,

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CartViewController : BaseViewController
 
+@property (strong, nonatomic) UIView *bottomView;
+
 @end
 
 NS_ASSUME_NONNULL_END

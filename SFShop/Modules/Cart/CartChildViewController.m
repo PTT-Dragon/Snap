@@ -11,8 +11,11 @@
 #import <MJRefresh/MJRefresh.h>
 #import "CartChooseCouponView.h"
 #import "CouponModel.h"
-#import "EmptyView.h"
 #import "SysParamsModel.h"
+#import "CartEmptyView.h"
+#import "ProductSimilarModel.h"
+#import "UIViewController+parentViewController.h"
+#import "CartViewController.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -20,7 +23,8 @@
 @property (nonatomic,strong) NSMutableArray <CouponModel *>*couponDataSource;
 @property (nonatomic,strong) NSMutableArray *campaignsDataSource;
 @property (nonatomic,strong) CartModel *cartModel;
-@property (nonatomic, strong) EmptyView *emptyView;
+@property (nonatomic, strong) CartEmptyView *emptyView;
+@property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
 
 @end
 
@@ -51,10 +55,27 @@
     }];
     [self.view addSubview:self.emptyView];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).offset(90);
+        make.top.mas_equalTo(self.view.mas_top).offset(30);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
 }
+
+- (void)requestSimilar {
+    MPWeakSelf(self)
+    MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
+    [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", (long)self.offerId]} success:^(id  _Nullable response) {
+        [hud hideAnimated:YES];
+        NSError *error;
+        weakself.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
+        [weakself.emptyView configDataWithSimilarList:weakself.similarList];
+        NSLog(@"get similar success");
+    } failed:^(NSError * _Nonnull error) {
+        [hud hideAnimated:YES];
+        [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"message"]];
+        NSLog(@"get similarfailed");
+    }];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section >= self.cartModel.validCarts.count) {
@@ -208,9 +229,12 @@
 }
 
 - (void)showEmptyView {
+    CartViewController *cartVC = (CartViewController *)[UIViewController currentTopViewController];
     if (self.cartModel.validCarts.count > 0) {
+        cartVC.bottomView.hidden = NO;
         self.emptyView.hidden = YES;
     } else {
+        cartVC.bottomView.hidden = YES;
         self.emptyView.hidden = NO;
     }
 }
@@ -317,10 +341,9 @@
     return _tableView;
 }
 
-- (EmptyView *)emptyView {
+- (CartEmptyView *)emptyView {
     if (!_emptyView) {
-        _emptyView = [[EmptyView alloc] init];
-        [_emptyView configDataWithEmptyType:EmptyViewNoShoppingCarType];
+        _emptyView = [[CartEmptyView alloc] init];
         _emptyView.hidden = YES;
     }
     return _emptyView;

@@ -21,7 +21,6 @@
 @property (nonatomic,strong) NSMutableArray *addressArr;
 @property (nonatomic,strong) UIButton *addressBtn;
 @property (nonatomic,weak) addressModel *selAddModel;
-@property (strong, nonatomic) UIView *bottomView;
 @property (strong, nonatomic) UIView *detailView;
 @property (strong, nonatomic) UIView *detailBgView;
 @property (strong, nonatomic) UIButton *checkBtn;

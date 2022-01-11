@@ -622,10 +622,6 @@
 "Phone_number" = "Phone number";
 "Sign_Up" = "Sign Up";
 "Max" = "Max";
-"Max" = "Max";
-"Max" = "Max";
-"Max" = "Max";
-"Max" = "Max";
 "ACCOUNT_DOES_NOT_EXIST" = "Akun tidak ada";
 "PASSWORD" = "Password";
 "EMAIL" = "Email";
@@ -637,4 +633,5 @@
 "THIS_PHONE_NUMBER" = "Nomor telepon ini";
 "CANCEL" = "Cancel";
 "LANGUGE" = "Bahasa";
+"Go_Shopping" = "Go Shopping";
 
