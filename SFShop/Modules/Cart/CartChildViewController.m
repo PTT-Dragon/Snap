@@ -12,6 +12,7 @@
 #import "CartChooseCouponView.h"
 #import "CouponModel.h"
 #import "EmptyView.h"
+#import "SysParamsModel.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;

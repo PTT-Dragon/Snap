@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B05B24F278C35B2000F20A9 /* OrderListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B05B251278C35B2000F20A9 /* OrderListItemCell.xib */; };
+		1B05B2A2278DD9A0000F20A9 /* SysParamsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B05B2A1278DD9A0000F20A9 /* SysParamsModel.m */; };
 		1B12A3DA27015E9100DD7BCD /* CouponCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3D927015E9100DD7BCD /* CouponCenterViewController.m */; };
 		1B12A3DD27015EB800DD7BCD /* CouponCenterChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DC27015EB800DD7BCD /* CouponCenterChildViewController.m */; };
 		1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DF27015F7000DD7BCD /* CouponCenterCell.m */; };
@@ -507,6 +508,8 @@
 		1B05B250278C35B2000F20A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OrderListItemCell.xib; sourceTree = "<group>"; };
 		1B05B29E278D162A000F20A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/OrderListItemCell.xib"; sourceTree = "<group>"; };
 		1B05B29F278D162A000F20A9 /* id */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = id; path = id.lproj/OrderListItemCell.xib; sourceTree = "<group>"; };
+		1B05B2A0278DD9A0000F20A9 /* SysParamsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SysParamsModel.h; sourceTree = "<group>"; };
+		1B05B2A1278DD9A0000F20A9 /* SysParamsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SysParamsModel.m; sourceTree = "<group>"; };
 		1B12A3D827015E9100DD7BCD /* CouponCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponCenterViewController.h; sourceTree = "<group>"; };
 		1B12A3D927015E9100DD7BCD /* CouponCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponCenterViewController.m; sourceTree = "<group>"; };
 		1B12A3DB27015EB800DD7BCD /* CouponCenterChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponCenterChildViewController.h; sourceTree = "<group>"; };
@@ -2858,6 +2861,8 @@
 				1BDBEB8C26FCB24C0018109B /* BaseNavigationController.m */,
 				4B1522D3272D432700C3BDD9 /* BaseViewController.h */,
 				4B1522D4272D432700C3BDD9 /* BaseViewController.m */,
+				1B05B2A0278DD9A0000F20A9 /* SysParamsModel.h */,
+				1B05B2A1278DD9A0000F20A9 /* SysParamsModel.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -3586,6 +3591,7 @@
 				1B82AECF277080B700D75E00 /* YYDiskCache.m in Sources */,
 				AEEC0BB227883D090071F059 /* DeliveryCell.m in Sources */,
 				1BD8E7B8275F130F00130DCC /* RefundDetailTitleCell.m in Sources */,
+				1B05B2A2278DD9A0000F20A9 /* SysParamsModel.m in Sources */,
 				1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
 				1B47832A272AA15700F2A945 /* ChangeMobileOrEmailViewController.m in Sources */,

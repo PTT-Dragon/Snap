@@ -9,6 +9,7 @@
 #import "MainTabViewController.h"
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
+#import "SysParamsModel.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +25,7 @@
     [self initUmeng];
     [self confitUShareSettings];
     [self configUSharePlatforms];
+    [self loadSysConfig];
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     MainTabViewController *tab = [[MainTabViewController alloc] init];
@@ -72,6 +74,22 @@
 //    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Facebook appKey:@"506027402887373"  appSecret:nil redirectURL:@"http://www.umeng.com/social"];
 //    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Whatsapp appKey:@"" appSecret:@"" redirectURL:@""];
 //    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Instagram appKey:@"" appSecret:@"" redirectURL:@""];
+}
+- (void)loadSysConfig
+{
+    [SFNetworkManager get:SFNet.h5.sysparam parameters:@{@"paramCodes":@"DEF_CURRENCY_DISPLAY,DEF_CURRENCY_PRECISION,DISPLAY_CURRENCY_PRECISION,PHONE_REGULAR_RULE,EMAIL_REGULAR_RULE,MINIMUM_DAILY_WITHDRAWAL,MAXIMUM_DAILY_WITHDRAWAL,CODE_TTL"} success:^(id  _Nullable response) {
+        SysParamsItemModel *model = [SysParamsItemModel sharedSysParamsItemModel];
+        for (NSDictionary *dic in response) {
+            if ([dic[@"paramCode"] isEqualToString:@"DEF_CURRENCY_DISPLAY"]) {
+                model.CURRENCY_DISPLAY = dic[@"paramValue"];
+            }else if ([dic[@"paramCode"] isEqualToString:@"DEF_CURRENCY_PRECISION"]){
+                model.CURRENCY_PRECISION = dic[@"paramValue"];
+            }
+        }
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 

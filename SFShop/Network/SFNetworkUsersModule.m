@@ -272,6 +272,10 @@
 - (NSString *)agreement {
     return K_h5_domain(@"agreement");
 }
+- (NSString *)sysparam
+{
+    return K_h5_domain(@"sysparam");
+}
 - (NSString *)pay {
     return K_h5_domain(@"pay");
 }
