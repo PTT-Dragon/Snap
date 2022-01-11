@@ -18,6 +18,7 @@
 #import "GroupListViewController.h"
 #import "ProductDetailModel.h"
 #import "CategoryRankViewController.h"
+#import "SceneManager.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -60,6 +61,15 @@
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     [self addJsBridge];
 }
+
+- (void)jk_backButtonTouched:(JKBackButtonHandler)backButtonHandler {
+    if (self.shouldBackToHome) {
+        [SceneManager transToHome];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (void)addJsBridge
 {
     _jsBridge = [WKWebViewJavascriptBridge bridgeForWebView:_webView];

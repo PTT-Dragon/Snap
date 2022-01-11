@@ -412,6 +412,7 @@
 		8EE292212789AA400051DF85 /* LanguageBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EE292202789AA400051DF85 /* LanguageBundle.bundle */; };
 		8EE292242789AAA10051DF85 /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE292232789AAA10051DF85 /* NSBundle+Language.m */; };
 		8EE292272789AB3C0051DF85 /* FFLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE292262789AB3C0051DF85 /* FFLocalization.m */; };
+		AE06DA2C278D89F9004F397C /* SceneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE06DA2B278D89F9004F397C /* SceneManager.m */; };
 		AE43BF5F2781F4DF006D7135 /* CouponsAvailableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE43BF5E2781F4DF006D7135 /* CouponsAvailableModel.m */; };
 		AE43BF632782DBF2006D7135 /* CouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE43BF622782DBF2006D7135 /* CouponsViewController.m */; };
 		AE43BF672782DCB7006D7135 /* CouponsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE43BF662782DCB7006D7135 /* CouponsCell.m */; };
@@ -1188,6 +1189,8 @@
 		8EE292252789AB3C0051DF85 /* FFLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFLocalization.h; sourceTree = "<group>"; };
 		8EE292262789AB3C0051DF85 /* FFLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFLocalization.m; sourceTree = "<group>"; };
 		ABCFEC0B341B688C59EBE3B6 /* Pods-SFShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.debug.xcconfig"; sourceTree = "<group>"; };
+		AE06DA2A278D89F9004F397C /* SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
+		AE06DA2B278D89F9004F397C /* SceneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneManager.m; sourceTree = "<group>"; };
 		AE43BF5D2781F4DF006D7135 /* CouponsAvailableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponsAvailableModel.h; sourceTree = "<group>"; };
 		AE43BF5E2781F4DF006D7135 /* CouponsAvailableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponsAvailableModel.m; sourceTree = "<group>"; };
 		AE43BF612782DBF2006D7135 /* CouponsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponsViewController.h; sourceTree = "<group>"; };
@@ -2401,6 +2404,8 @@
 				4B818FE5272435E30058038A /* MakeH5Happy.m */,
 				AEE3FC902761D8EC00A96E2A /* PDFReader.h */,
 				AEE3FC912761D8EC00A96E2A /* PDFReader.m */,
+				AE06DA2A278D89F9004F397C /* SceneManager.h */,
+				AE06DA2B278D89F9004F397C /* SceneManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3468,6 +3473,7 @@
 				1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */,
 				1B62468027632AFB00009DE2 /* OrderDetailGroupBuyCell.m in Sources */,
 				1B6C5291275B672200A1C617 /* UIControl+EnlargeTouchArea.m in Sources */,
+				AE06DA2C278D89F9004F397C /* SceneManager.m in Sources */,
 				4B43851826FEB80000BA3D90 /* ArticleListModel.m in Sources */,
 				1B82AED6277080B700D75E00 /* YYAnimatedImageView+yy.m in Sources */,
 				1B6C523E2758619600A1C617 /* WKWebViewJavascriptBridge.m in Sources */,

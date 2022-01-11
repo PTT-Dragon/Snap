@@ -229,9 +229,14 @@
     return K_order_domain(@"save");
 }
 
-- (NSString *)mock {
-    return K_pay_domain(@"mock");
+- (NSString *)method {
+    return K_pay_domain(@"method");
 }
+
+- (NSString *)confirm {
+    return K_pay_domain(@"confirm");
+}
+
 - (NSString *)num {
     return K_order_domain(@"status/num");
 }

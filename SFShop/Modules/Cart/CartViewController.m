@@ -213,7 +213,7 @@
     NSAssert(storeId.length > 0, @"storeId 不能为空");
     ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
     CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selAddModel.deliveryAddressId
-                                                              deliveryMode:deliveryMode
+                                                              deliveryMode:@"A"
                                                                    storeId:storeId
                                                                 sourceType:@"GWCGM"
                                                                 productIds:productIds
@@ -233,7 +233,7 @@
                     feeModel:feeModel
                        count:counts
                 inCmpIdLists:nil
-                deliveryMode:deliveryMode
+                deliveryMode:@"A"
                     currency:kLocalizedString(@"Rp")
                   sourceType:@"GWCGM"];
         [weakself.navigationController pushViewController:vc animated:YES];
