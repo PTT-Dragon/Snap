@@ -19,6 +19,7 @@
 
 @interface accountInfoCell ()
 @property (weak, nonatomic) IBOutlet UIView *couponView;
+@property (weak, nonatomic) IBOutlet UILabel *mobileLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imgVIew;
 @property (weak, nonatomic) IBOutlet UIView *WhishlistView;
 @property (weak, nonatomic) IBOutlet UIView *RecentlyViewedView;
@@ -58,10 +59,12 @@
         self.couponLabel.text = @"--";
         self.WhishlistLabel.text = @"--";
         self.RecentlyLabel.text = @"--";
+        self.mobileLabel.text = @"";
     }else{
         self.nameLabel.userInteractionEnabled = NO;
         self.nameLabel.text = model.userName;
         [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"account-black"]];
+        self.mobileLabel.text = model.userRes.mobilePhone;
     }
 }
 - (void)setCouponCount:(NSInteger)couponCount
@@ -119,7 +122,7 @@
     ac.configuration.allowSelectVideo = NO;
 
     //如调用的方法无sender参数，则该参数必传
-    ac.sender = [baseTool getCurrentVC];
+    ac.sender = self.jk_tabBarController;//[baseTool getCurrentVC];
     MPWeakSelf(self)
     // 选择回调
     [ac setSelectImageBlock:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {

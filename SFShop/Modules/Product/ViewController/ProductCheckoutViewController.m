@@ -32,7 +32,10 @@
 @end
 
 @implementation ProductCheckoutViewController
-
+- (BOOL)shouldCheckLoggedIn
+{
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = kLocalizedString(@"Check_out");
@@ -421,7 +424,7 @@
             NSDictionary *params = @{
                 @"billingEmail": weakself.dataModel.addressModel.email,
                 @"deliveryAddressId": weakself.dataModel.addressModel.deliveryAddressId,
-                @"deliveryMode": weakself.dataModel.deliveryMode,
+                @"deliveryMode": @"A",//weakself.dataModel.deliveryMode,
                 @"paymentMode": @"A",
                 @"sourceType": weakself.dataModel.sourceType,
                 @"totalPrice": totalPrice,

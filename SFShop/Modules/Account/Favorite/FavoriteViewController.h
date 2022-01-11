@@ -5,12 +5,12 @@
 //  Created by 游挺 on 2021/10/15.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 #import <VTMagic/VTMagic.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FavoriteViewController : VTMagicController
+@interface FavoriteViewController : BaseViewController
 
 @end
 

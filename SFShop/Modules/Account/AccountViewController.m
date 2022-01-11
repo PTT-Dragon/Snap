@@ -38,6 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self loadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -82,11 +83,14 @@
             //登出状态
             self.orderNumModel = nil;
             [self.tableView reloadData];
+            if ([[baseTool getCurrentVC] isKindOfClass:[LoginViewController class]] || ![[baseTool getCurrentVC] isKindOfClass:[AccountViewController class]]) {
+                return;
+            }
             LoginViewController *vc = [[LoginViewController alloc] init];
             MPWeakSelf(vc)
             vc.didLoginBlock = ^{
                 [weakvc.navigationController popToRootViewControllerAnimated:YES];
-//                self.tabBarController.selectedIndex = 0;
+                weakvc.tabBarController.selectedIndex = 0;
             };
             [self.navigationController pushViewController:vc animated:YES];
         }else{

@@ -22,7 +22,10 @@
 @end
 
 @implementation OrderViewController
-
+- (BOOL)shouldCheckLoggedIn
+{
+    return YES;
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];

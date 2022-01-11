@@ -17,11 +17,15 @@
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataSource;
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
+@property (nonatomic,strong) VTMagicController *magicController;
 
 @end
 
 @implementation FavoriteViewController
-
+- (BOOL)shouldCheckLoggedIn
+{
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -39,17 +43,23 @@
         model.type = idx == 0 ? ALLTYPE: idx == 1 ? PRICEDOWNTYPE: PROMOTIONTYPE;
         [self.dataSource addObject:model];
     }
-    self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
-    self.magicView.navigationColor = [UIColor whiteColor];
-    self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#000000"];
-    self.magicView.sliderHeight = 1.0f;
-    self.magicView.layoutStyle = VTLayoutStyleDivide;
-    self.magicView.switchStyle = VTSwitchStyleDefault;
-    self.magicView.navigationHeight = 40.f;
-    self.magicView.dataSource = self;
-    self.magicView.delegate = self;
-    self.magicView.scrollEnabled = NO;
-    [self.magicView reloadData];
+    [self addChildViewController:self.magicController];
+    [self.view addSubview:_magicController.view];
+    _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei);
+    self.currentMenuIndex = self.magicController.currentPage;
+    [self.magicController switchToPage:self.currentMenuIndex animated:0];
+    [_magicController.magicView reloadData];
+//    self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
+//    self.magicView.navigationColor = [UIColor whiteColor];
+//    self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#000000"];
+//    self.magicView.sliderHeight = 1.0f;
+//    self.magicView.layoutStyle = VTLayoutStyleDivide;
+//    self.magicView.switchStyle = VTSwitchStyleDefault;
+//    self.magicView.navigationHeight = 40.f;
+//    self.magicView.dataSource = self;
+//    self.magicView.delegate = self;
+//    self.magicView.scrollEnabled = NO;
+//    [self.magicView reloadData];
     
     [self loadDatas];
 }
@@ -73,7 +83,7 @@
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
-        FavoriteChildViewController *vc = self.childViewControllers[self.currentPage];
+        FavoriteChildViewController *vc = self.childViewControllers[self.magicController.currentPage];
 //        vc.vcModel.catgId = model.catgIds.firstObject;
 //        vc.vcModel.maxPrice =
     };
@@ -160,5 +170,20 @@
         _dataSource = [NSMutableArray array];
     }
     return _dataSource;
+}
+- (VTMagicController *)magicController
+{
+    if (!_magicController) {
+        _magicController = [[VTMagicController alloc] init];
+        _magicController.magicView.navigationColor = [UIColor whiteColor];
+        _magicController.magicView.sliderColor = [UIColor redColor];
+        _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
+        _magicController.magicView.switchStyle = VTSwitchStyleDefault;
+        _magicController.magicView.navigationHeight = 40.f;
+        _magicController.magicView.dataSource = self;
+        _magicController.magicView.delegate = self;
+        _magicController.magicView.scrollEnabled = NO;
+    }
+    return _magicController;
 }
 @end

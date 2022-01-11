@@ -10,6 +10,7 @@
 #import "RecentlyViewedCell.h"
 #import "RecentlyModel.h"
 #import "EmptyView.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface RecentlyViewedViewController ()<JTCalendarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -28,17 +29,23 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHei;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) NSMutableArray *dataListSource;
 @property (nonatomic,strong) EmptyView *emptyView;
+@property (nonatomic,assign) NSInteger pageIndex;
 
 @end
 
 @implementation RecentlyViewedViewController
-
+- (BOOL)shouldCheckLoggedIn
+{
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Recently_Viewed");
     _dataSource = [NSMutableArray array];
+    _dataListSource = [NSMutableArray array];
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
     [self createRandomEvents];
@@ -51,6 +58,9 @@
     _dateSelected = [NSDate date];
     _selectionMode = NO;
     [self initUI];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
     [self loadDatas];
     [self changeModeAction:self.clickBtn];
 }
@@ -71,11 +81,13 @@
 }
 - (void)loadDatas
 {
+    self.pageIndex = 1;
     MPWeakSelf(self)
     NSDateFormatter* formatter1 = [[NSDateFormatter alloc] init];
     [formatter1 setDateFormat:@"yyyy-MM-dd"];
     NSString *selDay = [formatter1 stringFromDate:_dateSelected];
-    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":selDay,@"endDate":selDay} success:^(id  _Nullable response) {
+    NSDate *startDate = [_calendarManager.dateHelper addToDate:_dateSelected months:-1];
+    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":startDate,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
         [weakself.dataSource removeAllObjects];
         if (!kArrayIsEmpty(arr)) {
@@ -83,11 +95,57 @@
                 [weakself.dataSource addObject:[[RecentlyModel alloc] initWithDictionary:dic error:nil]];
             }
         }
+        [weakself handleDatas];
         [weakself.tableView reloadData];
         [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself showEmptyView];
     }];
+}
+- (void)loadMoreDatas
+{
+    self.pageIndex ++;
+    MPWeakSelf(self)
+    NSDateFormatter* formatter1 = [[NSDateFormatter alloc] init];
+    [formatter1 setDateFormat:@"yyyy-MM-dd"];
+    NSString *selDay = [formatter1 stringFromDate:_dateSelected];
+    NSDate *startDate = [_calendarManager.dateHelper addToDate:_dateSelected months:-1];
+    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":startDate,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.tableView.mj_footer endRefreshing];
+        NSArray *arr = response[@"list"];
+        if (!kArrayIsEmpty(arr)) {
+            for (NSDictionary *dic in arr) {
+                [weakself.dataSource addObject:[[RecentlyModel alloc] initWithDictionary:dic error:nil]];
+            }
+        }
+        [weakself handleDatas];
+        [weakself.tableView reloadData];
+        [weakself showEmptyView];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_footer endRefreshing];
+        [weakself showEmptyView];
+    }];
+}
+- (void)handleDatas
+{
+    [_dataListSource removeAllObjects];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.dataSource];
+    for (NSInteger i = 0; i<array.count; i++) {
+        RecentlyModel *obj1 = array[i];
+        NSMutableArray *tempArray = [@[] mutableCopy];
+        [tempArray addObject:obj1];
+        for (NSInteger j = i+1; j<array.count; j++) {
+            RecentlyModel *obj2 = array[j];
+            if ([_calendarManager.dateHelper date:obj1.date isTheSameDayThan:obj2.date]) {
+                [tempArray addObject:obj2];
+                [array removeObjectAtIndex:j];
+                j-=1;
+            }
+        }
+        if (tempArray.count != 0) {
+            [_dataListSource addObject:tempArray];
+        }
+    }
 }
 
 - (void)showEmptyView {
@@ -101,21 +159,40 @@
 #pragma mark - tableView.delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    NSArray *arr = _dataListSource[section];
+    return arr.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return _dataListSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSArray *arr = _dataListSource[indexPath.section];
     RecentlyViewedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecentlyViewedCell"];
-    [cell setContent:self.dataSource[indexPath.row]];
+    [cell setContent:arr[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 130;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSArray *arr = _dataListSource[section];
+    RecentlyModel *model = arr.firstObject;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 50)];
+    view.backgroundColor = [UIColor whiteColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 50)];
+    if (model) {
+        label.text = model.createdDateNoH;
+    }
+    [view addSubview:label];
+    return view;
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     //删除
@@ -151,6 +228,7 @@
 // Used to customize the appearance of dayView
 - (void)calendar:(JTCalendarManager *)calendar prepareDayView:(JTCalendarDayView *)dayView
 {
+    NSDate *date1 = [_calendarManager.dateHelper addToDate:[NSDate date] months:-1];
     // Today
     if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
@@ -164,18 +242,23 @@
         dayView.circleView.backgroundColor = [UIColor redColor];
         dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
-    }
-    // Other month
-    else if(![_calendarManager.dateHelper date:_calendarContentView.date isTheSameMonthThan:dayView.date]){
+    }else if ([_calendarManager.dateHelper date:dayView.date isEqualOrAfter:date1 andEqualOrBefore:[NSDate date]]){
+        
         dayView.circleView.hidden = YES;
         dayView.dotView.backgroundColor = [UIColor redColor];
-        dayView.textLabel.textColor = [UIColor lightGrayColor];
+        dayView.textLabel.textColor = [UIColor blackColor];
     }
+    // Other month
+//    else if(![_calendarManager.dateHelper date:_calendarContentView.date isTheSameMonthThan:dayView.date]){
+//        dayView.circleView.hidden = YES;
+//        dayView.dotView.backgroundColor = [UIColor redColor];
+//        dayView.textLabel.textColor = [UIColor lightGrayColor];
+//    }
     // Another day of the current month
     else{
         dayView.circleView.hidden = YES;
         dayView.dotView.backgroundColor = [UIColor redColor];
-        dayView.textLabel.textColor = [UIColor blackColor];
+        dayView.textLabel.textColor = [UIColor lightGrayColor];
     }
     
     if([self haveEventForDay:dayView.date]){

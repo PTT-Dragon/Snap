@@ -26,7 +26,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ow4-xP-dSu">
-                        <rect key="frame" x="99" y="35.5" width="176" height="20"/>
+                        <rect key="frame" x="99" y="26" width="176" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -149,22 +149,29 @@ Viewed</string>
                             <action selector="msgAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jkN-t6-TFl"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQt-Lu-SYp">
+                        <rect key="frame" x="99" y="51" width="176" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="1" green="0.086274509803921567" blue="0.34901960784313724" alpha="1" colorSpace="deviceRGB"/>
                 <constraints>
                     <constraint firstItem="Ow4-xP-dSu" firstAttribute="leading" secondItem="kAT-s2-Aye" secondAttribute="trailing" constant="24" id="1aK-ji-rqh"/>
                     <constraint firstItem="ckn-Gx-hDh" firstAttribute="top" secondItem="RjG-am-f1L" secondAttribute="top" id="38o-E4-Hat"/>
+                    <constraint firstItem="NQt-Lu-SYp" firstAttribute="top" secondItem="Ow4-xP-dSu" secondAttribute="bottom" constant="5" id="3Hc-UB-LmQ"/>
                     <constraint firstItem="gAP-dp-aIR" firstAttribute="top" secondItem="5b9-MJ-s0D" secondAttribute="top" id="6iR-QH-Abr"/>
                     <constraint firstItem="ckn-Gx-hDh" firstAttribute="bottom" secondItem="RjG-am-f1L" secondAttribute="bottom" id="CaC-1D-JYf"/>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="width" secondItem="RjG-am-f1L" secondAttribute="width" id="DOT-da-gtb"/>
                     <constraint firstItem="beR-wN-8cN" firstAttribute="leading" secondItem="RjG-am-f1L" secondAttribute="trailing" id="FUw-Y1-724"/>
+                    <constraint firstItem="NQt-Lu-SYp" firstAttribute="trailing" secondItem="Ow4-xP-dSu" secondAttribute="trailing" id="Fyg-Tr-BC6"/>
                     <constraint firstItem="RjG-am-f1L" firstAttribute="leading" secondItem="3fi-jd-Bbb" secondAttribute="trailing" id="HZc-I2-zsK"/>
                     <constraint firstItem="RjG-am-f1L" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Luy-50-RQA"/>
                     <constraint firstAttribute="trailing" secondItem="28J-D2-ke3" secondAttribute="trailing" id="QUG-dq-I9r"/>
                     <constraint firstItem="ckn-Gx-hDh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Qgq-x3-zVa"/>
                     <constraint firstItem="kAT-s2-Aye" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="R1U-z5-QCT"/>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="leading" secondItem="RjG-am-f1L" secondAttribute="trailing" id="RMn-7N-QrB"/>
-                    <constraint firstItem="Ow4-xP-dSu" firstAttribute="centerY" secondItem="kAT-s2-Aye" secondAttribute="centerY" id="RuQ-AF-Nm2"/>
                     <constraint firstItem="RjG-am-f1L" firstAttribute="top" secondItem="kAT-s2-Aye" secondAttribute="bottom" id="Ti9-Tg-xOT"/>
                     <constraint firstItem="beR-wN-8cN" firstAttribute="centerY" secondItem="RjG-am-f1L" secondAttribute="centerY" id="Tjh-G8-TLr"/>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="centerX" secondItem="28J-D2-ke3" secondAttribute="centerX" id="Vna-nd-XSf"/>
@@ -174,7 +181,9 @@ Viewed</string>
                     <constraint firstItem="5b9-MJ-s0D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="emj-9n-d2J"/>
                     <constraint firstItem="ckn-Gx-hDh" firstAttribute="bottom" secondItem="ckn-Gx-hDh" secondAttribute="bottom" id="fO2-5g-3DM"/>
                     <constraint firstItem="kAT-s2-Aye" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="fQV-vM-Dpi"/>
+                    <constraint firstItem="NQt-Lu-SYp" firstAttribute="leading" secondItem="Ow4-xP-dSu" secondAttribute="leading" id="kAK-Kl-dMC"/>
                     <constraint firstItem="RjG-am-f1L" firstAttribute="leading" secondItem="ckn-Gx-hDh" secondAttribute="trailing" id="lkX-9V-EXp"/>
+                    <constraint firstItem="Ow4-xP-dSu" firstAttribute="top" secondItem="kAT-s2-Aye" secondAttribute="top" constant="10" id="mlt-Bb-Yig"/>
                     <constraint firstAttribute="trailing" secondItem="Ow4-xP-dSu" secondAttribute="trailing" constant="100" id="pWo-YV-C6i"/>
                     <constraint firstItem="ckn-Gx-hDh" firstAttribute="centerX" secondItem="ckn-Gx-hDh" secondAttribute="centerX" id="pYb-80-OW9"/>
                     <constraint firstAttribute="trailing" secondItem="gAP-dp-aIR" secondAttribute="trailing" constant="16" id="sc6-Nr-0v6"/>
@@ -193,6 +202,7 @@ Viewed</string>
                 <outlet property="couponLabel" destination="uKv-I9-t1a" id="yUs-PJ-E3A"/>
                 <outlet property="couponView" destination="RjG-am-f1L" id="9Xg-q2-0aC"/>
                 <outlet property="imgVIew" destination="kAT-s2-Aye" id="Nd8-lD-8M0"/>
+                <outlet property="mobileLabel" destination="NQt-Lu-SYp" id="2jQ-Et-L2g"/>
                 <outlet property="nameLabel" destination="Ow4-xP-dSu" id="011-W1-t2l"/>
                 <outlet property="setBtn" destination="5b9-MJ-s0D" id="xqX-lm-jsO"/>
             </connections>

@@ -9,9 +9,16 @@
 #import "AreaCell.h"
 #import "UIButton+SGImagePosition.h"
 
+typedef enum :NSUInteger{
+    selProvinceType,
+    selCityType,
+    selDistrictType,
+    selStreetType,
+}selType;
+
 @protocol chooseAreaTopViewDelegate <NSObject>
 
-- (void)updateData;
+- (void)updateDataWithSelType:(selType)type;
 
 @end
 
@@ -34,23 +41,22 @@
 - (instancetype)initWithSelAreaModel:(AreaModel *)provinceModel selCity:(AreaModel *)cityModel District:(AreaModel *)DistrictModel
 {
     if (self = [super init]) {
+        _selProvinceAreaMoel = provinceModel;
+        _selCityAreaMoel = cityModel;
+        _selDistrictAreaMoel = DistrictModel;
         _provinceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_provinceBtn setTitleColor:[UIColor blackColor] forState:0];
         _provinceBtn.titleLabel.font = CHINESE_SYSTEM(14);
         [_provinceBtn setTitle:provinceModel.stdAddr forState:0];
         _provinceBtn.titleLabel.numberOfLines = 0;
-//        [_provinceBtn setImage:[UIImage imageNamed:@"swipe-down"] forState:0];
         @weakify(self)
         [[_provinceBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             @strongify(self)
             if (self.selProvinceAreaMoel) {
-                self.selProvinceAreaMoel = [[AreaModel alloc]init];
-                self.selCityAreaMoel = nil;
-                self.selDistrictAreaMoel = nil;
-                [self.delegate updateData];
+                [self.delegate updateDataWithSelType:selProvinceType];
             }
         }];
-        [_provinceBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
+//        [_provinceBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
         [self addSubview:_provinceBtn];
         [_provinceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.bottom.top.mas_equalTo(self);
@@ -61,6 +67,12 @@
         _cityBtn.titleLabel.numberOfLines = 0;
         [_cityBtn setTitle:cityModel.stdAddr forState:0];
         [self addSubview:_cityBtn];
+        [[_cityBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self)
+            if (self.selCityAreaMoel) {
+                [self.delegate updateDataWithSelType:selCityType];
+            }
+        }];
         [_cityBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.top.mas_equalTo(self);
             make.left.mas_equalTo(self.provinceBtn.mas_right).offset(10);
@@ -71,6 +83,12 @@
         [_DistrictBtn setTitle:DistrictModel.stdAddr forState:0];
         _DistrictBtn.titleLabel.numberOfLines = 0;
         [self addSubview:_DistrictBtn];
+        [[_DistrictBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self)
+            if (self.selDistrictAreaMoel) {
+                [self.delegate updateDataWithSelType:selDistrictType];
+            }
+        }];
         [_DistrictBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.top.mas_equalTo(self);
             make.left.mas_equalTo(self.cityBtn.mas_right).offset(10);
@@ -189,6 +207,11 @@
         [SFNetworkManager get:SFNet.address.areaData parameters:@{@"addrLevelId":@(2)} success:^(id  _Nullable response) {
             [weakself.dataSource removeAllObjects];
             [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+            [weakself.dataSource enumerateObjectsUsingBlock:^(AreaModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj.stdAddr isEqualToString: weakself.selProvinceAreaMoel.stdAddr]) {
+                    obj.sel = YES;
+                }
+            }];
             [weakself.tableView reloadData];
         } failed:^(NSError * _Nonnull error) {
             
@@ -198,6 +221,11 @@
         [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selProvinceAreaMoel.stdAddrId} success:^(id  _Nullable response) {
             [weakself.dataSource removeAllObjects];
             [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+            [weakself.dataSource enumerateObjectsUsingBlock:^(AreaModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj.stdAddr isEqualToString: weakself.selCityAreaMoel.stdAddr]) {
+                    obj.sel = YES;
+                }
+            }];
             [weakself.tableView reloadData];
         } failed:^(NSError * _Nonnull error) {
             
@@ -207,6 +235,11 @@
         [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selCityAreaMoel.stdAddrId} success:^(id  _Nullable response) {
             [weakself.dataSource removeAllObjects];
             [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
+            [weakself.dataSource enumerateObjectsUsingBlock:^(AreaModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj.stdAddr isEqualToString: weakself.selDistrictAreaMoel.stdAddr]) {
+                    obj.sel = YES;
+                }
+            }];
             [weakself.tableView reloadData];
         } failed:^(NSError * _Nonnull error) {
             
@@ -221,43 +254,6 @@
             
         }];
     }
-//    if (_selProvinceAreaMoel && _selProvinceAreaMoel.addrLevelId) {
-//        //说明有已选择的省  选择市
-//        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selProvinceAreaMoel.addrLevelId} success:^(id  _Nullable response) {
-//            [weakself.dataSource removeAllObjects];
-//            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
-//            [weakself.tableView reloadData];
-//        } failed:^(NSError * _Nonnull error) {
-//
-//        }];
-//    }else if (_selCityAreaMoel && _selCityAreaMoel.addrLevelId){
-//        //已选择市 选择区
-//        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selCityAreaMoel.addrLevelId} success:^(id  _Nullable response) {
-//            [weakself.dataSource removeAllObjects];
-//            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
-//            [weakself.tableView reloadData];
-//        } failed:^(NSError * _Nonnull error) {
-//
-//        }];
-//    }else if(!_selProvinceAreaMoel || !_selProvinceAreaMoel.addrLevelId){
-//        //都还未选
-//        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"addrLevelId":@(2)} success:^(id  _Nullable response) {
-//            [weakself.dataSource removeAllObjects];
-//            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
-//            [weakself.tableView reloadData];
-//        } failed:^(NSError * _Nonnull error) {
-//
-//        }];
-//    }else{
-//        //已选择地区
-//        [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selDistrictAreaMoel.addrLevelId} success:^(id  _Nullable response) {
-//            [weakself.dataSource removeAllObjects];
-//            [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
-//            [weakself.tableView reloadData];
-//        } failed:^(NSError * _Nonnull error) {
-//
-//        }];
-//    }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -305,8 +301,23 @@
     [self loadDatas];
 }
 #pragma mark - delegate
-- (void)updateData
+- (void)updateDataWithSelType:(selType)type
 {
+    if (type == selProvinceType) {
+        self.selCityAreaMoel = nil;
+        self.selDistrictAreaMoel = nil;
+        self.selStreetAreaMoel = nil;
+    }else if (type == selCityType){
+        self.selDistrictAreaMoel = nil;
+        self.selStreetAreaMoel = nil;
+    }else if (type == selDistrictType){
+        self.selStreetAreaMoel = nil;
+    }else if (type == selStreetType){
+        self.selStreetAreaMoel = nil;
+    }
+    _topView.selDistrictAreaMoel = self.selDistrictAreaMoel;
+    _topView.selProvinceAreaMoel = self.selProvinceAreaMoel;
+    _topView.selCityAreaMoel = self.selCityAreaMoel;
     [self loadDatas];
 }
 

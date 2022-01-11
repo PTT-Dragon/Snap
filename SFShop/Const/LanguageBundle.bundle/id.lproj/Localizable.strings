@@ -363,7 +363,6 @@
 //  "PAYMENT_COMPLETED" = "Pembayaran selesai",
 //  "ORDER_PAYMENT_PROCESSING" = "Pembayaran sedang diproses",
 //  "NO_STOCK" = "Tidak ada stok",
-//  "PLEASE_ENTER_YOUR_EMAIL" = "Masukkan email Anda",
 //  "SELECT_REASON" = "Silakan pilih Alasan",
 //  "FLASH" = "Flash",
 //  "GROUP" = "Group",
@@ -538,7 +537,7 @@
 "Mock_pay_failed" = "Mock Pay Failed!";
 "Online_pay" = "Online Pay";
 "Please_select_your_address" = "Please select your address";
-"Please_enter_your_email" = "Please enter your email";
+"PLEASE_ENTER_YOUR_EMAIL" = "Masukkan email Anda";
 "Save_order_success" = "Save order Success!";
 "Quantity" = "Quantity";
 "Special_promo" = "SPECIAL PROMO";

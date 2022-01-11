@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RecentlyModel : JSONModel
 @property (nonatomic,copy) NSString <Optional>*createdDate;
+@property (nonatomic,copy) NSString *createdDateNoH;
+@property (nonatomic,copy) NSDate <Optional>*date;
 @property (nonatomic,copy) NSString <Optional>*imgUrl;
 @property (nonatomic,assign) BOOL isCollection;
 @property (nonatomic,copy) NSString <Optional>*offerId;

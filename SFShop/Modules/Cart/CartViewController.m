@@ -207,7 +207,9 @@
             }
         }
     }
-    
+    if (productIds.count == 0) {
+        return;
+    }
     NSAssert(storeId.length > 0, @"storeId 不能为空");
     ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
     CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selAddModel.deliveryAddressId

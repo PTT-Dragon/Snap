@@ -24,7 +24,11 @@
 @end
 
 @implementation CartChildViewController
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadDatas];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -151,7 +155,7 @@
             
         }];
     }];
-    deleteRowAction.image = [UIImage imageNamed:@"删除"];
+    deleteRowAction.image = [UIImage imageNamed:@"trash"];
     deleteRowAction.backgroundColor = [UIColor redColor];
     
     //移到收藏列表
@@ -159,7 +163,7 @@
         completionHandler (YES);
         [self addToFavoriteWithID:model.shoppingCartId];
     }];
-    topRowAction.image = [UIImage imageNamed:@"bookmark-0"];
+    topRowAction.image = [UIImage imageNamed:@"love-3"];
     topRowAction.backgroundColor = RGBColorFrom16(0xFF1659);
     
     UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction,topRowAction]];

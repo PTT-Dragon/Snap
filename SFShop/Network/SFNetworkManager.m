@@ -172,15 +172,19 @@
 
 + (void)toLogin
 {
-    UIViewController *vc = [baseTool getCurrentVC];
-    if ([vc isKindOfClass:[LoginViewController class]]) {
-        return;
+    if ([FMDBManager sharedInstance].currentUser) {
+        [[FMDBManager sharedInstance] deleteUserData];
     }
-    [[FMDBManager sharedInstance] deleteUserData];
-    LoginViewController *loginVc = [[LoginViewController alloc] init];
-    loginVc.didLoginBlock = ^{
-        [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
-    };
-    [[baseTool getCurrentVC].navigationController pushViewController:loginVc animated:YES];
+    
+//    UIViewController *vc = [baseTool getCurrentVC];
+//    if ([vc isKindOfClass:[LoginViewController class]]) {
+//        return;
+//    }
+//    [[FMDBManager sharedInstance] deleteUserData];
+//    LoginViewController *loginVc = [[LoginViewController alloc] init];
+//    loginVc.didLoginBlock = ^{
+//        [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
+//    };
+//    [[baseTool getCurrentVC].navigationController pushViewController:loginVc animated:YES];
 }
 @end

@@ -5,7 +5,7 @@
 //  Created by MasterFly on 2021/10/31.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 #import "ProductCalcFeeModel.h"
 #import "addressModel.h"
 #import "ProductDetailModel.h"
@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProductCheckoutViewController : UIViewController
+@interface ProductCheckoutViewController : BaseViewController
 
 - (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
               attrValues:(NSArray<NSString *> *)attrValues

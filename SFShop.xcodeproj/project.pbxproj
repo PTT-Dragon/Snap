@@ -504,8 +504,8 @@
 
 /* Begin PBXFileReference section */
 		1B05B250278C35B2000F20A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OrderListItemCell.xib; sourceTree = "<group>"; };
-		1B05B253278C35B5000F20A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OrderListItemCell.strings"; sourceTree = "<group>"; };
-		1B05B255278C35B6000F20A9 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/OrderListItemCell.strings; sourceTree = "<group>"; };
+		1B05B29E278D162A000F20A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/OrderListItemCell.xib"; sourceTree = "<group>"; };
+		1B05B29F278D162A000F20A9 /* id */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = id; path = id.lproj/OrderListItemCell.xib; sourceTree = "<group>"; };
 		1B12A3D827015E9100DD7BCD /* CouponCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponCenterViewController.h; sourceTree = "<group>"; };
 		1B12A3D927015E9100DD7BCD /* CouponCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponCenterViewController.m; sourceTree = "<group>"; };
 		1B12A3DB27015EB800DD7BCD /* CouponCenterChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponCenterChildViewController.h; sourceTree = "<group>"; };
@@ -3766,8 +3766,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				1B05B250278C35B2000F20A9 /* en */,
-				1B05B253278C35B5000F20A9 /* zh-Hans */,
-				1B05B255278C35B6000F20A9 /* id */,
+				1B05B29E278D162A000F20A9 /* zh-Hans */,
+				1B05B29F278D162A000F20A9 /* id */,
 			);
 			name = OrderListItemCell.xib;
 			sourceTree = "<group>";
@@ -3917,7 +3917,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.8;
+				CURRENT_PROJECT_VERSION = 3.0;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3957,7 +3957,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.8;
+				CURRENT_PROJECT_VERSION = 3.0;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
