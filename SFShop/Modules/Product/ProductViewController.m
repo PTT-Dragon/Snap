@@ -25,6 +25,7 @@
 #import "ProductGroupTitleCell.h"
 #import "ProductionRecommendCell.h"
 #import "CheckoutManager.h"
+#import "ProductionRecomandView.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -76,7 +77,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupMarketPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupDiscountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupCountLabel;
-@property (strong, nonatomic) UICollectionView *recommendCollectionView;
+@property (strong, nonatomic) ProductionRecomandView *recommendView;
 
 @end
 
@@ -245,7 +246,7 @@
         [hud hideAnimated:YES];
         NSError *error;
         weakself.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
-        [weakself.recommendCollectionView reloadData];
+        [weakself.recommendView configDataWithSimilarList:weakself.similarList];
         [weakself updateConstraints];
         NSLog(@"get similar success");
     } failed:^(NSError * _Nonnull error) {
@@ -285,22 +286,7 @@
     [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupListCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupListCell"];
     [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupTitleCell"];
     
-    [_recommendCollectionView registerClass:[ProductionRecommendCell class] forCellWithReuseIdentifier:@"ProductionRecommendCell"];
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.headerReferenceSize = CGSizeZero;
-    layout.footerReferenceSize = CGSizeZero;
-    layout.minimumLineSpacing = 16;
-    layout.minimumInteritemSpacing = 16;
-    layout.sectionInset = UIEdgeInsetsMake(8, 20, 8, 20);
-    layout.itemSize = CGSizeMake((MainScreen_width - 60) / 2, (MainScreen_width - 60) / 2 + 120);
-    _recommendCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    _recommendCollectionView.backgroundColor = [UIColor whiteColor];
-    _recommendCollectionView.delegate = self;
-    _recommendCollectionView.dataSource = self;
-    [_recommendCollectionView registerClass:[ProductionRecommendCell class] forCellWithReuseIdentifier:@"ProductionRecommendCell"];
-    [_recommendCollectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader"];
-    [self.scrollContentView addSubview:self.recommendCollectionView];
+    [self.scrollContentView addSubview:self.recommendView];
 }
 
 - (void)updateConstraints {
@@ -313,7 +299,7 @@
         make.height.mas_equalTo(height);
     }];
 
-    [self.recommendCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.recommendView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.detailWebView.mas_bottom).offset(12);
         make.left.right.equalTo(self.scrollContentView);
         make.height.mas_equalTo(collectionViewHeight);
@@ -481,42 +467,6 @@
     return productId;
 }
 
-#pragma mark - UICollectionView delegate & dataSource
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader" forIndexPath:indexPath];
-        UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 5, 150, 30)];
-        title.text = kLocalizedString(@"Recommendations");
-        title.font = [UIFont boldSystemFontOfSize:17];
-        title.textColor = [UIColor blackColor];
-        [view addSubview: title];
-        return view;
-    }
-    return nil;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return self.similarList.count == 0 ? CGSizeZero :CGSizeMake(MainScreen_width, 44);
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.similarList.count == 0 ? 0 : self.similarList.count;
-}
-
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ProductionRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProductionRecommendCell" forIndexPath:indexPath];
-    cell.model = self.similarList[indexPath.row];
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    ProductViewController *vc = [[ProductViewController alloc] init];
-    vc.offerId = self.similarList[indexPath.row].offerId;
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 #pragma mark - tableview.delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -734,6 +684,14 @@
     }
     [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf:self.model.carouselImgUrls[index]])]];
     return iv;
+}
+
+
+- (ProductionRecomandView *)recommendView {
+    if (!_recommendView) {
+        _recommendView = [[ProductionRecomandView alloc] init];
+    }
+    return _recommendView;
 }
 
 @end

@@ -377,6 +377,9 @@
 		4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA926FCB13300E3C832 /* FMDBManager.m */; };
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
 		4BEB1223275CB98A00D5342A /* ProductCalcFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */; };
+		8E11A8CB278DCD57005D1FC3 /* ProductionRecomandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */; };
+		8E11A8CE278DD14D005D1FC3 /* UIViewController+parentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */; };
+		8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */; };
 		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
 		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
 		8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */; };
@@ -1143,6 +1146,12 @@
 		4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCalcFeeModel.m; sourceTree = "<group>"; };
 		50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
 		7B387B141A9718B8B8605036 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
+		8E11A8C9278DCD57005D1FC3 /* ProductionRecomandView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductionRecomandView.h; sourceTree = "<group>"; };
+		8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductionRecomandView.m; sourceTree = "<group>"; };
+		8E11A8CC278DD14D005D1FC3 /* UIViewController+parentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+parentViewController.h"; sourceTree = "<group>"; };
+		8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+parentViewController.m"; sourceTree = "<group>"; };
+		8E11A8CF278DD1F4005D1FC3 /* UIView+Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Response.h"; sourceTree = "<group>"; };
+		8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Response.m"; sourceTree = "<group>"; };
 		8E4821FA277A14F000857FF5 /* EmptyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyModel.h; sourceTree = "<group>"; };
 		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
 		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
@@ -2281,6 +2290,8 @@
 				1BD10C372761E80000BFC1AD /* ProductEvalationTitleCell.xib */,
 				4B43E2192778901C00722CFE /* ProductionRecommendCell.h */,
 				4B43E21A2778901C00722CFE /* ProductionRecommendCell.m */,
+				8E11A8C9278DCD57005D1FC3 /* ProductionRecomandView.h */,
+				8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2406,6 +2417,10 @@
 				AEE3FC912761D8EC00A96E2A /* PDFReader.m */,
 				AE06DA2A278D89F9004F397C /* SceneManager.h */,
 				AE06DA2B278D89F9004F397C /* SceneManager.m */,
+				8E11A8CC278DD14D005D1FC3 /* UIViewController+parentViewController.h */,
+				8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */,
+				8E11A8CF278DD1F4005D1FC3 /* UIView+Response.h */,
+				8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3533,6 +3548,7 @@
 				1B6246742762E8F500009DE2 /* MessageModel.m in Sources */,
 				1BC7A2CA272AFC9600755832 /* FAQDetailViewController.m in Sources */,
 				1B6C523F2758619600A1C617 /* WebViewJavascriptBridge_JS.m in Sources */,
+				8E11A8CB278DCD57005D1FC3 /* ProductionRecomandView.m in Sources */,
 				AE5C9A69275B5C7C00F34481 /* SFSearchingView.m in Sources */,
 				1B552E9F276B14F10086604B /* GroupBuyListCell.m in Sources */,
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
@@ -3577,6 +3593,7 @@
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
 				1BD10C382761E80100BFC1AD /* ProductEvalationTitleCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
+				8E11A8CE278DD14D005D1FC3 /* UIViewController+parentViewController.m in Sources */,
 				1BD8E7B3275DFDAD00130DCC /* ReviewAddNewPhotoCell.m in Sources */,
 				1B53A2BA2778ACC200FB00C7 /* CartChoosePromotion.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
@@ -3602,6 +3619,7 @@
 				1BF00F6E272FDC5D0081C8E4 /* DistributorRankCell.m in Sources */,
 				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
 				1BD8E7D727604FC900130DCC /* AdditionalReviewViewController.m in Sources */,
+				8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */,
 				1B6C5298275B672200A1C617 /* ZLInteractiveTrasition.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,
