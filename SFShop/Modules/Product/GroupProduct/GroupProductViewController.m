@@ -425,11 +425,11 @@
         NSAssert(self.model.storeId > 0, @"storeId 不能为空");
         ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
         CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selectedAddressModel.deliveryAddressId
-                                           deliveryMode:self.model.deliveryMode
-                                                storeId:[NSString stringWithFormat:@"%ld",self.model.storeId]
-                                             sourceType:@"LJGM"
-                                             productIds:productIds
-                                            productNums:productNums
+                                                                  deliveryMode:@"A"
+                                                                       storeId:[NSString stringWithFormat:@"%ld",self.model.storeId]
+                                                                    sourceType:@"LJGM"
+                                                                    productIds:productIds
+                                                                   productNums:productNums
                                                                   inCmpIdLists:nil];
         [CheckoutManager.shareInstance loadCheckoutData:data complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel, CouponsAvailableModel * _Nonnull couponsModel) {
             if (!feeModel) {
@@ -448,7 +448,7 @@
                         feeModel:feeModel
                            count:productNums
                     inCmpIdLists:nil
-                    deliveryMode:weakself.model.deliveryMode
+                    deliveryMode:@"A"
                         currency:kLocalizedString(@"Rp")
                       sourceType:@"LJGM"];
             [weakself.navigationController pushViewController:vc animated:YES];
@@ -474,7 +474,7 @@
         NSAssert(self.model.storeId > 0, @"storeId 不能为空");
         ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
         CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selectedAddressModel.deliveryAddressId
-                                                                  deliveryMode:self.model.deliveryMode
+                                                                  deliveryMode:@"A"
                                                                        storeId:[NSString stringWithFormat:@"%ld",self.model.storeId]
                                                                     sourceType:@"LJGM"
                                                                     productIds:productIds
@@ -497,7 +497,7 @@
                         feeModel:feeModel
                            count:productNums
                     inCmpIdLists:inCmpIdLists
-                    deliveryMode:weakself.model.deliveryMode
+                    deliveryMode:@"A"
                         currency:kLocalizedString(@"Rp")
                       sourceType:@"LJGM"];
             [weakself.navigationController pushViewController:vc animated:YES];

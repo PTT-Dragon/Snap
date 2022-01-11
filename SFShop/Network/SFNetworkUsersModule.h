@@ -90,8 +90,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *cancelOrder;
 @property (nonatomic, readwrite, strong) NSString *cancelOrderReason;
 @property (nonatomic, readwrite, strong) NSString *calcfee;
+@property (nonatomic, readwrite, strong) NSString *method;
+@property (nonatomic, readwrite, strong) NSString *confirm;
 @property (nonatomic, readwrite, strong) NSString *save;
-@property (nonatomic, readwrite, strong) NSString *mock;
 @property (nonatomic, readwrite, strong) NSString *num;
 @property (nonatomic, readwrite, strong) NSString *logistics;
 @property (nonatomic, readwrite, strong) NSString *couponsAvailable;
