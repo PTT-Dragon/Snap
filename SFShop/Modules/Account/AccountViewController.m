@@ -90,7 +90,7 @@
             MPWeakSelf(vc)
             vc.didLoginBlock = ^{
                 [weakvc.navigationController popToRootViewControllerAnimated:YES];
-                weakvc.tabBarController.selectedIndex = 0;
+//                weakvc.tabBarController.selectedIndex = 0;
             };
             [self.navigationController pushViewController:vc animated:YES];
         }else{
