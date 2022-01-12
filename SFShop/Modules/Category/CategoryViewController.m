@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Category";
+    self.title = kLocalizedString(@"Category");
     [self loadSides];
     [self loadsubviews];
 //    self.sideTableView.dataArray = @[CategorySideModel.new,CategorySideModel.new];

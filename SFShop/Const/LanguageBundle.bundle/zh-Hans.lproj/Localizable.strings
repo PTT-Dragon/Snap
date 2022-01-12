@@ -94,7 +94,6 @@
 //  "OK" = "好的",
 //  "SAVE" = "保存",
 //  "SAVEPROFILE" = "保存配置",
-//  "CONFIRM" = "确认",
 //  "SELECT" = "选择",
 //  "AREA" = "地区",
 //  "HIDE" = "隐藏",
@@ -293,7 +292,6 @@
 //  "COMPLETION_TIME" = "订单完成时间",
 //  "RE_BUY" = "再次购买",
 //  "CONFIRM_RECEIPT" = "确认收货",
-//  "RECEIPT" = "收据",
 //  "CLOSE" = "关闭",
 //  "BACK_TO_HOME" = "返回首页",
 //  "VIEW_ORDER" = "查看订单",
@@ -425,8 +423,6 @@
 //  "REVIEW_PUBLISHED" = "评价成功",
 //  "THANK_REVIEW" = "感谢您的评价",
 //  "VIEWCODE" = "查看券码",
-//  "PAYNOW" = "立即支付",
-//  "REBUY" = "重新购买",
 //  "SHAREBUY" = "拼团",
 //  "GROUPSUCCESS" = "加入拼团成功.",
 //  "TOSHIP" = "待发货",
@@ -634,3 +630,7 @@
 "CANCEL" = "取消";
 "LANGUGE" = "语言设置";
 "Go_Shopping" = "去购物";
+"PAYNOW" = "立即支付";
+"REBUY" = "重新购买"
+"RECEIPT" = "收据";
+"CONFIRM" = "确认";

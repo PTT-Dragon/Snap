@@ -76,7 +76,7 @@
 }
 - (IBAction)btn2Action:(UIButton *)sender {
     NSString *state = _model.state;
-    if ([state isEqualToString:@"F"]) {
+    if ([state isEqualToString:@"F"] || [state isEqualToString:@"A"]) {
         //取消订单
         CancelOrderViewController *vc = [[CancelOrderViewController alloc] init];
         vc.model = _model;
@@ -107,17 +107,17 @@
 {
     NSString *str;
     if ([state isEqualToString:@"A"]) {
-        str = @"PAY NOW";
+        str = kLocalizedString(@"PAYNOW");
     }else if ([state isEqualToString:@"B"]){
-        str = @"RE-BUY";
+        str = kLocalizedString(@"REBUY");
     }else if ([state isEqualToString:@"C"]){
-        str = @"CONFIRM";
+        str = kLocalizedString(@"CONFIRM");
     }else if ([state isEqualToString:@"D"]){
-        str = @"BUY AGAIN";
+        str = kLocalizedString(@"REBUY");
     }else if ([state isEqualToString:@"E"]){
-        str = @"RE-BUY";
+        str = kLocalizedString(@"REBUY");
     }else if ([state isEqualToString:@"F"]){
-        str = @"BUY NOW";
+        str = kLocalizedString(@"REBUY");
     }
     return str;
 }
@@ -125,9 +125,9 @@
 {
     NSString *str;
     if ([state isEqualToString:@"A"]) {
-        str = @"CANCEL";
+        str = kLocalizedString(@"CANCEL");
     }else if ([state isEqualToString:@"B"]){
-        str = @"RECEIPT";
+        str = kLocalizedString(@"RECEIPT");
     }else if ([state isEqualToString:@"C"]){
         str = @"REVIEW";
     }else if ([state isEqualToString:@"D"]){
@@ -135,7 +135,7 @@
     }else if ([state isEqualToString:@"E"]){
         str = @"REVIEW";
     }else if ([state isEqualToString:@"F"]){
-        str = @"CANCEL";
+        str = @"";
     }
     return str;
 }

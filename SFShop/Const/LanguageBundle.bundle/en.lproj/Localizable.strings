@@ -95,7 +95,6 @@
 //  "OK" = "OK",
 //  "SAVE" = "Save",
 //  "SAVEPROFILE" = "Save Profile",
-//  "CONFIRM" = "Confirm",
 //  "SELECT" = "Select",
 //  "AREA" = "Area",
 //  "HIDE" = "Hide",
@@ -291,7 +290,6 @@
 //  "COMPLETION_TIME" = "Completion time",
 //  "RE_BUY" = "Re-buy",
 //  "CONFIRM_RECEIPT" = "Confirm Receipt",
-//  "RECEIPT" = "Receipt",
 //  "CLOSE" = "Close",
 //  "BACK_TO_HOME" = "Back to Home",
 //  "VIEW_ORDER" = "View Order",
@@ -423,8 +421,6 @@
 //  "REVIEW_PUBLISHED" = "Review Published",
 //  "THANK_REVIEW" = "Thank you for your review!",
 //  "VIEWCODE" = "View Code",
-//  "PAYNOW" = "Pay Now",
-//  "REBUY" = "Re-buy",
 //  "SHAREBUY" = "Group Buy",
 //  "GROUPSUCCESS" = "Join group successfully.Please check later.",
 //  "TOSHIP" = "To Ship",
@@ -637,3 +633,7 @@
 "CANCEL" = "Cancel";
 "LANGUGE" = "Language";
 "Go_Shopping" = "Go Shopping";
+"PAYNOW" = "Pay Now";
+"REBUY" = "Re-buy";
+"RECEIPT" = "Receipt";
+"CONFIRM" = "Confirm";
