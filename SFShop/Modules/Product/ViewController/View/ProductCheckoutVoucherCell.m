@@ -72,7 +72,7 @@
         self.subTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     } else {
         if (dataModel.currentPltCoupon) {
-            self.subTitleLabel.text = [NSString stringWithFormat:@"- %@ %.3f",dataModel.currency,dataModel.currentPltCoupon.discountAmount / 1000.0];
+            self.subTitleLabel.text = [NSString stringWithFormat:@"- %@ %.3f",@"Rp",dataModel.currentPltCoupon.discountAmount / 1000.0];
             self.subTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
         } else {
             self.subTitleLabel.text = [NSString stringWithFormat:@"%ld %@",shopAvailableVouchersCount, kLocalizedString(@"Available")];

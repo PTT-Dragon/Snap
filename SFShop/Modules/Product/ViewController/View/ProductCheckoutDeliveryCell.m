@@ -69,11 +69,12 @@
 }
 
 #pragma mark - Getter
-- (void)setDataModel:(ProductCheckoutModel *)dataModel {
-    super.dataModel = dataModel;
-    self.titleLabel.text = dataModel.currentLogisticsItem.logisticsModeName;
-    self.priceLabel.text = dataModel.currentLogisticsItem.priceStr;
-    self.desLabel.text = dataModel.currentLogisticsItem.dateStr;
+
+- (void)setDetailModel:(ProductDetailModel *)detailModel {
+    super.detailModel = detailModel;
+    self.titleLabel.text = detailModel.currentLogisticsItem.logisticsModeName;
+    self.priceLabel.text = detailModel.currentLogisticsItem.priceStr;
+    self.desLabel.text = detailModel.currentLogisticsItem.dateStr;
     [self layout];
 }
 

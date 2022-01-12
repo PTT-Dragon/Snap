@@ -418,40 +418,20 @@
     if (!_isCheckingSaleInfo) {
         [self showAttrsView];
     } else {
-        // TODO: 跳转checkout页
-        MPWeakSelf(self)
-        NSArray *productIds = @[[NSString stringWithFormat:@"%ld",self.getSelectedProductId]];
-        NSArray *productNums = @[@(self.attrView.count)];
-        NSAssert(self.model.storeId > 0, @"storeId 不能为空");
-        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-        CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selectedAddressModel.deliveryAddressId
-                                                                  deliveryMode:@"A"
-                                                                       storeId:[NSString stringWithFormat:@"%ld",self.model.storeId]
-                                                                    sourceType:@"LJGM"
-                                                                    productIds:productIds
-                                                                   productNums:productNums
-                                                                  inCmpIdLists:nil];
-        [CheckoutManager.shareInstance loadCheckoutData:data complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel, CouponsAvailableModel * _Nonnull couponsModel) {
-            if (!feeModel) {
-                return;
+        //跳转checkout页
+        for (ProductItemModel *item in self.model.products) {
+            item.storeName = self.model.storeName;
+            item.inCmpIdList = nil;
+            item.currentBuyCount = self.attrView.count;
+        }
+        ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
+        [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
+            if (isSuccess) {
+                [self.attrView removeFromSuperview];
+                self.isCheckingSaleInfo = NO;
+                ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
+                [self.navigationController pushViewController:vc animated:YES];
             }
-            
-            [weakself.attrView removeFromSuperview];
-            weakself.isCheckingSaleInfo = NO;
-        
-            [vc setProductModels:@[weakself.model]
-                      attrValues:@[weakself.variationsLabel.text]
-                      productIds:productIds
-                  logisticsModel:logisticsModel
-                     couponModel:couponsModel
-                    addressModel:weakself.selectedAddressModel
-                        feeModel:feeModel
-                           count:productNums
-                    inCmpIdLists:nil
-                    deliveryMode:@"A"
-                        currency:kLocalizedString(@"Rp")
-                      sourceType:@"LJGM"];
-            [weakself.navigationController pushViewController:vc animated:YES];
         }];
     }
 }
@@ -466,41 +446,20 @@
     if (!_isCheckingSaleInfo) {
         [self showAttrsView];
     } else {
-        // TODO: 跳转checkout页
-        MPWeakSelf(self)
-        NSArray *productIds = @[[NSString stringWithFormat:@"%ld",self.getSelectedProductId]];
-        NSArray *productNums = @[@(self.attrView.count)];
-        NSArray *inCmpIdLists = @[@(_campaignId)];
-        NSAssert(self.model.storeId > 0, @"storeId 不能为空");
-        ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-        CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selectedAddressModel.deliveryAddressId
-                                                                  deliveryMode:@"A"
-                                                                       storeId:[NSString stringWithFormat:@"%ld",self.model.storeId]
-                                                                    sourceType:@"LJGM"
-                                                                    productIds:productIds
-                                                                   productNums:productNums
-                                                                  inCmpIdLists:inCmpIdLists];
-        [CheckoutManager.shareInstance loadCheckoutData:data complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel, CouponsAvailableModel * _Nonnull couponsModel) {
-            if (!feeModel) {
-                return;
+        //跳转checkout页
+        for (ProductItemModel *item in self.model.products) {
+            item.storeName = self.model.storeName;
+            item.inCmpIdList = @[@(_campaignId)];
+            item.currentBuyCount = self.attrView.count;
+        }
+        ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
+        [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
+            if (isSuccess) {
+                [self.attrView removeFromSuperview];
+                self.isCheckingSaleInfo = NO;
+                ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
+                [self.navigationController pushViewController:vc animated:YES];
             }
-            
-            [weakself.attrView removeFromSuperview];
-            weakself.isCheckingSaleInfo = NO;
-        
-            [vc setProductModels:@[weakself.model]
-                      attrValues:@[weakself.variationsLabel.text]
-                      productIds:productIds
-                  logisticsModel:logisticsModel
-                     couponModel:couponsModel
-                    addressModel:weakself.selectedAddressModel
-                        feeModel:feeModel
-                           count:productNums
-                    inCmpIdLists:inCmpIdLists
-                    deliveryMode:@"A"
-                        currency:kLocalizedString(@"Rp")
-                      sourceType:@"LJGM"];
-            [weakself.navigationController pushViewController:vc animated:YES];
         }];
     }
 }

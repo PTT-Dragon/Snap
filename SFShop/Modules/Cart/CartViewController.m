@@ -174,68 +174,39 @@
 - (void)btnClick:(UIButton *)btn {
     // TODO: 跳转checkout页
     MPWeakSelf(self)
-    NSArray <CartListModel *> *items = self.cartModel.validCarts;
-    NSString *deliveryMode = [[items.firstObject shoppingCarts].firstObject deliveryMode];//派送模式
-    NSString *storeId = [items.firstObject storeId];//购买id
-    NSMutableArray *products = [NSMutableArray array];
     NSMutableArray *productDetailModels = [NSMutableArray array];
-    NSMutableArray *attrValues = [NSMutableArray array];
-    NSMutableArray *productIds = [NSMutableArray array];
-    NSMutableArray *productNums = [NSMutableArray array];
-
-    NSMutableArray *counts = [NSMutableArray array];
-    for (CartListModel *model in items) {
-        for (CartItemModel *cartItem in model.shoppingCarts) {
-            //判断是否选中..真牛逼
+    NSArray <CartListModel *> *stores = self.cartModel.validCarts;
+    for (CartListModel *store in stores) {
+        ProductDetailModel *detailModel = [[ProductDetailModel alloc] init];
+        detailModel.storeId = store.storeId.intValue;//购买id
+        detailModel.storeName = store.storeName;
+        NSMutableArray *products = [NSMutableArray array];
+        for (CartItemModel *cartItem in store.shoppingCarts) {
             if ([cartItem.isSelected isEqualToString:@"Y"]) {
-                [products addObject:@{@"productId":cartItem.productId,@"offerCnt":cartItem.num}];
-                ProductDetailModel *subModel = [[ProductDetailModel alloc] init];
-                subModel.storeName = model.storeName;
-                subModel.offerName = cartItem.productName;
-                subModel.salesPrice = cartItem.salesPrice;
-                subModel.storeId = model.storeId.intValue;
-                ProductCarouselImgModel *img = [[ProductCarouselImgModel alloc] init];
-                img.imgUrl = cartItem.imgUrl;
-                subModel.carouselImgUrls = @[img];
-                [productDetailModels addObject:subModel];
-                [counts addObject:@(cartItem.num.intValue)];
-                ProdSpcAttrsModel *spcModel = cartItem.prodSpcAttrs.firstObject;
-                [attrValues addObject:spcModel.value];
-                [productIds addObject:cartItem.productId];
-                [productNums addObject:cartItem.num];
+                ProductItemModel *item = [[ProductItemModel alloc] init];
+                item.storeName = store.storeName;
+                item.productId = cartItem.productId.intValue;
+                item.productName = cartItem.productName;
+                item.imgUrl = cartItem.imgUrl;
+                item.prodSpcAttrs = cartItem.prodSpcAttrs;
+                item.currentBuyCount = cartItem.num.intValue;
+                item.salesPrice = cartItem.salesPrice;
+                item.inCmpIdList = nil;
+                [products addObject:item];
             }
         }
-    }
-    if (productIds.count == 0) {
-        return;
-    }
-    NSAssert(storeId.length > 0, @"storeId 不能为空");
-    ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-    CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selAddModel.deliveryAddressId
-                                                              deliveryMode:@"A"
-                                                                   storeId:storeId
-                                                                sourceType:@"GWCGM"
-                                                                productIds:productIds
-                                                               productNums:productNums
-                                                              inCmpIdLists:nil];
-    [CheckoutManager.shareInstance loadCheckoutData:data complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel, CouponsAvailableModel * _Nonnull couponsModel) {
-        if (!feeModel) {
-            return;
+        if (products.count > 0) {
+            detailModel.products = products;
+            [productDetailModels addObject:detailModel];
         }
+    }
     
-        [vc setProductModels:productDetailModels
-                  attrValues:attrValues
-                  productIds:productIds
-              logisticsModel:logisticsModel
-                 couponModel:couponsModel
-                addressModel:weakself.selAddModel
-                    feeModel:feeModel
-                       count:counts
-                inCmpIdLists:nil
-                deliveryMode:@"A"
-                    currency:kLocalizedString(@"Rp")
-                  sourceType:@"GWCGM"];
-        [weakself.navigationController pushViewController:vc animated:YES];
+    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"GWCGM" addressModel:self.selAddModel productModels:productDetailModels];
+    [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
+        if (isSuccess) {
+            ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
+            [weakself.navigationController pushViewController:vc animated:YES];
+        }
     }];
 
 }

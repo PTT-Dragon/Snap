@@ -33,6 +33,13 @@
 @end
 
 @implementation ProductCheckoutViewController
+- (instancetype)initWithCheckoutModel:(ProductCheckoutModel *)checkoutModel {
+    if (self = [super init]) {
+        _dataModel = checkoutModel;
+    }
+    return self;
+}
+
 - (BOOL)shouldCheckLoggedIn
 {
     return YES;
@@ -43,76 +50,14 @@
     self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
     [self loadsubviews];
     [self layout];
+    //刷新价格
+    [self refreshCalFee];
     // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
-#pragma mark - Setter
-- (void)setProductModels:(NSArray<ProductDetailModel *> *)productModels
-               attrValues:(NSArray<NSString *> *)attrValues
-               productIds:(NSArray<NSNumber *> *) productIds
-          logisticsModel:(OrderLogisticsModel *)logisticsModel
-             couponModel:(CouponsAvailableModel *)couponModel
-            addressModel: (addressModel *)addressModel
-                feeModel:(ProductCalcFeeModel *)feeModel
-                   count: (NSArray<NSNumber *> *)productBuyCounts
-            inCmpIdLists:(nullable NSArray<NSNumber *> *)inCmpIdLists
-            deliveryMode:(NSString *)deliveryMode
-                currency:(NSString *)currency
-              sourceType:(NSString *)sourceType {
-    // 商品详情
-    NSMutableArray *arr = [NSMutableArray array];
-    [productModels enumerateObjectsUsingBlock:^(ProductDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        ProductCheckoutSubItemModel *item = [[ProductCheckoutSubItemModel alloc] init];
-        item.storeName = obj.storeName;
-        item.productCategpry = attrValues[idx];
-        item.productTitle = obj.offerName;
-        item.priceRp = kLocalizedString(@"Rp");
-        item.productPrice = obj.salesPrice;
-        item.productNum = [productBuyCounts[idx] integerValue];
-        item.productIcon = SFImage([MakeH5Happy getNonNullCarouselImageOf: obj.carouselImgUrls.firstObject]);
-        [arr addObject:item];
-    }];
-    
-    //商品列表
-    self.dataModel.productList = arr;
-    
-    //类型
-    self.dataModel.sourceType = sourceType;
-    
-    //配送类型
-    self.dataModel.deliveryMode = deliveryMode;
-    
-    //商品数量
-    self.dataModel.productBuyCounts = productBuyCounts;
-    
-    //商品ids
-    self.dataModel.productIds = productIds;
-    
-    //商品models
-    self.dataModel.productModels = productModels;
-    
-    //货币
-    self.dataModel.currency = currency;
-    
-    //优惠券
-    self.dataModel.couponsModel = couponModel;
-
-    //地址
-    self.dataModel.addressModel = addressModel;
-    
-    //配送
-    self.dataModel.logisticsModel = logisticsModel;
-
-    //费用
-    self.dataModel.feeModel = feeModel;
-
-    //刷新价格
-    [self refreshCalFee];
 }
 
 //刷新价格
@@ -232,8 +177,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SFCellCacheModel *cellModel = self.dataArray[indexPath.section][indexPath.row];
+    ProductDetailModel *detailModel = nil;
+    if ([cellModel.obj isKindOfClass:ProductDetailModel.class]) {
+        detailModel = cellModel.obj;
+    }
     ProductCheckoutBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellModel.cellId];
     __weak __typeof(self)weakSelf = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.dataModel = self.dataModel;
+    cell.detailModel = detailModel;
+    cell.cellModel = cellModel;
     cell.eventBlock = ^(ProductCheckoutModel * _Nonnull dataModel, SFCellCacheModel * _Nonnull cellModel, ProductCheckoutCellEvent event) {
         switch (event) {
             case ProductCheckoutCellEvent_GotoStoreVoucher: {
@@ -247,14 +200,8 @@
                 vc.dataArray = availableCoupons;
                 vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
-                    strongSelf.dataModel.currentStoreCoupon = item;
-                    NSString *userCouponId = nil;
-                    if (item.userCouponId > 0) {
-                        userCouponId = [NSString stringWithFormat:@"%ld",item.userCouponId];
-                    }
                     [MBProgressHUD showHudMsg:@""];
-                    [CheckoutManager.shareInstance calfeeBySelUserCouponId:userCouponId complete:^(ProductCalcFeeModel * _Nonnull feeModel) {
-                        strongSelf.dataModel.feeModel = feeModel;
+                    [CheckoutManager.shareInstance calfeeByStoreCouponItem:item storeId:detailModel.storeId complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
                         [strongSelf refreshCalFee];
                         [MBProgressHUD hideFromKeyWindow];
                     }];
@@ -266,11 +213,8 @@
                 AddressViewController *vc = [[AddressViewController alloc] init];
                 vc.addressBlock = ^(addressModel * _Nonnull model) {
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
-                    strongSelf.dataModel.addressModel = model;
                     [MBProgressHUD showHudMsg:@""];
-                    [CheckoutManager.shareInstance calfeeByAddress:model.deliveryAddressId complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel) {
-                        strongSelf.dataModel.logisticsModel = logisticsModel;
-                        strongSelf.dataModel.feeModel = feeModel;
+                    [CheckoutManager.shareInstance calfeeByAddress:model complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
                         [strongSelf refreshCalFee];
                         [MBProgressHUD hideFromKeyWindow];
                     }];
@@ -283,9 +227,6 @@
                 break;
         }
     };
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.dataModel = self.dataModel;
-    cell.cellModel = cellModel;
     return cell;
 }
 
@@ -330,6 +271,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SFCellCacheModel *model = self.dataArray[indexPath.section][indexPath.row];
+    ProductDetailModel *detailModel = nil;
+    if ([model.obj isKindOfClass:ProductDetailModel.class]) {
+        detailModel = model.obj;
+    }
     __weak __typeof(self)weakSelf = self;
     if ([model.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
         NSMutableArray *pltAvailableCoupons = self.dataModel.couponsModel.pltAvailableCoupons.mutableCopy;
@@ -342,34 +287,26 @@
         vc.dataArray = pltAvailableCoupons;
         vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
-            strongSelf.dataModel.currentPltCoupon = item;
-            NSString *userCouponId = nil;
-            if (item.userCouponId > 0) {
-                userCouponId = [NSString stringWithFormat:@"%ld",item.userCouponId];
-            }
             [MBProgressHUD showHudMsg:@""];
-            [CheckoutManager.shareInstance calfeeBySelUserPltCouponId:userCouponId complete:^(ProductCalcFeeModel * _Nonnull feeModel) {
-                strongSelf.dataModel.feeModel = feeModel;
+            [CheckoutManager.shareInstance calfeeByPltCouponItem:item complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
                 [strongSelf refreshCalFee];
                 [MBProgressHUD hideFromKeyWindow];
             }];
         };
         [self presentViewController:vc animated:YES completion:nil];
     } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
-        NSMutableArray *logisticsModel = self.dataModel.logisticsModel.logistics.mutableCopy;
-        if (!logisticsModel.count) {
+        NSMutableArray *logisticsModels = detailModel.logisticsModel.logistics.mutableCopy;
+        if (!logisticsModels.count) {
             [MBProgressHUD autoDismissShowHudMsg:@"None Delivery"];
             return;
         }
         DeleveryViewController *vc = [[DeleveryViewController alloc] init];
         vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
-        vc.dataArray = logisticsModel;
+        vc.dataArray = logisticsModels;
         vc.selectedDeleveryBlock = ^(OrderLogisticsItem * _Nullable item) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
-            strongSelf.dataModel.currentLogisticsItem = item;
             [MBProgressHUD showHudMsg:@""];
-            [CheckoutManager.shareInstance calfeeByLogistic:item.logisticsModeId complete:^(ProductCalcFeeModel * _Nonnull feeModel) {
-                strongSelf.dataModel.feeModel = feeModel;
+            [CheckoutManager.shareInstance calfeeByLogistic:item storeId:detailModel.storeId complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
                 [strongSelf refreshCalFee];
                 [MBProgressHUD hideFromKeyWindow];
             }];
@@ -424,52 +361,59 @@
                 return;
             }
             
-            NSMutableArray *products = [NSMutableArray array];
-            for (int i = 0; i < weakself.dataModel.productIds.count; i ++) {
-                NSNumber *idN = weakself.dataModel.productIds[i];
-                NSNumber *count = weakself.dataModel.productBuyCounts[i];
-                if (weakself.dataModel.inCmpIdList.count > i && weakself.dataModel.inCmpIdList[i].intValue > 0) {
-                    NSNumber *inCmpIdList = weakself.dataModel.inCmpIdList[i];
-                    [products addObject:@{@"productId":idN,@"offerCnt":count,@"inCmpIdList":@[inCmpIdList]}];
-                } else {
-                    [products addObject:@{@"productId":idN,@"offerCnt":count}];
+            //封装商店数据
+            NSMutableArray *stores = [NSMutableArray array];
+            for (int i = 0; i < weakself.dataModel.productModels.count; i ++) {
+                if (weakself.dataModel.feeModel.stores.count != weakself.dataModel.productModels.count) {
+                    //数据错误
+                    [MBProgressHUD autoDismissShowHudMsg:@"数据错误,请返回重新进入"];
+                    return;
                 }
+                
+                NSMutableDictionary *storeDict = [NSMutableDictionary dictionary];
+                ProductDetailModel *detailModel = weakself.dataModel.productModels[i];
+                ProductCalcFeeStoreModel *feeModel = weakself.dataModel.feeModel.stores[i];
+                NSNumber *storeId = @(detailModel.storeId);
+                NSString *leaveMsg = detailModel.note? detailModel.note:@"";
+                NSString *logisticsModeId = detailModel.currentLogisticsItem.logisticsModeId?detailModel.currentLogisticsItem.logisticsModeId:@"";
+                NSString *selUserCouponId = detailModel.currentStoreCoupon.userCouponId > 0? [NSString stringWithFormat:@"%ld",detailModel.currentStoreCoupon.userCouponId] : @"";
+                NSMutableArray *products = [NSMutableArray array];
+                for (int subIndex = 0; subIndex < detailModel.products.count; subIndex ++) {
+                    ProductItemModel *item = detailModel.products[subIndex];
+                    NSNumber *idN = @(item.productId);
+                    NSNumber *count = @(item.currentBuyCount);
+                    if (item.inCmpIdList && item.inCmpIdList.count > 0) {
+                        [products addObject:@{@"productId":idN,@"offerCnt":count,@"inCmpIdList":item.inCmpIdList}];
+                    } else {
+                        [products addObject:@{@"productId":idN,@"offerCnt":count}];
+                    }
+                }
+                [storeDict setObject:storeId forKey:@"storeId"];
+                [storeDict setObject:leaveMsg forKey:@"leaveMsg"];
+                [storeDict setObject:selUserCouponId forKey:@"selUserCouponId"];
+                [storeDict setObject:logisticsModeId forKey:@"logisticsModeId"];
+                [storeDict setObject:@[] forKey:@"campaignGifts"];
+                [storeDict setObject:feeModel.orderPrice forKey:@"orderPrice"];
+                [storeDict setObject:products forKey:@"products"];
+                [stores addObject:storeDict];
             }
             
-            NSString *leaveMsg = weakself.dataModel.notes?weakself.dataModel.notes:@"";
-            NSNumber *storeId = @(weakself.dataModel.productModels.firstObject.storeId);
+            //全包价
             NSNumber *totalPrice = [NSNumber numberWithLong:weakself.dataModel.feeModel.totalPrice.longLongValue];
-            NSString *logisticsModeId = weakself.dataModel.currentLogisticsItem.logisticsModeId?weakself.dataModel.currentLogisticsItem.logisticsModeId:@"";
-            NSString *selUserPltCouponId = @"";
-            if (weakself.dataModel.currentPltCoupon.userCouponId > 0) {
-                selUserPltCouponId = [NSString stringWithFormat:@"%ld",weakself.dataModel.currentPltCoupon.userCouponId];
-            }
-            NSString *selUserCouponId = @"";
-            if (weakself.dataModel.currentStoreCoupon.userCouponId > 0) {
-                selUserCouponId = [NSString stringWithFormat:@"%ld",weakself.dataModel.currentStoreCoupon.userCouponId];
-            }
+            //平台优惠券id
+            NSString *selUserPltCouponId = weakself.dataModel.currentPltCoupon.userCouponId > 0 ? [NSString stringWithFormat:@"%ld",weakself.dataModel.currentPltCoupon.userCouponId] : @"";
             
-            [MBProgressHUD showHudMsg:kLocalizedString(@"Calculating")];
+            //入参
             NSDictionary *params = @{
                 @"billingEmail": weakself.dataModel.addressModel.email,
                 @"deliveryAddressId": weakself.dataModel.addressModel.deliveryAddressId,
-                @"deliveryMode": @"A",//weakself.dataModel.deliveryMode,
+                @"deliveryMode": @"A",
                 @"paymentMode": @"A",
                 @"sourceType": weakself.dataModel.sourceType,
                 @"totalPrice": totalPrice,
                 @"storeSiteId":@"",
                 @"selUserPltCouponId":selUserPltCouponId,
-                @"stores": @[
-                        @{
-                            @"selUserCouponId":selUserCouponId,
-                            @"logisticsModeId":logisticsModeId,
-                            @"campaignGifts":@[],
-                            @"orderPrice":totalPrice,
-                            @"storeId": storeId,
-                            @"leaveMsg": leaveMsg,
-                            @"products": products
-                        }
-                ],
+                @"stores": stores,
             };
             
             __block BOOL isShowPayChannel = NO;
@@ -481,12 +425,13 @@
             dispatch_group_enter(group);
             dispatch_group_async(group, dispatch_get_main_queue(), ^{
                 [SFNetworkManager get:SFNet.order.method success:^(id  _Nullable response) {
+                    [MBProgressHUD hideFromKeyWindow];
                     methods = (NSArray *)response;
                     isShowPayChannel = methods.count > 1;
                     dispatch_group_leave(group);
                 } failed:^(NSError * _Nonnull error) {
-                    [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
                     dispatch_group_leave(group);
+                    [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
                 }];
             });
             
@@ -498,16 +443,18 @@
                     orderInfo = response;
                     dispatch_group_leave(group);
                 } failed:^(NSError * _Nonnull error) {
-                    [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
                     dispatch_group_leave(group);
+                    [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
                 }];
             });
             
             //接口回调
+            [MBProgressHUD showHudMsg:@""];
             dispatch_group_notify(group, dispatch_get_main_queue(), ^{
                 if (!orderInfo) {return;}
                 if (!methods || !methods.count) {return;}
 
+                //是否显示支付渠道
                 if (isShowPayChannel) {
                     [weakself showPaymentAlert:orderInfo methods:methods];
                 } else {
@@ -544,26 +491,49 @@
 }
 
 - (NSMutableArray<NSMutableArray<SFCellCacheModel *> *> *)dataArray {
-//    if (_dataArray == nil) {
+    if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
-        NSArray *arr = @[@"ProductCheckoutAddressCell",@"ProductCheckoutGoodsCell",@"ProductCheckoutDeliveryCell",@"ProductCheckoutNoteCell",@"ProductCheckoutVoucherCell"];
-        for (NSString *obj in arr) {
-            if ([obj isEqualToString:@"ProductCheckoutGoodsCell"]) {
+        NSMutableArray<ProductDetailModel *> *productModels = self.dataModel.productModels.mutableCopy;
+        NSMutableArray *cellIds = [NSMutableArray array];
+        [cellIds addObject:@"ProductCheckoutAddressCell"];
+        for (int i = 0; i < productModels.count; i ++) {
+            [cellIds addObject:@"ProductCheckoutGoodsCell"];
+            [cellIds addObject:@"ProductCheckoutDeliveryCell"];
+            [cellIds addObject:@"ProductCheckoutNoteCell"];
+        }
+        [cellIds addObject:@"ProductCheckoutVoucherCell"];
+        NSInteger productIndex = 0;
+        for (int i = 0; i < cellIds.count; i ++) {
+            NSString *cellId = cellIds[i];
+            ProductDetailModel *productModel = (productModels.count > productIndex)? productModels[productIndex] : nil;
+            if ([cellId isEqualToString:@"ProductCheckoutGoodsCell"]) {
                 NSMutableArray *pList = [NSMutableArray array];
-                for (ProductCheckoutSubItemModel *item in self.dataModel.productList) {
-                    SFCellCacheModel *model = [SFCellCacheModel new];
-                    model.cellId = obj;
-                    model.obj = item;
-                    [pList addObject:model];
+                if (productModels.count > 0) {
+                    for (ProductItemModel *item in productModel.products) {
+                        SFCellCacheModel *model = [SFCellCacheModel new];
+                        model.cellId = cellId;
+                        model.obj = item;
+                        [pList addObject:model];
+                    }
                 }
                 [_dataArray addObject:pList];
-            } else {
+            }
+            else if ([cellId isEqualToString:@"ProductCheckoutDeliveryCell"] || [cellId isEqualToString:@"ProductCheckoutNoteCell"]) {
                 SFCellCacheModel *model = [SFCellCacheModel new];
-                model.cellId = obj;
+                model.cellId = cellId;
+                model.obj = productModel;
+                [_dataArray addObject:[NSMutableArray arrayWithObject:model]];
+                if ([cellId isEqualToString:@"ProductCheckoutNoteCell"]) {
+                    productIndex ++;
+                }
+            }
+            else {
+                SFCellCacheModel *model = [SFCellCacheModel new];
+                model.cellId = cellId;
                 [_dataArray addObject:[NSMutableArray arrayWithObject:model]];
             }
         }
-//    }
+    }
     return _dataArray;
 }
 

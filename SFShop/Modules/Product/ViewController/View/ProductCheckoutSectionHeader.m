@@ -62,7 +62,7 @@
     } else if ([cellModel.cellId isEqualToString:@"ProductCheckoutGoodsCell"]) {
         self.titleLabel.hidden = NO;
         self.icon.hidden = NO;
-        ProductCheckoutSubItemModel *item = cellModel.obj;
+        ProductItemModel *item = cellModel.obj;
         self.titleLabel.text = item.storeName;
         self.icon.image = [UIImage imageNamed:@"checkout_product"];
     } else if ([cellModel.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
