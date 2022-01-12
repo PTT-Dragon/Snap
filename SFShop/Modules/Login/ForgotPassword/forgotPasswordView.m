@@ -33,21 +33,28 @@
     [_smsBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -90, 0, 50)];
     [_emailBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 30)];
     [_emailBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -90, 0, 50)];
+    _titleLabel.text = _type == forgetType ? kLocalizedString(@"FORGOT_PWD"): kLocalizedString(@"CHANGE_PASS");
 }
 - (IBAction)SMSAction:(id)sender {
-    if (_type == resetType) {
+//    if (_type == resetType) {
         resetPasswordViewController *vc = [[resetPasswordViewController alloc] init];
         vc.type = 1;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
-    }else if (_type == forgetType){
-        ChangePasswordViewController *vc = [[ChangePasswordViewController alloc] init];
-        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
-    }
+//    }
+//    else if (_type == forgetType){
+//        ChangePasswordViewController *vc = [[ChangePasswordViewController alloc] init];
+//        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+//    }
 }
 - (IBAction)eamilAction:(id)sender {
-    resetPasswordViewController *vc = [[resetPasswordViewController alloc] init];
-    vc.type = 2;
-    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+//    if (_type == resetType) {
+        resetPasswordViewController *vc = [[resetPasswordViewController alloc] init];
+        vc.type = 2;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+//    }else if (_type == forgetType){
+//        ChangePasswordViewController *vc = [[ChangePasswordViewController alloc] init];
+//        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+//    }
 }
 - (IBAction)delAction:(id)sender {
     [self removeFromSuperview];

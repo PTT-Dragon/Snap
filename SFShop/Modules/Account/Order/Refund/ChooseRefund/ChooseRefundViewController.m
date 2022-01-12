@@ -39,6 +39,7 @@
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-140);
     }];
+    [self.tableView reloadData];
 }
 - (void)setModel:(OrderDetailModel *)model
 {
@@ -58,8 +59,8 @@
         return cell;
     }
     accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
-    cell.label = self.dataSource[indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:@""];
+    cell.label.text = self.dataSource[indexPath.row];
+    cell.imgView.image = [UIImage imageNamed:@""];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -80,7 +81,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         if (indexPath.row == 3) {
             RefundViewController *vc = [[RefundViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];

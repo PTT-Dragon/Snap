@@ -107,7 +107,7 @@
 //  "SET_SUCCESSFUL" = "Set Successfully!";
 //  "DOWNLOAD" = "Downloading";
 //  "SUBMIT" = "Submit";
-//  "FORGOT_PWD" = "Forgot Password";
+"FORGOT_PWD" = "Forgot Password";
 //  "SETTING" = "Setting";
 //  "LOGIN" = "Login";
 //  "LOGIN_BY_SOCIAL_ACCOUNT" = "Or sign in with";
@@ -183,7 +183,7 @@
 //  "GENDER" = "Gender";
 //  "DATEOFBIRTH" = "Date of Birth";
 //  "SECURITY_CENTER" = "Security Center";
-//  "CHANGE_PASS" = "Change Password";
+"CHANGE_PASS" = "Change Password";
 //  "STOCK_SHORTAGE" = "Limited stocks";
 //  "INVITE_FRIEND" = "Invite Friend";
 //  "INVITATION_RECORD" = "Invitation Record";

@@ -109,7 +109,7 @@
 //  "SET_SUCCESSFUL" = "Setelan Berhasil";
 //  "DOWNLOAD" = "Downloading";
 //  "SUBMIT" = "Kirim";
-//  "FORGOT_PWD" = "Lupa Kata Sandi";
+"FORGOT_PWD" = "Lupa Kata Sandi";
 //  "SETTING" = "Pengaturan";
 //  "LOGIN" = "Gabung";
 //  "LOGIN_BY_SOCIAL_ACCOUNT" = "Sign in dengan akun lain";
@@ -188,7 +188,7 @@
 //  "GENDER" = "Jenis kelamin";
 //  "DATEOFBIRTH" = "tanggal lahir";
 //  "SECURITY_CENTER" = "Pusat Keamanan";
-//  "CHANGE_PASS" = "Ganti kata sandi";
+"CHANGE_PASS" = "Ganti kata sandi";
 //  "STOCK_SHORTAGE" = "Stok limited";
 //  "INVITE_FRIEND" = "Undang Teman";
 //  "INVITATION_RECORD" = "Catatan undangan";

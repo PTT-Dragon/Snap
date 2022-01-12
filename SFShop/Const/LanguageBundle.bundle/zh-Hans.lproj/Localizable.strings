@@ -108,7 +108,7 @@
 //  "DOWNLOAD" = "下载中",
 //  "SUBMIT" = "提交",
 
-//  "FORGOT_PWD" = "忘记密码",
+"FORGOT_PWD" = "忘记密码",
 //  "SETTING" = "设置",
 //  "LOGIN" = "登录",
 //  "LOGIN_BY_SOCIAL_ACCOUNT" = "社交账号登录",
@@ -187,7 +187,7 @@
 //  "GENDER" = "性别",
 //  "DATEOFBIRTH" = "出生日期",
 //  "SECURITY_CENTER" = "安全中心",
-//  "CHANGE_PASS" = "修改密码",
+"CHANGE_PASS" = "修改密码",
 
 //  "STOCK_SHORTAGE" = "库存不足",
 //  "INVITE_FRIEND" = "邀请有礼",
@@ -417,7 +417,7 @@
 //  "REVIEW_PUBLISHED" = "评价成功",
 //  "THANK_REVIEW" = "感谢您的评价",
 //  "VIEWCODE" = "查看券码",
-  "SHAREBUY" = "拼团",
+  "SHAREBUY" = "拼团";
 //  "GROUPSUCCESS" = "加入拼团成功.",
 //  "TOSHIP" = "待发货",
 //  "TORECEIVE" = "待收货",

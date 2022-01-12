@@ -54,12 +54,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
-//        forgotPasswordView *view = [[NSBundle mainBundle] loadNibNamed:@"forgotPasswordView" owner:self options:nil].firstObject;
-//        view.type = forgetType;
-//        view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-//        [self.view addSubview:view];
-        ChangePasswordViewController *vc = [[ChangePasswordViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        forgotPasswordView *view = [[NSBundle mainBundle] loadNibNamed:@"forgotPasswordView" owner:self options:nil].firstObject;
+        view.type = resetType;
+        view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+        [self.view addSubview:view];
+//        ChangePasswordViewController *vc = [[ChangePasswordViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 1){
         ChangeMobileOrEmailViewController *vc = [[ChangeMobileOrEmailViewController alloc] init];
         vc.type = 1;
