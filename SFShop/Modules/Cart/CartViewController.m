@@ -196,6 +196,22 @@
                 [products addObject:item];
             }
         }
+        for (CartCampaignsModel *campaigns in store.campaignGroups) {//便利团购商品
+            for (CartItemModel *cartItem  in campaigns.shoppingCarts) {//便利团购商品内部分类商品，比如不同颜色
+                if ([cartItem.isSelected isEqualToString:@"Y"]) {
+                    ProductItemModel *item = [[ProductItemModel alloc] init];
+                    item.storeName = store.storeName;
+                    item.productId = cartItem.productId.intValue;
+                    item.productName = cartItem.productName;
+                    item.imgUrl = cartItem.imgUrl;
+                    item.prodSpcAttrs = cartItem.prodSpcAttrs;
+                    item.currentBuyCount = cartItem.num.intValue;
+                    item.salesPrice = cartItem.salesPrice;
+                    item.inCmpIdList = nil;
+                    [products addObject:item];
+                }
+            }
+        }
         if (products.count > 0) {
             detailModel.products = products;
             [productDetailModels addObject:detailModel];

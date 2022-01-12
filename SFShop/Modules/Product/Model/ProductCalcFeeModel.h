@@ -6,15 +6,12 @@
 //
 
 #import "JSONModel.h"
+#import "NSString+Fee.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ProductCalcFeeProductModel;
 @protocol ProductCalcFeeStoreModel;
-
-@interface NSString (ProductCalcFeeModel)
-- (CGFloat)fee;
-@end
 
 @interface ProductCalcFeeProductModel: JSONModel
 

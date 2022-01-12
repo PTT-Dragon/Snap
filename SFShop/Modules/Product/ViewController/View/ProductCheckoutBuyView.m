@@ -61,7 +61,7 @@
 #pragma mark - Get and Set
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",currency,dataModel.feeModel.totalPrice.fee];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@",dataModel.feeModel.totalPrice.currency];
 }
 
 - (UILabel *)priceLabel {

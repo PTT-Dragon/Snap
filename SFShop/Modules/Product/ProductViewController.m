@@ -437,7 +437,7 @@
     }
 }
 
-- (NSInteger)getSelectedProductId {
+- (ProductItemModel *)getSelectedProductItem {
     NSMutableArray *selectedAttrs = [NSMutableArray array];
     MPWeakSelf(self)
     [self.model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -450,7 +450,7 @@
             @"attrId": attrId, @"attrName": attrName, @"value": value
         }];
     }];
-    __block NSInteger productId;
+    __block ProductItemModel *productItem;
     [self.model.products enumerateObjectsUsingBlock:^(ProductItemModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
         [selectedAttrs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
             NSArray *arr = [obj1.prodSpcAttrs jk_filter:^BOOL(ProdSpcAttrsModel *obj3) {
@@ -464,11 +464,11 @@
             }
             // 遍历完最后一个，说明找到满足条件的商品了
             if (idx2 == selectedAttrs.count - 1) {
-                productId = obj1.productId;
+                productItem = obj1;
             }
         }];
     }];
-    return productId;
+    return productItem;
 }
 
 
@@ -582,7 +582,7 @@
             @"campaignId":@"3",
             @"num": @(self.attrView.count),
             @"offerId": @(self.model.offerId),
-            @"productId": @([self getSelectedProductId]),
+            @"productId": @([self getSelectedProductItem].productId),
             @"storeId": @(self.model.storeId),
             @"unitPrice": @(self.model.salesPrice),
             @"contactChannel":@"3",
@@ -608,11 +608,15 @@
         [self showAttrsView];
     } else {
         //跳转checkout页        
-        for (ProductItemModel *item in self.model.products) {
-            item.storeName = self.model.storeName;
-            item.inCmpIdList = nil;
-            item.currentBuyCount = self.attrView.count;
+        ProductItemModel *item = self.getSelectedProductItem;
+        item.storeName = self.model.storeName;
+        for (cmpShareBuysModel *buyModel in self.campaignsModel.cmpShareBuys) {
+            if (buyModel.productId.integerValue == item.productId) {
+                item.inCmpIdList = @[@(buyModel.campaignId)];
+            }
         }
+        item.currentBuyCount = self.attrView.count;
+        self.model.products = @[item];
         ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
         [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
             if (isSuccess) {
