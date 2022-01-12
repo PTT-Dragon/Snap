@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol orderItemsModel;
 @protocol ReviewUserInfoModel;
 @protocol DeliveryInfoModel;
+@protocol EvaluatesModel;
+@protocol EvaluatesContentsModel;
 
 
 @interface orderItemsModel : JSONModel
@@ -34,6 +36,65 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface EvaluatesContentsModel : JSONModel
+@property (nonatomic,copy) NSString *url;
+@property (nonatomic,copy) NSString *imgUrl;
+@property (nonatomic,copy) NSString *id;
+@property (nonatomic,copy) NSString *bigImgUrl;
+
+
+@end
+
+
+@interface OrderGroupModel : JSONModel
+@property (nonatomic,copy) NSString *campaignId;
+@property (nonatomic,copy) NSString *catgId;
+@property (nonatomic,copy) NSString *expDate;
+@property (nonatomic,copy) NSString *imgUrl;
+@property (nonatomic,copy) NSString *joinFlag;
+@property (nonatomic,copy) NSString *state;
+@property (nonatomic,copy) NSString *now;
+@property (nonatomic,copy) NSString *offerId;
+@property (nonatomic,copy) NSString *offerName;
+@property (nonatomic,copy) NSString *productId;
+@property (nonatomic,copy) NSString *productName;
+@property (nonatomic,assign) NSInteger salesCnt;
+@property (nonatomic,copy) NSString *shareBuyOrderId;
+@property (nonatomic,strong) NSArray <EvaluatesContentsModel>*imgs;
+@property (nonatomic,strong) NSArray <ReviewUserInfoModel>*groupMembers;
+
+/**
+ {
+     campaignId = 25;
+     catgId = 199;
+     expDate = "2021-12-10 13:43:44";
+     groupMembers =     (
+                 
+     );
+     imgUrl = "/get/resource/HJ-OR-NA-A360\U9ed1\U9152\U7ea2\U4e00\U5bf91404720233993867264.jpg";
+     imgs =     (
+                 
+     );
+     joinFlag = 1;
+     memberQty = 1;
+     now = "2021-12-10 14:01:28";
+     offerId = 1137;
+     offerName = "Gelang Magnet Sepasang, Cocok Untuk Hadiah Valentine ";
+     productId = 1991;
+     productName = "Gelang magnet 2 pasang, untuk hadiah di hari Valentine  Hitam + Anggur merah";
+     salesCnt = 8;
+     shareBuyOrderId = 75004;
+     shareBuyOrderNbr = G202112091343326946;
+     shareBuyPrice = 10000;
+     shareByNum = 2;
+     state = C;
+     subheadName = "";
+ }
+
+ **/
+
+@end
+
 @interface OrderModel : JSONModel
 @property (nonatomic,copy) NSString <Optional>*canEvaluate;
 @property (nonatomic,copy) NSString <Optional>*canReview;
@@ -43,7 +104,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*orderNbr;
 @property (nonatomic,copy) NSString <Optional>*orderPrice;
 @property (nonatomic,copy) NSString <Optional>*paymentState;
-@property (nonatomic,copy) NSDictionary <Optional>*shareBuyBriefInfo;
+@property (nonatomic,copy) OrderGroupModel <Optional>*shareBuyBriefInfo;
 @property (nonatomic,copy) NSString <Optional>*state;
 @property (nonatomic,copy) NSString <Optional>*storeId;
 @property (nonatomic,copy) NSString <Optional>*storeLogoUrl;
@@ -138,21 +199,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*orderReasonName;
 @end
 
-@protocol EvaluatesModel <NSObject>
 
-
-@end
-@protocol EvaluatesContentsModel <NSObject>
-@end
-
-@interface EvaluatesContentsModel : JSONModel
-@property (nonatomic,copy) NSString *url;
-@property (nonatomic,copy) NSString *imgUrl;
-@property (nonatomic,copy) NSString *id;
-@property (nonatomic,copy) NSString *bigImgUrl;
-
-
-@end
 @class ProductItemModel;
 
 @interface PurchaseReviewModel : JSONModel
@@ -192,54 +239,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray <EvaluatesModel>*evaluates;
 @end
 
-@interface OrderGroupModel : JSONModel
-@property (nonatomic,copy) NSString *campaignId;
-@property (nonatomic,copy) NSString *catgId;
-@property (nonatomic,copy) NSString *expDate;
-@property (nonatomic,copy) NSString *imgUrl;
-@property (nonatomic,copy) NSString *joinFlag;
-@property (nonatomic,copy) NSString *state;
-@property (nonatomic,copy) NSString *now;
-@property (nonatomic,copy) NSString *offerId;
-@property (nonatomic,copy) NSString *offerName;
-@property (nonatomic,copy) NSString *productId;
-@property (nonatomic,copy) NSString *productName;
-@property (nonatomic,assign) NSInteger salesCnt;
-@property (nonatomic,copy) NSString *shareBuyOrderId;
-@property (nonatomic,strong) NSArray <EvaluatesContentsModel>*imgs;
-@property (nonatomic,strong) NSArray <ReviewUserInfoModel>*groupMembers;
 
-/**
- {
-     campaignId = 25;
-     catgId = 199;
-     expDate = "2021-12-10 13:43:44";
-     groupMembers =     (
-                 
-     );
-     imgUrl = "/get/resource/HJ-OR-NA-A360\U9ed1\U9152\U7ea2\U4e00\U5bf91404720233993867264.jpg";
-     imgs =     (
-                 
-     );
-     joinFlag = 1;
-     memberQty = 1;
-     now = "2021-12-10 14:01:28";
-     offerId = 1137;
-     offerName = "Gelang Magnet Sepasang, Cocok Untuk Hadiah Valentine ";
-     productId = 1991;
-     productName = "Gelang magnet 2 pasang, untuk hadiah di hari Valentine  Hitam + Anggur merah";
-     salesCnt = 8;
-     shareBuyOrderId = 75004;
-     shareBuyOrderNbr = G202112091343326946;
-     shareBuyPrice = 10000;
-     shareByNum = 2;
-     state = C;
-     subheadName = "";
- }
-
- **/
-
-@end
 
 @interface OrderNumModel : JSONModel
 @property (nonatomic,assign) NSInteger toPayNum;

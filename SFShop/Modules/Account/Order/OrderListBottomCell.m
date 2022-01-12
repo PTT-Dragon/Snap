@@ -12,12 +12,20 @@
 #import "CartViewController.h"
 #import "PublicAlertView.h"
 
+
 @interface OrderListBottomCell ()
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak,nonatomic) OrderModel *model;
+@property (weak, nonatomic) IBOutlet UIView *groupView;
+@property (weak, nonatomic) IBOutlet UILabel *hourLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minuLabel;
+@property (weak, nonatomic) IBOutlet UILabel *secondLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hasCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *allCountLabel;
+
 
 @end
 
@@ -36,7 +44,11 @@
     _amountLabel.text = [NSString stringWithFormat:@"RP %@",model.orderPrice];
     [_btn1 setTitle:[self getBtn1StrWithState:model.state] forState:0];
     [_btn2 setTitle:[self getBtn2StrWithState:model.state] forState:0];
-//    _btn2.hidden = [_btn2.titleLabel.text isEqualToString:@""] || !_btn2.titleLabel.text;
+    _groupView.hidden = !model.shareBuyBriefInfo;
+}
+- (void)layoutGroupView
+{
+    
 }
 - (IBAction)btn1Action:(UIButton *)sender {
     NSString *state = _model.state;
