@@ -14,6 +14,7 @@
 #import "OrderLogisticsModel.h"
 #import "CouponsAvailableModel.h"
 #import "CheckoutManager.h"
+#import "SysParamsModel.h"
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -174,68 +175,39 @@
 - (void)btnClick:(UIButton *)btn {
     // TODO: 跳转checkout页
     MPWeakSelf(self)
-    NSArray <CartListModel *> *items = self.cartModel.validCarts;
-    NSString *deliveryMode = [[items.firstObject shoppingCarts].firstObject deliveryMode];//派送模式
-    NSString *storeId = [items.firstObject storeId];//购买id
-    NSMutableArray *products = [NSMutableArray array];
     NSMutableArray *productDetailModels = [NSMutableArray array];
-    NSMutableArray *attrValues = [NSMutableArray array];
-    NSMutableArray *productIds = [NSMutableArray array];
-    NSMutableArray *productNums = [NSMutableArray array];
-
-    NSMutableArray *counts = [NSMutableArray array];
-    for (CartListModel *model in items) {
-        for (CartItemModel *cartItem in model.shoppingCarts) {
-            //判断是否选中..真牛逼
+    NSArray <CartListModel *> *stores = self.cartModel.validCarts;
+    for (CartListModel *store in stores) {
+        ProductDetailModel *detailModel = [[ProductDetailModel alloc] init];
+        detailModel.storeId = store.storeId.intValue;//购买id
+        detailModel.storeName = store.storeName;
+        NSMutableArray *products = [NSMutableArray array];
+        for (CartItemModel *cartItem in store.shoppingCarts) {
             if ([cartItem.isSelected isEqualToString:@"Y"]) {
-                [products addObject:@{@"productId":cartItem.productId,@"offerCnt":cartItem.num}];
-                ProductDetailModel *subModel = [[ProductDetailModel alloc] init];
-                subModel.storeName = model.storeName;
-                subModel.offerName = cartItem.productName;
-                subModel.salesPrice = cartItem.salesPrice;
-                subModel.storeId = model.storeId.intValue;
-                ProductCarouselImgModel *img = [[ProductCarouselImgModel alloc] init];
-                img.imgUrl = cartItem.imgUrl;
-                subModel.carouselImgUrls = @[img];
-                [productDetailModels addObject:subModel];
-                [counts addObject:@(cartItem.num.intValue)];
-                ProdSpcAttrsModel *spcModel = cartItem.prodSpcAttrs.firstObject;
-                [attrValues addObject:spcModel.value];
-                [productIds addObject:cartItem.productId];
-                [productNums addObject:cartItem.num];
+                ProductItemModel *item = [[ProductItemModel alloc] init];
+                item.storeName = store.storeName;
+                item.productId = cartItem.productId.intValue;
+                item.productName = cartItem.productName;
+                item.imgUrl = cartItem.imgUrl;
+                item.prodSpcAttrs = cartItem.prodSpcAttrs;
+                item.currentBuyCount = cartItem.num.intValue;
+                item.salesPrice = cartItem.salesPrice;
+                item.inCmpIdList = nil;
+                [products addObject:item];
             }
         }
-    }
-    if (productIds.count == 0) {
-        return;
-    }
-    NSAssert(storeId.length > 0, @"storeId 不能为空");
-    ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] init];
-    CheckoutInputData *data = [CheckoutInputData initWithDeliveryAddressId:self.selAddModel.deliveryAddressId
-                                                              deliveryMode:@"A"
-                                                                   storeId:storeId
-                                                                sourceType:@"GWCGM"
-                                                                productIds:productIds
-                                                               productNums:productNums
-                                                              inCmpIdLists:nil];
-    [CheckoutManager.shareInstance loadCheckoutData:data complete:^(ProductCalcFeeModel * _Nonnull feeModel, OrderLogisticsModel * _Nullable logisticsModel, CouponsAvailableModel * _Nonnull couponsModel) {
-        if (!feeModel) {
-            return;
+        if (products.count > 0) {
+            detailModel.products = products;
+            [productDetailModels addObject:detailModel];
         }
+    }
     
-        [vc setProductModels:productDetailModels
-                  attrValues:attrValues
-                  productIds:productIds
-              logisticsModel:logisticsModel
-                 couponModel:couponsModel
-                addressModel:weakself.selAddModel
-                    feeModel:feeModel
-                       count:counts
-                inCmpIdLists:nil
-                deliveryMode:@"A"
-                    currency:kLocalizedString(@"Rp")
-                  sourceType:@"GWCGM"];
-        [weakself.navigationController pushViewController:vc animated:YES];
+    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"GWCGM" addressModel:self.selAddModel productModels:productDetailModels];
+    [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
+        if (isSuccess) {
+            ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
+            [weakself.navigationController pushViewController:vc animated:YES];
+        }
     }];
 
 }
@@ -365,9 +337,10 @@
 - (UILabel *)amountLabel
 {
     if (!_amountLabel) {
+        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 39, 200, 19)];
         _amountLabel.font = [UIFont fontWithName:@"System SemiBold" size:16];
-        _amountLabel.text = @"RP";
+        _amountLabel.text = currency;
         _amountLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _amountLabel;
@@ -375,9 +348,10 @@
 - (UILabel *)priceLabel
 {
     if (!_priceLabel) {
+        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 74, 135, 19)];
         _priceLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
-        _priceLabel.text = @"RP";
+        _priceLabel.text = currency;
         _priceLabel.textAlignment = NSTextAlignmentRight;
     }
     return _priceLabel;
@@ -385,9 +359,10 @@
 - (UILabel *)totalAmountLabel
 {
     if (!_totalAmountLabel) {
+        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _totalAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 103, 135, 19)];
         _totalAmountLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
-        _totalAmountLabel.text = @"RP";
+        _totalAmountLabel.text = currency;
         _totalAmountLabel.textAlignment = NSTextAlignmentRight;
     }
     return _totalAmountLabel;
@@ -395,9 +370,10 @@
 - (UILabel *)preferentialAmountLabel
 {
     if (!_preferentialAmountLabel) {
+        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _preferentialAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 141, 135, 19)];
         _preferentialAmountLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
-        _preferentialAmountLabel.text = @"RP";
+        _preferentialAmountLabel.text = currency;
         _preferentialAmountLabel.textColor = RGBColorFrom16(0xFF1659);
         _preferentialAmountLabel.textAlignment = NSTextAlignmentRight;
     }

@@ -25,34 +25,32 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface ProductCheckoutModel : NSObject
-//商品model
-@property (nonatomic, readwrite, strong) NSArray<ProductDetailModel *> *productModels;
-//商品个数
-@property (nonatomic, readwrite, strong) NSArray<NSNumber *> *productBuyCounts;
-//商品id
-@property (nonatomic, readwrite, strong) NSArray<NSNumber *> *productIds;
-//商品折扣id
-@property (nonatomic, readwrite, strong) NSArray<NSNumber *> *inCmpIdList;
-//价格单位
-@property (nonatomic, readwrite, assign) NSString *currency;
-//配送模型
+
+/// 初始化
+/// @param sourceType source 类型
+/// @param addressModel 地址model
+/// @param productModels 选中商店的选中产品
++ (instancetype)initWithsourceType:(NSString *)sourceType
+                      addressModel:(addressModel *)addressModel
+                     productModels:(NSArray<ProductDetailModel *> *)productModels;
+
+//配送模型 默认A
 @property (nonatomic, readwrite, assign) NSString *deliveryMode;
 
 //购买类型
 @property (nonatomic, readwrite, strong) NSString *sourceType;
 
-//商品选项列表
-@property (nonatomic, readwrite, strong) NSArray<ProductCheckoutSubItemModel *> *productList;
-
-//最后提示信息相关
-@property (nonatomic, readwrite, strong) NSString *notes;//备注
+/*
+ 商品model,
+ 1、一个ProductDetailModel 里面包含一个商店购买的商品
+ */
+@property (nonatomic, readwrite, strong) NSArray<ProductDetailModel *> *productModels;
 
 /*
  结算数据
  1、⚠️不能为nil
  */
 @property (nonatomic, readwrite, strong) ProductCalcFeeModel *feeModel;
-
 
 /*
  地址数据
@@ -61,23 +59,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readwrite, strong, nullable) addressModel *addressModel;
 
-
 /*
- 投递数据
- 1、可以为空
- 2、每次更新投递数据之后需要重新计算总价
+ 配送数据,所有商店的配送数据
  */
-@property (nonatomic, readwrite, strong, nullable) OrderLogisticsModel *logisticsModel;
-@property (nonatomic, readwrite, strong, nullable) OrderLogisticsItem *currentLogisticsItem;
-
+@property (nonatomic, readwrite, strong, nullable) NSArray<OrderLogisticsModel *> *logisticsModels;
 
 /*
  优惠券
- 1、可以为空
- 2、每次更新之后需要重新计算总价
  */
-@property (nonatomic, readwrite, strong, nullable) CouponsAvailableModel *couponsModel;//数据源
-@property (nonatomic, readwrite, strong, nullable) CouponItem *currentStoreCoupon;//当前商店优惠券
+@property (nonatomic, readwrite, strong, nullable) CouponsAvailableModel *couponsModel;//所有商店优惠券数据源
 @property (nonatomic, readwrite, strong, nullable) CouponItem *currentPltCoupon;//平台优惠券
 
 @end

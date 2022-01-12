@@ -46,6 +46,15 @@
     return YES;
 }
 
+- (void)setLogisticsModel:(OrderLogisticsModel *)logisticsModel {
+    _logisticsModel = logisticsModel;
+    
+    //重新填充地址数据,默认选中第一个配送数据
+    OrderLogisticsItem * logisticsItem = logisticsModel.logistics.firstObject;
+    logisticsItem.isSelected = YES;
+    self.currentLogisticsItem = logisticsItem;
+}
+
 @end
 
 @implementation ProductEvalationReplayModel

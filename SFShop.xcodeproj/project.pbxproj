@@ -482,7 +482,6 @@
 		AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3298E272AF2C700E7827A /* SFSearchModel.m */; };
 		AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE3FC912761D8EC00A96E2A /* PDFReader.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
-		AEEC0BA6278818160071F059 /* CheckoutInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BA5278818160071F059 /* CheckoutInputData.m */; };
 		AEEC0BA9278834040071F059 /* CheckoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BA8278834040071F059 /* CheckoutManager.m */; };
 		AEEC0BAD27883C140071F059 /* DeleveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BAC27883C140071F059 /* DeleveryViewController.m */; };
 		AEEC0BB227883D090071F059 /* DeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BB127883D080071F059 /* DeliveryCell.m */; };
@@ -1334,8 +1333,6 @@
 		AEE3FC912761D8EC00A96E2A /* PDFReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFReader.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
-		AEEC0BA4278818160071F059 /* CheckoutInputData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckoutInputData.h; sourceTree = "<group>"; };
-		AEEC0BA5278818160071F059 /* CheckoutInputData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckoutInputData.m; sourceTree = "<group>"; };
 		AEEC0BA7278834040071F059 /* CheckoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckoutManager.h; sourceTree = "<group>"; };
 		AEEC0BA8278834040071F059 /* CheckoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckoutManager.m; sourceTree = "<group>"; };
 		AEEC0BAB27883C140071F059 /* DeleveryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleveryViewController.h; sourceTree = "<group>"; };
@@ -3032,8 +3029,6 @@
 				AE8F32D2272E96B2008E3DD8 /* ProductCheckoutModel.m */,
 				AEEC0BA7278834040071F059 /* CheckoutManager.h */,
 				AEEC0BA8278834040071F059 /* CheckoutManager.m */,
-				AEEC0BA4278818160071F059 /* CheckoutInputData.h */,
-				AEEC0BA5278818160071F059 /* CheckoutInputData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3633,7 +3628,6 @@
 				1BC7A2CF272B081E00755832 /* UseCouponViewController.m in Sources */,
 				1BB1CB6D276344DF008D71DF /* FlashSaleModel.m in Sources */,
 				1B74DAED27225EF000B30ECC /* ReviewCell.m in Sources */,
-				AEEC0BA6278818160071F059 /* CheckoutInputData.m in Sources */,
 				1BB1CB7127634DF6008D71DF /* FlashSaleProductCell.m in Sources */,
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				1BC7A2C5272AF50500755832 /* FAQListModel.m in Sources */,

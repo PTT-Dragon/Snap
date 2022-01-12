@@ -7,9 +7,10 @@
 
 #import "CheckoutManager.h"
 #import "addressModel.h"
+#import "ProductDetailModel.h"
 
 @interface CheckoutManager ()
-@property (nonatomic, readwrite, strong) CheckoutInputData *cacheData;
+@property (nonatomic, readwrite, strong) ProductCheckoutModel *cacheData;
 @end
 
 @implementation CheckoutManager
@@ -23,20 +24,17 @@ static CheckoutManager *_instance = nil;
     return _instance;
 }
 
-- (void)loadCheckoutData:(CheckoutInputData *)data complete:(void(^)(ProductCalcFeeModel *feeModel, OrderLogisticsModel *_Nullable logisticsModel, CouponsAvailableModel *couponsModel))complete {
-    self.cacheData  = data;
+- (void)loadCheckoutData:(ProductCheckoutModel *)model complete:(void(^)(BOOL isSuccess, ProductCheckoutModel *checkoutModel))complete {
+    self.cacheData = model;
     [MBProgressHUD showHudMsg:@""];
-    __block ProductCalcFeeModel *feeModel = nil;
-    __block OrderLogisticsModel *logisticsModel = nil;
-    __block CouponsAvailableModel *couponsModel = nil;
     dispatch_group_t group = dispatch_group_create();
 
     //请求结算数据
     void (^calcfeeBlock)(void) = ^ {
         dispatch_group_enter(group);
         dispatch_group_async(group, dispatch_get_main_queue(), ^{
-            [SFNetworkManager post:SFNet.order.calcfee parameters:  self.cacheData.calcfeeParams success:^(id  _Nullable response) {
-                feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
+            [SFNetworkManager post:SFNet.order.calcfee parameters: self.calcfeeParams success:^(id  _Nullable response) {
+                self.cacheData.feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
                 dispatch_group_leave(group);
             } failed:^(NSError * _Nonnull error) {
                 [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
@@ -45,13 +43,16 @@ static CheckoutManager *_instance = nil;
         });
     };
     
-    if (data.deliveryAddressId) {//⚠️如果有地址,那么请求配送数据、再进行结算
+    if (model.addressModel.deliveryAddressId.length > 0) {//⚠️如果有地址,那么请求配送数据、再进行结算
         dispatch_group_enter(group);
         dispatch_group_async(group, dispatch_get_main_queue(), ^{
-            [SFNetworkManager post:SFNet.order.logistics parameters:data.logisticsParams success:^(id  _Nullable response) {
-                NSDictionary *res = ((NSArray *)response).firstObject;
-                logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:res error:nil];
-                data.logisticsModeId = logisticsModel.logistics.firstObject.logisticsModeId;
+            [SFNetworkManager post:SFNet.order.logistics parameters:self.logisticsParams success:^(id  _Nullable response) {
+                NSMutableArray *logisticsModels = [NSMutableArray array];
+                for (NSDictionary *item in response) {
+                    OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:item error:nil];
+                    [logisticsModels addObject:logisticsModel];
+                }
+                self.cacheData.logisticsModels = logisticsModels;
                 calcfeeBlock();
                 dispatch_group_leave(group);
             } failed:^(NSError * _Nonnull error) {
@@ -66,8 +67,8 @@ static CheckoutManager *_instance = nil;
     //请求商品优惠券数据
     dispatch_group_enter(group);
     dispatch_group_async(group, dispatch_get_main_queue(), ^{
-        [SFNetworkManager post:SFNet.order.couponsAvailable parameters:data.couponsAvailableParams success:^(id  _Nullable response) {
-            couponsModel = [[CouponsAvailableModel alloc] initWithDictionary:response error:nil];
+        [SFNetworkManager post:SFNet.order.couponsAvailable parameters:self.couponsAvailableParams success:^(id  _Nullable response) {
+            self.cacheData.couponsModel = [[CouponsAvailableModel alloc] initWithDictionary:response error:nil];
             dispatch_group_leave(group);
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg: @"coupons Failed!"];
@@ -78,25 +79,27 @@ static CheckoutManager *_instance = nil;
     //获取数据,并进入结算页面
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [MBProgressHUD hideFromKeyWindow];
-        complete(feeModel,logisticsModel,couponsModel);
+        BOOL isSuccess = self.cacheData.couponsModel && self.cacheData.logisticsModels && self.cacheData.feeModel;
+        complete(isSuccess,self.cacheData);
     });
 }
 
-- (void)calfeeByAddress:(NSString *)deliveryAddressId complete:(void(^)(ProductCalcFeeModel *feeModel, OrderLogisticsModel *_Nullable logisticsModel))complete {
-    NSAssert(self.cacheData, @"没初始化CheckoutInputData,请在 loadCheckoutData 函数返回数据之后调用");
-    NSAssert(deliveryAddressId.length > 0, @"地址id不能为空");
-    self.cacheData.deliveryAddressId = deliveryAddressId;
-    [SFNetworkManager post:SFNet.order.logistics parameters:self.cacheData.logisticsParams success:^(id  _Nullable response) {
-        NSDictionary *res = ((NSArray *)response).firstObject;
-        OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:res error:nil];
-        NSString *logisticsModeId = logisticsModel.logistics.firstObject.logisticsModeId;
-        NSAssert(logisticsModeId.length > 0, @"配送id不能为空");
-        self.cacheData.logisticsModeId = logisticsModeId;
-        [SFNetworkManager post:SFNet.order.calcfee parameters: self.cacheData.calcfeeParams success:^(id  _Nullable response) {
-            ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
-            !complete ?: complete(feeModel,logisticsModel);
+- (void)calfeeByAddress:(addressModel *)addressModel complete:(void(^)(BOOL isSuccess, ProductCheckoutModel *checkoutModel))complete {
+    NSAssert(self.cacheData, @"没初始化ProductCheckoutModel,请在 loadCheckoutData 函数返回数据之后调用");
+    NSAssert(self.cacheData.addressModel.deliveryAddressId.length > 0, @"地址id不能为空");
+    self.cacheData.addressModel = addressModel;
+    [SFNetworkManager post:SFNet.order.logistics parameters:self.logisticsParams success:^(id  _Nullable response) {
+        NSMutableArray *logisticsModels = [NSMutableArray array];
+        for (NSDictionary *dict in response) {
+            OrderLogisticsModel *logisticsModel = [[OrderLogisticsModel alloc] initWithDictionary:dict error:nil];
+            [logisticsModels addObject:logisticsModel];
+        }
+        self.cacheData.logisticsModels = logisticsModels;
+        [SFNetworkManager post:SFNet.order.calcfee parameters: self.calcfeeParams success:^(id  _Nullable response) {
+            self.cacheData.feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
+            !complete ?: complete(YES,self.cacheData);
         } failed:^(NSError * _Nonnull error) {
-            !complete ?: complete(nil,logisticsModel);
+            !complete ?: complete(NO,self.cacheData);
             [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
         }];
     } failed:^(NSError * _Nonnull error) {
@@ -105,41 +108,117 @@ static CheckoutManager *_instance = nil;
     }];
 }
 
-- (void)calfeeByLogistic:(NSString *)logisticsModeId complete:(void(^)(ProductCalcFeeModel *feeModel))complete {
-    NSAssert(self.cacheData, @"没初始化CheckoutInputData,请在 loadCheckoutData 函数返回数据之后调用");
-    NSAssert(logisticsModeId.length > 0, @"配送id不能为空");
-    self.cacheData.logisticsModeId = logisticsModeId;
-    [SFNetworkManager post:SFNet.order.calcfee parameters: self.cacheData.calcfeeParams success:^(id  _Nullable response) {
+- (void)calfeeByLogistic:(OrderLogisticsItem *)logisticsItem storeId:(NSInteger)storeId complete:(void(^)(BOOL isSuccess, ProductCheckoutModel *checkoutModel))complete {
+    NSAssert(self.cacheData, @"没初始化ProductCheckoutModel,请在 loadCheckoutData 函数返回数据之后调用");
+    NSAssert(storeId > 0, @"商店id不能为空");
+    NSAssert(logisticsItem, @"选中店铺配送不能为空");
+    for (ProductDetailModel *item in self.cacheData.productModels) {
+        if (item.storeId == storeId) {
+            item.currentLogisticsItem = logisticsItem;
+        }
+    }
+    [SFNetworkManager post:SFNet.order.calcfee parameters: self.calcfeeParams success:^(id  _Nullable response) {
         ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
-        !complete ?: complete(feeModel);
+        self.cacheData.feeModel = feeModel;
+        !complete ?: complete(YES,self.cacheData);
     } failed:^(NSError * _Nonnull error) {
-        !complete ?: complete(nil);
+        !complete ?: complete(NO,self.cacheData);
         [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
     }];
 }
 
-- (void)calfeeBySelUserCouponId:(NSString *)selUserCouponId complete:(void(^)(ProductCalcFeeModel *feeModel))complete {
-    NSAssert(self.cacheData, @"没初始化CheckoutInputData,请在 loadCheckoutData 函数返回数据之后调用");
-    self.cacheData.selUserCouponId = selUserCouponId;
-    [SFNetworkManager post:SFNet.order.calcfee parameters: self.cacheData.calcfeeParams success:^(id  _Nullable response) {
+- (void)calfeeByStoreCouponItem:(CouponItem *)storeCouponItem storeId:(NSInteger)storeId complete:(void(^)(BOOL isSuccess, ProductCheckoutModel *checkoutModel))complete {
+    NSAssert(self.cacheData, @"没初始化ProductCheckoutModel,请在 loadCheckoutData 函数返回数据之后调用");
+    NSAssert(storeId > 0, @"商店id不能为空");
+    NSAssert(storeCouponItem, @"选中店铺优惠券不能为空");
+    for (ProductDetailModel *item in self.cacheData.productModels) {
+        if (item.storeId == storeId) {
+            item.currentStoreCoupon = storeCouponItem;
+        }
+    }
+    [SFNetworkManager post:SFNet.order.calcfee parameters: self.calcfeeParams success:^(id  _Nullable response) {
         ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
-        !complete ?: complete(feeModel);
+        self.cacheData.feeModel = feeModel;
+        !complete ?: complete(YES,self.cacheData);
     } failed:^(NSError * _Nonnull error) {
-        !complete ?: complete(nil);
+        !complete ?: complete(NO,self.cacheData);
         [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
     }];
 }
 
-- (void)calfeeBySelUserPltCouponId:(NSString *)selUserPltCouponId complete:(void(^)(ProductCalcFeeModel *feeModel))complete {
-    NSAssert(self.cacheData, @"没初始化CheckoutInputData,请在 loadCheckoutData 函数返回数据之后调用");
-    self.cacheData.selUserPltCouponId = selUserPltCouponId;
-    [SFNetworkManager post:SFNet.order.calcfee parameters: self.cacheData.calcfeeParams success:^(id  _Nullable response) {
+- (void)calfeeByPltCouponItem:(CouponItem *)pltCouponItem complete:(void(^)(BOOL isSuccess, ProductCheckoutModel *checkoutModel))complete {
+    NSAssert(self.cacheData, @"没初始化ProductCheckoutModel,请在 loadCheckoutData 函数返回数据之后调用");
+    NSAssert(pltCouponItem, @"选中平台优惠券不能为空");
+    self.cacheData.currentPltCoupon = pltCouponItem;
+    [SFNetworkManager post:SFNet.order.calcfee parameters: self.calcfeeParams success:^(id  _Nullable response) {
         ProductCalcFeeModel *feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
-        !complete ?: complete(feeModel);
+        self.cacheData.feeModel = feeModel;
+        !complete ?: complete(YES,self.cacheData);
     } failed:^(NSError * _Nonnull error) {
-        !complete ?: complete(nil);
+        !complete ?: complete(NO,self.cacheData);
         [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
     }];
+}
+
+- (NSMutableDictionary *)logisticsParams {
+    NSMutableDictionary *params = self.outter;
+    NSMutableArray *stores = [NSMutableArray array];
+    for (ProductDetailModel *model in self.cacheData.productModels) {
+        NSMutableDictionary *store = [self innner:model];
+        [stores addObject:store];
+    }
+    [params setObject:stores forKey:@"stores"];
+    return params;
+}
+
+- (NSMutableDictionary *)couponsAvailableParams {
+    return self.logisticsParams;
+}
+
+- (NSDictionary *)calcfeeParams {
+    NSMutableDictionary *params = self.outter;
+    [params setObject:self.cacheData.sourceType forKey:@"sourceType"];
+    if (self.cacheData.currentPltCoupon.userCouponId > 0) {[params setObject:@(self.cacheData.currentPltCoupon.userCouponId) forKey:@"selUserPltCouponId"];}
+    NSMutableArray *stores = [NSMutableArray array];
+    for (ProductDetailModel *model in self.cacheData.productModels) {
+        NSMutableDictionary *store = [self innner:model];
+        NSInteger userCouponId = model.currentStoreCoupon.userCouponId;
+        NSString *logisticsModeId = model.currentLogisticsItem.logisticsModeId;
+        if (userCouponId > 0) {[store setObject:@(userCouponId) forKey:@"selUserCouponId"];}
+        if (logisticsModeId.length > 0) {[store setObject:logisticsModeId forKey:@"logisticsModeId"];}
+        [stores addObject:store];
+    }
+    [params setObject:stores forKey:@"stores"];
+    return params;
+}
+
+#pragma mark - Private
+- (NSMutableDictionary *)outter {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (self.cacheData.addressModel.deliveryAddressId.length > 0) {[params setObject:self.cacheData.addressModel.deliveryAddressId forKey:@"deliveryAddressId"];}
+    if (self.cacheData.deliveryMode.length > 0) {[params setObject:self.cacheData.deliveryMode forKey:@"deliveryMode"];}
+    return params;
+}
+
+- (NSMutableDictionary *)innner:(ProductDetailModel *)model {
+    NSMutableDictionary *stores = [NSMutableDictionary dictionary];
+    [stores setObject:@(model.storeId) forKey:@"storeId"];
+    NSMutableArray *products = [NSMutableArray array];
+    for (int i = 0; i < model.products.count; i ++) {
+        ProductItemModel *item = model.products[i];
+        NSInteger productId = item.productId;
+        NSInteger offerCnt = item.currentBuyCount;
+        NSArray *inCmpIdLists = item.inCmpIdList;
+        if (productId > 0 && offerCnt > 0) {
+            if (inCmpIdLists && inCmpIdLists.count > 0) {
+                [products addObject:@{@"productId":@(productId),@"offerCnt":@(offerCnt),@"inCmpIdList":inCmpIdLists}];
+            } else {
+                [products addObject:@{@"productId":@(productId),@"offerCnt":@(offerCnt)}];
+            }
+        }
+    }
+    [stores setObject:products forKey:@"products"];
+    return stores;
 }
 
 

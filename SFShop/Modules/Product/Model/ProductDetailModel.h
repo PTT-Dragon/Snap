@@ -10,6 +10,9 @@
 #import "OrderModel.h"
 #import "FlashSaleModel.h"
 #import "CouponModel.h"
+#import "OrderLogisticsModel.h"
+#import "CouponsAvailableModel.h"
+#import "ProductCalcFeeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -70,6 +73,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString *imgUrl;
 @property (nonatomic,strong) NSArray <ProdSpcAttrsModel *> <ProdSpcAttrsModel> *prodSpcAttrs;
 
+#pragma mark - 自定义字段，需要外部赋值
+@property(nonatomic, readwrite, strong) NSString *storeName;
+@property(nonatomic, readwrite, assign) NSInteger currentBuyCount;//当前商品购买数量
+@property(nonatomic, readwrite, strong, nullable) NSArray *inCmpIdList;//当前商品的优惠id 列表
+
 @end
 
 @interface ProductDetailModel : JSONModel
@@ -84,15 +92,39 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) NSInteger marketPrice;
 @property(nonatomic, strong) NSString *goodsIntroduce;
 @property(nonatomic, strong) NSString *goodsDetails;
-@property(nonatomic, assign) NSInteger storeId;
-@property(nonatomic, strong) NSString *storeName;
+@property(nonatomic, assign) NSInteger storeId;//必须
+@property(nonatomic, strong) NSString *storeName;//必须
 @property(nonatomic, strong) NSString *storeType;
 @property(nonatomic, strong) NSString *storeLogoUrl;
 @property(nonatomic, strong) NSString *uccAccount;
 @property(nonatomic, strong) NSArray <ProductAttrModel *> <ProductAttrModel> *offerSpecAttrs;
 @property(nonatomic, strong) NSArray <ProductCarouselImgModel *> <ProductCarouselImgModel> *carouselImgUrls;
 @property(nonatomic, strong) NSArray *offerAttrValues;
-@property(nonatomic, strong) NSArray <ProductItemModel *> <ProductItemModel> *products;
+@property(nonatomic, strong) NSArray <ProductItemModel *> <ProductItemModel> *products;//商品 必须
+
+#pragma mark - 自定义字段，需要外部赋值
+@property(nonatomic, readwrite, strong, nullable) NSString *note;//留言
+/*
+ 当前商店投递数据
+ 1、可以为空
+ 2、每次更新投递数据之后需要重新计算总价
+ */
+@property (nonatomic, readwrite, strong, nullable) OrderLogisticsModel *logisticsModel;
+@property (nonatomic, readwrite, strong, nullable) OrderLogisticsItem *currentLogisticsItem;
+
+
+/*
+ 当前商店优惠券
+ 1、可以为空
+ 2、每次更新之后需要重新计算总价
+ */
+@property (nonatomic, readwrite, strong, nullable) CouponsStoreModel *storeCoupon;//当前商店所有优惠券
+@property (nonatomic, readwrite, strong, nullable) CouponItem *currentStoreCoupon;//当前商店优惠券
+
+/*
+ 当前商店结算数据
+ */
+@property (nonatomic, readwrite, strong, nullable) ProductCalcFeeStoreModel *feeModel;
 
 @end
 
