@@ -78,8 +78,6 @@
 		1B53A2BC2778ACC900FB00C7 /* CartChoosePromotion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B53A2BB2778ACC900FB00C7 /* CartChoosePromotion.xib */; };
 		1B552E9F276B14F10086604B /* GroupBuyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B552E9D276B14F10086604B /* GroupBuyListCell.m */; };
 		1B552EA0276B14F10086604B /* GroupBuyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B552E9E276B14F10086604B /* GroupBuyListCell.xib */; };
-		1B552EA4276B22C80086604B /* GroupProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B552EA2276B22C80086604B /* GroupProductViewController.m */; };
-		1B552EA5276B22C80086604B /* GroupProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B552EA3276B22C80086604B /* GroupProductViewController.xib */; };
 		1B552EA9276B358A0086604B /* GroupTopImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B552EA7276B358A0086604B /* GroupTopImgCell.m */; };
 		1B552EAA276B358A0086604B /* GroupTopImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B552EA8276B358A0086604B /* GroupTopImgCell.xib */; };
 		1B552EAE276B36CC0086604B /* GroupFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B552EAC276B36CC0086604B /* GroupFilterCell.m */; };
@@ -622,9 +620,6 @@
 		1B552E9C276B14F10086604B /* GroupBuyListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupBuyListCell.h; sourceTree = "<group>"; };
 		1B552E9D276B14F10086604B /* GroupBuyListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupBuyListCell.m; sourceTree = "<group>"; };
 		1B552E9E276B14F10086604B /* GroupBuyListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupBuyListCell.xib; sourceTree = "<group>"; };
-		1B552EA1276B22C80086604B /* GroupProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupProductViewController.h; sourceTree = "<group>"; };
-		1B552EA2276B22C80086604B /* GroupProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupProductViewController.m; sourceTree = "<group>"; };
-		1B552EA3276B22C80086604B /* GroupProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupProductViewController.xib; sourceTree = "<group>"; };
 		1B552EA6276B358A0086604B /* GroupTopImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupTopImgCell.h; sourceTree = "<group>"; };
 		1B552EA7276B358A0086604B /* GroupTopImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupTopImgCell.m; sourceTree = "<group>"; };
 		1B552EA8276B358A0086604B /* GroupTopImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTopImgCell.xib; sourceTree = "<group>"; };
@@ -2104,9 +2099,6 @@
 				1B552EAB276B36CC0086604B /* GroupFilterCell.h */,
 				1B552EAC276B36CC0086604B /* GroupFilterCell.m */,
 				1B552EAD276B36CC0086604B /* GroupFilterCell.xib */,
-				1B552EA1276B22C80086604B /* GroupProductViewController.h */,
-				1B552EA2276B22C80086604B /* GroupProductViewController.m */,
-				1B552EA3276B22C80086604B /* GroupProductViewController.xib */,
 				1B552EB2276C3A700086604B /* ProductGroupListCell.h */,
 				1B552EB3276C3A700086604B /* ProductGroupListCell.m */,
 				1B552EB4276C3A700086604B /* ProductGroupListCell.xib */,
@@ -3249,7 +3241,6 @@
 				1B2AE430272D8F3700FB23D3 /* CartTitleCell.xib in Resources */,
 				1B478326272AA04600F2A945 /* ChangePasswordViewController.xib in Resources */,
 				1BD8E7CE275FA58300130DCC /* SupportViewController.xib in Resources */,
-				1B552EA5276B22C80086604B /* GroupProductViewController.xib in Resources */,
 				1B49D13A271D4557002461ED /* changeUserInfoVC.xib in Resources */,
 				1BD8E79E275D005900130DCC /* AccountActiveCell.xib in Resources */,
 				1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */,
@@ -3588,7 +3579,6 @@
 				1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */,
 				1BD2A61D276B0A0900F994C5 /* FlashSaleProductViewController.m in Sources */,
 				AE8F32D0272E9684008E3DD8 /* ProductCheckoutVoucherCell.m in Sources */,
-				1B552EA4276B22C80086604B /* GroupProductViewController.m in Sources */,
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,
 				1B478304272A785200F2A945 /* RefundViewController.m in Sources */,

@@ -10,6 +10,7 @@
 #import "PublicWebViewController.h"
 #import "PDFReader.h"
 #import "CartViewController.h"
+#import "PublicAlertView.h"
 
 @interface OrderListBottomCell ()
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
@@ -79,12 +80,16 @@
     }else if ([state isEqualToString:@"C"]){
         //确认订单收货
         MPWeakSelf(self)
-        NSString *a = [self arrayToJSONString:@[_model.orderId]];
-        [SFNetworkManager post:SFNet.order.confirmOrder parameters:@{@"orderIds":a} success:^(id  _Nullable response) {
-            [weakself.delegate refreshDatas];
-        } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:@"Click Yes only if you have received the item" btnTitle:@"YES" block:^{
+            [SFNetworkManager post:SFNet.order.confirmOrder parametersArr:@[weakself.model.orderId] success:^(id  _Nullable response) {
+                [weakself.delegate refreshDatas];
+            } failed:^(NSError * _Nonnull error) {
+                [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            }];
+        } btn2Title:@"Cancel" block2:^{
+            
         }];
+        [[baseTool getCurrentVC].view addSubview:alert];
     }
 }
 - (IBAction)btn2Action:(UIButton *)sender {

@@ -14,7 +14,6 @@
 #import "SFSearchView.h"
 #import "MessageViewController.h"
 #import "ProductViewController.h"
-#import "GroupProductViewController.h"
 #import "GroupListViewController.h"
 #import "ProductDetailModel.h"
 #import "CategoryRankViewController.h"
