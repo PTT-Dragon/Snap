@@ -13,12 +13,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, SFPayResult) {
+    SFPayResultFailed, //支付失败 （如果是mock 环境，可以直接设置支付失败）
+    SFPayResultSuccess,//支付成功 （如果是mock 环境，可以直接设置支付成功）
+    SFPayResultJumpToWebPay,//跳转到web支付，⚠️正式环境一般走这里
+};
+
 @interface CheckoutManager : NSObject
 
 /// 单例
 + (instancetype)shareInstance;
 
-#pragma mark - 初始化
+
+// 开始购买
+- (void)startPayWithOrderIds:(NSArray *)orderIds shareBuyOrderNbr:(NSString *)shareBuyOrderNbr totalPrice:(NSString *)totalPrice complete:(void(^)(SFPayResult result, NSString *urlOrHtml))complete;
+
+#pragma mark - 加载结算数据
 /// 加载进入checkout 页面所需数据
 /// @param model ProductCheckoutModel
 /// @param complete 完成回调

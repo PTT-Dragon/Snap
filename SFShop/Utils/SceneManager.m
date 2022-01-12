@@ -6,6 +6,7 @@
 //
 
 #import "SceneManager.h"
+#import "UIViewController+Top.h"
 
 @implementation SceneManager
 
@@ -24,20 +25,13 @@
     } else if (index >= ((UITabBarController *)tabViewController).viewControllers.count) {
         NSAssert(NO, @"跳转 TabBar Index 溢出");
     } else {
-//        UITabBarController *tab = tabViewController;
-//        UINavigationController *nav = tab.selectedViewController;
-//        if (nav.viewControllers.count > 1) {
-//            [nav popToRootViewControllerAnimated:YES];
-//        }
-//
-//        [tab setSelectedIndex:index];
-        
+        if (UIViewController.sf_topViewController.navigationController) {
+            [UIViewController.sf_topViewController.navigationController popToRootViewControllerAnimated: NO];
+        } else {
+            [UIViewController.sf_topViewController dismissViewControllerAnimated:NO completion:nil];
+        }
         UITabBarController *tab = tabViewController;
         [tab setSelectedIndex:index];
-        UINavigationController *nav = tab.viewControllers[index];
-        if (nav.viewControllers.count > 1) {
-            [nav popToRootViewControllerAnimated:YES];
-        }
     }
 }
 
