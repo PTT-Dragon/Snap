@@ -6,9 +6,15 @@
 //
 
 #import "ChooseRefundViewController.h"
+#import "accountSubCell.h"
+#import "OrderListStateCell.h"
+#import "OrderListItemCell.h"
+#import "RefundOrReturnViewController.h"
+#import "RefundViewController.h"
 
-@interface ChooseRefundViewController ()
+@interface ChooseRefundViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) NSArray *dataSource;
 @end
 
 @implementation ChooseRefundViewController
@@ -24,7 +30,8 @@
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
-    [_tableView registerNib:[UINib nibWithNibName:@"CancelOrderChooseReason" bundle:nil] forCellReuseIdentifier:@"CancelOrderChooseReason"];
+    [_tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
+    self.dataSource = @[kLocalizedString(@"I_WANT_TO_REFUND"),kLocalizedString(@"I_WANT_TO_RETURN"),kLocalizedString(@"I_WANT_TO_EXCHANGE"),kLocalizedString(@"VIEW_APPLICATION_RECORDS")];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
@@ -38,21 +45,71 @@
     _model = model;
     [self.tableView reloadData];
 }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
+            [cell setOrderDetailContent:_model];
+            return cell;
+        }
+        OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
+        [cell setContent:_model.orderItems[indexPath.row-1]];
+        return cell;
+    }
+    accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
+    cell.label = self.dataSource[indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:@""];
+    return cell;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _model.orderItems.count+2;
+    return section == 0 ? _model.orderItems.count+1: 4;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? 40 : indexPath.row == 1+_model.orderItems.count ? 60: 118;
+    if (indexPath.section == 0) {
+        return indexPath.row == 0 ? 40 :118;
+    }
+    return 56;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 3) {
+            RefundViewController *vc = [[RefundViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+        }
+        RefundOrReturnViewController *vc = [[RefundOrReturnViewController alloc] init];
+        vc.type = indexPath.row == 0 ? REFUNDTYPE: indexPath.row == 1 ? RETURNTYPE: REPLACETYPE;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
+}
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        _tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
+        if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        else
+        {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        _tableView.estimatedRowHeight = 44;
+    }
+    return _tableView;
 }
 @end

@@ -136,6 +136,8 @@
         str = kLocalizedString(@"REBUY");
     }else if ([state isEqualToString:@"F"]){
         str = kLocalizedString(@"REBUY");
+    }else if ([state isEqualToString:@"G"]){
+        str = kLocalizedString(@"SHAREBUY");
     }
     return str;
 }

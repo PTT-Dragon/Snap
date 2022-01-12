@@ -417,7 +417,7 @@
 //  "REVIEW_PUBLISHED" = "评价成功",
 //  "THANK_REVIEW" = "感谢您的评价",
 //  "VIEWCODE" = "查看券码",
-//  "SHAREBUY" = "拼团",
+  "SHAREBUY" = "拼团",
 //  "GROUPSUCCESS" = "加入拼团成功.",
 //  "TOSHIP" = "待发货",
 //  "TORECEIVE" = "待收货",
@@ -629,8 +629,8 @@
 "RECEIPT" = "收据";
 "CONFIRM" = "确认";
 "PACKAGE_CODE" = "快递单号";
-  "I_WANT_TO_REFUND" = "退款";
-  "I_WANT_TO_RETURN" = "退货";
-  "I_WANT_TO_EXCHANGE" = "换货";
-  "VIEW_APPLICATION_RECORDS" = "查看申请记录";
-  "REFUND_SELECT_TITLE" = "选择售后服务";
+"I_WANT_TO_REFUND" = "退款";
+"I_WANT_TO_RETURN" = "退货";
+"I_WANT_TO_EXCHANGE" = "换货";
+"VIEW_APPLICATION_RECORDS" = "查看申请记录";
+"REFUND_SELECT_TITLE" = "选择售后服务";

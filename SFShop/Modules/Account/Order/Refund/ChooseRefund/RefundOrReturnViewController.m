@@ -6,9 +6,10 @@
 //
 
 #import "RefundOrReturnViewController.h"
+#import "ChooseReasonViewController.h"
 
 @interface RefundOrReturnViewController ()
-
+@property (nonatomic,strong) CancelOrderReasonModel *selReasonModel;
 @end
 
 @implementation RefundOrReturnViewController
@@ -16,16 +17,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSString *reasonTitle = _type == RETURNTYPE ? @"Return": _type == REFUNDTYPE ? @"Refund":@"Change";
+    self.title = kLocalizedString(reasonTitle);
+    [self loadDatas];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)loadDatas
+{
+    NSString *reasonId = _type == REFUNDTYPE ? @"3": _type == RETURNTYPE ? @"2":@"4";
+    [SFNetworkManager get:[SFNet.order getReasonlOf:reasonId] parameters:@{} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
-*/
 
 @end

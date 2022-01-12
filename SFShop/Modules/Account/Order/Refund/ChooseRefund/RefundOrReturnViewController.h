@@ -9,8 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RefundOrReturnViewController : BaseViewController
+typedef enum :NSUInteger{
+    REFUNDTYPE,
+    RETURNTYPE,
+    REPLACETYPE,
+}RefundOrReturnViewType;
 
+@interface RefundOrReturnViewController : BaseViewController
+@property (nonatomic,assign) RefundOrReturnViewType type;
 @end
 
 NS_ASSUME_NONNULL_END
