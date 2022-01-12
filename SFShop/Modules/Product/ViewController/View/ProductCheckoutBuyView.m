@@ -6,7 +6,7 @@
 //
 
 #import "ProductCheckoutBuyView.h"
-
+#import "SysParamsModel.h"
 
 @interface ProductCheckoutBuyView ()
 @property (nonatomic, readwrite, strong) UILabel *priceLabel;
@@ -60,7 +60,8 @@
 
 #pragma mark - Get and Set
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",@"Rp",dataModel.feeModel.totalPrice.fee];
+    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",currency,dataModel.feeModel.totalPrice.fee];
 }
 
 - (UILabel *)priceLabel {

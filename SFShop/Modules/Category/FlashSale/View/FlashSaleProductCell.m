@@ -6,6 +6,7 @@
 //
 
 #import "FlashSaleProductCell.h"
+#import "SysParamsModel.h"
 
 @interface FlashSaleProductCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -33,7 +34,8 @@
     _model = model;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.productImg)]];
     _nameLabel.text = model.productName;
-    _priceLabel.text = [NSString stringWithFormat:@"%@ %@", kLocalizedString(@"Rp"),model.specialPrice];
+    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+    _priceLabel.text = [NSString stringWithFormat:@"%@ %@", currency,model.specialPrice];
     _OriginalPriceLabel.text = [NSString stringWithFormat:@"%@",model.salesPrice];
     _offLabel.text = [NSString stringWithFormat:@" %@%% ",model.discountPercent];
     _rateLabel.text = [NSString stringWithFormat:@"%@ (%f)",model.evaluationAvg,model.evaluationCnt];

@@ -26,6 +26,7 @@
 #import "ProductionRecommendCell.h"
 #import "CheckoutManager.h"
 #import "ProductionRecomandView.h"
+#import "SysParamsModel.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -332,7 +333,8 @@
         self.flashSaleBeginTimeLabel.text = model.effDate;
     }else if (expTimeInterval > timeInterval){
         //进行中
-        self.flashSaleStateLabel.text = [NSString stringWithFormat:@"%@ %.0f", kLocalizedString(@"Rp"), model.specialPrice];
+        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+        self.flashSaleStateLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency, model.specialPrice];
         self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%%  Sold",model.flsaleSaleQtyPercent];
         self.timeStateLabel.text = kLocalizedString(@"Ends_in");
         MPWeakSelf(self)
@@ -377,9 +379,10 @@
     [self.campaignsModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         if (model.productId.integerValue == _selProductModel.productId) {
             //找到当前显示的商品
+            NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
             self.groupDiscountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
-            self.groupSalePriceLabel.text = [NSString stringWithFormat:@"%@ %.0f", kLocalizedString(@"Rp"),model.shareBuyPrice];
+            self.groupSalePriceLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency,model.shareBuyPrice];
             self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",_selProductModel.salesPrice];
         }
     }];
@@ -392,8 +395,9 @@
 - (void)setModel:(ProductDetailModel *)model {
     _model = model;
     [self.carouselImgView reloadData];
-    self.salesPriceLabel.text = [NSString stringWithFormat:@"%@ %ld", kLocalizedString(@"Rp"), model.salesPrice];
-    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@ %ld", kLocalizedString(@"Rp"), model.marketPrice]];
+    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+    self.salesPriceLabel.text = [NSString stringWithFormat:@"%@ %ld", currency, model.salesPrice];
+    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@ %ld", currency, model.marketPrice]];
     [marketPriceStr addAttribute: NSStrikethroughStyleAttributeName value:@2 range: NSMakeRange(0, marketPriceStr.length)];
     self.marketPriceLabel.attributedText = marketPriceStr;
     self.offerNameLabel.text = model.offerName;

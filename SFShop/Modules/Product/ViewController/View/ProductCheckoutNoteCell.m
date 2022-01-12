@@ -9,6 +9,7 @@
 #import "CustomTextField.h"
 #import "UIButton+EnlargeTouchArea.h"
 #import "ProductDetailModel.h"
+#import "SysParamsModel.h"
 
 @interface ProductCheckoutNoteCell ()<UITextFieldDelegate>
 @property (nonatomic, readwrite, strong) UIView *bgView;
@@ -128,10 +129,11 @@
 #pragma mark - Getter
 - (void)setDetailModel:(ProductDetailModel *)detailModel {
     super.detailModel = detailModel;
+    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     NSInteger availableVouchersCount = detailModel.storeCoupon.availableCoupons.count;
     if (self.detailModel.currentStoreCoupon) {//如果选中优惠券,那么显示优惠券减少的价格
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        self.couponPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",@"Rp",detailModel.feeModel.storeCouponPrice.fee];
+        self.couponPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",currency,detailModel.feeModel.storeCouponPrice.fee];
     } else if (!availableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
         self.couponPriceLabel.text = kLocalizedString(@"Not_available");
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
@@ -139,8 +141,8 @@
         self.couponPriceLabel.text = [NSString stringWithFormat:@"%ld available",availableVouchersCount];
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     }
-    self.promoPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",@"Rp",detailModel.feeModel.storeCampaignPrice.fee];
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"%@ %.3f",@"Rp",detailModel.feeModel.storeOrderPrice.fee];
+    self.promoPriceLabel.text = [NSString stringWithFormat:@"- %@ %.3f",currency,detailModel.feeModel.storeCampaignPrice.fee];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"%@ %.3f",currency,detailModel.feeModel.storeOrderPrice.fee];
     [self layout];
 }
 

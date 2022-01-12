@@ -6,6 +6,7 @@
 //
 
 #import "ProductCheckoutVoucherCell.h"
+#import "SysParamsModel.h"
 
 @interface ProductCheckoutVoucherCell ()
 @property (nonatomic, readwrite, strong) UIView *bgView;
@@ -72,7 +73,8 @@
         self.subTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     } else {
         if (dataModel.currentPltCoupon) {
-            self.subTitleLabel.text = [NSString stringWithFormat:@"- %@ %.3f",@"Rp",dataModel.currentPltCoupon.discountAmount / 1000.0];
+            NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+            self.subTitleLabel.text = [NSString stringWithFormat:@"- %@ %.3f",currency,dataModel.currentPltCoupon.discountAmount / 1000.0];
             self.subTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
         } else {
             self.subTitleLabel.text = [NSString stringWithFormat:@"%ld %@",shopAvailableVouchersCount, kLocalizedString(@"Available")];

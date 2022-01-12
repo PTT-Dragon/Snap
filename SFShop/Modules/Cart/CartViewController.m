@@ -14,6 +14,7 @@
 #import "OrderLogisticsModel.h"
 #import "CouponsAvailableModel.h"
 #import "CheckoutManager.h"
+#import "SysParamsModel.h"
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -336,9 +337,10 @@
 - (UILabel *)amountLabel
 {
     if (!_amountLabel) {
+        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 39, 200, 19)];
         _amountLabel.font = [UIFont fontWithName:@"System SemiBold" size:16];
-        _amountLabel.text = @"RP";
+        _amountLabel.text = currency;
         _amountLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _amountLabel;
@@ -346,9 +348,10 @@
 - (UILabel *)priceLabel
 {
     if (!_priceLabel) {
+        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 74, 135, 19)];
         _priceLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
-        _priceLabel.text = @"RP";
+        _priceLabel.text = currency;
         _priceLabel.textAlignment = NSTextAlignmentRight;
     }
     return _priceLabel;
@@ -356,9 +359,10 @@
 - (UILabel *)totalAmountLabel
 {
     if (!_totalAmountLabel) {
+        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _totalAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 103, 135, 19)];
         _totalAmountLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
-        _totalAmountLabel.text = @"RP";
+        _totalAmountLabel.text = currency;
         _totalAmountLabel.textAlignment = NSTextAlignmentRight;
     }
     return _totalAmountLabel;
@@ -366,9 +370,10 @@
 - (UILabel *)preferentialAmountLabel
 {
     if (!_preferentialAmountLabel) {
+        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _preferentialAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 141, 135, 19)];
         _preferentialAmountLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
-        _preferentialAmountLabel.text = @"RP";
+        _preferentialAmountLabel.text = currency;
         _preferentialAmountLabel.textColor = RGBColorFrom16(0xFF1659);
         _preferentialAmountLabel.textAlignment = NSTextAlignmentRight;
     }
