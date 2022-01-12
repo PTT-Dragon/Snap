@@ -72,7 +72,8 @@
 }
 
 - (void)goShoppingBtnAction {
-    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:0];
 }
 
 - (EmptyView *)emptyView {
