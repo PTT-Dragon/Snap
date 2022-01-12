@@ -6,6 +6,7 @@
 //
 
 #import "OrderLogisticsModel.h"
+#import "NSString+Fee.h"
 
 @implementation OrderLogisticsModel
 
@@ -22,7 +23,7 @@
 @implementation OrderLogisticsItem
 
 - (NSString *)priceStr {
-    return [NSString stringWithFormat:@"%@ %.3f",self.monetary?self.monetary:@"",self.logisticsFee.floatValue / 1000.0];
+    return [NSString stringWithFormat:@"%@",self.logisticsFee.currency];
 }
 
 - (NSString *)dateStr {

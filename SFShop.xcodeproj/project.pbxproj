@@ -480,6 +480,7 @@
 		AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA329862729A0F700E7827A /* SFSearchItem.m */; };
 		AEA3298A272AEE9500E7827A /* SFSearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA32989272AEE9500E7827A /* SFSearchCollectionCell.m */; };
 		AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3298E272AF2C700E7827A /* SFSearchModel.m */; };
+		AEB59C32278ECD13004CD19B /* NSString+Fee.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB59C31278ECD13004CD19B /* NSString+Fee.m */; };
 		AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE3FC912761D8EC00A96E2A /* PDFReader.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		AEEC0BA9278834040071F059 /* CheckoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BA8278834040071F059 /* CheckoutManager.m */; };
@@ -1329,6 +1330,8 @@
 		AEA32989272AEE9500E7827A /* SFSearchCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchCollectionCell.m; sourceTree = "<group>"; };
 		AEA3298D272AF2C700E7827A /* SFSearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSearchModel.h; sourceTree = "<group>"; };
 		AEA3298E272AF2C700E7827A /* SFSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchModel.m; sourceTree = "<group>"; };
+		AEB59C30278ECD13004CD19B /* NSString+Fee.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Fee.h"; sourceTree = "<group>"; };
+		AEB59C31278ECD13004CD19B /* NSString+Fee.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Fee.m"; sourceTree = "<group>"; };
 		AEE3FC902761D8EC00A96E2A /* PDFReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFReader.h; sourceTree = "<group>"; };
 		AEE3FC912761D8EC00A96E2A /* PDFReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFReader.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
@@ -2958,6 +2961,8 @@
 				AE81BE582702001700AB4225 /* MBProgressHUD+Prompt.m */,
 				AE81BE5D2702025100AB4225 /* NSString+Add.h */,
 				AE81BE5E2702025100AB4225 /* NSString+Add.m */,
+				AEB59C30278ECD13004CD19B /* NSString+Fee.h */,
+				AEB59C31278ECD13004CD19B /* NSString+Fee.m */,
 				1B71AE5C277D840A0088D94A /* UITextField+expand.h */,
 				1B71AE5D277D840A0088D94A /* UITextField+expand.m */,
 			);
@@ -3632,6 +3637,7 @@
 				1B74DAE02721ACD900B30ECC /* ReviewChildViewController.m in Sources */,
 				1BC7A2C5272AF50500755832 /* FAQListModel.m in Sources */,
 				1B82AED8277080B700D75E00 /* YYImage.m in Sources */,
+				AEB59C32278ECD13004CD19B /* NSString+Fee.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
 				1B82AEE5277080B700D75E00 /* UIImage+YYWebImage.m in Sources */,
 				1B2AE434272E3FD200FB23D3 /* CancelOrderViewController.m in Sources */,

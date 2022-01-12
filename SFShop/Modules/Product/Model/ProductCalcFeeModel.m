@@ -6,6 +6,7 @@
 //
 
 #import "ProductCalcFeeModel.h"
+#import "SysParamsModel.h"
 
 @implementation ProductCalcFeeProductModel
 
@@ -29,10 +30,4 @@
     return YES;
 }
 
-@end
-
-@implementation NSString (ProductCalcFeeModel)
-- (CGFloat)fee {
-    return self.floatValue / 1000.0;
-}
 @end
