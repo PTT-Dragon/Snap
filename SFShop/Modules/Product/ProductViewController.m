@@ -343,25 +343,25 @@
         _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
         dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
         dispatch_source_set_event_handler(_timer, ^{
-        if(timeout<=0){
-            
-            dispatch_source_cancel(weakself.timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
+            if(timeout<=0){
                 
-            });
-    }else{
-        NSInteger days = (int)(timeout/(3600*24));
-        NSInteger hours = (int)((timeout-days*24*3600)/3600);
-        NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
-        NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
-        weakself.minuteLabel.text = [NSString stringWithFormat:@"%02ld",minute];
-        weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
-            });
-        timeout--;
-                }
-            });
+                dispatch_source_cancel(weakself.timer);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                });
+            }else{
+                NSInteger days = (int)(timeout/(3600*24));
+                NSInteger hours = (int)((timeout-days*24*3600)/3600);
+                NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
+                NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
+                    weakself.minuteLabel.text = [NSString stringWithFormat:@"%02ld",minute];
+                    weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
+                });
+                timeout--;
+            }
+        });
         dispatch_resume(_timer);
     }else{
         //已结束

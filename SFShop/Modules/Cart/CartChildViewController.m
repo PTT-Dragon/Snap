@@ -65,7 +65,7 @@
 //    {@"catgIds":@"",@"offerIdList":@"",@"q":@"",@"pageIndex":1,@"pageSize":10,@"sortType":@"1"}
 //    @"catgIds":@"",@"offerIdList":@"",@"q":@"",
     MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
-    [SFNetworkManager get: SFNet.offer.offers parameters:@{@"pageIndex":@1,@"pageSize":@10,@"sortType":@"1"} success:^(id  _Nullable response) {
+    [SFNetworkManager post: SFNet.offer.offers parameters:@{@"pageIndex":@1,@"pageSize":@10,@"sortType":@"1"} success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
         NSError *error;
         weakself.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];

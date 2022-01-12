@@ -58,7 +58,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *offerName;
 @property (nonatomic,copy) NSString *productId;
 @property (nonatomic,copy) NSString *productName;
+@property (nonatomic,copy) NSString *shareBuyOrderNbr;
 @property (nonatomic,assign) NSInteger salesCnt;
+@property (nonatomic,assign) NSInteger memberQty;
+@property (nonatomic,assign) NSInteger shareByNum;
 @property (nonatomic,copy) NSString *shareBuyOrderId;
 @property (nonatomic,strong) NSArray <EvaluatesContentsModel>*imgs;
 @property (nonatomic,strong) NSArray <ReviewUserInfoModel>*groupMembers;
