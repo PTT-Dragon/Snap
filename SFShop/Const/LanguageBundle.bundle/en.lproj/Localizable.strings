@@ -341,7 +341,6 @@
 //  "SHARE" = "Share",
 //  "WISHLIST" = "Wishlist",
 //  "COUPON_S" = "Vouchers",
-//  "REFERS" = "Refers",
 //  "FORUM" = "Forum",
 //  "REVIEWS" = "Reviews",
 //  "JUST_FOR_YOU" = "Just for you",
@@ -637,3 +636,9 @@
 "REBUY" = "Re-buy";
 "RECEIPT" = "Receipt";
 "CONFIRM" = "Confirm";
+"REFERS" = "Refers";
+"FORUM" = "Forum";
+"REVIEWS" = "Reviews";
+"ADDRESS" = "Address";
+"SERVICE" = "Service";
+"FAQ" = "FAQ";
