@@ -625,7 +625,7 @@
 "LANGUGE" = "语言设置";
 "Go_Shopping" = "去购物";
 "PAYNOW" = "立即支付";
-"REBUY" = "重新购买"
+"REBUY" = "重新购买";
 "RECEIPT" = "收据";
 "CONFIRM" = "确认";
 "PACKAGE_CODE" = "快递单号";
@@ -634,3 +634,9 @@
 "I_WANT_TO_EXCHANGE" = "换货";
 "VIEW_APPLICATION_RECORDS" = "查看申请记录";
 "REFUND_SELECT_TITLE" = "选择售后服务";
+"REFERS" = "邀请好友";
+"FORUM" = "论坛";
+"REVIEWS" = "评论列表";
+"ADDRESS" = "地址";
+"SERVICE" = "客服";
+"FAQ" = "FAQ";

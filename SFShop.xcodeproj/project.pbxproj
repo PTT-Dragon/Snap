@@ -485,6 +485,7 @@
 		AEA3298A272AEE9500E7827A /* SFSearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA32989272AEE9500E7827A /* SFSearchCollectionCell.m */; };
 		AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3298E272AF2C700E7827A /* SFSearchModel.m */; };
 		AEB59C32278ECD13004CD19B /* NSString+Fee.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB59C31278ECD13004CD19B /* NSString+Fee.m */; };
+		AEB5AFC3278EEE90004CD19B /* UIViewController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB5AFC2278EEE8F004CD19B /* UIViewController+Top.m */; };
 		AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE3FC912761D8EC00A96E2A /* PDFReader.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		AEEC0BA9278834040071F059 /* CheckoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BA8278834040071F059 /* CheckoutManager.m */; };
@@ -1340,6 +1341,8 @@
 		AEA3298E272AF2C700E7827A /* SFSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSearchModel.m; sourceTree = "<group>"; };
 		AEB59C30278ECD13004CD19B /* NSString+Fee.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Fee.h"; sourceTree = "<group>"; };
 		AEB59C31278ECD13004CD19B /* NSString+Fee.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Fee.m"; sourceTree = "<group>"; };
+		AEB5AFC1278EEE8F004CD19B /* UIViewController+Top.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Top.h"; sourceTree = "<group>"; };
+		AEB5AFC2278EEE8F004CD19B /* UIViewController+Top.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Top.m"; sourceTree = "<group>"; };
 		AEE3FC902761D8EC00A96E2A /* PDFReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFReader.h; sourceTree = "<group>"; };
 		AEE3FC912761D8EC00A96E2A /* PDFReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFReader.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
@@ -2987,6 +2990,8 @@
 				AEB59C31278ECD13004CD19B /* NSString+Fee.m */,
 				1B71AE5C277D840A0088D94A /* UITextField+expand.h */,
 				1B71AE5D277D840A0088D94A /* UITextField+expand.m */,
+				AEB5AFC1278EEE8F004CD19B /* UIViewController+Top.h */,
+				AEB5AFC2278EEE8F004CD19B /* UIViewController+Top.m */,
 			);
 			path = Prompt;
 			sourceTree = "<group>";
@@ -3522,6 +3527,7 @@
 				1B6246702762613B00009DE2 /* MessageListCell.m in Sources */,
 				AE68D68B272AFAF900CF544C /* SFSearchSectionHeadView.m in Sources */,
 				1B82AEDB277080B700D75E00 /* YYAnimatedImageView.m in Sources */,
+				AEB5AFC3278EEE90004CD19B /* UIViewController+Top.m in Sources */,
 				1B6C5294275B672200A1C617 /* ZLPhotoBrowserCell.m in Sources */,
 				AEEC0BAD27883C140071F059 /* DeleveryViewController.m in Sources */,
 				AE43BF672782DCB7006D7135 /* CouponsCell.m in Sources */,
@@ -3960,7 +3966,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3.2;
-				DEVELOPMENT_TEAM = 45TSGW46CH;
+				DEVELOPMENT_TEAM = 3E4LSSERGY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SFShop/Components/Umeng/share/share_ios_6.10.4/UMSocialUI",
@@ -4000,7 +4006,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3.2;
-				DEVELOPMENT_TEAM = 45TSGW46CH;
+				DEVELOPMENT_TEAM = 3E4LSSERGY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SFShop/Components/Umeng/share/share_ios_6.10.4/UMSocialUI",

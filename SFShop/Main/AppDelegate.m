@@ -6,7 +6,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MainTabViewController.h"
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
 #import "SysParamsModel.h"
@@ -28,8 +27,8 @@
     [self loadSysConfig];
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    MainTabViewController *tab = [[MainTabViewController alloc] init];
-    self.window.rootViewController = tab;
+    self.tabVC = [[MainTabViewController alloc] init];
+    self.window.rootViewController = self.tabVC;
     [self.window makeKeyAndVisible];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangeNotification:)
@@ -49,8 +48,8 @@
  }
 
 - (void)receiveLanguageChangeNotification:(NSNotification *)sender {
-    MainTabViewController *tab = [[MainTabViewController alloc] init];
-    self.window.rootViewController = tab;
+    self.tabVC = [[MainTabViewController alloc] init];
+    self.window.rootViewController = self.tabVC;
 }
 
 -(BOOL)application:(UIApplication*)application handleOpenURL:(NSURL *)url {
@@ -91,6 +90,7 @@
         
     }];
 }
+
 
 
 @end

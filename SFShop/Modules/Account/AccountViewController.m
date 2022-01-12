@@ -49,14 +49,14 @@
     _recentCount = 0;
     _dataSource = [NSMutableArray array];
     [_dataSource addObjectsFromArray:
-         @[@{@"image":@"add-account",@"title":@"Refers"},
-           @{@"image":@"group",@"title":@"Forum"},
-           @{@"image":@"most-used",@"title":@"Reviews"},
-           @{@"image":@"pin",@"title":@"Address"},
-           @{@"image":@"call-centre",@"title":@"Service"},
-           @{@"image":@"read",@"title":@"Policies"},
-           @{@"image":@"question",@"title":@"FAQ"},
-           @{@"image":@"read",@"title":@"Language"}]
+         @[@{@"image":@"add-account",@"title":kLocalizedString(@"REFERS")},
+           @{@"image":@"group",@"title":kLocalizedString(@"FORUM")},
+           @{@"image":@"most-used",@"title":kLocalizedString(@"REVIEWS")},
+           @{@"image":@"pin",@"title":kLocalizedString(@"ADDRESS")},
+           @{@"image":@"call-centre",@"title":kLocalizedString(@"SERVICE")},
+           @{@"image":@"read",@"title":kLocalizedString(@"Policies")},
+           @{@"image":@"question",@"title":kLocalizedString(@"FAQ")},
+           @{@"image":@"read",@"title":kLocalizedString(@"LANGUGE")}]
     ];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountInfoCell" bundle:nil] forCellReuseIdentifier:@"accountInfoCell"];

@@ -59,14 +59,14 @@
     [self.view addSubview:webview];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     [self addJsBridge];
-}
-
-- (void)jk_backButtonTouched:(JKBackButtonHandler)backButtonHandler {
-    if (self.shouldBackToHome) {
-        [SceneManager transToHome];
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    MPWeakSelf(self)
+    [self jk_backButtonTouched:^(UIViewController *vc) {
+        if (weakself.shouldBackToHome) {
+            [SceneManager transToHome];
+        } else {
+            [weakself.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 - (void)addJsBridge

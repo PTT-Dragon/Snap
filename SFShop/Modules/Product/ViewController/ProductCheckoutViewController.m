@@ -415,56 +415,37 @@
                 @"selUserPltCouponId":selUserPltCouponId,
                 @"stores": stores,
             };
-            
-            __block BOOL isShowPayChannel = NO;
-            __block NSArray *methods = nil;
-            __block NSDictionary *orderInfo = nil;
-            dispatch_group_t group = dispatch_group_create();
 
-            //获取支付渠道
-            dispatch_group_enter(group);
-            dispatch_group_async(group, dispatch_get_main_queue(), ^{
-                [SFNetworkManager get:SFNet.order.method success:^(id  _Nullable response) {
-                    [MBProgressHUD hideFromKeyWindow];
-                    methods = (NSArray *)response;
-                    isShowPayChannel = methods.count > 1;
-                    dispatch_group_leave(group);
-                } failed:^(NSError * _Nonnull error) {
-                    dispatch_group_leave(group);
-                    [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
-                }];
-            });
-            
-            //下单
-            dispatch_group_enter(group);
-            dispatch_group_async(group, dispatch_get_main_queue(), ^{
-                [SFNetworkManager post:SFNet.order.save parameters: params success:^(NSDictionary *  _Nullable response) {
-                    [MBProgressHUD hideFromKeyWindow];
-                    orderInfo = response;
-                    dispatch_group_leave(group);
-                } failed:^(NSError * _Nonnull error) {
-                    dispatch_group_leave(group);
-                    [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
-                }];
-            });
-            
-            //接口回调
             [MBProgressHUD showHudMsg:@""];
-            dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-                if (!orderInfo) {return;}
-                if (!methods || !methods.count) {return;}
-
-                //是否显示支付渠道
-                if (isShowPayChannel) {
-                    [weakself showPaymentAlert:orderInfo methods:methods];
-                } else {
-                    NSDictionary *method = methods.firstObject;
-                    NSArray *list = [method objectForKey:@"paymentMethodList"];
-                    NSString *paymentChannelCode = [method objectForKey:@"paymentChannelCode"];
-                    NSString *paymentMethodCode = [list.firstObject objectForKey:@"paymentMethodCode"];
-                    [weakself pay:orderInfo paymentChannel:paymentChannelCode paymentMethod:paymentMethodCode];
-                }
-            });
+            [SFNetworkManager post:SFNet.order.save parameters: params success:^(NSDictionary *  _Nullable response) {
+                [MBProgressHUD hideFromKeyWindow];
+                NSArray *orders = (NSArray *)response[@"orders"];
+                NSMutableArray *orderIds = [NSMutableArray array];
+                for (NSDictionary *dic in orders) {[orderIds addObject:dic[@"orderId"]];}//订单id 数组
+                NSString *totalPrice = [NSString stringWithFormat:@"%@",[response objectForKey:@"totalPrice"]];//总价
+                NSString *shareBuyOrderNbr = [orders.firstObject objectForKey:@"shareBuyOrderNbr"];//分享号
+                [MBProgressHUD hideFromKeyWindow];
+                [CheckoutManager.shareInstance startPayWithOrderIds:orderIds shareBuyOrderNbr:shareBuyOrderNbr totalPrice:totalPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml) {
+                    switch (result) {
+                        case SFPayResultSuccess:
+                            [SceneManager transToHome];
+                            break;
+                        case SFPayResultFailed:
+                            break;
+                        case SFPayResultJumpToWebPay: {
+                            PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+                            vc.url = urlOrHtml;
+                            vc.shouldBackToHome = YES;
+                            [weakself.navigationController pushViewController:vc animated:YES];
+                        }
+                            break;
+                        default:
+                            break;
+                    }
+                }];
+            } failed:^(NSError * _Nonnull error) {
+                [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            }];
         };
     }
     return _buyView;

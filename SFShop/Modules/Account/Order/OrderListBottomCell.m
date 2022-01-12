@@ -11,6 +11,9 @@
 #import "PDFReader.h"
 #import "CartViewController.h"
 #import "PublicAlertView.h"
+#import "CheckoutManager.h"
+#import "UIViewController+Top.h"
+#import "SceneManager.h"
 
 
 @interface OrderListBottomCell ()
@@ -53,7 +56,29 @@
 - (IBAction)btn1Action:(UIButton *)sender {
     NSString *state = _model.state;
     if ([state isEqualToString:@"A"]) {
+        if (!self.model.orderId.length) {
+            return;
+        }
         //付款
+        NSString *shareBuyOrderNbr = self.model.shareBuyBriefInfo[@"shareBuyOrderNbr"];
+        [CheckoutManager.shareInstance startPayWithOrderIds:@[self.model.orderId] shareBuyOrderNbr:shareBuyOrderNbr totalPrice:self.model.orderPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml) {
+            switch (result) {
+                case SFPayResultSuccess:
+                    [SceneManager transToHome];
+                    break;
+                case SFPayResultFailed:
+                    break;
+                case SFPayResultJumpToWebPay: {
+                    PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+                    vc.url = urlOrHtml;
+                    vc.shouldBackToHome = YES;
+                    [UIViewController.sf_topViewController.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                default:
+                    break;
+            }
+        }];
     }else if ([state isEqualToString:@"B"] || [state isEqualToString:@"E"] || [state isEqualToString:@"F"]){
         //未完成
         [MBProgressHUD showHudMsg:@""];

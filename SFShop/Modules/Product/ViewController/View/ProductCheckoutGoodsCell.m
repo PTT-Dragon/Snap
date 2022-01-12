@@ -86,8 +86,12 @@
     super.cellModel = cellModel;
     ProductItemModel *model = cellModel.obj;
     self.titleLabel.text = model.productName;
-    self.typeLabel.text = model.prodSpcAttrs.firstObject.attrName;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.3f",SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY,model.salesPrice * 0.001];
+    NSString *attrName = @"";
+    for (ProdSpcAttrsModel *att in model.prodSpcAttrs) {
+        attrName = [[attrName stringByAppendingString:att.attrName] stringByAppendingString:@" "];
+    }
+    self.typeLabel.text = attrName;
+    self.priceLabel.text = [NSString stringWithFormat:@"%ld",model.salesPrice].currency;
     self.numLabel.text = [NSString stringWithFormat:@"x%ld",model.currentBuyCount];
     [self.icon sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     [self layout];
