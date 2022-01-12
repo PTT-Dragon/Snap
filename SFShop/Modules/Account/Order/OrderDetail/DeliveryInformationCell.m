@@ -9,6 +9,7 @@
 
 @interface DeliveryInformationCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
 @end
 
@@ -20,6 +21,8 @@
 }
 - (void)setContent:(OrderDetailModel *)model
 {
-    _contentLabel.text = model.billAddress.contactAddress;
+    DeliveryInfoModel *infoModel = model.deliverys.firstObject;
+    _contentLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"PACKAGE_CODE"),infoModel.logisticsId];
+    _infoLabel.text = [NSString stringWithFormat:@"%@\n%@",infoModel.warehouseName,infoModel.deliveryDate];
 }
 @end

@@ -151,7 +151,6 @@
 //  "ADDRESS_ADD_SUCCESS" = "Penambahan alamat telah berhasil.",
 //  "MODIFY_ADD_SUCCESS" = "Ganti alamat berhasil",
 //  "SERVICE_DETAIL" = "detail layanan",
-//  "REFUND_SELECT_TITLE" = "Pilih layanan",
 //  "CARGO_STATUS" = "Status pengiriman barang",
 //  "SERVICE_REASON" = "Alasan",
 //  "PLEASE_SELECT" = "Mohon pilih",
@@ -254,10 +253,6 @@
 //  "EXPIRED" = "Expired",
 //  "USED" = "Non Aktif",
 //  "ARE_YOU_SURE" = "Apakah kamu yakin",
-//  "I_WANT_TO_REFUND" = "Saya ingin refund",
-//  "I_WANT_TO_RETURN" = "Saya ingin mengembalikan barang",
-//  "I_WANT_TO_EXCHANGE" = "Saya ingin tukar barang",
-//  "VIEW_APPLICATION_RECORDS" = "Lihat catatan aplikasi",
 //  "TO_PAY" = "Bayar",
 //  "TO_SHIP" = "Di proses",
 //  "TO_RECEIVE" = "Selesai",
@@ -272,7 +267,6 @@
 //  "REFUND_TO" = "Kembalikan ke",
 //  "BANK_TRANSFER" = "Transfer Bank",
 //  "ORDER_DETAILS" = "Detail pesanan",
-//  "PACKAGE_CODE" = "Nomor resi",
 //  "WAREHOUSE_HAS_BEEN_DELIVERED" = "Barang telah dikirim dari Gudang",
 //  "SHIP_TO" = "Dikirim ke",
 //  "HOME" = "Home",
@@ -633,3 +627,9 @@
 "REBUY" = "Beli lagi";
 "RECEIPT" = "Receipt";
 "CONFIRM" = "Confirm";
+"PACKAGE_CODE" = "Nomor resi";
+  "I_WANT_TO_REFUND" = "Saya ingin refund";
+  "I_WANT_TO_RETURN" = "Saya ingin mengembalikan barang";
+  "I_WANT_TO_EXCHANGE" = "Saya ingin tukar barang";
+  "VIEW_APPLICATION_RECORDS" = "Lihat catatan aplikasi";
+  "REFUND_SELECT_TITLE" = "Pilih layanan";

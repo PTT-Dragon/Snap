@@ -149,7 +149,6 @@
 //  "ADDRESS_ADD_SUCCESS" = "Add address successfully.",
 //  "MODIFY_ADD_SUCCESS" = "Modify address successfully.",
 //  "SERVICE_DETAIL" = "Service Detail",
-//  "REFUND_SELECT_TITLE" = "Select Service",
 //  "CARGO_STATUS" = "Cargo Status",
 //  "SERVICE_REASON" = "Reason",
 //  "PLEASE_SELECT" = "Please Select",
@@ -252,10 +251,6 @@
 //  "EXPIRED" = "Expired",
 //  "USED" = "Used",
 //  "ARE_YOU_SURE" = "Are you sure?",
-//  "I_WANT_TO_REFUND" = "I want to refund",
-//  "I_WANT_TO_RETURN" = "I want to return",
-//  "I_WANT_TO_EXCHANGE" = "I want to exchange",
-//  "VIEW_APPLICATION_RECORDS" = "View application records",
 //  "TO_PAY" = "To Pay",
 //  "TO_SHIP" = "To Ship",
 //  "TO_RECEIVE" = "To Receive",
@@ -270,7 +265,6 @@
 //  "REFUND_TO" = "Refund to",
 //  "BANK_TRANSFER" = "Bank Transfer",
 //  "ORDER_DETAILS" = "Order Details",
-//  "PACKAGE_CODE" = "Package Code",
 //  "WAREHOUSE_HAS_BEEN_DELIVERED" = "Warehouse has been delivered",
 //  "SHIP_TO" = "Ship to",
 //  "HOME" = "Home",
@@ -637,3 +631,9 @@
 "REBUY" = "Re-buy";
 "RECEIPT" = "Receipt";
 "CONFIRM" = "Confirm";
+"PACKAGE_CODE" = "Package Code";
+  "I_WANT_TO_REFUND" = "I want to refund";
+  "I_WANT_TO_RETURN" = "I want to return";
+  "I_WANT_TO_EXCHANGE" = "I want to exchange";
+  "VIEW_APPLICATION_RECORDS" = "View application records";
+  "REFUND_SELECT_TITLE" = "Select Service";

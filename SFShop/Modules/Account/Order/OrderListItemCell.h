@@ -11,8 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^afterSaleBlock)(void);
+
 @interface OrderListItemCell : UITableViewCell
+@property (nonatomic,copy) afterSaleBlock block;
 - (void)setContent:(orderItemsModel *)model;
+- (void)setOrderContent:(orderItemsModel *)model state:(NSString *)state;
 - (void)setRefundContent:(RefundDetailItemsModel *)model;
 @end
 

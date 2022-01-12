@@ -26,9 +26,15 @@
 @implementation deliveryAddress
 
 @end
+@implementation DeliveryInfoModel
+
+@end
 
 @implementation OrderDetailModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 
 @end
 @implementation CancelOrderReasonModel

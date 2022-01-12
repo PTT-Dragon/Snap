@@ -13,6 +13,7 @@
 #import "OrderListItemCell.h"
 #import "OrderModel.h"
 #import "OrderDetailGroupBuyCell.h"
+#import "ChooseRefundViewController.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -74,7 +75,12 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setContent:self.model.orderItems[indexPath.row-1]];
+        [cell setOrderContent:self.model.orderItems[indexPath.row-1] state:self.model.state];
+        cell.block = ^{
+            ChooseRefundViewController *vc = [[ChooseRefundViewController alloc] init];
+            vc.model = self.model;
+            [self.navigationController pushViewController:vc animated:YES];
+        };
         return cell;
     }
     OrderPayInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderPayInfoCell"];
@@ -87,11 +93,11 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 1: section == 2 ? self.groupModel ? 1:0: section == 1 ? 1: section == 3 ? self.model.orderItems.count+1 : self.dataSource.count;
+    return section == 0 ? self.model.deliverys.count == 0 ? 0: 1: section == 2 ? self.groupModel ? 1:0: section == 1 ? 1: section == 3 ? self.model.orderItems.count+1 : self.dataSource.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == 0 ? 112: indexPath.section == 2 ? 156: indexPath.section == 1 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: indexPath.section == 3 ? 154:  30;
+    return indexPath.section == 0 ? 112: indexPath.section == 2 ? 156: indexPath.section == 1 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: indexPath.section == 3 ? [self.model.state isEqualToString:@"D"] ? 170: 154:  30;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

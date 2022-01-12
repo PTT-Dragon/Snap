@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol orderItemsModel;
 @protocol ReviewUserInfoModel;
+@protocol DeliveryInfoModel;
+
 
 @interface orderItemsModel : JSONModel
 @property (nonatomic,copy) NSString <Optional>*canEvaluate;
@@ -76,11 +78,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*postCode;
 @end
 
+@interface DeliveryInfoModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*logisticsUrl;
+@property (nonatomic,copy) NSString <Optional>*deliveryOrderId;
+@property (nonatomic,copy) NSString <Optional>*warehouseName;
+@property (nonatomic,copy) NSString <Optional>*logisticsId;
+@property (nonatomic,copy) NSString <Optional>*logisticsName;
+@property (nonatomic,copy) NSString <Optional>*deliveryDate;
+@property (nonatomic,copy) NSString <Optional>*shippingNbr;
+@property (nonatomic,copy) NSArray <Optional>*deliveryItems;
+@end
+
 @interface OrderDetailModel : JSONModel
 @property (nonatomic,strong) billAddressModel *billAddress;
 @property (nonatomic,strong) deliveryAddress *deliveryAddress;
 @property (nonatomic,strong) NSArray <orderItemsModel>*orderItems;
-@property (nonatomic,strong) NSArray <Optional>*deliverys;
+@property (nonatomic,strong) NSArray <DeliveryInfoModel>*deliverys;
 @property (nonatomic,copy) NSString <Optional>*canEvaluate;
 @property (nonatomic,copy) NSString <Optional>*canReview;
 @property (nonatomic,copy) NSString <Optional>*cancelReason;

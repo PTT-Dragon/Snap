@@ -150,7 +150,6 @@
 //  "ADDRESS_ADD_SUCCESS" = "成功添加地址",
 //  "MODIFY_ADD_SUCCESS" = "成功修改地址",
 //  "SERVICE_DETAIL" = "服务详情",
-//  "REFUND_SELECT_TITLE" = "选择售后服务",
 //  "CARGO_STATUS" = "商品状态",
 //  "SERVICE_REASON" = "原因",
 //  "PLEASE_SELECT" = "请选择",
@@ -254,10 +253,6 @@
 //  "EXPIRED" = "失效",
 //  "USED" = "已使用",
 //  "ARE_YOU_SURE" = "是否确认?",
-//  "I_WANT_TO_REFUND" = "退款",
-//  "I_WANT_TO_RETURN" = "退货",
-//  "I_WANT_TO_EXCHANGE" = "换货",
-//  "VIEW_APPLICATION_RECORDS" = "查看申请记录",
 //  "TO_PAY" = "去付款",
 //  "TO_SHIP" = "去发货",
 //  "TO_RECEIVE" = "去收货",
@@ -272,7 +267,6 @@
 //  "REFUND_TO" = "退款到",
 //  "BANK_TRANSFER" = "银行转账",
 //  "ORDER_DETAILS" = "订单详情",
-//  "PACKAGE_CODE" = "快递单号",
 //  "WAREHOUSE_HAS_BEEN_DELIVERED" = "仓库已发货",
 //  "SHIP_TO" = "配送到",
 //  "HOME" = "首页",
@@ -634,3 +628,9 @@
 "REBUY" = "重新购买"
 "RECEIPT" = "收据";
 "CONFIRM" = "确认";
+"PACKAGE_CODE" = "快递单号";
+  "I_WANT_TO_REFUND" = "退款";
+  "I_WANT_TO_RETURN" = "退货";
+  "I_WANT_TO_EXCHANGE" = "换货";
+  "VIEW_APPLICATION_RECORDS" = "查看申请记录";
+  "REFUND_SELECT_TITLE" = "选择售后服务";

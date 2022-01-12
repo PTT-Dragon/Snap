@@ -38,7 +38,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIa-4e-Gcq">
-                        <rect key="frame" x="19" y="59" width="277" height="14.5"/>
+                        <rect key="frame" x="19" y="59" width="305" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPf-Sf-4uf">
+                        <rect key="frame" x="20" y="87.5" width="305" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -48,18 +54,22 @@
                     <constraint firstItem="cne-Rb-f1O" firstAttribute="leading" secondItem="fKZ-Q6-ISt" secondAttribute="trailing" constant="4" id="2dY-ch-fHh"/>
                     <constraint firstItem="cne-Rb-f1O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="5gq-Og-G97"/>
                     <constraint firstItem="oIa-4e-Gcq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="AJ2-eD-KIl"/>
-                    <constraint firstAttribute="trailing" secondItem="oIa-4e-Gcq" secondAttribute="trailing" constant="47" id="DYZ-po-cIO"/>
+                    <constraint firstAttribute="trailing" secondItem="oIa-4e-Gcq" secondAttribute="trailing" constant="19" id="DYZ-po-cIO"/>
                     <constraint firstItem="oIa-4e-Gcq" firstAttribute="top" secondItem="ptU-Qc-p78" secondAttribute="bottom" constant="18" id="P3y-2s-dTG"/>
                     <constraint firstItem="fKZ-Q6-ISt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="QFh-HD-zWe"/>
                     <constraint firstItem="fKZ-Q6-ISt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="a6r-bR-Phk"/>
+                    <constraint firstAttribute="trailing" secondItem="zPf-Sf-4uf" secondAttribute="trailing" constant="18" id="dkj-kq-OQ5"/>
+                    <constraint firstAttribute="bottom" secondItem="zPf-Sf-4uf" secondAttribute="bottom" constant="10" id="eta-En-Kdl"/>
                     <constraint firstItem="ptU-Qc-p78" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="fX5-fU-yOZ"/>
                     <constraint firstAttribute="trailing" secondItem="ptU-Qc-p78" secondAttribute="trailing" id="gcH-Xv-ETM"/>
                     <constraint firstItem="ptU-Qc-p78" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="h4w-QU-3Pf"/>
+                    <constraint firstItem="zPf-Sf-4uf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="ob6-Fc-VXi"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="contentLabel" destination="oIa-4e-Gcq" id="gmA-zF-Jvi"/>
+                <outlet property="infoLabel" destination="zPf-Sf-4uf" id="XIh-o1-CVO"/>
             </connections>
             <point key="canvasLocation" x="112" y="73"/>
         </tableViewCell>
