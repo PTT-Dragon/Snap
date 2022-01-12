@@ -16,7 +16,7 @@
 
 - (NSString *)getStateStr
 {
-    return [_state isEqualToString:@"B"] ? @"To Ship": [_state isEqualToString:@"C"] ? @"To Receive": [_state isEqualToString:@"E"] ? @"Cancelled": [_state isEqualToString:@"D"] ? @"Successful": @"To Pay";
+    return ([_state isEqualToString:@"F"] || [_state isEqualToString:@"G"]) ? @"To Ship": [_state isEqualToString:@"C"] ? @"To Receive": [_state isEqualToString:@"E"] ? @"Cancelled": [_state isEqualToString:@"D"] ? @"Successful": @"To Pay";
 }
 
 @end

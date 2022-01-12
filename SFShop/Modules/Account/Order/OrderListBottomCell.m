@@ -35,34 +35,47 @@
     _amountLabel.text = [NSString stringWithFormat:@"RP %@",model.orderPrice];
     [_btn1 setTitle:[self getBtn1StrWithState:model.state] forState:0];
     [_btn2 setTitle:[self getBtn2StrWithState:model.state] forState:0];
+//    _btn2.hidden = [_btn2.titleLabel.text isEqualToString:@""] || !_btn2.titleLabel.text;
 }
 - (IBAction)btn1Action:(UIButton *)sender {
     NSString *state = _model.state;
     if ([state isEqualToString:@"A"]) {
         //付款
-    }else if ([state isEqualToString:@"B"] || [state isEqualToString:@"E"]){
+    }else if ([state isEqualToString:@"B"] || [state isEqualToString:@"E"] || [state isEqualToString:@"F"]){
         //未完成
         [MBProgressHUD showHudMsg:@""];
-        orderItemsModel *itemsModel = self.model.orderItems.firstObject;
-        NSDictionary *params =
-        @{
-            @"num": @(1),
-            @"offerId": self.model.orderId,
-            @"productId": itemsModel.productId,
-            @"storeId": self.model.storeId,
-            @"unitPrice": itemsModel.offerId,
-            @"addon":@"",
-            @"isSelected":@"Y",
-            @"contactChannel":@"3"
-        };
-        MPWeakSelf(self)
-        [SFNetworkManager post:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
-            [MBProgressHUD hideFromKeyWindow];
-            [weakself toCart];
-        } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD hideFromKeyWindow];
-            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        dispatch_group_t group = dispatch_group_create();
+        [self.model.orderItems enumerateObjectsUsingBlock:^(orderItemsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            dispatch_group_enter(group);
+            NSDictionary *params =
+            @{
+                @"num": @(1),
+                @"offerId": self.model.orderId,
+                @"productId": obj.productId,
+                @"storeId": self.model.storeId,
+                @"unitPrice": obj.offerId,
+                @"addon":@"",
+                @"isSelected":@"Y",
+                @"contactChannel":@"3"
+            };
+            
+            [SFNetworkManager post:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
+                @synchronized (response) {
+                    
+                }
+                dispatch_group_leave(group);                                
+            } failed:^(NSError * _Nonnull error) {
+                dispatch_group_leave(group);
+                [MBProgressHUD hideFromKeyWindow];
+                [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            }];
         }];
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideFromKeyWindow];
+            [self toCart];
+        });
+        
+        
     }else if ([state isEqualToString:@"C"]){
         //确认订单收货
         MPWeakSelf(self)
@@ -70,7 +83,7 @@
         [SFNetworkManager post:SFNet.order.confirmOrder parameters:@{@"orderIds":a} success:^(id  _Nullable response) {
             [weakself.delegate refreshDatas];
         } failed:^(NSError * _Nonnull error) {
-            
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }
 }
@@ -135,6 +148,8 @@
     }else if ([state isEqualToString:@"E"]){
         str = @"REVIEW";
     }else if ([state isEqualToString:@"F"]){
+        str = @"";
+    }else if ([state isEqualToString:@"G"]){
         str = @"";
     }
     return str;
