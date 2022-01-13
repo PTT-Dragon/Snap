@@ -75,10 +75,9 @@
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.login parameters:@{@"account":_account,@"code":login_aes_128_cbc_encrypt(_codeView.code)} success:^(id  _Nullable response) {
         NSError *error = nil;
-        [[FMDBManager sharedInstance] deleteUserData];
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
-        [[FMDBManager sharedInstance] insertUser:model ofAccount:@"hxf01@qq.com"];
+        [[FMDBManager sharedInstance] insertUser:model ofAccount:weakself.account];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];

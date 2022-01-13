@@ -48,9 +48,9 @@
                         <outlet property="delegate" destination="-1" id="uFg-SH-Ijy"/>
                     </connections>
                 </textField>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oI-2T-sZk">
+                <button opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oI-2T-sZk">
                     <rect key="frame" x="24" y="463" width="366" height="46"/>
-                    <color key="backgroundColor" red="1" green="0.8980392157" blue="0.92156862750000001" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="backgroundColor" red="1" green="0.8980392157" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="Me3-QW-I89"/>
                     </constraints>
