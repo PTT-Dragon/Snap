@@ -232,14 +232,16 @@
 }
 
 - (void)showEmptyView {
-    CartViewController *cartVC = (CartViewController *)[UIViewController currentTopViewController];
-    if (self.cartModel.validCarts.count > 0) {
-        cartVC.bottomView.hidden = NO;
-        self.emptyView.hidden = YES;
-    } else {
-        cartVC.bottomView.hidden = YES;
-        self.emptyView.hidden = NO;
-        [self requestSimilar];
+    if ([[UIViewController currentTopViewController] isKindOfClass:[CartViewController class]]) {
+        CartViewController *cartVC = (CartViewController *)[UIViewController currentTopViewController];
+        if (self.cartModel.validCarts.count > 0) {
+            cartVC.bottomView.hidden = NO;
+            self.emptyView.hidden = YES;
+        } else {
+            cartVC.bottomView.hidden = YES;
+            self.emptyView.hidden = NO;
+            [self requestSimilar];
+        }
     }
 }
 
