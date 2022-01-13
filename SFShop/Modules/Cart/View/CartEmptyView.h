@@ -6,13 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProductSimilarModel.h"
+#import "favoriteModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CartEmptyView : UIView
 
-- (void)configDataWithSimilarList:(NSMutableArray<ProductSimilarModel *> *)similarList;
+- (void)configDataWithSimilarList:(NSMutableArray<favoriteModel *> *)similarList;
 
 @end
 

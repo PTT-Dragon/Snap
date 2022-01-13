@@ -16,6 +16,7 @@
 #import "ProductSimilarModel.h"
 #import "UIViewController+parentViewController.h"
 #import "CartViewController.h"
+#import "favoriteModel.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -24,7 +25,7 @@
 @property (nonatomic,strong) NSMutableArray *campaignsDataSource;
 @property (nonatomic,strong) CartModel *cartModel;
 @property (nonatomic, strong) CartEmptyView *emptyView;
-@property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
+@property(nonatomic, strong) NSMutableArray<favoriteModel *> *similarList;
 
 @end
 
@@ -68,7 +69,7 @@
     [SFNetworkManager post: SFNet.offer.offers parameters:@{@"pageIndex":@1,@"pageSize":@10,@"sortType":@"1"} success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
         NSError *error;
-        weakself.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
+        weakself.similarList = [favoriteModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
         [weakself.emptyView configDataWithSimilarList:weakself.similarList];
         NSLog(@"get similar success");
     } failed:^(NSError * _Nonnull error) {
