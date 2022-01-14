@@ -170,6 +170,9 @@
 - (NSString *)refundList {
     return K_refund_domain(@"");
 }
+- (NSString *)charge {
+    return K_refund_domain(@"charge");
+}
 - (NSString *)getDetailOf: (NSString *)offerId {
     NSString *url = [NSString stringWithFormat:@"/%@", offerId];
     return K_refund_domain(url);
@@ -271,6 +274,9 @@
 
 - (NSString *)agreement {
     return K_h5_domain(@"agreement");
+}
+- (NSString *)refund {
+    return K_h5_domain(@"refund");
 }
 - (NSString *)sysparam
 {

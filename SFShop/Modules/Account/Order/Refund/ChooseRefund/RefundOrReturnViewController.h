@@ -6,6 +6,7 @@
 //
 
 #import "BaseViewController.h"
+#import "OrderModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,7 @@ typedef enum :NSUInteger{
 }RefundOrReturnViewType;
 
 @interface RefundOrReturnViewController : BaseViewController
+@property (nonatomic,copy) OrderDetailModel *model;
 @property (nonatomic,assign) RefundOrReturnViewType type;
 @end
 

@@ -47,7 +47,7 @@
                             <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhV-xd-XOa">
                                 <rect key="frame" x="140" y="31" width="63" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="To Receive" image="delivery-2">
+                                <state key="normal" title="To Receive" image="00202_02_delivery_filled">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
@@ -57,7 +57,7 @@
                             <button opaque="NO" tag="1005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNM-QF-3IG">
                                 <rect key="frame" x="203" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="Rating" image="chat-fill">
+                                <state key="normal" title="Rating" image="00060_02_topperforming_filled">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
@@ -87,7 +87,7 @@
                             <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXb-7r-1rp">
                                 <rect key="frame" x="15" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="To Pay" image="card-2">
+                                <state key="normal" title="To Pay" image="00324_DebitCardFill">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
@@ -207,10 +207,10 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="00060_02_topperforming_filled" width="28" height="28"/>
+        <image name="00202_02_delivery_filled" width="28" height="22"/>
+        <image name="00324_DebitCardFill" width="28" height="16"/>
         <image name="00341_ Return Fill" width="32" height="32"/>
-        <image name="card-2" width="32" height="32"/>
-        <image name="chat-fill" width="32" height="32"/>
-        <image name="delivery-2" width="32" height="32"/>
         <image name="组 64598" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

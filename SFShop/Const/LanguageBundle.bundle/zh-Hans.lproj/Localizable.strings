@@ -385,7 +385,7 @@
 //  "CODE_INCORRECT_REINPUT" = "验证码不正确，请重新输入.";
 //  "NOT_AVAILABLE" = "不可用";
 //  "ORDER_LIMIT" = "订单限购";
-//  "ENTER_CODE" = "请输入6位验证码";
+"ENTER_CODE" = "请输入6位验证码";
 //  "PRODUCT_DETAIL" = "商品详情";
 //  "COPIED_TO_CLIPBOARD" = "复制到剪贴板";
 //  "LOGIN_VIA_OPT" = "验证码登录";

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface ChooseReasonViewController : UIViewController
+@property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) id<ChooseReasonViewControllerDelegate>delegate;
 @end
 

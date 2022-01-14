@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeMobileOrEmailViewController">
             <connections>
+                <outlet property="btn" destination="uKc-Ef-Blc" id="JoX-kD-eFO"/>
                 <outlet property="field" destination="dcM-xF-XyF" id="a32-QG-4pL"/>
                 <outlet property="field2" destination="cUs-fr-W5K" id="DRo-tU-MXM"/>
                 <outlet property="label" destination="2RA-Tb-VAw" id="VE4-U9-Pq6"/>
@@ -53,9 +54,9 @@
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKc-Ef-Blc">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKc-Ef-Blc">
                     <rect key="frame" x="16" y="252" width="382" height="46"/>
-                    <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="backgroundColor" red="1" green="0.89803921568627454" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="8Ai-I1-aNr"/>
                     </constraints>

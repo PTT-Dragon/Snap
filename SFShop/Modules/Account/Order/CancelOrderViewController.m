@@ -75,12 +75,26 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == _model.orderItems.count+1) {
+        [self loadReasonDatas];
+    }
+}
+- (void)loadReasonDatas
+{
+    [MBProgressHUD showHudMsg:kLocalizedString(@"loading")];
+    MPWeakSelf(self)
+    [SFNetworkManager get:[SFNet.order getReasonlOf:@"1"] success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        NSMutableArray *dataSource = [NSMutableArray array];
+        [dataSource addObjectsFromArray:[CancelOrderReasonModel arrayOfModelsFromDictionaries:response error:nil]];
         ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
-        vc.delegate = self;
-        [self presentViewController:vc animated:YES completion:^{
+        vc.dataSource = dataSource;
+        vc.delegate = weakself;
+        [weakself presentViewController:vc animated:YES completion:^{
                     
         }];
-    }
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD showHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
 }
 - (void)chooseReason:(CancelOrderReasonModel *)model
 {

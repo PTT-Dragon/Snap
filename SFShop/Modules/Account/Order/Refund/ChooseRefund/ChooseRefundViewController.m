@@ -88,6 +88,7 @@
             return;
         }
         RefundOrReturnViewController *vc = [[RefundOrReturnViewController alloc] init];
+        vc.model = self.model;
         vc.type = indexPath.row == 0 ? REFUNDTYPE: indexPath.row == 1 ? RETURNTYPE: REPLACETYPE;
         [self.navigationController pushViewController:vc animated:YES];
     }

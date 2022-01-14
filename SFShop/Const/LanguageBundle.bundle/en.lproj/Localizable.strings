@@ -380,7 +380,7 @@
 //  "CODE_INCORRECT_REINPUT" = "The verification code is incorrect; please re-input.";
 //  "NOT_AVAILABLE" = "Not Available";
 //  "ORDER_LIMIT" = "Order limit";
-//  "ENTER_CODE" = "Enter 6-Digit Code";
+"ENTER_CODE" = "Enter 6-Digit Code";
 //  "PRODUCT_DETAIL" = "Product Detail";
 //  "COPIED_TO_CLIPBOARD" = "Copied to clipboard";
 //  "LOGIN_VIA_OPT" = "Login via OTP";

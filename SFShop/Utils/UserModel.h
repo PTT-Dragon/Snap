@@ -12,9 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface userResModel : JSONModel <NSCoding>
+
+@property(nonatomic, copy) NSString <Optional>*nickName;
 @property(nonatomic, copy) NSString <Optional>*email;
 @property(nonatomic, copy) NSString <Optional>*lastSighinDate;
-@property(nonatomic, copy) NSString <Optional>*nickName;
 @property(nonatomic, copy) NSString <Optional>*photo;
 @property(nonatomic, copy) NSString <Optional>*recmdChannel;
 @property(nonatomic, copy) NSString <Optional>*recmdBy;

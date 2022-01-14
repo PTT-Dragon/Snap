@@ -384,7 +384,7 @@
 //  "CODE_INCORRECT_REINPUT" = "Kode verifikasi salah; mohon masukan ulang.";
 //  "NOT_AVAILABLE" = "Tidak tersedia";
 //  "ORDER_LIMIT" = "Batas pesanan";
-//  "ENTER_CODE" = "Masukkan Kode 6-Digit";
+"ENTER_CODE" = "Masukkan Kode 6-Digit";
 //  "PRODUCT_DETAIL" = "Rincian produk";
 //  "COPIED_TO_CLIPBOARD" = "Disalin ke clipboard";
 //  "LOGIN_VIA_OPT" = "Masuk melalui OTP";

@@ -62,9 +62,9 @@
         }else if (weakself.type == Forget_Code){
             [weakself forgetPassword];
         }else if (weakself.type == ChangeMobileNumber_Code){
-            
+            [weakself changeUserPhone];
         }else if (weakself.type == ChangeEmail_Code){
-            
+            [weakself changeUserEmail];
         }
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
@@ -119,18 +119,23 @@
 }
 - (void)changeUserPhone
 {
-    [SFNetworkManager post:SFNet.account.phoneModify parameters:@{} success:^(id  _Nullable response) {
-        
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.account.phoneModify parameters:@{@"code":_codeView.code,@"newMobilePhone":_account,@"pwd":login_aes_128_cbc_encrypt(_password)} success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
+        [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)changeUserEmail
 {
-    [SFNetworkManager post:SFNet.account.emailModify parameters:@{} success:^(id  _Nullable response) {
-        
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.account.emailModify parameters:@{@"email":model.userRes.email,@"newEmail":_account,@"code":_codeView.code} success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
+        [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (IBAction)recendAction:(UIButton *)sender {

@@ -121,6 +121,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFNetworkUsersRefundModule : NSObject
 //退货列表
 @property (nonatomic, readwrite, strong) NSString *refundList;
+@property (nonatomic, readwrite, strong) NSString *charge;
+
 - (NSString *)getDetailOf: (NSString *)offerId;
 @end
 
@@ -132,6 +134,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *publishImg;
 @property (nonatomic, readwrite, strong) NSString *pay;
 @property (nonatomic, readwrite, strong) NSString *sysparam;
+
 
 - (NSString *)getReceiptOf: (NSString *)orderId;
 

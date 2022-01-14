@@ -62,7 +62,7 @@
         self.mobileLabel.text = @"";
     }else{
         self.nameLabel.userInteractionEnabled = NO;
-        self.nameLabel.text = model.userName;
+        self.nameLabel.text = model.userRes.nickName;
         [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"account-black"]];
         self.mobileLabel.text = model.userRes.mobilePhone;
     }
@@ -105,11 +105,18 @@
 }
 - (void)nameAction
 {
+    MPWeakSelf(self)
     LoginViewController *vc = [[LoginViewController alloc] init];
     vc.didLoginBlock = ^{
         [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
+        [weakself performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
     };
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+}
+- (void)setTabbarSel
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:0];
 }
 //打开相册
 -(void)uploadAvatar{

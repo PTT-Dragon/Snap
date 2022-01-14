@@ -24,8 +24,8 @@
                             <constraint firstAttribute="width" constant="90" id="g4L-yS-dQA"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-da-dvI">
-                        <rect key="frame" x="116" y="24" width="40" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-da-dvI">
+                        <rect key="frame" x="116" y="24" width="183" height="18"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -49,6 +49,7 @@
                     <constraint firstItem="SKW-z3-BOr" firstAttribute="bottom" secondItem="9LF-cf-kk3" secondAttribute="bottom" constant="-10" id="GiT-pn-wJQ"/>
                     <constraint firstItem="SKW-z3-BOr" firstAttribute="leading" secondItem="9LF-cf-kk3" secondAttribute="trailing" constant="10" id="Odl-B8-Lhb"/>
                     <constraint firstItem="q5X-xS-1nc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VrF-hr-t8Y"/>
+                    <constraint firstAttribute="trailing" secondItem="QfW-da-dvI" secondAttribute="trailing" constant="44" id="ZSB-Nw-lS0"/>
                     <constraint firstItem="9LF-cf-kk3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="etO-e8-4SM"/>
                     <constraint firstItem="QfW-da-dvI" firstAttribute="leading" secondItem="9LF-cf-kk3" secondAttribute="trailing" constant="10" id="hrj-x1-fzi"/>
                     <constraint firstItem="QfW-da-dvI" firstAttribute="top" secondItem="9LF-cf-kk3" secondAttribute="top" constant="8" id="lYg-mG-8xf"/>

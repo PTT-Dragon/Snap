@@ -90,7 +90,7 @@
             MPWeakSelf(vc)
             vc.didLoginBlock = ^{
                 [weakvc.navigationController popToRootViewControllerAnimated:YES];
-//                weakvc.tabBarController.selectedIndex = 0;
+                [weakvc performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
             };
             [self.navigationController pushViewController:vc animated:YES];
         }else{
@@ -101,6 +101,11 @@
             [self loadData];
         }
     }];
+}
+- (void)setTabbarSel
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:0];
 }
 - (void)loadData
 {
