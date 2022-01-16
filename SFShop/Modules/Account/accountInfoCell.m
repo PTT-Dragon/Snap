@@ -63,7 +63,7 @@
     }else{
         self.nameLabel.userInteractionEnabled = NO;
         self.nameLabel.text = model.userRes.nickName;
-        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"account-black"]];
+        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"默认头像"]];
         self.mobileLabel.text = model.userRes.mobilePhone;
     }
 }

@@ -11,6 +11,7 @@
 #import "RecentlyModel.h"
 #import "EmptyView.h"
 #import <MJRefresh/MJRefresh.h>
+#import "ProductViewController.h"
 
 @interface RecentlyViewedViewController ()<JTCalendarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -193,6 +194,14 @@
     }
     [view addSubview:label];
     return view;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *arr = _dataListSource[indexPath.section];
+    RecentlyModel *model = arr[indexPath.row];
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = model.offerId.integerValue;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     //删除

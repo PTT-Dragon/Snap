@@ -88,9 +88,10 @@
             }
             LoginViewController *vc = [[LoginViewController alloc] init];
             MPWeakSelf(vc)
+            MPWeakSelf(self)
             vc.didLoginBlock = ^{
                 [weakvc.navigationController popToRootViewControllerAnimated:YES];
-                [weakvc performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
+                [weakself performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
             };
             [self.navigationController pushViewController:vc animated:YES];
         }else{
