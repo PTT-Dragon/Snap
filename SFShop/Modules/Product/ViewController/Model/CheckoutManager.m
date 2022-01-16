@@ -305,8 +305,8 @@ static CheckoutManager *_instance = nil;
     NSMutableDictionary *stores = [NSMutableDictionary dictionary];
     [stores setObject:@(model.storeId) forKey:@"storeId"];
     NSMutableArray *products = [NSMutableArray array];
-    for (int i = 0; i < model.products.count; i ++) {
-        ProductItemModel *item = model.products[i];
+    for (int i = 0; i < model.selectedProducts.count; i ++) {
+        ProductItemModel *item = model.selectedProducts[i];
         NSInteger productId = item.productId;
         NSInteger offerCnt = item.currentBuyCount;
         NSArray *inCmpIdLists = item.inCmpIdList;

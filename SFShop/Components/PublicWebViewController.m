@@ -143,16 +143,19 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/product/detail/"].location != NSNotFound){
-        NSString *offerId;
-        NSRange range1 = [navigationAction.request.URL.absoluteString rangeOfString:[NSString stringWithFormat:@"%@%@",Host,@"/product/detail/"]];
-        NSRange range2 = [navigationAction.request.URL.absoluteString rangeOfString:@"?"];
-        if (range2.location != NSNotFound) {
-            offerId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.length, range2.location-range1.length)];
-        }else{
-            offerId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.length, navigationAction.request.URL.absoluteString.length-range1.length)];
+        NSString *offerId = navigationAction.request.URL.lastPathComponent;
+        NSString *productId = nil;
+        NSURLComponents *urlComponent = [[NSURLComponents alloc] initWithString:navigationAction.request.URL.absoluteString];
+        for (NSURLQueryItem *item in urlComponent.queryItems) {
+            if ([item.name isEqualToString:@"productId"]) {
+                productId = item.value;
+                break;
+            }
         }
+        
         ProductViewController *vc = [[ProductViewController alloc] init];
         vc.offerId = offerId.integerValue;
+        vc.productId = productId.integerValue;
         [self.navigationController pushViewController:vc animated:YES];
 //        [self requestProductInfoWithOfferId:offerId];
         decisionHandler(WKNavigationActionPolicyCancel);

@@ -183,8 +183,7 @@
     }];
     [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf:self.model.carouselImgUrls[0]])]];
     self.titleLabel.text = model.offerName;
-    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %ld", currency, (long)model.salesPrice];
+    self.priceLabel.text = [NSString stringWithFormat:@"%ld", model.salesPrice].currency;
     // TODO: 此处先固定，后续根据库存接口数据调整
     self.stockLabel.text = @"stock: 25";
     
@@ -269,6 +268,7 @@
     [sender setSelected:YES];
     [self.selectedAttrBtn replaceObjectAtIndex:sectionIndex withObject:sender];
     self.selectedAttrValue[sectionIndex] = @(sender.tag % 100);
+//    self.model.products[]
     if(self.chooseAttrBlock) {
         self.chooseAttrBlock();
     }

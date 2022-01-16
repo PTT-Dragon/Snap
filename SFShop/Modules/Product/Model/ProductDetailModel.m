@@ -40,10 +40,57 @@
 
 @end
 
+@interface ProductDetailModel ()
+//选中商品
+@property(nonatomic, readwrite, strong) ProductItemModel *selProductModel;
+//存储当前选中的所有标签模型,⚠️可以通过该模型,查找出被选中商品
+@property(nonatomic, readwrite, strong) NSMutableArray <ProdSpcAttrsModel *> <ProdSpcAttrsModel> *currentProdSpcAttrs;
+@end
+
 @implementation ProductDetailModel
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return YES;
+}
+
+- (void)updateCurrentSpcAttsMode:(ProdSpcAttrsModel *)spcAttsMode {
+    if (!self.currentProdSpcAttrs) {
+        self.currentProdSpcAttrs = [NSMutableArray array];
+    }
+    
+    [self.currentProdSpcAttrs enumerateObjectsUsingBlock:^(ProdSpcAttrsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.attrId isEqualToString:spcAttsMode.attrId]) {
+            [self.currentProdSpcAttrs replaceObjectAtIndex:idx withObject:spcAttsMode];
+            *stop =YES;
+        }
+    }];
+    
+    if (!self.currentProdSpcAttrs.count) {
+        [self.currentProdSpcAttrs addObject:spcAttsMode];
+    }
+}
+
+- (ProductItemModel *)selectedProductItem {
+    for (ProductItemModel *item in self.products) {
+        BOOL isAdpterAll = YES;//全部标签是否命中
+        for (ProdSpcAttrsModel *att in item.prodSpcAttrs) {
+            BOOL isAdpterSingle = NO;//单个标签是否命中
+            for (ProdSpcAttrsModel *cAtt in self.currentProdSpcAttrs) {
+                if ([att.attrId isEqualToString:cAtt.attrId] && [att.value isEqualToString:cAtt.value]) {
+                    isAdpterSingle = YES;//当前标签att 命中,继续下个标签
+                    break;
+                }
+            }
+            if (!isAdpterSingle) {//没有命中情况下,继续下个产品
+                isAdpterAll = NO;
+                break;
+            }
+        }
+        if (isAdpterAll) {
+            return item;
+        }
+    }
+    return self.products.firstObject;
 }
 
 - (void)setLogisticsModel:(OrderLogisticsModel *)logisticsModel {

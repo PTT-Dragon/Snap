@@ -57,7 +57,6 @@
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 @property (nonatomic,strong) addressModel *selectedAddressModel;
-@property (nonatomic,strong) ProductItemModel *selProductModel;
 @property (nonatomic,copy) NSNumber *allEvaCount;//评价总数
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
 @property (weak, nonatomic) IBOutlet UILabel *flashSaleStateLabel;
@@ -157,6 +156,16 @@
         [hud hideAnimated:YES];
         NSError *error;
         self.model = [[ProductDetailModel alloc] initWithDictionary: response error: &error];
+        
+        //确定当前选中的产品
+        for (ProductItemModel *item in self.model.products) {
+            if (item.productId == self.productId) {
+                for (ProdSpcAttrsModel *att in item.prodSpcAttrs) {
+                    [self.model updateCurrentSpcAttsMode:att];
+                }
+            }
+        }
+
         NSLog(@"get product detail success");
     } failed:^(NSError * _Nonnull error) {
         [hud hideAnimated:YES];
@@ -377,13 +386,13 @@
     [self.buyBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"SHARE_BUY")] forState:0];
     [self.addCartBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
     [self.campaignsModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (model.productId.integerValue == _selProductModel.productId) {
+        if (model.productId.integerValue == self.model.selectedProductItem.productId) {
             //找到当前显示的商品
             NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
             self.groupDiscountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
             self.groupSalePriceLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency,model.shareBuyPrice];
-            self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",_selProductModel.salesPrice];
+            self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",self.model.selectedProductItem.salesPrice];
         }
     }];
 }
@@ -395,22 +404,17 @@
 - (void)setModel:(ProductDetailModel *)model {
     _model = model;
     [self.carouselImgView reloadData];
-    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-    self.salesPriceLabel.text = [NSString stringWithFormat:@"%@ %ld", currency, model.salesPrice];
-    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@ %ld", currency, model.marketPrice]];
+
+    self.salesPriceLabel.text = [NSString stringWithFormat:@"%ld", model.salesPrice].currency;
+    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString:  [NSString stringWithFormat:@"%ld", model.marketPrice].currency];
     [marketPriceStr addAttribute: NSStrikethroughStyleAttributeName value:@2 range: NSMakeRange(0, marketPriceStr.length)];
     self.marketPriceLabel.attributedText = marketPriceStr;
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
     self.variationsLabel.text = [self getVariationsString];
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
-    self.selProductModel = model.products.firstObject;
 }
-- (void)setSelProductModel:(ProductItemModel *)selProductModel
-{
-    _selProductModel = selProductModel;
-    self.usefulBtn.selected = [selProductModel.isCollection isEqualToString:@"1"];
-}
+
 - (void)setGroupModel:(ProductGroupModel *)groupModel
 {
     _groupModel = groupModel;
@@ -418,12 +422,10 @@
 }
 
 - (NSString *)getVariationsString {
-    __block NSString *result = @"";
-    [_model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.attrName isEqualToString:@"Color"]) {
-            result = obj.attrValues.firstObject.value;
-        }
-    }];
+    NSString *result = @"";
+    for (ProdSpcAttrsModel *att in self.model.selectedProductItem.prodSpcAttrs) {
+        result = [[result stringByAppendingString:att.value] stringByAppendingString:@" "];
+    }
     return result;
 }
 
@@ -548,19 +550,19 @@
 - (IBAction)usefulAction:(UIButton *)sender {
     MPWeakSelf(self)
     [MBProgressHUD showHudMsg:@""];
-    if ([self.selProductModel.isCollection isEqualToString:@"1"]) {
-        [SFNetworkManager post:SFNet.favorite.del parameters:@{@"productIdList":@[@(_selProductModel.productId)]} success:^(id  _Nullable response) {
+    if ([self.model.selectedProductItem.isCollection isEqualToString:@"1"]) {
+        [SFNetworkManager post:SFNet.favorite.del parameters:@{@"productIdList":@[@(self.model.selectedProductItem.productId)]} success:^(id  _Nullable response) {
             [MBProgressHUD hideFromKeyWindow];
-            weakself.selProductModel.isCollection = @"0";
-            [weakself setSelProductModel:weakself.selProductModel];
+            weakself.model.selectedProductItem.isCollection = @"0";
+            weakself.usefulBtn.selected = NO;
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }else{
-        [SFNetworkManager post:SFNet.favorite.favorite parametersArr:@[@{@"offerId":@(_model.offerId),@"productId":@(_selProductModel.productId)}] success:^(id  _Nullable response) {
+        [SFNetworkManager post:SFNet.favorite.favorite parametersArr:@[@{@"offerId":@(_model.offerId),@"productId":@(self.model.selectedProductItem.productId)}] success:^(id  _Nullable response) {
             [MBProgressHUD hideFromKeyWindow];
-            weakself.selProductModel.isCollection = @"1";
-            [weakself setSelProductModel:weakself.selProductModel];
+            weakself.model.selectedProductItem.isCollection = @"1";
+            weakself.usefulBtn.selected = YES;
             [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
@@ -582,7 +584,7 @@
             @"campaignId":@"3",
             @"num": @(self.attrView.count),
             @"offerId": @(self.model.offerId),
-            @"productId": @([self getSelectedProductItem].productId),
+            @"productId": @(self.model.selectedProductItem.productId),
             @"storeId": @(self.model.storeId),
             @"unitPrice": @(self.model.salesPrice),
             @"contactChannel":@"3",
@@ -616,7 +618,7 @@
             }
         }
         item.currentBuyCount = self.attrView.count;
-        self.model.products = @[item];
+        self.model.selectedProducts = @[item];
         ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
         [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
             if (isSuccess) {

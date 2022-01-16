@@ -100,10 +100,26 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSArray <ProductAttrModel *> <ProductAttrModel> *offerSpecAttrs;
 @property(nonatomic, strong) NSArray <ProductCarouselImgModel *> <ProductCarouselImgModel> *carouselImgUrls;
 @property(nonatomic, strong) NSArray *offerAttrValues;
-@property(nonatomic, strong) NSArray <ProductItemModel *> <ProductItemModel> *products;//商品 必须
+@property(nonatomic, strong) NSArray <ProductItemModel *> <ProductItemModel> *products;
 
-#pragma mark - 自定义字段，需要外部赋值
+#pragma mark - 自定义字段，需要外部赋值 (详情页使用)
+
+/// 更新选中的标签
+/// @param spcAttsMode 标签模型
+- (void)updateCurrentSpcAttsMode:(ProdSpcAttrsModel *)spcAttsMode;
+
+//获取当前选中的商品
+@property(nonatomic, readonly, strong) ProductItemModel *selectedProductItem;
+
+
+#pragma mark - 自定义字段，需要外部赋值 (结算使用)
 @property(nonatomic, readwrite, strong, nullable) NSString *note;//留言
+
+/*
+ 外部组装选中商品(结算使用)
+ */
+@property(nonatomic, readwrite, strong, nonnull) NSArray <ProductItemModel *> *selectedProducts;//选中商品商品
+
 /*
  当前商店投递数据
  1、可以为空
