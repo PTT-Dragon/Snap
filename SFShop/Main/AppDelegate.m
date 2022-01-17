@@ -25,7 +25,8 @@
     [self confitUShareSettings];
     [self configUSharePlatforms];
     [self loadSysConfig];
-    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    [self initUmeng];
+//    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     self.tabVC = [[MainTabViewController alloc] init];
     self.window.rootViewController = self.tabVC;
@@ -53,7 +54,7 @@
 }
 
 -(BOOL)application:(UIApplication*)application handleOpenURL:(NSURL *)url {
-    BOOL result =[[UMSocialManager defaultManager] handleOpenURL:url];
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
     if(!result){
         // 其他如支付等SDK的回调
     }
@@ -61,7 +62,8 @@
 }
 
 - (void)initUmeng {
-//    [UMConfigure initWithAppkey:@"Your appkey" channel:@"App Store"];
+    [UMConfigure initWithAppkey:@"61e3e1dbe0f9bb492bd15ad7" channel:@"App Store"];
+    [UMConfigure setLogEnabled:YES];
 }
 
 - (void)confitUShareSettings {
@@ -70,7 +72,7 @@
 
 - (void)configUSharePlatforms {
 //    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Twitter appKey:@"fB5tvRpna1CKK97xZUslbxiet"  appSecret:@"YcbSvseLIwZ4hZg9YmgJPP5uWzd4zr6BpBKGZhf07zzh3oj62K" redirectURL:nil];
-//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Facebook appKey:@"506027402887373"  appSecret:nil redirectURL:@"http://www.umeng.com/social"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Facebook appKey:@"640405423870824"  appSecret:@"c6410391d3be2bc1c2718b32af2b2d25" redirectURL:@"http://www.umeng.com/social"];
 //    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Whatsapp appKey:@"" appSecret:@"" redirectURL:@""];
 //    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Instagram appKey:@"" appSecret:@"" redirectURL:@""];
 }
