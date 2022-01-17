@@ -73,8 +73,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString *imgUrl;
 @property (nonatomic,strong) NSArray <ProdSpcAttrsModel *> <ProdSpcAttrsModel> *prodSpcAttrs;
 
-#pragma mark - 自定义字段，需要外部赋值
-@property(nonatomic, readwrite, strong) NSString *storeName;
+#pragma mark - 自定义字段，需要外部赋值(详情页使用)
+@property(nonatomic, readwrite, assign) NSInteger groupPrice;//团购价
+
+#pragma mark - 自定义字段，需要外部赋值(结算使用)
+@property(nonatomic, readwrite, strong) NSString *storeName;//商店名称
 @property(nonatomic, readwrite, assign) NSInteger currentBuyCount;//当前商品购买数量
 @property(nonatomic, readwrite, strong, nullable) NSArray *inCmpIdList;//当前商品的优惠id 列表
 

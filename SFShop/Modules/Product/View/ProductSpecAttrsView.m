@@ -10,6 +10,8 @@
 #import "SysParamsModel.h"
 
 @interface ProductSpecAttrsView()
+@property (nonatomic, strong) ProductDetailModel *model;
+@property (nonatomic, assign) ProductViewBuyMethod buyMethod;
 
 @property (nonatomic, strong) UIImageView *imgView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -25,12 +27,14 @@
 
 @implementation ProductSpecAttrsView
 
--(instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    self.count = 1;
-    self.selectedAttrBtn = [NSMutableArray array];
-    self.selectedAttrValue = [NSMutableArray array];
-    [self setupSubViews];
+- (instancetype)initWithBuyMethod:(ProductViewBuyMethod)buyMethod model:(ProductDetailModel *)model {
+    if (self = [super init]) {
+        self.model = model;
+        self.count = 1;
+        self.selectedAttrBtn = [NSMutableArray array];
+        self.selectedAttrValue = [NSMutableArray array];
+        [self setupSubViews];
+    }
     return self;
 }
 
@@ -174,6 +178,7 @@
     }];
 }
 
+
 -(void)setModel:(ProductDetailModel *)model {
     _model = model;
     MPWeakSelf(self)
@@ -181,8 +186,8 @@
         // TODO: 此处默认选择第一个
         [weakself.selectedAttrValue addObject:@0];
     }];
-    [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf:self.model.carouselImgUrls[0]])]];
-    self.titleLabel.text = model.offerName;
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString: SFImage(model.selectedProductItem.imgUrl)]];
+    self.titleLabel.text = model.selectedProductItem.productName;
     self.priceLabel.text = [NSString stringWithFormat:@"%ld", model.salesPrice].currency;
     // TODO: 此处先固定，后续根据库存接口数据调整
     self.stockLabel.text = @"stock: 25";

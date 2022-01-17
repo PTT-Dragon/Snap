@@ -157,7 +157,7 @@
         NSError *error;
         self.model = [[ProductDetailModel alloc] initWithDictionary: response error: &error];
         
-        //确定当前选中的产品
+        //确定默认选中的产品
         for (ProductItemModel *item in self.model.products) {
             if (item.productId == self.productId) {
                 for (ProdSpcAttrsModel *att in item.prodSpcAttrs) {
@@ -165,6 +165,8 @@
                 }
             }
         }
+        
+        [self updateUI];
 
         NSLog(@"get product detail success");
     } failed:^(NSError * _Nonnull error) {
@@ -173,6 +175,7 @@
         NSLog(@"get product detail failed");
     }];
 }
+
 - (void)requestCampaigns
 {
     MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
@@ -401,18 +404,28 @@
     
 }
 
-- (void)setModel:(ProductDetailModel *)model {
-    _model = model;
-    [self.carouselImgView reloadData];
+- (void)updateUI {
+    [self updateModelUI:self.model];
+    [self updateItemUI:self.model.selectedProductItem];
+    [self updateImageList];
+}
 
-    self.salesPriceLabel.text = [NSString stringWithFormat:@"%ld", model.salesPrice].currency;
-    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString:  [NSString stringWithFormat:@"%ld", model.marketPrice].currency];
+- (void)updateItemUI:(ProductItemModel *)item {
+    self.salesPriceLabel.text = [NSString stringWithFormat:@"%ld", item.salesPrice].currency;
+    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", item.marketPrice].currency];
     [marketPriceStr addAttribute: NSStrikethroughStyleAttributeName value:@2 range: NSMakeRange(0, marketPriceStr.length)];
     self.marketPriceLabel.attributedText = marketPriceStr;
+    self.variationsLabel.text = [self getVariationsString:item];
+}
+
+- (void)updateModelUI:(ProductDetailModel *)model {
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
-    self.variationsLabel.text = [self getVariationsString];
-    [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+    [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource:model.goodsDetails] baseURL:nil];
+}
+
+- (void)updateImageList {
+    [self.carouselImgView reloadData];
 }
 
 - (void)setGroupModel:(ProductGroupModel *)groupModel
@@ -421,9 +434,9 @@
     [self layoutGroupSubViews];
 }
 
-- (NSString *)getVariationsString {
+- (NSString *)getVariationsString:(ProductItemModel *)item {
     NSString *result = @"";
-    for (ProdSpcAttrsModel *att in self.model.selectedProductItem.prodSpcAttrs) {
+    for (ProdSpcAttrsModel *att in item.prodSpcAttrs) {
         result = [[result stringByAppendingString:att.value] stringByAppendingString:@" "];
     }
     return result;
@@ -629,17 +642,16 @@
     }
 }
 
-- (void)showAttrsView {
+- (void)showAttrsView:(ProductViewBuyMethod)buyMethod {
     _isCheckingSaleInfo = YES;
-    _attrView = [[ProductSpecAttrsView alloc] init];
-    _attrView.model = self.model;
+    _attrView = [[ProductSpecAttrsView alloc] initWithBuyMethod:buyMethod model:self.model];
     MPWeakSelf(self)
     MPWeakSelf(_attrView)
     _attrView.dismissBlock = ^{
         [weak_attrView removeFromSuperview];
         weakself.isCheckingSaleInfo = NO;
     };
-    _attrView.chooseAttrBlock = ^() {
+    _attrView.chooseAttrBlock = ^(NSString * _Nonnull attrId, ProductAttrValueModel * _Nonnull att) {
         [weakself.model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             // TODO: 此处暂时仅处理颜色的属性，因为没找到有其他属性的测试数据
             if ([obj.attrName isEqualToString:@"Color"]) {
