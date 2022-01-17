@@ -63,13 +63,11 @@
 
 - (void)requestSimilar {
     MPWeakSelf(self)
-//    {@"catgIds":@"",@"offerIdList":@"",@"q":@"",@"pageIndex":1,@"pageSize":10,@"sortType":@"1"}
-//    @"catgIds":@"",@"offerIdList":@"",@"q":@"",
     MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
-    [SFNetworkManager post: SFNet.offer.offers parameters:@{@"pageIndex":@1,@"pageSize":@10,@"sortType":@"1"} success:^(id  _Nullable response) {
+    [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", (long)self.offerId]} success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
         NSError *error;
-        weakself.similarList = [favoriteModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
+        weakself.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
         [weakself.emptyView configDataWithSimilarList:weakself.similarList];
         NSLog(@"get similar success");
     } failed:^(NSError * _Nonnull error) {

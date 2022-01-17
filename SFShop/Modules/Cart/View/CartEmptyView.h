@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)configDataWithSimilarList:(NSMutableArray<favoriteModel *> *)similarList;
 
+
 @end
 
 NS_ASSUME_NONNULL_END

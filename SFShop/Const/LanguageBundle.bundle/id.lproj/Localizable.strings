@@ -611,6 +611,9 @@
 "Login" = "Login";
 "Nomor telepon" = "Nomor telepon";
 "Sign_Up" = "Tandatangan";
+"Phone_number" = "Phone number";
+"Sign_Up" = "Sign Up";
+"Max" = "Max";
 "ACCOUNT_DOES_NOT_EXIST" = "Akun tidak ada";
 "PASSWORD" = "Kata sandi";
 "EMAIL" = "Email";
