@@ -8,7 +8,10 @@
 #import "ArticleEvaluateModel.h"
 
 @implementation ArticleEvaluateChildrenModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 @end
 
 

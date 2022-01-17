@@ -21,7 +21,7 @@
 
 @property(nonatomic, strong) ArticleDetailModel *model;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateTableViewHei;
-@property(nonatomic, strong) NSMutableArray<ArticleEvaluateModel *> *evaluateArray;
+@property(nonatomic, strong) NSArray<ArticleEvaluateModel *> *evaluateArray;
 @property (weak, nonatomic) IBOutlet UITableView *evaluateTableView;
 @property (weak, nonatomic) IBOutlet UITextField *replyField;
 @property(nonatomic, strong) UIImageView *headIV;
@@ -114,7 +114,8 @@
     [SFNetworkManager get: [SFNet.article getEvaluateOf: _articleId] success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSError *error;
-        self.evaluateArray = [ArticleEvaluateModel arrayOfModelsFromDictionaries:response error:&error];
+        NSMutableArray *arr = [ArticleEvaluateModel arrayOfModelsFromDictionaries:response error:&error];
+        self.evaluateArray = [[arr reverseObjectEnumerator] allObjects];
         self.evaluateTableViewHei.constant = [self calculateTableViewHei];
         [self.evaluateTableView reloadData];
         NSLog(@"get article evaluate success");

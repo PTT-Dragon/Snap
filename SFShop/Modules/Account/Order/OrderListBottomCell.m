@@ -14,6 +14,7 @@
 #import "CheckoutManager.h"
 #import "UIViewController+Top.h"
 #import "SceneManager.h"
+#import "NSString+Fee.h"
 
 
 @interface OrderListBottomCell ()
@@ -45,7 +46,7 @@
 {
     _model = model;
     _countLabel.text = [NSString stringWithFormat:@"%ld products",model.orderItems.count];
-    _amountLabel.text = [NSString stringWithFormat:@"RP %@",model.orderPrice];
+    _amountLabel.text = [NSString stringWithFormat:@"%@",[model.orderPrice currency]];
     [_btn1 setTitle:[self getBtn1StrWithState:model.state] forState:0];
     [_btn2 setTitle:[self getBtn2StrWithState:model.state] forState:0];
     _groupView.hidden = !model.shareBuyBriefInfo;

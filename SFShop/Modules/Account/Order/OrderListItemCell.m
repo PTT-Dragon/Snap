@@ -6,6 +6,7 @@
 //
 
 #import "OrderListItemCell.h"
+#import "NSString+Fee.h"
 
 @interface OrderListItemCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -32,7 +33,7 @@
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
-    _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.unitPrice];
+    _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
 - (void)setOrderContent:(orderItemsModel *)model state:(NSString *)state
 {
@@ -42,7 +43,7 @@
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
-    _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.unitPrice];
+    _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
 - (void)setRefundContent:(RefundDetailItemsModel *)model
 {
@@ -51,7 +52,7 @@
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.submitNum];
-    _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.unitPrice];
+    _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
 - (IBAction)blockAction:(UIButton *)sender {
     if (self.block) {

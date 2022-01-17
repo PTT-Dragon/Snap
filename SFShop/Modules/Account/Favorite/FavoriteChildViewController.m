@@ -123,7 +123,7 @@
         completionHandler (YES);
         [self deleteCellWithRow:indexPath.row];
     }];
-    deleteRowAction.image = [UIImage imageNamed:@"删除"];
+    deleteRowAction.image = [UIImage imageNamed:@"trash"];
     deleteRowAction.backgroundColor = [UIColor redColor];
     
     //置顶
@@ -131,7 +131,7 @@
         completionHandler (YES);
         [self pinToTopWithRow:indexPath.row];
     }];
-    topRowAction.image = [UIImage imageNamed:@"删除"];
+    topRowAction.image = [UIImage imageNamed:@"top"];
     topRowAction.backgroundColor = RGBColorFrom16(0xFF1659);
     
     UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction,topRowAction]];

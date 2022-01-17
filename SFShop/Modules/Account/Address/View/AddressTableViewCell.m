@@ -31,13 +31,13 @@
     self.phoneLabel.text = model.contactNbr;
     self.nameLabel.text = model.contactName;
     self.contentLabel.text = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",model.postCode,model.contactAddress,model.street,model.district,model.city,model.province,model.country];
-    self.tagLabel.text = [model.isDefault isEqualToString:@"Y"] ? kLocalizedString(@""): ;
-    
+    self.tagLabel.text = [model.isDefault isEqualToString:@"Y"] ? kLocalizedString(@"DEFAULT"): @"";
+    self.tagLabel.hidden = [model.isDefault isEqualToString:@"N"];
 }
 - (IBAction)editAction:(id)sender {
-    AddAddressViewController *vc = [[AddAddressViewController alloc] init];
-    vc.model = _model;
-    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    if (self.block) {
+        self.block(_model);
+    }
 }
 
 @end

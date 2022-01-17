@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString <Optional> *replyTotal;
 @property(nonatomic, strong) NSString <Optional> *state;
 @property(nonatomic, strong) NSString <Optional> *stateDate;
-@property(nonatomic, strong) NSString <Optional> *usefulCnt;
+@property(nonatomic, assign) NSInteger usefulCnt;
 @property(nonatomic, strong) NSString <Optional> *userId;
 @property(nonatomic, strong) NSString <Optional> *userLogo;
 @property(nonatomic, strong) NSString <Optional> *userName;

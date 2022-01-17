@@ -79,7 +79,7 @@
     _nameLabel.text = model.userName;
     _likeBtn.selected = [model.isUseful isEqualToString:@"Y"];
     _likeLabel.textColor = [model.isUseful isEqualToString:@"Y"] ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0x7b7b7b);
-    _likeLabel.text = model.usefulCnt;
+    _likeLabel.text = [NSString stringWithFormat:@"%ld",model.usefulCnt];
 }
 - (void)setType:(NSInteger)type
 {
@@ -102,6 +102,7 @@
     [MBProgressHUD showHudMsg:@""];
     [SFNetworkManager post:[SFNet.article likeEvaluatelOf:_model.articleEvalId] parameters:@{@"action":[_model.isUseful isEqualToString:@"Y"] ? @"C": @"A"} success:^(id  _Nullable response) {
         weakself.model.isUseful = [weakself.model.isUseful isEqualToString:@"Y"] ? @"N": @"Y";
+        weakself.model.usefulCnt = [weakself.model.isUseful isEqualToString:@"Y"] ? weakself.model.usefulCnt + 1 : weakself.model.usefulCnt - 1;
         [weakself setModel:weakself.model];
         [MBProgressHUD hideFromKeyWindow];
     } failed:^(NSError * _Nonnull error) {

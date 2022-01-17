@@ -7,6 +7,7 @@
 
 #import "FavoriteTableViewCell.h"
 #import "SimilarViewController.h"
+#import "NSString+Fee.h"
 
 @interface FavoriteTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -31,8 +32,8 @@
     _model = model;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.productName;
-    _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.salesPrice];
-    _downLabel.text = [NSString stringWithFormat:@"↓ RP %@",model.markdownPrice];
+    _priceLabel.text = [NSString stringWithFormat:@"%@",[model.salesPrice currency]];
+    _downLabel.text = [NSString stringWithFormat:@"↓ %@",[model.markdownPrice currency]];
     _discountLabel.text = [NSString stringWithFormat:@" RP %@OFF ",model.markdownPrice];
 }
 - (IBAction)spCartAction:(id)sender {

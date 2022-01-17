@@ -96,7 +96,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             if (model.userRes.distributorDto) {
-                [self.dataSource insertObject:@{@"image":@"00350_Distributor_Center",@"title":@"Distributor  Center"} atIndex:0];
+                [self.dataSource insertObject:@{@"image":@"00350_Distributor_Center",@"title":kLocalizedString(@"Distributor_center")} atIndex:0];
                 [self.tableView reloadData];
             }
             [self loadData];
@@ -217,30 +217,30 @@
     }
     if (indexPath.row > 2) {
         accountSubCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        if ([cell.label.text isEqualToString:@"Distributor  Center"]) {
+        if ([cell.label.text isEqualToString:kLocalizedString(@"Distributor_center")]) {
             DistributeCenterViewController *vc = [[DistributeCenterViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:@"Refers"]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"REFERS")]){
             InviteViewController *vc = [[InviteViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:@"Reviews"]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"REVIEWS")]){
             ReviewViewController *vc = [[ReviewViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:@"Address"]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"ADDRESS")]){
             AddressViewController *vc = [[AddressViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:@"Service"]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"SERVICE")]){
             SupportViewController *vc = [[SupportViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:@"Forum"]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"FORUM")]){
             self.tabBarController.selectedIndex = 2;
-        }else if ([cell.label.text isEqualToString:@"Policies"]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"Policies")]){
             PolicesViewController *vc = [[PolicesViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:@"FAQ"]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"FAQ")]){
             FAQViewController *vc = [[FAQViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:@"Language"]) {
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"LANGUGE")]) {
             LanguageViewController *vc = [[LanguageViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }

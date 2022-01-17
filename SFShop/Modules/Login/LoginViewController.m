@@ -113,7 +113,7 @@ static BOOL _passwordSuccess = NO;
     _accountField.placeholder = kLocalizedString(@"Email");
 }
 - (IBAction)loginAction:(id)sender {
-    //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@12345   18861484865/Abc@1234
+    //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234  18861484865/Abc@1234
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.login parameters:@{@"account":_accountField.text,@"pwd":login_aes_128_cbc_encrypt(_passwordField.text)} success:^(id  _Nullable response) {
         NSError *error = nil;

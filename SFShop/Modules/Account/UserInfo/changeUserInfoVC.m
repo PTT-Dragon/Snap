@@ -26,13 +26,13 @@
     self.title = kLocalizedString(@"Personal_information");
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     _selectDateStr = model.userRes.birthdayDayStr;
-    _gender = model.userRes.genderStr;
+    _gender = model.userRes.gender;
     _genderBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _genderBtn.layer.borderWidth = 1;
     _birthBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _birthBtn.layer.borderWidth = 1;
     [_birthBtn setTitle:[NSString stringWithFormat:@"  %@",_selectDateStr?_selectDateStr:@""] forState:0];
-    [_genderBtn setTitle:[NSString stringWithFormat:@"  %@",_gender] forState:0];
+    [_genderBtn setTitle:[NSString stringWithFormat:@"  %@",model.userRes.genderStr] forState:0];
     _nameField.text = model.userRes.nickName;
 }
 - (void)selectWithSelectTime:(NSString *)selectTime withYear:(NSString *)year withMonth:(NSString *)month{

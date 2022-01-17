@@ -108,6 +108,13 @@
 {
     AddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddressTableViewCell"];
     [cell setContent:self.dataSource[indexPath.row]];
+    MPWeakSelf(self)
+    cell.block = ^(addressModel * _Nonnull model) {
+        AddAddressViewController *vc = [[AddAddressViewController alloc] init];
+        vc.model = model;
+        vc.delegate = weakself;
+        [weakself.navigationController pushViewController:vc animated:YES];
+    };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

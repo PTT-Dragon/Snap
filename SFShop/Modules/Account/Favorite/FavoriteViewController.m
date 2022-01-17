@@ -37,7 +37,7 @@
     [self.view addSubview:button];
     UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItems = @[rightItem];
-    self.menuList = @[@"All", @"Pricedown", @"Promotion"];
+    self.menuList = @[@"All", @"Pricedown"];
     for (NSInteger idx = 0; idx<self.menuList.count; idx++) {
         favoriteVCModel *model = [[favoriteVCModel alloc] init];
         model.type = idx == 0 ? ALLTYPE: idx == 1 ? PRICEDOWNTYPE: PROMOTIONTYPE;

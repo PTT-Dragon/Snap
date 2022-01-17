@@ -88,7 +88,7 @@
     [formatter1 setDateFormat:@"yyyy-MM-dd"];
     NSString *selDay = [formatter1 stringFromDate:_dateSelected];
     NSDate *startDate = [_calendarManager.dateHelper addToDate:_dateSelected months:-1];
-    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":startDate,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":startDate,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(1000)} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
         [weakself.dataSource removeAllObjects];
         if (!kArrayIsEmpty(arr)) {
@@ -253,11 +253,14 @@
         dayView.dotView.hidden = NO;
         dayView.textLabel.textColor = [UIColor redColor];
         dayView.dotView.backgroundColor = [UIColor redColor];
-        dayView.textLabel.textColor = [UIColor blackColor];
     }else if ([_calendarManager.dateHelper date:dayView.date isEqualOrAfter:date1 andEqualOrBefore:[NSDate date]]){
-        
         dayView.circleView.hidden = YES;
-        dayView.dotView.backgroundColor = [UIColor whiteColor];
+        dayView.dotView.hidden = NO;
+        if ([self hasDataWithDay:dayView.date]) {
+            dayView.dotView.backgroundColor = [UIColor lightGrayColor];
+        }else{
+            dayView.dotView.backgroundColor = [UIColor whiteColor];
+        }
         dayView.textLabel.textColor = [UIColor blackColor];
     }
     // Other month
@@ -273,12 +276,12 @@
         dayView.textLabel.textColor = [UIColor lightGrayColor];
     }
     
-    if([self haveEventForDay:dayView.date]){
-        dayView.dotView.hidden = NO;
-    }
-    else{
-        dayView.dotView.hidden = YES;
-    }
+//    if([self haveEventForDay:dayView.date]){
+//        dayView.dotView.hidden = NO;
+//    }
+//    else{
+//        dayView.dotView.hidden = YES;
+//    }
 }
 
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
@@ -346,6 +349,16 @@
     
     // Max date will be 2 month after today
     _maxDate = [_calendarManager.dateHelper addToDate:_todayDate months:0];
+}
+- (BOOL)hasDataWithDay:(NSDate *)date
+{
+    __block BOOL hasData = NO;
+    [self.dataSource enumerateObjectsUsingBlock:^(RecentlyModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([_calendarManager.dateHelper date:date isTheSameDayThan:obj.date]) {
+            hasData = YES;
+        }
+    }];
+    return hasData;
 }
 #pragma mark - Fake data
 

@@ -234,7 +234,7 @@
 - (void)showEmptyView {
     if ([[UIViewController currentTopViewController] isKindOfClass:[CartViewController class]]) {
         CartViewController *cartVC = (CartViewController *)[UIViewController currentTopViewController];
-        if (self.cartModel.validCarts.count > 0) {
+        if (self.cartModel.validCarts.count > 0 || self.cartModel.invalidCarts.count > 0) {
             cartVC.bottomView.hidden = NO;
             self.emptyView.hidden = YES;
         } else {
