@@ -244,19 +244,21 @@
         dayView.circleView.backgroundColor = [UIColor blueColor];
         dayView.dotView.backgroundColor = [UIColor redColor];
         dayView.textLabel.textColor = [UIColor redColor];
-        dayView.textLabel.text = @"今天";
+        dayView.textLabel.text = kLocalizedString(@"Today");
     }
     // Selected date
     else if(_dateSelected && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
-        dayView.circleView.hidden = NO;
+        dayView.circleView.hidden = YES;
         dayView.circleView.backgroundColor = [UIColor redColor];
-        dayView.dotView.backgroundColor = [UIColor whiteColor];
-        dayView.textLabel.textColor = [UIColor whiteColor];
+        dayView.dotView.hidden = NO;
+        dayView.textLabel.textColor = [UIColor redColor];
+        dayView.dotView.backgroundColor = [UIColor redColor];
+        dayView.textLabel.textColor = [UIColor blackColor];
     }else if ([_calendarManager.dateHelper date:dayView.date isEqualOrAfter:date1 andEqualOrBefore:[NSDate date]]){
         
         dayView.circleView.hidden = YES;
         dayView.dotView.backgroundColor = [UIColor whiteColor];
-        dayView.textLabel.textColor = [UIColor lightGrayColor];
+        dayView.textLabel.textColor = [UIColor blackColor];
     }
     // Other month
 //    else if(![_calendarManager.dateHelper date:_calendarContentView.date isTheSameMonthThan:dayView.date]){
@@ -267,7 +269,7 @@
     // Another day of the current month
     else{
         dayView.circleView.hidden = YES;
-        dayView.dotView.backgroundColor = [UIColor redColor];
+        dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor lightGrayColor];
     }
     
@@ -361,13 +363,14 @@
 
 - (BOOL)haveEventForDay:(NSDate *)date
 {
-    NSString *key = [[self dateFormatter] stringFromDate:date];
-    
-    if(_eventsByDate[key] && [_eventsByDate[key] count] > 0){
-        return YES;
-    }
-    
-    return NO;
+    return YES;
+//    NSString *key = [[self dateFormatter] stringFromDate:date];
+//
+//    if(_eventsByDate[key] && [_eventsByDate[key] count] > 0){
+//        return YES;
+//    }
+//
+//    return NO;
     
 }
 

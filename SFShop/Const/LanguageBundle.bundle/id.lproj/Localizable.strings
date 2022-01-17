@@ -224,7 +224,7 @@
 //  "RECIPIENT_NAME" = "Nama penerima";
 //  "PROVINCE_CITY_DISTRICT" = "Provinsi; Kota; Kabupaten";
 //  "MODIFY_ADDRESS" = "Ubah Alamat";
-//  "DEFAULT" = "Utama";
+  "DEFAULT" = "Utama";
 //  "REFUND_BANK_ACCOUNT" = "Rekening Bank untuk Pengembalian Dana";
 //  "FINAL_REFUND_AMOUNT" = "Total pengembalian dana";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Harap verifikasi pengembalian dana yang telah diterima";

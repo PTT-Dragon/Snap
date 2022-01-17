@@ -458,7 +458,7 @@ NSInteger MINYEAR = 1970;
 }
 - (UIButton *)cancelBtn{
     if (!_cancelBtn) {
-        _cancelBtn = InsertTitleButton(nil, CGRectZero, 88, @"CANCEL", CHINESE_SYSTEM(15), RGBColorFrom16(0x999999), nil, self, @selector(sureBtnClick));
+        _cancelBtn = InsertTitleButton(nil, CGRectZero, 88, @"CANCEL", CHINESE_SYSTEM(15), RGBColorFrom16(0x999999), nil, self, @selector(cancelBtnClick));
     }
     return _cancelBtn;
 }

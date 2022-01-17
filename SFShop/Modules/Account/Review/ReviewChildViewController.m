@@ -53,13 +53,13 @@
     [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"evaluateFlag":evaluateFlag} success:^(id  _Nullable response) {
         [weakself.tableView.mj_header endRefreshing];
         NSArray *arr = response[@"list"];
-        [weakself showEmptyView];
         if (kArrayIsEmpty(arr)) {
             return;
         }
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
         }
+        [weakself showEmptyView];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [weakself showEmptyView];

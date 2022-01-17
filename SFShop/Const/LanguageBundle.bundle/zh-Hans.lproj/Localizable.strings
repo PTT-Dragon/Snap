@@ -224,7 +224,7 @@
 //  "RECIPIENT_NAME" = "收件人姓名";
 //  "PROVINCE_CITY_DISTRICT" = "省; 市; 区";
 //  "MODIFY_ADDRESS" = "修改地址";
-//  "DEFAULT" = "默认";
+  "DEFAULT" = "默认";
 //  "REFUND_BANK_ACCOUNT" = "退款银行账号";
 //  "FINAL_REFUND_AMOUNT" = "最终退款金额";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "请核实收到的退款";

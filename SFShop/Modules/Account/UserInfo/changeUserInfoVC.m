@@ -63,7 +63,7 @@
         [params setValue:_selectDateStr forKey:@"birthdayDay"];
     }
     if (_gender) {
-        [params setValue:_selectDateStr forKey:@"birthdayDay"];
+        [params setValue:_gender forKey:@"gender"];
     }
     [params setValue:_nameField.text forKey:@"nickName"];
     [SFNetworkManager post:SFNet.account.modify parameters:params success:^(id  _Nullable response) {

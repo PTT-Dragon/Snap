@@ -219,7 +219,7 @@
 //  "RECIPIENT_NAME" = "Recipient Name";
 //  "PROVINCE_CITY_DISTRICT" = "Province; City; District";
 //  "MODIFY_ADDRESS" = "Modify Address";
-//  "DEFAULT" = "Default";
+  "DEFAULT" = "Default";
 //  "REFUND_BANK_ACCOUNT" = "Refund to {bank account}";
 //  "FINAL_REFUND_AMOUNT" = "Final refund amount";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Please verify the refund has been received";

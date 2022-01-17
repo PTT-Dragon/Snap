@@ -31,7 +31,7 @@
     self.phoneLabel.text = model.contactNbr;
     self.nameLabel.text = model.contactName;
     self.contentLabel.text = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",model.postCode,model.contactAddress,model.street,model.district,model.city,model.province,model.country];
-//    self.tagLabel.text = model.
+    self.tagLabel.text = [model.isDefault isEqualToString:@"Y"] ? kLocalizedString(@""): ;
     
 }
 - (IBAction)editAction:(id)sender {
