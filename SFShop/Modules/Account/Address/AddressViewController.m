@@ -34,7 +34,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"AddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"AddressTableViewCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) { 
-        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+20);
         make.left.right.mas_equalTo(self.view);
         make.bottom.mas_equalTo(self.bottomView.mas_top);
     }];
@@ -144,7 +144,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     addressModel *model = self.dataSource[indexPath.row];
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
     !self.addressBlock?:self.addressBlock(model);
 }
 

@@ -368,7 +368,7 @@
 //  "Thu" = "Thu";
 //  "Fri" = "Fri";
 //  "Sat" = "Sat";
-//  "Today" = "Today";
+  "Today" = "Today";
 //  "POLICIES" = "Policies";
 //  "TERMS_CON" = "Terms Conditions & Privacy Policy";
 //  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "People joined the group; click to join";

@@ -372,7 +372,7 @@
 //  "Thu" = "Kamis";
 //  "Fri" = "Jumat";
 //  "Sat" = "Sabtu";
-//  "Today" = "Hari ini";
+  "Today" = "Hari ini";
 //  "POLICIES" = "kebijakan";
 //  "TERMS_CON" = "Syarat Ketentuan & Kebijakan Privasi";
 //  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "Orang-orang bergabung dengan grup klik untuk bergabung";

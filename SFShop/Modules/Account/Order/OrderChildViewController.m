@@ -92,6 +92,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OrderModel *model = self.dataSource[indexPath.section];
+    if (indexPath.row == model.orderItems.count+1) {
+        return;
+    }
     OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
     vc.orderId = model.orderId;
     [self.navigationController pushViewController:vc animated:YES];

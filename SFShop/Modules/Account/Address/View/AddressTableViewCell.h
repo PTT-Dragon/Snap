@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^AddressTableViewCellBlock)(addressModel *model);
+
+
 @interface AddressTableViewCell : UITableViewCell
+@property (nonatomic,copy) AddressTableViewCellBlock block;
 - (void)setContent:(addressModel *)model;
 
 @end

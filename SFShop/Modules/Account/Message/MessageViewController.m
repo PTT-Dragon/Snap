@@ -10,6 +10,7 @@
 #import "MessageModel.h"
 #import "MessageOrderListViewController.h"
 #import "EmptyView.h"
+#import "PublicWebViewController.h"
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -91,7 +92,11 @@
     if (indexPath.row == 0) {
         [self readMessage];
     }
-    MessageOrderListViewController *vc = [[MessageOrderListViewController alloc] init];
+//    MessageOrderListViewController *vc = [[MessageOrderListViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+    vc.url = [NSString stringWithFormat:@"%@/chat",Host];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)readMessage

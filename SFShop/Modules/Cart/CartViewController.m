@@ -242,6 +242,7 @@
             count += 1;
         }];
     }];
+    self.bottomView.hidden = count == 0;
     NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count+count];
     /**
         降价标签的数量未完成 因为没数据
