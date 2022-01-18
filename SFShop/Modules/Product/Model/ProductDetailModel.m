@@ -102,6 +102,16 @@
     self.currentLogisticsItem = logisticsItem;
 }
 
+- (void)setCampaignsInfoModel:(ProductCampaignsInfoModel *)campaignsInfoModel {
+    _campaignsInfoModel = campaignsInfoModel;
+    for (cmpShareBuysModel *share in campaignsInfoModel.cmpShareBuys) {
+        for (ProductItemModel *item in self.products) {
+            if ([share.productId isEqualToString:[NSString stringWithFormat:@"%ld",item.productId]]) {
+                item.groupPrice = share.shareBuyPrice;
+            }
+        }
+    }
+}
 @end
 
 @implementation ProductEvalationReplayModel

@@ -68,7 +68,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *flashSaleProcessViewWidth;
 @property (weak, nonatomic) IBOutlet UIView *groupInfoView;
 @property (weak, nonatomic) IBOutlet UIView *flashSaleInfoView;
-@property (nonatomic,strong) ProductCampaignsInfoModel *campaignsModel;
 @property (nonatomic, strong) dispatch_source_t timer;//倒计时
 @property (weak, nonatomic) IBOutlet UITableView *groupTableView;
 @property (nonatomic,strong) ProductGroupModel *groupModel;
@@ -100,8 +99,16 @@
     [self setupSubViews];
     [self requestProductRecord];
     [self requestEvaluationsList];
+    [self requestStock];
     [self addActions];
-    [self requestCampaigns];
+//    [self requestCampaigns];
+}
+
+- (void)requestStock {
+    
+//    {"stdAddrId":1488,"stores":[{"storeId":5,"products":[{"productId":19,"offerCnt":1,"inCmpIdList":[]}]}]}
+//
+//    [SFNetworkManager post:SFNet.offer.stock parameters:@{} success:<#^(id  _Nullable response)success#> failed:<#^(NSError * _Nonnull error)failed#>]
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -151,12 +158,45 @@
 }
 
 - (void)request {
+    MPWeakSelf(self)
     MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
-    [SFNetworkManager get: [SFNet.offer getDetailOf: self.offerId] success:^(id  _Nullable response) {
+    __block ProductCampaignsInfoModel *campaignsInfoModel;
+    __block ProductDetailModel *model;
+    dispatch_group_t group = dispatch_group_create();
+
+    //请求商品详情
+    dispatch_group_enter(group);
+    dispatch_group_async(group, dispatch_get_main_queue(), ^{
+        [SFNetworkManager get: [SFNet.offer getDetailOf: self.offerId] success:^(id  _Nullable response) {
+            [hud hideAnimated:YES];
+            NSError *error;
+            model = [[ProductDetailModel alloc] initWithDictionary: response error: &error];
+            NSLog(@"get product detail success");
+        } failed:^(NSError * _Nonnull error) {
+            [hud hideAnimated:YES];
+            [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+            NSLog(@"get product detail failed");
+        }];
+    });
+    
+    //请求商品优惠券数据
+    dispatch_group_enter(group);
+    dispatch_group_async(group, dispatch_get_main_queue(), ^{
+        [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":@(_offerId)} success:^(id  _Nullable response) {
+            [hud hideAnimated:YES];
+            campaignsInfoModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];;
+        } failed:^(NSError * _Nonnull error) {
+            [hud hideAnimated:YES];
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+    });
+
+    //获取数据,并进入结算页面
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [hud hideAnimated:YES];
-        NSError *error;
-        self.model = [[ProductDetailModel alloc] initWithDictionary: response error: &error];
+        if (!model || !campaignsInfoModel) {return;}
         
+        self.model = model;
         //确定默认选中的产品
         for (ProductItemModel *item in self.model.products) {
             if (item.productId == self.productId) {
@@ -166,14 +206,23 @@
             }
         }
         
+        //确认优惠信息
+        self.model.campaignsInfoModel = campaignsInfoModel;
+        if (campaignsInfoModel.cmpFlashSales.count > 0) {
+            //说明是参与抢购活动
+            [self layoutFlashSaleSubView];
+        }else if (self.isGroupBuy){
+            //拼团活动
+            [self requestGroupInfo];
+        }else if (campaignsInfoModel.coupons > 0){
+            //有可使用红包
+            [self layoutCouponSubviews];
+        }
+        
         [self updateUI];
-
-        NSLog(@"get product detail success");
-    } failed:^(NSError * _Nonnull error) {
-        [hud hideAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
-        NSLog(@"get product detail failed");
-    }];
+    });
+    
+ 
 }
 
 - (void)requestCampaigns
@@ -182,14 +231,15 @@
     MPWeakSelf(self)
     [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":@(_offerId)} success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
-        weakself.campaignsModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];
-        if (weakself.campaignsModel.cmpFlashSales.count > 0) {
+        ProductCampaignsInfoModel *campaignsInfoModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];;
+        weakself.model.campaignsInfoModel = campaignsInfoModel;
+        if (campaignsInfoModel.cmpFlashSales.count > 0) {
             //说明是参与抢购活动
             [weakself layoutFlashSaleSubView];
-        }else if (weakself.campaignsModel.cmpShareBuys.count > 0){
+        }else if (weakself.isGroupBuy){
             //拼团活动
             [weakself requestGroupInfo];
-        }else if (weakself.campaignsModel.coupons > 0){
+        }else if (campaignsInfoModel.coupons > 0){
             //有可使用红包
             [weakself layoutCouponSubviews];
         }
@@ -206,7 +256,7 @@
     /**
      先用第一个 需要匹配
      **/
-    cmpShareBuysModel *subMode = self.campaignsModel.cmpShareBuys.firstObject;
+    cmpShareBuysModel *subMode = self.model.campaignsInfoModel.cmpShareBuys.firstObject;
     [SFNetworkManager get:SFNet.groupbuy.groups parameters:@{@"offerId":@(_offerId),@"campaignId":@(subMode.campaignId),@"pageSize":@(5),@"pageIndex":@(1)} success:^(id  _Nullable response) {
         weakself.groupModel = [ProductGroupModel yy_modelWithDictionary:response];
     } failed:^(NSError * _Nonnull error) {
@@ -327,7 +377,7 @@
     self.groupInfoView.hidden = YES;
     self.viewTop.constant = 64;
     self.addCartBtn.hidden = YES;
-    FlashSaleDateModel *model = self.campaignsModel.cmpFlashSales.firstObject;
+    FlashSaleDateModel *model = self.model.campaignsInfoModel.cmpFlashSales.firstObject;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *nowDate = [formatter dateFromString:model.now];
@@ -379,26 +429,35 @@
         //已结束
     }
 }
-- (void)layoutGroupSubViews
-{
+- (void)layoutGroupSubViews {
     [self.groupTableView reloadData];
     self.groupTableViewHei.constant = [self calucateGroupTableviewHei];
     self.flashSaleInfoView.hidden = YES;
     self.groupInfoView.hidden = NO;
     self.viewTop.constant = 64;
-    [self.buyBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"SHARE_BUY")] forState:0];
-    [self.addCartBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
-    [self.campaignsModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+    
+    NSString *groupPrice = [NSString stringWithFormat:@"%ld",self.model.selectedProductItem.groupPrice].currency;
+    NSString *salePrice = [NSString stringWithFormat:@"%ld",self.model.selectedProductItem.salesPrice].currency;
+    BOOL isGroup = self.isGroupBuy;
+    [self.buyBtn setTitle:[NSString stringWithFormat:@"%@%@%@",isGroup?groupPrice:@"",isGroup?@"\n":@"",kLocalizedString(@"SHARE_BUY")] forState:0];
+    [self.addCartBtn setTitle:[NSString stringWithFormat:@"%@%@%@",isGroup?salePrice:@"",isGroup?@"\n":@"",kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
+    [self.model.campaignsInfoModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         if (model.productId.integerValue == self.model.selectedProductItem.productId) {
             //找到当前显示的商品
-            NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-            self.groupDiscountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
+            self.groupDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
-            self.groupSalePriceLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency,model.shareBuyPrice];
-            self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",self.model.selectedProductItem.salesPrice];
+            self.groupSalePriceLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareBuyPrice].currency;
+            NSString *marketPrice = [NSString stringWithFormat:@"%ld",self.model.selectedProductItem.marketPrice].currency;
+            NSMutableAttributedString *marketAtt = [[NSMutableAttributedString alloc] initWithString:marketPrice];
+            [marketAtt addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),
+                                       NSFontAttributeName:[UIFont systemFontOfSize:12],
+                                       NSForegroundColorAttributeName:[UIColor lightTextColor],
+            } range:NSMakeRange(0, marketPrice.length)];
+            self.groupMarketPriceLabel.attributedText = marketAtt;
         }
     }];
 }
+
 - (void)layoutCouponSubviews
 {
     
@@ -589,7 +648,7 @@
 
 - (IBAction)addToCart:(UIButton *)sender {
     if (!_isCheckingSaleInfo) {
-        [self showAttrsView];
+        [self showAttrsView:self.isGroupBuy?ProductViewBuyMethodPersonal:ProductViewBuyAddToCart];
     } else {
         // TODO: 添加购物车
         NSDictionary *params =
@@ -620,12 +679,12 @@
 
 - (IBAction)buyNow:(UIButton *)sender {
     if (!_isCheckingSaleInfo) {
-        [self showAttrsView];
+        [self showAttrsView:self.isGroupBuy?ProductViewBuyMethodGroupWithPrice:ProductViewBuyMethodPersonalWithPrice];
     } else {
         //跳转checkout页        
         ProductItemModel *item = self.getSelectedProductItem;
         item.storeName = self.model.storeName;
-        for (cmpShareBuysModel *buyModel in self.campaignsModel.cmpShareBuys) {
+        for (cmpShareBuysModel *buyModel in self.model.campaignsInfoModel.cmpShareBuys) {
             if (buyModel.productId.integerValue == item.productId) {
                 item.inCmpIdList = @[@(buyModel.campaignId)];
             }
@@ -651,14 +710,16 @@
         [weak_attrView removeFromSuperview];
         weakself.isCheckingSaleInfo = NO;
     };
-    _attrView.chooseAttrBlock = ^(NSString * _Nonnull attrId, ProductAttrValueModel * _Nonnull att) {
-        [weakself.model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            // TODO: 此处暂时仅处理颜色的属性，因为没找到有其他属性的测试数据
-            if ([obj.attrName isEqualToString:@"Color"]) {
-                NSInteger selectedColorIndex = weakself.attrView.selectedAttrValue[idx].integerValue;
-                weakself.variationsLabel.text = obj.attrValues[selectedColorIndex].value;
-            }
-        }];
+    _attrView.chooseAttrBlock = ^(ProdSpcAttrsModel * _Nonnull att) {
+        [weakself.model updateCurrentSpcAttsMode:att];
+        [weakself updateUI];
+//        [weakself.model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            // TODO: 此处暂时仅处理颜色的属性，因为没找到有其他属性的测试数据
+//            if ([obj.attrName isEqualToString:@"Color"]) {
+//                NSInteger selectedColorIndex = weakself.attrView.selectedAttrValue[idx].integerValue;
+//                weakself.variationsLabel.text = obj.attrValues[selectedColorIndex].value;
+//            }
+//        }];
     };
     UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
     [rootView addSubview:_attrView];
@@ -666,6 +727,10 @@
         make.top.left.right.equalTo(rootView);
         make.bottom.equalTo(_buyBtn.mas_top).offset(-16);
     }];
+}
+
+- (BOOL)isGroupBuy {
+    return self.model.campaignsInfoModel.cmpShareBuys.count > 0;
 }
 
 

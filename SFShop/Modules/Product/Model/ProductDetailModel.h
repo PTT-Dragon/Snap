@@ -28,8 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol FlashSaleDateModel;
 @protocol CouponModel;
 
-
-
+@class ProductCampaignsInfoModel;
 
 @interface ProductCarouselImgModel: JSONModel
 
@@ -112,8 +111,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateCurrentSpcAttsMode:(ProdSpcAttrsModel *)spcAttsMode;
 
 //获取当前选中的商品
-@property(nonatomic, readonly, strong) ProductItemModel *selectedProductItem;
+@property (nonatomic, readonly, strong) ProductItemModel *selectedProductItem;
 
+/// 打折信息
+@property (nonatomic, readwrite, strong) ProductCampaignsInfoModel *campaignsInfoModel;
 
 #pragma mark - 自定义字段，需要外部赋值 (结算使用)
 @property(nonatomic, readwrite, strong, nullable) NSString *note;//留言

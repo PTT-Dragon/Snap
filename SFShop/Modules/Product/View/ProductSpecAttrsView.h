@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, ProductViewBuyMethod) {
 };
 
 typedef void(^Block)(void);
-typedef void(^ChooseAttrBlock)(NSString *attrId, ProductAttrValueModel *att);
+typedef void(^ChooseAttrBlock)(ProdSpcAttrsModel *att);
 @interface ProductSpecAttrsView : UIView
 
 @property (nonatomic, copy) Block dismissBlock;

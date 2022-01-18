@@ -29,6 +29,7 @@
 
 - (instancetype)initWithBuyMethod:(ProductViewBuyMethod)buyMethod model:(ProductDetailModel *)model {
     if (self = [super init]) {
+        self.buyMethod = buyMethod;
         self.model = model;
         self.count = 1;
         self.selectedAttrBtn = [NSMutableArray array];
@@ -182,13 +183,19 @@
 -(void)setModel:(ProductDetailModel *)model {
     _model = model;
     MPWeakSelf(self)
-    [model.offerSpecAttrs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    
+//    [model.offerSpecAttrs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         // TODO: 此处默认选择第一个
-        [weakself.selectedAttrValue addObject:@0];
-    }];
+//        [weakself.selectedAttrValue addObject:@0];
+//    }];
+    
     [self.imgView sd_setImageWithURL:[NSURL URLWithString: SFImage(model.selectedProductItem.imgUrl)]];
     self.titleLabel.text = model.selectedProductItem.productName;
-    self.priceLabel.text = [NSString stringWithFormat:@"%ld", model.salesPrice].currency;
+    if (self.buyMethod == ProductViewBuyMethodGroupWithPrice) {
+        self.priceLabel.text = [NSString stringWithFormat:@"%ld", model.selectedProductItem.groupPrice].currency;
+    } else {
+        self.priceLabel.text = [NSString stringWithFormat:@"%ld", model.selectedProductItem.salesPrice].currency;
+    }
     // TODO: 此处先固定，后续根据库存接口数据调整
     self.stockLabel.text = @"stock: 25";
     
@@ -208,18 +215,26 @@
         preLayoutView = titleLabel;
         __block CGFloat xOffset = 16;
         __block BOOL newLine = YES;
-        [obj.attrValues enumerateObjectsUsingBlock:^(ProductAttrValueModel * _Nonnull obj, NSUInteger idx2, BOOL * _Nonnull stop) {
+        [obj.attrValues enumerateObjectsUsingBlock:^(ProductAttrValueModel * _Nonnull attObj, NSUInteger idx2, BOOL * _Nonnull stop) {
+            BOOL isSelected = NO;
+            for (ProdSpcAttrsModel *att in model.selectedProductItem.prodSpcAttrs) {
+                if ([att.attrId isEqualToString:obj.attrId]) {
+                    if ([attObj.value isEqualToString:att.value]) {
+                        isSelected = YES;
+                    }
+                }
+            }
+            
             ProductAttrButton *item = [ProductAttrButton buttonWithType:UIButtonTypeCustom];
-            BOOL isSelected = weakself.selectedAttrValue[idx1].integerValue == idx2;
             if (isSelected) {
                 [weakself.selectedAttrBtn addObject:item];
             }
             [item addTarget:weakself action:@selector(selcteAttr:) forControlEvents:UIControlEventTouchUpInside];
             item.tag = idx1 * 100 + idx2;
             [item setSelected: isSelected];
-            [item setTitle:obj.value forState:UIControlStateNormal];
+            [item setTitle:attObj.value forState:UIControlStateNormal];
             [weakself.attrsScrollContentView addSubview:item];
-            CGFloat itemWidth = [obj.value calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(1000, 1000)] + 20; // 添加10的宽度做padding
+            CGFloat itemWidth = [attObj.value calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(1000, 1000)] + 20; // 添加10的宽度做padding
             if(idx2 == 0 || xOffset + itemWidth + 16 > [[UIScreen mainScreen] bounds].size.width) {
                 xOffset = 16;
                 newLine = YES;
@@ -272,10 +287,15 @@
     [selectedBtn setSelected:NO];
     [sender setSelected:YES];
     [self.selectedAttrBtn replaceObjectAtIndex:sectionIndex withObject:sender];
-    self.selectedAttrValue[sectionIndex] = @(sender.tag % 100);
-//    self.model.products[]
+    
+    ProdSpcAttrsModel *selectedAtt = nil;
+    for (ProdSpcAttrsModel *att in self.model.selectedProductItem.prodSpcAttrs) {
+        if ([sender.titleLabel.text isEqualToString:att.value]) {
+            selectedAtt = att;
+        }
+    }
     if(self.chooseAttrBlock) {
-        self.chooseAttrBlock();
+        self.chooseAttrBlock(selectedAtt);
     }
 }
 
