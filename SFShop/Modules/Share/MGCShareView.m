@@ -54,6 +54,25 @@
 
 @implementation MGCShareView
 
++ (MGCShareView *)showShareViewWithSuperView:(UIView *)superView
+                              shareInfoModel:(MGCShareInfoModel *)shareInfoModel
+                                successBlock:(void (^)(NSDictionary *info, MGCShareItemType type))successBlock
+                                   failBlock:(void (^)(NSDictionary *info, MGCShareItemType type))failBlock
+                                   completed:(void (^)(BOOL isShow))completed {
+    MGCShareView *shareView = [[MGCShareView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    shareView.shareInfoModel = shareInfoModel;
+    [shareView prepareDefaultShareItem];
+    [shareView prepareCollectionWithViewType:MGCShareViewTypeOnlyShare];
+    shareView.successBlock = successBlock;
+    shareView.failBlock = failBlock;
+    if (completed) {
+        completed(YES);
+    }
+    [shareView showWithView:superView];
+    return shareView;
+}
+
+
 //五个三方分享带自定义工具栏
 + (MGCShareView *)showWithShareInfoModel:(MGCShareInfoModel *)infoModel
                        functionItemsArr:(NSMutableArray <MGCShareItemModel *> *)functionItemsArr
@@ -144,50 +163,26 @@
 
 //默认分享配置方法
 - (void)prepareDefaultShareItem{
-    
     [self.shareItemsArr removeAllObjects];
     
-    MGCShareItemModel *wechatFriendModel = [[MGCShareItemModel alloc] init];
-    wechatFriendModel.itemName = @"微信好友";
-    wechatFriendModel.itemType = MGCShareItemTypeWeChatFriend;
-    //qq和微信在分享帖子的时候是走小程序的 (不走小程序)
-//    if (type == MGCShareScenesTypeCpost || type == MGCShareScenesTypeToMiniProgram) {
-//        wechatFriendModel.itemType = MGCShareItemTypeWeChatFriendMini;
-//    }
-    wechatFriendModel.itemImage = @"ic_share_weixin";
+    MGCShareItemModel *faceBookModel = [[MGCShareItemModel alloc] init];
+    faceBookModel.itemName = @"FaceBook";
+    faceBookModel.itemType = MGCShareItemTypeFaceBook;
+    faceBookModel.itemImage = @"ic_share_weixin";
     
-    MGCShareItemModel *wechatCircleModel = [[MGCShareItemModel alloc] init];
-    wechatCircleModel.itemName = @"朋友圈";
-    wechatCircleModel.itemType = MGCShareItemTypeWeChatTimeline;
-    wechatCircleModel.itemImage = @"ic_share_pengyouquan";
+    MGCShareItemModel *whatsAppModel = [[MGCShareItemModel alloc] init];
+    whatsAppModel.itemName = @"WhatsApp";
+    whatsAppModel.itemType = MGCShareItemTypeWhatsApp;
+    whatsAppModel.itemImage = @"ic_share_pengyouquan";
     
-    MGCShareItemModel *qqModel = [[MGCShareItemModel alloc] init];
-    qqModel.itemName = @"QQ";
-    qqModel.itemType = MGCShareItemTypeQQFriend;
-//    (不走小程序)
-//    if (type == MGCShareScenesTypeCpost || type == MGCShareScenesTypeToMiniProgram) {
-//        qqModel.itemType = MGCShareItemTypeQQFriendMini;
-//    }
-    qqModel.itemImage = @"ic_share_qq";
+    MGCShareItemModel *insModel = [[MGCShareItemModel alloc] init];
+    insModel.itemName = @"Instagram";
+    insModel.itemType = MGCShareItemTypeInstagram;
+    insModel.itemImage = @"ic_share_qq";
     
-    
-    MGCShareItemModel *qZoneModel = [[MGCShareItemModel alloc] init];
-    qZoneModel.itemName = @"QQ空间";
-    qZoneModel.itemType = MGCShareItemTypeQZone;
-    qZoneModel.itemImage = @"ic_share_kongjian";
-    
-    MGCShareItemModel *weiboModel = [[MGCShareItemModel alloc] init];
-    weiboModel.itemName = @"微博";
-    weiboModel.itemType = MGCShareItemTypeWeibo;
-    weiboModel.itemImage = @"ic_share_weibo";
-
-    
-    
-    [self.shareItemsArr addObject:wechatFriendModel];
-    [self.shareItemsArr addObject:wechatCircleModel];
-    [self.shareItemsArr addObject:qqModel];
-    [self.shareItemsArr addObject:qZoneModel];
-    [self.shareItemsArr addObject:weiboModel];
+    [self.shareItemsArr addObject:faceBookModel];
+    [self.shareItemsArr addObject:whatsAppModel];
+    [self.shareItemsArr addObject:insModel];
 
     [self.shareCollectionView reloadData];
 }
@@ -195,43 +190,43 @@
 - (void)prepareCollectionWithViewType:(MGCShareViewType)type{
     self.shareViewType = type;
     
-//    CGFloat bgHeight = 145+AutoNum(160);
-//    CGFloat oneToolHeight = 121+AutoNum(100);
-//    CGFloat btnHeitght = 16+AutoNum(40);
-//
-//    if (iPhoneX) {
-//        bgHeight = 145+AutoNum(160)+iPhoneXBottomOffset;
-//        oneToolHeight = 113+AutoNum(100)+iPhoneXBottomOffset;
-//        btnHeitght = 16+AutoNum(40)+iPhoneXBottomOffset;
-//    }
-//    if (type == MGCShareViewTypeNormal) {
-//        _bgView.frame = CGRectMake(0, self.height - bgHeight, self.width, bgHeight);
-//        _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
-//        _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
-//        _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, AutoNum(60));
-//        _functionCollectionView.frame = CGRectMake(0, self.shareCollectionView.bottom + 32, self.width, AutoNum(60));
-//        _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, AutoNum(40));
-//        _functionCollectionView.hidden = NO;
-//        _shareCollectionView.hidden = NO;
-//    }else if (type == MGCShareViewTypeOnlyShare){
-//        _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
-//        _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
-//        _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
-//        _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, AutoNum(60));
-//        _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, AutoNum(40));
-//        _functionCollectionView.hidden = YES;
-//        _shareCollectionView.hidden = NO;
-//    }else if (type == MGCShareViewTypeOnlyTool){
-//        _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
-//        _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
-//        _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
-//        _functionCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, AutoNum(60));
-//        _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, AutoNum(40));
-//        _shareCollectionView.hidden = YES;
-//        _functionCollectionView.hidden = NO;
-//    }
-//    [self.functionCollectionView reloadData];
-//    [self.shareCollectionView reloadData];
+    CGFloat bgHeight = 145+160;
+    CGFloat oneToolHeight = 121+100;
+    CGFloat btnHeitght = 16+40;
+
+    if (iPhoneX) {
+        bgHeight = 145+160+iPhoneXBottomOffset;
+        oneToolHeight = 113+100+iPhoneXBottomOffset;
+        btnHeitght = 16+40+iPhoneXBottomOffset;
+    }
+    if (type == MGCShareViewTypeNormal) {
+        _bgView.frame = CGRectMake(0, self.height - bgHeight, self.width, bgHeight);
+        _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
+        _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
+        _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60);
+        _functionCollectionView.frame = CGRectMake(0, self.shareCollectionView.bottom + 32, self.width, 60);
+        _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
+        _functionCollectionView.hidden = NO;
+        _shareCollectionView.hidden = NO;
+    }else if (type == MGCShareViewTypeOnlyShare){
+        _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
+        _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
+        _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
+        _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60);
+        _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
+        _functionCollectionView.hidden = YES;
+        _shareCollectionView.hidden = NO;
+    }else if (type == MGCShareViewTypeOnlyTool){
+        _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
+        _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
+        _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
+        _functionCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60);
+        _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
+        _shareCollectionView.hidden = YES;
+        _functionCollectionView.hidden = NO;
+    }
+    [self.functionCollectionView reloadData];
+    [self.shareCollectionView reloadData];
 }
 
 - (void)prepareShowBigShareImage{
@@ -311,72 +306,71 @@
         [superView addSubview:self];
     }
     
-//    CGFloat height = 145+AutoNum(160);
-//    CGFloat oneToolHeight = 113+AutoNum(100);
-//    if (iPhoneX) {
-//        height = 145+AutoNum(160)+iPhoneXBottomOffset;
-//        oneToolHeight = 113+AutoNum(100)+iPhoneXBottomOffset;
-//    }
-//    CGFloat viewHeight = 0;
-//    if (self.shareViewType == MGCShareViewTypeNormal) {
-//        viewHeight = height;
-//    }else{
-//        viewHeight = oneToolHeight;
-//    }
-//
-//    self.alpha = 0;
-//    self.maskView.alpha = 0;
-//    self.bgView.frame = CGRectMake(0, self.height, self.width, viewHeight);
-//    [UIView animateWithDuration:0.25 animations:^{
-//        self.alpha = 1;
-//        self.bgView.frame = CGRectMake(0, self.height - viewHeight, self.width, viewHeight);
-//        self.maskView.alpha = 1;
-//    } completion:^(BOOL finished) {
-//
-//    }];
+    CGFloat height = 145+160;
+    CGFloat oneToolHeight = 113+100;
+    if (iPhoneX) {
+        height = 145+160+iPhoneXBottomOffset;
+        oneToolHeight = 113+100+iPhoneXBottomOffset;
+    }
+    CGFloat viewHeight = 0;
+    if (self.shareViewType == MGCShareViewTypeNormal) {
+        viewHeight = height;
+    }else{
+        viewHeight = oneToolHeight;
+    }
+
+    self.alpha = 0;
+    self.maskView.alpha = 0;
+    self.bgView.frame = CGRectMake(0, self.height, self.width, viewHeight);
+    [UIView animateWithDuration:0.25 animations:^{
+        self.alpha = 1;
+        self.bgView.frame = CGRectMake(0, self.height - viewHeight, self.width, viewHeight);
+        self.maskView.alpha = 1;
+    } completion:^(BOOL finished) {
+
+    }];
 }
 
 
 - (void)panAction:(UIPanGestureRecognizer *)sender{
-//    CGPoint translationPoint = [sender translationInView:self.bgView];
-//
-//    CGFloat shareHeight = self.bgView.frame.size.height;
-//    CGRect newFrame = CGRectMake(0, kScreenHeight - shareHeight, kScreenWidth, shareHeight);
-//    newFrame.origin.y =  kScreenHeight - shareHeight + translationPoint.y;
-//
-//    if (newFrame.origin.y <= kScreenHeight - shareHeight) {
-//        newFrame.origin.y = kScreenHeight - shareHeight;
-//    }
-//
-//    self.bgView.frame = newFrame;
-//
-//    if (sender.state == UIGestureRecognizerStateEnded) {
-//        CGPoint velocity = [sender velocityInView:self.bgView];
-//        // 结束时的速度>0 滑动距离> 5 且UIScrollView滑动到最顶部
-//        if (velocity.y > 0 && self.lastTransitionY > 100 || shareHeight < 150) {
-//            [self removeFromSuperview];
-//        }else {
-//            [self reSetbgFrame];
-//        }
-//    }
-//    self.lastTransitionY = translationPoint.y;
+    CGPoint translationPoint = [sender translationInView:self.bgView];
 
+    CGFloat shareHeight = self.bgView.frame.size.height;
+    CGRect newFrame = CGRectMake(0, MainScreen_height - shareHeight, MainScreen_width, shareHeight);
+    newFrame.origin.y =  MainScreen_height - shareHeight + translationPoint.y;
+
+    if (newFrame.origin.y <= MainScreen_height - shareHeight) {
+        newFrame.origin.y = MainScreen_height - shareHeight;
+    }
+
+    self.bgView.frame = newFrame;
+
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint velocity = [sender velocityInView:self.bgView];
+        // 结束时的速度>0 滑动距离> 5 且UIScrollView滑动到最顶部
+        if (velocity.y > 0 && self.lastTransitionY > 100 || shareHeight < 150) {
+            [self removeFromSuperview];
+        }else {
+            [self reSetbgFrame];
+        }
+    }
+    self.lastTransitionY = translationPoint.y;
 }
 
 - (void)reSetbgFrame{
-//    CGFloat height = 145+AutoNum(160);
-//    CGFloat oneToolHeight = 113+AutoNum(100);
-//    if (iPhoneX) {
-//        height = 145+AutoNum(160)+iPhoneXBottomOffset;
-//        oneToolHeight = 113+AutoNum(100)+iPhoneXBottomOffset;
-//    }
-//    CGFloat viewHeight = 0;
-//    if (self.shareViewType == MGCShareViewTypeNormal) {
-//        viewHeight = height;
-//    }else{
-//        viewHeight = oneToolHeight;
-//    }
-//    self.bgView.frame = CGRectMake(0, self.height - viewHeight, self.width, viewHeight);
+    CGFloat height = 145+160;
+    CGFloat oneToolHeight = 113+100;
+    if (iPhoneX) {
+        height = 145+160+iPhoneXBottomOffset;
+        oneToolHeight = 113+100+iPhoneXBottomOffset;
+    }
+    CGFloat viewHeight = 0;
+    if (self.shareViewType == MGCShareViewTypeNormal) {
+        viewHeight = height;
+    }else{
+        viewHeight = oneToolHeight;
+    }
+    self.bgView.frame = CGRectMake(0, self.height - viewHeight, self.width, viewHeight);
 }
 
 #pragma mark - setter && getter
@@ -384,17 +378,17 @@
 
 - (UIView *)bgView{
     if (!_bgView) {
-//        CGFloat height = 145+AutoNum(160);
-//        if (iPhoneX) {
-//            height = 145+AutoNum(160)+iPhoneXBottomOffset;
-//        }
-//        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - height, self.width, height)];
-//        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(6, 0)];
-//        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-//        maskLayer.frame = _bgView.bounds;
-//        maskLayer.path = maskPath.CGPath;
-//        _bgView.layer.mask = maskLayer;
-//        _bgView.backgroundColor = [UIColor mgcBackgroundColor1];
+        CGFloat height = 145+160;
+        if (iPhoneX) {
+            height = 145+160+iPhoneXBottomOffset;
+        }
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - height, self.width, height)];
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(6, 0)];
+        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+        maskLayer.frame = _bgView.bounds;
+        maskLayer.path = maskPath.CGPath;
+        _bgView.layer.mask = maskLayer;
+        _bgView.backgroundColor = [UIColor whiteColor];
     }
     return _bgView;
 }
@@ -465,19 +459,19 @@
 
 - (UIButton *)cancelBtn{
     if (!_cancelBtn) {
-//        CGFloat height = 16+AutoNum(40);
-//        if (iPhoneX) {
-//            height = 16+AutoNum(40)+iPhoneXBottomOffset;
-//        }
-//        _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, self.bgView.height - height, self.width - 30, AutoNum(40))];
-//        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-//        [_cancelBtn setTitleColor:[UIColor mgcSubWordColor] forState:UIControlStateNormal];
-//        _cancelBtn.titleLabel.font = [UIFont regularFontOfSize:15];
-//        _cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-//        [_cancelBtn setBackgroundColor:[UIColor mgcAuxiliaryMatchColor3]];
-//        [_cancelBtn addTarget:self action:@selector(cancelBtnAction) forControlEvents:UIControlEventTouchUpInside];
-//        _cancelBtn.layer.cornerRadius = AutoNum(20);
-//        _cancelBtn.layer.masksToBounds = YES;
+        CGFloat height = 16+40;
+        if (iPhoneX) {
+            height = 16+40+iPhoneXBottomOffset;
+        }
+        _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, self.bgView.height - height, self.width - 30, 40)];
+        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        _cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_cancelBtn setBackgroundColor:[UIColor whiteColor]];
+        [_cancelBtn addTarget:self action:@selector(cancelBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        _cancelBtn.layer.cornerRadius = 20;
+        _cancelBtn.layer.masksToBounds = YES;
     }
     return _cancelBtn;
 }
@@ -565,164 +559,5 @@
     }
     return _shareInfoModel;
 }
-
-+ (MGCShareItemModel *)reportFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"举报";
-    functionModel.itemType = MGCShareItemTypeReport;
-    functionModel.itemImage = @"ic_share_report";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)copyLinkFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"复制链接";
-    functionModel.itemType = MGCShareItemTypeCopyUrl;
-    functionModel.itemImage = @"ic_share_like";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)unlikeFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"不感兴趣";
-    functionModel.itemType = MGCShareItemTypeUnLike;
-    functionModel.itemImage = @"ic_share_dislike";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)collectFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"收藏";
-    functionModel.itemType = MGCShareItemTypeCollect;
-    functionModel.itemImage = @"ic_share_collect";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)haveCollectFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"已收藏";
-    functionModel.itemType = MGCShareItemTypeHaveCollect;
-    functionModel.itemImage = @"ic_share_discollect";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)refreshFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"刷新";
-    functionModel.itemType = MGCShareItemTypeRefresh;
-    functionModel.itemImage = @"ic_share_refresh";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)deleteFunctionItem {
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"删除";
-    functionModel.itemType = MGCShareItemTypeDelete;
-    functionModel.itemImage = @"ic_share_delete@2x";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)authoritySettingFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"权限设置";
-    functionModel.itemType = MGCShareItemTypeAuthoritySetting;
-    functionModel.itemImage = @"ic_share_secret";
-    return functionModel;
-}
-+ (MGCShareItemModel *)moveDeleteFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"移除";
-    functionModel.itemType = MGCShareItemTypeMoveDelete;
-    functionModel.itemImage = @"";
-    return functionModel;
-}
-+ (MGCShareItemModel *)CRBTManagerFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"彩铃管理";
-    functionModel.itemType = MGCShareItemTypeCRBTManager;
-    functionModel.itemImage = @"";
-    return functionModel;
-}
-+ (MGCShareItemModel *)useCommonSensFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"使用小常识";
-    functionModel.itemType = MGCShareItemTypeUseCommonSense;
-    functionModel.itemImage = @"";
-    return functionModel;
-}
-+ (MGCShareItemModel *)SharePicFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"生成海报";
-    functionModel.itemType = MGCShareItemTypeSharePic;
-    functionModel.itemImage = @"";
-    return functionModel;
-}
-+ (MGCShareItemModel *)TemplateFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"魔性小视频";
-    functionModel.itemType = MGCShareItemTypeTemplate;
-    functionModel.itemImage = @"";
-    return functionModel;
-}
-+ (MGCShareItemModel *)colorPrintFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"设为彩印";
-    functionModel.itemType = MGCShareItemTypeColorPrint;
-    functionModel.itemImage = @"";
-    return functionModel;
-}
-+ (MGCShareItemModel *)transferStorageFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"转存和彩云";
-    functionModel.itemType = MGCShareItemTypeTransferStorage;
-    functionModel.itemImage = @"ic_share_yun";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)conentDissatisfiedFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"内容太水";
-    functionModel.itemType = MGCShareItemTypeConentDissatisfied;
-    functionModel.itemImage = @"";
-    return functionModel;
-}
-+ (MGCShareItemModel *)disConentDissatisfiedFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"内容太水";
-    functionModel.itemType = MGCShareItemTypeDisConentDissatisfied;
-    functionModel.itemImage = @"";
-    return functionModel;
-}
-+ (MGCShareItemModel *)ringManagerFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"彩铃管理";
-    functionModel.itemType = MGCShareItemTypeCRBTManager;
-    functionModel.itemImage = @"ic_videorbt_management";
-    return functionModel;
-}
-+ (MGCShareItemModel *)shootFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"拍同款";
-    functionModel.itemType = MGCShareItemTypeShoot;
-    functionModel.itemImage = @"";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)dowmloadFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"保存本地";
-    functionModel.itemType = MGCShareItemTypeDownLoad;
-    functionModel.itemImage = @"ic_share_download";
-    return functionModel;
-}
-
-+ (MGCShareItemModel *)openSafariFunctionItem{
-    MGCShareItemModel *functionModel = [[MGCShareItemModel alloc] init];
-    functionModel.itemName = @"打开Safari";
-    functionModel.itemType = MGCShareItemTypeOpenSafari;
-    functionModel.itemImage = @"ic_share_browser";
-    return functionModel;
-}
-
 
 @end

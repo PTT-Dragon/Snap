@@ -9,37 +9,9 @@
 
 /// 分享类型
 typedef NS_ENUM(NSUInteger, MGCShareItemType) {
-    MGCShareItemTypeWeChatFriend = 1,//微信好友
-    MGCShareItemTypeWeChatTimeline,//微信朋友圈
-    MGCShareItemTypeQQFriend,//QQ好友
-    MGCShareItemTypeQZone,//QQ空间
-    MGCShareItemTypeWeibo,//新浪微博
-    MGCShareItemTypeWeChatFriendMini,//微信好友小程序
-    MGCShareItemTypeQQFriendMini,//QQ好友小程序
-    MGCShareItemTypeMore,//更多分享
-    
-    MGCShareItemTypeReport,//举报
-    MGCShareItemTypeCopyUrl,//复制链接
-    MGCShareItemTypeUnLike,//不喜欢
-    MGCShareItemTypeCollect,//收藏
-    MGCShareItemTypeHaveCollect,//已收藏
-    MGCShareItemTypeRefresh,//刷新
-    MGCShareItemTypeDelete,//删除
-    MGCShareItemTypeAuthoritySetting,//权限设置
-    MGCShareItemTypeMoveDelete,//移除
-    MGCShareItemTypeCRBTManager,//彩铃管理
-    MGCShareItemTypeUseCommonSense,//使用小常识
-    MGCShareItemTypeSharePic,//生成海报
-    MGCShareItemTypeTemplate,//魔性小视频使用模板
-    MGCShareItemTypeColorPrint,//设为彩印
-    MGCShareItemTypeTransferStorage,//保存和彩云
-    MGCShareItemTypeConentDissatisfied,//内容太水
-    MGCShareItemTypeDisConentDissatisfied,//内容太水置灰
-    MGCShareItemTypeRing,//彩铃
-    MGCShareItemTypeShoot,//拍同款
-    MGCShareItemTypeDownLoad,//下载本地
-    MGCShareItemTypeOpenSafari//打开浏览器
-
+    MGCShareItemTypeFaceBook = 1,   //facebook
+    MGCShareItemTypeWhatsApp,       //whatsapp
+    MGCShareItemTypeInstagram,      //Ins
 };
 
 NS_ASSUME_NONNULL_BEGIN
