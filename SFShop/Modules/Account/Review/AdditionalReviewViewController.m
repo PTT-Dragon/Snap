@@ -50,6 +50,7 @@
     _textView.layer.borderColor = RGBColorFrom16(0xc4c4c4).CGColor;
     _textView.layer.borderWidth = 1;
     [self loadDatas];
+//    [self updateDatas];
 }
 - (void)updateDatas
 {
@@ -62,7 +63,7 @@
 - (void)loadDatas
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.evaluate.detail parameters:@{@"orderItemId":_orderItemId} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.evaluate.detail parameters:@{@"orderItemId":[_orderModel.orderItems.firstObject orderItemId]} success:^(id  _Nullable response) {
         weakself.model = [ReviewDetailModel yy_modelWithDictionary:response];
         [weakself updateDatas];
     } failed:^(NSError * _Nonnull error) {
@@ -190,7 +191,7 @@
         [params setValue:_imgUrlArr forKey:@"contents"];
     }
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.evaluate.addEvaluate parameters:params success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.evaluate.review parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"Review Success"];
         ReviewSuccessViewController *vc = [[ReviewSuccessViewController alloc] init];
         [weakself.navigationController pushViewController:vc animated:YES];

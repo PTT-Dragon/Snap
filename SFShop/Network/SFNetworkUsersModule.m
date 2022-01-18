@@ -153,6 +153,12 @@
 - (NSString *)addEvaluate {
     return K_evaluate_domain(@"");
 }
+- (NSString *)review {
+    return K_evaluate_domain(@"review");
+}
+- (NSString *)modify {
+    return K_evaluate_domain(@"modify");
+}
 - (NSString *)detail {
     return K_evaluate_domain(@"detail");
 }

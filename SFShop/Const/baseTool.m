@@ -74,4 +74,11 @@
     }
     return result;
 }
++ (void)updateCartNum
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UITabBarItem *item = [[[(UITabBarController*)appDelegate.tabVC tabBar] items] objectAtIndex:3];
+    item.badgeValue = @"2";
+    item.badgeColor = [UIColor redColor];
+}
 @end

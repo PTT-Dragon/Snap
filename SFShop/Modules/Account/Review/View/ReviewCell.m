@@ -7,8 +7,6 @@
 
 #import "ReviewCell.h"
 #import "StarView.h"
-#import "AddReviewViewController.h"
-#import "AdditionalReviewViewController.h"
 
 @interface ReviewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *storeImgView;
@@ -70,19 +68,18 @@
 }
 - (IBAction)btn1Action:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"ADDITIONAL REVIEW"]) {
-        AdditionalReviewViewController *vc = [[AdditionalReviewViewController alloc] init];
-        vc.orderItemId = _model.orderId;
-        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        if (self.additionBlock) {
+            self.additionBlock(_model);
+        }
         return;
     }
-    AddReviewViewController *vc = [[AddReviewViewController alloc] init];
-    vc.model = _model;
-    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    if (self.block) {
+        self.block(_model);
+    }
 }
 - (IBAction)btn2Action:(UIButton *)sender {
-    AddReviewViewController *vc = [[AddReviewViewController alloc] init];
-    vc.model = _model;
-    vc.orderItemId = _model.orderId;
-    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    if (self.block) {
+        self.block(_model);
+    }
 }
 @end

@@ -12,6 +12,9 @@
 #import "ProductViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "EmptyView.h"
+#import "AddReviewViewController.h"
+#import "AdditionalReviewViewController.h"
+
 
 @interface ReviewChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -83,8 +86,8 @@
     [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"evaluateFlag":evaluateFlag} success:^(id  _Nullable response) {
         [weakself.tableView.mj_header endRefreshing];
         NSArray *arr = response[@"list"];
+        [weakself.dataSource removeAllObjects];
         if (!kArrayIsEmpty(arr)) {
-            [weakself.dataSource removeAllObjects];
             for (NSDictionary *dic in arr) {
                 [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
             }
@@ -131,6 +134,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ReviewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewCell"];
+    MPWeakSelf(self)
+    cell.block = ^(OrderModel * _Nonnull model) {
+        AddReviewViewController *vc = [[AddReviewViewController alloc] init];
+        vc.model = model;
+        vc.orderItemId = [model.orderItems.firstObject orderItemId];
+        vc.block = ^{
+            [weakself.tableView.mj_header beginRefreshing];
+        };
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    };
+    cell.additionBlock = ^(OrderModel * _Nonnull model) {
+        AdditionalReviewViewController *vc = [[AdditionalReviewViewController alloc] init];
+        vc.orderModel = model;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    };
     [cell setContent:self.dataSource[indexPath.row] type:_type];
     return cell;
 }
@@ -145,7 +163,7 @@
     OrderModel *model = self.dataSource[indexPath.row];
     if (_type == 2) {
         ReviewDetailViewController *vc = [[ReviewDetailViewController alloc] init];
-        vc.orderItemId = model.orderId;
+        vc.orderItemId = [model.orderItems.firstObject orderItemId];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }

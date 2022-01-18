@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeVCFromNavigationWithVCName:(NSString *)vcName currentVC:(UIViewController *)currentVC;
 + (void)removeVCFromNavigationWithVCNameArr:(NSArray <NSString *> *)vcName currentVC:(UIViewController *)currentVC;
 + (UIViewController *)getCurrentVC;
++ (void)updateCartNum;
 @end
 
 NS_ASSUME_NONNULL_END

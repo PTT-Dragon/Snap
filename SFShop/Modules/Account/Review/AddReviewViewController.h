@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^AddReviewViewControllerBlock)(void);
+
 @interface AddReviewViewController : UIViewController
+@property (nonatomic,copy) AddReviewViewControllerBlock block;
 @property (nonatomic,weak) OrderModel *model;
 @property (nonatomic,copy) NSString *orderItemId;
 @end

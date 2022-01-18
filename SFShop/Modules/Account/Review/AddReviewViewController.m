@@ -12,6 +12,7 @@
 #import "ZLPhotoBrowser.h"
 #import "ImageCollectionViewCell.h"
 #import <SDWebImage/SDWebImage.h>
+#import "ReviewSuccessViewController.h"
 
 @interface AddReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *storeLogoImgView;
@@ -192,20 +193,36 @@
 }
 - (void)publishReview
 {
+    /**
+     {"evaluateItems":[{"orderItemId":24008,"ratingComments":"他旅途","rate":2,"labelIds":[],"contents":[{"catgType":"B","url":"/get/resource/ecs/20220118/picture/C2590792-F45A-4578-840D-E4AEB2C60C561483413639839563776.png","imgUrl":"","seq":0,"name":"C2590792-F45A-4578-840D-E4AEB2C60C56.png"},{"catgType":"B","url":"/get/resource/ecs/20220118/picture/802E16EF-95A1-4ED2-B417-28691F7AEAC61483413639579516928.png","imgUrl":"","seq":1,"name":"802E16EF-95A1-4ED2-B417-28691F7AEAC6.png"},{"catgType":"B","url":"/get/resource/ecs/20220118/picture/B0394A62-F015-469A-9809-D5D66A727D381483413639097171968.png","imgUrl":"","seq":2,"name":"B0394A62-F015-469A-9809-D5D66A727D38.png"}],"isAnonymous":"Y"}],"store":{"rate":2,"rate1":4,"rate2":4,"storeId":5,"orderId":25008,"isAnonymous":"Y"}}
+     **/
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSMutableArray *evaluateItems = [NSMutableArray array];
     for (NSInteger i = 0; i<_model.orderItems.count; i++) {
-        NSMutableArray *contentsArr = [NSMutableArray array];
         orderItemsModel *itemModel = _model.orderItems[i];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
         [dic setValue:_textView.text forKey:@"ratingComments"];
         [dic setValue:@(_starView.score) forKey:@"rate"];
+        [dic setValue:self.imgUrlArr forKey:@"contents"];
+        [dic setValue:_anonymousBtn.selected ? @"Y": @"N" forKey:@"isAnonymous"];
+        [evaluateItems addObject:dic];
     }
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [SFNetworkManager post:SFNet.evaluate.addEvaluate parameters:params success:^(id  _Nullable response) {
-        
+    [params setValue:evaluateItems forKey:@"evaluateItems"];
+    [params setValue:@{@"rate":@(_starView1.score),@"rate1":@(_starView2.score),@"rate2":@(_starView3.score),@"storeId":self.model.storeId,@"orderId":self.model.orderId,@"isAnonymous":_anonymousBtn.selected ? @"Y": @"N"} forKey:@"store"];
+    [MBProgressHUD showHudMsg:@""];
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.evaluate.modify parameters:params success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        if (weakself.block) {
+            weakself.block();
+        }
+        ReviewSuccessViewController *vc = [[ReviewSuccessViewController alloc] init];
+        [weakself.navigationController pushViewController:vc animated:YES];
+        [baseTool removeVCFromNavigation:self];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD hideFromKeyWindow];
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (IBAction)anonymousAction:(UIButton *)sender {

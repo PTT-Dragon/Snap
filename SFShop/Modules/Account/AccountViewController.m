@@ -68,6 +68,7 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
+    [baseTool updateCartNum];
     [self updateDatas];
 }
 - (void)updateDatas

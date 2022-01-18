@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdditionalReviewViewController : BaseViewController
-@property (nonatomic,copy) NSString *orderItemId;
+@property (nonatomic,strong) OrderModel *orderModel;
 @end
 
 NS_ASSUME_NONNULL_END

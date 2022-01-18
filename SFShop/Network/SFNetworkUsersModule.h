@@ -116,6 +116,12 @@ NS_ASSUME_NONNULL_BEGIN
 //添加评论
 @property (nonatomic, readwrite, strong) NSString *addEvaluate;
 @property (nonatomic, readwrite, strong) NSString *detail;
+@property (nonatomic, readwrite, strong) NSString *modify;
+/**
+ 追评
+**/
+@property (nonatomic, readwrite, strong) NSString *review;
+
 - (NSString *)getEvaluateOf: (NSString *)evaluateId;
 
 @end
