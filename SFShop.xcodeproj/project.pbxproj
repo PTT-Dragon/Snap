@@ -386,6 +386,12 @@
 		8E11A8CE278DD14D005D1FC3 /* UIViewController+parentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */; };
 		8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */; };
 		8E11A8D4278DD6C9005D1FC3 /* CartEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8D3278DD6C9005D1FC3 /* CartEmptyView.m */; };
+		8E1872C82795AE8900DBEE3E /* MGCShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872C22795AE8900DBEE3E /* MGCShareView.m */; };
+		8E1872C92795AE8900DBEE3E /* MGCShareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872C52795AE8900DBEE3E /* MGCShareCollectionViewCell.m */; };
+		8E1872CF2796A98B00DBEE3E /* MGCShareInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872CE2796A98B00DBEE3E /* MGCShareInfoModel.m */; };
+		8E1872D42796AB3C00DBEE3E /* MGCShareItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872D12796AB3C00DBEE3E /* MGCShareItemModel.m */; };
+		8E1872D52796AB3C00DBEE3E /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872D22796AB3C00DBEE3E /* UIView+YYAdd.m */; };
+		8E1872D82796AF2300DBEE3E /* MGCShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872D72796AF2300DBEE3E /* MGCShareManager.m */; };
 		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
 		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
 		8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */; };
@@ -1167,6 +1173,18 @@
 		8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Response.m"; sourceTree = "<group>"; };
 		8E11A8D2278DD6C9005D1FC3 /* CartEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartEmptyView.h; sourceTree = "<group>"; };
 		8E11A8D3278DD6C9005D1FC3 /* CartEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartEmptyView.m; sourceTree = "<group>"; };
+		8E1872C22795AE8900DBEE3E /* MGCShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCShareView.m; sourceTree = "<group>"; };
+		8E1872C32795AE8900DBEE3E /* MGCShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCShareView.h; sourceTree = "<group>"; };
+		8E1872C42795AE8900DBEE3E /* MGCShareCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCShareCollectionViewCell.h; sourceTree = "<group>"; };
+		8E1872C52795AE8900DBEE3E /* MGCShareCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCShareCollectionViewCell.m; sourceTree = "<group>"; };
+		8E1872CD2796A98B00DBEE3E /* MGCShareInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGCShareInfoModel.h; sourceTree = "<group>"; };
+		8E1872CE2796A98B00DBEE3E /* MGCShareInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGCShareInfoModel.m; sourceTree = "<group>"; };
+		8E1872D02796AB3C00DBEE3E /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
+		8E1872D12796AB3C00DBEE3E /* MGCShareItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCShareItemModel.m; sourceTree = "<group>"; };
+		8E1872D22796AB3C00DBEE3E /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
+		8E1872D32796AB3C00DBEE3E /* MGCShareItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCShareItemModel.h; sourceTree = "<group>"; };
+		8E1872D62796AF2300DBEE3E /* MGCShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGCShareManager.h; sourceTree = "<group>"; };
+		8E1872D72796AF2300DBEE3E /* MGCShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGCShareManager.m; sourceTree = "<group>"; };
 		8E4821FA277A14F000857FF5 /* EmptyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyModel.h; sourceTree = "<group>"; };
 		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
 		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
@@ -2396,7 +2414,7 @@
 		4B9FB9C626FB780700C90790 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8EACB68B2781ECED0066BD3A /* Share */,
+				8E1872C02795A58200DBEE3E /* Share */,
 				8E4821F6277A134300857FF5 /* EmptyView */,
 				4B818FC8272394D90058038A /* Product */,
 				AE81BE2326FE0D5B00AB4225 /* Category */,
@@ -2623,6 +2641,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8E1872C02795A58200DBEE3E /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				8E1872D32796AB3C00DBEE3E /* MGCShareItemModel.h */,
+				8E1872D12796AB3C00DBEE3E /* MGCShareItemModel.m */,
+				8E1872D02796AB3C00DBEE3E /* UIView+YYAdd.h */,
+				8E1872D22796AB3C00DBEE3E /* UIView+YYAdd.m */,
+				8E1872C42795AE8900DBEE3E /* MGCShareCollectionViewCell.h */,
+				8E1872C52795AE8900DBEE3E /* MGCShareCollectionViewCell.m */,
+				8E1872C32795AE8900DBEE3E /* MGCShareView.h */,
+				8E1872C22795AE8900DBEE3E /* MGCShareView.m */,
+				8E1872D62796AF2300DBEE3E /* MGCShareManager.h */,
+				8E1872D72796AF2300DBEE3E /* MGCShareManager.m */,
+				8E1872CD2796A98B00DBEE3E /* MGCShareInfoModel.h */,
+				8E1872CE2796A98B00DBEE3E /* MGCShareInfoModel.m */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		8E4821F6277A134300857FF5 /* EmptyView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2788,13 +2825,6 @@
 			);
 			path = thirdparties_ios_1.0.5;
 			sourceTree = "<group>";
-		};
-		8EACB68B2781ECED0066BD3A /* Share */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Share;
-			sourceTree = "<unknown>";
 		};
 		8EE28FA927887B2D0051DF85 /* Language */ = {
 			isa = PBXGroup;
@@ -3469,6 +3499,7 @@
 				1B6C52A3275B672200A1C617 /* ZLVideoPlayerControl.m in Sources */,
 				AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */,
 				1B6C52A7275B672200A1C617 /* ZLDrawItem.m in Sources */,
+				8E1872C92795AE8900DBEE3E /* MGCShareCollectionViewCell.m in Sources */,
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
 				8E11A8D4278DD6C9005D1FC3 /* CartEmptyView.m in Sources */,
@@ -3538,6 +3569,7 @@
 				1B82AEDB277080B700D75E00 /* YYAnimatedImageView.m in Sources */,
 				AEB5AFC3278EEE90004CD19B /* UIViewController+Top.m in Sources */,
 				1B6C5294275B672200A1C617 /* ZLPhotoBrowserCell.m in Sources */,
+				8E1872D42796AB3C00DBEE3E /* MGCShareItemModel.m in Sources */,
 				AEEC0BAD27883C140071F059 /* DeleveryViewController.m in Sources */,
 				AE43BF672782DCB7006D7135 /* CouponsCell.m in Sources */,
 				1B478316272A957000F2A945 /* RefundProcessCell.m in Sources */,
@@ -3551,6 +3583,7 @@
 				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
 				1B71AE5E277D840A0088D94A /* UITextField+expand.m in Sources */,
 				8EE292242789AAA10051DF85 /* NSBundle+Language.m in Sources */,
+				8E1872CF2796A98B00DBEE3E /* MGCShareInfoModel.m in Sources */,
 				1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */,
 				1BD8E7BD275F377800130DCC /* RefundDetailMethodCell.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
@@ -3564,6 +3597,7 @@
 				1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */,
 				1B82AEE7277080B700D75E00 /* YYWebImageOperation.m in Sources */,
 				1B6C5297275B672200A1C617 /* ZLAnimateTransition.m in Sources */,
+				8E1872D52796AB3C00DBEE3E /* UIView+YYAdd.m in Sources */,
 				AEEC0BA9278834040071F059 /* CheckoutManager.m in Sources */,
 				AE43BF632782DBF2006D7135 /* CouponsViewController.m in Sources */,
 				1B552EAE276B36CC0086604B /* GroupFilterCell.m in Sources */,
@@ -3658,12 +3692,14 @@
 				1B6246612761FCAE00009DE2 /* ProductReviewChildViewController.m in Sources */,
 				1B478308272A7B1000F2A945 /* RefundCell.m in Sources */,
 				1B82AEE4277080B700D75E00 /* MKAnnotationView+YYWebImage.m in Sources */,
+				8E1872D82796AF2300DBEE3E /* MGCShareManager.m in Sources */,
 				1B6C52AC275B672200A1C617 /* ZLShowBigImgViewController.m in Sources */,
 				1BF00F6E272FDC5D0081C8E4 /* DistributorRankCell.m in Sources */,
 				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
 				1BD8E7D727604FC900130DCC /* AdditionalReviewViewController.m in Sources */,
 				8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */,
 				1B6C5298275B672200A1C617 /* ZLInteractiveTrasition.m in Sources */,
+				8E1872C82795AE8900DBEE3E /* MGCShareView.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,
 				1B6246772762F0FD00009DE2 /* MessageOrderListViewController.m in Sources */,

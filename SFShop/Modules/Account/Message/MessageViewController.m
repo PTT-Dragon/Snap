@@ -96,7 +96,7 @@
 //    [self.navigationController pushViewController:vc animated:YES];
     
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-    vc.url = [NSString stringWithFormat:@"%@/chat",Host];
+//    vc.url = [NSString stringWithFormat:@"%@/chat{%@}", Host, ];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)readMessage
