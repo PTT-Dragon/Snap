@@ -241,7 +241,7 @@
 //  "MEMBERSHIP_AGREEMENT" = "Membership Agreement";
 //  "PLEASE_INPUT" = "Please Input";
 //  "SAFETY_VERIFICATION" = "Security verification";
-//  "LOGISTICS_DETAILS" = "Logistics Details";
+  "LOGISTICS_DETAILS" = "Logistics Details";
 //  "EVALUATION" = "Evaluation";
 //  "RESET" = "Reset";
 //  "AVAILABLE" = "Available";

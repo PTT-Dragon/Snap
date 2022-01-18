@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface OrderLogisticsModel : JSONModel
+
 @property (nonatomic, readwrite, strong) NSString *storeId;//商店id
 @property (nonatomic, readwrite, strong) NSArray<OrderLogisticsItem *> <OrderLogisticsItem> *logistics;//配送方式数组
 @end

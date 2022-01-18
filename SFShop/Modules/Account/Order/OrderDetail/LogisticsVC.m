@@ -17,11 +17,17 @@
 @end
 
 @implementation LogisticsVC
-
+- (BOOL)shouldCheckLoggedIn
+{
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = kLocalizedString(@"LOGISTICS_DETAILS");
+    self.view.backgroundColor = RGBColorFrom16(0xf6f6f6);
     [self loadDatas];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     [self.collectionView reloadData];
 }
 - (void)loadDatas
@@ -48,7 +54,7 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
-    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage([_model.orderItems[indexPath.row] url])]];
+    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage([_model.orderItems[indexPath.row] imagUrl])]];
     return cell;
 }
 - (IBAction)btnAction:(UIButton *)sender {

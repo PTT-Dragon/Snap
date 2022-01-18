@@ -246,7 +246,7 @@
 //  "MEMBERSHIP_AGREEMENT" = "Syarat membership";
 //  "PLEASE_INPUT" = "Mohon masukan";
 //  "SAFETY_VERIFICATION" = "Verifikasi keamanan";
-//  "LOGISTICS_DETAILS" = "Detail Logistik";
+  "LOGISTICS_DETAILS" = "Detail Logistik";
 //  "EVALUATION" = "Evaluasi";
 //  "RESET" = "Re-set";
 //  "AVAILABLE" = "Tersedia";
