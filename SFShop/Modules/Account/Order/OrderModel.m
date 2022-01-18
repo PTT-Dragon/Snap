@@ -16,7 +16,7 @@
 
 - (NSString *)getStateStr
 {
-    return ([_state isEqualToString:@"F"] || [_state isEqualToString:@"G"]) ? @"To Ship": [_state isEqualToString:@"C"] ? @"To Receive": [_state isEqualToString:@"E"] ? @"Cancelled": [_state isEqualToString:@"D"] ? @"Successful": @"To Pay";
+    return [_state isEqualToString:@"B"] ? kLocalizedString(@"TO_SHIP"): ([_state isEqualToString:@"F"] || [_state isEqualToString:@"G"]) ? @"To Ship": [_state isEqualToString:@"C"] ? kLocalizedString(@"TO_RECEIVE"): [_state isEqualToString:@"E"] ? kLocalizedString(@"CANCELLED"): [_state isEqualToString:@"D"] ? @"Successful": @"To Pay";
 }
 
 @end

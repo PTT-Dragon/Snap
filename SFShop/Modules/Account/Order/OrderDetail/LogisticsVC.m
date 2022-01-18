@@ -7,6 +7,7 @@
 
 #import "LogisticsVC.h"
 #import "ImageCollectionViewCell.h"
+#import "UIButton+SGImagePosition.h"
 
 @interface LogisticsVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -21,12 +22,18 @@
 {
     return YES;
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"LOGISTICS_DETAILS");
     self.view.backgroundColor = RGBColorFrom16(0xf6f6f6);
     [self loadDatas];
+    [self updateViews];
     [self.collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     [self.collectionView reloadData];
 }
@@ -43,6 +50,7 @@
 - (void)updateViews
 {
     [self.btn setTitle:self.model.orderNbr forState:0];
+    [self.btn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
 }
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

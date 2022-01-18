@@ -17,6 +17,17 @@
 #import "NSString+Fee.h"
 #import "CartViewController.h"
 #import "LogisticsVC.h"
+#import "CancelOrderViewController.h"
+#import "PDFReader.h"
+#import "CheckoutManager.h"
+#import "UIViewController+Top.h"
+#import "UIViewController+Top.h"
+#import "SceneManager.h"
+#import "PublicWebViewController.h"
+#import "PublicAlertView.h"
+#import "ReviewChildViewController.h"
+#import "LogisticsVC.h"
+
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -240,10 +251,81 @@
     [self rebuy];
 }
 - (IBAction)btn1Action:(UIButton *)sender {
+    NSString *state = _model.state;
+    if ([state isEqualToString:@"A"]) {
+        if (!self.model.orderId.length) {
+            return;
+        }
+        //付款
+        /**
+         shareBuyOrderNbr 这里有更新  不知是否适配
+         **/
+        NSString *shareBuyOrderNbr = self.model.shareBuyOrderNbr;
+        [CheckoutManager.shareInstance startPayWithOrderIds:@[self.model.orderId] shareBuyOrderNbr:shareBuyOrderNbr totalPrice:self.model.orderPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml) {
+            switch (result) {
+                case SFPayResultSuccess:
+                    [SceneManager transToHome];
+                    break;
+                case SFPayResultFailed:
+                    break;
+                case SFPayResultJumpToWebPay: {
+                    PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+                    vc.url = urlOrHtml;
+                    vc.shouldBackToHome = YES;
+                    [UIViewController.sf_topViewController.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                default:
+                    break;
+            }
+        }];
+    }else if ([state isEqualToString:@"B"] || [state isEqualToString:@"E"] || [state isEqualToString:@"F"]){
+        [self rebuy];
+    }else if ([state isEqualToString:@"C"]){
+        //确认订单收货
+        MPWeakSelf(self)
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:@"Click Yes only if you have received the item" btnTitle:@"YES" block:^{
+            [SFNetworkManager post:SFNet.order.confirmOrder parametersArr:@[weakself.model.orderId] success:^(id  _Nullable response) {
+                [weakself.delegate refreshDatas];
+            } failed:^(NSError * _Nonnull error) {
+                [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            }];
+        } btn2Title:@"Cancel" block2:^{
+            
+        }];
+        [[baseTool getCurrentVC].view addSubview:alert];
+    }else if ([state isEqualToString:@"D"]){
+        [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
+            //返回错误和本地地址
+        }];
+    }
 }
 - (IBAction)btn2Action:(UIButton *)sender {
+    NSString *state = _model.state;
+    if ([state isEqualToString:@"F"] || [state isEqualToString:@"A"]) {
+        //取消订单
+        CancelOrderViewController *vc = [[CancelOrderViewController alloc] init];
+        vc.model = _model;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([state isEqualToString:@"B"]){
+        [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
+            //返回错误和本地地址
+        }];
+    }else if ([state isEqualToString:@"D"]){
+        ReviewChildViewController *vc = [[ReviewChildViewController alloc] init];
+        vc.type = 0;
+        vc.orderItemId = self.model.orderNbr;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([state isEqualToString:@"C"]){
+        [self toLogistices];
+    }
 }
-
+- (void)toLogistices
+{
+    LogisticsVC *vc = [[LogisticsVC alloc] init];
+    vc.model = self.model;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 - (UITableView *)tableView

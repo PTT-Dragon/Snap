@@ -9,7 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol OrderDetailViewControllerDelegate <NSObject>
+
+- (void)refreshDatas;
+
+@end
+
 @interface OrderDetailViewController : UIViewController
+@property (nonatomic,assign) id<OrderDetailViewControllerDelegate>delegate;
 @property (nonatomic,copy) NSString *orderId;
 @end
 

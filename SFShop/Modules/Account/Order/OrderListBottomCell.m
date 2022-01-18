@@ -15,6 +15,7 @@
 #import "UIViewController+Top.h"
 #import "SceneManager.h"
 #import "NSString+Fee.h"
+#import "LogisticsVC.h"
 #import "ReviewChildViewController.h"
 
 
@@ -164,6 +165,8 @@
         vc.type = 0;
         vc.orderItemId = self.model.orderNbr;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([state isEqualToString:@"C"]){
+        [self toLogistices];
     }
 }
 - (IBAction)moreAction:(UIButton *)sender {
@@ -212,6 +215,20 @@
         [MBProgressHUD hideFromKeyWindow];
         [self toCart];
     });
+}
+- (void)toLogistices
+{
+    [MBProgressHUD showHudMsg:@""];
+    NSString *url = [NSString stringWithFormat:@"%@/%@",SFNet.order.list,_model.orderId];
+    [MBProgressHUD hideFromKeyWindow];
+    [SFNetworkManager get:url parameters:@{} success:^(id  _Nullable response) {
+        OrderDetailModel *detailModel = [[OrderDetailModel alloc] initWithDictionary:response error:nil];
+        LogisticsVC *vc = [[LogisticsVC alloc] init];
+        vc.model = detailModel;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
 }
 
 //数组转为json字符串
