@@ -63,17 +63,23 @@
 
 - (void)requestSimilar {
     MPWeakSelf(self)
+    NSMutableDictionary *parm = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"q": @"",
+        @"pageIndex": @(1),
+        @"pageSize": @(10),
+        @"sortType": @(1),
+        @"offerIdList": [NSNull null],
+        @"catgIds": @""//默认是外部传入的分类,如果 filter.filterParam 有该字段,会被新值覆盖
+    }];
     MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
-    [SFNetworkManager get: SFNet.favorite.similar parameters:@{@"offerId": [NSString stringWithFormat:@"%ld", (long)self.offerId]} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
         NSError *error;
         weakself.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
         [weakself.emptyView configDataWithSimilarList:weakself.similarList];
-        NSLog(@"get similar success");
     } failed:^(NSError * _Nonnull error) {
         [hud hideAnimated:YES];
         [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"message"]];
-        NSLog(@"get similarfailed");
     }];
 }
 

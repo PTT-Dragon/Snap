@@ -326,6 +326,7 @@
 		1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBCB2700BA470018109B /* MyCouponCell.xib */; };
 		1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBEBD02700C7B10018109B /* MyCouponStoreCell.m */; };
 		1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDBEBD22700C7F00018109B /* MyCouponStoreCell.xib */; };
+		1BDCBFA72796AD7C008CEBAB /* RefundOrReturnExplainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDCBFA62796AD7C008CEBAB /* RefundOrReturnExplainCell.m */; };
 		1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0B8872701678000C73CEC /* CouponCenterCollectionViewCell.m */; };
 		1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B8882701678000C73CEC /* CouponCenterCollectionViewCell.xib */; };
 		1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0B88C2701944300C73CEC /* CouponAlertView.m */; };
@@ -1058,6 +1059,8 @@
 		1BDBEBCF2700C7B10018109B /* MyCouponStoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCouponStoreCell.h; sourceTree = "<group>"; };
 		1BDBEBD02700C7B10018109B /* MyCouponStoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCouponStoreCell.m; sourceTree = "<group>"; };
 		1BDBEBD22700C7F00018109B /* MyCouponStoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCouponStoreCell.xib; sourceTree = "<group>"; };
+		1BDCBFA52796AD7B008CEBAB /* RefundOrReturnExplainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundOrReturnExplainCell.h; sourceTree = "<group>"; };
+		1BDCBFA62796AD7C008CEBAB /* RefundOrReturnExplainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundOrReturnExplainCell.m; sourceTree = "<group>"; };
 		1BE0B8862701678000C73CEC /* CouponCenterCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponCenterCollectionViewCell.h; sourceTree = "<group>"; };
 		1BE0B8872701678000C73CEC /* CouponCenterCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponCenterCollectionViewCell.m; sourceTree = "<group>"; };
 		1BE0B8882701678000C73CEC /* CouponCenterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponCenterCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1421,6 +1424,8 @@
 				1B273C55278F0BCD00DDE2DA /* RefundOrReturnViewController.h */,
 				1B273C56278F0BCD00DDE2DA /* RefundOrReturnViewController.m */,
 				1B273C57278F0BCD00DDE2DA /* RefundOrReturnViewController.xib */,
+				1BDCBFA52796AD7B008CEBAB /* RefundOrReturnExplainCell.h */,
+				1BDCBFA62796AD7C008CEBAB /* RefundOrReturnExplainCell.m */,
 			);
 			path = ChooseRefund;
 			sourceTree = "<group>";
@@ -3574,6 +3579,7 @@
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
 				1B82AEDA277080B700D75E00 /* YYFrameImage.m in Sources */,
 				AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */,
+				1BDCBFA72796AD7C008CEBAB /* RefundOrReturnExplainCell.m in Sources */,
 				AE5C9A6F275B5F3800F34481 /* SFSearchingModel.m in Sources */,
 				AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */,
 				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,

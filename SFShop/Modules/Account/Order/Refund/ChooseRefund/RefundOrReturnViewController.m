@@ -12,6 +12,7 @@
 #import "CancelOrderChooseReason.h"
 #import "ChooseReasonViewController.h"
 #import "RefundDetailImagesCell.h"
+#import "RefundOrReturnExplainCell.h"
 
 @interface RefundOrReturnViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseReasonViewControllerDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -38,6 +39,7 @@
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"CancelOrderChooseReason" bundle:nil] forCellReuseIdentifier:@"CancelOrderChooseReason"];
     [_tableView registerNib:[UINib nibWithNibName:@"RefundDetailImagesCell" bundle:nil] forCellReuseIdentifier:@"RefundDetailImagesCell"];
+    [_tableView registerClass:[RefundOrReturnExplainCell class] forCellReuseIdentifier:@"RefundOrReturnExplainCell"];
     
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
