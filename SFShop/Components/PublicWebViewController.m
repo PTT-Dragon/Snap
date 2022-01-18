@@ -41,15 +41,6 @@
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-//    NSString * userContent = [NSString stringWithFormat:@"h5Token:%@",model.accessToken];
-    // 设置localStorage
-    NSString *jsString = [NSString stringWithFormat:@"localStorage.setItem('h5Token', '%@')", model.accessToken];
-    // 移除localStorage
-    // NSString *jsString = @"localStorage.removeItem('userContent')";
-    // 获取localStorage
-    // NSString *jsString = @"localStorage.getItem('userContent')";
-    [self.webView evaluateJavaScript:jsString completionHandler:nil];
 //    NSString *jsFounction = [NSString stringWithFormat:@"sysAccount('%@')", _sysAccount];
 //    [self.webView evaluateJavaScript:jsFounction completionHandler:nil];
     [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
@@ -97,9 +88,16 @@
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    //iOS调用js
-    
+    // iOS调用js
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    // 设置localStorage
+    NSString *token = [NSString stringWithFormat:@"localStorage.setItem('h5Token', '%@')", model.accessToken];
+    NSString *isLogin = [NSString stringWithFormat:@"localStorage.setItem('isLogin', '%d')", model ? YES : NO];
+    [self.webView evaluateJavaScript:token completionHandler:nil];
+    [self.webView evaluateJavaScript:isLogin completionHandler:nil];
+    [self.jsBridge callHandler:@"reload"];
 }
+
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
     
