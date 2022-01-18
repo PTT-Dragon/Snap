@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol DeliveryInfoModel;
 @protocol EvaluatesModel;
 @protocol EvaluatesContentsModel;
+@protocol OrderDetailPaymentsModel;
+
 
 
 @interface orderItemsModel : JSONModel
@@ -153,9 +155,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSArray <Optional>*deliveryItems;
 @end
 
+@interface OrderDetailPaymentsModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*charge;
+@property (nonatomic,copy) NSString <Optional>*orderPaymentId;
+@property (nonatomic,copy) NSString <Optional>*paymentAcct;
+@property (nonatomic,copy) NSString <Optional>*paymentDate;
+@property (nonatomic,copy) NSString <Optional>*paymentId;
+@property (nonatomic,copy) NSString <Optional>*paymentMethodName;
+@property (nonatomic,copy) NSString <Optional>*paymentSn;
+@property (nonatomic,copy) NSString <Optional>*paymentState;
+
+@end
+
 @interface OrderDetailModel : JSONModel
 @property (nonatomic,strong) billAddressModel *billAddress;
 @property (nonatomic,strong) deliveryAddress *deliveryAddress;
+@property (nonatomic,strong) NSArray <OrderDetailPaymentsModel>*payments;
 @property (nonatomic,strong) NSArray <orderItemsModel>*orderItems;
 @property (nonatomic,strong) NSArray <DeliveryInfoModel>*deliverys;
 @property (nonatomic,copy) NSString <Optional>*canEvaluate;

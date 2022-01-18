@@ -26,6 +26,9 @@
 @implementation deliveryAddress
 
 @end
+@implementation OrderDetailPaymentsModel
+
+@end
 @implementation DeliveryInfoModel
 
 @end

@@ -150,11 +150,20 @@
                             <constraint firstItem="by3-3Y-cPB" firstAttribute="centerY" secondItem="9sA-fv-442" secondAttribute="centerY" id="yih-UD-EOr"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvw-Jn-Dk1">
+                        <rect key="frame" x="16" y="66.5" width="34" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="More">
+                            <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="OUz-FI-VE4" firstAttribute="leading" secondItem="zRi-m8-JJ8" secondAttribute="trailing" constant="12" id="0wB-JG-bHj"/>
                     <constraint firstItem="vO2-GD-Yge" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="6wk-ys-uAW"/>
                     <constraint firstItem="RKv-pe-hZL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="42" id="7XA-vC-aSU"/>
+                    <constraint firstItem="uvw-Jn-Dk1" firstAttribute="centerY" secondItem="OUz-FI-VE4" secondAttribute="centerY" id="8bT-DY-BYN"/>
+                    <constraint firstItem="uvw-Jn-Dk1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="BSP-Mq-2sp"/>
                     <constraint firstAttribute="trailing" secondItem="gos-1h-OHP" secondAttribute="trailing" constant="20" id="Dfk-ch-vWc"/>
                     <constraint firstAttribute="bottom" secondItem="Tu5-Gk-Uml" secondAttribute="bottom" id="H15-dC-38c"/>
                     <constraint firstItem="zRi-m8-JJ8" firstAttribute="centerY" secondItem="OUz-FI-VE4" secondAttribute="centerY" id="HCM-AE-XR2"/>

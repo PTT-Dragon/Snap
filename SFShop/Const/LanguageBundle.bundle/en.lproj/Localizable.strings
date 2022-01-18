@@ -257,7 +257,7 @@
 //  "BANK" = "Bank";
 //  "ACCOUNT_NAME" = "Account Name";
 //  "BANK_ACCOUNT" = "Bank Account";
-//  "LOGISTICS" = "Logistics";
+  "LOGISTICS" = "Logistics";
 //  "REFUND_METHOD" = "Refund Method";
 //  "REFUND_TO" = "Refund to";
 //  "BANK_TRANSFER" = "Bank Transfer";

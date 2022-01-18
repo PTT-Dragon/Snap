@@ -22,27 +22,57 @@
 @end
 
 @implementation ReviewChildViewController
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _dataSource = [NSMutableArray array];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"ReviewCell" bundle:nil] forCellReuseIdentifier:@"ReviewCell"];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.bottom.equalTo(self.view);
-    }];
-    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        [self loadDatas];
-    }];
-    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-        [self loadMoreDatas];
-    }];
-    [self.tableView.mj_header beginRefreshing];
+    if (self.orderItemId) {
+        self.title = kLocalizedString(@"Review");
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.view);
+            make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+        }];
+        [self loadItemDatas];
+    }else{
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.bottom.equalTo(self.view);
+        }];
+        self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+            [self loadDatas];
+        }];
+        self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+            [self loadMoreDatas];
+        }];
+        [self.tableView.mj_header beginRefreshing];
+    }
     [self.view addSubview:self.emptyView];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(90);
         make.left.right.bottom.mas_equalTo(self.view);
+    }];
+}
+- (void)loadItemDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:[SFNet.order getOrderEvaItemOf:_orderItemId] parameters:@{} success:^(id  _Nullable response) {
+        NSArray *arr = response[@"list"];
+        if (!kArrayIsEmpty(arr)) {
+            [weakself.dataSource removeAllObjects];
+            for (NSDictionary *dic in arr) {
+                [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
+            }
+            [weakself.tableView reloadData];
+        }
+        [weakself showEmptyView];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself showEmptyView];
     }];
 }
 - (void)loadDatas

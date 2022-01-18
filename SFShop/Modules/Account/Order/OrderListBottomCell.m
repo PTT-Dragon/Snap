@@ -15,6 +15,7 @@
 #import "UIViewController+Top.h"
 #import "SceneManager.h"
 #import "NSString+Fee.h"
+#import "ReviewChildViewController.h"
 
 
 @interface OrderListBottomCell ()
@@ -166,6 +167,10 @@
             
         }];
         [[baseTool getCurrentVC].view addSubview:alert];
+    }else if ([state isEqualToString:@"D"]){
+        [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
+            //返回错误和本地地址
+        }];
     }
 }
 - (IBAction)btn2Action:(UIButton *)sender {
@@ -179,6 +184,11 @@
         [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
             //返回错误和本地地址
         }];
+    }else if ([state isEqualToString:@"D"]){
+        ReviewChildViewController *vc = [[ReviewChildViewController alloc] init];
+        vc.type = 0;
+        vc.orderItemId = self.model.orderNbr;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }
 }
 - (void)toCart
@@ -207,7 +217,7 @@
     }else if ([state isEqualToString:@"C"]){
         str = kLocalizedString(@"CONFIRM");
     }else if ([state isEqualToString:@"D"]){
-        str = kLocalizedString(@"REBUY");
+        str = kLocalizedString(@"RECEIPT");
     }else if ([state isEqualToString:@"E"]){
         str = kLocalizedString(@"REBUY");
     }else if ([state isEqualToString:@"F"]){
@@ -225,7 +235,7 @@
     }else if ([state isEqualToString:@"B"]){
         str = kLocalizedString(@"RECEIPT");
     }else if ([state isEqualToString:@"C"]){
-        str = @"REVIEW";
+        str = kLocalizedString(@"LOGISTICS");
     }else if ([state isEqualToString:@"D"]){
         str = @"REVIEW";
     }else if ([state isEqualToString:@"E"]){

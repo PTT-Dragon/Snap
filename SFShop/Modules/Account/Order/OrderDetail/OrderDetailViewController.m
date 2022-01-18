@@ -14,12 +14,14 @@
 #import "OrderModel.h"
 #import "OrderDetailGroupBuyCell.h"
 #import "ChooseRefundViewController.h"
+#import "NSString+Fee.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) NSMutableArray *orderInfoDataSource;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (nonatomic,strong) OrderDetailModel *model;
 @property (nonatomic,strong) OrderGroupModel *groupModel;
@@ -38,6 +40,7 @@
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
     _dataSource = [NSMutableArray array];
+    _orderInfoDataSource = [NSMutableArray array];
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"DeliveryInformationCell" bundle:nil] forCellReuseIdentifier:@"DeliveryInformationCell"];
@@ -73,6 +76,10 @@
             OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
             [cell setOrderDetailContent:self.model];
             return cell;
+        }else if (indexPath.row > self.model.orderItems.count){
+            OrderPayInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderPayInfoCell"];
+            [cell setContent:self.orderInfoDataSource[indexPath.row-self.model.orderItems.count-1]];
+            return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
         [cell setOrderContent:self.model.orderItems[indexPath.row-1] state:self.model.state];
@@ -93,11 +100,11 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? self.model.deliverys.count == 0 ? 0: 1: section == 2 ? self.groupModel ? 1:0: section == 1 ? 1: section == 3 ? self.model.orderItems.count+1 : self.dataSource.count;
+    return section == 0 ? self.model.deliverys.count == 0 ? 0: 1: section == 2 ? self.groupModel ? 1:0: section == 1 ? 1: section == 3 ? self.model.orderItems.count+1+self.orderInfoDataSource.count : self.dataSource.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == 0 ? 112: indexPath.section == 2 ? 156: indexPath.section == 1 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: indexPath.section == 3 ? [self.model.state isEqualToString:@"D"] ? 170: 154:  30;
+    return indexPath.section == 0 ? 112: indexPath.section == 2 ? 156: indexPath.section == 1 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: (indexPath.section == 3 && indexPath.row>self.model.orderItems.count) ? 30: indexPath.section == 3 ? [self.model.state isEqualToString:@"D"] ? 170: 154:  30;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -121,7 +128,7 @@
             [weakself loadGroupDatas];
         }
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 //团购数据
@@ -137,14 +144,26 @@
 }
 - (void)handleDatas
 {
-    [_dataSource addObjectsFromArray:@[@{@"coupon":self.model.storeCouponPrice},@{@"Store promo":self.model.storeCampaignPrice},@{@"Platform Voucher":self.model.discountPrice},@{@"Delivery Total":self.model.deliveryState},@{@"Total Payment":self.model.offerPrice}]];
+    OrderDetailPaymentsModel *paymentModel = self.model.payments.firstObject;
+    [_dataSource addObjectsFromArray:@[@{@"Order Code":self.model.orderNbr},@{@"Creation time":self.model.createdDate},@{@"Player Email":self.model.billAddress.contactEmail},@{@"Payment time":paymentModel.paymentDate},@{@"Completion time":self.model.completionDate ? self.model.completionDate: @"--"}]];
+    [_orderInfoDataSource addObjectsFromArray:@[@{@"subtotal":[self.model.offerPrice currency]},@{@"promotion":[NSString stringWithFormat:@"-%@",[self.model.storeCampaignPrice currency]]},@{@"shipping Fee":[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"Total:%@ items",self.model.offerCnt]:[self.model.orderPrice currency]}]];
     [self.tableView reloadData];
+    [self layoutSubviews];
 }
 - (void)layoutSubviews
 {
     if ([self.model.state isEqualToString:@"B"]) {
-        [self.btn1 setTitle:@"" forState:0];
-        [self.btn2 setTitle:@"" forState:0];
+        [self.btn1 setTitle:kLocalizedString(@"REBUY") forState:0];
+        self.btn2.hidden = YES;
+        [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
+            make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
+        }];
+    }else if ([self.model.state isEqualToString:@"A"]){
+        [self.btn1 setTitle:kLocalizedString(@"PAYNOW") forState:0];
+        [self.btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
     }
 }
 - (UITableView *)tableView

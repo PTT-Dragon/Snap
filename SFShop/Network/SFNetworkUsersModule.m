@@ -208,6 +208,11 @@
 - (NSString *)list {
     return K_order_domain(@"");
 }
+- (NSString *)getOrderEvaItemOf: (NSString *)itemId
+{
+    NSString *url = [NSString stringWithFormat:@"?evaluateFlag=Y&q=%@",itemId];
+    return K_order_domain(url);
+}
 
 - (NSString *)confirmOrder {
     return K_order_domain(@"confirmreceipt");

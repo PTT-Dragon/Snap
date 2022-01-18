@@ -262,7 +262,7 @@
 //  "BANK" = "Bank";
 //  "ACCOUNT_NAME" = "Nama Akun";
 //  "BANK_ACCOUNT" = "Nomor akun bank";
-//  "LOGISTICS" = "Logistik";
+  "LOGISTICS" = "Logistik";
 //  "REFUND_METHOD" = "Metode pengembalian dana";
 //  "REFUND_TO" = "Kembalikan ke";
 //  "BANK_TRANSFER" = "Transfer Bank";

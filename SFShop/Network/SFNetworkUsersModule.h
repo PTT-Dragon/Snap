@@ -97,6 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *logistics;
 @property (nonatomic, readwrite, strong) NSString *couponsAvailable;
 - (NSString *)getReasonlOf: (NSString *)eventId;
+- (NSString *)getOrderEvaItemOf: (NSString *)itemId;
 
 @end
 
