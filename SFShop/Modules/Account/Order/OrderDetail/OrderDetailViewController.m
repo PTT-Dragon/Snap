@@ -15,6 +15,8 @@
 #import "OrderDetailGroupBuyCell.h"
 #import "ChooseRefundViewController.h"
 #import "NSString+Fee.h"
+#import "CartViewController.h"
+#import "LogisticsVC.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -24,7 +26,11 @@
 @property (nonatomic,strong) NSMutableArray *orderInfoDataSource;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (nonatomic,strong) OrderDetailModel *model;
+@property (weak, nonatomic) IBOutlet UIButton *moreBtn;
+@property (weak, nonatomic) IBOutlet UIView *moreView;
+@property (weak, nonatomic) IBOutlet UIButton *moreActionBtn1;
 @property (nonatomic,strong) OrderGroupModel *groupModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btn2Left;
 @end
 
 @implementation OrderDetailViewController
@@ -116,6 +122,15 @@
 {
     return 10;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        LogisticsVC *vc = [[LogisticsVC alloc] init];
+        vc.model = self.model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 - (void)loadDatas
 {
     NSString *url = [NSString stringWithFormat:@"%@/%@",SFNet.order.list,_orderId];
@@ -145,14 +160,16 @@
 - (void)handleDatas
 {
     OrderDetailPaymentsModel *paymentModel = self.model.payments.firstObject;
-    [_dataSource addObjectsFromArray:@[@{@"Order Code":self.model.orderNbr},@{@"Creation time":self.model.createdDate},@{@"Player Email":self.model.billAddress.contactEmail},@{@"Payment time":paymentModel.paymentDate},@{@"Completion time":self.model.completionDate ? self.model.completionDate: @"--"}]];
+    [_dataSource addObjectsFromArray:@[@{@"Order Code":self.model.orderNbr},@{@"Creation time":self.model.createdDate},@{@"Player Email":self.model.billAddress.contactEmail},@{@"Payment time":paymentModel ? paymentModel.paymentDate : @"--"},@{@"Completion time":self.model.completionDate ? self.model.completionDate: @"--"}]];
     [_orderInfoDataSource addObjectsFromArray:@[@{@"subtotal":[self.model.offerPrice currency]},@{@"promotion":[NSString stringWithFormat:@"-%@",[self.model.storeCampaignPrice currency]]},@{@"shipping Fee":[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"Total:%@ items",self.model.offerCnt]:[self.model.orderPrice currency]}]];
     [self.tableView reloadData];
     [self layoutSubviews];
 }
 - (void)layoutSubviews
 {
-    if ([self.model.state isEqualToString:@"B"]) {
+    self.moreBtn.hidden = !([_model.state isEqualToString:@"D"] || [_model.state isEqualToString:@"C"]);
+    [self.moreActionBtn1 setTitle:kLocalizedString(@"REBUY") forState:0];
+    if ([self.model.state isEqualToString:@"B"] || [self.model.state isEqualToString:@"E"]) {
         [self.btn1 setTitle:kLocalizedString(@"REBUY") forState:0];
         self.btn2.hidden = YES;
         [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -164,8 +181,71 @@
     }else if ([self.model.state isEqualToString:@"A"]){
         [self.btn1 setTitle:kLocalizedString(@"PAYNOW") forState:0];
         [self.btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
+    }else if ([self.model.state isEqualToString:@"D"]){
+        [self.btn1 setTitle:kLocalizedString(@"RECEIPT") forState:0];
+        [self.btn2 setTitle:kLocalizedString(@"REVIEW") forState:0];
+        self.moreBtn.hidden = NO;
+        self.btn2Left.constant = AdaptedWidth(150);
+    }else if ([self.model.state isEqualToString:@"C"]){
+        [self.btn1 setTitle:kLocalizedString(@"CONFIRM") forState:0];
+        [self.btn2 setTitle:kLocalizedString(@"LOGISTICS") forState:0];
+        self.moreBtn.hidden = NO;
+        self.btn2Left.constant = AdaptedWidth(150);
     }
 }
+- (void)toCart
+{
+    CartViewController *vc = [[CartViewController alloc] init];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+}
+- (void)rebuy
+{
+    [MBProgressHUD showHudMsg:@""];
+    dispatch_group_t group = dispatch_group_create();
+    [self.model.orderItems enumerateObjectsUsingBlock:^(orderItemsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        dispatch_group_enter(group);
+        NSDictionary *params =
+        @{
+            @"num": @(1),
+            @"offerId": self.model.orderId,
+            @"productId": obj.productId,
+            @"storeId": self.model.storeId,
+            @"unitPrice": obj.offerId,
+            @"addon":@"",
+            @"isSelected":@"Y",
+            @"contactChannel":@"3"
+        };
+        
+        [SFNetworkManager post:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
+            @synchronized (response) {
+                
+            }
+            dispatch_group_leave(group);
+        } failed:^(NSError * _Nonnull error) {
+            dispatch_group_leave(group);
+            [MBProgressHUD hideFromKeyWindow];
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+    }];
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideFromKeyWindow];
+        [self toCart];
+    });
+}
+- (IBAction)moreAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    _moreView.hidden = !sender.selected;
+}
+- (IBAction)moreAction1:(UIButton *)sender {
+    [self rebuy];
+}
+- (IBAction)btn1Action:(UIButton *)sender {
+}
+- (IBAction)btn2Action:(UIButton *)sender {
+}
+
+
+
 - (UITableView *)tableView
 {
     if (!_tableView) {

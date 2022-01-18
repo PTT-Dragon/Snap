@@ -19,6 +19,7 @@
 
 
 @interface OrderListBottomCell ()
+@property (weak, nonatomic) IBOutlet UIView *moreView;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
@@ -31,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *hasCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *allCountLabel;
 @property (nonatomic, strong) dispatch_source_t timer;//倒计时
+@property (weak, nonatomic) IBOutlet UIButton *moreBtn;
+@property (weak, nonatomic) IBOutlet UIButton *moreActionBtn1;
 
 
 @end
@@ -50,6 +53,8 @@
     _amountLabel.text = [NSString stringWithFormat:@"%@",[model.orderPrice currency]];
     [_btn1 setTitle:[self getBtn1StrWithState:model.state] forState:0];
     [_btn2 setTitle:[self getBtn2StrWithState:model.state] forState:0];
+    self.moreBtn.hidden = !([_model.state isEqualToString:@"D"] || [_model.state isEqualToString:@"C"]);
+    [self.moreActionBtn1 setTitle:kLocalizedString(@"REBUY") forState:0];
     _groupView.hidden = !model.shareBuyBriefInfo;
     if (model.shareBuyBriefInfo && !_timer) {
         [self layoutGroupView];
@@ -120,38 +125,8 @@
             }
         }];
     }else if ([state isEqualToString:@"B"] || [state isEqualToString:@"E"] || [state isEqualToString:@"F"]){
-        //未完成
-        [MBProgressHUD showHudMsg:@""];
-        dispatch_group_t group = dispatch_group_create();
-        [self.model.orderItems enumerateObjectsUsingBlock:^(orderItemsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            dispatch_group_enter(group);
-            NSDictionary *params =
-            @{
-                @"num": @(1),
-                @"offerId": self.model.orderId,
-                @"productId": obj.productId,
-                @"storeId": self.model.storeId,
-                @"unitPrice": obj.offerId,
-                @"addon":@"",
-                @"isSelected":@"Y",
-                @"contactChannel":@"3"
-            };
-            
-            [SFNetworkManager post:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
-                @synchronized (response) {
-                    
-                }
-                dispatch_group_leave(group);                                
-            } failed:^(NSError * _Nonnull error) {
-                dispatch_group_leave(group);
-                [MBProgressHUD hideFromKeyWindow];
-                [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
-            }];
-        }];
-        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideFromKeyWindow];
-            [self toCart];
-        });
+        [self rebuy];
+        
         
         
     }else if ([state isEqualToString:@"C"]){
@@ -191,10 +166,52 @@
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }
 }
+- (IBAction)moreAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    _moreView.hidden = !sender.selected;
+}
+- (IBAction)moreAction1:(UIButton *)sender {
+    [self rebuy];
+}
+
 - (void)toCart
 {
     CartViewController *vc = [[CartViewController alloc] init];
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+}
+- (void)rebuy
+{
+    [MBProgressHUD showHudMsg:@""];
+    dispatch_group_t group = dispatch_group_create();
+    [self.model.orderItems enumerateObjectsUsingBlock:^(orderItemsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        dispatch_group_enter(group);
+        NSDictionary *params =
+        @{
+            @"num": @(1),
+            @"offerId": self.model.orderId,
+            @"productId": obj.productId,
+            @"storeId": self.model.storeId,
+            @"unitPrice": obj.offerId,
+            @"addon":@"",
+            @"isSelected":@"Y",
+            @"contactChannel":@"3"
+        };
+        
+        [SFNetworkManager post:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
+            @synchronized (response) {
+                
+            }
+            dispatch_group_leave(group);
+        } failed:^(NSError * _Nonnull error) {
+            dispatch_group_leave(group);
+            [MBProgressHUD hideFromKeyWindow];
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+    }];
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideFromKeyWindow];
+        [self toCart];
+    });
 }
 
 //数组转为json字符串

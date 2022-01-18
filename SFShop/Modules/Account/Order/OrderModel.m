@@ -91,7 +91,11 @@
 {
     return YES;
 }
+@end
+@implementation PackageListModel
 
+@end
+@implementation OrderDetailLogisticsModel
 
 @end
 

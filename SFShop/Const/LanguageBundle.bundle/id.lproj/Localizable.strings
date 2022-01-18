@@ -342,7 +342,7 @@
 //  "REVIEWS" = "Ulasan";
 //  "JUST_FOR_YOU" = "Hanya untuk kamu";
 //  "COPY_EMAIL" = "Alamat email berhasil disalin";
-//  "COPY_SUCCESS" = "URL berhasil di salin";
+  "COPY_SUCCESS" = "URL berhasil di salin";
 //  "NOT_SUPPORT" = "Saat ini tidak didukung";
 //  "SUPPORT_THANK" = "Terima kasih telah menjadi pelanggan berharga Smartfren.";
 //  "SUPPORT_CONTENT" = "Sebagai bentuk komitmen kami untuk memberikan pelayanan terbaik; kami menyediakan Layanan Hotline 24 jam; Email dan Live Chat sehingga Anda dapat menghubungi kami setiap saat.";

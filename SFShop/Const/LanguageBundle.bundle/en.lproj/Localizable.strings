@@ -337,7 +337,7 @@
 //  "REVIEWS" = "Reviews";
 //  "JUST_FOR_YOU" = "Just for you";
 //  "COPY_EMAIL" = "Email address copied successfully";
-//  "COPY_SUCCESS" = "URL successfully copied!";
+  "COPY_SUCCESS" = "URL successfully copied!";
 //  "NOT_SUPPORT" = "Not currently supported";
 //  "SUPPORT_THANK" = "Thank you for being a valuable customer of Smartfren.";
 //  "SUPPORT_CONTENT" = "As a form of our commitment to provide the best service; we provide a 24 hours Hotline Service; Email and Live Chat so you can contact us at any time.";

@@ -252,6 +252,10 @@
 - (NSString *)logistics {
     return K_order_domain(@"logistics");
 }
+- (NSString *)logisticsDetailWithId:(NSString *)logiticsId shippingNbr:(NSString *)nbr deliveryId:(NSString *)deliveryId{
+    NSString *url = [NSString stringWithFormat:@"%@logisticsId=%@&shippingNbr=%@&deliveryOrderId=%@",K_order_domain(@"logisticsDetail?"),logiticsId,nbr,deliveryId];
+    return url;
+}
 
 - (NSString *)couponsAvailable {
     return K_order_domain(@"coupons/available");

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol EvaluatesModel;
 @protocol EvaluatesContentsModel;
 @protocol OrderDetailPaymentsModel;
+@protocol PackageListModel;
 
 
 
@@ -268,6 +269,23 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSInteger toComfirmNum;
 @property (nonatomic,assign) NSInteger canceledNum;
 @property (nonatomic,assign) NSInteger returnsNum;
+
+@end
+
+@interface PackageListModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*subPkgLogisticsName;
+@property (nonatomic,copy) NSString <Optional>*subPkgLogisticsNbr;
+
+
+@end
+
+@interface OrderDetailLogisticsModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*logisticsId;
+@property (nonatomic,copy) NSString <Optional>*logisticsName;
+@property (nonatomic,copy) NSString <Optional>*url;
+@property (nonatomic,copy) NSString <Optional>*shippingNbr;
+@property (nonatomic,strong) NSArray <Optional>*packageDetailList;
+
 
 @end
 

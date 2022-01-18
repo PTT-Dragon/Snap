@@ -353,6 +353,8 @@
 		1BF56CD02761001000B40CAA /* CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF56CCF2761001000B40CAA /* CountDown.m */; };
 		1BF56CD42761A5B100B40CAA /* ResetPasswordDoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF56CD22761A5B100B40CAA /* ResetPasswordDoViewController.m */; };
 		1BF56CD52761A5B100B40CAA /* ResetPasswordDoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF56CD32761A5B100B40CAA /* ResetPasswordDoViewController.xib */; };
+		1BFF68FA27968C5F006890D7 /* LogisticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFF68F827968C5F006890D7 /* LogisticsVC.m */; };
+		1BFF68FB27968C5F006890D7 /* LogisticsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BFF68F927968C5F006890D7 /* LogisticsVC.xib */; };
 		4B1522CC272D300A00C3BDD9 /* ProductSpecAttrsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */; };
 		4B1522D5272D432700C3BDD9 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1522D4272D432700C3BDD9 /* BaseViewController.m */; };
 		4B170FD626FCC13A00699B87 /* CommunityChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B170FD526FCC13A00699B87 /* CommunityChildController.m */; };
@@ -1101,6 +1103,9 @@
 		1BF56CD12761A5B100B40CAA /* ResetPasswordDoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetPasswordDoViewController.h; sourceTree = "<group>"; };
 		1BF56CD22761A5B100B40CAA /* ResetPasswordDoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordDoViewController.m; sourceTree = "<group>"; };
 		1BF56CD32761A5B100B40CAA /* ResetPasswordDoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordDoViewController.xib; sourceTree = "<group>"; };
+		1BFF68F727968C5F006890D7 /* LogisticsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogisticsVC.h; sourceTree = "<group>"; };
+		1BFF68F827968C5F006890D7 /* LogisticsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogisticsVC.m; sourceTree = "<group>"; };
+		1BFF68F927968C5F006890D7 /* LogisticsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogisticsVC.xib; sourceTree = "<group>"; };
 		4B1522CA272D300A00C3BDD9 /* ProductSpecAttrsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductSpecAttrsView.h; sourceTree = "<group>"; };
 		4B1522CB272D300A00C3BDD9 /* ProductSpecAttrsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductSpecAttrsView.m; sourceTree = "<group>"; };
 		4B1522D3272D432700C3BDD9 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -1888,6 +1893,9 @@
 				1B62467D27632AFB00009DE2 /* OrderDetailGroupBuyCell.h */,
 				1B62467E27632AFB00009DE2 /* OrderDetailGroupBuyCell.m */,
 				1B62467F27632AFB00009DE2 /* OrderDetailGroupBuyCell.xib */,
+				1BFF68F727968C5F006890D7 /* LogisticsVC.h */,
+				1BFF68F827968C5F006890D7 /* LogisticsVC.m */,
+				1BFF68F927968C5F006890D7 /* LogisticsVC.xib */,
 			);
 			path = OrderDetail;
 			sourceTree = "<group>";
@@ -3336,6 +3344,7 @@
 				1BD8E7AA275D1B5900130DCC /* ReviewPhrchaseCell.xib in Resources */,
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
 				1B964764273E4F2F00345DDA /* RelationOrderCell.xib in Resources */,
+				1BFF68FB27968C5F006890D7 /* LogisticsVC.xib in Resources */,
 				1B552EAF276B36CC0086604B /* GroupFilterCell.xib in Resources */,
 				1B82AEDE277080B700D75E00 /* README.md in Resources */,
 				1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */,
@@ -3746,6 +3755,7 @@
 				AEA3298A272AEE9500E7827A /* SFSearchCollectionCell.m in Sources */,
 				1BDBEBC82700B8900018109B /* MyCouponChildViewController.m in Sources */,
 				4B818FEC272444560058038A /* ProductSimilarModel.m in Sources */,
+				1BFF68FA27968C5F006890D7 /* LogisticsVC.m in Sources */,
 				1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */,
 				1B74DB442728EB1A00B30ECC /* RecentlyModel.m in Sources */,
 				1B82AEE3277080B700D75E00 /* UIImageView+YYWebImage.m in Sources */,
