@@ -600,8 +600,8 @@
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
 //    vc.url = [NSString stringWithFormat:@"%@/chat/%@", Host, _model.uccAccount];
 
-//    vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
-    vc.url = [NSString stringWithFormat:@"https://smartfrenshop.com/chat/%@",_model.uccAccount];
+    vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
+//    vc.url = [NSString stringWithFormat:@"https://smartfrenshop.com/chat/%@",_model.uccAccount];
     vc.sysAccount = _model.uccAccount;
     [self.navigationController pushViewController:vc animated:YES];
 }

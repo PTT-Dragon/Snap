@@ -43,6 +43,8 @@
 /** 设备是否为iPhone XR 像素1792x828，@2x */
 #define iPhoneXR ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) : NO)
 
+#define iPhoneXBottomOffset (iPhoneX ? 34 : 0)
+
 #pragma mark -
 #pragma mark -----系统------
 

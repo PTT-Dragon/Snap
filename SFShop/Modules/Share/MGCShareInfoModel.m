@@ -9,18 +9,7 @@
 
 @implementation MGCShareInfoModel
 
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"cyOpenInfo" : [MGCShareCyOpenInfoModel class],@"cardInfo" : [MGCCardInfo class]};
-}
 
 @end
 
-@implementation MGCCardInfo
-
-@end
-
-@implementation MGCShareCyOpenInfoModel
-
-
-@end
 

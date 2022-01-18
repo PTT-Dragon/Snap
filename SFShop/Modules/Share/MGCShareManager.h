@@ -6,10 +6,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MGCShareInfoModel.h"
+#import "MGCShareItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MGCShareManager : NSObject
+
++ (instancetype)sharedInstance;
+
+
 
 @end
 
