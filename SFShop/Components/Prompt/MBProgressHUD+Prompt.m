@@ -77,7 +77,7 @@
  */
 + (MBProgressHUD *)showHudMsg:(NSString *)msg {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    return [self showHudMsg:msg carrierView:window animation:YES userInteractionEnabled:YES];
+    return [self showHudMsg:msg carrierView:window animation:YES userInteractionEnabled:NO];
 }
 
 /**********************************************************************
@@ -103,6 +103,7 @@
     MBProgressHUD *hud = [MBProgressHUD showWithOutImageHudMsg:msg];
     hud.mode = MBProgressHUDModeText;
     hud.label.numberOfLines = 0;
+    hud.userInteractionEnabled = NO;
     [hud hideAnimated:YES afterDelay:duration];
 }
 
@@ -129,6 +130,7 @@
     MBProgressHUD *hud = [MBProgressHUD showWithOutImageHudMsg:msg];
     hud.mode = MBProgressHUDModeText;
     hud.label.numberOfLines = 0;
+    hud.userInteractionEnabled = NO;
     [hud hideAnimated:YES afterDelay:duration];
     hud.completionBlock = ^{
         completion();
@@ -142,7 +144,7 @@
  */
 + (MBProgressHUD *)showWithOutImageHudMsg:(NSString *)msg{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    return [self showHudMsg:msg carrierView:window animation:NO userInteractionEnabled:YES];
+    return [self showHudMsg:msg carrierView:window animation:NO userInteractionEnabled:NO];
 }
 
 @end
