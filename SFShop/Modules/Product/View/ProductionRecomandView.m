@@ -88,14 +88,14 @@
     CategoryRankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankCell" forIndexPath:indexPath];
     CategoryRankPageInfoListModel *cellModel = self.similarList[indexPath.row];
     cell.model = cellModel;
-    cell.showType = 1;
+    cell.showType = 0;
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    CategoryRankPageInfoListModel *cellModel = self.similarList[indexPath.row];
     ProductViewController *vc = [[ProductViewController alloc] init];
-//    vc.offerId = self.similarList[indexPath.row].offerId;
+    vc.offerId = cellModel.offerId;
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - CollectionWaterfallLayoutProtocol
