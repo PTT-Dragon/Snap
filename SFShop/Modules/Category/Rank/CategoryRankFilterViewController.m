@@ -14,10 +14,16 @@
 #import "CategoryRankFilterInputItem.h"
 
 @interface CategoryRankFilterViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@property (nonatomic, readwrite, strong) UIView *bottomView;
+@property (nonatomic, readwrite, strong) UIButton *resetBtn;
+@property (nonatomic, readwrite, strong) UIButton *confirmBtn;
 @property (nonatomic, readwrite, strong) UIButton *closeBtn;
 @property (nonatomic, readwrite, strong) UICollectionView *collectionView;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray *> *dataArray;
 @end
+
+
+#define FooterHeight 78
 
 @implementation CategoryRankFilterViewController
 
@@ -32,6 +38,9 @@
 - (void)loadSubviews {
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.closeBtn];
+    [self.view addSubview:self.bottomView];
+    [self.bottomView addSubview:self.resetBtn];
+    [self.bottomView addSubview:self.confirmBtn];
 }
 
 - (void)layout {
@@ -40,6 +49,27 @@
         make.size.mas_equalTo(CGSizeMake(24, 24));
         make.top.mas_equalTo(statuBarHei + 8);
     }];
+    
+    [self.resetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.left.mas_equalTo(16);
+        make.height.mas_equalTo(46);
+        make.right.equalTo(self.confirmBtn.mas_left).offset(-6);
+        make.width.equalTo(self.confirmBtn.mas_width);
+    }];
+    
+    [self.confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.right.mas_equalTo(-16);
+        make.height.mas_equalTo(46);
+        make.left.equalTo(self.resetBtn.mas_right).offset(6);
+        make.width.equalTo(self.resetBtn.mas_width);
+    }];
+    
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(FooterHeight);
+    }];
 }
 
 #pragma mark - Event
@@ -47,6 +77,13 @@
     [self dismissViewControllerAnimated:YES completion:^{
         !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshUpdate,self.model);
     }];
+}
+
+- (void)reset {
+    self.model.filterCache = nil;
+    self.model.priceModel = nil;
+    [self.dataArray removeAllObjects];
+    [self dismiss];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -189,7 +226,7 @@
         flow.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16);
         flow.headerReferenceSize = CGSizeMake(MainScreen_width, 13);
         flow.footerReferenceSize = CGSizeMake(MainScreen_width, 13);
-        _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height - navBarHei) collectionViewLayout:flow];
+        _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height - navBarHei - FooterHeight) collectionViewLayout:flow];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = false;
@@ -202,6 +239,14 @@
     return _collectionView;
 }
 
+- (UIView *)bottomView {
+    if (_bottomView == nil) {
+        _bottomView = [[UIView alloc] init];
+        _bottomView.backgroundColor = [UIColor whiteColor];
+    }
+    return _bottomView;
+}
+
 - (UIButton *)closeBtn {
     if (_closeBtn == nil) {
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -210,6 +255,33 @@
         [_closeBtn setImage:[UIImage imageNamed:@"nav_close_bold"] forState:UIControlStateNormal];
     }
     return _closeBtn;
+}
+
+- (UIButton *)resetBtn {
+    if (_resetBtn == nil) {
+        _resetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_resetBtn addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
+        [_resetBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+        [_resetBtn setTitle:@"RESET" forState:UIControlStateNormal];
+        [_resetBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateNormal];
+        _resetBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#FF1659"].CGColor;
+        _resetBtn.layer.borderWidth = 1;
+        _resetBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    }
+    return _resetBtn;
+}
+
+- (UIButton *)confirmBtn {
+    if (_confirmBtn == nil) {
+        _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_confirmBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+        [_confirmBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+        [_confirmBtn setTitle:@"CONFIRM" forState:UIControlStateNormal];
+        [_confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_confirmBtn setBackgroundColor:[UIColor jk_colorWithHexString:@"#FF1659"]];
+        _confirmBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    }
+    return _confirmBtn;
 }
 
 - (NSMutableArray<NSMutableArray *> *)dataArray {
