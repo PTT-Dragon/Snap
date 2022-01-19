@@ -11,39 +11,15 @@
 #define kHarpyAppBundleName [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
 #define kHarpyAppBtndleIdentifier [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
 
-//判断是否 Retina屏、设备是否iPhone 5、是否是iPad
-#define isRetina ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 
-/** 判断是否为iPhone */
-#define isiPhone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_IOS_11  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.f)
+#define IS_IPHONE_X (IS_IOS_11 && IS_IPHONE && (MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) >= 375 && MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) >= 812))
 
-/** 判断是否是iPad */
-#define isiPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
-/** 判断是否为iPod */
-#define isiPod ([[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"])
+#define iPhoneXBottomOffset (IS_IPHONE_X ? 34 : 0)
 
-/** 设备是否为iPhone 4/4S 分辨率320x480，像素640x960，@2x */
-#define iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 
-/** 设备是否为iPhone 5C/5/5S 分辨率320x568，像素640x1136，@2x */
-#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
-
-/** 设备是否为iPhone 6 分辨率375x667，像素750x1334，@2x */
-#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
-
-/** 设备是否为iPhone 6 Plus 分辨率414x736，像素1242x2208，@3x */
-#define iPhone6P ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
-
-/** 设备是否为iPhone X 分辨率414x736，像素1242x2208，@3x */
-#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
-
-/** 设备是否为iPhone XS MAX 分辨率414x736，像素1242x2208，@3x */
-#define iPhoneXSMAX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) : NO)
-/** 设备是否为iPhone XR 像素1792x828，@2x */
-#define iPhoneXR ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) : NO)
-
-#define iPhoneXBottomOffset (iPhoneX ? 34 : 0)
 
 #pragma mark -
 #pragma mark -----系统------
@@ -126,7 +102,7 @@
 #pragma mark -----设备大小比例（当前以4.7寸屏为基本）------
 
 #define kScreenWidthRatio  (App_Frame_Width / 375.0)
-#define kScreenHeightRatio ((iPhoneX || iPhoneXSMAX) ? 667.0/667.0 : (App_Frame_Height / 667.0))
+#define kScreenHeightRatio ((IS_IPHONE_X) ? 667.0/667.0 : (App_Frame_Height / 667.0))
 
 #pragma mark -
 #pragma mark -----当前语言------
@@ -346,10 +322,10 @@ dispatch_async(dispatch_get_main_queue(), block);\
 
 #pragma mark - 高度
 #define k_is_bang (@available(iOS 14.0, *) && UIApplication.sharedApplication.keyWindow.safeAreaInsets.bottom > 0.0)
-#define navBarHei (k_is_bang ? 88: 64)
-#define statuBarHei (k_is_bang ? 44: 20)
-#define tabbarHei (k_is_bang ? 84: 50)
-#define ScreenbottomHei (k_is_bang ? 20: 0)
+#define navBarHei (IS_IPHONE_X ? 88: 64)
+#define statuBarHei (IS_IPHONE_X ? 44: 20)
+#define tabbarHei (IS_IPHONE_X ? 84: 50)
+#define ScreenbottomHei (IS_IPHONE_X ? 20: 0)
 
 #ifndef __OPTIMIZE__
 #define NSLog(...) NSLog(__VA_ARGS__)
