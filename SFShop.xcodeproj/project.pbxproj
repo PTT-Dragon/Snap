@@ -395,6 +395,7 @@
 		8E1872D42796AB3C00DBEE3E /* MGCShareItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872D12796AB3C00DBEE3E /* MGCShareItemModel.m */; };
 		8E1872D52796AB3C00DBEE3E /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872D22796AB3C00DBEE3E /* UIView+YYAdd.m */; };
 		8E1872D82796AF2300DBEE3E /* MGCShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872D72796AF2300DBEE3E /* MGCShareManager.m */; };
+		8E1EC08C27986CC600CE0088 /* CartRecomandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC08B27986CC600CE0088 /* CartRecomandView.m */; };
 		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
 		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
 		8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */; };
@@ -1193,6 +1194,8 @@
 		8E1872D32796AB3C00DBEE3E /* MGCShareItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCShareItemModel.h; sourceTree = "<group>"; };
 		8E1872D62796AF2300DBEE3E /* MGCShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGCShareManager.h; sourceTree = "<group>"; };
 		8E1872D72796AF2300DBEE3E /* MGCShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGCShareManager.m; sourceTree = "<group>"; };
+		8E1EC08A27986CC600CE0088 /* CartRecomandView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartRecomandView.h; sourceTree = "<group>"; };
+		8E1EC08B27986CC600CE0088 /* CartRecomandView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartRecomandView.m; sourceTree = "<group>"; };
 		8E4821FA277A14F000857FF5 /* EmptyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyModel.h; sourceTree = "<group>"; };
 		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
 		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
@@ -1799,6 +1802,8 @@
 				1B53A2BB2778ACC900FB00C7 /* CartChoosePromotion.xib */,
 				8E11A8D2278DD6C9005D1FC3 /* CartEmptyView.h */,
 				8E11A8D3278DD6C9005D1FC3 /* CartEmptyView.m */,
+				8E1EC08A27986CC600CE0088 /* CartRecomandView.h */,
+				8E1EC08B27986CC600CE0088 /* CartRecomandView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3806,6 +3811,7 @@
 				1B47832F272AA1FF00F2A945 /* SecurityCenterViewController.m in Sources */,
 				AEA3298A272AEE9500E7827A /* SFSearchCollectionCell.m in Sources */,
 				1BDBEBC82700B8900018109B /* MyCouponChildViewController.m in Sources */,
+				8E1EC08C27986CC600CE0088 /* CartRecomandView.m in Sources */,
 				4B818FEC272444560058038A /* ProductSimilarModel.m in Sources */,
 				1BFF68FA27968C5F006890D7 /* LogisticsVC.m in Sources */,
 				1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */,

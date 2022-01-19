@@ -151,6 +151,8 @@
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
+        self.dataModel = model;
+        self.filterCacheModel = self.dataModel.filterCache;
         [self.collectionView.mj_header beginRefreshing];
     };
     [self presentViewController:filterVc animated:YES completion:nil];

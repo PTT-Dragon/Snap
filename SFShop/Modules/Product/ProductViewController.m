@@ -621,6 +621,10 @@
         }
         item.currentBuyCount = self.attrView.count;
         self.model.products = @[item];
+        if (item.inCmpIdList) {//团购情况
+            self.model.shareBuyMode = @"A";
+            self.model.orderType = @"B";
+        }
         ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
         [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
             if (isSuccess) {

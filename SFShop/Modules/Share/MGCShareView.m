@@ -348,7 +348,7 @@
     if (sender.state == UIGestureRecognizerStateEnded) {
         CGPoint velocity = [sender velocityInView:self.bgView];
         // 结束时的速度>0 滑动距离> 5 且UIScrollView滑动到最顶部
-        if (velocity.y > 0 && self.lastTransitionY > 100 || shareHeight < 150) {
+        if ((velocity.y > 0 && self.lastTransitionY > 100) || shareHeight < 150) {
             [self removeFromSuperview];
         }else {
             [self reSetbgFrame];

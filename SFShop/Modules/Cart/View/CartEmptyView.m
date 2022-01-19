@@ -7,7 +7,7 @@
 
 #import "CartEmptyView.h"
 #import "EmptyView.h"
-#import "ProductionRecomandView.h"
+#import "CartRecomandView.h"
 #import "ProductSimilarModel.h"
 
 @interface CartEmptyView ()
@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong) UIButton *goShoppingBtn;
 
-@property (nonatomic, strong) ProductionRecomandView *recomandView;
+@property (nonatomic, strong) CartRecomandView *recomandView;
 
 @end
 
@@ -83,16 +83,6 @@
 #pragma mark - configData
 
 - (void)configDataWithSimilarList:(NSMutableArray *)similarList {
-//    NSMutableArray<ProductSimilarModel *> *tempArr = [NSMutableArray array];
-//    for (favoriteModel *tempModel in similarList) {
-//        ProductSimilarModel *similarModel = [[ProductSimilarModel alloc] init];
-//        similarModel.imgUrl = tempModel.imgUrl;
-//        similarModel.offerName = tempModel.offerName;
-//        similarModel.salesPrice = [tempModel.salesPrice floatValue];
-//        similarModel.discountPercent = ([tempModel.salesPrice floatValue]/[tempModel.marketPrice floatValue]) * 100;
-//        similarModel.marketPrice = [tempModel.marketPrice floatValue];
-//        [tempArr addObject:similarModel];
-//    }
     [self.recomandView configDataWithSimilarList:similarList];
 }
 
@@ -126,9 +116,9 @@
     return _goShoppingBtn;
 }
 
-- (ProductionRecomandView *)recomandView {
+- (CartRecomandView *)recomandView {
     if (!_recomandView) {
-        _recomandView = [[ProductionRecomandView alloc] init];
+        _recomandView = [[CartRecomandView alloc] init];
     }
     return _recomandView;
 }
