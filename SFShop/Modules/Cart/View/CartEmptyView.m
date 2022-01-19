@@ -82,18 +82,18 @@
 
 #pragma mark - configData
 
-- (void)configDataWithSimilarList:(NSMutableArray<favoriteModel *> *)similarList {
-    NSMutableArray<ProductSimilarModel *> *tempArr = [NSMutableArray array];
-    for (favoriteModel *tempModel in similarList) {
-        ProductSimilarModel *similarModel = [[ProductSimilarModel alloc] init];
-        similarModel.imgUrl = tempModel.imgUrl;
-        similarModel.offerName = tempModel.offerName;
-        similarModel.salesPrice = [tempModel.salesPrice floatValue];
-        similarModel.discountPercent = ([tempModel.salesPrice floatValue]/[tempModel.marketPrice floatValue]) * 100;
-        similarModel.marketPrice = [tempModel.marketPrice floatValue];
-        [tempArr addObject:similarModel];
-    }
-    [self.recomandView configDataWithSimilarList:tempArr];
+- (void)configDataWithSimilarList:(NSMutableArray *)similarList {
+//    NSMutableArray<ProductSimilarModel *> *tempArr = [NSMutableArray array];
+//    for (favoriteModel *tempModel in similarList) {
+//        ProductSimilarModel *similarModel = [[ProductSimilarModel alloc] init];
+//        similarModel.imgUrl = tempModel.imgUrl;
+//        similarModel.offerName = tempModel.offerName;
+//        similarModel.salesPrice = [tempModel.salesPrice floatValue];
+//        similarModel.discountPercent = ([tempModel.salesPrice floatValue]/[tempModel.marketPrice floatValue]) * 100;
+//        similarModel.marketPrice = [tempModel.marketPrice floatValue];
+//        [tempArr addObject:similarModel];
+//    }
+    [self.recomandView configDataWithSimilarList:similarList];
 }
 
 

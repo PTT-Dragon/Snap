@@ -17,6 +17,7 @@
 #import "UIViewController+parentViewController.h"
 #import "CartViewController.h"
 #import "favoriteModel.h"
+#import "CategoryRankModel.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -25,7 +26,8 @@
 @property (nonatomic,strong) NSMutableArray *campaignsDataSource;
 @property (nonatomic,strong) CartModel *cartModel;
 @property (nonatomic, strong) CartEmptyView *emptyView;
-@property(nonatomic, strong) NSMutableArray<favoriteModel *> *similarList;
+@property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
+@property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
 
 @end
 
@@ -74,9 +76,9 @@
     MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
-        NSError *error;
-        weakself.similarList = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:&error];
-        [weakself.emptyView configDataWithSimilarList:weakself.similarList];
+        weakself.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
+        [weakself.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
+        [weakself.emptyView configDataWithSimilarList:weakself.dataArray];
     } failed:^(NSError * _Nonnull error) {
         [hud hideAnimated:YES];
         [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"message"]];
@@ -358,5 +360,11 @@
     }
     return _emptyView;
 }
-
+- (NSMutableArray *)dataArray
+{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
 @end
