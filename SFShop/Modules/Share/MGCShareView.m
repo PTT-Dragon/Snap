@@ -194,7 +194,7 @@
     CGFloat oneToolHeight = 121+100;
     CGFloat btnHeitght = 16+40;
 
-    if (iPhoneX) {
+    if (IS_IPHONE_X) {
         bgHeight = 145+160+iPhoneXBottomOffset;
         oneToolHeight = 113+100+iPhoneXBottomOffset;
         btnHeitght = 16+40+iPhoneXBottomOffset;
@@ -308,7 +308,7 @@
     
     CGFloat height = 145+160;
     CGFloat oneToolHeight = 113+100;
-    if (iPhoneX) {
+    if (IS_IPHONE_X) {
         height = 145+160+iPhoneXBottomOffset;
         oneToolHeight = 113+100+iPhoneXBottomOffset;
     }
@@ -360,7 +360,7 @@
 - (void)reSetbgFrame{
     CGFloat height = 145+160;
     CGFloat oneToolHeight = 113+100;
-    if (iPhoneX) {
+    if (IS_IPHONE_X) {
         height = 145+160+iPhoneXBottomOffset;
         oneToolHeight = 113+100+iPhoneXBottomOffset;
     }
@@ -379,7 +379,7 @@
 - (UIView *)bgView{
     if (!_bgView) {
         CGFloat height = 145+160;
-        if (iPhoneX) {
+        if (IS_IPHONE_X) {
             height = 145+160+iPhoneXBottomOffset;
         }
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - height, self.width, height)];
@@ -460,7 +460,7 @@
 - (UIButton *)cancelBtn{
     if (!_cancelBtn) {
         CGFloat height = 16+40;
-        if (iPhoneX) {
+        if (IS_IPHONE_X) {
             height = 16+40+iPhoneXBottomOffset;
         }
         _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, self.bgView.height - height, self.width - 30, 40)];
