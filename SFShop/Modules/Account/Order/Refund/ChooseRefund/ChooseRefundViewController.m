@@ -52,7 +52,7 @@
 {
     //这里暂时是一个商品
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"orderId":self.model.orderId,@"orderItemId":[self.model.orderItems.firstObject orderItemId]} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.refund.charge parameters:@{@"orderId":self.model.orderId,@"orderItemId":[self.model.orderItems.firstObject orderItemId]} success:^(id  _Nullable response) {
         weakself.chargeModel = [[RefundChargeModel alloc] initWithDictionary:response error:nil];
     } failed:^(NSError * _Nonnull error) {
         
@@ -101,6 +101,7 @@
         }
         RefundOrReturnViewController *vc = [[RefundOrReturnViewController alloc] init];
         vc.model = self.model;
+        vc.chargeModel = self.chargeModel;
         vc.type = indexPath.row == 0 ? REFUNDTYPE: indexPath.row == 1 ? RETURNTYPE: REPLACETYPE;
         [self.navigationController pushViewController:vc animated:YES];
     }

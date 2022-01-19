@@ -37,7 +37,7 @@
 }
 - (void)setOrderContent:(orderItemsModel *)model state:(NSString *)state
 {
-    _afterSaleBtn.hidden = ![state isEqualToString:@"D"];
+    _afterSaleBtn.hidden = (![state isEqualToString:@"D"] || [model.canReturn isEqualToString:@"N"]);
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
     _nameLabel.text = model.productName;
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];

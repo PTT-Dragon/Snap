@@ -74,6 +74,9 @@
 - (NSString *)cart {
     return K_cart_domain(@"");
 }
+- (NSString *)num {
+    return K_cart_domain(@"num");
+}
 - (NSString *)modify {
     return K_cart_domain(@"modify");
 }
@@ -174,14 +177,18 @@
 @implementation SFNetworkUsersRefundModule
 
 - (NSString *)refundList {
-    return K_refund_domain(@"");
+    return K_refundApply_domain(@"");
 }
 - (NSString *)charge {
     return K_refund_domain(@"charge");
 }
+- (NSString *)refund {
+    return K_refund_domain(@"");
+}
+
 - (NSString *)getDetailOf: (NSString *)offerId {
     NSString *url = [NSString stringWithFormat:@"/%@", offerId];
-    return K_refund_domain(url);
+    return K_refundApply_domain(url);
 }
 @end
 

@@ -6,6 +6,7 @@
 //
 
 #import "baseTool.h"
+#import "CartModel.h"
 
 @implementation baseTool
 + (void)removeVCFromNavigation:(UIViewController *)vc
@@ -76,9 +77,15 @@
 }
 + (void)updateCartNum
 {
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    UITabBarItem *item = [[[(UITabBarController*)appDelegate.tabVC tabBar] items] objectAtIndex:3];
-    item.badgeValue = @"2";
-    item.badgeColor = [UIColor redColor];
+    [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
+        CartNumModel *model = [[CartNumModel alloc] initWithDictionary:response error:nil];
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        UITabBarItem *item = [[[(UITabBarController*)appDelegate.tabVC tabBar] items] objectAtIndex:3];
+        item.badgeValue = model.num;
+        item.badgeColor = [UIColor redColor];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+    
 }
 @end

@@ -41,3 +41,10 @@
     return YES;
 }
 @end
+@implementation CartNumModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+

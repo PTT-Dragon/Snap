@@ -10,8 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^RefundDetailImagesCellBlock)(NSArray *imgArr);
+
 @interface RefundDetailImagesCell : UITableViewCell
-@property (nonatomic,strong) RefundDetailModel *model;
+@property (nonatomic,copy) RefundDetailImagesCellBlock block;
 @end
 
 NS_ASSUME_NONNULL_END

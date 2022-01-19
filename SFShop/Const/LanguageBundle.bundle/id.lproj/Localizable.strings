@@ -279,7 +279,7 @@
 //  "SHIPPING_FEE" = "Biaya pengiriman";
 //  "ATTACHMENT_INFORMATION" = "Informasi Lampiran";
 //  "ORDER_INFORMATION" = "informasi pemesanan";
-//  "ORDER_CODE" = "Invoice";
+  "ORDER_CODE" = "Invoice";
 //  "CREATION_TIME" = "Waktu Membuat";
 //  "PAYER_EMAIL" = "Email pembayar";
 //  "PAYMENT_TIME" = "Waktu pembayaran";
@@ -446,7 +446,7 @@
 //  "PAYMENT_UNSUCCESSFUL" = "Pembayaran Gagal";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "Kami tidak dapat memproses permintaan Anda kali ini.";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT2" = "Silakan coba lagi nanti. Maaf untuk ketidaknyamanan.";
-//  "PAYMENT_SUCCESS" = "Pembelian Berhasil";
+  "PAYMENT_SUCCESS" = "Pembelian Berhasil";
 //  "SEE_DETAIL" = "Lihat Detail";
 //  "SEE_SHARE_BY" = "Lihat join group";
 //  "GROUP_FAIL" = "Grup Gagal";

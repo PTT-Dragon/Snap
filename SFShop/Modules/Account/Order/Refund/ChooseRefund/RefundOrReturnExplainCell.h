@@ -12,9 +12,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^RefundOrReturnExplainCellBlock)(NSString *text);
+
 @interface RefundOrReturnExplainCell : UITableViewCell
 
 @property (nonatomic,assign) RefundOrReturnViewType type;
+@property (nonatomic,copy) RefundOrReturnExplainCellBlock block;
 @property (nonatomic,strong) RefundChargeModel *chargeModel;
 @end
 

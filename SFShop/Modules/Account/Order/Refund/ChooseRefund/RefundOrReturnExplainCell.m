@@ -6,8 +6,9 @@
 //
 
 #import "RefundOrReturnExplainCell.h"
+#import "NSString+Fee.h"
 
-@interface RefundOrReturnExplainCell ()
+@interface RefundOrReturnExplainCell ()<UITextViewDelegate>
 @property (nonatomic,strong) UILabel *chargeLabel;
 @property (nonatomic,strong) UITextView *InstructionsView;
 @end
@@ -18,7 +19,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
+        self.contentView.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -57,8 +58,15 @@
 }
 - (void)setChargeModel:(RefundChargeModel *)chargeModel
 {
-    _chargeLabel = chargeModel;
-    self.
+    _chargeModel = chargeModel;
+    self.chargeLabel.text = [_chargeModel.refundCharge currency];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if (self.block) {
+        self.block(textView.text);
+    }
 }
 - (UILabel *)chargeLabel
 {
@@ -74,6 +82,7 @@
         _InstructionsView = [[UITextView alloc] init];
         _InstructionsView.backgroundColor = RGBColorFrom16(0xf5f5f5);
         _InstructionsView.font = CHINESE_SYSTEM(12);
+        _InstructionsView.delegate = self;
     }
     return _InstructionsView;
 }

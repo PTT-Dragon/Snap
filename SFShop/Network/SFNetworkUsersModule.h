@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFNetworkUsersCartModule : NSObject
 @property (nonatomic, readwrite, strong) NSString *cart;
+@property (nonatomic, readwrite, strong) NSString *num;
 @property (nonatomic, readwrite, strong) NSString *del;
 @property (nonatomic, readwrite, strong) NSString *modify;
 @property (nonatomic, readwrite, strong) NSString *collection;
@@ -130,6 +131,7 @@ NS_ASSUME_NONNULL_BEGIN
 //退货列表
 @property (nonatomic, readwrite, strong) NSString *refundList;
 @property (nonatomic, readwrite, strong) NSString *charge;
+@property (nonatomic, readwrite, strong) NSString *refund;
 
 - (NSString *)getDetailOf: (NSString *)offerId;
 @end

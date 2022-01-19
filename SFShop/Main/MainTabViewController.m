@@ -54,15 +54,10 @@
     [self.tabBar setTranslucent:NO];
     [self setViewControllers:@[homeNav,categoryNav,communityNav,CartNav,accountNav]];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    if ([item.title isEqualToString:kLocalizedString(@"Cart")]) {
+        [baseTool updateCartNum];
+    }
 }
-*/
-
 @end

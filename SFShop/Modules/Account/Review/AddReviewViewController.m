@@ -78,9 +78,9 @@
     EvaluatesModel *evaModel = self.detailModel.evaluates.firstObject;
     self.textView.text = evaModel.evaluationComments;
     self.starView.score = evaModel.rate.integerValue;
-    self.bottomView.hidden = YES;
-    self.anonymousBtn.hidden = YES;
-    self.anonymousLabel.hidden = YES;
+    self.bottomView.hidden = NO;
+    self.anonymousBtn.hidden = NO;
+    self.anonymousLabel.hidden = NO;
     for (EvaluatesContentsModel *contentModel in evaModel.contents) {
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:SFImage(contentModel.url)] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
             if (image) {

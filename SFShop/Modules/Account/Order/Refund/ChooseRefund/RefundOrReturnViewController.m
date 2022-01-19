@@ -13,10 +13,14 @@
 #import "ChooseReasonViewController.h"
 #import "RefundDetailImagesCell.h"
 #import "RefundOrReturnExplainCell.h"
+#import "RefundViewController.h"
 
 @interface RefundOrReturnViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseReasonViewControllerDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) CancelOrderReasonModel *selReasonModel;
+@property (nonatomic,strong) NSMutableArray *imgArr;//存放图片数组
+@property (nonatomic,strong) NSMutableArray *imgUrlArr;//存放图片url数组
+@property (nonatomic,copy) NSString *questionDesc;
 @end
 
 @implementation RefundOrReturnViewController
@@ -40,9 +44,6 @@
     [_tableView registerNib:[UINib nibWithNibName:@"CancelOrderChooseReason" bundle:nil] forCellReuseIdentifier:@"CancelOrderChooseReason"];
     [_tableView registerNib:[UINib nibWithNibName:@"RefundDetailImagesCell" bundle:nil] forCellReuseIdentifier:@"RefundDetailImagesCell"];
     [_tableView registerClass:[RefundOrReturnExplainCell class] forCellReuseIdentifier:@"RefundOrReturnExplainCell"];
-    if (self.type == REFUNDTYPE || self.type == RETURNTYPE) {
-        [self loadRefundCharge];
-    }
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
@@ -50,6 +51,8 @@
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-140);
     }];
+    self.imgArr = [NSMutableArray array];
+    self.imgUrlArr = [NSMutableArray array];
 }
 - (void)setModel:(OrderDetailModel *)model
 {
@@ -69,7 +72,11 @@
             return cell;
         }else if (indexPath.row == _model.orderItems.count + 2){
             RefundOrReturnExplainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundOrReturnExplainCell"];
+            cell.chargeModel = self.chargeModel;
             cell.type = self.type;
+            cell.block = ^(NSString * _Nonnull text) {
+                self.questionDesc = text;
+            };
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
@@ -78,6 +85,9 @@
     }
     
     RefundDetailImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundDetailImagesCell"];
+    cell.block = ^(NSArray * _Nonnull imgArr) {
+        self.imgArr = imgArr;
+    };
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -86,7 +96,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? _model.orderItems.count+2 : 1;
+    return section == 0 ? _model.orderItems.count+3 : 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -132,35 +142,81 @@
         [MBProgressHUD autoDismissShowHudMsg:@"请选择原因"];
         return;
     }
-    MPWeakSelf(self)
+    [self publishImg];
+}
+- (void)publishImg
+{
+    //先上传图片
+    [self.imgUrlArr removeAllObjects];
     [MBProgressHUD showHudMsg:@""];
-    [SFNetworkManager post:SFNet.order.cancelOrder parameters:@{@"orderId":_model.orderId,@"cancelReasonId":_selReasonModel.orderReasonId,@"cancelReason":_selReasonModel.orderReasonName} success:^(id  _Nullable response) {
-        [weakself.navigationController popViewControllerAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg:@"Cancel Success"];
+    dispatch_group_t group = dispatch_group_create();
+    MPWeakSelf(self)
+    __block NSInteger i = 0;
+    for (id item in _imgArr) {
+        if ([item isKindOfClass:[UIImage class]]) {
+            dispatch_group_enter(group);
+            [SFNetworkManager postImage:SFNet.h5.publishImg image:item success:^(id  _Nullable response) {
+                @synchronized (response) {
+                    [weakself.imgUrlArr addObject:@{@"catgType":@"B",@"url":response[@"fullPath"],@"imgUrl":@"",@"seq":@(i),@"name":response[@"fileName"]}];
+                    i++;
+                }
+                dispatch_group_leave(group);
+            } failed:^(NSError * _Nonnull error) {
+                dispatch_group_leave(group);
+            }];
+            
+        }
+    }
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideFromKeyWindow];
+        [self publishRefund];
+    });
+}
+- (void)publishRefund
+{
+    NSString *serviceType = _type == RETURNTYPE ? @"2": _type == REPLACETYPE ? @"4": @"3";
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:_model.orderId forKey:@"orderId"];
+    [params setValue:[_model.orderItems.firstObject orderItemId] forKey:@"orderItemId"];
+    [params setValue:@"1" forKey:@"refundMode"];
+    [params setValue:serviceType forKey:@"serviceType"];
+    [params setValue:self.chargeModel.refundCharge forKey:@"refundCharge"];
+    [params setValue:self.selReasonModel.orderReasonId forKey:@"orderReasonId"];
+    [params setValue:self.selReasonModel.orderReasonName forKey:@"orderReason"];
+    [params setValue:self.questionDesc forKey:@"questionDesc"];
+    [params setValue:self.imgUrlArr forKey:@"contents"];
+    [params setValue:@"2" forKey:@"goodReturnType"];
+    [params setValue:@"Y" forKey:@"receivedFlag"];
+    [params setValue:@"3" forKey:@"contactChannel"];
+    [params setValue:_model.offerCnt forKey:@"submitNum"];
+    
+    
+    //{"orderId":25010,"orderItemId":24010,"refundMode":1,"serviceType":3,"refundCharge":80000,"submitNum":1,"orderReasonId":2,"orderReason":"尺码过大","questionDesc":"距离健健康康","goodReturnType":2,"contactChannel":3,"contents":[{"id":null,"catgType":"B","url":"/get/resource/ecs/20220119/picture/4CFF7CD0-1436-4963-9E93-F47AC677500C1483630588477521920.png","seq":1}],"receivedFlag":"Y"}
+    /**
+     {
+         contactChannel = 3;
+         contents =     ;
+         goodReturnType = 2;
+         orderId = 26009;
+         orderItemId = 25009;
+         orderReason = "\U5c3a\U7801\U8fc7\U5927";
+         orderReasonId = 2;
+         questionDesc = "\U63a5\U53e3";
+         receivedFlag = Y;
+         refundCharge = 100000;
+         refundMode = 1;
+         serviceType = 3;
+     }
+
+     **/
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.refund.refund parameters:params success:^(id  _Nullable response) {
+        RefundViewController *vc = [[RefundViewController alloc] init];
+        [weakself.navigationController pushViewController:vc animated:YES];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
-- (void)refundAction
-{
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:_model.orderId forKey:@"orderId"];
-    [params setValue:[_model.orderItems.firstObject id] forKey:@"orderItemId"];
-    [params setValue:@"1" forKey:@"refundMode"];
-    [params setValue:@"3" forKey:@"serviceType"];
-    [params setValue:@"" forKey:@"refundCharge"];
-    //{"orderId":22001,"orderItemId":21001,"refundMode":1,"serviceType":3,"refundCharge":6000,"submitNum":1,"orderReasonId":2,"orderReason":"尺码过大","questionDesc":"","goodReturnType":2,"contactChannel":3,"contents":[],"receivedFlag":"Y"}
-    [SFNetworkManager post:SFNet.refund.refundList parameters:@{} success:^(id  _Nullable response) {
-        
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
-}
-- (void)returnAction
-{
-    
-}
-
 - (UITableView *)tableView
 {
     if (!_tableView) {

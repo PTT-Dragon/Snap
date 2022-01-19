@@ -23,6 +23,7 @@
 #import "DeleveryViewController.h"
 #import "CheckoutManager.h"
 #import "SceneManager.h"
+#import "ProductCheckoutSeccessVc.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -144,6 +145,11 @@
     }];
     [alert addAction:calcelAction];
     [self presentViewController:alert animated:YES completion:nil];
+}
+- (void)toSuccessView
+{
+    ProductCheckoutSeccessVc *vc = [[ProductCheckoutSeccessVc alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Loadsubviews
@@ -427,8 +433,13 @@
                 [MBProgressHUD hideFromKeyWindow];
                 [CheckoutManager.shareInstance startPayWithOrderIds:orderIds shareBuyOrderNbr:shareBuyOrderNbr totalPrice:totalPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml) {
                     switch (result) {
-                        case SFPayResultSuccess:
-                            [SceneManager transToHome];
+                        case SFPayResultSuccess:{
+                            ProductCheckoutSeccessVc *vc = [[ProductCheckoutSeccessVc alloc] init];
+                            vc.infoDic = response;
+                            [weakself.navigationController pushViewController:vc animated:YES];
+                        }
+                            
+//                            [SceneManager transToHome];
                             break;
                         case SFPayResultFailed:
                             break;

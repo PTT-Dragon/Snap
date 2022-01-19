@@ -60,6 +60,7 @@
     [RACObserve(dbManager, currentUser) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
         [self loadAddressDatas];
+        [baseTool updateCartNum];
     }];
 }
 - (void)loadAddressDatas
@@ -250,6 +251,7 @@
     NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%ld)",self.cartModel.validCarts.count];
     self.menuList = @[allCount,dropCount];
     [self.magicController.magicView reloadMenuTitles];
+    [baseTool updateCartNum];
 }
 
 

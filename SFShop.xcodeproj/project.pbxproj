@@ -12,6 +12,8 @@
 		1B12A3DD27015EB800DD7BCD /* CouponCenterChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DC27015EB800DD7BCD /* CouponCenterChildViewController.m */; };
 		1B12A3E127015F7000DD7BCD /* CouponCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12A3DF27015F7000DD7BCD /* CouponCenterCell.m */; };
 		1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B12A3E027015F7000DD7BCD /* CouponCenterCell.xib */; };
+		1B24A3822797E449006D3412 /* ProductCheckoutSeccessVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B24A3802797E449006D3412 /* ProductCheckoutSeccessVc.m */; };
+		1B24A3832797E449006D3412 /* ProductCheckoutSeccessVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B24A3812797E449006D3412 /* ProductCheckoutSeccessVc.xib */; };
 		1B273C4B278EFC4500DDE2DA /* ChooseRefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B273C49278EFC4500DDE2DA /* ChooseRefundViewController.m */; };
 		1B273C4C278EFC4500DDE2DA /* ChooseRefundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B273C4A278EFC4500DDE2DA /* ChooseRefundViewController.xib */; };
 		1B273C54278F025700DDE2DA /* OrderListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B273C53278F025700DDE2DA /* OrderListItemCell.xib */; };
@@ -530,6 +532,9 @@
 		1B12A3DE27015F7000DD7BCD /* CouponCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponCenterCell.h; sourceTree = "<group>"; };
 		1B12A3DF27015F7000DD7BCD /* CouponCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponCenterCell.m; sourceTree = "<group>"; };
 		1B12A3E027015F7000DD7BCD /* CouponCenterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponCenterCell.xib; sourceTree = "<group>"; };
+		1B24A37F2797E449006D3412 /* ProductCheckoutSeccessVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCheckoutSeccessVc.h; sourceTree = "<group>"; };
+		1B24A3802797E449006D3412 /* ProductCheckoutSeccessVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCheckoutSeccessVc.m; sourceTree = "<group>"; };
+		1B24A3812797E449006D3412 /* ProductCheckoutSeccessVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCheckoutSeccessVc.xib; sourceTree = "<group>"; };
 		1B273C48278EFC4500DDE2DA /* ChooseRefundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseRefundViewController.h; sourceTree = "<group>"; };
 		1B273C49278EFC4500DDE2DA /* ChooseRefundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseRefundViewController.m; sourceTree = "<group>"; };
 		1B273C4A278EFC4500DDE2DA /* ChooseRefundViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseRefundViewController.xib; sourceTree = "<group>"; };
@@ -3070,6 +3075,9 @@
 				AE8F32C0272E9170008E3DD8 /* View */,
 				AE8F32BD272E904C008E3DD8 /* ProductCheckoutViewController.h */,
 				AE8F32BE272E904C008E3DD8 /* ProductCheckoutViewController.m */,
+				1B24A37F2797E449006D3412 /* ProductCheckoutSeccessVc.h */,
+				1B24A3802797E449006D3412 /* ProductCheckoutSeccessVc.m */,
+				1B24A3812797E449006D3412 /* ProductCheckoutSeccessVc.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3345,6 +3353,7 @@
 				1B62466627624D9E00009DE2 /* ProductReviewLabelCell.xib in Resources */,
 				1B2AE429272D36F000FB23D3 /* CartTableViewCell.xib in Resources */,
 				1B6C52AB275B672200A1C617 /* ZLPhotoBrowserCell.xib in Resources */,
+				1B24A3832797E449006D3412 /* ProductCheckoutSeccessVc.xib in Resources */,
 				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
 				1BD8E78F275CAF7500130DCC /* ReviewDetailViewController.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
@@ -3542,6 +3551,7 @@
 				AE81BE592702001700AB4225 /* MBProgressHUD+Prompt.m in Sources */,
 				1B92D15A2733CA9B00E73F98 /* a.m in Sources */,
 				1B74DAF92722A85600B30ECC /* InviteCell.m in Sources */,
+				1B24A3822797E449006D3412 /* ProductCheckoutSeccessVc.m in Sources */,
 				1BB1CB6927634477008D71DF /* FlashSaleChildViewController.m in Sources */,
 				AE8F32CA272E962B008E3DD8 /* ProductCheckoutDeliveryCell.m in Sources */,
 				1B92D1542732815C00E73F98 /* AreaCell.m in Sources */,
@@ -4017,7 +4027,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.8;
+				CURRENT_PROJECT_VERSION = 3.9;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4058,7 +4068,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.8;
+				CURRENT_PROJECT_VERSION = 3.9;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

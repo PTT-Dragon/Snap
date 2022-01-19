@@ -274,7 +274,7 @@
 //  "SHIPPING_FEE" = "Shipping Fee";
 //  "ATTACHMENT_INFORMATION" = "Attachment Information";
 //  "ORDER_INFORMATION" = "Order Information";
-//  "ORDER_CODE" = "Order Code";
+  "ORDER_CODE" = "Order Code";
 //  "CREATION_TIME" = "Creation time";
 //  "PAYER_EMAIL" = "Payer Email";
 //  "PAYMENT_TIME" = "Payment time";
@@ -442,7 +442,7 @@
 //  "PAYMENT_UNSUCCESSFUL" = "Payment Unsuccessful";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "We are not able to process your request this time.";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT2" = "Please try again later. Sorry for any inconvenience.";
-//  "PAYMENT_SUCCESS" = "Purchase Succesful";
+  "PAYMENT_SUCCESS" = "Purchase Succesful";
 //  "SEE_DETAIL" = "See Detail";
 //  "SEE_SHARE_BY" = "See Group Buy";
 //  "GROUP_FAIL" = "Group Failed";

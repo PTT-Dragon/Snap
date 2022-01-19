@@ -72,7 +72,6 @@
         }
     }
     RefundDetailImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundDetailImagesCell"];
-    cell.model = self.model;
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
