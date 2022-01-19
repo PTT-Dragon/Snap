@@ -154,8 +154,8 @@
 //  "CARGO_STATUS" = "Status pengiriman barang";
 //  "SERVICE_REASON" = "Alasan";
 //  "PLEASE_SELECT" = "Mohon pilih";
-//  "REFUND_AMOUNT" = "Jumlah pengembalian uang =";
-//  "INSTRUCTIONS" = "Instruksi =";
+  "REFUND_AMOUNT" = "Jumlah pengembalian uang";
+  "INSTRUCTIONS" = "Instruksi";
 //  "REFUND_RETURN" = "Pengembalian dana";
 //  "REASON_TITLE" = "Silakan Pilih Alasan";
 //  "MANY_SALES_HINT" = "Item ini tidak dapat diganti / dikembalikan lagi. Untuk bantuan lebih lanjut; silahkan hubungi costumer support.";

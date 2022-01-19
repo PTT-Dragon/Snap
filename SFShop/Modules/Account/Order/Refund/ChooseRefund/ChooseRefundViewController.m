@@ -15,6 +15,7 @@
 @interface ChooseRefundViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSArray *dataSource;
+@property (nonatomic,strong) RefundChargeModel *chargeModel;
 @end
 
 @implementation ChooseRefundViewController
@@ -39,12 +40,23 @@
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-140);
     }];
+    [self loadRefundCharge];
     [self.tableView reloadData];
 }
 - (void)setModel:(OrderDetailModel *)model
 {
     _model = model;
     [self.tableView reloadData];
+}
+- (void)loadRefundCharge
+{
+    //这里暂时是一个商品
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"orderId":self.model.orderId,@"orderItemId":[self.model.orderItems.firstObject orderItemId]} success:^(id  _Nullable response) {
+        weakself.chargeModel = [[RefundChargeModel alloc] initWithDictionary:response error:nil];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

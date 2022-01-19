@@ -289,4 +289,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface RefundChargeModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*refundAmount;
+@property (nonatomic,copy) NSString <Optional>*refundCharge;
+
+@end
+
 NS_ASSUME_NONNULL_END

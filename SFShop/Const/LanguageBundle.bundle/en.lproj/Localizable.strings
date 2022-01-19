@@ -149,8 +149,8 @@
 //  "CARGO_STATUS" = "Cargo Status";
 //  "SERVICE_REASON" = "Reason";
 //  "PLEASE_SELECT" = "Please Select";
-//  "REFUND_AMOUNT" = "Refund amount =";
-//  "INSTRUCTIONS" = "Instructions =";
+  "REFUND_AMOUNT" = "Refund amount";
+  "INSTRUCTIONS" = "Instructions";
 //  "REFUND_RETURN" = "Refund & Return";
 //  "REASON_TITLE" = "Please Select Reason";
 //  "MANY_SALES_HINT" = "This item cannot be replaced/refunded again. For more help please contact support.";

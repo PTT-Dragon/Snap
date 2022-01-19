@@ -40,7 +40,9 @@
     [_tableView registerNib:[UINib nibWithNibName:@"CancelOrderChooseReason" bundle:nil] forCellReuseIdentifier:@"CancelOrderChooseReason"];
     [_tableView registerNib:[UINib nibWithNibName:@"RefundDetailImagesCell" bundle:nil] forCellReuseIdentifier:@"RefundDetailImagesCell"];
     [_tableView registerClass:[RefundOrReturnExplainCell class] forCellReuseIdentifier:@"RefundOrReturnExplainCell"];
-    
+    if (self.type == REFUNDTYPE || self.type == RETURNTYPE) {
+        [self loadRefundCharge];
+    }
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
@@ -65,6 +67,10 @@
             CancelOrderChooseReason *cell = [tableView dequeueReusableCellWithIdentifier:@"CancelOrderChooseReason"];
             cell.reasonLabel.text = _selReasonModel ? _selReasonModel.orderReasonName : @"Cancellation Reason";
             return cell;
+        }else if (indexPath.row == _model.orderItems.count + 2){
+            RefundOrReturnExplainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundOrReturnExplainCell"];
+            cell.type = self.type;
+            return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
         [cell setContent:_model.orderItems[indexPath.row-1]];
@@ -85,7 +91,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return  indexPath.row == 0 ? 40 : indexPath.row == 1+_model.orderItems.count ? 60: 118;
+        return  indexPath.row == 0 ? 40 : indexPath.row == 1+_model.orderItems.count ? 60: indexPath.row == 2 + _model.orderItems.count ? self.type == REPLACETYPE ? 66: 92:  118;
     }
     return 200;
 }
@@ -95,14 +101,6 @@
     if (indexPath.row == _model.orderItems.count+1) {
         [self loadReasonDatas];
     }
-}
-- (void)loadRefundCharge
-{
-    [SFNetworkManager get:SFNet.refund.refundList parameters:@{} success:^(id  _Nullable response) {
-        
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
 }
 - (void)loadReasonDatas
 {

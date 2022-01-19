@@ -153,8 +153,8 @@
 //  "CARGO_STATUS" = "商品状态";
 //  "SERVICE_REASON" = "原因";
 //  "PLEASE_SELECT" = "请选择";
-//  "REFUND_AMOUNT" = "退款金额 =";
-//  "INSTRUCTIONS" = "说明 =";
+  "REFUND_AMOUNT" = "退款金额";
+  "INSTRUCTIONS" = "说明";
 //  "REFUND_RETURN" = "售后列表";
 //  "REASON_TITLE" = "请选择原因";
 //  "MANY_SALES_HINT" = "商品无法再次申请退换服务，有关更多帮助，请联系客服。";

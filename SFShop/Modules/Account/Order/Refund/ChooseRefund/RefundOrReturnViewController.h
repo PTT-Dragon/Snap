@@ -18,6 +18,7 @@ typedef enum :NSUInteger{
 
 @interface RefundOrReturnViewController : BaseViewController
 @property (nonatomic,copy) OrderDetailModel *model;
+@property (nonatomic,strong) RefundChargeModel *chargeModel;
 @property (nonatomic,assign) RefundOrReturnViewType type;
 @end
 
