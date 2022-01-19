@@ -35,6 +35,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self addNoTi];
+    [self initWebview];
+}
+- (void)initWebview
+{
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     self.configuration = configuration;
     WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, _isHome ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? statuBarHei: navBarHei)) configuration:_configuration];
@@ -43,10 +48,10 @@
     webview.UIDelegate = self;
 //    NSString *jsFounction = [NSString stringWithFormat:@"sysAccount('%@')", _sysAccount];
 //    [self.webView evaluateJavaScript:jsFounction completionHandler:nil];
-    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        NSString *newUserAgent = [result stringByAppendingFormat:@"/%@",@"app/CYLON-APP"];
-        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
-    }];
+//    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//        NSString *newUserAgent = [result stringByAppendingFormat:@"/%@",@"app/CYLON-APP"];
+//        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
+//    }];
     [self.view addSubview:webview];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     [self addJsBridge];
@@ -58,6 +63,18 @@
             [weakself.navigationController popViewControllerAnimated:YES];
         }
     }];
+}
+- (void)addNoTi
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangeNotification:)
+                                                 name:@"KLanguageChange"
+                                               object:nil];
+}
+- (void)receiveLanguageChangeNotification:(NSNotification *)noti
+{
+    
+    [self.webView removeFromSuperview];
+    [self initWebview];
 }
 
 - (void)addJsBridge
@@ -111,7 +128,6 @@
 }
 // 在收到响应后，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
-    
     NSLog(@"%@",navigationResponse.response.URL.absoluteString);
     //允许跳转
     decisionHandler(WKNavigationResponsePolicyAllow);
@@ -120,7 +136,9 @@
 }
 // 在发送请求之前，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
-    
+    if (navigationAction.targetFrame == nil) {
+        [webView loadRequest:navigationAction.request];
+    }
     NSLog(@"%@",navigationAction.request.URL.absoluteString);
     if ([navigationAction.request.URL.absoluteString rangeOfString :@"coupon-center"].location != NSNotFound) {
         CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
@@ -177,6 +195,10 @@
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
+    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"search-page"].location != NSNotFound){
+        
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
 
     decisionHandler(WKNavigationActionPolicyAllow);
@@ -212,10 +234,11 @@
         completionHandler(NSURLSessionAuthChallengeUseCredential,card);
     }
 }
+
 - (void)dealloc
 {
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openBankCardDialog"];
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     if (iOS9) {
         NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
         

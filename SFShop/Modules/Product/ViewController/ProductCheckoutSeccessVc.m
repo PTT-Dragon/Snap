@@ -8,6 +8,7 @@
 #import "ProductCheckoutSeccessVc.h"
 #import "NSString+Fee.h"
 #import "OrderDetailViewController.h"
+#import "SceneManager.h"
 
 @interface ProductCheckoutSeccessVc ()
 @property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
@@ -25,16 +26,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self layoutsubviews];
 }
 - (void)layoutsubviews
 {
+    
     NSArray *arr = _infoDic[@"orders"];
     NSDictionary *dic = arr.firstObject;
     _storeNameLabel.text = dic[@"storeName"];
     _codeLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"ORDER_CODE"),dic[@"orderNbr"]];
-    _timeLabel.text = @"";
+    _timeLabel.text = kLocalizedString(@"PAYMENT_TIME");
     _successLabel.text = kLocalizedString(@"PAYMENT_SUCCESS");
-    _priceLabel.text = [_infoDic[@"orderPrice"] currency];
+    _priceLabel.text = [[_infoDic[@"totalPrice"] stringValue] currency];
+    [_detailBtn setTitle:kLocalizedString(@"SEE_DETAIL") forState:0];
 }
 
 - (IBAction)detailAction:(UIButton *)sender {
@@ -45,7 +49,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)backAction:(UIButton *)sender {
-    
+    [SceneManager transToHome];
 }
 
 @end

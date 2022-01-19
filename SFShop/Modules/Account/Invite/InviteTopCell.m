@@ -7,6 +7,7 @@
 
 #import "InviteTopCell.h"
 #import "PublicShareView.h"
+#import "PublicAlertView.h"
 
 @implementation InviteTopCell
 
@@ -18,6 +19,21 @@
     PublicShareView *view = [[NSBundle mainBundle] loadNibNamed:@"PublicShareView" owner:self options:nil].firstObject;
     view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
     [[baseTool getCurrentVC].view addSubview:view];
+}
+- (IBAction)ruleAction:(UIButton *)sender {
+    [SFNetworkManager get:SFNet.invite.activityInvRule parameters:@{} success:^(id  _Nullable response) {
+        NSArray *arr = response;
+        NSDictionary *dic = arr.firstObject;
+        NSDictionary *options = @{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:@(NSUTF8StringEncoding)};
+        NSData *data = [dic[@"ctnDesc"] dataUsingEncoding:NSUTF8StringEncoding];
+        NSAttributedString *str = [[NSAttributedString alloc] initWithData:data options:options documentAttributes:nil error:nil];
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"RULE") content:[str string] btnTitle:kLocalizedString(@"CLOSE") block:^{
+            
+        }];
+        [[baseTool getCurrentVC].view addSubview:alert];;
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

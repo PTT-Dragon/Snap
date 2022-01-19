@@ -121,7 +121,7 @@
 //  "SIGN_UP" = "Daftar";
 //  "SIGN_TO_LOGIN" = "Masuk";
 //  "CATEGORY" = "Kategori";
-//  "GET_NOW" = "Get now";
+  "GET_NOW" = "Get now";
 //  "COLLECT_SUCCESS" = "Berhasil ditambahkan ke wishlist!";
 //  "DEL_COLLECT_SUCCESS" = "Berhasil dihapus dari wishlist!";
 //  "COLLECT" = "Mengumpulkan";
@@ -161,7 +161,7 @@
 //  "MANY_SALES_HINT" = "Item ini tidak dapat diganti / dikembalikan lagi. Untuk bantuan lebih lanjut; silahkan hubungi costumer support.";
 //  "ORDER_CANCEL_REASON" = "Alasan Pembatalan";
 //  "CHECK_OUT" = "Check out";
-//  "USE_NOW" = "Gunakan sekarang";
+  "USE_NOW" = "Gunakan sekarang";
 //  "HINT_SUCCESS" = "Berhasil";
 //  "COLLECT_MORE_COUPON" = "Kumpulkan Lebih Banyak Kupon";
 //  "COUPON_NO_DATA_TXT" = "Maaf; tidak ada kupon yang ditemukan.";
@@ -282,11 +282,11 @@
   "ORDER_CODE" = "Invoice";
 //  "CREATION_TIME" = "Waktu Membuat";
 //  "PAYER_EMAIL" = "Email pembayar";
-//  "PAYMENT_TIME" = "Waktu pembayaran";
+  "PAYMENT_TIME" = "Waktu pembayaran";
 //  "COMPLETION_TIME" = "Waktu penyelesaian pesanan";
 //  "RE_BUY" = "Beli lagi";
 //  "CONFIRM_RECEIPT" = "Selesai";
-//  "CLOSE" = "Close";
+  "CLOSE" = "Close";
 //  "BACK_TO_HOME" = "Kembali ke home";
 //  "VIEW_ORDER" = "Tampilan Pemesanan";
 //  "DIRECT_FUNCTION" = "Fungsi";
@@ -331,7 +331,7 @@
 //  "URL" = "URL";
 //  "SAVE_POSTER" = "Save Poster";
 //  "SAVE_ALL" = "Save All";
-//  "RULE" = "Aturan";
+  "RULE" = "Aturan";
 //  "PRODUCT_NAME_ORDER_NUMBER" = "Nama produk/Nomor pesanan";
 //  "SIMILAR_PRODUCTS" = "produk sejenis";
 //  "SHARE" = "Share";
@@ -447,7 +447,7 @@
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "Kami tidak dapat memproses permintaan Anda kali ini.";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT2" = "Silakan coba lagi nanti. Maaf untuk ketidaknyamanan.";
   "PAYMENT_SUCCESS" = "Pembelian Berhasil";
-//  "SEE_DETAIL" = "Lihat Detail";
+  "SEE_DETAIL" = "Lihat Detail";
 //  "SEE_SHARE_BY" = "Lihat join group";
 //  "GROUP_FAIL" = "Grup Gagal";
 //  "GROUPED" = "Grouped";

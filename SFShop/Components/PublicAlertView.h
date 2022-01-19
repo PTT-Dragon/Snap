@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PublicAlertView : UIView
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title btnTitle:(NSString *)btnTitle block:(void (^)(void))block;
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title btnTitle:(NSString *)btn1Title block:(void (^)(void))block1 btn2Title:(NSString *)btn2Title block2:(void (^)(void))block2;
+- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title content:(NSString *)content btnTitle:(NSString *)btn1Title block:(void (^)(void))block1;
 @end
 
 NS_ASSUME_NONNULL_END

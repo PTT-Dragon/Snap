@@ -8,7 +8,10 @@
 #import "CouponModel.h"
 
 @implementation CouponModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 @end
 
 @implementation CouponCategoryModel

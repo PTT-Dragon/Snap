@@ -590,6 +590,7 @@
             @"isSelected":@"N"
         };
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
+            [baseTool updateCartNum];
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_failed")];

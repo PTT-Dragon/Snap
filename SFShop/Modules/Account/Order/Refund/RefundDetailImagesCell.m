@@ -29,9 +29,17 @@
     [_collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     [_collectionView registerNib:[UINib nibWithNibName:@"ReviewAddNewPhotoCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewAddNewPhotoCell"];
 }
+- (void)setContent:(NSArray<EvaluatesContentsModel *> *)content
+{
+    _content = content;
+    [self.collectionView reloadData];
+}
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_canSel) {
+        return;
+    }
     id item = self.imgArr[indexPath.row];
     if ([item isKindOfClass:[NSString class]]) {
         [self uploadAvatar];
@@ -44,9 +52,14 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _imgArr.count;
+    return _content ? _content.count : _imgArr.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (_content) {
+        ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
+        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage([_content[indexPath.row] url])]];
+        return cell;
+    }
     id item = self.imgArr[indexPath.row];
     if ([item isKindOfClass:[NSString class]]) {
         ReviewAddNewPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ReviewAddNewPhotoCell" forIndexPath:indexPath];

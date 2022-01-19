@@ -146,12 +146,6 @@
     [alert addAction:calcelAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
-- (void)toSuccessView
-{
-    ProductCheckoutSeccessVc *vc = [[ProductCheckoutSeccessVc alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 #pragma mark - Loadsubviews
 - (void)loadsubviews {
     [self.view addSubview:self.tableView];

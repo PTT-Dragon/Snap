@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,copy) NSString <Optional>*couponName;
 @property (nonatomic,copy) NSString <Optional>*couponId;
-@property (nonatomic,copy) NSString <Optional>*discountAmount;
 @property (nonatomic,copy) NSString <Optional>*discountMethod;
 @property (nonatomic,copy) NSString <Optional>*effDate;
 @property (nonatomic,copy) NSString <Optional>*expDate;
@@ -22,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*initiator;
 @property (nonatomic,copy) NSString <Optional>*isOrderTh;
 @property (nonatomic,copy) NSString <Optional>*isOverlay;
+@property (nonatomic,assign) double quantity;
+@property (nonatomic,assign) double discountAmount;
 @property (nonatomic,copy) NSString <Optional>*isPrmotCode;
 @property (nonatomic,copy) NSString <Optional>*stateDate;
 @property (nonatomic,copy) NSString <Optional>*storeName;
@@ -31,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*storeLogo;
 @property (nonatomic,copy) NSString <Optional>*userCouponState;
 @property (nonatomic,strong) NSArray <Optional>*targetProduct;
-
+@property (nonatomic,strong) NSArray *userCoupons;
 /**
  {
 comments = "<null>";

@@ -39,12 +39,15 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLK-x8-BMW">
                                         <rect key="frame" x="12" y="147" width="96" height="24"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="GOP-EQ-v1i"/>
                                             <constraint firstAttribute="width" constant="96" id="kX9-IB-l9M"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <state key="normal" title="GET NOW"/>
+                                        <state key="normal" title="GET NOW" image="00196_01_discountcode_outline">
+                                            <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="getAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="j9W-vn-TZq"/>
                                         </connections>
@@ -138,6 +141,7 @@
                 <outlet property="collectionView" destination="OkS-je-45e" id="y1R-Nx-SNf"/>
                 <outlet property="contentLabel" destination="asd-8j-vXl" id="oFY-cr-6i0"/>
                 <outlet property="discountLabel" destination="dbf-Xo-jHk" id="HkT-Jq-fSL"/>
+                <outlet property="getBtn" destination="ZLK-x8-BMW" id="B2c-nZ-nHz"/>
                 <outlet property="storeNameLabel" destination="DN8-M9-xHy" id="AY9-pU-Pp9"/>
                 <outlet property="timeLabel" destination="00z-ni-4Gh" id="LsT-vj-6Dp"/>
             </connections>
@@ -145,6 +149,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="00196_01_discountcode_outline" width="14" height="10"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

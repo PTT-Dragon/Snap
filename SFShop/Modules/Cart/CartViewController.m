@@ -15,6 +15,7 @@
 #import "CouponsAvailableModel.h"
 #import "CheckoutManager.h"
 #import "SysParamsModel.h"
+#import "NSString+Fee.h"
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -60,7 +61,7 @@
     [RACObserve(dbManager, currentUser) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
         [self loadAddressDatas];
-        [baseTool updateCartNum];
+        [self updateNumData];
     }];
 }
 - (void)loadAddressDatas
@@ -233,25 +234,48 @@
 - (void)calculateAmount:(CartModel *)model
 {
     self.cartModel = model;
-    self.amountLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalPrice];
-    self.totalAmountLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalPrice];
-    self.priceLabel.text = [NSString stringWithFormat:@"RP %.f",model.totalOfferPrice];
-    self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-RP %.f",model.totalDiscount];
+    self.amountLabel.text = [[NSString stringWithFormat:@"%f",model.totalPrice] currency];
+    self.totalAmountLabel.text = [[NSString stringWithFormat:@"%f",model.totalPrice] currency];
+    self.priceLabel.text = [[NSString stringWithFormat:@"%f",model.totalOfferPrice] currency];
+    self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-%@",[[NSString stringWithFormat:@"%f",model.totalDiscount] currency]];
     __block NSInteger count = 0;
     [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj.campaignGroups enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             count += 1;
         }];
     }];
+    __block BOOL hasSel = NO;
+    [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.isSelected isEqualToString:@"Y"]) {
+                hasSel = YES;
+            }
+        }];
+    }];
     self.bottomView.hidden = count == 0;
-    NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count+count];
-    /**
-        降价标签的数量未完成 因为没数据
-     **/
-    NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%ld)",self.cartModel.validCarts.count];
-    self.menuList = @[allCount,dropCount];
-    [self.magicController.magicView reloadMenuTitles];
-    [baseTool updateCartNum];
+    self.checkBtn.backgroundColor = !hasSel ? RGBColorFrom16(0xFFE5EB):RGBColorFrom16(0xFF1659);
+    self.checkBtn.userInteractionEnabled = hasSel;
+    [self updateNumData];
+}
+- (void)updateNumData
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
+        CartNumModel *model = [[CartNumModel alloc] initWithDictionary:response error:nil];
+        NSString *allCount = [NSString stringWithFormat:@"All(%@)",model.num];
+        /**
+            降价标签的数量未完成 因为没数据
+         **/
+        NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%@)",model.reduceNum];
+        weakself.menuList = @[allCount,dropCount];
+        [weakself.magicController.magicView reloadMenuTitles];
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        UITabBarItem *item = [[[(UITabBarController*)appDelegate.tabVC tabBar] items] objectAtIndex:3];
+        item.badgeValue = model.num;
+        item.badgeColor = [UIColor redColor];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 

@@ -119,7 +119,7 @@
 //  "SIGN_UP" = "Sign Up";
 //  "SIGN_TO_LOGIN" = "Registration successful. Please re-login.";
 //  "CATEGORY" = "Category";
-//  "GET_NOW" = "GET NOW";
+  "GET_NOW" = "GET NOW";
 //  "COLLECT_SUCCESS" = "Add item to wishlist Successfully！";
 //  "DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully！";
 //  "COLLECT" = "COLLECT";
@@ -156,7 +156,7 @@
 //  "MANY_SALES_HINT" = "This item cannot be replaced/refunded again. For more help please contact support.";
 //  "ORDER_CANCEL_REASON" = "Reason for cancellation";
 //  "CHECK_OUT" = "Check Out";
-//  "USE_NOW" = "Use Now";
+  "USE_NOW" = "Use Now";
 //  "HINT_SUCCESS" = "Successfully";
 //  "COLLECT_MORE_COUPON" = "Collect More Vouchers";
 //  "COUPON_NO_DATA_TXT" = "Sorry; no coupons were found.";
@@ -277,11 +277,11 @@
   "ORDER_CODE" = "Order Code";
 //  "CREATION_TIME" = "Creation time";
 //  "PAYER_EMAIL" = "Payer Email";
-//  "PAYMENT_TIME" = "Payment time";
+  "PAYMENT_TIME" = "Payment time";
 //  "COMPLETION_TIME" = "Completion time";
 //  "RE_BUY" = "Re-buy";
 //  "CONFIRM_RECEIPT" = "Confirm Receipt";
-//  "CLOSE" = "Close";
+  "CLOSE" = "Close";
 //  "BACK_TO_HOME" = "Back to Home";
 //  "VIEW_ORDER" = "View Order";
 //  "DIRECT_FUNCTION" = "Direct Function";
@@ -326,7 +326,7 @@
 //  "URL" = "URL";
 //  "SAVE_POSTER" = "Save Poster";
 //  "SAVE_ALL" = "Save All";
-//  "RULE" = "Rule";
+  "RULE" = "Rule";
 //  "PRODUCT_NAME_ORDER_NUMBER" = "Product name/Order number";
 //  "SIMILAR_PRODUCTS" = "Similar Products";
 //  "SHARE" = "Share";
@@ -443,7 +443,7 @@
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "We are not able to process your request this time.";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT2" = "Please try again later. Sorry for any inconvenience.";
   "PAYMENT_SUCCESS" = "Purchase Succesful";
-//  "SEE_DETAIL" = "See Detail";
+  "SEE_DETAIL" = "See Detail";
 //  "SEE_SHARE_BY" = "See Group Buy";
 //  "GROUP_FAIL" = "Group Failed";
 //  "GROUPED" = "Grouped";

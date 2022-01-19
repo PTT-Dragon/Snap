@@ -58,7 +58,7 @@
     //评论列表
     _pageIndex ++;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.offer.evaluationList parameters:@{@"offerId":@(_offerId),@"pageIndex":@(1),@"pageSize":@(10),@"evaluationType":_evaluationType,@"labelId":_labelId?_labelId:@""} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.offer.evaluationList parameters:@{@"offerId":@(_offerId),@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"evaluationType":_evaluationType,@"labelId":_labelId?_labelId:@""} success:^(id  _Nullable response) {
         [weakself.evalationArr addObjectsFromArray: [ProductEvalationModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
         [weakself.tableView.mj_footer endRefreshing];
