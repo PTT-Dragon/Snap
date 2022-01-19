@@ -388,6 +388,13 @@
                         [products addObject:@{@"productId":idN,@"offerCnt":count}];
                     }
                 }
+                if (detailModel.orderType.length > 0) {
+                    [storeDict setObject:detailModel.orderType forKey:@"orderType"];
+                }
+                if (detailModel.shareBuyMode.length > 0) {
+                    [storeDict setObject:detailModel.shareBuyMode forKey:@"shareBuyMode"];
+                }
+                [storeDict setObject:storeId forKey:@"storeId"];
                 [storeDict setObject:storeId forKey:@"storeId"];
                 [storeDict setObject:leaveMsg forKey:@"leaveMsg"];
                 [storeDict setObject:selUserCouponId forKey:@"selUserCouponId"];
