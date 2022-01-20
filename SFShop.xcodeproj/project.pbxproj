@@ -397,6 +397,7 @@
 		8E1872D52796AB3C00DBEE3E /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872D22796AB3C00DBEE3E /* UIView+YYAdd.m */; };
 		8E1872D82796AF2300DBEE3E /* MGCShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872D72796AF2300DBEE3E /* MGCShareManager.m */; };
 		8E1EC08C27986CC600CE0088 /* CartRecomandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC08B27986CC600CE0088 /* CartRecomandView.m */; };
+		8E1EC2CE2799A1FF00CE0088 /* BaseNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC2CD2799A1FF00CE0088 /* BaseNavView.m */; };
 		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
 		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
 		8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */; };
@@ -1199,6 +1200,8 @@
 		8E1872D72796AF2300DBEE3E /* MGCShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGCShareManager.m; sourceTree = "<group>"; };
 		8E1EC08A27986CC600CE0088 /* CartRecomandView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartRecomandView.h; sourceTree = "<group>"; };
 		8E1EC08B27986CC600CE0088 /* CartRecomandView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartRecomandView.m; sourceTree = "<group>"; };
+		8E1EC2CC2799A1FF00CE0088 /* BaseNavView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavView.h; sourceTree = "<group>"; };
+		8E1EC2CD2799A1FF00CE0088 /* BaseNavView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavView.m; sourceTree = "<group>"; };
 		8E4821FA277A14F000857FF5 /* EmptyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyModel.h; sourceTree = "<group>"; };
 		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
 		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
@@ -2956,6 +2959,8 @@
 				4B1522D4272D432700C3BDD9 /* BaseViewController.m */,
 				1B05B2A0278DD9A0000F20A9 /* SysParamsModel.h */,
 				1B05B2A1278DD9A0000F20A9 /* SysParamsModel.m */,
+				8E1EC2CC2799A1FF00CE0088 /* BaseNavView.h */,
+				8E1EC2CD2799A1FF00CE0088 /* BaseNavView.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -3572,6 +3577,7 @@
 				AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */,
 				1BD2A622276B0CF200F994C5 /* GroupListViewController.m in Sources */,
 				1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */,
+				8E1EC2CE2799A1FF00CE0088 /* BaseNavView.m in Sources */,
 				1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */,
 				1B964758273E494A00345DDA /* IncomeAndExpenseCell.m in Sources */,
 				AE8F32DA272EA42F008E3DD8 /* SFCellCacheModel.m in Sources */,
