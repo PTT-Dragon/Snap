@@ -970,9 +970,9 @@
 		1BC7A2CC272B081E00755832 /* UseCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponViewController.h; sourceTree = "<group>"; };
 		1BC7A2CD272B081E00755832 /* UseCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponViewController.m; sourceTree = "<group>"; };
 		1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponViewController.xib; sourceTree = "<group>"; };
-		1BC9135B2799CFC400A05F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/accountInfoCell.strings"; sourceTree = "<group>"; };
-		1BC9135D2799CFC500A05F9B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/accountInfoCell.strings; sourceTree = "<group>"; };
 		1BC9135E2799D04600A05F9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/accountInfoCell.xib; sourceTree = "<group>"; };
+		1BC9135F2799D0F200A05F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/accountInfoCell.xib"; sourceTree = "<group>"; };
+		1BC913602799D0F600A05F9B /* id */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = id; path = id.lproj/accountInfoCell.xib; sourceTree = "<group>"; };
 		1BD10C302761DE4300BFC1AD /* ProductEvalationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductEvalationCell.h; sourceTree = "<group>"; };
 		1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductEvalationCell.m; sourceTree = "<group>"; };
 		1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductEvalationCell.xib; sourceTree = "<group>"; };
@@ -3907,9 +3907,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				1B3CB5BD2799CF9C00744198 /* en */,
-				1BC9135B2799CFC400A05F9B /* zh-Hans */,
-				1BC9135D2799CFC500A05F9B /* id */,
 				1BC9135E2799D04600A05F9B /* Base */,
+				1BC9135F2799D0F200A05F9B /* zh-Hans */,
+				1BC913602799D0F600A05F9B /* id */,
 			);
 			name = accountInfoCell.xib;
 			sourceTree = "<group>";
