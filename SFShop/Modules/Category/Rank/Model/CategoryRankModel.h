@@ -111,6 +111,8 @@ NS_ASSUME_NONNULL_BEGIN
         /*------------------------------------------------------------------------------------*/
         @class CategoryRankPageInfoListImgModel;
         @class CategoryRankPageInfoListServiceModel;
+        @class CategoryRankPageInfoListProductImgModel;
+        @class CategoryRankPageInfoListLabelsModel;
         @interface CategoryRankPageInfoListModel : NSObject
         @property (nonatomic, readwrite, assign) NSInteger offerId;
         @property (nonatomic, readwrite, assign) NSInteger brandId;
@@ -136,18 +138,54 @@ NS_ASSUME_NONNULL_BEGIN
         @property (nonatomic, readwrite, copy) NSString *isCollection;
         @property (nonatomic, readwrite, copy) NSString *imgUrl;
         @property (nonatomic, readwrite, copy) NSString *sppType;
-        @property (nonatomic, readwrite, copy) NSString *specialPrice;
+        @property (nonatomic, readwrite, assign) long specialPrice;
         @property (nonatomic, readwrite, copy) NSString *sppProductId;
         @property (nonatomic, readwrite, copy) NSString *sppMarketPrice;
         @property (nonatomic, readwrite, copy) NSString *discountPercent;
         @property (nonatomic, readwrite, copy) NSString *promotType;
-        @property (nonatomic, readwrite, strong) NSArray *labels;//怀疑是数组 null
+        @property (nonatomic, readwrite, strong) NSArray<CategoryRankPageInfoListLabelsModel *> *labels;//标签数组
         @property (nonatomic, readwrite, strong) NSArray<CategoryRankPageInfoListImgModel *> *imgs;
         @property (nonatomic, readwrite, strong) NSArray<CategoryRankPageInfoListServiceModel *> *services;
         @property (nonatomic, readwrite, strong) ProductCampaignsInfoModel *campaigns;
+        @property (nonatomic, readwrite, strong) CategoryRankPageInfoListProductImgModel *productImg;
+
 #pragma mark - 手动添加属性
         @property (nonatomic, readwrite, assign) CGFloat height;
+        @property (nonatomic, readonly, copy, nullable) NSString *labelPictureUrl;
         @end
+
+            /*------------------------------------------------------------------------------------*/
+            //pageInfo - list - labels
+            /*------------------------------------------------------------------------------------*/
+            @interface CategoryRankPageInfoListLabelsModel : NSObject
+            @property (nonatomic, readwrite, copy) NSString *labelId;
+            @property (nonatomic, readwrite, copy) NSString *labelType;
+            @property (nonatomic, readwrite, copy) NSString *labelClass;
+            @property (nonatomic, readwrite, copy) NSString *labelName;
+            @property (nonatomic, readwrite, copy) NSString *position;
+            @property (nonatomic, readwrite, copy) NSString *labelPictureUrl;
+            @property (nonatomic, readwrite, copy) NSString *labelCode;
+            @property (nonatomic, readwrite, copy) NSString *effDate;
+            @property (nonatomic, readwrite, copy) NSString *expDate;
+            @end
+
+            /*------------------------------------------------------------------------------------*/
+            //pageInfo - list - ProductImg
+            /*------------------------------------------------------------------------------------*/
+            @interface CategoryRankPageInfoListProductImgModel : NSObject
+            @property (nonatomic, readwrite, copy) NSString *idStr;
+            @property (nonatomic, readwrite, copy) NSString *productId;
+            @property (nonatomic, readwrite, copy) NSString *salesPrice;
+            @property (nonatomic, readwrite, copy) NSString *marketPrice;
+            @property (nonatomic, readwrite, copy) NSString *imgUrl;
+            @property (nonatomic, readwrite, copy) NSString *bigImgUrl;
+            @property (nonatomic, readwrite, copy) NSString *smallImgUrl;
+            @property (nonatomic, readwrite, copy) NSString *type;
+            @property (nonatomic, readwrite, copy) NSString *url;
+            @property (nonatomic, readwrite, strong) NSArray<NSNumber *> *labelId;
+            @property (nonatomic, readwrite, strong) NSArray<NSNumber *> *serviceId;
+            @end
+            
             /*------------------------------------------------------------------------------------*/
             //pageInfo - list - imgs
             /*------------------------------------------------------------------------------------*/

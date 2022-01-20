@@ -19,6 +19,9 @@
 - (NSString *)currency {
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
+    if (!precision) {
+        precision = 3;//默认3
+    }
     NSString *precisionStr = [NSString stringWithFormat:@"%@ %%.%ldf",currency, precision];
     NSString *result = [NSString stringWithFormat:precisionStr,self.currencyFloat];
     return result;
