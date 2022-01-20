@@ -295,7 +295,7 @@
 //  "SPECIFICATION" = "Spesifikasi";
 //  "DETAIL" = "Detail";
 //  "CART" = "Keranjang";
-//  "COUPONS" = "Kupon";
+  "COUPONS" = "Kupon";
 //  "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";
 //  "PEOPLE_SHORT" = "Kurang pembeli";
 //  "JOIN" = "Join";

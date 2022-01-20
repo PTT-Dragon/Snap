@@ -38,12 +38,12 @@
 		1B31225B273260980055033D /* CaseOutDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B312259273260980055033D /* CaseOutDetailViewController.xib */; };
 		1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B312260273267630055033D /* IncomeAndExpenseViewController.m */; };
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
-		1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122426FC5AC500235294 /* accountInfoCell.xib */; };
 		1B3C122826FC706000235294 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122726FC706000235294 /* LoginViewController.xib */; };
 		1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122A26FC7D3600235294 /* accountOrderCell.m */; };
 		1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122B26FC7D3600235294 /* accountOrderCell.xib */; };
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
+		1B3CB5BC2799CF9C00744198 /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3CB5BE2799CF9C00744198 /* accountInfoCell.xib */; };
 		1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B412839273141F100513430 /* CashOutHistoryViewController.m */; };
 		1B478304272A785200F2A945 /* RefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478303272A785200F2A945 /* RefundViewController.m */; };
 		1B478308272A7B1000F2A945 /* RefundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478306272A7B1000F2A945 /* RefundCell.m */; };
@@ -575,7 +575,6 @@
 		1B312260273267630055033D /* IncomeAndExpenseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncomeAndExpenseViewController.m; sourceTree = "<group>"; };
 		1B3C122226FC5AC500235294 /* accountInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountInfoCell.h; sourceTree = "<group>"; };
 		1B3C122326FC5AC500235294 /* accountInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountInfoCell.m; sourceTree = "<group>"; };
-		1B3C122426FC5AC500235294 /* accountInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
 		1B3C122726FC706000235294 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		1B3C122926FC7D3600235294 /* accountOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountOrderCell.h; sourceTree = "<group>"; };
 		1B3C122A26FC7D3600235294 /* accountOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountOrderCell.m; sourceTree = "<group>"; };
@@ -583,6 +582,7 @@
 		1B3C122E26FC808F00235294 /* accountSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountSubCell.h; sourceTree = "<group>"; };
 		1B3C122F26FC808F00235294 /* accountSubCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountSubCell.m; sourceTree = "<group>"; };
 		1B3C123026FC808F00235294 /* accountSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountSubCell.xib; sourceTree = "<group>"; };
+		1B3CB5BD2799CF9C00744198 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/accountInfoCell.xib; sourceTree = "<group>"; };
 		1B412838273141F100513430 /* CashOutHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashOutHistoryViewController.h; sourceTree = "<group>"; };
 		1B412839273141F100513430 /* CashOutHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashOutHistoryViewController.m; sourceTree = "<group>"; };
 		1B478302272A785200F2A945 /* RefundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundViewController.h; sourceTree = "<group>"; };
@@ -970,6 +970,9 @@
 		1BC7A2CC272B081E00755832 /* UseCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponViewController.h; sourceTree = "<group>"; };
 		1BC7A2CD272B081E00755832 /* UseCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponViewController.m; sourceTree = "<group>"; };
 		1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponViewController.xib; sourceTree = "<group>"; };
+		1BC9135B2799CFC400A05F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/accountInfoCell.strings"; sourceTree = "<group>"; };
+		1BC9135D2799CFC500A05F9B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/accountInfoCell.strings; sourceTree = "<group>"; };
+		1BC9135E2799D04600A05F9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/accountInfoCell.xib; sourceTree = "<group>"; };
 		1BD10C302761DE4300BFC1AD /* ProductEvalationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductEvalationCell.h; sourceTree = "<group>"; };
 		1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductEvalationCell.m; sourceTree = "<group>"; };
 		1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductEvalationCell.xib; sourceTree = "<group>"; };
@@ -2586,7 +2589,7 @@
 				4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */,
 				1B3C122226FC5AC500235294 /* accountInfoCell.h */,
 				1B3C122326FC5AC500235294 /* accountInfoCell.m */,
-				1B3C122426FC5AC500235294 /* accountInfoCell.xib */,
+				1B3CB5BE2799CF9C00744198 /* accountInfoCell.xib */,
 				1B3C122926FC7D3600235294 /* accountOrderCell.h */,
 				1B3C122A26FC7D3600235294 /* accountOrderCell.m */,
 				1B3C122B26FC7D3600235294 /* accountOrderCell.xib */,
@@ -3390,7 +3393,7 @@
 				1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */,
 				1B74DAEE27225EF000B30ECC /* ReviewCell.xib in Resources */,
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
-				1B3C122626FC5AC500235294 /* accountInfoCell.xib in Resources */,
+				1B3CB5BC2799CF9C00744198 /* accountInfoCell.xib in Resources */,
 				1B92D15027327F4400E73F98 /* ChooseAreaViewController.xib in Resources */,
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				1B6C52CC275C894C00A1C617 /* RelationOrderDetailInfoCell.xib in Resources */,
@@ -3900,6 +3903,17 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1B3CB5BE2799CF9C00744198 /* accountInfoCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B3CB5BD2799CF9C00744198 /* en */,
+				1BC9135B2799CFC400A05F9B /* zh-Hans */,
+				1BC9135D2799CFC500A05F9B /* id */,
+				1BC9135E2799D04600A05F9B /* Base */,
+			);
+			name = accountInfoCell.xib;
+			sourceTree = "<group>";
+		};
 		AE81BDDF26FB6E7000AB4225 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
