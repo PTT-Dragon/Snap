@@ -37,7 +37,7 @@
 {
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     _dataSource = [NSMutableArray array];
-    [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":@"My Address"},@{@"image":@"",@"title":@"Security Center"},@{@"image":@"",@"title":@"Language"},@{@"image":@"",@"title":@"Policies"}]];
+    [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":kLocalizedString(@"My_Address")},@{@"image":@"",@"title":kLocalizedString(@"Security_center")},@{@"image":@"",@"title":kLocalizedString(@"LANGUGE")},@{@"image":@"",@"title":kLocalizedString(@"Policies")}]];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"SetTopCell" bundle:nil] forCellReuseIdentifier:@"SetTopCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];

@@ -9,8 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^ImageCollectionViewCellBlock)(NSInteger index);
+
 @interface ImageCollectionViewCell : UICollectionViewCell
+@property (nonatomic,assign) BOOL canDel;
+@property (nonatomic,assign) NSInteger index;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (nonatomic,copy) ImageCollectionViewCellBlock block;
 
 @end
 

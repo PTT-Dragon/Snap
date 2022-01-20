@@ -86,6 +86,15 @@
     }
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
     cell.imgView.image = (UIImage *)item;
+    cell.index = indexPath.row;
+    cell.canDel = YES;
+    MPWeakSelf(self)
+    cell.block = ^(NSInteger index) {
+        [weakself.imgArr removeObjectAtIndex:index];
+        CGFloat itemHei = (MainScreen_width-32-30)/4;
+        weakself.collectionViewHei.constant = weakself.imgArr.count < 4 ? itemHei+5:  weakself.imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+        [weakself.collectionView reloadData];
+    };
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

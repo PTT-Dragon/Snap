@@ -15,7 +15,7 @@ typedef void(^ReviewCellBlock)(OrderModel *model);
 @interface ReviewCell : UITableViewCell
 @property (nonatomic,copy) ReviewCellBlock block;
 @property (nonatomic,copy) ReviewCellBlock additionBlock;
-- (void)setContent:(OrderModel *)model type:(NSInteger)type;
+- (void)setContent:(OrderModel *)model row:(NSInteger)row type:(NSInteger)type;
 @end
 
 NS_ASSUME_NONNULL_END

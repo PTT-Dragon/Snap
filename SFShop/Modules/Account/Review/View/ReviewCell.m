@@ -39,7 +39,7 @@
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
 }
-- (void)setContent:(OrderModel *)model type:(NSInteger)type
+- (void)setContent:(OrderModel *)model row:(NSInteger)row type:(NSInteger)type
 {
     _model = model;
     _evaluationView.hidden = type == 1;
@@ -52,7 +52,7 @@
         _btn1.hidden = YES;
         _btn2.hidden = YES;
     }
-    orderItemsModel *itemModel = model.orderItems.firstObject;
+    orderItemsModel *itemModel = model.orderItems[row];
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)]];
     _storeNameLabel.text = model.storeName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];

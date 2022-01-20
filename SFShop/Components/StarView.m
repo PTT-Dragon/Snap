@@ -51,6 +51,7 @@
             }
         }
     }
+    _score = btn.tag-999;
 }
 - (void)setScore:(NSInteger)score
 {

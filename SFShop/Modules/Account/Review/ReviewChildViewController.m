@@ -129,6 +129,11 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    OrderModel *model = _dataSource[section];
+    return model.orderItems.count;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return _dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -137,11 +142,9 @@
     MPWeakSelf(self)
     cell.block = ^(OrderModel * _Nonnull model) {
         AddReviewViewController *vc = [[AddReviewViewController alloc] init];
-        vc.model = model;
-        vc.orderItemId = [model.orderItems.firstObject orderItemId];
-        vc.block = ^{
+        [vc setContent:model row:indexPath.row orderItemId:[model.orderItems[indexPath.row] orderItemId] block:^{
             [weakself.tableView.mj_header beginRefreshing];
-        };
+        }];
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     };
     cell.additionBlock = ^(OrderModel * _Nonnull model) {
@@ -149,26 +152,26 @@
         vc.orderModel = model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     };
-    [cell setContent:self.dataSource[indexPath.row] type:_type];
+    [cell setContent:self.dataSource[indexPath.section] row:indexPath.row type:_type];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OrderModel *subModel = self.dataSource[indexPath.row];
+    OrderModel *subModel = self.dataSource[indexPath.section];
     return _type == 1 ? 168: [subModel.canReview isEqualToString:@"Y"] ? 299 : 257;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    OrderModel *model = self.dataSource[indexPath.row];
+    OrderModel *model = self.dataSource[indexPath.section];
     if (_type == 2) {
         ReviewDetailViewController *vc = [[ReviewDetailViewController alloc] init];
-        vc.orderItemId = [model.orderItems.firstObject orderItemId];
+        vc.orderItemId = [model.orderItems[indexPath.row] orderItemId];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     ProductViewController *vc = [[ProductViewController alloc] init];
-    orderItemsModel *itemModel = model.orderItems.firstObject;
+    orderItemsModel *itemModel = model.orderItems[indexPath.row];
     vc.offerId = itemModel.offerId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }

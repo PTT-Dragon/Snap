@@ -7,11 +7,26 @@
 
 #import "ImageCollectionViewCell.h"
 
+@interface ImageCollectionViewCell ()
+@property (weak, nonatomic) IBOutlet UIButton *delBtn;
+
+@end
+
 @implementation ImageCollectionViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+}
+- (IBAction)delAction:(UIButton *)sender {
+    if (self.block) {
+        self.block(_index);
+    }
+}
+- (void)setCanDel:(BOOL)canDel
+{
+    _canDel = canDel;
+    _delBtn.hidden = !canDel;
 }
 
 @end

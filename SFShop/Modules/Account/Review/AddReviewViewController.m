@@ -34,6 +34,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoCollectionViewHei;
 @property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
 @property (nonatomic,strong) ReviewDetailModel *detailModel;
+@property (nonatomic,strong) OrderModel *model;
+@property (nonatomic,assign) NSInteger row;
+@property (nonatomic,copy) NSString *orderItemId;
 @end
 
 @implementation AddReviewViewController
@@ -66,13 +69,20 @@
     _skuLabel.layer.borderWidth = 1;
     _textView.layer.borderColor = RGBColorFrom16(0xc4c4c4).CGColor;
     _textView.layer.borderWidth = 1;
-    orderItemsModel *itemModel = _model.orderItems.firstObject;
+    orderItemsModel *itemModel = _model.orderItems[_row];
     NSDictionary *dic = [itemModel.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
     _nameLabel.text = itemModel.productName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];
     _storeNameLabel.text = _model.storeName;
     [_storeLogoImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogoUrl)]];
+}
+- (void)setContent:(OrderModel *)model row:(NSInteger)row orderItemId:(NSString *)orderItemId block:(AddReviewViewControllerBlock)block
+{
+    _model = model;
+    _row = row;
+    _orderItemId = orderItemId;
+    _block = block;
     if (self.orderItemId) {
         [self loadDatas];
     }
@@ -128,6 +138,15 @@
     }
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
     cell.imgView.image = (UIImage *)item;
+    cell.index = indexPath.row;
+    cell.canDel = YES;
+    MPWeakSelf(self)
+    cell.block = ^(NSInteger index) {
+        [weakself.imgArr removeObjectAtIndex:index];
+        CGFloat itemHei = (MainScreen_width-32-30)/4;
+        weakself.photoCollectionViewHei.constant = weakself.imgArr.count < 4 ? itemHei+5:  weakself.imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+        [weakself.photoCollectionView reloadData];
+    };
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -203,27 +222,23 @@
 }
 - (void)publishReview
 {
-    /**
-     {"evaluateItems":[{"orderItemId":24008,"ratingComments":"他旅途","rate":2,"labelIds":[],"contents":[{"catgType":"B","url":"/get/resource/ecs/20220118/picture/C2590792-F45A-4578-840D-E4AEB2C60C561483413639839563776.png","imgUrl":"","seq":0,"name":"C2590792-F45A-4578-840D-E4AEB2C60C56.png"},{"catgType":"B","url":"/get/resource/ecs/20220118/picture/802E16EF-95A1-4ED2-B417-28691F7AEAC61483413639579516928.png","imgUrl":"","seq":1,"name":"802E16EF-95A1-4ED2-B417-28691F7AEAC6.png"},{"catgType":"B","url":"/get/resource/ecs/20220118/picture/B0394A62-F015-469A-9809-D5D66A727D381483413639097171968.png","imgUrl":"","seq":2,"name":"B0394A62-F015-469A-9809-D5D66A727D38.png"}],"isAnonymous":"Y"}],"store":{"rate":2,"rate1":4,"rate2":4,"storeId":5,"orderId":25008,"isAnonymous":"Y"}}
-     **/
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSMutableArray *evaluateItems = [NSMutableArray array];
-    for (NSInteger i = 0; i<_model.orderItems.count; i++) {
-        orderItemsModel *itemModel = _model.orderItems[i];
-        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
-        [dic setValue:_textView.text forKey:@"ratingComments"];
-        [dic setValue:@(_starView.score) forKey:@"rate"];
-        [dic setValue:self.imgUrlArr forKey:@"contents"];
-        [dic setValue:_anonymousBtn.selected ? @"Y": @"N" forKey:@"isAnonymous"];
-        [evaluateItems addObject:dic];
-    }
-    [params setValue:evaluateItems forKey:@"evaluateItems"];
-    [params setValue:@{@"rate":@(_starView1.score),@"rate1":@(_starView2.score),@"rate2":@(_starView3.score),@"storeId":self.model.storeId,@"orderId":self.model.orderId,@"isAnonymous":_anonymousBtn.selected ? @"Y": @"N"} forKey:@"store"];
     [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     if (self.detailModel.evaluates.count > 0) {
         //修改
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        NSMutableArray *evaluateItems = [NSMutableArray array];
+        for (NSInteger i = 0; i<_model.orderItems.count; i++) {
+            orderItemsModel *itemModel = _model.orderItems[i];
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
+            [dic setValue:_textView.text forKey:@"ratingComments"];
+            [dic setValue:@(_starView.score) forKey:@"rate"];
+            [dic setValue:self.imgUrlArr forKey:@"contents"];
+            [evaluateItems addObject:dic];
+        }
+        [params setValue:evaluateItems forKey:@"evaluateItems"];
+        [params setValue:@{} forKey:@"store"];
         [SFNetworkManager post:SFNet.evaluate.modify parameters:params success:^(id  _Nullable response) {
             [MBProgressHUD hideFromKeyWindow];
             if (weakself.block) {
@@ -237,6 +252,20 @@
             [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }else{
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        NSMutableArray *evaluateItems = [NSMutableArray array];
+        for (NSInteger i = 0; i<_model.orderItems.count; i++) {
+            orderItemsModel *itemModel = _model.orderItems[i];
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
+            [dic setValue:_textView.text forKey:@"ratingComments"];
+            [dic setValue:@(_starView.score) forKey:@"rate"];
+            [dic setValue:self.imgUrlArr forKey:@"contents"];
+            [dic setValue:_anonymousBtn.selected ? @"Y": @"N" forKey:@"isAnonymous"];
+            [evaluateItems addObject:dic];
+        }
+        [params setValue:evaluateItems forKey:@"evaluateItems"];
+        [params setValue:@{@"rate":@(_starView1.score),@"rate1":@(_starView2.score),@"rate2":@(_starView3.score),@"storeId":self.model.storeId,@"orderId":self.model.orderId,@"isAnonymous":_anonymousBtn.selected ? @"Y": @"N"} forKey:@"store"];
         [SFNetworkManager post:SFNet.evaluate.addEvaluate parameters:params success:^(id  _Nullable response) {
             [MBProgressHUD hideFromKeyWindow];
             if (weakself.block) {

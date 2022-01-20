@@ -14,8 +14,7 @@ typedef void(^AddReviewViewControllerBlock)(void);
 
 @interface AddReviewViewController : UIViewController
 @property (nonatomic,copy) AddReviewViewControllerBlock block;
-@property (nonatomic,weak) OrderModel *model;
-@property (nonatomic,copy) NSString *orderItemId;
+- (void)setContent:(OrderModel *)model row:(NSInteger)row orderItemId:(NSString *)orderItemId block:(AddReviewViewControllerBlock)block;
 @end
 
 NS_ASSUME_NONNULL_END

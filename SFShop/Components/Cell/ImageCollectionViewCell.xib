@@ -19,18 +19,35 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ufT-zx-PG5">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                     </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSG-Ax-xO8">
+                        <rect key="frame" x="28" y="0.0" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="3sT-Ux-eG6"/>
+                            <constraint firstAttribute="width" constant="22" id="LWZ-FW-XLN"/>
+                        </constraints>
+                        <state key="normal" image="nav_close_bold"/>
+                        <connections>
+                            <action selector="delAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="siw-fQ-F3v"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="ufT-zx-PG5" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="3nx-Jb-dzd"/>
+                <constraint firstItem="uSG-Ax-xO8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5wl-fx-RxP"/>
                 <constraint firstAttribute="top" secondItem="ufT-zx-PG5" secondAttribute="top" id="91x-to-Rwn"/>
                 <constraint firstAttribute="leading" secondItem="ufT-zx-PG5" secondAttribute="leading" id="9od-7d-bAB"/>
                 <constraint firstItem="ufT-zx-PG5" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="oxm-yw-Dfo"/>
+                <constraint firstAttribute="trailing" secondItem="uSG-Ax-xO8" secondAttribute="trailing" id="smu-Mu-dUB"/>
             </constraints>
             <connections>
+                <outlet property="delBtn" destination="uSG-Ax-xO8" id="pPt-I4-Hgv"/>
                 <outlet property="imgView" destination="ufT-zx-PG5" id="A6y-Pn-NPb"/>
             </connections>
             <point key="canvasLocation" x="112" y="65"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="nav_close_bold" width="200" height="200"/>
+    </resources>
 </document>

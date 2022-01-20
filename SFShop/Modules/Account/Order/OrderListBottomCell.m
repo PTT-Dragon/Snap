@@ -165,8 +165,9 @@
     }else if ([state isEqualToString:@"D"]){
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
             AddReviewViewController *vc = [[AddReviewViewController alloc] init];
-            vc.model = _model;
-            vc.orderItemId = [_model.orderItems.firstObject orderItemId];
+            [vc setContent:_model row:0 orderItemId:[_model.orderItems.firstObject orderItemId] block:^{
+                            
+            }];
             [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
         }else{
             ReviewChildViewController *vc = [[ReviewChildViewController alloc] init];

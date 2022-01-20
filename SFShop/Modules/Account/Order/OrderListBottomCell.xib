@@ -57,10 +57,10 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRi-m8-JJ8">
-                        <rect key="frame" x="129" y="69" width="75" height="24"/>
+                        <rect key="frame" x="124" y="69" width="80" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="Txj-x5-xMP"/>
-                            <constraint firstAttribute="width" constant="75" id="qCt-Nl-N2F"/>
+                            <constraint firstAttribute="width" constant="80" id="qCt-Nl-N2F"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <state key="normal" title="Button">
