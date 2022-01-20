@@ -37,7 +37,11 @@
 @end
 
 @implementation AddReviewViewController
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -79,10 +83,14 @@
     if (evaModel) {
         self.textView.text = evaModel.evaluationComments;
         self.starView.score = evaModel.rate.integerValue;
+        self.bottomView.hidden = YES;
+        self.anonymousBtn.hidden = YES;
+        self.anonymousLabel.hidden = YES;
+    }else{
+        self.bottomView.hidden = NO;
+        self.anonymousBtn.hidden = NO;
+        self.anonymousLabel.hidden = NO;
     }
-    self.bottomView.hidden = NO;
-    self.anonymousBtn.hidden = NO;
-    self.anonymousLabel.hidden = NO;
     for (EvaluatesContentsModel *contentModel in evaModel.contents) {
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:SFImage(contentModel.url)] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
             if (image) {
@@ -214,18 +222,34 @@
     [params setValue:@{@"rate":@(_starView1.score),@"rate1":@(_starView2.score),@"rate2":@(_starView3.score),@"storeId":self.model.storeId,@"orderId":self.model.orderId,@"isAnonymous":_anonymousBtn.selected ? @"Y": @"N"} forKey:@"store"];
     [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.evaluate.modify parameters:params success:^(id  _Nullable response) {
-        [MBProgressHUD hideFromKeyWindow];
-        if (weakself.block) {
-            weakself.block();
-        }
-        ReviewSuccessViewController *vc = [[ReviewSuccessViewController alloc] init];
-        [weakself.navigationController pushViewController:vc animated:YES];
-        [baseTool removeVCFromNavigation:self];
-    } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD hideFromKeyWindow];
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
-    }];
+    if (self.detailModel.evaluates.count > 0) {
+        //修改
+        [SFNetworkManager post:SFNet.evaluate.modify parameters:params success:^(id  _Nullable response) {
+            [MBProgressHUD hideFromKeyWindow];
+            if (weakself.block) {
+                weakself.block();
+            }
+            ReviewSuccessViewController *vc = [[ReviewSuccessViewController alloc] init];
+            [weakself.navigationController pushViewController:vc animated:YES];
+            [baseTool removeVCFromNavigation:self];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD hideFromKeyWindow];
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+    }else{
+        [SFNetworkManager post:SFNet.evaluate.addEvaluate parameters:params success:^(id  _Nullable response) {
+            [MBProgressHUD hideFromKeyWindow];
+            if (weakself.block) {
+                weakself.block();
+            }
+            ReviewSuccessViewController *vc = [[ReviewSuccessViewController alloc] init];
+            [weakself.navigationController pushViewController:vc animated:YES];
+            [baseTool removeVCFromNavigation:self];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD hideFromKeyWindow];
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+    }
 }
 - (IBAction)anonymousAction:(UIButton *)sender {
     sender.selected = !sender.selected;

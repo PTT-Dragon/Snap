@@ -17,6 +17,8 @@
 #import "NSString+Fee.h"
 #import "LogisticsVC.h"
 #import "ReviewChildViewController.h"
+#import "AddReviewViewController.h"
+
 
 
 @interface OrderListBottomCell ()
@@ -161,10 +163,17 @@
             //返回错误和本地地址
         }];
     }else if ([state isEqualToString:@"D"]){
-        ReviewChildViewController *vc = [[ReviewChildViewController alloc] init];
-        vc.type = 0;
-        vc.orderItemId = self.model.orderNbr;
-        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        if ([_model.canEvaluate isEqualToString:@"Y"]) {
+            AddReviewViewController *vc = [[AddReviewViewController alloc] init];
+            vc.model = _model;
+            vc.orderItemId = [_model.orderItems.firstObject orderItemId];
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        }else{
+            ReviewChildViewController *vc = [[ReviewChildViewController alloc] init];
+            vc.type = 0;
+            vc.orderItemId = self.model.orderNbr;
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        }
     }else if ([state isEqualToString:@"C"]){
         [self toLogistices];
     }
@@ -271,7 +280,12 @@
     }else if ([state isEqualToString:@"C"]){
         str = kLocalizedString(@"LOGISTICS");
     }else if ([state isEqualToString:@"D"]){
-        str = @"REVIEW";
+        if ([_model.canEvaluate isEqualToString:@"Y"]) {
+            str = @"REVIEW";
+        }else{
+            str = @"VIEW REVIEW";
+        }
+        
     }else if ([state isEqualToString:@"E"]){
         str = @"REVIEW";
     }else if ([state isEqualToString:@"F"]){

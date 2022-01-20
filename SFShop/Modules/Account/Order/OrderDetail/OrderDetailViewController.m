@@ -194,7 +194,11 @@
         [self.btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
     }else if ([self.model.state isEqualToString:@"D"]){
         [self.btn1 setTitle:kLocalizedString(@"RECEIPT") forState:0];
-        [self.btn2 setTitle:kLocalizedString(@"REVIEW") forState:0];
+        if ([_model.canEvaluate isEqualToString:@"Y"]) {
+            [self.btn2 setTitle:kLocalizedString(@"REVIEW") forState:0];
+        }else{
+            [self.btn2 setTitle:@"VIEW REVIEW" forState:0];
+        }
         self.moreBtn.hidden = NO;
         self.btn2Left.constant = AdaptedWidth(150);
     }else if ([self.model.state isEqualToString:@"C"]){
