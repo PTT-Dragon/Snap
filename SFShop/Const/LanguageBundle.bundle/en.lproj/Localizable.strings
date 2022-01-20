@@ -238,7 +238,7 @@
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Please input the correct mobile phone.";
 //  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Please input the correct email.";
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Please input the correct phone number or email.";
-//  "MEMBERSHIP_AGREEMENT" = "Membership Agreement";
+  "MEMBERSHIP_AGREEMENT" = "Membership Agreement";
 //  "PLEASE_INPUT" = "Please Input";
 //  "SAFETY_VERIFICATION" = "Security verification";
   "LOGISTICS_DETAILS" = "Logistics Details";
@@ -370,7 +370,7 @@
 //  "Sat" = "Sat";
   "Today" = "Today";
 //  "POLICIES" = "Policies";
-//  "TERMS_CON" = "Terms Conditions & Privacy Policy";
+  "TERMS_CON" = "Terms Conditions & Privacy Policy";
 //  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "People joined the group; click to join";
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "Grouping has ended. Please join other groups";
 //  "STOCK" = "stock";

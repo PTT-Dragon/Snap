@@ -243,7 +243,7 @@
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Harap masukkan nomor ponsel yang benar.";
 //  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Harap masukkan alamat email yang benar.";
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Harap masukkan alamat email atau no. telephone yang benar.";
-//  "MEMBERSHIP_AGREEMENT" = "Syarat membership";
+  "MEMBERSHIP_AGREEMENT" = "Syarat membership";
 //  "PLEASE_INPUT" = "Mohon masukan";
 //  "SAFETY_VERIFICATION" = "Verifikasi keamanan";
   "LOGISTICS_DETAILS" = "Detail Logistik";
@@ -374,7 +374,7 @@
 //  "Sat" = "Sabtu";
   "Today" = "Hari ini";
 //  "POLICIES" = "kebijakan";
-//  "TERMS_CON" = "Syarat Ketentuan & Kebijakan Privasi";
+  "TERMS_CON" = "Syarat Ketentuan & Kebijakan Privasi";
 //  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "Orang-orang bergabung dengan grup klik untuk bergabung";
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "Pengelompokan telah selesai; Silakan bergabung dengan grup lain";
 //  "STOCK" = "Stok";

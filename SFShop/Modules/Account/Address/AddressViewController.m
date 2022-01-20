@@ -51,6 +51,7 @@
         make.left.right.mas_equalTo(self.view);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-120);
     }];
+    [self.addBtn setTitle:kLocalizedString(@"ADD_ADDRESS") forState:0];
 }
 - (void)updateUserInfo
 {

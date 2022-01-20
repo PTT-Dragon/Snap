@@ -49,7 +49,13 @@
 @end
 
 @implementation CommunityTabContainer
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.viewControllers enumerateObjectsUsingBlock:^(__kindof CommunityChildController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj request];
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     

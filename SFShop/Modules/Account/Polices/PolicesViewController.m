@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view.
     self.title = kLocalizedString(@"Policies");
     _dataSource = [NSMutableArray array];
-    [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":@"Membership Agreement"},@{@"image":@"",@"title":@"Teams Conditions & Privacy Policy"}]];    
+    [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":kLocalizedString(@"MEMBERSHIP_AGREEMENT")},@{@"image":@"",@"title":kLocalizedString(@"TERMS_CON")}]];    
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

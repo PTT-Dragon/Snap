@@ -243,7 +243,7 @@
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "请输入正确的手机号.";
 //  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "请输入正确的邮箱.";
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "请输入正确的手机号或邮箱.";
-//  "MEMBERSHIP_AGREEMENT" = "会员注册协议.";
+  "MEMBERSHIP_AGREEMENT" = "会员注册协议.";
 //  "PLEASE_INPUT" = "请输入";
 //  "SAFETY_VERIFICATION" = "安全政策";
   "LOGISTICS_DETAILS" = "物流详情";
@@ -375,7 +375,7 @@
 //  "Sat" = "星期六";
   "Today" = "今天";
 //  "POLICIES" = "政策";
-//  "TERMS_CON" = "协议隐私政策";
+  "TERMS_CON" = "协议隐私政策";
 //  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "人拼团，点击加入";
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "拼团已完成，请加入其它拼团";
 //  "STOCK" = "库存";
