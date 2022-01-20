@@ -136,7 +136,7 @@
 //  "EXCHANGE" = "Exchange";
 //  "DELIVERY" = "Delivery";
 //  "DELETE_ADDRESS_TXT" = "Are you sure to delete this address?";
-//  "ADD_ADDRESS" = "Add Address";
+  "ADD_ADDRESS" = "Add Address";
 //  "MY_ADDRESS" = "My Address";
 //  "REQUIREDTIP" = "Please Input";
 //  "INCORRECT_NAME" = "Please input 4 ~ 40 characters for recipient name.";
@@ -448,7 +448,7 @@
 //  "GROUP_FAIL" = "Group Failed";
 //  "GROUPED" = "Grouped";
 //  "INVITE_MORE" = "Invite more buyer required expire in";
-//  "INVITE_ONE" = "One more buyer reauired Expire in";
+  "INVITE_ONE" = "One more buyer reauired Expire in";
 //  "GROUP_DETAIL" = "Group Detail";
 //  "NO_INVITE_RECORDS" = "No invite records";
 //  "YOU_HAVEN_VIEWED_ANY_ITEMS" = "You haven't viewed any items";

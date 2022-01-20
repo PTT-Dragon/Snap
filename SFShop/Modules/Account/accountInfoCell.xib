@@ -155,6 +155,16 @@ Viewed</string>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnk-aw-7SK">
+                        <rect key="frame" x="351" y="11" width="13" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="041-4W-8mt"/>
+                            <constraint firstAttribute="width" constant="13" id="XdH-sV-I61"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="1" green="0.086274509803921567" blue="0.34901960784313724" alpha="1" colorSpace="deviceRGB"/>
                 <constraints>
@@ -174,6 +184,7 @@ Viewed</string>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="leading" secondItem="RjG-am-f1L" secondAttribute="trailing" id="RMn-7N-QrB"/>
                     <constraint firstItem="RjG-am-f1L" firstAttribute="top" secondItem="kAT-s2-Aye" secondAttribute="bottom" id="Ti9-Tg-xOT"/>
                     <constraint firstItem="beR-wN-8cN" firstAttribute="centerY" secondItem="RjG-am-f1L" secondAttribute="centerY" id="Tjh-G8-TLr"/>
+                    <constraint firstItem="xnk-aw-7SK" firstAttribute="top" secondItem="gAP-dp-aIR" secondAttribute="top" constant="-5" id="VXK-tK-Lre"/>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="centerX" secondItem="28J-D2-ke3" secondAttribute="centerX" id="Vna-nd-XSf"/>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="bottom" secondItem="28J-D2-ke3" secondAttribute="bottom" id="Xtx-JC-5cN"/>
                     <constraint firstAttribute="bottom" secondItem="RjG-am-f1L" secondAttribute="bottom" id="ayu-HN-jH3"/>
@@ -189,6 +200,7 @@ Viewed</string>
                     <constraint firstAttribute="trailing" secondItem="gAP-dp-aIR" secondAttribute="trailing" constant="16" id="sc6-Nr-0v6"/>
                     <constraint firstAttribute="trailing" secondItem="5b9-MJ-s0D" secondAttribute="trailing" constant="52" id="tIh-99-CLX"/>
                     <constraint firstItem="ckn-Gx-hDh" firstAttribute="width" secondItem="RjG-am-f1L" secondAttribute="width" id="twj-ke-z0G"/>
+                    <constraint firstItem="xnk-aw-7SK" firstAttribute="trailing" secondItem="gAP-dp-aIR" secondAttribute="trailing" constant="5" id="y8A-aJ-LTJ"/>
                     <constraint firstItem="3fi-jd-Bbb" firstAttribute="centerY" secondItem="RjG-am-f1L" secondAttribute="centerY" id="yh5-yH-Iff"/>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="top" secondItem="RjG-am-f1L" secondAttribute="top" id="zCl-07-fnk"/>
                 </constraints>
@@ -204,6 +216,7 @@ Viewed</string>
                 <outlet property="imgVIew" destination="kAT-s2-Aye" id="Nd8-lD-8M0"/>
                 <outlet property="mobileLabel" destination="NQt-Lu-SYp" id="2jQ-Et-L2g"/>
                 <outlet property="nameLabel" destination="Ow4-xP-dSu" id="011-W1-t2l"/>
+                <outlet property="noReadMessageCountLabel" destination="xnk-aw-7SK" id="3mN-Hf-nV7"/>
                 <outlet property="setBtn" destination="5b9-MJ-s0D" id="xqX-lm-jsO"/>
             </connections>
             <point key="canvasLocation" x="97" y="90"/>

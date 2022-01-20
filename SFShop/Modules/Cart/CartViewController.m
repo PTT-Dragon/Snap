@@ -263,16 +263,20 @@
     [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
         CartNumModel *model = [[CartNumModel alloc] initWithDictionary:response error:nil];
         NSString *allCount = [NSString stringWithFormat:@"All(%@)",model.num];
-        /**
-            降价标签的数量未完成 因为没数据
-         **/
         NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%@)",model.reduceNum];
         weakself.menuList = @[allCount,dropCount];
         [weakself.magicController.magicView reloadMenuTitles];
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         UITabBarItem *item = [[[(UITabBarController*)appDelegate.tabVC tabBar] items] objectAtIndex:3];
-        item.badgeValue = model.num;
         item.badgeColor = [UIColor redColor];
+        if ([model.num isEqualToString:@"0"] && [model.reduceNum isEqualToString:@"0"]) {
+            weakself.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei);
+            item.badgeValue = nil;
+        }else{
+            item.badgeValue = model.num;
+            weakself.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
+        }
+        
     } failed:^(NSError * _Nonnull error) {
         
     }];

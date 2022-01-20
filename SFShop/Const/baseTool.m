@@ -81,8 +81,13 @@
         CartNumModel *model = [[CartNumModel alloc] initWithDictionary:response error:nil];
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         UITabBarItem *item = [[[(UITabBarController*)appDelegate.tabVC tabBar] items] objectAtIndex:3];
-        item.badgeValue = model.num;
-        item.badgeColor = [UIColor redColor];
+        if ([model.num isEqualToString:@"0"]) {
+            item.badgeValue = nil;
+//            item.badgeColor = [UIColor whiteColor];
+        }else{
+            item.badgeValue = model.num;
+            item.badgeColor = [UIColor redColor];
+        }
     } failed:^(NSError * _Nonnull error) {
         
     }];

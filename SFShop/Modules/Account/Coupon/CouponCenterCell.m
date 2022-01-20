@@ -35,7 +35,7 @@
 {
     _model = model;
     if ([model.discountMethod isEqualToString:@"DISC"]) {
-        _discountLabel.text = [NSString stringWithFormat:@"%.0f %%",model.discountAmount/model.quantity];
+        _discountLabel.text = [[NSString stringWithFormat:@"%.0f",model.discountAmount] currency];
     }else{
         _discountLabel.text = [[NSString stringWithFormat:@"%.0f",model.discountAmount] currency];
     }
@@ -44,9 +44,13 @@
     }else{
         [self.getBtn setTitle:kLocalizedString(@"GET_NOW") forState:0];
     }
+    if ([model.isOrderTh isEqualToString:@"Y"]) {
+        _contentLabel.text = [NSString stringWithFormat:@"Min.spend %@",[[NSString stringWithFormat:@"%@f",model.thAmount] currency]];
+    }else{
+        _contentLabel.text = [NSString stringWithFormat:@"%@ Without limit",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
+    }
     _storeNameLabel.text = model.storeName;
-    _timeLabel.text = model.stateDate;
-    _contentLabel.text = model.couponName;
+    _timeLabel.text = [NSString stringWithFormat:@"%@-%@",model.effDateStr,model.expDateStr];
     [self.collectionView reloadData];
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

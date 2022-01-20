@@ -7,13 +7,17 @@
 
 #import <UIKit/UIKit.h>
 #import "favoriteModel.h"
+#import "CategoryRankModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 
 
 @interface FavoriteChildViewController : UIViewController
-@property (nonatomic,strong) favoriteVCModel *vcModel;
+@property (nonatomic,assign) FavoriteType type;
+@property (nonatomic,strong) CategoryRankModel *rankModel;
+
+- (void)reloadDatas;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,7 @@
 
 #import "CartTableViewCell.h"
 #import "CartChoosePromotion.h"
+#import "NSString+Fee.h"
 
 @interface CartTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *additonBtn;
@@ -36,8 +37,8 @@
     [_skuLabel addGestureRecognizer:tap];
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateSelected];
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
-    [_selBtn setImage:[UIImage imageNamed:@"radio-0"] forState:0];
-    [_selBtn setImage:[UIImage imageNamed:@"radio-1"] forState:1];
+    [_selBtn setImage:[UIImage imageNamed:@"Vector"] forState:0];
+    [_selBtn setImage:[UIImage imageNamed:@"已选中"] forState:1];
 }
 
 - (void)setModel:(CartItemModel *)model
@@ -46,7 +47,7 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.productName;
     _countLabel.text = model.num;
-    _priceLabel.text = [NSString stringWithFormat:@" RP%.0f",model.salesPrice];
+    _priceLabel.text = [[NSString stringWithFormat:@"%.0f",model.salesPrice] currency];
     ProdSpcAttrsModel *skuLabel = model.prodSpcAttrs.firstObject;
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",skuLabel.value];
     if (_isInvalid) {

@@ -10,6 +10,7 @@
 #import "CouponCenterChildViewController.h"
 #import <VTMagic/VTMagic.h>
 #import "CouponCenterViewController.h"
+#import "CouponModel.h"
 
 @interface MyCouponViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
 @property(nonatomic, strong) NSArray *menuList;
@@ -18,6 +19,7 @@
 @property (nonatomic,strong) VTMagicController *magicController;
 @property (nonatomic,strong) UIView *bottomView;
 @property (nonatomic,strong) UIButton *couponCenterBtn;
+@property (nonatomic,strong) CouponNumModel *numModel;
 @end
 
 @implementation MyCouponViewController
@@ -36,7 +38,25 @@
     _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei-78);
     [_magicController.magicView reloadData];
     [self.view addSubview:self.bottomView];
-    
+    [self loadDatas];
+}
+- (void)loadDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.coupon.couponBrief success:^(id  _Nullable response) {
+        weakself.numModel = [[CouponNumModel alloc] initWithDictionary:response error:nil];
+        [weakself updateView];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)updateView
+{
+    NSString *AvailableStr = [NSString stringWithFormat:@"Available(%@)",self.numModel.availableNum];
+    NSString *ExpiredStr = [NSString stringWithFormat:@"Expired(%@)",self.numModel.expiredNum];
+    NSString *UsedStr = [NSString stringWithFormat:@"Used(%@)",self.numModel.usedNum];
+    self.menuList = @[AvailableStr, ExpiredStr, UsedStr];
+    [_magicController.magicView reloadMenuTitles];
 }
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {

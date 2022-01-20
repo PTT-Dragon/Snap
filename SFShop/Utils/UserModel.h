@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) NSString <Optional>*nickName;
 @property(nonatomic, copy) NSString <Optional>*email;
+@property(nonatomic, copy) NSString <Optional>*couponNum;
 @property(nonatomic, copy) NSString <Optional>*lastSighinDate;
 @property(nonatomic, copy) NSString <Optional>*photo;
 @property(nonatomic, copy) NSString <Optional>*recmdChannel;

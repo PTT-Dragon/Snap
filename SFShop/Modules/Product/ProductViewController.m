@@ -27,6 +27,7 @@
 #import "CheckoutManager.h"
 #import "ProductionRecomandView.h"
 #import "SysParamsModel.h"
+#import "LoginViewController.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -79,6 +80,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupDiscountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupCountLabel;
 @property (strong, nonatomic) ProductionRecomandView *recommendView;
+@property (weak, nonatomic) IBOutlet UILabel *cartNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *originalPriceLabel;
 
 @end
 
@@ -103,6 +106,7 @@
     [self requestEvaluationsList];
     [self addActions];
     [self requestCampaigns];
+    [self requestCartNum];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -256,6 +260,17 @@
         NSLog(@"get similarfailed");
     }];
 }
+- (void)requestCartNum
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
+        CartNumModel *numModel = [[CartNumModel alloc] initWithDictionary:response error:nil];
+        weakself.cartNumLabel.text = numModel.num;
+        weakself.cartNumLabel.hidden = [numModel.num isEqualToString:@"0"];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 
 
 - (void)setupSubViews {
@@ -276,6 +291,47 @@
     _carouselImgView.pagingEnabled = YES;
     
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    config.preferences = [WKPreferences new];
+        
+        config.preferences.minimumFontSize = 10;
+        
+        config.preferences.javaScriptEnabled = YES;
+    config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+    NSString *js=@"var script = document.createElement('script');"
+    
+    "script.type = 'text/javascript';"
+    
+    "script.text = \"function ResizeImages() { "
+    
+    "var myimg,oldwidth;"
+    
+    "var maxwidth = %f;"
+    
+    "for(i=0;i"
+    
+    "myimg = document.images[i];"
+    
+    "if(myimg.width > maxwidth){"
+    
+    "oldwidth = myimg.width;"
+    
+    "myimg.width = %f;"
+    
+    "}"
+    
+    "}"
+    
+    "}\";"
+    
+    "document.getElementsByTagName('head')[0].appendChild(script);";
+    
+    js = [NSString stringWithFormat:js,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.width-15];
+    js = [NSString stringWithFormat:@"%@%@",js,@""];
+    
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
+    WKUserContentController *userController = [WKUserContentController new];
+    [userController addUserScript:script];
+    config.userContentController = userController;
     self.detailWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
     self.detailWebView.scrollView.scrollEnabled = NO;
     [self.detailWebView.scrollView addObserver:self forKeyPath:@"contentSize" options: NSKeyValueObservingOptionNew context:nil];
@@ -405,6 +461,7 @@
     self.variationsLabel.text = [self getVariationsString];
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
     self.selProductModel = model.products.firstObject;
+    self.originalPriceLabel.text = [[NSString stringWithFormat:@"%ld",model.marketPrice] currency];
 }
 - (void)setSelProductModel:(ProductItemModel *)selProductModel
 {
@@ -523,9 +580,16 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (tableView == _evalationTableview) {
+        if (self.evalationArr.count == 0) {
+            return;
+        }
         ProductReviewViewController *vc = [[ProductReviewViewController alloc] init];
         vc.evaluationsId = [NSString stringWithFormat:@"%ld",self.model.offerId];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (tableView == _groupTableView){
+        if (indexPath.row == 0) {
+            
+        }
     }
 }
 - (CGFloat)calucateTableviewHei
@@ -589,8 +653,10 @@
             @"addon":@"",
             @"isSelected":@"N"
         };
+        MPWeakSelf(self)
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
             [baseTool updateCartNum];
+            [weakself requestCartNum];
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_failed")];
@@ -599,15 +665,22 @@
 }
 - (IBAction)messageAction:(UIButton *)sender {
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-//    vc.url = [NSString stringWithFormat:@"%@/chat/%@", Host, _model.uccAccount];
-
     vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
-//    vc.url = [NSString stringWithFormat:@"https://smartfrenshop.com/chat/%@",_model.uccAccount];
     vc.sysAccount = _model.uccAccount;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)buyNow:(UIButton *)sender {
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model || [model.accessToken isEqualToString:@""]) {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        MPWeakSelf(vc)
+        vc.didLoginBlock = ^{
+            [weakvc.navigationController popViewControllerAnimated:YES];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     if (!_isCheckingSaleInfo) {
         [self showAttrsView];
     } else {

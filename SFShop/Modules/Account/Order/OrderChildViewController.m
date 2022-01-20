@@ -99,15 +99,15 @@
     vc.orderId = model.orderId;
     [self.navigationController pushViewController:vc animated:YES];
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 10;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 10)];
     view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
 }
 
 - (void)setType:(OrderListType)type
@@ -118,6 +118,9 @@
 #pragma mark - cell.delegate
 - (void)refreshDatas
 {
+    if (self.block) {
+        self.block();
+    }
     [self loadDatas];
 }
 - (void)loadDatas

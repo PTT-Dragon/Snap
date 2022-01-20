@@ -61,6 +61,10 @@
 {
     return K_users_domain(@"inbox/message");
 }
+- (NSString *)messageNum
+{
+    return K_users_domain(@"inbox/unread/num");
+}
 - (NSString *)setLanguageWithId:(NSString *)languageId
 {
     NSString *url = [NSString stringWithFormat:@"deflangs/%@",languageId];
@@ -123,6 +127,10 @@
 }
 - (NSString *)usercoupon {
     return K_coupon_domain(@"usercoupon");
+}
+- (NSString *)couponBrief
+{
+    return K_coupon_domain(@"usercoupons/brief");
 }
 - (NSString *)num {
     return K_coupon_domain(@"state/num");

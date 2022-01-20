@@ -9,7 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^OrderChildViewControllerBlock)(void);
+
 @interface OrderChildViewController : UIViewController
+@property (nonatomic,copy) OrderChildViewControllerBlock block;
 @property (nonatomic,assign) OrderListType type;
 @property (nonatomic,copy) NSString *searchText;
 @end

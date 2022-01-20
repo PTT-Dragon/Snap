@@ -76,8 +76,10 @@
 - (void)updateDatas
 {
     EvaluatesModel *evaModel = self.detailModel.evaluates.firstObject;
-    self.textView.text = evaModel.evaluationComments;
-    self.starView.score = evaModel.rate.integerValue;
+    if (evaModel) {
+        self.textView.text = evaModel.evaluationComments;
+        self.starView.score = evaModel.rate.integerValue;
+    }
     self.bottomView.hidden = NO;
     self.anonymousBtn.hidden = NO;
     self.anonymousLabel.hidden = NO;

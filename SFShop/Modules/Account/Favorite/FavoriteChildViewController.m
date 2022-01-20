@@ -54,10 +54,21 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:@(self.pageIndex) forKey:@"pageIndex"];
     [params setValue:@(10) forKey:@"pageSize"];
-    if (_vcModel.type == PRICEDOWNTYPE) {
+    if (_type == PRICEDOWNTYPE) {
         [params setValue:@"Y" forKey:@"priceDownFlag"];
-    }else if (_vcModel.type == PROMOTIONTYPE){
+    }else if (_type == PROMOTIONTYPE){
         [params setValue:@"Y" forKey:@"promotionFlag"];
+    }
+    if (_rankModel) {
+        __block NSString *catgId = @"";
+        [_rankModel.catgIds enumerateObjectsUsingBlock:^(CategoryRankCategoryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.isSelected) {
+                catgId = obj.idStr;
+            }
+        }];
+        [params setValue:catgId forKey:@"catgId"];
+        [params setValue:@(_rankModel.priceModel.minPrice) forKey:@"startPrice"];
+        [params setValue:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
     }
     [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
         [weakself.tableView.mj_header endRefreshing];
@@ -70,7 +81,10 @@
         [weakself.tableView.mj_header endRefreshing];
     }];
 }
-
+- (void)reloadDatas
+{
+    [self.tableView.mj_header beginRefreshing];
+}
 - (void)showEmptyView {
     if (self.dataSource.count > 0) {
         self.emptyView.hidden = YES;
@@ -86,11 +100,20 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:@(self.pageIndex) forKey:@"pageIndex"];
     [params setValue:@(10) forKey:@"pageSize"];
-    if (_vcModel.type == PRICEDOWNTYPE) {
+    if (_type == PRICEDOWNTYPE) {
         [params setValue:@"Y" forKey:@"priceDownFlag"];
-    }else if (_vcModel.type == PROMOTIONTYPE){
+    }else if (_type == PROMOTIONTYPE){
         [params setValue:@"Y" forKey:@"promotionFlag"];
     }
+    __block NSString *catgId = @"";
+    [_rankModel.catgIds enumerateObjectsUsingBlock:^(CategoryRankCategoryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.isSelected) {
+            catgId = obj.catgId;
+        }
+    }];
+    [params setValue:catgId forKey:@"catgId"];
+    [params setValue:@(_rankModel.priceModel.minPrice) forKey:@"startPrice"];
+    [params setValue:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
     [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
         [weakself.tableView.mj_footer endRefreshing];
         [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];

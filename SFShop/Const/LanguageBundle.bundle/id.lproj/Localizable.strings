@@ -141,7 +141,7 @@
 //  "EXCHANGE" = "Exchange";
 //  "DELIVERY" = "Pengiriman";
 //  "DELETE_ADDRESS_TXT" = "Hapus alamat ";
-//  "ADD_ADDRESS" = "Tambah Alamat";
+  "ADD_ADDRESS" = "Tambah Alamat";
 //  "MY_ADDRESS" = "Alamat Saya";
 //  "REQUIREDTIP" = "Silahkan masukkan";
 //  "INCORRECT_NAME" = "Nama penerima 4-40 huruf";
@@ -452,7 +452,7 @@
 //  "GROUP_FAIL" = "Grup Gagal";
 //  "GROUPED" = "Grouped";
 //  "INVITE_MORE" = "Undang lebih banyak pembeli yang diperlukan berakhir dalam";
-//  "INVITE_ONE" = "Diperlukan satu pembeli lagi yang berakhir dalam";
+  "INVITE_ONE" = "Diperlukan satu pembeli lagi yang berakhir dalam";
 //  "GROUP_DETAIL" = "Rincian Grup";
 //  "NO_INVITE_RECORDS" = "Tidak ada catatan undangan";
 //  "YOU_HAVEN_VIEWED_ANY_ITEMS" = "Anda belum melihat item apa pun";

@@ -190,7 +190,8 @@
     view.backgroundColor = [UIColor whiteColor];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 50)];
     if (model) {
-        label.text = model.createdDateNoH;
+        BOOL isToday = [_calendarManager.dateHelper date:model.date isTheSameDayThan:[NSDate date]];
+        label.text = isToday ? kLocalizedString(@"Today"): model.createdDateNoH;
     }
     [view addSubview:label];
     return view;

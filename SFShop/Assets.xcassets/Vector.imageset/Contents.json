@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "Vector.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "rank_filters.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

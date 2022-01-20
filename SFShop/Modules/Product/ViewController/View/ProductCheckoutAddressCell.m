@@ -136,6 +136,7 @@
         _emailTF.font = [UIFont systemFontOfSize:12];
         _emailTF.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
         _emailTF.delegate = self;
+        _emailTF.placeholder = kLocalizedString(@"Please_enter_your_email");
     }
     return _emailTF;
 }

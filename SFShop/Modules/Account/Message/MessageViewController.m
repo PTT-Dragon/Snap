@@ -89,14 +89,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self readMessage];
     if (indexPath.row == 0) {
-        [self readMessage];
+        MessageOrderListViewController *vc = [[MessageOrderListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
     }
-//    MessageOrderListViewController *vc = [[MessageOrderListViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-    
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-//    vc.url = [NSString stringWithFormat:@"%@/chat{%@}", Host, ];
+    vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
+    vc.sysAccount = model.account;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)readMessage

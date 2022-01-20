@@ -22,8 +22,8 @@
     // Initialization code
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateSelected];
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
-    [_selBtn setImage:[UIImage imageNamed:@"radio-0"] forState:0];
-    [_selBtn setImage:[UIImage imageNamed:@"radio-1"] forState:1];
+    [_selBtn setImage:[UIImage imageNamed:@"Vector"] forState:0];
+    [_selBtn setImage:[UIImage imageNamed:@"已选中"] forState:1];
 }
 
 - (void)setModel:(CartListModel *)model

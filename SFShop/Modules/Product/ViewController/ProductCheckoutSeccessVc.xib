@@ -224,7 +224,7 @@
                                 <constraint firstItem="CJw-kS-No7" firstAttribute="bottom" secondItem="vXQ-E0-w3n" secondAttribute="bottom" id="mPg-Y9-kMf"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fl4-bn-POm">
+                        <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fl4-bn-POm">
                             <rect key="frame" x="16" y="726" width="382" height="46"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -251,7 +251,7 @@
                         <constraint firstItem="fl4-bn-POm" firstAttribute="top" secondItem="oQx-Vl-13L" secondAttribute="bottom" constant="12" id="HST-10-m17"/>
                         <constraint firstAttribute="trailing" secondItem="fai-Tq-R7b" secondAttribute="trailing" constant="32" id="HSc-5B-uLi"/>
                         <constraint firstItem="4ow-Gn-2gs" firstAttribute="trailing" secondItem="fai-Tq-R7b" secondAttribute="trailing" id="LaC-Ja-2yD"/>
-                        <constraint firstAttribute="bottom" secondItem="oQx-Vl-13L" secondAttribute="bottom" constant="44" id="NXe-MG-NYY"/>
+                        <constraint firstAttribute="bottom" secondItem="oQx-Vl-13L" secondAttribute="bottom" constant="88" id="NXe-MG-NYY"/>
                         <constraint firstItem="RxH-nx-NzY" firstAttribute="centerX" secondItem="Gat-MK-SWz" secondAttribute="centerX" id="Oqn-Gp-rCd"/>
                         <constraint firstItem="oQx-Vl-13L" firstAttribute="top" secondItem="4ow-Gn-2gs" secondAttribute="bottom" constant="10" id="W36-8c-zWE"/>
                         <constraint firstItem="4ow-Gn-2gs" firstAttribute="leading" secondItem="fai-Tq-R7b" secondAttribute="leading" id="X2Y-fL-3fs"/>

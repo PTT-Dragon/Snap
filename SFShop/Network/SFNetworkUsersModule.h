@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *messageList;
 @property (nonatomic, readwrite, strong) NSString *message;
 @property (nonatomic, readwrite, strong) NSString *readMessage;
+@property (nonatomic, readwrite, strong) NSString *messageNum;
+
 - (NSString *)setLanguageWithId:(NSString *)languageId;
 
 
@@ -58,6 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *usercoupon;
 @property (nonatomic, readwrite, strong) NSString *num;
 @property (nonatomic, readwrite, strong) NSString *couponCatg;
+@property (nonatomic, readwrite, strong) NSString *couponBrief;
+
 
 
 @end

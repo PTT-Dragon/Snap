@@ -9,6 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+
+@interface CouponNumModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*availableNum;
+@property (nonatomic,copy) NSString <Optional>*usedNum;
+@property (nonatomic,copy) NSString <Optional>*expiredNum;
+@end
+
 @interface CouponModel : JSONModel
 
 @property (nonatomic,copy) NSString <Optional>*couponName;
@@ -16,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*discountMethod;
 @property (nonatomic,copy) NSString <Optional>*effDate;
 @property (nonatomic,copy) NSString <Optional>*expDate;
+@property (nonatomic,copy) NSString *expDateStr;
+@property (nonatomic,copy) NSString *effDateStr;
 @property (nonatomic,copy) NSString <Optional>*getDate;
 @property (nonatomic,copy) NSString <Optional>*getMethod;
 @property (nonatomic,copy) NSString <Optional>*initiator;

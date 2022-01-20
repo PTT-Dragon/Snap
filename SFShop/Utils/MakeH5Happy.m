@@ -43,6 +43,7 @@
  */
 + (NSString *)replaceHtmlSourceOfRelativeImageSource: (NSString *)htmlString {
     NSString *replacedHtmlString = [htmlString stringByReplacingOccurrencesOfString: @"src=\"" withString: [NSString stringWithFormat:@"src=\"%@", Host]];
+    [replacedHtmlString stringByAppendingFormat:@""];
     return replacedHtmlString;
 }
 

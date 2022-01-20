@@ -103,6 +103,10 @@
 //    }
     NSNumber *a = [self.typeList objectAtIndex:pageIndex];
     orderViewController.type = a.integerValue;
+    MPWeakSelf(self)
+    orderViewController.block = ^{
+        [weakself loadOrderNum];
+    };
     return orderViewController;
 }
 

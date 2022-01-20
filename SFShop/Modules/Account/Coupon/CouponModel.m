@@ -6,8 +6,28 @@
 //
 
 #import "CouponModel.h"
+#import "NSDate+Helper.h"
+
+@implementation CouponNumModel
+
+@end
 
 @implementation CouponModel
+
+
+- (NSString *)expDateStr
+{
+    NSDate *date = [NSDate dateFromString:self.expDate];
+    return [date stringWithFormat:@"YYYY-MM-dd"];
+}
+- (NSString *)effDateStr
+{
+    NSDate *date = [NSDate dateFromString:self.effDate];
+    return [date stringWithFormat:@"YYYY-MM-dd"];
+}
+
+
+
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
     return YES;

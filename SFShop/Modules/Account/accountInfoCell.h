@@ -10,8 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface accountInfoCell : UITableViewCell
-@property (nonatomic,assign) NSInteger couponCount;
 @property (nonatomic,assign) NSInteger favoriteCount;
+@property (nonatomic,assign) NSInteger noReadMessageCount;
 @property (nonatomic,assign) NSInteger recentCount;
 - (void)updateData;
 @end

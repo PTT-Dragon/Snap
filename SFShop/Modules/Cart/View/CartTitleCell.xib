@@ -27,9 +27,9 @@
                                     <constraint firstAttribute="width" constant="16" id="7ju-a2-X43"/>
                                     <constraint firstAttribute="height" constant="16" id="rxV-mQ-Ped"/>
                                 </constraints>
-                                <state key="normal" image="radio-0"/>
+                                <state key="normal" image="Vector"/>
                                 <state key="disabled" image="block"/>
-                                <state key="selected" image="radio-1"/>
+                                <state key="selected" image="已选中"/>
                                 <connections>
                                     <action selector="selAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Acr-I1-WJT"/>
                                 </connections>
@@ -69,7 +69,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Coupons" image="right-scroll">
+                                <state key="normal" title="Vouchers" image="right-scroll">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -113,10 +113,10 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Vector" width="16" height="16"/>
         <image name="block" width="200" height="200"/>
-        <image name="radio-0" width="200" height="200"/>
-        <image name="radio-1" width="200" height="200"/>
         <image name="right-scroll" width="200" height="200"/>
+        <image name="已选中" width="52" height="52"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *couponLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *setBtn;
+@property (weak, nonatomic) IBOutlet UILabel *noReadMessageCountLabel;
 
 @end
 
@@ -47,6 +48,8 @@
     
     UITapGestureRecognizer *nameLabelTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nameAction)];
     [_nameLabel addGestureRecognizer:nameLabelTap];
+    self.noReadMessageCountLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.noReadMessageCountLabel.layer.borderWidth = 1;
 }
 - (void)updateData
 {
@@ -65,17 +68,18 @@
         self.nameLabel.text = model.userRes.nickName;
         [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"默认头像"]];
         self.mobileLabel.text = model.userRes.mobilePhone;
+        self.couponLabel.text = model.userRes.couponNum;
     }
-}
-- (void)setCouponCount:(NSInteger)couponCount
-{
-    _couponCount = couponCount;
-    self.couponLabel.text = [NSString stringWithFormat:@"%ld",couponCount];
 }
 - (void)setFavoriteCount:(NSInteger)favoriteCount
 {
     _favoriteCount = favoriteCount;
     self.WhishlistLabel.text = [NSString stringWithFormat:@"%ld",favoriteCount];
+}
+- (void)setNoReadMessageCount:(NSInteger)noReadMessageCount
+{
+    _noReadMessageCount = noReadMessageCount;
+    self.noReadMessageCountLabel.text = [NSString stringWithFormat:@"%ld",noReadMessageCount];
 }
 - (void)setRecentCount:(NSInteger)recentCount
 {

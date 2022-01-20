@@ -7,6 +7,7 @@
 
 #import "MyCouponCell.h"
 #import "UseCouponViewController.h"
+#import "NSString+Fee.h"
 
 @interface MyCouponCell ()
 @property (weak, nonatomic) IBOutlet UIView *discountView;
@@ -28,11 +29,21 @@
 - (void)setContent:(CouponModel *)model
 {
     _model = model;
-    _nameLabel.text = model.couponName;
-    _timeLabel.text = model.expDate;
+    if ([model.discountMethod isEqualToString:@"DISC"]) {
+        _nameLabel.text = [NSString stringWithFormat:@"Discount %@ Min.spend %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency],[[NSString stringWithFormat:@"%@f",model.thAmount] currency]];
+    }else{
+        _nameLabel.text = [NSString stringWithFormat:@"Discount %@ Without limit",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
+    }
+    _timeLabel.text = [NSString stringWithFormat:@"%@-%@",model.effDateStr,model.expDateStr];
     _statuLabel.text = [model.userCouponState isEqualToString:@"C"] ? @"EXPIRED": [model.userCouponState isEqualToString:@"A"] ? @"USE NOW": @"USED";
-    _statuLabel.textColor = [model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0xFFA6C0);
-    _discountView.backgroundColor = [model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0xFFA6C0);
+    if (model.userCouponState) {
+        _statuLabel.textColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);
+        _discountView.backgroundColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);
+    }else{
+        _statuLabel.textColor = RGBColorFrom16(0xFF1659);
+        _discountView.backgroundColor = RGBColorFrom16(0xFF1659);
+    }
+    
 }
 - (void)useCouponAction
 {

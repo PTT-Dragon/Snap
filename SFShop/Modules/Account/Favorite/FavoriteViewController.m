@@ -49,18 +49,6 @@
     self.currentMenuIndex = self.magicController.currentPage;
     [self.magicController switchToPage:self.currentMenuIndex animated:0];
     [_magicController.magicView reloadData];
-//    self.magicView.frame = CGRectMake(0, 0, MainScreen_width, 100);
-//    self.magicView.navigationColor = [UIColor whiteColor];
-//    self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#000000"];
-//    self.magicView.sliderHeight = 1.0f;
-//    self.magicView.layoutStyle = VTLayoutStyleDivide;
-//    self.magicView.switchStyle = VTSwitchStyleDefault;
-//    self.magicView.navigationHeight = 40.f;
-//    self.magicView.dataSource = self;
-//    self.magicView.delegate = self;
-//    self.magicView.scrollEnabled = NO;
-//    [self.magicView reloadData];
-    
     [self loadDatas];
 }
 - (void)jumpToFilterDetail
@@ -83,9 +71,9 @@
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
-        FavoriteChildViewController *vc = self.childViewControllers[self.magicController.currentPage];
-//        vc.vcModel.catgId = model.catgIds.firstObject;
-//        vc.vcModel.maxPrice =
+        FavoriteChildViewController *vc = self.magicController.childViewControllers[self.magicController.currentPage];
+        vc.rankModel = model;
+        [vc reloadDatas];
     };
     [self presentViewController:filterVc animated:YES completion:nil];
 }
@@ -138,7 +126,7 @@
     if (!gridViewController) {
         gridViewController = [[FavoriteChildViewController alloc] init];
     }
-    gridViewController.vcModel = self.dataSource[pageIndex];
+    gridViewController.type = pageIndex == 1 ? PRICEDOWNTYPE:ALLTYPE;
     return gridViewController;
 }
 

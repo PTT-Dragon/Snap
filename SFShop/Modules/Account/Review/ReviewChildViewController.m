@@ -50,9 +50,6 @@
         self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             [self loadDatas];
         }];
-        self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-            [self loadMoreDatas];
-        }];
         [self.tableView.mj_header beginRefreshing];
     }
     [self.view addSubview:self.emptyView];
@@ -92,6 +89,9 @@
                 [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
             }
             [weakself.tableView reloadData];
+            weakself.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+                [weakself loadMoreDatas];
+            }];
         }
         [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {

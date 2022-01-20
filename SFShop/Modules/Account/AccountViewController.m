@@ -26,7 +26,7 @@
 @interface AccountViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
-@property (nonatomic,assign) double couponCount;
+@property (nonatomic,assign) double unreadMessageCount;
 @property (nonatomic,assign) double favoriteCount;
 @property (nonatomic,assign) double recentCount;
 @property (nonatomic,assign) double showInviteImg;
@@ -39,12 +39,13 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self loadData];
+    [self loadUserInfo];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = kLocalizedString(@"Account");
-    _couponCount = 0;
+    _unreadMessageCount = 0;
     _favoriteCount = 0;
     _recentCount = 0;
     _dataSource = [NSMutableArray array];
@@ -73,7 +74,6 @@
 }
 - (void)updateDatas
 {
-    [self loadUserInfo];
     FMDBManager *dbManager = [FMDBManager sharedInstance];
     
     @weakify(self)
@@ -112,12 +112,12 @@
 - (void)loadData
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.coupon.num parameters:@{} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.account.messageNum parameters:@{} success:^(id  _Nullable response) {
         NSNumber *num = response;
-        weakself.couponCount = num.doubleValue;
+        weakself.unreadMessageCount = num.doubleValue;
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        
+
     }];
     [SFNetworkManager get:SFNet.favorite.num parameters:@{} success:^(id  _Nullable response) {
         NSNumber *num = response[@"totalNum"];
@@ -174,9 +174,9 @@
 {
     if (indexPath.row == 0) {
         accountInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountInfoCell"];
-        cell.couponCount = self.couponCount;
         cell.favoriteCount = self.favoriteCount;
         cell.recentCount = self.recentCount;
+        cell.noReadMessageCount = self.unreadMessageCount;
         [cell updateData];
         return cell;
     }else if (indexPath.row == 1){
