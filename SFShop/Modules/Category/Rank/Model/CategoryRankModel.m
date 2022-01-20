@@ -106,14 +106,30 @@
 }
 @end
 
+@interface CategoryRankPageInfoListModel ()
+@property (nonatomic, readwrite, copy, nullable) NSString *labelPictureUrl;
+@end
 @implementation CategoryRankPageInfoListModel
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{
         @"imgs" : [CategoryRankPageInfoListImgModel class],
         @"services" : [CategoryRankPageInfoListServiceModel class],
-
+        @"labels" : [CategoryRankPageInfoListLabelsModel class],
     };
 }
+
+- (nullable NSString *)labelPictureUrl {
+    id labelId = self.productImg.labelId.firstObject;
+    if (labelId) {
+        for (CategoryRankPageInfoListLabelsModel *label in self.labels) {
+            if ([label.labelId isEqualToString:[NSString stringWithFormat:@"%@",labelId]]) {
+                return label.labelPictureUrl;
+            }
+        }
+    }
+    return nil;
+}
+
 @end
 
 @implementation CategoryRankPageInfoListImgModel
@@ -123,4 +139,13 @@
 @end
 
 @implementation CategoryRankPageInfoListServiceModel
+@end
+
+@implementation CategoryRankPageInfoListProductImgModel
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"idStr" : @"id"};
+}
+@end
+
+@implementation CategoryRankPageInfoListLabelsModel
 @end
