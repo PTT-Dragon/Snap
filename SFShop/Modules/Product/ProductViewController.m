@@ -580,7 +580,15 @@
     NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@ %ld", currency, selProductModel.marketPrice]];
     [marketPriceStr addAttribute: NSStrikethroughStyleAttributeName value:@2 range: NSMakeRange(0, marketPriceStr.length)];
     self.marketPriceLabel.attributedText = marketPriceStr;
-    self.variationsLabel.text = selProductModel.prodSpcAttrs.firstObject.value;;
+    // 规格
+    NSMutableString *varString = [NSMutableString string];
+    [selProductModel.prodSpcAttrs enumerateObjectsUsingBlock:^(ProdSpcAttrsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [varString appendString:obj.value];
+        if (idx < selProductModel.prodSpcAttrs.count - 1) {
+            [varString appendString: @","];
+        }
+    }];
+    self.variationsLabel.text = varString;
     self.originalPriceLabel.text = [[NSString stringWithFormat:@"%ld",selProductModel.marketPrice] currency];
 
     self.usefulBtn.selected = [selProductModel.isCollection isEqualToString:@"1"];
