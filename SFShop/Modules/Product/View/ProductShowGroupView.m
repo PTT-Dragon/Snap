@@ -31,8 +31,10 @@
     }];
     [self addSubview:self.tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.top.equalTo(self.bgView);
+        make.left.right.equalTo(self.bgView);
+        make.top.mas_equalTo(self.bgView.mas_top).offset(25);
         make.height.mas_equalTo(self.dataSource.count * 60+60);
+        make.bottom.mas_equalTo(self.bgView.mas_bottom).offset(-35);
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -42,8 +44,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductShowGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductShowGroupCell"];
-    
+    cell.model = self.dataSource[indexPath.row];
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
 }
 - (UITableView *)tableView
 {

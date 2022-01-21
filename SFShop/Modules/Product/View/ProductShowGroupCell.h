@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^ProductShowGroupCellBlock)(void);
+
 @interface ProductShowGroupCell : UITableViewCell
+@property (nonatomic,copy) ProductShowGroupCellBlock block;
 @property (nonatomic,strong) cmpShareBuysModel *model;
 @end
 
