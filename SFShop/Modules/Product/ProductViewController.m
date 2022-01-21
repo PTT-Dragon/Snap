@@ -862,7 +862,7 @@
     [rootView addSubview:_attrView];
     [_attrView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(rootView);
-        make.bottom.equalTo(_buyBtn.mas_top).offset(-16);
+        make.bottom.equalTo(self.view.mas_bottom).offset(0);
     }];
 }
 

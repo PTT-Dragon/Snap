@@ -20,6 +20,8 @@
 @property (nonatomic, strong) UILabel *countLabel;
 @property (nonatomic, strong) UIButton *decreaseBtn;
 @property (nonatomic, strong) NSMutableArray<ProductAttrButton *> *selectedAttrBtn;
+@property (nonatomic,strong) UIButton *btn1;
+@property (nonatomic,strong) UIButton *btn2;
 
 @end
 
@@ -101,7 +103,7 @@
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView).offset(16);
         make.right.equalTo(contentView).offset(-16);
-        make.bottom.equalTo(contentView).offset(-80);
+        make.bottom.equalTo(contentView).offset(-180);
         make.height.mas_equalTo(1);
     }];
     
@@ -112,7 +114,7 @@
     [self addSubview:quantityLabel];
     [quantityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView).offset(16);
-        make.bottom.equalTo(contentView).offset(-30);
+        make.bottom.equalTo(contentView).offset(-130);
     }];
     
     UIButton *increaseBtn = [UIButton buttonWithType: UIButtonTypeCustom];
@@ -172,8 +174,39 @@
         make.edges.equalTo(_attrsScrollView);
         make.width.equalTo(self);
     }];
+    
+    _btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+    [_btn1 setTitle:@"立即购买" forState:0];
+    _btn1.titleLabel.font = CHINESE_SYSTEM(14);
+    [_btn1 setTitleColor:[UIColor whiteColor] forState:0];
+    [self addSubview:_btn1];
+    [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(contentView.mas_right).offset(-16);
+        make.height.mas_equalTo(46);
+        make.width.mas_equalTo((MainScreen_width-52)/2);
+        make.bottom.equalTo(contentView).offset(-44);
+    }];
+    
+    _btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btn2.backgroundColor = [UIColor whiteColor];
+    [_btn2 setTitle:@"加入购物车" forState:0];
+    _btn2.titleLabel.font = CHINESE_SYSTEM(14);
+    [_btn2 setTitleColor:RGBColorFrom16(0xFF1659) forState:0];
+    _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+    _btn2.layer.borderWidth = 1;
+    [self addSubview:_btn2];
+    [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(contentView.mas_left).offset(16);
+        make.height.mas_equalTo(46);
+        make.width.mas_equalTo((MainScreen_width-52)/2);
+        make.bottom.equalTo(contentView).offset(-44);
+    }];
 }
-
+- (void)updateBtn
+{
+    
+}
 
 - (void)setSelProductModel:(ProductItemModel *)selProductModel {
     _selProductModel = selProductModel;
