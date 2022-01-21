@@ -867,6 +867,9 @@
     _selectedAddressModel.contactNbr = _streetModel.stdAddrId;
     _selectedAddressModel.postCode = _streetModel.zipcode;
     self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", _selectedAddressModel.province, _selectedAddressModel.city, _selectedAddressModel.district, _selectedAddressModel.postCode];
+    /**
+     重新选择完地址   后续操作
+     **/
 }
 
 
