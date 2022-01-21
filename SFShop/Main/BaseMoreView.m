@@ -110,6 +110,10 @@
 
 }
 
+- (void)tapAction {
+    self.hidden = YES;
+}
+
 
 #pragma mark - setter
 
@@ -201,6 +205,8 @@
     if (!_maskView) {
         _maskView = [[UIView alloc] init];
         _maskView.backgroundColor = [[UIColor jk_colorWithHexString:@"000000"] colorWithAlphaComponent:0.3];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+        [_maskView addGestureRecognizer:tap];
     }
     return _maskView;
 }
