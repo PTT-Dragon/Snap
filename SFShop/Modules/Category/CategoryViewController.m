@@ -162,11 +162,11 @@
     return _navSearchView;
 }
 
-- (BaseMoreView *)moreView {
-    if (!_moreView) {
-        _moreView = [[BaseMoreView alloc] initWithFrame:CGRectMake(0, self.navSearchView.bottom, MainScreen_width, self.view.height)];
-    }
-    return _moreView;
-}
+//- (BaseMoreView *)moreView {
+//    if (!_moreView) {
+//        _moreView = [[BaseMoreView alloc] initWithFrame:CGRectMake(0, self.navSearchView.bottom, MainScreen_width, self.view.height)];
+//    }
+//    return _moreView;
+//}
 
 @end
