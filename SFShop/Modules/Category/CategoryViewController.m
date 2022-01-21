@@ -48,6 +48,7 @@
 - (void)loadSides {
     [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"catgLevel":@"1"} success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
         NSArray *array = response;
         for (NSDictionary *dict in array) {
             CategoryModel *model = [CategoryModel yy_modelWithDictionary:dict];
@@ -63,6 +64,7 @@
 }
 
 - (void)loadContentDatas:(NSInteger)parentCatgId {
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"parentCatgId":@(parentCatgId)} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSArray *array = response;
