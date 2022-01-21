@@ -97,6 +97,8 @@
 @property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 
+@property (nonatomic, strong) NSString *currentShareBuyOrderId;
+
 @end
 
 @implementation ProductViewController
@@ -679,7 +681,8 @@
     cell.model = model;
     MPWeakSelf(self)
     cell.joinBlock = ^{
-        [weakself buyWithOrderId:model.shareBuyOrderId];
+        weakself.currentShareBuyOrderId = model.shareBuyOrderId;
+        [weakself buyNow:nil];
     };
     return cell;
 }
@@ -791,12 +794,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
 - (IBAction)buyNow:(UIButton *)sender {
-    [self buyWithOrderId:nil];
-}
-
-- (void)buyWithOrderId:(nullable NSString *)shareBuyOrderId {
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (!model || [model.accessToken isEqualToString:@""]) {
         LoginViewController *vc = [[LoginViewController alloc] init];
@@ -820,8 +818,8 @@
         }
         item.currentBuyCount = self.attrView.count;
         if (item.inCmpIdList) {//团购情况
-            if (shareBuyOrderId.length > 0) {
-                self.model.shareBuyOrderId = shareBuyOrderId;
+            if (self.currentShareBuyOrderId.length > 0) {
+                self.model.shareBuyOrderId = self.currentShareBuyOrderId;
                 self.model.shareBuyMode = @"B";
             } else {
                 self.model.shareBuyMode = @"A";
@@ -851,6 +849,7 @@
     _attrView.dismissBlock = ^{
         [weak_attrView removeFromSuperview];
         weakself.isCheckingSaleInfo = NO;
+        weakself.currentShareBuyOrderId = nil;
     };
     _attrView.chooseAttrBlock = ^() {
         weakself.selProductModel = weakself.attrView.selProductModel;

@@ -86,6 +86,40 @@
     }];
 }
 
+- (void)loadDatasIfDataISEmpty {
+    NSDictionary *parm = @{
+        @"catgIds" : @"",
+        @"q": @"",
+        @"pageIndex": @(1),
+        @"pageSize": @(10),
+        @"sortType": @"1",
+    };
+    [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
+        
+        if ([self.collectionView.mj_header isRefreshing]) {
+            [self.collectionView.mj_header endRefreshing];
+            [self.dataArray removeAllObjects];
+        }
+        if ([self.collectionView.mj_footer isRefreshing]) {
+            [self.collectionView.mj_footer endRefreshing];
+        }
+        [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
+        [self.collectionView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        if ([self.collectionView.mj_header isRefreshing]) {
+            [self.collectionView.mj_header endRefreshing];
+        }
+        if ([self.collectionView.mj_footer isRefreshing]) {
+            [self.collectionView.mj_footer endRefreshing];
+        }
+    }];
+}
+
+
+
 - (void)loadsubviews {
     [self.view addSubview:self.navSearchView];
     [self.view addSubview:self.headSelectorView];
@@ -101,14 +135,16 @@
     }];
     
     [self.collectionView.mj_header beginRefreshing];
-    [self.view addSubview:self.emptyView];
+//    [self.view addSubview:self.emptyView];
+    [self.collectionView addSubview:self.emptyView];
 }
 
 - (void)layout {
-    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.collectionView.mas_top).offset(90);
-        make.left.right.bottom.mas_equalTo(self.collectionView);
-    }];
+//    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(0);
+//        make.left.right.mas_equalTo(0);
+//        make.height.mas_equalTo(400);
+//    }];
 }
 
 #pragma mark - Event
@@ -160,6 +196,7 @@
 
 - (void)refreshNoItemsStatus {
     if (!self.dataArray.count) {
+        [self loadDatasIfDataISEmpty];
         self.emptyView.hidden = NO;
     } else {
         self.emptyView.hidden = YES;
@@ -320,7 +357,7 @@
 
 - (EmptyView *)emptyView {
     if (!_emptyView) {
-        _emptyView = [[EmptyView alloc] init];
+        _emptyView = [[EmptyView alloc] initWithFrame:CGRectMake(0, -400, MainScreen_width, 400)];
         [_emptyView configDataWithEmptyType:EmptyViewNoProductType];
         _emptyView.hidden = YES;
     }
