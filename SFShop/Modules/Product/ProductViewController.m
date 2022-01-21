@@ -232,6 +232,7 @@
         return [object.productId integerValue] == productId;
     }].firstObject;
     if (!subModel) {
+        [self hideGroupSubViews];
         return;
     }
 
@@ -507,6 +508,12 @@
         //已结束
     }
 }
+
+- (void)hideGroupSubViews {
+    self.groupInfoView.hidden = YES;
+    self.viewTop.constant = 0;
+}
+
 - (void)layoutGroupSubViews
 {
     [self.groupTableView reloadData];
