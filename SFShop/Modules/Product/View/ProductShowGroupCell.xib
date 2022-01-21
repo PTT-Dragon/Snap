@@ -39,6 +39,9 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal" title="Join"/>
+                        <connections>
+                            <action selector="joinAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="al6-t3-I6V"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wes-CG-kBE">
                         <rect key="frame" x="204" y="21.5" width="36" height="17"/>

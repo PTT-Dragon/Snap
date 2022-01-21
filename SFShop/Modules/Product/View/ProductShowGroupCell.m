@@ -21,12 +21,20 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _label.text = kLocalizedString(@"")
 }
 
-- (void)setModel:(cmpShareBuysModel *)model
+- (void)setModel:(ProductGroupListModel *)model
 {
     _model = model;
-//    _imgView sd_setImageWithURL:[NSURL URLWithString:model.]
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.photo)]];
+    _countLabel.text = model.memberQty;
+    _nameLabel.text = model.nickName;
 }
 
+- (IBAction)joinAction:(UIButton *)sender {
+    if (self.block) {
+        self.block();
+    }
+}
 @end

@@ -45,6 +45,9 @@
 {
     ProductShowGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductShowGroupCell"];
     cell.model = self.dataSource[indexPath.row];
+    cell.block = ^{
+        
+    };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

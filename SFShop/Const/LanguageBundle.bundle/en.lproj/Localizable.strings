@@ -292,8 +292,8 @@
 //  "CART" = "Cart";
   "COUPONS" = "Vouchers";
 //  "ONLY_SHOW_5_SHARE" = "Only show 5 share";
-//  "PEOPLE_SHORT" = "People Short";
-//  "JOIN" = "Join";
+  "PEOPLE_SHORT" = "People Short";
+  "JOIN" = "Join";
 //  "RECOMMENDATIONS" = "Recommendations";
 //  "FACEBOOK" = "Facebook";
 //  "GOOGLE" = "Google";

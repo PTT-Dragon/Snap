@@ -296,8 +296,8 @@
 //  "CART" = "购物车";
   "COUPONS" = "优惠券";
 //  "ONLY_SHOW_5_SHARE" = "只展示最近的5组拼团活动";
-//  "PEOPLE_SHORT" = "缺少人数";
-//  "JOIN" = "加入";
+  "PEOPLE_SHORT" = "缺少人数";
+  "JOIN" = "加入";
 //  "RECOMMENDATIONS" = "建议";
 //  "FACEBOOK" = "脸书";
 //  "GOOGLE" = "谷歌";

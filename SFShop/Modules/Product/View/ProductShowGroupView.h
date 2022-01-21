@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductShowGroupView : UIView
-@property (nonatomic,strong) NSMutableArray <cmpShareBuysModel *>*dataSource;
+@property (nonatomic,strong) NSArray <ProductGroupListModel *>*dataSource;
 @end
 
 NS_ASSUME_NONNULL_END

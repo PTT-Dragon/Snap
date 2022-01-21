@@ -14,7 +14,7 @@ typedef void(^ProductShowGroupCellBlock)(void);
 
 @interface ProductShowGroupCell : UITableViewCell
 @property (nonatomic,copy) ProductShowGroupCellBlock block;
-@property (nonatomic,strong) cmpShareBuysModel *model;
+@property (nonatomic,strong) ProductGroupListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

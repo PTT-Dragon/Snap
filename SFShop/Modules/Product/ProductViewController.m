@@ -561,7 +561,7 @@
 {
     ProductShowGroupView *groupView = [[NSBundle mainBundle] loadNibNamed:@"" owner:self options:nil].firstObject;
     groupView.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-    groupView.dataSource = self.campaignsModel.cmpShareBuys;
+    groupView.dataSource = self.groupModel.list;
     [self.view addSubview:groupView];
 }
 

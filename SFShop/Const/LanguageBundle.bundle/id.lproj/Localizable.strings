@@ -297,8 +297,8 @@
 //  "CART" = "Keranjang";
   "COUPONS" = "Kupon";
 //  "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";
-//  "PEOPLE_SHORT" = "Kurang pembeli";
-//  "JOIN" = "Join";
+  "PEOPLE_SHORT" = "Kurang pembeli";
+  "JOIN" = "Join";
 //  "RECOMMENDATIONS" = "Rekomendasi";
 //  "FACEBOOK" = "Facebook";
 //  "GOOGLE" = "Google";
