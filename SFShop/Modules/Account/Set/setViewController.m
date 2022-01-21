@@ -65,6 +65,7 @@
     // Do any additional setup after loading the view.
     _navView = [[BaseNavView alloc] init];
     _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);
