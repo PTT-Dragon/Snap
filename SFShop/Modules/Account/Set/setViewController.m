@@ -15,10 +15,14 @@
 #import "PublicAlertView.h"
 #import "AddressViewController.h"
 #import "LanguageViewController.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
-@interface setViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface setViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *moreView;
 
 @end
 
@@ -30,12 +34,44 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickSearchBtn:(BaseNavView *)navView
+{
+    
+}
+
+- (void)baseNavViewDidClickShareBtn:(BaseNavView *)navView
+{
+    
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView
+{
+    _moreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_moreView];
+    [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = kLocalizedString(@"Setting");
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"Setting")];
     [self layoutSubviews];
 }
 - (void)layoutSubviews
@@ -49,7 +85,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"SetLogOutCell" bundle:nil] forCellReuseIdentifier:@"SetLogOutCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+        make.top.mas_equalTo(self.navView.mas_bottom).offset(10);
     }];
 }
 

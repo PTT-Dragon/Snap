@@ -216,7 +216,7 @@
             }
         }
         if (products.count > 0) {
-            detailModel.products = products;
+            detailModel.selectedProducts = products;
             [productDetailModels addObject:detailModel];
         }
     }

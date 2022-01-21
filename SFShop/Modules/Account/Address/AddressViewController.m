@@ -169,10 +169,10 @@
 
 - (void)deleteCellWithRow:(NSInteger)row
 {
-    addressModel *model = self.dataSource[row];
+    addressModel *model = self.dataSource[row-1];
     MPWeakSelf(self)
     [SFNetworkManager post:[SFNet.address setAddressDeleteOfdeliveryAddressId:model.deliveryAddressId] parameters:@{} success:^(id  _Nullable response) {
-        [weakself.dataSource removeObjectAtIndex:row];
+        [weakself.dataSource removeObjectAtIndex:row-1];
         [weakself.tableView reloadData];
         [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {

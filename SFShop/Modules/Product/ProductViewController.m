@@ -30,6 +30,7 @@
 #import "LoginViewController.h"
 #import "ChooseAreaViewController.h"
 #import "ProductStockModel.h"
+#import "CartChooseCouponView.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -52,6 +53,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableviewHie;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoCellTop;
 @property (weak, nonatomic) IBOutlet UIButton *usefulBtn;
+@property (weak, nonatomic) IBOutlet UIView *couponsView;
 
 @property(nonatomic, strong) NSMutableArray<ProductEvalationModel *> *evalationArr;
 @property (nonatomic, strong) WKWebView *detailWebView;
@@ -88,6 +90,7 @@
 @property (nonatomic, strong) AreaModel *cityModel;
 @property (nonatomic, strong) AreaModel *districtModel;
 @property (nonatomic, strong) AreaModel *streetModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupTableViewTop;
 
 @property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
@@ -140,8 +143,17 @@
     
     UITapGestureRecognizer *variationTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAttrsView)];
     [self.variationsLabel addGestureRecognizer:variationTap];
+    
+    UITapGestureRecognizer *couponTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseCoupon)];
+    [self.couponsView addGestureRecognizer:couponTap];
 }
-
+- (void)chooseCoupon
+{
+    CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    view.couponDataSource = self.campaignsModel.coupons;
+    [[baseTool getCurrentVC].view addSubview:view];
+}
 - (void)chooseAddress {
     CartChooseAddressViewController *vc = [[CartChooseAddressViewController alloc] init];
     vc.addressListArr = self.addressDataSource;
@@ -152,10 +164,10 @@
     };
     [self.view addSubview:vc.view];
     [self addChildViewController:vc];
-
+    
 //    ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
 //    vc.delegate = self;
-//    vc.type = 3;
+//    vc.type = _streetModel ? 6 : 3;
 //    vc.selProvinceAreaMoel = self.provinceModel;
 //    vc.selCityAreaMoel = self.cityModel;
 //    vc.selDistrictAreaMoel = self.districtModel;
@@ -192,10 +204,12 @@
         if (weakself.campaignsModel.cmpFlashSales.count > 0) {
             //说明是参与抢购活动
             [weakself layoutFlashSaleSubView];
-        }else if (weakself.campaignsModel.cmpShareBuys.count > 0){
+        }
+        if (weakself.campaignsModel.cmpShareBuys.count > 0){
             //拼团活动
             [weakself requestGroupInfo];
-        }else if (weakself.campaignsModel.coupons > 0){
+        }
+        if (weakself.campaignsModel.coupons > 0){
             //有可使用红包
             [weakself layoutCouponSubviews];
         }
@@ -512,7 +526,24 @@
 }
 - (void)layoutCouponSubviews
 {
-    
+    self.couponsView.hidden = NO;
+    __block CGFloat lastRight = 0;
+    [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UILabel *label = [[UILabel alloc] init];
+        label.text = obj.couponName;
+        label.font = CHINESE_SYSTEM(12);
+        label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = RGBColorFrom16(0xFF1659);
+        label.textColor = [UIColor whiteColor];
+        CGFloat width = [label.text calWidthWithLabel:label];
+        [self.couponsView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.couponsView.mas_left).offset(100+lastRight);
+            make.centerY.equalTo(self.couponsView);
+            make.width.mas_equalTo(width);
+        }];
+        lastRight = width+5;
+    }];
 }
 
 - (void)setModel:(ProductDetailModel *)model {
@@ -616,10 +647,11 @@
         return cell;
     }
     ProductGroupListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductGroupListCell"];
-    cell.model = self.groupModel.list[indexPath.row-1];
+    ProductGroupListModel *model = self.groupModel.list[indexPath.row-1];
+    cell.model = model;
     MPWeakSelf(self)
     cell.joinBlock = ^{
-        [weakself buyNow:self.buyBtn];
+        [weakself buyWithOrderId:model.shareBuyOrderId];
     };
     return cell;
 }
@@ -731,7 +763,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
 - (IBAction)buyNow:(UIButton *)sender {
+    [self buyWithOrderId:nil];
+}
+
+- (void)buyWithOrderId:(nullable NSString *)shareBuyOrderId {
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (!model || [model.accessToken isEqualToString:@""]) {
         LoginViewController *vc = [[LoginViewController alloc] init];
@@ -745,7 +782,7 @@
     if (!_isCheckingSaleInfo) {
         [self showAttrsView];
     } else {
-        //跳转checkout页        
+        //跳转checkout页
         ProductItemModel *item = self.getSelectedProductItem;
         item.storeName = self.model.storeName;
         for (cmpShareBuysModel *buyModel in self.campaignsModel.cmpShareBuys) {
@@ -754,11 +791,16 @@
             }
         }
         item.currentBuyCount = self.attrView.count;
-        self.model.products = @[item];
         if (item.inCmpIdList) {//团购情况
-            self.model.shareBuyMode = @"A";
+            if (shareBuyOrderId.length > 0) {
+                self.model.shareBuyOrderId = shareBuyOrderId;
+                self.model.shareBuyMode = @"B";
+            } else {
+                self.model.shareBuyMode = @"A";
+            }
             self.model.orderType = @"B";
         }
+        self.model.selectedProducts = @[item];
         ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
         [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
             if (isSuccess) {
@@ -768,6 +810,7 @@
         }];
     }
 }
+
 
 - (void)showAttrsView {
     _isCheckingSaleInfo = YES;

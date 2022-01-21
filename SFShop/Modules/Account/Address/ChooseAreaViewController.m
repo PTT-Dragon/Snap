@@ -28,6 +28,7 @@ typedef enum :NSUInteger{
 @property (nonatomic,strong) UIButton *provinceBtn;
 @property (nonatomic,strong) UIButton *cityBtn;
 @property (nonatomic,strong) UIButton *DistrictBtn;
+@property (nonatomic,strong) UIButton *streetBtn;
 @property (nonatomic,strong) UIView *indicationView;
 @property (nonatomic,assign) id<chooseAreaTopViewDelegate>delegate;
 
@@ -35,6 +36,7 @@ typedef enum :NSUInteger{
 @property (nonatomic,strong) AreaModel *selProvinceAreaMoel;
 @property (nonatomic,strong) AreaModel *selCityAreaMoel;
 @property (nonatomic,strong) AreaModel *selDistrictAreaMoel;
+@property (nonatomic,strong) AreaModel *selStreetAreaMoel;
 
 @end
 
@@ -51,6 +53,86 @@ typedef enum :NSUInteger{
         [_provinceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.bottom.top.mas_equalTo(self);
             make.width.mas_greaterThanOrEqualTo(80);
+        }];
+    }
+    return self;
+}
+- (instancetype)initWithSelAreaModel:(AreaModel *)provinceModel selCity:(AreaModel *)cityModel District:(AreaModel *)DistrictModel street:(AreaModel *)streetModel
+{
+    if (self = [super init]) {
+        _selProvinceAreaMoel = provinceModel;
+        _selCityAreaMoel = cityModel;
+        _selDistrictAreaMoel = DistrictModel;
+        _selStreetAreaMoel = streetModel;
+        _provinceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_provinceBtn setTitleColor:[UIColor blackColor] forState:0];
+        _provinceBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        [_provinceBtn setTitle:provinceModel ? provinceModel.stdAddr:@"Province"  forState:0];
+        _provinceBtn.titleLabel.numberOfLines = 0;
+        @weakify(self)
+        [[_provinceBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self)
+            if (self.selProvinceAreaMoel) {
+                [self.delegate updateDataWithSelType:selProvinceType];
+            }
+        }];
+        [self addSubview:_provinceBtn];
+        [_provinceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.top.mas_equalTo(self);
+            make.width.mas_greaterThanOrEqualTo(80);
+        }];
+        _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_cityBtn setTitleColor:[UIColor blackColor] forState:0];
+        _cityBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        _cityBtn.titleLabel.numberOfLines = 0;
+        [_cityBtn setTitle:cityModel.stdAddr forState:0];
+        [self addSubview:_cityBtn];
+        [[_cityBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self)
+            if (self.selCityAreaMoel) {
+                [self.delegate updateDataWithSelType:selCityType];
+            }
+        }];
+        [_cityBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.top.mas_equalTo(self);
+            make.left.mas_equalTo(self.provinceBtn.mas_right).offset(10);
+            make.width.mas_greaterThanOrEqualTo(80);
+        }];
+        _DistrictBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_DistrictBtn setTitleColor:[UIColor blackColor] forState:0];
+        _DistrictBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        [_DistrictBtn setTitle:DistrictModel.stdAddr forState:0];
+        _DistrictBtn.titleLabel.numberOfLines = 0;
+        [self addSubview:_DistrictBtn];
+        [[_DistrictBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self)
+            if (self.selDistrictAreaMoel) {
+                [self.delegate updateDataWithSelType:selDistrictType];
+            }
+        }];
+        [_DistrictBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.top.mas_equalTo(self);
+            make.left.mas_equalTo(self.cityBtn.mas_right).offset(10);
+            make.width.mas_greaterThanOrEqualTo(80);
+        }];
+        _streetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_streetBtn setTitleColor:[UIColor blackColor] forState:0];
+        _streetBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        [_streetBtn setTitle:streetModel.stdAddr forState:0];
+        _streetBtn.titleLabel.numberOfLines = 0;
+        [self addSubview:_streetBtn];
+        [_streetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.top.mas_equalTo(self);
+            make.left.mas_equalTo(self.DistrictBtn.mas_right).offset(10);
+            make.right.mas_lessThanOrEqualTo(self);
+            make.width.mas_greaterThanOrEqualTo(80);
+        }];
+        [self addSubview:self.indicationView];
+        [self.indicationView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+            make.width.mas_equalTo(self.provinceBtn);
+            make.centerX.mas_equalTo(self.selStreetAreaMoel ? self.streetBtn: self.selDistrictAreaMoel ? self.DistrictBtn: self.selCityAreaMoel ? self.cityBtn: self.provinceBtn);
         }];
     }
     return self;
@@ -102,12 +184,6 @@ typedef enum :NSUInteger{
         [_DistrictBtn setTitle:DistrictModel.stdAddr forState:0];
         _DistrictBtn.titleLabel.numberOfLines = 0;
         [self addSubview:_DistrictBtn];
-//        [[_DistrictBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-//            @strongify(self)
-//            if (self.selDistrictAreaMoel) {
-//                [self.delegate updateDataWithSelType:selDistrictType];
-//            }
-//        }];
         [_DistrictBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.top.mas_equalTo(self);
             make.left.mas_equalTo(self.cityBtn.mas_right).offset(10);
@@ -133,12 +209,18 @@ typedef enum :NSUInteger{
             make.height.mas_equalTo(1);
             make.top.mas_equalTo(self.cityBtn.mas_bottom);
             make.width.mas_equalTo(self.cityBtn);
-            make.centerX.mas_equalTo(self.cityBtn);
+            make.centerX.mas_equalTo((!self.selStreetAreaMoel && !self.selCityAreaMoel && !self.selDistrictAreaMoel) ? self.provinceBtn: (!self.selDistrictAreaMoel && !self.selStreetAreaMoel) ? self.cityBtn: !self.selStreetAreaMoel ? self.DistrictBtn: self.streetBtn);
         }];
         self.indicationView.hidden = NO;
     }
     if (!_selCityAreaMoel) {
         [_cityBtn setTitle:@"City" forState:0];
+    }
+    if (!_selDistrictAreaMoel) {
+        [_DistrictBtn setTitle:@"District" forState:0];
+    }
+    if (!_selStreetAreaMoel) {
+        [_streetBtn setTitle:@"Street" forState:0];
     }
 }
 - (void)setSelCityAreaMoel:(AreaModel *)selCityAreaMoel
@@ -146,16 +228,13 @@ typedef enum :NSUInteger{
     _selCityAreaMoel = selCityAreaMoel;
     [_cityBtn setTitle:selCityAreaMoel.stdAddr forState:0];
     if (selCityAreaMoel) {
-        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(1);
-            make.top.mas_equalTo(self.cityBtn.mas_bottom);
-            make.width.mas_equalTo(self.DistrictBtn);
-            make.centerX.mas_greaterThanOrEqualTo(self.DistrictBtn);
-        }];
+//        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.height.mas_equalTo(1);
+//            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+//            make.width.mas_equalTo(self.DistrictBtn);
+//            make.centerX.mas_greaterThanOrEqualTo(self.DistrictBtn);
+//        }];
         self.indicationView.hidden = NO;
-    }
-    if (!_selDistrictAreaMoel) {
-        [_DistrictBtn setTitle:@"District" forState:0];
     }
 }
 - (void)setSelDistrictAreaMoel:(AreaModel *)selDistrictAreaMoel
@@ -163,12 +242,12 @@ typedef enum :NSUInteger{
     _selDistrictAreaMoel = selDistrictAreaMoel;
     [_DistrictBtn setTitle:selDistrictAreaMoel.stdAddr forState:0];
     if (selDistrictAreaMoel) {
-        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(1);
-            make.top.mas_equalTo(self.cityBtn.mas_bottom);
-            make.width.mas_equalTo(self.DistrictBtn);
-            make.centerX.mas_greaterThanOrEqualTo(self.DistrictBtn);
-        }];
+//        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.height.mas_equalTo(1);
+//            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+//            make.width.mas_equalTo(self.DistrictBtn);
+//            make.centerX.mas_greaterThanOrEqualTo(self.DistrictBtn);
+//        }];
         self.indicationView.hidden = NO;
     }
 }
@@ -213,6 +292,8 @@ typedef enum :NSUInteger{
     if (self.type == 2 || self.type == 5) {
         //只展示街道
         _topView = [[chooseAreaTopView alloc] initWithSelStreeModel:_selStreetAreaMoel];
+    }else if(self.type == 6){
+        _topView = [[chooseAreaTopView alloc] initWithSelAreaModel:_selProvinceAreaMoel selCity:_selCityAreaMoel District:_selDistrictAreaMoel street:_selStreetAreaMoel];
     }else{
         _topView = [[chooseAreaTopView alloc] initWithSelAreaModel:_selProvinceAreaMoel selCity:_selCityAreaMoel District:_selDistrictAreaMoel];
     }
@@ -345,13 +426,15 @@ typedef enum :NSUInteger{
             _dataType = loadDistrictType;
             _selCityAreaMoel = model;
             _topView.selCityAreaMoel = _selCityAreaMoel;
+            _topView.selProvinceAreaMoel = _selProvinceAreaMoel;
             [self loadDatasWithType:_dataType];
             break;
         case loadDistrictType:
             _dataType = loadStreeType;
             _selDistrictAreaMoel = model;
             _topView.selDistrictAreaMoel = _selDistrictAreaMoel;
-            if (self.type == 3) {
+            _topView.selProvinceAreaMoel = _selProvinceAreaMoel;
+            if (self.type == 3 || self.type == 6) {
                 //还需要选择街道
                 [self loadDatasWithType:_dataType];
             }else{
@@ -362,7 +445,8 @@ typedef enum :NSUInteger{
         case loadStreeType:
             _dataType = loadStreeType;
             _selStreetAreaMoel = model;
-            if (self.type == 3) {
+            _topView.selProvinceAreaMoel = _selProvinceAreaMoel;
+            if (self.type == 3 || self.type == 6) {
                 //把所有的数据都回调回去
                 [self.delegate chooseProvince:_selProvinceAreaMoel city:_selCityAreaMoel district:_selDistrictAreaMoel street:_selStreetAreaMoel];
             }else{
@@ -395,8 +479,9 @@ typedef enum :NSUInteger{
         _dataType = loadStreeType;
     }
     _topView.selDistrictAreaMoel = self.selDistrictAreaMoel;
-    _topView.selProvinceAreaMoel = self.selProvinceAreaMoel;
     _topView.selCityAreaMoel = self.selCityAreaMoel;
+    _topView.selStreetAreaMoel = self.selStreetAreaMoel;
+    _topView.selProvinceAreaMoel = self.selProvinceAreaMoel;
     [self loadDatasWithType:_dataType];
 }
 

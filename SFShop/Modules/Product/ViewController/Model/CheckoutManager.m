@@ -179,7 +179,8 @@ static CheckoutManager *_instance = nil;
     //获取数据,并进入结算页面
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [MBProgressHUD hideFromKeyWindow];
-        BOOL isSuccess = self.cacheData.couponsModel && self.cacheData.logisticsModels && self.cacheData.feeModel;
+//        && self.cacheData.logisticsModels
+        BOOL isSuccess = self.cacheData.couponsModel  && self.cacheData.feeModel;
         complete(isSuccess,self.cacheData);
     });
 }
@@ -305,8 +306,8 @@ static CheckoutManager *_instance = nil;
     NSMutableDictionary *stores = [NSMutableDictionary dictionary];
     [stores setObject:@(model.storeId) forKey:@"storeId"];
     NSMutableArray *products = [NSMutableArray array];
-    for (int i = 0; i < model.products.count; i ++) {
-        ProductItemModel *item = model.products[i];
+    for (int i = 0; i < model.selectedProducts.count; i ++) {
+        ProductItemModel *item = model.selectedProducts[i];
         NSInteger productId = item.productId;
         NSInteger offerCnt = item.currentBuyCount;
         NSArray *inCmpIdLists = item.inCmpIdList;

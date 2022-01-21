@@ -105,7 +105,7 @@
         UMShareImageObject*shareObject =[[UMShareImageObject alloc] init];
         //如果有缩略图，则设置缩略图
         shareObject.thumbImage =[UIImage imageNamed:@"icon"];
-        [shareObject setShareImage:@"https://mobile.umeng.com/images/pic/home/social/img-1.png"];
+        [shareObject setShareImage:[UIImage imageNamed:@"share"]];
         messageObject.shareObject = shareObject;
         [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_Facebook messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
             if (error) {

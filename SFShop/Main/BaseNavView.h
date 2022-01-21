@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)configDataWithTitle:(NSString *)title;
 
+- (void)updateIsOnlyShowMoreBtn:(BOOL)isOnly;
+
 @end
 
 NS_ASSUME_NONNULL_END
