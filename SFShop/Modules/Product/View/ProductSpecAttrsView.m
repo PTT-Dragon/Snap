@@ -205,7 +205,15 @@
 }
 - (void)updateBtn
 {
-    
+    if (1) {
+        _btn2.hidden = YES;
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }
 }
 
 - (void)setSelProductModel:(ProductItemModel *)selProductModel {
@@ -215,6 +223,7 @@
     self.titleLabel.text = selProductModel.productName;
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     self.priceLabel.text = [NSString stringWithFormat:@"%@ %ld", currency, (long)selProductModel.salesPrice];
+    [self updateBtn];
 }
 
 - (void)setStockModel:(NSArray<ProductStockModel *> *)stockModel {
