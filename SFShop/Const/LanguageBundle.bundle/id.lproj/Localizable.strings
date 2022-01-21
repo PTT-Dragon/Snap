@@ -40,7 +40,7 @@
 //  "CASH_OUT_DETAIL" = "Cash Out Detail";
 //  "IN_REVIEW" = "Tunggu konfirmasi";
 //  "PLEASE_SELECT_DELIVERY_ADDRESS" = "Pilih alamat tujuan";
-//  "ADD_ADDRESS_TIPS" = "Mohon isi detail alamat";
+  "ADD_ADDRESS_TIPS" = "Mohon isi detail alamat";
 //  "NO_AVAILABLE_DELIVERY_METHOD" = "Tidak ada pilihan untuk kurir pengiriman";
 //  "NO_DATA_AVAILABLE" = "Tidak ada data yang tersedia";
 //  "VISIT" = "Visit";

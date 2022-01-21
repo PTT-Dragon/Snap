@@ -40,7 +40,7 @@
 //  "CASH_OUT_DETAIL" = "Cash Out Detail";
 //  "IN_REVIEW" = "Confirmation in progress";
 //  "PLEASE_SELECT_DELIVERY_ADDRESS" = "Please select delivery address";
-//  "ADD_ADDRESS_TIPS" = "Please add the detail of delivery address";
+  "ADD_ADDRESS_TIPS" = "Please add the detail of delivery address";
 //  "NO_AVAILABLE_DELIVERY_METHOD" = "No available delivery method";
 //  "NO_DATA_AVAILABLE" = "No data available";
 //  "VISIT" = "Visit";
