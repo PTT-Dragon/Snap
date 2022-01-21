@@ -19,7 +19,7 @@
 @property (nonatomic, readwrite, strong) CategoryContentCollectionView *contentCollectionView;//内容栏
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cacheDatas;//缓存数据
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
-@property (nonatomic, readwrite, strong) BaseMoreView *moreView;
+//@property (nonatomic, readwrite, strong) BaseMoreView *moreView;
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 
 @end
@@ -42,7 +42,7 @@
     [self.view addSubview:self.navSearchView];
     [self.view addSubview:self.sideTableView];
     [self.view addSubview:self.contentCollectionView];
-    [self.view addSubview:self.moreView];
+//    [self.view addSubview:self.moreView];
 }
 
 - (void)loadSides {

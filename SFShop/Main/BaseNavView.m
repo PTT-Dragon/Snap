@@ -76,12 +76,12 @@
     }];
     [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.backBtn.mas_top);
-        make.right.mas_equalTo(self.moreBtn.mas_right).offset(-16);
+        make.right.mas_equalTo(self.moreBtn.mas_left).offset(-16);
         make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
     [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.backBtn.mas_top);
-        make.right.mas_equalTo(self.shareBtn.mas_right).offset(-16);
+        make.right.mas_equalTo(self.shareBtn.mas_left).offset(-16);
         make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -135,7 +135,7 @@
 - (UIButton *)backBtn {
     if (!_backBtn) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backBtn setImage:[UIImage imageNamed:@"ic_nav_back"]
+        [_backBtn setImage:[UIImage imageNamed:@"nav_back"]
                   forState:UIControlStateNormal];
         [_backBtn addTarget:self
                      action:@selector(backBtnAction)
