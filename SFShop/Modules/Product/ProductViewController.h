@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ProductViewController : UIViewController
 
 @property (nonatomic, assign) NSInteger offerId;
+@property (nonatomic, assign) NSInteger productId;
 
 @end
 
