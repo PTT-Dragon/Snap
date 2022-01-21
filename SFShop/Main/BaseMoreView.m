@@ -90,7 +90,8 @@
 
 - (void)homeBtnAction {
     self.hidden = YES;
-    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:0];
 }
 
 - (void)inboxBtnAction {
@@ -100,7 +101,8 @@
 
 - (void)accountBtnAction {
     self.hidden = YES;
-
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:3];
 }
 
 - (void)mysfBtnAction {
