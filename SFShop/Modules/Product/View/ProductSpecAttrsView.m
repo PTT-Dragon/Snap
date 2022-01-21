@@ -293,7 +293,25 @@
     [self.selectedAttrBtn replaceObjectAtIndex:sectionIndex withObject:sender];
     self.selectedAttrValue[sectionIndex] = @(sender.tag % 100);
     
-    self.selProductModel = self.model.products[sender.tag % 100];
+//    self.selProductModel = self.model.products[sender.tag % 100];
+    NSMutableArray *selectedAttrValueString = [NSMutableArray array];
+    [self.model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [selectedAttrValueString addObject: obj.attrValues[self.selectedAttrValue[idx].integerValue].value];
+    }];
+    self.selProductModel = [self.model.products jk_filter:^BOOL(ProductItemModel *object) {
+        __block BOOL match = YES;
+        [selectedAttrValueString enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSArray *matchSpecs = [object.prodSpcAttrs jk_filter:^BOOL(ProdSpcAttrsModel *object1) {
+                return [object1.value isEqualToString:obj];
+            }];
+            if (matchSpecs.count < 1) {
+                match = NO;
+                *stop = YES;
+            }
+        }];
+        return match;
+    }].firstObject;
+
     // 此处为了刷新库存
     self.stockModel = self.stockModel;
     

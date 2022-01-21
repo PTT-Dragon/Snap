@@ -330,7 +330,7 @@
             @"productId": @(object.productId),
             @"offerCnt": @1,
             @"inCmpIdList": inCmpIdList
-        };;
+        };
     }];
     NSDictionary *param = @{
                        @"stdAddrId": self.selectedAddressModel.contactStdId,
