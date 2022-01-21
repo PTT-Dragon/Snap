@@ -212,7 +212,7 @@
 //  "DELETE" = "Delete";
 //  "CANCAL" = "Cancel";
 //  "CHOOSE_SHIPPING_ADDRESS" = "Choose shipping address";
-//  "COUPON" = "Voucher";
+  "COUPON" = "Voucher";
 //  "ITEMS" = "item(s)";
 //  "PLATFORM_VOUCHER" = "SF.shop Voucher";
 //  "PLACE_ORDER" = "Place Order";

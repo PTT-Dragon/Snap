@@ -9,6 +9,8 @@
 #import "FavoriteChildViewController.h"
 #import "CategoryRankFilterViewController.h"
 #import "CategoryRankModel.h"
+#import "NSString+Fee.h"
+
 
 @interface FavoriteViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
 @property(nonatomic, strong) NSArray *menuList;
@@ -72,6 +74,8 @@
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
         FavoriteChildViewController *vc = self.magicController.childViewControllers[self.magicController.currentPage];
+        model.priceModel.minPrice = model.priceModel.minPrice == -1 ? 0:[[NSString stringWithFormat:@"%.ld",model.priceModel.minPrice] multiplyCurrencyFloat];
+        model.priceModel.maxPrice = model.priceModel.maxPrice == -1 ? MAXFLOAT:[[NSString stringWithFormat:@"%.ld",model.priceModel.maxPrice] multiplyCurrencyFloat];
         vc.rankModel = model;
         [vc reloadDatas];
     };

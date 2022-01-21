@@ -217,7 +217,7 @@
 //  "DELETE" = "Delete";
 //  "CANCAL" = "Cancel";
 //  "CHOOSE_SHIPPING_ADDRESS" = "Pilih alamat pengiriman";
-//  "COUPON" = "Kupon";
+  "COUPON" = "Kupon";
 //  "ITEMS" = "Item";
 //  "PLATFORM_VOUCHER" = "SF.shop Voucher";
 //  "PLACE_ORDER" = "Tempatkan Pesanan";
@@ -335,7 +335,7 @@
 //  "PRODUCT_NAME_ORDER_NUMBER" = "Nama produk/Nomor pesanan";
 //  "SIMILAR_PRODUCTS" = "produk sejenis";
 //  "SHARE" = "Share";
-//  "WISHLIST" = "Daftar Keinginan";
+  "WISHLIST" = "Daftar Keinginan";
 //  "COUPON_S" = "Kupon";
 //  "REFERS" = "Referal";
 //  "FORUM" = "Forum";

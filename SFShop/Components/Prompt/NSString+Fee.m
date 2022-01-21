@@ -15,6 +15,13 @@
     }
     return self.floatValue / 1000.0;
 }
+- (CGFloat)multiplyCurrencyFloat {
+    NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
+    if (precision > 0) {
+        return self.floatValue * pow(10, precision);
+    }
+    return self.floatValue / 1000.0;
+}
 
 - (NSString *)currency {
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
