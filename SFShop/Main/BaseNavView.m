@@ -98,6 +98,12 @@
     self.titleLabel.text = title;
 }
 
+- (void)updateIsOnlyShowMoreBtn:(BOOL)isOnly {
+    self.searchBtn.hidden = isOnly;
+    self.shareBtn.hidden = isOnly;
+    self.moreBtn.hidden = !isOnly;
+}
+
 
 #pragma mark - btnAction
 
