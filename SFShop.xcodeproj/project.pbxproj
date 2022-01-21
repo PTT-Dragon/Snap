@@ -334,6 +334,8 @@
 		1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B8882701678000C73CEC /* CouponCenterCollectionViewCell.xib */; };
 		1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0B88C2701944300C73CEC /* CouponAlertView.m */; };
 		1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */; };
+		1BE28C10279B082E000683B8 /* AddressTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE28C0E279B082E000683B8 /* AddressTitleCell.m */; };
+		1BE28C11279B082E000683B8 /* AddressTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE28C0F279B082E000683B8 /* AddressTitleCell.xib */; };
 		1BE94C1F274B762900B588F4 /* PublicShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE94C1E274B762900B588F4 /* PublicShareView.m */; };
 		1BF00F54272FC13D0081C8E4 /* DistributeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F52272FC13D0081C8E4 /* DistributeCenterViewController.m */; };
 		1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F53272FC13D0081C8E4 /* DistributeCenterViewController.xib */; };
@@ -1083,6 +1085,9 @@
 		1BE0B88B2701944300C73CEC /* CouponAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponAlertView.h; sourceTree = "<group>"; };
 		1BE0B88C2701944300C73CEC /* CouponAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponAlertView.m; sourceTree = "<group>"; };
 		1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponAlertView.xib; sourceTree = "<group>"; };
+		1BE28C0D279B082E000683B8 /* AddressTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressTitleCell.h; sourceTree = "<group>"; };
+		1BE28C0E279B082E000683B8 /* AddressTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressTitleCell.m; sourceTree = "<group>"; };
+		1BE28C0F279B082E000683B8 /* AddressTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressTitleCell.xib; sourceTree = "<group>"; };
 		1BE94C1D274B762900B588F4 /* PublicShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicShareView.h; sourceTree = "<group>"; };
 		1BE94C1E274B762900B588F4 /* PublicShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublicShareView.m; sourceTree = "<group>"; };
 		1BF00F51272FC13D0081C8E4 /* DistributeCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeCenterViewController.h; sourceTree = "<group>"; };
@@ -2097,6 +2102,9 @@
 				1B92D1512732815C00E73F98 /* AreaCell.h */,
 				1B92D1522732815C00E73F98 /* AreaCell.m */,
 				1B92D1532732815C00E73F98 /* AreaCell.xib */,
+				1BE28C0D279B082E000683B8 /* AddressTitleCell.h */,
+				1BE28C0E279B082E000683B8 /* AddressTitleCell.m */,
+				1BE28C0F279B082E000683B8 /* AddressTitleCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3388,6 +3396,7 @@
 				1B552EB6276C3A700086604B /* ProductGroupListCell.xib in Resources */,
 				1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */,
 				1B74DAFA2722A85600B30ECC /* InviteCell.xib in Resources */,
+				1BE28C11279B082E000683B8 /* AddressTitleCell.xib in Resources */,
 				1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */,
 				1B74DAEE27225EF000B30ECC /* ReviewCell.xib in Resources */,
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
@@ -3579,6 +3588,7 @@
 				1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */,
 				8E1EC2CE2799A1FF00CE0088 /* BaseNavView.m in Sources */,
 				1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */,
+				1BE28C10279B082E000683B8 /* AddressTitleCell.m in Sources */,
 				1B964758273E494A00345DDA /* IncomeAndExpenseCell.m in Sources */,
 				AE8F32DA272EA42F008E3DD8 /* SFCellCacheModel.m in Sources */,
 				1B82AE33276F7B7F00D75E00 /* CommunityEvaluateCell.m in Sources */,
