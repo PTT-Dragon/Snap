@@ -102,7 +102,7 @@
 //  "CONTACT_US" = "Contact Us";
 //  "SIGN_IN" = "Sign in";
 //  "OUT_OF_STOCK" = "Out of Stock";
-//  "MY_COUPON" = "My Voucher";
+  "My_coupon" = "My Voucher";
 //  "CURRENT_PWD" = "Current Password";
 //  "SET_SUCCESSFUL" = "Set Successfully!";
 //  "DOWNLOAD" = "Downloading";
@@ -138,7 +138,7 @@
 //  "DELETE_ADDRESS_TXT" = "Are you sure to delete this address?";
   "ADD_ADDRESS" = "Add Address";
 //  "MY_ADDRESS" = "My Address";
-//  "REQUIREDTIP" = "Please Input";
+"REQUIREDTIP" = "Please Input";
 //  "INCORRECT_NAME" = "Please input 4 ~ 40 characters for recipient name.";
 //  "INCORRECT_PHONE" = "Please input the correct phone number.";
 //  "INCORRECT_EMAIL" = "Please input the correct email.";
@@ -197,8 +197,8 @@
 //  "CONFIRMDELADDR" = "Are you sure you want to delete this address?";
 //  "CONFIRM_LOGOUT" = "Confirm to Logout";
 //  "LOGOUT" = "Logout";
-//  "ORDERS" = "Orders";
-//  "VIEW_ALL_ORDERS" = "View All Orders";
+  "ORDERS" = "Orders";
+  "VIEW_ALL_ORDERS" = "View All Orders";
 //  "LOGINORREGISTER" = "Login or Register";
 //  "RECENTLY_VIEWED" = "Recently Viewed";
 //  "MORE" = "more";
@@ -330,7 +330,7 @@
 //  "PRODUCT_NAME_ORDER_NUMBER" = "Product name/Order number";
 //  "SIMILAR_PRODUCTS" = "Similar Products";
 //  "SHARE" = "Share";
-//  "WISHLIST" = "Wishlist";
+  "WISHLIST" = "Wishlist";
 //  "COUPON_S" = "Vouchers";
 //  "REFERS" = "Refers";
 //  "FORUM" = "Forum";
@@ -401,7 +401,7 @@
 //  "REFUND_REJECTED" = "Refund Rejected";
 //  "REFUND_REJECTED_CONTENT" = "Service order is not approved";
 //  "IMAGES" = "Images";
-//  "TO_REVIEW" = "To Review";
+  "TO_REVIEW" = "To Review";
 //  "EXPIRY_DATE" = "Expiry Date";
 //  "RATED" = "Rated";
 //  "HOW_RATE_PRODUCT" = "How would you rate this product?";
@@ -588,7 +588,6 @@
 "Modify_Address" = "Modify Address";
 "Modify_success" = "MODIFY SUCCESS";
 "Area" = "Area";
-"My_coupon" = "My Coupon";
 "SFshop_Voucher" = "SF.shop Voucher";
 "Coupon_Center" = "Coupon Center";
 "Login_Or_Register" = "Login Or Register";

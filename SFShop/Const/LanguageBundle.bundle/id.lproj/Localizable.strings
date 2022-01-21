@@ -103,7 +103,7 @@
 //  "CONTACT_US" = "Hubungi kami";
 //  "SIGN_IN" = "Sign in";
 //  "OUT_OF_STOCK" = "Stok habis";
-//  "MY_COUPON" = "Kupon Saya";
+  "My_coupon" = "Kupon Saya";
 //  "PASSWORD" = "Password";
 //  "CURRENT_PWD" = "Password lama";
 //  "SET_SUCCESSFUL" = "Setelan Berhasil";
@@ -143,7 +143,7 @@
 //  "DELETE_ADDRESS_TXT" = "Hapus alamat ";
   "ADD_ADDRESS" = "Tambah Alamat";
 //  "MY_ADDRESS" = "Alamat Saya";
-//  "REQUIREDTIP" = "Silahkan masukkan";
+"REQUIREDTIP" = "Silahkan masukkan";
 //  "INCORRECT_NAME" = "Nama penerima 4-40 huruf";
 //  "INCORRECT_PHONE" = "Harap masukkan nomor telepon yang benar.";
 //  "INCORRECT_EMAIL" = "Harap masukkan email yang benar.";
@@ -202,8 +202,8 @@
 //  "CONFIRMDELADDR" = "Anda yakin ingin menghapus alamat ini?";
 //  "CONFIRM_LOGOUT" = "Anda yakin ingin keluar dari halaman ini?";
 //  "LOGOUT" = "Logout";
-//  "ORDERS" = "Pesanan";
-//  "VIEW_ALL_ORDERS" = "Tampilan semua pesanan";
+  "ORDERS" = "Pesanan";
+  "VIEW_ALL_ORDERS" = "Tampilan semua pesanan";
 //  "LOGINORREGISTER" = "Log in atau daftar";
 //  "RECENTLY_VIEWED" = "Terakhir Dilihat";
 //  "MORE" = "More";
@@ -405,7 +405,7 @@
 //  "REFUND_REJECTED" = "Pengembalian Dana Ditolak";
 //  "REFUND_REJECTED_CONTENT" = "Pesanan layanan tidak disetujui";
 //  "IMAGES" = "Gambar";
-//  "TO_REVIEW" = "Untuk diulas";
+  "TO_REVIEW" = "Untuk diulas";
 //  "EXPIRY_DATE" = "Expiry date";
 //  "RATED" = "Rate";
 //  "HOW_RATE_PRODUCT" = "Bagaimana Anda menilai produk ini?";
@@ -592,7 +592,6 @@
 "Modify_Address" = "Ubah Alamat";
 "Modify_success" = "MODIFY SUCCESS";
 "Area" = "Area";
-"My_coupon" = "My Coupon";
 "SF shop_Voucher" = "SF.shop Voucher";
 "Coupon_Center" = "Pusat Coupon";
 "Login_Or_Register" = "Daftar Atau Daftar";

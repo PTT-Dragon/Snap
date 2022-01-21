@@ -7,6 +7,7 @@
 
 #import "AddAddressViewController.h"
 #import "ChooseAreaViewController.h"
+#import "UITextField+expand.h"
 
 @interface AddAddressViewController ()<UITextFieldDelegate,ChooseAreaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidth;
@@ -27,6 +28,18 @@
 @property (nonatomic,strong) AreaModel *selStreetAreaMoel;
 @property (weak, nonatomic) IBOutlet UIButton *selAgreementBtn;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *label3;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel3;
+@property (weak, nonatomic) IBOutlet UILabel *label4;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel4;
+@property (weak, nonatomic) IBOutlet UILabel *label5;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel5;
+@property (weak, nonatomic) IBOutlet UILabel *label6;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel6;
 
 @end
 
@@ -47,6 +60,12 @@
     _viewWidth.constant = MainScreen_width-32;
     _areaField.delegate = self;
     _streetField.delegate = self;
+    _nameField.layer.borderWidth = 1;
+    _areaField.layer.borderWidth = 1;
+    _emailField.layer.borderWidth = 1;
+    _phoneField.layer.borderWidth = 1;
+    _detailField.layer.borderWidth = 1;
+    _streetField.layer.borderWidth = 1;
     if (_model) {
         //修改地址
         self.nameField.text = _model.contactName;
@@ -68,6 +87,7 @@
         vc.selProvinceAreaMoel = _selProvinceAreaMoel;
         vc.selCityAreaMoel = _selCityAreaMoel;
         vc.selDistrictAreaMoel = _selDistrictAreaMoel;
+        vc.type = _selDistrictAreaMoel ? 4: 1;
         vc.delegate = self;
         [self presentViewController:vc animated:YES completion:^{
             
@@ -82,7 +102,9 @@
         vc.selProvinceAreaMoel = _selProvinceAreaMoel;
         vc.selCityAreaMoel = _selCityAreaMoel;
         vc.selDistrictAreaMoel = _selDistrictAreaMoel;
+        vc.selStreetAreaMoel = _selStreetAreaMoel;
         vc.delegate = self;
+        vc.type = _selStreetAreaMoel ? 5: 2;
         [self presentViewController:vc animated:YES completion:^{
                 
         }];
@@ -104,8 +126,22 @@
     _selStreetAreaMoel = streetModel;
     self.streetField.text = streetModel.stdAddr;
 }
+- (BOOL)checkAction
+{
+    BOOL canPublish = NO;
+    BOOL a = [_nameField textFieldState:ANOTHERTYPE label:_label1 tipLabel:_tipLabel1];
+    BOOL b = [_phoneField textFieldState:CHECKPHONETYPE label:_label2 tipLabel:_tipLabel2];
+    BOOL c = [_emailField textFieldState:CHECKEMAILTYPE label:_label3 tipLabel:_tipLabel3];
+    BOOL d = [_areaField textFieldState:ANOTHERTYPE label:_label4 tipLabel:_tipLabel4];
+    BOOL e = [_streetField textFieldState:ANOTHERTYPE label:_label5 tipLabel:_tipLabel5];
+    BOOL f = [_detailField textFieldState:ANOTHERTYPE label:_label6 tipLabel:_tipLabel6];
+    canPublish = a && b && c && d && e && f;
+    return canPublish;
+}
 - (IBAction)selAgreementAction:(UIButton *)sender {
     sender.selected = !sender.selected;
+    self.saveBtn.userInteractionEnabled = sender.selected;
+    self.saveBtn.backgroundColor = sender.selected ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0xFFE5EB);
 }
 
 - (IBAction)saveAction:(UIButton *)sender {
@@ -113,6 +149,10 @@
         [MBProgressHUD autoDismissShowHudMsg:@"Sel Agreement First"];
         return;
     }
+    if (![self checkAction]) {
+        return;
+    }
+    [self checkAction];
     if (_model) {
         //修改地址
         [self modifyAction];

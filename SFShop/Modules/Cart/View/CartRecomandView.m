@@ -93,7 +93,9 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    CategoryRankPageInfoListModel *cellModel = self.similarList[indexPath.row];
     ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = cellModel.offerId;
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 

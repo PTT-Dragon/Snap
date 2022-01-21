@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "00010_01_cart_outline.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cart_tab_icon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

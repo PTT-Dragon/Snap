@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef enum:NSUInteger {
     CHECKPHONETYPE,
     CHECKEMAILTYPE,
-    CHECKPASSWORDTYPE
+    CHECKPASSWORDTYPE,
+    ANOTHERTYPE
 }UITextFieldShowType;
 
 typedef enum:NSUInteger {
@@ -24,6 +25,8 @@ typedef enum:NSUInteger {
 @interface UITextField (expand)
 
 - (BOOL)textFieldState:(UITextFieldShowType)type editType:(UITextFieldEditType)editType labels:(NSArray <UILabel *>*)labels;
+
+- (BOOL)textFieldState:(UITextFieldShowType)type label:(UILabel *)label tipLabel:(UILabel *)tipLabel;
 
 - (UITextField *)textFieldState:(UITextFieldShowType)type label:(UILabel *)label button:(UIButton *)button;
 

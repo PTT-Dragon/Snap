@@ -24,6 +24,10 @@
 {
     return YES;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -37,9 +41,10 @@
     self.navigationItem.rightBarButtonItems = @[rightItem];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageListCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
+    self.tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+15);
     }];
     [self.view addSubview:self.emptyView];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {

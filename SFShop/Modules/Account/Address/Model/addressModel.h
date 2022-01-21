@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString <Optional>*isLeaf;
 @property(nonatomic,copy) NSString <Optional>*zipcode;
 @property(nonatomic,assign) BOOL sel;
+@property(nonatomic,assign) BOOL hasSel;//目前的选中状态 
 /**
  "stdAddrId": 1,
      "stdAddr": "Bali",

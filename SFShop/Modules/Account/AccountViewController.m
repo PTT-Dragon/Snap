@@ -37,7 +37,7 @@
 @implementation AccountViewController
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self loadData];
     [self loadUserInfo];
 }
@@ -56,8 +56,7 @@
            @{@"image":@"pin",@"title":kLocalizedString(@"ADDRESS")},
            @{@"image":@"call-centre",@"title":kLocalizedString(@"SERVICE")},
            @{@"image":@"read",@"title":kLocalizedString(@"Policies")},
-           @{@"image":@"question",@"title":kLocalizedString(@"FAQ")},
-           @{@"image":@"read",@"title":kLocalizedString(@"LANGUGE")}]
+           @{@"image":@"question",@"title":kLocalizedString(@"FAQ")}]
     ];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountInfoCell" bundle:nil] forCellReuseIdentifier:@"accountInfoCell"];
@@ -67,7 +66,7 @@
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+        make.top.mas_equalTo(self.view.mas_top).offset(0);
     }];
     [baseTool updateCartNum];
     [self updateDatas];
@@ -97,8 +96,16 @@
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             if (model.userRes.distributorDto) {
-                [self.dataSource insertObject:@{@"image":@"00350_Distributor_Center",@"title":kLocalizedString(@"Distributor_center")} atIndex:0];
-                [self.tableView reloadData];
+                __block BOOL hasAdd = NO;
+                [self.dataSource enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([obj[@"image"] isEqualToString:@"00350_Distributor_Center"]) {
+                        hasAdd = YES;
+                    };
+                }];
+                if (!hasAdd) {
+                    [self.dataSource insertObject:@{@"image":@"00350_Distributor_Center",@"title":kLocalizedString(@"Distributor_center")} atIndex:0];
+                    [self.tableView reloadData];
+                }                
             }
             [self loadData];
         }
@@ -201,7 +208,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 175;
+        return 175+statuBarHei;
     }else if (indexPath.row == 1){
         return 134;
     }else if (indexPath.row == 2){

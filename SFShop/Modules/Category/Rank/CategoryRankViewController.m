@@ -58,8 +58,6 @@
         @"sortType": [NSString stringWithFormat:@"%ld",type],
         @"offerIdList": [NSNull null],
         @"catgIds": filter.qs ? @"":@(self.model.inner.catgRela.objValue.objId),//默认是外部传入的分类,如果 filter.filterParam 有该字段,会被新值覆盖
-        @"endPrice":filter.maxPrice == -1 ? @"": @([[NSString stringWithFormat:@"%ld",filter.maxPrice] multiplyCurrencyFloat]),
-        @"starPrice":filter.minPrice == -1 ? @"": @([[NSString stringWithFormat:@"%ld",filter.minPrice] multiplyCurrencyFloat]),
     }];
     [parm addEntriesFromDictionary:filter.filterParam];
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
@@ -153,8 +151,6 @@
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
-        model.filterCache.minPrice = model.filterCache.minPrice == -1 ? 0:model.filterCache.minPrice;
-        model.filterCache.maxPrice = model.filterCache.maxPrice == -1 ? MAXFLOAT:model.filterCache.maxPrice;
         self.dataModel = model;
         self.filterCacheModel = self.dataModel.filterCache;
         [self.collectionView.mj_header beginRefreshing];

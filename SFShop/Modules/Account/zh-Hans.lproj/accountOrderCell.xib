@@ -47,7 +47,7 @@
                             <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhV-xd-XOa">
                                 <rect key="frame" x="140" y="31" width="63" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="To Receive" image="00202_02_delivery_filled">
+                                <state key="normal" image="00202_02_delivery_filled">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
@@ -57,7 +57,7 @@
                             <button opaque="NO" tag="1005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNM-QF-3IG">
                                 <rect key="frame" x="203" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="Rating" image="00060_02_topperforming_filled">
+                                <state key="normal" image="00060_02_topperforming_filled">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
@@ -67,7 +67,7 @@
                             <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsb-hE-gyw">
                                 <rect key="frame" x="265.5" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="Return" image="00341_ Return Fill">
+                                <state key="normal" image="00341_ Return Fill">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
@@ -77,7 +77,7 @@
                             <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2X-bT-a9a">
                                 <rect key="frame" x="77.5" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="To Ship" image="组 64598">
+                                <state key="normal" image="组 64598">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
@@ -87,7 +87,7 @@
                             <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXb-7r-1rp">
                                 <rect key="frame" x="15" y="31" width="62.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="To Pay" image="00324_DebitCardFill">
+                                <state key="normal" image="00324_DebitCardFill">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
@@ -144,9 +144,40 @@
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Js-Qa-xYb">
+                                <rect key="frame" x="32" y="92" width="29" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Ship" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2L4-uZ-p2B">
+                                <rect key="frame" x="92.5" y="92" width="33" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Receive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZy-K6-zbr">
+                                <rect key="frame" x="148" y="92" width="47.5" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iE-Ms-cGF">
+                                <rect key="frame" x="219.5" y="92" width="29" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Return" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDt-nn-yoF">
+                                <rect key="frame" x="282" y="92" width="29" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2L4-uZ-p2B" firstAttribute="centerX" secondItem="P2X-bT-a9a" secondAttribute="centerX" id="2S8-V7-aPQ"/>
                             <constraint firstItem="IhV-xd-XOa" firstAttribute="leading" secondItem="P2X-bT-a9a" secondAttribute="trailing" id="2qv-BK-qnq"/>
                             <constraint firstItem="wmI-di-YuS" firstAttribute="top" secondItem="HXb-7r-1rp" secondAttribute="top" constant="15" id="6LQ-Q9-Hkd"/>
                             <constraint firstAttribute="trailing" secondItem="Bsb-hE-gyw" secondAttribute="trailing" constant="15" id="7hl-x3-y9T"/>
@@ -164,11 +195,15 @@
                             <constraint firstItem="P2X-bT-a9a" firstAttribute="width" secondItem="HXb-7r-1rp" secondAttribute="width" id="QeQ-yH-3nL"/>
                             <constraint firstItem="pf8-19-hbm" firstAttribute="top" secondItem="cNM-QF-3IG" secondAttribute="top" constant="15" id="Tlf-FO-etz"/>
                             <constraint firstAttribute="trailing" secondItem="qqV-Wp-96F" secondAttribute="trailing" constant="15" id="TxZ-FZ-sUR"/>
+                            <constraint firstItem="9iE-Ms-cGF" firstAttribute="top" secondItem="cNM-QF-3IG" secondAttribute="bottom" constant="-20" id="V9i-0N-cm4"/>
                             <constraint firstItem="qwk-jH-cb4" firstAttribute="top" secondItem="P2X-bT-a9a" secondAttribute="top" constant="15" id="W91-ZR-EYn"/>
+                            <constraint firstItem="9iE-Ms-cGF" firstAttribute="centerX" secondItem="cNM-QF-3IG" secondAttribute="centerX" id="WtU-Yp-Pbf"/>
                             <constraint firstItem="cNM-QF-3IG" firstAttribute="bottom" secondItem="Bsb-hE-gyw" secondAttribute="bottom" id="Ylf-Vr-IYY"/>
                             <constraint firstItem="P2X-bT-a9a" firstAttribute="leading" secondItem="HXb-7r-1rp" secondAttribute="trailing" id="ZOC-29-2m1"/>
                             <constraint firstItem="cNM-QF-3IG" firstAttribute="top" secondItem="Bsb-hE-gyw" secondAttribute="top" id="c7R-Kb-IA2"/>
                             <constraint firstItem="P2X-bT-a9a" firstAttribute="width" secondItem="IhV-xd-XOa" secondAttribute="width" id="cd8-9H-Ark"/>
+                            <constraint firstItem="5Js-Qa-xYb" firstAttribute="top" secondItem="HXb-7r-1rp" secondAttribute="bottom" constant="-20" id="ce2-0D-3YT"/>
+                            <constraint firstItem="cDt-nn-yoF" firstAttribute="top" secondItem="Bsb-hE-gyw" secondAttribute="bottom" constant="-20" id="dAx-NO-xus"/>
                             <constraint firstItem="P2X-bT-a9a" firstAttribute="top" secondItem="HXb-7r-1rp" secondAttribute="top" id="dda-Tp-SSL"/>
                             <constraint firstItem="cNM-QF-3IG" firstAttribute="width" secondItem="IhV-xd-XOa" secondAttribute="width" id="fs8-hx-QLD"/>
                             <constraint firstItem="qqV-Wp-96F" firstAttribute="centerY" secondItem="uxe-mX-Df5" secondAttribute="centerY" id="iH5-lA-i4k"/>
@@ -177,11 +212,16 @@
                             <constraint firstAttribute="bottom" secondItem="IhV-xd-XOa" secondAttribute="bottom" constant="12" id="mFH-0a-mU4"/>
                             <constraint firstItem="uxe-mX-Df5" firstAttribute="top" secondItem="g2C-9O-ecD" secondAttribute="top" constant="12" id="mtR-Nl-Oy9"/>
                             <constraint firstItem="cNM-QF-3IG" firstAttribute="leading" secondItem="IhV-xd-XOa" secondAttribute="trailing" id="nAd-mN-IHf"/>
+                            <constraint firstItem="bZy-K6-zbr" firstAttribute="centerX" secondItem="IhV-xd-XOa" secondAttribute="centerX" id="of7-AG-7pg"/>
+                            <constraint firstItem="2L4-uZ-p2B" firstAttribute="top" secondItem="P2X-bT-a9a" secondAttribute="bottom" constant="-20" id="pBl-KB-7py"/>
                             <constraint firstItem="Aq6-OP-JKc" firstAttribute="top" secondItem="IhV-xd-XOa" secondAttribute="top" constant="15" id="r3S-H4-hRP"/>
+                            <constraint firstItem="cDt-nn-yoF" firstAttribute="centerX" secondItem="Bsb-hE-gyw" secondAttribute="centerX" id="unr-b0-a5G"/>
+                            <constraint firstItem="bZy-K6-zbr" firstAttribute="top" secondItem="IhV-xd-XOa" secondAttribute="bottom" constant="-20" id="v6F-55-Osp"/>
                             <constraint firstItem="Rfk-dZ-b2F" firstAttribute="trailing" secondItem="Bsb-hE-gyw" secondAttribute="trailing" constant="-8" id="vZw-cn-RSz"/>
                             <constraint firstItem="cNM-QF-3IG" firstAttribute="width" secondItem="Bsb-hE-gyw" secondAttribute="width" id="y16-wH-R1v"/>
                             <constraint firstItem="P2X-bT-a9a" firstAttribute="bottom" secondItem="HXb-7r-1rp" secondAttribute="bottom" id="y3U-V9-gab"/>
                             <constraint firstItem="Bsb-hE-gyw" firstAttribute="leading" secondItem="cNM-QF-3IG" secondAttribute="trailing" id="y80-uV-eec"/>
+                            <constraint firstItem="5Js-Qa-xYb" firstAttribute="centerX" secondItem="HXb-7r-1rp" secondAttribute="centerX" id="yzb-4V-XNL"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -207,8 +247,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="00060_02_topperforming_filled" width="28" height="28"/>
-        <image name="00202_02_delivery_filled" width="28" height="22"/>
+        <image name="00060_02_topperforming_filled" width="27" height="27"/>
+        <image name="00202_02_delivery_filled" width="27" height="22"/>
         <image name="00324_DebitCardFill" width="28" height="16"/>
         <image name="00341_ Return Fill" width="32" height="32"/>
         <image name="组 64598" width="32" height="32"/>

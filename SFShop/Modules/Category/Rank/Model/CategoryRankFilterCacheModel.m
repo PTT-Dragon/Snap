@@ -6,16 +6,18 @@
 //
 
 #import "CategoryRankFilterCacheModel.h"
+#import "NSString+Fee.h"
+
 
 @implementation CategoryRankFilterCacheModel
 
 - (NSDictionary *)filterParam {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     if (_minPrice > 0) {
-        [result setObject:@(_minPrice) forKey:@"startPrice"];
+        [result setObject:@([[NSString stringWithFormat:@"%ld",_minPrice] multiplyCurrencyFloat]) forKey:@"startPrice"];
     }
     if (_maxPrice > 0) {
-        [result setObject:@(_maxPrice) forKey:@"endPrice"];
+        [result setObject:@([[NSString stringWithFormat:@"%ld",_maxPrice] multiplyCurrencyFloat]) forKey:@"endPrice"];
     }
     if (_serverId && ![_serverId isEqualToString:@""]) {
         [result setObject:_serverId forKey:@"serviceIds"];

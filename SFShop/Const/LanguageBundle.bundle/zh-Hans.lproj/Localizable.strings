@@ -5,6 +5,7 @@
 //  Created by 游挺 on 2021/12/15.
 //  
 //*/
+"Recently_Viewed" = "最近浏览";
 //  "PLEASE_SELECT_THE_PROVINCE_FIRST" = "Please select the province first";
 //  "DATA_ERROR" = "Data Error";
 //  "SF_AGREEMENT" = "SF的用户协议和政策";
@@ -132,7 +133,7 @@
 //  "BRANDS" = "品牌";
 //  "PRICE" = "价格";
 //  "REFUND" = "退款";
-//  "RETURN" = "退货";
+  "RETURN" = "退货";
 //  "CHANGE" = "变更";
 //  "BIND" = "绑定";
 //  "BIND_EMAIL" = "绑定邮箱";
@@ -142,7 +143,7 @@
 //  "DELETE_ADDRESS_TXT" = "确定要删除这个地址吗?";
   "ADD_ADDRESS" = "添加地址";
 //  "MY_ADDRESS" = "我的地址";
-//  "REQUIREDTIP" = "请输入";
+"REQUIREDTIP" = "请输入";
 //  "INCORRECT_NAME" = "收件人姓名请输入4 ~ 40个字符。";
 //  "INCORRECT_PHONE" = "请输入正确的手机号";
 //  "INCORRECT_EMAIL" = "请输入正确的邮箱";
@@ -188,7 +189,6 @@
 //  "DATEOFBIRTH" = "出生日期";
 //  "SECURITY_CENTER" = "安全中心";
 "CHANGE_PASS" = "修改密码";
-
 //  "STOCK_SHORTAGE" = "库存不足";
 //  "INVITE_FRIEND" = "邀请有礼";
 //  "INVITATION_RECORD" = "邀请记录";
@@ -202,10 +202,9 @@
 //  "CONFIRMDELADDR" = "您确定要删除这个地址吗?";
 //  "CONFIRM_LOGOUT" = "您确定要退出登录吗？";
 //  "LOGOUT" = "退出";
-//  "ORDERS" = "订单";
-//  "VIEW_ALL_ORDERS" = "查看所有订单";
+"ORDERS" = "订单";
 //  "LOGINORREGISTER" = "登录或注册";
-  "RECENTLY_VIEWED" = "最近浏览";
+"VIEW_ALL_ORDERS" = "查看所有订单";
 //  "MORE" = "更多";
 //  "POINTS" = "积分";
 //  "QUALITY_OF_GOODS" = "商品质量";
@@ -406,7 +405,7 @@
 //  "REFUND_REJECTED" = "拒绝退款";
 //  "REFUND_REJECTED_CONTENT" = "售后单审核不通过";
 //  "IMAGES" = "图片";
-//  "TO_REVIEW" = "待评价";
+  "TO_REVIEW" = "待评价";
 //  "EXPIRY_DATE" = "到期日";
 //  "RATED" = "已评价";
 //  "HOW_RATE_PRODUCT" = "你怎么评价该商品";
@@ -592,7 +591,7 @@
 "Modify_Address" = "修改地址";
 "Modify_success" = "修改成功";
 "Area" = "区域";
-"My_coupon" = "My Coupon";
+"My_coupon" = "我的优惠券";
 "SFshop_Voucher" = "科幻小说。购物凭证";
 "Coupon_Center" = "优惠券中心";
 "Login_Or_Register" = "登录或注册";

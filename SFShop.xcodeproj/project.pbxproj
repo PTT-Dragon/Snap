@@ -40,10 +40,8 @@
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
 		1B3C122826FC706000235294 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122726FC706000235294 /* LoginViewController.xib */; };
 		1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122A26FC7D3600235294 /* accountOrderCell.m */; };
-		1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122B26FC7D3600235294 /* accountOrderCell.xib */; };
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
-		1B3CB5BC2799CF9C00744198 /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3CB5BE2799CF9C00744198 /* accountInfoCell.xib */; };
 		1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B412839273141F100513430 /* CashOutHistoryViewController.m */; };
 		1B478304272A785200F2A945 /* RefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478303272A785200F2A945 /* RefundViewController.m */; };
 		1B478308272A7B1000F2A945 /* RefundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478306272A7B1000F2A945 /* RefundCell.m */; };
@@ -249,6 +247,7 @@
 		1B96475F273E4CF400345DDA /* RelationOrderChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B96475E273E4CF400345DDA /* RelationOrderChildViewController.m */; };
 		1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B964761273E4F2F00345DDA /* RelationOrderCell.m */; };
 		1B964764273E4F2F00345DDA /* RelationOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B964762273E4F2F00345DDA /* RelationOrderCell.xib */; };
+		1B996BFA279A60420094EAFE /* accountOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B996BFC279A60420094EAFE /* accountOrderCell.xib */; };
 		1BB1CB5F2763415C008D71DF /* FlashSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */; };
 		1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */; };
 		1BB1CB63276341B6008D71DF /* SFNetworkFlashSaleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB62276341B6008D71DF /* SFNetworkFlashSaleModule.m */; };
@@ -257,6 +256,7 @@
 		1BB1CB6D276344DF008D71DF /* FlashSaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6C276344DF008D71DF /* FlashSaleModel.m */; };
 		1BB1CB7127634DF6008D71DF /* FlashSaleProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */; };
 		1BB1CB7227634DF6008D71DF /* FlashSaleProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */; };
+		1BBCA963279A674800F4A4FF /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBCA962279A674800F4A4FF /* accountInfoCell.xib */; };
 		1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2B9272AF1E400755832 /* FAQViewController.m */; };
 		1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BA272AF1E400755832 /* FAQViewController.xib */; };
 		1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BE272AF27C00755832 /* FAQChildViewController.m */; };
@@ -578,11 +578,9 @@
 		1B3C122726FC706000235294 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		1B3C122926FC7D3600235294 /* accountOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountOrderCell.h; sourceTree = "<group>"; };
 		1B3C122A26FC7D3600235294 /* accountOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountOrderCell.m; sourceTree = "<group>"; };
-		1B3C122B26FC7D3600235294 /* accountOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountOrderCell.xib; sourceTree = "<group>"; };
 		1B3C122E26FC808F00235294 /* accountSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountSubCell.h; sourceTree = "<group>"; };
 		1B3C122F26FC808F00235294 /* accountSubCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountSubCell.m; sourceTree = "<group>"; };
 		1B3C123026FC808F00235294 /* accountSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountSubCell.xib; sourceTree = "<group>"; };
-		1B3CB5BD2799CF9C00744198 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/accountInfoCell.xib; sourceTree = "<group>"; };
 		1B412838273141F100513430 /* CashOutHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashOutHistoryViewController.h; sourceTree = "<group>"; };
 		1B412839273141F100513430 /* CashOutHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashOutHistoryViewController.m; sourceTree = "<group>"; };
 		1B478302272A785200F2A945 /* RefundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundViewController.h; sourceTree = "<group>"; };
@@ -955,6 +953,8 @@
 		1BB1CB6E27634DF6008D71DF /* FlashSaleProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleProductCell.h; sourceTree = "<group>"; };
 		1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleProductCell.m; sourceTree = "<group>"; };
 		1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleProductCell.xib; sourceTree = "<group>"; };
+		1BBCA961279A66F000F4A4FF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/accountOrderCell.xib; sourceTree = "<group>"; };
+		1BBCA962279A674800F4A4FF /* accountInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
 		1BC7A2B8272AF1E400755832 /* FAQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
 		1BC7A2B9272AF1E400755832 /* FAQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
 		1BC7A2BA272AF1E400755832 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
@@ -970,9 +970,6 @@
 		1BC7A2CC272B081E00755832 /* UseCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponViewController.h; sourceTree = "<group>"; };
 		1BC7A2CD272B081E00755832 /* UseCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponViewController.m; sourceTree = "<group>"; };
 		1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponViewController.xib; sourceTree = "<group>"; };
-		1BC9135E2799D04600A05F9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/accountInfoCell.xib; sourceTree = "<group>"; };
-		1BC9135F2799D0F200A05F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/accountInfoCell.xib"; sourceTree = "<group>"; };
-		1BC913602799D0F600A05F9B /* id */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = id; path = id.lproj/accountInfoCell.xib; sourceTree = "<group>"; };
 		1BD10C302761DE4300BFC1AD /* ProductEvalationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductEvalationCell.h; sourceTree = "<group>"; };
 		1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductEvalationCell.m; sourceTree = "<group>"; };
 		1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductEvalationCell.xib; sourceTree = "<group>"; };
@@ -2589,10 +2586,10 @@
 				4B9FB9F226FB7A7C00C90790 /* AccountViewController.m */,
 				1B3C122226FC5AC500235294 /* accountInfoCell.h */,
 				1B3C122326FC5AC500235294 /* accountInfoCell.m */,
-				1B3CB5BE2799CF9C00744198 /* accountInfoCell.xib */,
+				1BBCA962279A674800F4A4FF /* accountInfoCell.xib */,
 				1B3C122926FC7D3600235294 /* accountOrderCell.h */,
 				1B3C122A26FC7D3600235294 /* accountOrderCell.m */,
-				1B3C122B26FC7D3600235294 /* accountOrderCell.xib */,
+				1B996BFC279A60420094EAFE /* accountOrderCell.xib */,
 				1B3C122E26FC808F00235294 /* accountSubCell.h */,
 				1B3C122F26FC808F00235294 /* accountSubCell.m */,
 				1B3C123026FC808F00235294 /* accountSubCell.xib */,
@@ -3358,6 +3355,7 @@
 				1B2AE435272E3FD200FB23D3 /* CancelOrderViewController.xib in Resources */,
 				4B43857D26FF535600BA3D90 /* CommunityDetailController.xib in Resources */,
 				1B92D1552732815C00E73F98 /* AreaCell.xib in Resources */,
+				1BBCA963279A674800F4A4FF /* accountInfoCell.xib in Resources */,
 				1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */,
 				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
 				1B6C52D1275C896200A1C617 /* RelationOrderDetailStateCell.xib in Resources */,
@@ -3393,7 +3391,6 @@
 				1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */,
 				1B74DAEE27225EF000B30ECC /* ReviewCell.xib in Resources */,
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
-				1B3CB5BC2799CF9C00744198 /* accountInfoCell.xib in Resources */,
 				1B92D15027327F4400E73F98 /* ChooseAreaViewController.xib in Resources */,
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				1B6C52CC275C894C00A1C617 /* RelationOrderDetailInfoCell.xib in Resources */,
@@ -3425,7 +3422,7 @@
 				1BD8E7DD27605D0400130DCC /* ReviewSuccessViewController.xib in Resources */,
 				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
 				1B6C52472758AD8100A1C617 /* CartViewController.xib in Resources */,
-				1B3C122D26FC7D3600235294 /* accountOrderCell.xib in Resources */,
+				1B996BFA279A60420094EAFE /* accountOrderCell.xib in Resources */,
 				1B787B5727299E5F00E6A983 /* OrderDetailViewController.xib in Resources */,
 				1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */,
 				1B552EBB276C3D470086604B /* ProductGroupTitleCell.xib in Resources */,
@@ -3903,15 +3900,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1B3CB5BE2799CF9C00744198 /* accountInfoCell.xib */ = {
+		1B996BFC279A60420094EAFE /* accountOrderCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1B3CB5BD2799CF9C00744198 /* en */,
-				1BC9135E2799D04600A05F9B /* Base */,
-				1BC9135F2799D0F200A05F9B /* zh-Hans */,
-				1BC913602799D0F600A05F9B /* id */,
+				1BBCA961279A66F000F4A4FF /* en */,
 			);
-			name = accountInfoCell.xib;
+			name = accountOrderCell.xib;
 			sourceTree = "<group>";
 		};
 		AE81BDDF26FB6E7000AB4225 /* Main.storyboard */ = {
@@ -4059,7 +4053,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.1;
+				CURRENT_PROJECT_VERSION = 4.3;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4100,7 +4094,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.1;
+				CURRENT_PROJECT_VERSION = 4.3;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

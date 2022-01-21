@@ -28,6 +28,10 @@
 {
     return YES;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -35,7 +39,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self action:@selector(jumpToFilterDetail) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0 , 0, 44, 44);
-    [button setBackgroundImage:[UIImage imageNamed:@"rank_filters"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"00075_01_filters_outline"] forState:UIControlStateNormal];
     [self.view addSubview:button];
     UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItems = @[rightItem];

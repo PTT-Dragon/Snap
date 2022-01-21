@@ -18,6 +18,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *RatingCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toReceiveCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toPayCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toPayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toShipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toreceiveLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *returnLabel;
+@property (weak, nonatomic) IBOutlet UIButton *allOrderBtn;
+@property (weak, nonatomic) IBOutlet UILabel *orderLabel;
 
 @end
 
@@ -31,6 +38,13 @@
             [(UIButton *)subView SG_imagePositionStyle:SGImagePositionStyleTop spacing:5];
         }
     }
+    self.orderLabel.text = kLocalizedString(@"ORDERS");
+    [self.allOrderBtn setTitle:kLocalizedString(@"VIEW_ALL_ORDERS") forState:0];
+    self.toPayLabel.text = kLocalizedString(@"TO_PAY");
+    self.toShipLabel.text = kLocalizedString(@"TO_SHIP");
+    self.toreceiveLabel.text = kLocalizedString(@"TO_RECEIVE");
+    self.ratingLabel.text = kLocalizedString(@"TO_REVIEW");
+    self.returnLabel.text = kLocalizedString(@"RETURN");
     _toShipCountLabel.layer.borderWidth = 1;
     _toShipCountLabel.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _toPayCountLabel.layer.borderWidth = 1;

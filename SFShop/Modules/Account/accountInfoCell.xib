@@ -93,7 +93,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpI-Gk-cub">
-                                <rect key="frame" x="34.5" y="48" width="56" height="33.5"/>
+                                <rect key="frame" x="15" y="48" width="95" height="33.5"/>
                                 <string key="text">Recently
 Viewed</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -106,6 +106,7 @@ Viewed</string>
                             <constraint firstItem="RpI-Gk-cub" firstAttribute="top" secondItem="rZr-F1-yKx" secondAttribute="bottom" constant="8" id="6d8-Wr-AV1"/>
                             <constraint firstItem="rZr-F1-yKx" firstAttribute="top" secondItem="28J-D2-ke3" secondAttribute="top" constant="16" id="92N-my-3P6"/>
                             <constraint firstItem="RpI-Gk-cub" firstAttribute="centerX" secondItem="28J-D2-ke3" secondAttribute="centerX" id="TT4-lJ-sbL"/>
+                            <constraint firstItem="RpI-Gk-cub" firstAttribute="leading" secondItem="28J-D2-ke3" secondAttribute="leading" constant="15" id="f8q-iT-CUA"/>
                             <constraint firstAttribute="bottom" secondItem="28J-D2-ke3" secondAttribute="bottom" id="lJv-zr-Mp1"/>
                             <constraint firstItem="rZr-F1-yKx" firstAttribute="centerX" secondItem="28J-D2-ke3" secondAttribute="centerX" id="mjr-WX-4He"/>
                             <constraint firstAttribute="centerX" secondItem="28J-D2-ke3" secondAttribute="centerX" id="x7R-Oz-qft"/>
@@ -144,7 +145,7 @@ Viewed</string>
                             <constraint firstAttribute="height" constant="24" id="42E-SI-fiG"/>
                             <constraint firstAttribute="width" constant="24" id="Bwi-pG-zeR"/>
                         </constraints>
-                        <state key="normal" image="chat"/>
+                        <state key="normal" image="ring"/>
                         <connections>
                             <action selector="msgAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jkN-t6-TFl"/>
                         </connections>
@@ -176,6 +177,7 @@ Viewed</string>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="width" secondItem="RjG-am-f1L" secondAttribute="width" id="DOT-da-gtb"/>
                     <constraint firstItem="beR-wN-8cN" firstAttribute="leading" secondItem="RjG-am-f1L" secondAttribute="trailing" id="FUw-Y1-724"/>
                     <constraint firstItem="NQt-Lu-SYp" firstAttribute="trailing" secondItem="Ow4-xP-dSu" secondAttribute="trailing" id="Fyg-Tr-BC6"/>
+                    <constraint firstItem="5b9-MJ-s0D" firstAttribute="top" secondItem="kAT-s2-Aye" secondAttribute="top" id="Giz-Ns-Oii"/>
                     <constraint firstItem="RjG-am-f1L" firstAttribute="leading" secondItem="3fi-jd-Bbb" secondAttribute="trailing" id="HZc-I2-zsK"/>
                     <constraint firstItem="RjG-am-f1L" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Luy-50-RQA"/>
                     <constraint firstAttribute="trailing" secondItem="28J-D2-ke3" secondAttribute="trailing" id="QUG-dq-I9r"/>
@@ -189,7 +191,6 @@ Viewed</string>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="bottom" secondItem="28J-D2-ke3" secondAttribute="bottom" id="Xtx-JC-5cN"/>
                     <constraint firstAttribute="bottom" secondItem="RjG-am-f1L" secondAttribute="bottom" id="ayu-HN-jH3"/>
                     <constraint firstItem="28J-D2-ke3" firstAttribute="bottom" secondItem="RjG-am-f1L" secondAttribute="bottom" id="bJz-ru-mYk"/>
-                    <constraint firstItem="5b9-MJ-s0D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="emj-9n-d2J"/>
                     <constraint firstItem="ckn-Gx-hDh" firstAttribute="bottom" secondItem="ckn-Gx-hDh" secondAttribute="bottom" id="fO2-5g-3DM"/>
                     <constraint firstItem="kAT-s2-Aye" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="fQV-vM-Dpi"/>
                     <constraint firstItem="NQt-Lu-SYp" firstAttribute="leading" secondItem="Ow4-xP-dSu" secondAttribute="leading" id="kAK-Kl-dMC"/>
@@ -207,23 +208,27 @@ Viewed</string>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="RecentlyLabel" destination="rZr-F1-yKx" id="VpQ-80-uTg"/>
+                <outlet property="RecentlyCountLabel" destination="rZr-F1-yKx" id="aK7-qX-je1"/>
                 <outlet property="RecentlyViewedView" destination="28J-D2-ke3" id="05l-C9-IIB"/>
                 <outlet property="WhishlistLabel" destination="ad5-ph-Klw" id="NQe-XZ-iin"/>
                 <outlet property="WhishlistView" destination="ckn-Gx-hDh" id="jsZ-oV-XZd"/>
                 <outlet property="couponLabel" destination="uKv-I9-t1a" id="yUs-PJ-E3A"/>
                 <outlet property="couponView" destination="RjG-am-f1L" id="9Xg-q2-0aC"/>
                 <outlet property="imgVIew" destination="kAT-s2-Aye" id="Nd8-lD-8M0"/>
+                <outlet property="imgViewTop" destination="R1U-z5-QCT" id="Tdq-xs-u0u"/>
                 <outlet property="mobileLabel" destination="NQt-Lu-SYp" id="2jQ-Et-L2g"/>
                 <outlet property="nameLabel" destination="Ow4-xP-dSu" id="011-W1-t2l"/>
                 <outlet property="noReadMessageCountLabel" destination="xnk-aw-7SK" id="3mN-Hf-nV7"/>
+                <outlet property="recentlyLabel" destination="RpI-Gk-cub" id="dIQ-KJ-VLZ"/>
                 <outlet property="setBtn" destination="5b9-MJ-s0D" id="xqX-lm-jsO"/>
+                <outlet property="vouchersLabel" destination="LG7-Py-mG8" id="96P-RI-XcF"/>
+                <outlet property="wishLabel" destination="UP1-bQ-b1C" id="99r-4E-k1i"/>
             </connections>
             <point key="canvasLocation" x="97" y="90"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="chat" width="200" height="200"/>
+        <image name="ring" width="32" height="32"/>
         <image name="setting-2" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

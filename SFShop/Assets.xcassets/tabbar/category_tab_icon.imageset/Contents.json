@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "00070_02_categories_filled.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "category_tab_icon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

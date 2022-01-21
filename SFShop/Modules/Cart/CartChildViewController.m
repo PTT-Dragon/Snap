@@ -76,6 +76,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [hud hideAnimated:YES];
+        [weakself.dataArray removeAllObjects];
         weakself.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
         [weakself.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
         [weakself.emptyView configDataWithSimilarList:weakself.dataArray];
@@ -233,7 +234,8 @@
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
         [weakself showEmptyView];
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD hideFromKeyWindow];
+//        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
@@ -274,6 +276,7 @@
         weakself.couponDataSource = [CouponModel arrayOfModelsFromDictionaries:response error:nil];
         [weakself showCouponsView];
     } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD hideFromKeyWindow];
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }

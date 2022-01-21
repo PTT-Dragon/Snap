@@ -27,6 +27,7 @@
     BaseNavigationController *accountNav = [[BaseNavigationController alloc]initWithRootViewController:accountVC];
     accountNav.tabBarItem.title = kLocalizedString(@"Account");
     accountNav.tabBarItem.image = [UIImage imageNamed:@"account_tab_icon"];
+    
     PublicWebViewController *homeVc = [[PublicWebViewController alloc] init];
     homeVc.isHome = YES;
     BaseNavigationController *homeNav = [[BaseNavigationController alloc]initWithRootViewController:homeVc];
@@ -52,6 +53,7 @@
     
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar setTranslucent:NO];
+    self.tabBar.tintColor = RGBColorFrom16(0xFF1659);
     [self setViewControllers:@[homeNav,categoryNav,communityNav,CartNav,accountNav]];
 }
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item

@@ -24,11 +24,15 @@
 @property (weak, nonatomic) IBOutlet UIView *WhishlistView;
 @property (weak, nonatomic) IBOutlet UIView *RecentlyViewedView;
 @property (weak, nonatomic) IBOutlet UILabel *WhishlistLabel;
-@property (weak, nonatomic) IBOutlet UILabel *RecentlyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *RecentlyCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *couponLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *setBtn;
 @property (weak, nonatomic) IBOutlet UILabel *noReadMessageCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *wishLabel;
+@property (weak, nonatomic) IBOutlet UILabel *vouchersLabel;
+@property (weak, nonatomic) IBOutlet UILabel *recentlyLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgViewTop;
 
 @end
 
@@ -50,6 +54,10 @@
     [_nameLabel addGestureRecognizer:nameLabelTap];
     self.noReadMessageCountLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     self.noReadMessageCountLabel.layer.borderWidth = 1;
+    self.recentlyLabel.text = kLocalizedString(@"Recently_Viewed");
+    self.wishLabel.text = kLocalizedString(@"WISHLIST");
+    self.vouchersLabel.text = kLocalizedString(@"COUPONS");
+    self.imgViewTop.constant = statuBarHei+16;
 }
 - (void)updateData
 {
@@ -61,7 +69,7 @@
         self.imgVIew.image = [UIImage imageNamed:@"account-black"];
         self.couponLabel.text = @"--";
         self.WhishlistLabel.text = @"--";
-        self.RecentlyLabel.text = @"--";
+        self.RecentlyCountLabel.text = @"--";
         self.mobileLabel.text = @"";
     }else{
         self.nameLabel.userInteractionEnabled = NO;
@@ -80,11 +88,12 @@
 {
     _noReadMessageCount = noReadMessageCount;
     self.noReadMessageCountLabel.text = [NSString stringWithFormat:@"%ld",noReadMessageCount];
+    self.noReadMessageCountLabel.hidden = noReadMessageCount == 0;
 }
 - (void)setRecentCount:(NSInteger)recentCount
 {
     _recentCount = recentCount;
-    self.RecentlyLabel.text = [NSString stringWithFormat:@"%ld",recentCount];
+    self.RecentlyCountLabel.text = [NSString stringWithFormat:@"%ld",recentCount];
 }
 - (void)userInfoAction
 {

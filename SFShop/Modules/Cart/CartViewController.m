@@ -78,7 +78,8 @@
         weakself.selAddModel.sel = YES;
         [weakself updateSubviews];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD hideFromKeyWindow];
+//        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)initUI
