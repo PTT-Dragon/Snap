@@ -333,7 +333,7 @@
             @"productId": @(object.productId),
             @"offerCnt": @1,
             @"inCmpIdList": inCmpIdList
-        };;
+        };
     }];
     NSDictionary *param = @{
                        @"stdAddrId": self.selectedAddressModel.contactStdId,
@@ -604,6 +604,18 @@
     self.originalPriceLabel.text = [[NSString stringWithFormat:@"%ld",selProductModel.marketPrice] currency];
 
     self.usefulBtn.selected = [selProductModel.isCollection isEqualToString:@"1"];
+    
+    
+    // ====== 处理活动信息 ======
+    ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
+    camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
+        return object.productId.integerValue == selProductModel.productId;
+    }];
+    camaignsInfo.cmpShareBuys = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+        return object.productId.integerValue == selProductModel.productId;
+    }];
+
+    
 }
 - (void)setGroupModel:(ProductGroupModel *)groupModel
 {
