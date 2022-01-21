@@ -157,6 +157,15 @@
 }
 - (void)chooseAddress {
     if (self.addressDataSource.count == 0) {
+        ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
+        vc.delegate = self;
+        vc.type = _streetModel ? 6 : 3;
+        vc.selProvinceAreaMoel = self.provinceModel;
+        vc.selCityAreaMoel = self.cityModel;
+        vc.selDistrictAreaMoel = self.districtModel;
+        vc.selStreetAreaMoel = self.streetModel;
+        [self presentViewController:vc animated:YES completion: nil];
+    }else{
         CartChooseAddressViewController *vc = [[CartChooseAddressViewController alloc] init];
         vc.addressListArr = self.addressDataSource;
         vc.view.frame = CGRectMake(0, 0, self.view.jk_width, self.view.jk_height);
@@ -166,15 +175,6 @@
         };
         [self.view addSubview:vc.view];
         [self addChildViewController:vc];
-    }else{
-        ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
-        vc.delegate = self;
-        vc.type = _streetModel ? 6 : 3;
-        vc.selProvinceAreaMoel = self.provinceModel;
-        vc.selCityAreaMoel = self.cityModel;
-        vc.selDistrictAreaMoel = self.districtModel;
-        vc.selStreetAreaMoel = self.streetModel;
-        [self presentViewController:vc animated:YES completion: nil];
     }
 }
 
@@ -858,6 +858,7 @@
     _selectedAddressModel.street = _streetModel.stdAddr;
     _selectedAddressModel.district = _districtModel.stdAddr;
     _selectedAddressModel.contactNbr = _streetModel.stdAddrId;
+    _selectedAddressModel.postCode = _streetModel.zipcode;
     self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", _selectedAddressModel.province, _selectedAddressModel.city, _selectedAddressModel.district, _selectedAddressModel.postCode];
 }
 
