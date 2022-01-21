@@ -21,7 +21,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    _label.text = kLocalizedString(@"")
+    _label.text = kLocalizedString(@"PEOPLE_SHORT");
+    [_joinBtn setTitle:kLocalizedString(@"JOIN") forState:0];
 }
 
 - (void)setModel:(ProductGroupListModel *)model

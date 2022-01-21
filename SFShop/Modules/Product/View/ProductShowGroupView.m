@@ -19,11 +19,32 @@
 {
     if (self = [super initWithFrame:frame]) {
         [self initUI];
+        [self addGes];
     }
     return self;
 }
+- (void)addGes
+{
+    self.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remove)];
+    [self addGestureRecognizer:tap];
+    _bgView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nothing)];
+    [self.bgView addGestureRecognizer:tap2];
+}
+- (void)remove
+{
+    [self removeFromSuperview];
+}
+- (void)nothing
+{
+    
+}
 - (void)initUI
 {
+    self.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    _bgView = [[UIView alloc] init];
+    _bgView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.bgView];
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
@@ -32,8 +53,50 @@
     [self addSubview:self.tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.bgView);
-        make.top.mas_equalTo(self.bgView.mas_top).offset(25);
-        make.height.mas_equalTo(self.dataSource.count * 60+60);
+        make.top.mas_equalTo(self.bgView.mas_top).offset(42);
+        make.height.mas_equalTo(self.dataSource.count * 60);
+        make.bottom.mas_equalTo(self.bgView.mas_bottom).offset(-35);
+    }];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:[UIImage imageNamed:@"nav_close"] forState:0];
+    @weakify(self)
+    [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
+        [self remove];
+    }];
+    [self.bgView addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(22);
+        make.right.mas_equalTo(self.bgView.mas_right).offset(-10);
+        make.top.mas_equalTo(self.bgView.mas_top).offset(5);
+    }];
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.text = kLocalizedString(@"SHAREBUY");
+    label.textColor = RGBColorFrom16(0x999999);
+    label.font = CHINESE_SYSTEM(14);
+    [self.bgView addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.bgView.mas_left).offset(16);
+        make.top.mas_equalTo(self.bgView.mas_top).offset(10);
+    }];
+    UILabel *label2 = [[UILabel alloc] init];
+    label2.text = kLocalizedString(@"ONLY_SHOW_5_SHARE");
+    label2.textColor = RGBColorFrom16(0x999999);
+    label2.font = CHINESE_SYSTEM(14);
+    [self.bgView addSubview:label2];
+    [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.bgView.mas_left).offset(16);
+        make.bottom.mas_equalTo(self.bgView.mas_bottom).offset(-10);
+    }];
+}
+- (void)setDataSource:(NSArray<ProductGroupListModel *> *)dataSource
+{
+    _dataSource = dataSource;
+    [_tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.bgView);
+        make.top.mas_equalTo(self.bgView.mas_top).offset(42);
+        make.height.mas_equalTo(self.dataSource.count * 60);
         make.bottom.mas_equalTo(self.bgView.mas_bottom).offset(-35);
     }];
 }

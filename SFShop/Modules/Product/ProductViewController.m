@@ -559,8 +559,8 @@
 }
 - (void)showGroupView
 {
-    ProductShowGroupView *groupView = [[NSBundle mainBundle] loadNibNamed:@"" owner:self options:nil].firstObject;
-    groupView.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    ProductShowGroupView *groupView = [[ProductShowGroupView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height)];
+    groupView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
     groupView.dataSource = self.groupModel.list;
     [self.view addSubview:groupView];
 }
@@ -709,7 +709,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if (tableView == _groupTableView){
         if (indexPath.row == 0) {
-            
+            [self showGroupView];
         }
     }
 }
