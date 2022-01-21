@@ -28,8 +28,9 @@
 #import "ProductionRecomandView.h"
 #import "SysParamsModel.h"
 #import "LoginViewController.h"
+#import "ChooseAreaViewController.h"
 
-@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, ChooseAreaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
@@ -56,7 +57,6 @@
 @property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
 @property (nonatomic, assign) BOOL isCheckingSaleInfo;
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
-@property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 @property (nonatomic,strong) addressModel *selectedAddressModel;
 @property (nonatomic,strong) ProductItemModel *selProductModel;
 @property (nonatomic,copy) NSNumber *allEvaCount;//评价总数
@@ -83,6 +83,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *cartNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *originalPriceLabel;
 
+@property (nonatomic, strong) AreaModel *provinceModel;
+@property (nonatomic, strong) AreaModel *cityModel;
+@property (nonatomic, strong) AreaModel *districtModel;
+@property (nonatomic, strong) AreaModel *streetModel;
+
 @end
 
 @implementation ProductViewController
@@ -101,6 +106,7 @@
     
     [self request];
     [self requestSimilar];
+    [self requestStock];
     [self setupSubViews];
     [self requestProductRecord];
     [self requestEvaluationsList];
@@ -139,15 +145,15 @@
 }
 
 - (void)chooseAddress {
-    CartChooseAddressViewController *vc = [[CartChooseAddressViewController alloc] init];
-    vc.addressListArr = self.addressDataSource;
-    vc.view.frame = CGRectMake(0, 0, self.view.jk_width, self.view.jk_height);
-    MPWeakSelf(self)
-    vc.selBlock = ^(addressModel * model) {
-        weakself.selectedAddressModel = model;
-    };
-    [self.view addSubview:vc.view];
-    [self addChildViewController:vc];
+    
+    ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
+    vc.delegate = self;
+    vc.type = 3;
+    vc.selProvinceAreaMoel = self.provinceModel;
+    vc.selCityAreaMoel = self.cityModel;
+    vc.selDistrictAreaMoel = self.districtModel;
+    vc.selStreetAreaMoel = self.streetModel;
+    [self presentViewController:vc animated:YES completion: nil];
 }
 
 - (void)setSelectedAddressModel:(addressModel *)selectedAddressModel {
@@ -195,11 +201,16 @@
 {
     //已经开始的团队列表
     MPWeakSelf(self)
-    /**
-     先用第一个 需要匹配
-     **/
-    cmpShareBuysModel *subMode = self.campaignsModel.cmpShareBuys.firstObject;
-    [SFNetworkManager get:SFNet.groupbuy.groups parameters:@{@"offerId":@(_offerId),@"campaignId":@(subMode.campaignId),@"pageSize":@(5),@"pageIndex":@(1)} success:^(id  _Nullable response) {
+    
+    NSInteger productId = self.selProductModel.productId;
+    cmpShareBuysModel *subModel = [self.campaignsModel.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+        return [object.productId integerValue] == productId;
+    }].firstObject;
+    if (!subModel) {
+        return;
+    }
+
+    [SFNetworkManager get:SFNet.groupbuy.groups parameters:@{@"offerId":@(_offerId),@"campaignId":@(subModel.campaignId),@"pageSize":@(5),@"pageIndex":@(1)} success:^(id  _Nullable response) {
         weakself.groupModel = [ProductGroupModel yy_modelWithDictionary:response];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
@@ -207,20 +218,75 @@
 }
 
 - (void)requestAddressInfo {
-    self.addressDataSource = [NSMutableArray array];
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.address.addressList parameters:@{} success:^(id  _Nullable response) {
         for (NSDictionary *dic in response) {
             addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
             if ([model.isDefault isEqualToString:@"Y"]) {
                 weakself.selectedAddressModel = model;
+                [weakself requestProvinceInfo];
+                break;
             }
-            [weakself.addressDataSource addObject:model];
         }
     } failed:^(NSError * _Nonnull error) {
         
     }];
 }
+
+- (void)requestProvinceInfo {
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.address.areaData parameters:@{@"addrLevelId":@(2)} success:^(id  _Nullable response) {
+        NSArray<AreaModel *> *arr = [AreaModel arrayOfModelsFromDictionaries:response error:nil];
+        weakself.provinceModel = [arr jk_filter:^BOOL(AreaModel *object) {
+            return object.stdAddr == weakself.selectedAddressModel.province;
+        }].firstObject;
+        [weakself requestCityInfo];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)requestCityInfo {
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":weakself.provinceModel.stdAddrId} success:^(id  _Nullable response) {
+        NSArray<AreaModel *> *arr = [AreaModel arrayOfModelsFromDictionaries:response error:nil];
+        weakself.cityModel = [arr jk_filter:^BOOL(AreaModel *object) {
+            return [object.stdAddr isEqualToString: weakself.selectedAddressModel.city];
+        }].firstObject;
+        [weakself requestDistrictInfo];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)requestDistrictInfo {
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":weakself.cityModel.stdAddrId} success:^(id  _Nullable response) {
+        NSArray<AreaModel *> *arr = [AreaModel arrayOfModelsFromDictionaries:response error:nil];
+        weakself.districtModel = [arr jk_filter:^BOOL(AreaModel *object) {
+            return [object.stdAddr isEqualToString: weakself.selectedAddressModel.district];
+        }].firstObject;
+        [weakself requestStreetInfo];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)requestStreetInfo {
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":weakself.districtModel.stdAddrId} success:^(id  _Nullable response) {
+        NSArray<AreaModel *> *arr = [AreaModel arrayOfModelsFromDictionaries:response error:nil];
+        weakself.streetModel = [arr jk_filter:^BOOL(AreaModel *object) {
+            return [object.stdAddr isEqualToString: weakself.selectedAddressModel.street];
+        }].firstObject;
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+
+
+
 - (void)requestEvaluationsList
 {
     //评论列表
@@ -263,15 +329,28 @@
 - (void)requestCartNum
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
+    //商品浏览记录
+    [SFNetworkManager post:SFNet.offer.stock parameters:@{@"offerId":@(self.offerId)} success:^(id  _Nullable response) {
+        
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+/**
+ 请求库存信息
+ */
+- (void)requestStock {
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.offer.stock success:^(id  _Nullable response) {
         CartNumModel *numModel = [[CartNumModel alloc] initWithDictionary:response error:nil];
         weakself.cartNumLabel.text = numModel.num;
         weakself.cartNumLabel.hidden = [numModel.num isEqualToString:@"0"];
     } failed:^(NSError * _Nonnull error) {
         
     }];
-}
 
+}
 
 - (void)setupSubViews {
     self.addCartBtn.titleLabel.numberOfLines = 2;
@@ -451,37 +530,31 @@
 - (void)setModel:(ProductDetailModel *)model {
     _model = model;
     [self.carouselImgView reloadData];
-    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-    self.salesPriceLabel.text = [NSString stringWithFormat:@"%@ %ld", currency, model.salesPrice];
-    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@ %ld", currency, model.marketPrice]];
-    [marketPriceStr addAttribute: NSStrikethroughStyleAttributeName value:@2 range: NSMakeRange(0, marketPriceStr.length)];
-    self.marketPriceLabel.attributedText = marketPriceStr;
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
-    self.variationsLabel.text = [self getVariationsString];
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
-    self.selProductModel = model.products.firstObject;
-    self.originalPriceLabel.text = [[NSString stringWithFormat:@"%ld",model.marketPrice] currency];
+    self.selProductModel = [model.products jk_filter:^BOOL(ProductItemModel *object) {
+        return object.productId == self.productId;
+    }].firstObject;
 }
 - (void)setSelProductModel:(ProductItemModel *)selProductModel
 {
     _selProductModel = selProductModel;
+    
+    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+    self.salesPriceLabel.text = [NSString stringWithFormat:@"%@ %ld", currency, selProductModel.salesPrice];
+    NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@ %ld", currency, selProductModel.marketPrice]];
+    [marketPriceStr addAttribute: NSStrikethroughStyleAttributeName value:@2 range: NSMakeRange(0, marketPriceStr.length)];
+    self.marketPriceLabel.attributedText = marketPriceStr;
+    self.variationsLabel.text = selProductModel.prodSpcAttrs.firstObject.value;;
+    self.originalPriceLabel.text = [[NSString stringWithFormat:@"%ld",selProductModel.marketPrice] currency];
+
     self.usefulBtn.selected = [selProductModel.isCollection isEqualToString:@"1"];
 }
 - (void)setGroupModel:(ProductGroupModel *)groupModel
 {
     _groupModel = groupModel;
     [self layoutGroupSubViews];
-}
-
-- (NSString *)getVariationsString {
-    __block NSString *result = @"";
-    [_model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.attrName isEqualToString:@"Color"]) {
-            result = obj.attrValues.firstObject.value;
-        }
-    }];
-    return result;
 }
 
 - (void)setSimilarList:(NSMutableArray<ProductSimilarModel *> *)similarList {
@@ -759,6 +832,17 @@
         _recommendView = [[ProductionRecomandView alloc] init];
     }
     return _recommendView;
+}
+
+#pragma mark - delegate
+- (void)chooseProvince:(AreaModel *_Nullable)provinceModel city:(AreaModel *_Nullable)cityModel district:(AreaModel *_Nullable)districtModel street:(AreaModel * _Nullable)streetModel
+{
+    self.provinceModel = provinceModel;
+    self.cityModel = cityModel;
+    self.districtModel = districtModel;
+    self.streetModel = streetModel;
+    
+    self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", provinceModel.stdAddr, cityModel.stdAddr, districtModel.stdAddr, streetModel.stdAddr];
 }
 
 @end

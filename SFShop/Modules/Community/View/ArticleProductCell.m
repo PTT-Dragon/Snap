@@ -26,7 +26,7 @@
 
 - (IBAction)buyAction:(UIButton *)sender {
     if (self.buyBlock) {
-        self.buyBlock(self.model.offerId);
+        self.buyBlock(self.model);
     }
 }
 

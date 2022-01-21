@@ -183,9 +183,10 @@
         [self.model.products enumerateObjectsUsingBlock:^(ArticleProduct * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             ArticleProductCell *productCell = [[[NSBundle mainBundle] loadNibNamed:@"ArticleProductCell" owner:nil options:nil] lastObject];
             [productCell setModel: obj];
-            [productCell setBuyBlock:^(NSInteger offerId) {
+            [productCell setBuyBlock:^(ArticleProduct *productInfo) {
                 ProductViewController *productVC = [[ProductViewController alloc] init];
-                productVC.offerId = offerId;
+                productVC.offerId = productInfo.offerId;
+                productVC.productId = productInfo.productId;
                 [weakself.navigationController pushViewController:productVC animated:YES];
             }];
             [weakself.productContainer addSubview: productCell];
