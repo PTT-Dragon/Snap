@@ -605,17 +605,6 @@
 
     self.usefulBtn.selected = [selProductModel.isCollection isEqualToString:@"1"];
     
-    
-    // ====== 处理活动信息 ======
-    ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
-    camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
-        return object.productId.integerValue == selProductModel.productId;
-    }];
-    camaignsInfo.cmpShareBuys = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-        return object.productId.integerValue == selProductModel.productId;
-    }];
-
-    
 }
 - (void)setGroupModel:(ProductGroupModel *)groupModel
 {
@@ -858,6 +847,7 @@
 - (void)showAttrsView {
     _isCheckingSaleInfo = YES;
     _attrView = [[ProductSpecAttrsView alloc] init];
+    _attrView.campaignsModel = self.campaignsModel;
     _attrView.selProductModel = self.selProductModel;
     _attrView.stockModel = self.stockModel;
     _attrView.model = self.model;

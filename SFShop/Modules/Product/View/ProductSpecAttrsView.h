@@ -19,6 +19,7 @@ typedef void(^ChooseAttrBlock)(void);
 @property(nonatomic, strong) ProductDetailModel *model;
 @property(nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
 @property(nonatomic, strong) ProductItemModel *selProductModel;
+@property (nonatomic,strong) ProductCampaignsInfoModel *campaignsModel;
 @property (nonatomic, copy) Block dismissBlock;
 @property (nonatomic, copy) ChooseAttrBlock chooseAttrBlock;
 @property (nonatomic, assign) NSUInteger count;
