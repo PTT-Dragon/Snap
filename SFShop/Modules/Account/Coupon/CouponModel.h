@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*initiator;
 @property (nonatomic,copy) NSString <Optional>*isOrderTh;
 @property (nonatomic,copy) NSString <Optional>*isOverlay;
+@property (nonatomic,copy) NSString <Optional>*getOffsetExp;
 @property (nonatomic,assign) double quantity;
 @property (nonatomic,assign) double discountAmount;
 @property (nonatomic,copy) NSString <Optional>*isPrmotCode;

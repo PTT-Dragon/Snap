@@ -173,7 +173,7 @@
 //  "ADDITIONAL_DAY" = "Ulasan Tambahan {day} hari setelah pembelian";
 //  "GO_SHOPPING" = "Belanja";
 //  "REVIEW_LIST" = "Review list";
-//  "VALID_RANGE" = "Berlaku dalam {day} hari";
+  "VALID_RANGE" = "Berlaku dalam {day} hari";
 //  "REVIEW_INPUT_COMMENTS" = "Mohon masukan comment";
 //  "REVIEW_DETAIL" = "Review Detail";
 //  "RETURN_ADDRESS" = "Alamat pengembalian";

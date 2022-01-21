@@ -90,6 +90,7 @@
 @property (nonatomic, strong) AreaModel *districtModel;
 @property (nonatomic, strong) AreaModel *streetModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupTableViewTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *couponsViewHeight;
 
 @end
 
@@ -157,7 +158,6 @@
     [[baseTool getCurrentVC].view addSubview:view];
 }
 - (void)chooseAddress {
-    
     ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
     vc.delegate = self;
     vc.type = _streetModel ? 6 : 3;
@@ -539,6 +539,7 @@
 - (void)layoutCouponSubviews
 {
     self.couponsView.hidden = NO;
+    self.couponsViewHeight.constant = 40;
     __block CGFloat lastRight = 0;
     [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *label = [[UILabel alloc] init];
@@ -556,6 +557,10 @@
         }];
         lastRight = width+5;
     }];
+}
+- (void)showGroupView
+{
+    
 }
 
 - (void)setModel:(ProductDetailModel *)model {

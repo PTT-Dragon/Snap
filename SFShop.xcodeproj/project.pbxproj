@@ -351,6 +351,7 @@
 		1BF00F74272FDD770081C8E4 /* DistributorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F73272FDD770081C8E4 /* DistributorModel.m */; };
 		1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */; };
 		1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */; };
+		1BF4493D279B31A6003A38F8 /* ProductShowGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4493C279B31A6003A38F8 /* ProductShowGroupView.m */; };
 		1BF4DD402774615900972265 /* NSDictionary+em.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD3F2774615900972265 /* NSDictionary+em.m */; };
 		1BF4DD4A2774644600972265 /* NSObject+SwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD422774644600972265 /* NSObject+SwizzleMethod.m */; };
 		1BF4DD4B2774644600972265 /* NSArray+ErrorHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD432774644600972265 /* NSArray+ErrorHandle.m */; };
@@ -1114,6 +1115,8 @@
 		1BF00F7B2731313F0081C8E4 /* CommissionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommissionViewController.h; sourceTree = "<group>"; };
 		1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommissionViewController.m; sourceTree = "<group>"; };
 		1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommissionViewController.xib; sourceTree = "<group>"; };
+		1BF4493B279B31A6003A38F8 /* ProductShowGroupView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductShowGroupView.h; sourceTree = "<group>"; };
+		1BF4493C279B31A6003A38F8 /* ProductShowGroupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductShowGroupView.m; sourceTree = "<group>"; };
 		1BF4DD3E2774615800972265 /* NSDictionary+em.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+em.h"; sourceTree = "<group>"; };
 		1BF4DD3F2774615900972265 /* NSDictionary+em.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+em.m"; sourceTree = "<group>"; };
 		1BF4DD422774644600972265 /* NSObject+SwizzleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SwizzleMethod.m"; sourceTree = "<group>"; };
@@ -2378,6 +2381,8 @@
 				4B43E21A2778901C00722CFE /* ProductionRecommendCell.m */,
 				8E11A8C9278DCD57005D1FC3 /* ProductionRecomandView.h */,
 				8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */,
+				1BF4493B279B31A6003A38F8 /* ProductShowGroupView.h */,
+				1BF4493C279B31A6003A38F8 /* ProductShowGroupView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3787,6 +3792,7 @@
 				AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */,
 				1B6C5292275B672200A1C617 /* ZLBigImageCell.m in Sources */,
 				1B6C52A5275B672200A1C617 /* ZLImageEditTool.m in Sources */,
+				1BF4493D279B31A6003A38F8 /* ProductShowGroupView.m in Sources */,
 				1B74DAF2272272D000B30ECC /* StarView.m in Sources */,
 				AEA329652723FA3500E7827A /* UIButton+EnlargeTouchArea.m in Sources */,
 				AEA3298427299CDF00E7827A /* SFSearchNav.m in Sources */,

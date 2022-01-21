@@ -34,7 +34,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _couponDataSource.count;
+    return _couponDataSource.count>2?2:_couponDataSource.count;
 }
 
 - (IBAction)closeAction:(id)sender {
