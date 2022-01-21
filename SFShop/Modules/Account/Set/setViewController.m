@@ -15,6 +15,7 @@
 #import "PublicAlertView.h"
 #import "AddressViewController.h"
 #import "LanguageViewController.h"
+#import "BaseNavView.h"
 
 @interface setViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
