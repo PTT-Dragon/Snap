@@ -97,6 +97,8 @@
 @property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 
+@property (nonatomic, strong) NSString *currentShareBuyOrderId;
+
 @end
 
 @implementation ProductViewController
@@ -559,7 +561,12 @@
 }
 - (void)showGroupView
 {
+    MPWeakSelf(self)
     ProductShowGroupView *groupView = [[ProductShowGroupView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height)];
+    groupView.joinBlock = ^(ProductGroupListModel * _Nonnull model) {
+        weakself.currentShareBuyOrderId = model.shareBuyOrderId;
+        [weakself buyNow:nil];
+    };
     groupView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
     groupView.dataSource = self.groupModel.list;
     [self.view addSubview:groupView];
@@ -679,7 +686,8 @@
     cell.model = model;
     MPWeakSelf(self)
     cell.joinBlock = ^{
-        [weakself buyWithOrderId:model.shareBuyOrderId];
+        weakself.currentShareBuyOrderId = model.shareBuyOrderId;
+        [weakself buyNow:nil];
     };
     return cell;
 }
@@ -791,12 +799,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
 - (IBAction)buyNow:(UIButton *)sender {
-    [self buyWithOrderId:nil];
-}
-
-- (void)buyWithOrderId:(nullable NSString *)shareBuyOrderId {
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (!model || [model.accessToken isEqualToString:@""]) {
         LoginViewController *vc = [[LoginViewController alloc] init];
@@ -820,8 +823,8 @@
         }
         item.currentBuyCount = self.attrView.count;
         if (item.inCmpIdList) {//团购情况
-            if (shareBuyOrderId.length > 0) {
-                self.model.shareBuyOrderId = shareBuyOrderId;
+            if (self.currentShareBuyOrderId.length > 0) {
+                self.model.shareBuyOrderId = self.currentShareBuyOrderId;
                 self.model.shareBuyMode = @"B";
             } else {
                 self.model.shareBuyMode = @"A";
@@ -851,6 +854,7 @@
     _attrView.dismissBlock = ^{
         [weak_attrView removeFromSuperview];
         weakself.isCheckingSaleInfo = NO;
+        weakself.currentShareBuyOrderId = nil;
     };
     _attrView.chooseAttrBlock = ^() {
         weakself.selProductModel = weakself.attrView.selProductModel;

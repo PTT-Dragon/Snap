@@ -510,6 +510,7 @@
 		AEB5AFC3278EEE90004CD19B /* UIViewController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB5AFC2278EEE8F004CD19B /* UIViewController+Top.m */; };
 		AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE3FC912761D8EC00A96E2A /* PDFReader.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
+		AEEB51D4279B38D6001BF789 /* CollectionHeaderEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEB51D3279B38D6001BF789 /* CollectionHeaderEmptyView.m */; };
 		AEEC0BA9278834040071F059 /* CheckoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BA8278834040071F059 /* CheckoutManager.m */; };
 		AEEC0BAD27883C140071F059 /* DeleveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BAC27883C140071F059 /* DeleveryViewController.m */; };
 		AEEC0BB227883D090071F059 /* DeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEC0BB127883D080071F059 /* DeliveryCell.m */; };
@@ -1409,6 +1410,8 @@
 		AEE3FC912761D8EC00A96E2A /* PDFReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFReader.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
 		AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES128Util.m; sourceTree = "<group>"; };
+		AEEB51D2279B38D6001BF789 /* CollectionHeaderEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionHeaderEmptyView.h; sourceTree = "<group>"; };
+		AEEB51D3279B38D6001BF789 /* CollectionHeaderEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionHeaderEmptyView.m; sourceTree = "<group>"; };
 		AEEC0BA7278834040071F059 /* CheckoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckoutManager.h; sourceTree = "<group>"; };
 		AEEC0BA8278834040071F059 /* CheckoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckoutManager.m; sourceTree = "<group>"; };
 		AEEC0BAB27883C140071F059 /* DeleveryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleveryViewController.h; sourceTree = "<group>"; };
@@ -2720,6 +2723,8 @@
 			children = (
 				8E4821FD277A150900857FF5 /* EmptyView.h */,
 				8E4821FE277A150A00857FF5 /* EmptyView.m */,
+				AEEB51D2279B38D6001BF789 /* CollectionHeaderEmptyView.h */,
+				AEEB51D3279B38D6001BF789 /* CollectionHeaderEmptyView.m */,
 				8E4821FA277A14F000857FF5 /* EmptyModel.h */,
 				8E4821FB277A14F000857FF5 /* EmptyModel.m */,
 			);
@@ -3751,6 +3756,7 @@
 				1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */,
 				1B6C52A1275B672200A1C617 /* ZLEditViewController.m in Sources */,
 				1B82AECF277080B700D75E00 /* YYDiskCache.m in Sources */,
+				AEEB51D4279B38D6001BF789 /* CollectionHeaderEmptyView.m in Sources */,
 				AEEC0BB227883D090071F059 /* DeliveryCell.m in Sources */,
 				1BD8E7B8275F130F00130DCC /* RefundDetailTitleCell.m in Sources */,
 				1B05B2A2278DD9A0000F20A9 /* SysParamsModel.m in Sources */,

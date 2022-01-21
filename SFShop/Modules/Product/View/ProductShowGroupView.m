@@ -107,9 +107,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductShowGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductShowGroupCell"];
-    cell.model = self.dataSource[indexPath.row];
+    ProductGroupListModel *model = self.dataSource[indexPath.row];
+    cell.model = model;
     cell.block = ^{
-        
+        [self removeFromSuperview];
+        !self.joinBlock ?: self.joinBlock(model);
     };
     return cell;
 }
