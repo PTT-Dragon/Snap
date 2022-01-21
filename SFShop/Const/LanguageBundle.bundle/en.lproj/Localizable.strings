@@ -208,7 +208,7 @@
 //  "LOGISTICS_SERVICE" = "Logistics Service";
 //  "DISCOUNT" = "Discount";
 //  "INBOX" = "Inbox";
-//  "MY_SF" = "My SF";
+  "MY_SF" = "My SF";
 //  "DELETE" = "Delete";
 //  "CANCAL" = "Cancel";
 //  "CHOOSE_SHIPPING_ADDRESS" = "Choose shipping address";
