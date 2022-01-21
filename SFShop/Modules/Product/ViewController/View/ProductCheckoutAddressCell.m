@@ -52,7 +52,11 @@
     }];
     
     [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.sectionLine.mas_bottom).offset(16);
+        if (self.emailTF.hidden) {
+            make.centerY.mas_equalTo(0);
+        } else {
+            make.top.equalTo(self.sectionLine.mas_bottom).offset(16);
+        }
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-47);
     }];
@@ -84,8 +88,16 @@
 #pragma mark - Getter & Setter
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
     super.dataModel = dataModel;
-    self.addressLabel.text = dataModel.addressModel.customAddress;
-    self.emailTF.text = dataModel.addressModel.email;
+    
+    if (!self.dataModel.addressModel) {
+        self.addressLabel.text = kLocalizedString(@"ADD_ADDRESS_TIPS");
+        self.emailTF.hidden = YES;
+    } else {
+        self.emailTF.hidden = NO;
+        self.addressLabel.text = dataModel.addressModel.customAddress;
+        self.emailTF.text = dataModel.addressModel.email;
+    }
+
     [self layout];
 }
 

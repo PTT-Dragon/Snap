@@ -72,9 +72,16 @@
 
 - (void)setDetailModel:(ProductDetailModel *)detailModel {
     super.detailModel = detailModel;
-    self.titleLabel.text = detailModel.currentLogisticsItem.logisticsModeName;
-    self.priceLabel.text = detailModel.currentLogisticsItem.priceStr;
-    self.desLabel.text = detailModel.currentLogisticsItem.dateStr;
+    if (detailModel.currentLogisticsItem) {
+        self.titleLabel.text = detailModel.currentLogisticsItem.logisticsModeName;
+        self.priceLabel.text = detailModel.currentLogisticsItem.priceStr;
+        self.desLabel.text = detailModel.currentLogisticsItem.dateStr;
+        self.desLabel.hidden = NO;
+    } else {
+        self.titleLabel.text = kLocalizedString(@"Delivery Option");
+        self.priceLabel.text = kLocalizedString(@"choose");
+        self.desLabel.hidden = YES;
+    }
     [self layout];
 }
 

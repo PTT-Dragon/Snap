@@ -224,6 +224,16 @@
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     self.priceLabel.text = [NSString stringWithFormat:@"%@ %ld", currency, (long)selProductModel.salesPrice];
     [self updateBtn];
+    
+    // ====== 处理活动信息 ======
+    ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
+    camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
+        return object.productId.integerValue == selProductModel.productId;
+    }];
+    camaignsInfo.cmpShareBuys = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+        return object.productId.integerValue == selProductModel.productId;
+    }];
+
 }
 
 - (void)setStockModel:(NSArray<ProductStockModel *> *)stockModel {
