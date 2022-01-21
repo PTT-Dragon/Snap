@@ -103,9 +103,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSArray <ProductItemModel *> <ProductItemModel> *products;
 
 #pragma mark - 自定义字段，需要外部赋值
-@property(nonatomic, readwrite, strong, nullable) NSString *shareBuyMode;//团购 默认A
+/*
+ 团购相关
+ */
+@property(nonatomic, readwrite, strong, nullable) NSString *shareBuyMode;//团购 A:发起团购 B:参与团购
 @property(nonatomic, readwrite, strong, nullable) NSString *orderType;//团购 默认B
+@property(nonatomic, readwrite, strong, nullable) NSString *shareBuyOrderId;//团购id, 参与团购时需要数据
 
+/*
+ 留言
+ */
 @property(nonatomic, readwrite, strong, nullable) NSString *note;//留言
 
 /*

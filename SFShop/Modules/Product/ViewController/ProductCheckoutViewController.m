@@ -394,6 +394,10 @@
                 if (detailModel.shareBuyMode.length > 0) {
                     [storeDict setObject:detailModel.shareBuyMode forKey:@"shareBuyMode"];
                 }
+                if (detailModel.shareBuyOrderId.length > 0) {
+                    [storeDict setObject:detailModel.shareBuyOrderId forKey:@"shareBuyOrderId"];
+                }
+                
                 [storeDict setObject:storeId forKey:@"storeId"];
                 [storeDict setObject:storeId forKey:@"storeId"];
                 [storeDict setObject:leaveMsg forKey:@"leaveMsg"];
