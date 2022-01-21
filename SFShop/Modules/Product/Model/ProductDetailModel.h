@@ -100,13 +100,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSArray <ProductAttrModel *> <ProductAttrModel> *offerSpecAttrs;
 @property(nonatomic, strong) NSArray <ProductCarouselImgModel *> <ProductCarouselImgModel> *carouselImgUrls;
 @property(nonatomic, strong) NSArray *offerAttrValues;
-@property(nonatomic, strong) NSArray <ProductItemModel *> <ProductItemModel> *products;//商品 必须
+@property(nonatomic, strong) NSArray <ProductItemModel *> <ProductItemModel> *products;
 
 #pragma mark - 自定义字段，需要外部赋值
 @property(nonatomic, readwrite, strong, nullable) NSString *shareBuyMode;//团购 默认A
 @property(nonatomic, readwrite, strong, nullable) NSString *orderType;//团购 默认B
 
 @property(nonatomic, readwrite, strong, nullable) NSString *note;//留言
+
+/*
+ 外部组装选中商品(结算使用)
+ */
+@property(nonatomic, readwrite, strong, nonnull) NSArray <ProductItemModel *> *selectedProducts;//选中商品商品
+
 /*
  当前商店投递数据
  1、可以为空
