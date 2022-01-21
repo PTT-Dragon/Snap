@@ -230,7 +230,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray *cmpBuygetns;
 @property (nonatomic,strong) NSArray <cmpShareBuysModel>*cmpShareBuys;
 @property (nonatomic,strong) NSArray <FlashSaleDateModel>*cmpFlashSales;
-@property (nonatomic,strong) NSArray <CouponModel>*coupons;
+@property (nonatomic,strong) NSMutableArray <CouponModel>*coupons;
 @end
 
 
