@@ -31,6 +31,7 @@
 #import "ChooseAreaViewController.h"
 #import "ProductStockModel.h"
 #import "CartChooseCouponView.h"
+#import "ProductShowGroupView.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -558,7 +559,10 @@
 }
 - (void)showGroupView
 {
-    
+    ProductShowGroupView *groupView = [[NSBundle mainBundle] loadNibNamed:@"" owner:self options:nil].firstObject;
+    groupView.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    groupView.dataSource = self.campaignsModel.cmpShareBuys;
+    [self.view addSubview:groupView];
 }
 
 - (void)setModel:(ProductDetailModel *)model {
@@ -864,7 +868,7 @@
     _selectedAddressModel.city = _cityModel.stdAddr;
     _selectedAddressModel.street = _streetModel.stdAddr;
     _selectedAddressModel.district = _districtModel.stdAddr;
-    _selectedAddressModel.contactNbr = _streetModel.stdAddrId;
+    _selectedAddressModel.contactStdId = _streetModel.stdAddrId;
     _selectedAddressModel.postCode = _streetModel.zipcode;
     self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", _selectedAddressModel.province, _selectedAddressModel.city, _selectedAddressModel.district, _selectedAddressModel.postCode];
     /**

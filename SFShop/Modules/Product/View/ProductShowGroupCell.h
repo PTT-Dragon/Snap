@@ -1,5 +1,5 @@
 //
-//  ProductShowGroupView.h
+//  ProductShowGroupCell.h
 //  SFShop
 //
 //  Created by 游挺 on 2022/1/22.
@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProductShowGroupView : UIView
-@property (nonatomic,strong) NSMutableArray <cmpShareBuysModel *>*dataSource;
+@interface ProductShowGroupCell : UITableViewCell
+@property (nonatomic,strong) cmpShareBuysModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

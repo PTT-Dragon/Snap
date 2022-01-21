@@ -352,6 +352,8 @@
 		1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F7C2731313F0081C8E4 /* CommissionViewController.m */; };
 		1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */; };
 		1BF4493D279B31A6003A38F8 /* ProductShowGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4493C279B31A6003A38F8 /* ProductShowGroupView.m */; };
+		1BF44941279B37BF003A38F8 /* ProductShowGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4493F279B37BF003A38F8 /* ProductShowGroupCell.m */; };
+		1BF44942279B37BF003A38F8 /* ProductShowGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF44940279B37BF003A38F8 /* ProductShowGroupCell.xib */; };
 		1BF4DD402774615900972265 /* NSDictionary+em.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD3F2774615900972265 /* NSDictionary+em.m */; };
 		1BF4DD4A2774644600972265 /* NSObject+SwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD422774644600972265 /* NSObject+SwizzleMethod.m */; };
 		1BF4DD4B2774644600972265 /* NSArray+ErrorHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF4DD432774644600972265 /* NSArray+ErrorHandle.m */; };
@@ -1118,6 +1120,9 @@
 		1BF00F7D2731313F0081C8E4 /* CommissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommissionViewController.xib; sourceTree = "<group>"; };
 		1BF4493B279B31A6003A38F8 /* ProductShowGroupView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductShowGroupView.h; sourceTree = "<group>"; };
 		1BF4493C279B31A6003A38F8 /* ProductShowGroupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductShowGroupView.m; sourceTree = "<group>"; };
+		1BF4493E279B37BF003A38F8 /* ProductShowGroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductShowGroupCell.h; sourceTree = "<group>"; };
+		1BF4493F279B37BF003A38F8 /* ProductShowGroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductShowGroupCell.m; sourceTree = "<group>"; };
+		1BF44940279B37BF003A38F8 /* ProductShowGroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductShowGroupCell.xib; sourceTree = "<group>"; };
 		1BF4DD3E2774615800972265 /* NSDictionary+em.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+em.h"; sourceTree = "<group>"; };
 		1BF4DD3F2774615900972265 /* NSDictionary+em.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+em.m"; sourceTree = "<group>"; };
 		1BF4DD422774644600972265 /* NSObject+SwizzleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SwizzleMethod.m"; sourceTree = "<group>"; };
@@ -2386,6 +2391,9 @@
 				8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */,
 				1BF4493B279B31A6003A38F8 /* ProductShowGroupView.h */,
 				1BF4493C279B31A6003A38F8 /* ProductShowGroupView.m */,
+				1BF4493E279B37BF003A38F8 /* ProductShowGroupCell.h */,
+				1BF4493F279B37BF003A38F8 /* ProductShowGroupCell.m */,
+				1BF44940279B37BF003A38F8 /* ProductShowGroupCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3404,6 +3412,7 @@
 				1B63D463272D238C0062762B /* CartChooseAddressViewController.xib in Resources */,
 				1B2AE442272E8EDD00FB23D3 /* ChooseReasonViewController.xib in Resources */,
 				1B478317272A957000F2A945 /* RefundProcessCell.xib in Resources */,
+				1BF44942279B37BF003A38F8 /* ProductShowGroupCell.xib in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
 				1BC7A2D0272B081E00755832 /* UseCouponViewController.xib in Resources */,
@@ -3828,6 +3837,7 @@
 				1B6C5293275B672200A1C617 /* ZLAlbumListController.m in Sources */,
 				1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */,
 				1B82AED9277080B700D75E00 /* YYImageCoder.m in Sources */,
+				1BF44941279B37BF003A38F8 /* ProductShowGroupCell.m in Sources */,
 				AE6CFFB02721C09E008F18B5 /* CategoryRankHeadSelectorView.m in Sources */,
 				1B82AED1277080B700D75E00 /* YYKVStorage.m in Sources */,
 				1B49D13D271D477F002461ED /* userInfoGenderView.m in Sources */,
