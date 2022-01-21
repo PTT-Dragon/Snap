@@ -40,9 +40,9 @@
     [self.contentView addSubview:self.priceLabel];
     [self.contentView addSubview:self.discountLabel];
     [self.contentView addSubview:self.originPriceLabel];
-//    [self.contentView addSubview:self.gradeImageView];
-//    [self.contentView addSubview:self.gradeLevelLabel];
-//    [self.contentView addSubview:self.gradeNumberLabel];
+    [self.contentView addSubview:self.gradeImageView];
+    [self.contentView addSubview:self.gradeLevelLabel];
+    [self.contentView addSubview:self.gradeNumberLabel];
 }
 
 - (void)layoutTableView {
@@ -91,24 +91,24 @@
         make.height.mas_equalTo(KScale(12));
     }];
     
-//    [self.gradeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.promoTypeLabel);
-//        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
-//        make.height.mas_equalTo(KScale(12));
-//        make.width.mas_equalTo(KScale(12));
-//    }];
-//
-//    [self.gradeLevelLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.gradeImageView.mas_right).offset(KScale(2));
-//        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
-//        make.height.mas_equalTo(KScale(12));
-//    }];
-//
-//    [self.gradeNumberLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.gradeLevelLabel.mas_right).offset(KScale(8));
-//        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
-//        make.height.mas_equalTo(KScale(12));
-//    }];
+    [self.gradeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.promoTypeLabel);
+        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.height.mas_equalTo(KScale(12));
+        make.width.mas_equalTo(KScale(12));
+    }];
+
+    [self.gradeLevelLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.gradeImageView.mas_right).offset(KScale(2));
+        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.height.mas_equalTo(KScale(12));
+    }];
+
+    [self.gradeNumberLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.gradeLevelLabel.mas_right).offset(KScale(8));
+        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.height.mas_equalTo(KScale(12));
+    }];
 }
 
 - (void)layoutCollection {
@@ -142,7 +142,7 @@
     
     [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(KScale(16));
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(KScale(6));
         make.height.mas_equalTo(KScale(14));
         make.right.mas_equalTo(KScale(-12));
     }];
@@ -161,25 +161,24 @@
         make.height.mas_equalTo(KScale(12));
     }];
     
-//    [self.gradeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(KScale(12));
-//        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
-//        make.height.mas_equalTo(KScale(12));
-//        make.width.mas_equalTo(KScale(12));
-//    }];
-//
-//    [self.gradeLevelLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.gradeImageView.mas_right).offset(KScale(2));
-//        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
-//        make.height.mas_equalTo(KScale(12));
-//    }];
-//
-//    [self.gradeNumberLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.gradeLevelLabel.mas_right).offset(KScale(8));
-//        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
-//        make.height.mas_equalTo(KScale(12));
-//    }];
+    [self.gradeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(KScale(12));
+        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.height.mas_equalTo(KScale(12));
+        make.width.mas_equalTo(KScale(12));
+    }];
 
+    [self.gradeLevelLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.gradeImageView.mas_right).offset(KScale(2));
+        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.height.mas_equalTo(KScale(12));
+    }];
+
+    [self.gradeNumberLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.gradeLevelLabel.mas_right).offset(KScale(8));
+        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.height.mas_equalTo(KScale(12));
+    }];
 }
 
 #pragma mark - Getter
@@ -219,8 +218,18 @@
     self.titleLabel.text = _model.offerName;
     
     self.priceLabel.text = [NSString stringWithFormat:@"%ld", _model.specialPrice>0?_model.specialPrice: _model.salesPrice].currency;
-    self.gradeLevelLabel.text = _model.evaluationAvg;
-    self.gradeNumberLabel.text = [NSString stringWithFormat:@"(%ld)",_model.evaluationCnt];
+    if (_model.evaluationAvg.length > 0 || _model.evaluationCnt > 0) {
+        self.gradeLevelLabel.text = [NSString stringWithFormat:@"%.1f",(float)_model.evaluationAvg.doubleValue * 1.0];
+        self.gradeNumberLabel.text = [NSString stringWithFormat:@"(%ld)",_model.evaluationCnt];
+        self.gradeLevelLabel.hidden = NO;
+        self.gradeNumberLabel.hidden = NO;
+        self.gradeImageView.hidden = NO;
+    } else {
+        self.gradeLevelLabel.hidden = YES;
+        self.gradeNumberLabel.hidden = YES;
+        self.gradeImageView.hidden = YES;
+    }
+
     self.discountLabel.text = [NSString stringWithFormat:@"-%@%%",_model.discountPercent];
     
     NSAttributedString *attrStr =
@@ -264,7 +273,7 @@
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.text = @"";
-        _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
+        _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
         _priceLabel.font = [UIFont systemFontOfSize:12];
         _priceLabel.textAlignment = NSTextAlignmentLeft;
     }
@@ -293,28 +302,6 @@
     return _originPriceLabel;
 }
 
-//- (UILabel *)gradeLevelLabel {
-//    if (_gradeLevelLabel == nil) {
-//        _gradeLevelLabel = [[UILabel alloc] init];
-//        _gradeLevelLabel.text = @"";
-//        _gradeLevelLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
-//        _gradeLevelLabel.font = [UIFont systemFontOfSize:10];
-//        _gradeLevelLabel.textAlignment = NSTextAlignmentCenter;
-//    }
-//    return _gradeLevelLabel;
-//}
-//
-//- (UILabel *)gradeNumberLabel {
-//    if (_gradeNumberLabel == nil) {
-//        _gradeNumberLabel = [[UILabel alloc] init];
-//        _gradeNumberLabel.text = @"";
-//        _gradeNumberLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
-//        _gradeNumberLabel.font = [UIFont systemFontOfSize:10];
-//        _gradeNumberLabel.textAlignment = NSTextAlignmentLeft;
-//    }
-//    return _gradeNumberLabel;
-//}
-
 - (UILabel *)promoTypeLabel {
     if (_promoTypeLabel == nil) {
         _promoTypeLabel = [[UILabel alloc] init];
@@ -327,12 +314,37 @@
     return _promoTypeLabel;
 }
 
-//- (UIImageView *)gradeImageView  {
-//    if (_gradeImageView == nil) {
-//        _gradeImageView = [[UIImageView alloc] init];
-//        _gradeImageView.image = [UIImage imageNamed:@"rank_star"];
-//    }
-//    return _gradeImageView;
-//}
+- (UILabel *)gradeLevelLabel {
+    if (_gradeLevelLabel == nil) {
+        _gradeLevelLabel = [[UILabel alloc] init];
+        _gradeLevelLabel.text = @"";
+        _gradeLevelLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
+        _gradeLevelLabel.font = [UIFont systemFontOfSize:10];
+        _gradeLevelLabel.textAlignment = NSTextAlignmentCenter;
+        _gradeLevelLabel.hidden = YES;
+    }
+    return _gradeLevelLabel;
+}
+
+- (UILabel *)gradeNumberLabel {
+    if (_gradeNumberLabel == nil) {
+        _gradeNumberLabel = [[UILabel alloc] init];
+        _gradeNumberLabel.text = @"";
+        _gradeNumberLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
+        _gradeNumberLabel.font = [UIFont systemFontOfSize:10];
+        _gradeNumberLabel.textAlignment = NSTextAlignmentLeft;
+        _gradeNumberLabel.hidden = YES;
+    }
+    return _gradeNumberLabel;
+}
+
+- (UIImageView *)gradeImageView  {
+    if (_gradeImageView == nil) {
+        _gradeImageView = [[UIImageView alloc] init];
+        _gradeImageView.image = [UIImage imageNamed:@"rank_star"];
+        _gradeImageView.hidden = YES;
+    }
+    return _gradeImageView;
+}
 
 @end

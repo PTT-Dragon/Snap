@@ -203,11 +203,14 @@
             if (cellModel.sppType.length> 0) {
                 tagHeight = KScale(14) + KScale(16);
             }
+            
+            CGFloat gradeHeught = 0;
+            if (cellModel.evaluationAvg.length > 0 || cellModel.evaluationCnt > 0) {
+                gradeHeught = KScale(12) + KScale(12);
+            }
             CGFloat priceHeight = KScale(14);
             CGFloat discountHeight = KScale(14);
-            CGFloat levelHeight = 0;//KScale(12);
-            //        + KScale(16) + tagHeight
-            cellModel.height = imageHeight + tagHeight + KScale(12) + titleHeight + KScale(16) + priceHeight + KScale(4) + discountHeight + KScale(12) + levelHeight + KScale(12);
+            cellModel.height = imageHeight + tagHeight + KScale(12) + titleHeight + KScale(6) + priceHeight + KScale(4) + discountHeight + KScale(12) + gradeHeught + KScale(12);
         }
         return cellModel.height;
     } else {

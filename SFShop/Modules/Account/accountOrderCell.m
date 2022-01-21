@@ -42,8 +42,8 @@
     [self.allOrderBtn setTitle:kLocalizedString(@"VIEW_ALL_ORDERS") forState:0];
     self.toPayLabel.text = kLocalizedString(@"TO_PAY");
     self.toShipLabel.text = kLocalizedString(@"TO_SHIP");
-    self.toreceiveLabel.text = kLocalizedString(@"TO_RECEIVE");
-    self.ratingLabel.text = kLocalizedString(@"TO_REVIEW");
+    self.toreceiveLabel.text = kLocalizedString(@"TORECEIVE");
+    self.ratingLabel.text = kLocalizedString(@"RATING");
     self.returnLabel.text = kLocalizedString(@"RETURN");
     _toShipCountLabel.layer.borderWidth = 1;
     _toShipCountLabel.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;

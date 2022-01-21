@@ -10,6 +10,7 @@
 #import "AddAddressViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "EmptyView.h"
+#import "AddressTitleCell.h"
 
 @interface AddressViewController ()<UITableViewDelegate,UITableViewDataSource,AddAddressViewControllerDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -37,6 +38,8 @@
     _dataSource = [NSMutableArray array];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"AddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"AddressTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"AddressTitleCell" bundle:nil] forCellReuseIdentifier:@"AddressTitleCell"];
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) { 
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+20);
         make.left.right.mas_equalTo(self.view);
@@ -107,12 +110,16 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    return self.dataSource.count == 0 ? 0: self.dataSource.count+1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        AddressTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddressTitleCell"];
+        return cell;
+    }
     AddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddressTableViewCell"];
-    [cell setContent:self.dataSource[indexPath.row]];
+    [cell setContent:self.dataSource[indexPath.row-1]];
     MPWeakSelf(self)
     cell.block = ^(addressModel * _Nonnull model) {
         AddAddressViewController *vc = [[AddAddressViewController alloc] init];
@@ -124,7 +131,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 132;
+    return indexPath.row == 0 ? 49: 132;
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     //删除
