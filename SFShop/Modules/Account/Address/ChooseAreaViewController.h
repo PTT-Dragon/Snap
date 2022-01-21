@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChooseAreaViewController : UIViewController
 @property (nonatomic,assign) id<ChooseAreaViewControllerDelegate>delegate;
-@property (nonatomic,assign) NSInteger type;//1.选择省市区  2.选择街道  3.都选择 4.重新选择省市区 5.重新选择街道
+@property (nonatomic,assign) NSInteger type;//1.选择省市区  2.选择街道  3.都选择 4.重新选择省市区 5.重新选择街道  6.重新选择所有
 @property (nonatomic,strong) AreaModel *_Nullable selProvinceAreaMoel;
 @property (nonatomic,strong) AreaModel * _Nullable selCityAreaMoel;
 @property (nonatomic,strong) AreaModel *_Nullable selDistrictAreaMoel;

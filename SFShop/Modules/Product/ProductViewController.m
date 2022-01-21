@@ -148,7 +148,7 @@
     
     ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
     vc.delegate = self;
-    vc.type = 3;
+    vc.type = 6;
     vc.selProvinceAreaMoel = self.provinceModel;
     vc.selCityAreaMoel = self.cityModel;
     vc.selDistrictAreaMoel = self.districtModel;
