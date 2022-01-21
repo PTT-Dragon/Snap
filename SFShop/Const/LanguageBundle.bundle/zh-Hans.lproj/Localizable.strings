@@ -212,7 +212,7 @@
 //  "LOGISTICS_SERVICE" = "物流服务";
 //  "DISCOUNT" = "优惠";
 //  "INBOX" = "消息";
-//  "MY_SF" = "我的 SF";
+  "MY_SF" = "我的 SF";
 //  "DELETE" = "删除";
 //  "CANCAL" = "取消";
 //  "CHOOSE_SHIPPING_ADDRESS" = "选择发货地址";
