@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) UIImageView *checkImageView;
 
+@property (nonatomic,strong) UILabel *topLabel;
+
 @end
 
 @implementation LanguageViewController
@@ -38,24 +40,31 @@
     [self.view addSubview:self.englishBtn];
     [self.view addSubview:self.hindiBtn];
     [self.view addSubview:self.checkImageView];
+    [self.view addSubview:self.topLabel];
 }
 
 - (void)initLayout {
-    [self.chineseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.topLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+10);
         make.left.mas_equalTo(self.view.mas_left).offset(16);
+        make.centerX.equalTo(self.view);
+        make.height.mas_equalTo(60);
+    }];
+    [self.chineseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.englishBtn.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.view.mas_left).offset(0);
         make.height.mas_equalTo(50);
         make.width.mas_equalTo(130);
     }];
     [self.englishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.chineseBtn.mas_bottom).offset(10);
-        make.left.mas_equalTo(self.view.mas_left).offset(16);
+        make.top.mas_equalTo(self.topLabel.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.view.mas_left).offset(0);
         make.height.mas_equalTo(50);
         make.width.mas_equalTo(130);
     }];
     [self.hindiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.englishBtn.mas_bottom).offset(10);
-        make.left.mas_equalTo(self.view.mas_left).offset(16);
+        make.top.mas_equalTo(self.chineseBtn.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.view.mas_left).offset(0);
         make.width.mas_equalTo(130);
         make.height.mas_equalTo(50);
     }];
@@ -177,6 +186,18 @@
         _checkImageView.layer.masksToBounds = YES;
     }
     return _checkImageView;
+}
+- (UILabel *)topLabel
+{
+    if (!_topLabel) {
+        _topLabel = [[UILabel alloc] init];
+        _topLabel.backgroundColor = RGBColorFrom16(0xfcf9dd);
+        _topLabel.text = @"Select the language you prefer for browsing shopping and communications";
+        _topLabel.font = CHINESE_SYSTEM(12);
+        _topLabel.textColor = RGBColorFrom16(0xd58b63);
+        _topLabel.numberOfLines = 0;
+    }
+    return _topLabel;
 }
 
 @end

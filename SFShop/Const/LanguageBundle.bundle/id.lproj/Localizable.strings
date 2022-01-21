@@ -420,7 +420,7 @@
 //  "GROUPSUCCESS" = "Join group sukses";
 //  "TOSHIP" = "Dikirim";
   "TORECEIVE" = "Diterima";
-//  "DELIVERY_ADDRESS" = "Alamat pengiriman";
+  "DELIVERY_ADDRESS" = "Alamat pengiriman";
 //  "DELIVERY_INFORMATION" = "informasi pengiriman";
 //  "ORDER_RECEIPT" = "Resi pesanan";
 //  "PACKAGE" = "Paket";

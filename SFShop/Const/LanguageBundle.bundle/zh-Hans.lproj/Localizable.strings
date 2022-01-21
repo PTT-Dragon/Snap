@@ -420,7 +420,7 @@
 //  "GROUPSUCCESS" = "加入拼团成功.";
 //  "TOSHIP" = "待发货";
   "TORECEIVE" = "待收货";
-//  "DELIVERY_ADDRESS" = "收货地址";
+  "DELIVERY_ADDRESS" = "收货地址";
 //  "DELIVERY_INFORMATION" = "配送信息";
 //  "ORDER_RECEIPT" = "订单收据";
 //  "PACKAGE" = "包裹";

@@ -136,7 +136,7 @@
 //  "EXCHANGE" = "Exchange";
 //  "DELIVERY" = "Delivery";
 //  "DELETE_ADDRESS_TXT" = "Are you sure to delete this address?";
-  "ADD_ADDRESS" = "Add Address";
+  "ADD_ADDRESS" = "ADD ADDRESS";
 //  "MY_ADDRESS" = "My Address";
 "REQUIREDTIP" = "Please Input";
 //  "INCORRECT_NAME" = "Please input 4 ~ 40 characters for recipient name.";
@@ -416,7 +416,7 @@
 //  "GROUPSUCCESS" = "Join group successfully.Please check later.";
 //  "TOSHIP" = "To Ship";
   "TORECEIVE" = "Shipped";
-//  "DELIVERY_ADDRESS" = "Delivery Address";
+  "DELIVERY_ADDRESS" = "Delivery Address";
 //  "DELIVERY_INFORMATION" = "Delivery Information";
 //  "ORDER_RECEIPT" = "Order Receipt";
 //  "PACKAGE" = "Package";

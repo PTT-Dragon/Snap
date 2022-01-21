@@ -17,7 +17,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
+    _label.text = kLocalizedString(@"DELIVERY_ADDRESS");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
