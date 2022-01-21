@@ -187,7 +187,7 @@ static CheckoutManager *_instance = nil;
 
 - (void)calfeeByAddress:(addressModel *)addressModel complete:(void(^)(BOOL isSuccess, ProductCheckoutModel *checkoutModel))complete {
     NSAssert(self.cacheData, @"没初始化ProductCheckoutModel,请在 loadCheckoutData 函数返回数据之后调用");
-    NSAssert(self.cacheData.addressModel.deliveryAddressId.length > 0, @"地址id不能为空");
+//    NSAssert(self.cacheData.addressModel.deliveryAddressId.length > 0, @"地址id不能为空");
     self.cacheData.addressModel = addressModel;
     [SFNetworkManager post:SFNet.order.logistics parameters:self.logisticsParams success:^(id  _Nullable response) {
         NSMutableArray *logisticsModels = [NSMutableArray array];

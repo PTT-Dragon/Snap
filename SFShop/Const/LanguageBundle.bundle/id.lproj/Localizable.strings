@@ -440,7 +440,7 @@
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "Keranjang kosong";
 //  "NOTES" = "Catatan";
 //  "STORE_PROMOTION" = "Promo dari toko";
-//  "INPUT_MESSAGE" = "Masukkan pesan Anda";
+  "INPUT_MESSAGE" = "Masukkan pesan Anda";
 //  "DELIVERY_RANGE" = "Area pengiriman";
 //  "DELIVERY_MEHOD" = "Metode Pengiriman";
 //  "PAYMENT_UNSUCCESSFUL" = "Pembayaran Gagal";

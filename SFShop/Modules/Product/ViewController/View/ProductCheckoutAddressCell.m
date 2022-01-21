@@ -94,8 +94,10 @@
         self.emailTF.hidden = YES;
     } else {
         self.emailTF.hidden = NO;
+        if (dataModel.addressModel.email.length > 0) {
+            self.emailTF.text = dataModel.addressModel.email;
+        }
         self.addressLabel.text = dataModel.addressModel.customAddress;
-        self.emailTF.text = dataModel.addressModel.email;
     }
 
     [self layout];
