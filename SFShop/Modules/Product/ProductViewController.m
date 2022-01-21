@@ -833,13 +833,9 @@
         weakself.isCheckingSaleInfo = NO;
     };
     _attrView.chooseAttrBlock = ^() {
-        [weakself.model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            // TODO: 此处暂时仅处理颜色的属性，因为没找到有其他属性的测试数据
-            if ([obj.attrName isEqualToString:@"Color"]) {
-                NSInteger selectedColorIndex = weakself.attrView.selectedAttrValue[idx].integerValue;
-                weakself.variationsLabel.text = obj.attrValues[selectedColorIndex].value;
-            }
-        }];
+        weakself.selProductModel = weakself.attrView.selProductModel;
+        // 切换属性，可能会走团购逻辑
+        [weakself requestGroupInfo];
     };
     UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
     [rootView addSubview:_attrView];
