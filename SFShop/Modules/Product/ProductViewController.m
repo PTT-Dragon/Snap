@@ -29,8 +29,9 @@
 #import "SysParamsModel.h"
 #import "LoginViewController.h"
 #import "ChooseAreaViewController.h"
+#import "ProductStockModel.h"
 
-@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, ChooseAreaViewControllerDelegate>
+@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
@@ -88,6 +89,9 @@
 @property (nonatomic, strong) AreaModel *districtModel;
 @property (nonatomic, strong) AreaModel *streetModel;
 
+@property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
+@property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
+
 @end
 
 @implementation ProductViewController
@@ -98,15 +102,9 @@
     
     self.title = kLocalizedString(@"Product_detail");
     self.view.backgroundColor = [UIColor whiteColor];
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    if (model && ![model.accessToken isEqualToString:@""]) {
-        //只有在登录的情况下才去请求
-        [self requestAddressInfo];
-    }
     
     [self request];
     [self requestSimilar];
-    [self requestStock];
     [self setupSubViews];
     [self requestProductRecord];
     [self requestEvaluationsList];
@@ -145,15 +143,24 @@
 }
 
 - (void)chooseAddress {
-    
-    ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
-    vc.delegate = self;
-    vc.type = 3;
-    vc.selProvinceAreaMoel = self.provinceModel;
-    vc.selCityAreaMoel = self.cityModel;
-    vc.selDistrictAreaMoel = self.districtModel;
-    vc.selStreetAreaMoel = self.streetModel;
-    [self presentViewController:vc animated:YES completion: nil];
+    CartChooseAddressViewController *vc = [[CartChooseAddressViewController alloc] init];
+    vc.addressListArr = self.addressDataSource;
+    vc.view.frame = CGRectMake(0, 0, self.view.jk_width, self.view.jk_height);
+    MPWeakSelf(self)
+    vc.selBlock = ^(addressModel * model) {
+        weakself.selectedAddressModel = model;
+    };
+    [self.view addSubview:vc.view];
+    [self addChildViewController:vc];
+
+//    ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
+//    vc.delegate = self;
+//    vc.type = 3;
+//    vc.selProvinceAreaMoel = self.provinceModel;
+//    vc.selCityAreaMoel = self.cityModel;
+//    vc.selDistrictAreaMoel = self.districtModel;
+//    vc.selStreetAreaMoel = self.streetModel;
+//    [self presentViewController:vc animated:YES completion: nil];
 }
 
 - (void)setSelectedAddressModel:(addressModel *)selectedAddressModel {
@@ -167,6 +174,7 @@
         [hud hideAnimated:YES];
         NSError *error;
         self.model = [[ProductDetailModel alloc] initWithDictionary: response error: &error];
+        [self requestAddressInfo];
         NSLog(@"get product detail success");
     } failed:^(NSError * _Nonnull error) {
         [hud hideAnimated:YES];
@@ -218,74 +226,27 @@
 }
 
 - (void)requestAddressInfo {
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model ||[model.accessToken isEqualToString:@""]) {
+        //只有在登录的情况下才去请求
+        return;
+    }
+
+    self.addressDataSource = [NSMutableArray array];
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.address.addressList parameters:@{} success:^(id  _Nullable response) {
         for (NSDictionary *dic in response) {
             addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
             if ([model.isDefault isEqualToString:@"Y"]) {
                 weakself.selectedAddressModel = model;
-                [weakself requestProvinceInfo];
-                break;
+                [self requestStock];
             }
+            [weakself.addressDataSource addObject:model];
         }
     } failed:^(NSError * _Nonnull error) {
         
     }];
 }
-
-- (void)requestProvinceInfo {
-    MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.address.areaData parameters:@{@"addrLevelId":@(2)} success:^(id  _Nullable response) {
-        NSArray<AreaModel *> *arr = [AreaModel arrayOfModelsFromDictionaries:response error:nil];
-        weakself.provinceModel = [arr jk_filter:^BOOL(AreaModel *object) {
-            return object.stdAddr == weakself.selectedAddressModel.province;
-        }].firstObject;
-        [weakself requestCityInfo];
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
-}
-
-- (void)requestCityInfo {
-    MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":weakself.provinceModel.stdAddrId} success:^(id  _Nullable response) {
-        NSArray<AreaModel *> *arr = [AreaModel arrayOfModelsFromDictionaries:response error:nil];
-        weakself.cityModel = [arr jk_filter:^BOOL(AreaModel *object) {
-            return [object.stdAddr isEqualToString: weakself.selectedAddressModel.city];
-        }].firstObject;
-        [weakself requestDistrictInfo];
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
-}
-
-- (void)requestDistrictInfo {
-    MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":weakself.cityModel.stdAddrId} success:^(id  _Nullable response) {
-        NSArray<AreaModel *> *arr = [AreaModel arrayOfModelsFromDictionaries:response error:nil];
-        weakself.districtModel = [arr jk_filter:^BOOL(AreaModel *object) {
-            return [object.stdAddr isEqualToString: weakself.selectedAddressModel.district];
-        }].firstObject;
-        [weakself requestStreetInfo];
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
-}
-
-- (void)requestStreetInfo {
-    MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":weakself.districtModel.stdAddrId} success:^(id  _Nullable response) {
-        NSArray<AreaModel *> *arr = [AreaModel arrayOfModelsFromDictionaries:response error:nil];
-        weakself.streetModel = [arr jk_filter:^BOOL(AreaModel *object) {
-            return [object.stdAddr isEqualToString: weakself.selectedAddressModel.street];
-        }].firstObject;
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
-}
-
-
-
 
 - (void)requestEvaluationsList
 {
@@ -341,11 +302,38 @@
  请求库存信息
  */
 - (void)requestStock {
-    MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.offer.stock success:^(id  _Nullable response) {
-        CartNumModel *numModel = [[CartNumModel alloc] initWithDictionary:response error:nil];
-        weakself.cartNumLabel.text = numModel.num;
-        weakself.cartNumLabel.hidden = [numModel.num isEqualToString:@"0"];
+    MPWeakSelf(self);
+    NSArray *arr = [self.model.products jk_map:^id(ProductItemModel *object) {
+        cmpShareBuysModel *sbModel = [weakself.campaignsModel.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object1) {
+            return object1.productId.integerValue == object.productId;
+        }].firstObject;
+        NSArray *inCmpIdList = sbModel ? @[@(sbModel.campaignId)] : @[];
+        return @{
+            @"productId": @(object.productId),
+            @"offerCnt": @1,
+            @"inCmpIdList": inCmpIdList
+        };;
+    }];
+    NSDictionary *param = @{
+                       @"stdAddrId": self.selectedAddressModel.contactStdId,
+                       @"stores": @[
+                           @{
+                               @"storeId": @(self.model.storeId),
+                               @"products": arr
+                           }
+                       ]
+    };
+    [SFNetworkManager post:SFNet.offer.stock parameters: param success:^(id  _Nullable response) {
+        self.stockModel = [ProductStockModel arrayOfModelsFromDictionaries:response error:nil];
+        [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+            [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                if (obj2.productId.integerValue == weakself.productId) {
+                    weakself.deliveryLabel.text = [NSString stringWithFormat:@"%@-%@day(s)", obj2.minDeliveryDays, obj2.maxDeliveryDays];
+                    *stop1 = YES;
+                    *stop2 = YES;
+                }
+            }];
+        }];
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -784,6 +772,8 @@
 - (void)showAttrsView {
     _isCheckingSaleInfo = YES;
     _attrView = [[ProductSpecAttrsView alloc] init];
+    _attrView.selProductModel = self.selProductModel;
+    _attrView.stockModel = self.stockModel;
     _attrView.model = self.model;
     MPWeakSelf(self)
     MPWeakSelf(_attrView)
@@ -833,16 +823,4 @@
     }
     return _recommendView;
 }
-
-#pragma mark - delegate
-- (void)chooseProvince:(AreaModel *_Nullable)provinceModel city:(AreaModel *_Nullable)cityModel district:(AreaModel *_Nullable)districtModel street:(AreaModel * _Nullable)streetModel
-{
-    self.provinceModel = provinceModel;
-    self.cityModel = cityModel;
-    self.districtModel = districtModel;
-    self.streetModel = streetModel;
-    
-    self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", provinceModel.stdAddr, cityModel.stdAddr, districtModel.stdAddr, streetModel.stdAddr];
-}
-
 @end

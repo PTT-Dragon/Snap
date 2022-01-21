@@ -375,6 +375,7 @@
 		4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43858226FF5D2400BA3D90 /* ArticleDetailModel.m */; };
 		4B43E21B2778901C00722CFE /* ProductionRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B43E21A2778901C00722CFE /* ProductionRecommendCell.m */; };
 		4B7974C7271EFD1200F2EEEA /* ArticleEvaluateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7974C6271EFD1200F2EEEA /* ArticleEvaluateModel.m */; };
+		4B815840279B1C3D00EA5485 /* ProductStockModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B81583F279B1C3D00EA5485 /* ProductStockModel.m */; };
 		4B818FD527239C910058038A /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B818FD327239C910058038A /* ProductViewController.m */; };
 		4B818FD627239C910058038A /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B818FD427239C910058038A /* ProductViewController.xib */; };
 		4B818FDD27239F510058038A /* ProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B818FDC27239F500058038A /* ProductDetailModel.m */; };
@@ -1158,6 +1159,8 @@
 		4B43E21A2778901C00722CFE /* ProductionRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductionRecommendCell.m; sourceTree = "<group>"; };
 		4B7974C5271EFD1200F2EEEA /* ArticleEvaluateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleEvaluateModel.h; sourceTree = "<group>"; };
 		4B7974C6271EFD1200F2EEEA /* ArticleEvaluateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleEvaluateModel.m; sourceTree = "<group>"; };
+		4B81583E279B1C3D00EA5485 /* ProductStockModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductStockModel.h; sourceTree = "<group>"; };
+		4B81583F279B1C3D00EA5485 /* ProductStockModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductStockModel.m; sourceTree = "<group>"; };
 		4B818FD227239C910058038A /* ProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductViewController.h; sourceTree = "<group>"; };
 		4B818FD327239C910058038A /* ProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductViewController.m; sourceTree = "<group>"; };
 		4B818FD427239C910058038A /* ProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewController.xib; sourceTree = "<group>"; };
@@ -2442,6 +2445,8 @@
 				4B818FEB272444560058038A /* ProductSimilarModel.m */,
 				4BEB1221275CB98A00D5342A /* ProductCalcFeeModel.h */,
 				4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */,
+				4B81583E279B1C3D00EA5485 /* ProductStockModel.h */,
+				4B81583F279B1C3D00EA5485 /* ProductStockModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3663,6 +3668,7 @@
 				1BDCBFA72796AD7C008CEBAB /* RefundOrReturnExplainCell.m in Sources */,
 				AE5C9A6F275B5F3800F34481 /* SFSearchingModel.m in Sources */,
 				AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */,
+				4B815840279B1C3D00EA5485 /* ProductStockModel.m in Sources */,
 				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,
 				1B74DB3927265EDC00B30ECC /* setViewController.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
