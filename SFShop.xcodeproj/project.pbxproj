@@ -334,6 +334,8 @@
 		1BE0B88A2701678000C73CEC /* CouponCenterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B8882701678000C73CEC /* CouponCenterCollectionViewCell.xib */; };
 		1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0B88C2701944300C73CEC /* CouponAlertView.m */; };
 		1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */; };
+		1BE28C10279B082E000683B8 /* AddressTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE28C0E279B082E000683B8 /* AddressTitleCell.m */; };
+		1BE28C11279B082E000683B8 /* AddressTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE28C0F279B082E000683B8 /* AddressTitleCell.xib */; };
 		1BE94C1F274B762900B588F4 /* PublicShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE94C1E274B762900B588F4 /* PublicShareView.m */; };
 		1BF00F54272FC13D0081C8E4 /* DistributeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F52272FC13D0081C8E4 /* DistributeCenterViewController.m */; };
 		1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F53272FC13D0081C8E4 /* DistributeCenterViewController.xib */; };
@@ -398,6 +400,8 @@
 		8E1872D82796AF2300DBEE3E /* MGCShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1872D72796AF2300DBEE3E /* MGCShareManager.m */; };
 		8E1EC08C27986CC600CE0088 /* CartRecomandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC08B27986CC600CE0088 /* CartRecomandView.m */; };
 		8E1EC2CE2799A1FF00CE0088 /* BaseNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC2CD2799A1FF00CE0088 /* BaseNavView.m */; };
+		8E1EC400279AFD5900CE0088 /* BaseMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC3FF279AFD5900CE0088 /* BaseMoreView.m */; };
+		8E1EC535279B0C4500CE0088 /* UIButton+FFImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC533279B0C4500CE0088 /* UIButton+FFImagePosition.m */; };
 		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
 		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
 		8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */; };
@@ -1083,6 +1087,9 @@
 		1BE0B88B2701944300C73CEC /* CouponAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponAlertView.h; sourceTree = "<group>"; };
 		1BE0B88C2701944300C73CEC /* CouponAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponAlertView.m; sourceTree = "<group>"; };
 		1BE0B88E2701944B00C73CEC /* CouponAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponAlertView.xib; sourceTree = "<group>"; };
+		1BE28C0D279B082E000683B8 /* AddressTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressTitleCell.h; sourceTree = "<group>"; };
+		1BE28C0E279B082E000683B8 /* AddressTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressTitleCell.m; sourceTree = "<group>"; };
+		1BE28C0F279B082E000683B8 /* AddressTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressTitleCell.xib; sourceTree = "<group>"; };
 		1BE94C1D274B762900B588F4 /* PublicShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicShareView.h; sourceTree = "<group>"; };
 		1BE94C1E274B762900B588F4 /* PublicShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublicShareView.m; sourceTree = "<group>"; };
 		1BF00F51272FC13D0081C8E4 /* DistributeCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeCenterViewController.h; sourceTree = "<group>"; };
@@ -1202,6 +1209,10 @@
 		8E1EC08B27986CC600CE0088 /* CartRecomandView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartRecomandView.m; sourceTree = "<group>"; };
 		8E1EC2CC2799A1FF00CE0088 /* BaseNavView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavView.h; sourceTree = "<group>"; };
 		8E1EC2CD2799A1FF00CE0088 /* BaseNavView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavView.m; sourceTree = "<group>"; };
+		8E1EC3FE279AFD5900CE0088 /* BaseMoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseMoreView.h; sourceTree = "<group>"; };
+		8E1EC3FF279AFD5900CE0088 /* BaseMoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseMoreView.m; sourceTree = "<group>"; };
+		8E1EC533279B0C4500CE0088 /* UIButton+FFImagePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+FFImagePosition.m"; sourceTree = "<group>"; };
+		8E1EC534279B0C4500CE0088 /* UIButton+FFImagePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+FFImagePosition.h"; sourceTree = "<group>"; };
 		8E4821FA277A14F000857FF5 /* EmptyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyModel.h; sourceTree = "<group>"; };
 		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
 		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
@@ -2097,6 +2108,9 @@
 				1B92D1512732815C00E73F98 /* AreaCell.h */,
 				1B92D1522732815C00E73F98 /* AreaCell.m */,
 				1B92D1532732815C00E73F98 /* AreaCell.xib */,
+				1BE28C0D279B082E000683B8 /* AddressTitleCell.h */,
+				1BE28C0E279B082E000683B8 /* AddressTitleCell.m */,
+				1BE28C0F279B082E000683B8 /* AddressTitleCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2636,6 +2650,8 @@
 		4BBFEE9E26FCADDA00E3C832 /* Const */ = {
 			isa = PBXGroup;
 			children = (
+				8E1EC534279B0C4500CE0088 /* UIButton+FFImagePosition.h */,
+				8E1EC533279B0C4500CE0088 /* UIButton+FFImagePosition.m */,
 				4BBFEE9F26FCAE1400E3C832 /* Enums.h */,
 				4BBFEEA026FCAE1400E3C832 /* Enums.m */,
 				1BDBEB8F26FCB7590018109B /* Macros.h */,
@@ -2961,6 +2977,8 @@
 				1B05B2A1278DD9A0000F20A9 /* SysParamsModel.m */,
 				8E1EC2CC2799A1FF00CE0088 /* BaseNavView.h */,
 				8E1EC2CD2799A1FF00CE0088 /* BaseNavView.m */,
+				8E1EC3FE279AFD5900CE0088 /* BaseMoreView.h */,
+				8E1EC3FF279AFD5900CE0088 /* BaseMoreView.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -3388,6 +3406,7 @@
 				1B552EB6276C3A700086604B /* ProductGroupListCell.xib in Resources */,
 				1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */,
 				1B74DAFA2722A85600B30ECC /* InviteCell.xib in Resources */,
+				1BE28C11279B082E000683B8 /* AddressTitleCell.xib in Resources */,
 				1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */,
 				1B74DAEE27225EF000B30ECC /* ReviewCell.xib in Resources */,
 				1BDBEBAB26FDB8690018109B /* resetPasswordViewController.xib in Resources */,
@@ -3550,6 +3569,7 @@
 				1B6C529C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				1BD8E79D275D005900130DCC /* AccountActiveCell.m in Sources */,
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
+				8E1EC535279B0C4500CE0088 /* UIButton+FFImagePosition.m in Sources */,
 				1BE0B8892701678000C73CEC /* CouponCenterCollectionViewCell.m in Sources */,
 				1BF00F74272FDD770081C8E4 /* DistributorModel.m in Sources */,
 				1B62466B2762608000009DE2 /* MessageViewController.m in Sources */,
@@ -3579,6 +3599,7 @@
 				1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */,
 				8E1EC2CE2799A1FF00CE0088 /* BaseNavView.m in Sources */,
 				1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */,
+				1BE28C10279B082E000683B8 /* AddressTitleCell.m in Sources */,
 				1B964758273E494A00345DDA /* IncomeAndExpenseCell.m in Sources */,
 				AE8F32DA272EA42F008E3DD8 /* SFCellCacheModel.m in Sources */,
 				1B82AE33276F7B7F00D75E00 /* CommunityEvaluateCell.m in Sources */,
@@ -3660,6 +3681,7 @@
 				8E11A8CB278DCD57005D1FC3 /* ProductionRecomandView.m in Sources */,
 				AE5C9A69275B5C7C00F34481 /* SFSearchingView.m in Sources */,
 				1B552E9F276B14F10086604B /* GroupBuyListCell.m in Sources */,
+				8E1EC400279AFD5900CE0088 /* BaseMoreView.m in Sources */,
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
 				1B82AED0277080B700D75E00 /* YYCache.m in Sources */,

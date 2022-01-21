@@ -50,4 +50,10 @@ typedef enum :NSUInteger{
 
 @end
 
+@interface FavoriteNumModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*totalNum;
+@property (nonatomic,copy) NSString <Optional>*priceDownNum;
+
+@end
+
 NS_ASSUME_NONNULL_END

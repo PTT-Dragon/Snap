@@ -14,3 +14,7 @@
 @implementation favoriteVCModel
 
 @end
+
+@implementation FavoriteNumModel
+
+@end

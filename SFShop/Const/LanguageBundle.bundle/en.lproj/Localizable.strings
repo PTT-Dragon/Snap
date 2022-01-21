@@ -123,7 +123,7 @@
 //  "COLLECT_SUCCESS" = "Add item to wishlist Successfully！";
 //  "DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully！";
 //  "COLLECT" = "COLLECT";
-//  "RATING" = "Rating";
+  "RATING" = "Rating";
 //  "STAR" = "star";
 //  "ENDS_IN" = "Ends in";
 //  "TOTAL" = "Total";
@@ -136,7 +136,7 @@
 //  "EXCHANGE" = "Exchange";
 //  "DELIVERY" = "Delivery";
 //  "DELETE_ADDRESS_TXT" = "Are you sure to delete this address?";
-  "ADD_ADDRESS" = "Add Address";
+  "ADD_ADDRESS" = "ADD ADDRESS";
 //  "MY_ADDRESS" = "My Address";
 "REQUIREDTIP" = "Please Input";
 //  "INCORRECT_NAME" = "Please input 4 ~ 40 characters for recipient name.";
@@ -208,7 +208,7 @@
 //  "LOGISTICS_SERVICE" = "Logistics Service";
 //  "DISCOUNT" = "Discount";
 //  "INBOX" = "Inbox";
-//  "MY_SF" = "My SF";
+  "MY_SF" = "My SF";
 //  "DELETE" = "Delete";
 //  "CANCAL" = "Cancel";
 //  "CHOOSE_SHIPPING_ADDRESS" = "Choose shipping address";
@@ -332,7 +332,7 @@
 //  "SHARE" = "Share";
   "WISHLIST" = "Wishlist";
 //  "COUPON_S" = "Vouchers";
-//  "REFERS" = "Refers";
+  "REFERS" = "Refers";
 //  "FORUM" = "Forum";
 //  "REVIEWS" = "Reviews";
 //  "JUST_FOR_YOU" = "Just for you";
@@ -415,8 +415,8 @@
   "SHAREBUY" = "Group Buy";
 //  "GROUPSUCCESS" = "Join group successfully.Please check later.";
 //  "TOSHIP" = "To Ship";
-//  "TORECEIVE" = "To Receive";
-//  "DELIVERY_ADDRESS" = "Delivery Address";
+  "TORECEIVE" = "Shipped";
+  "DELIVERY_ADDRESS" = "Delivery Address";
 //  "DELIVERY_INFORMATION" = "Delivery Information";
 //  "ORDER_RECEIPT" = "Order Receipt";
 //  "PACKAGE" = "Package";
@@ -431,7 +431,7 @@
 //  "INVALID_PRODUCTS" = "Invalid Products";
 //  "COUPON_DETAIL" = "Voucher Detail";
 //  "GOT_IT" = "GOT IT";
-//  "DROP_IN_PRICE" = "Drop in price";
+  "DROP_IN_PRICE" = "Drop in price";
 //  "MOVE_TO_FAVOURITE" = "Move to favourite";
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "There are no items in this cart";
 //  "NOTES" = "Notes";

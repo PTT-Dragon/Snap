@@ -20,6 +20,7 @@
 @property (nonatomic, readwrite, strong) NSMutableArray *dataSource;
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic,strong) VTMagicController *magicController;
+@property (nonatomic,strong) FavoriteNumModel *numModel;
 
 @end
 
@@ -39,7 +40,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self action:@selector(jumpToFilterDetail) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0 , 0, 44, 44);
-    [button setBackgroundImage:[UIImage imageNamed:@"00075_01_filters_outline"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"WX20220121-231052"] forState:UIControlStateNormal];
     [self.view addSubview:button];
     UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItems = @[rightItem];
@@ -87,6 +88,7 @@
 }
 - (void)loadDatas
 {
+    MPWeakSelf(self)
     [SFNetworkManager get:SFNet.favorite.num parameters:@{@"catgFlag":@"Y",@"priceDownFlag":@"Y",@"invalidFlag":@"Y",@"promotionFlag":@"Y"} success:^(id  _Nullable response) {
         NSArray *catgNumList = [response objectForKey:@"catgNumList"];
         NSMutableArray *catgs = [NSMutableArray array];
@@ -99,12 +101,20 @@
             model.catgName = catgName;
             [catgs addObject:model];
         }
-        
+        weakself.numModel = [[FavoriteNumModel alloc] initWithDictionary:response error:nil];
+        [weakself updateNum];
         self.dataModel = [[CategoryRankModel alloc] init];
         self.dataModel.catgIds = catgs;
     } failed:^(NSError * _Nonnull error) {
         
     }];
+}
+- (void)updateNum
+{
+    NSString *all = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"All"),self.numModel.totalNum];
+    NSString *Pricedown = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"All"),self.numModel.priceDownNum];
+    self.menuList = @[all, Pricedown];
+    [self.magicController.magicView reloadMenuTitles];
 }
 - (void)loadView
 {

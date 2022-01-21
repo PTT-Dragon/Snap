@@ -150,8 +150,8 @@
     [SFNetworkManager get: [SFNet.article getEvaluateOf: _articleId] success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSError *error;
-        NSMutableArray *arr = [ArticleEvaluateModel arrayOfModelsFromDictionaries:response error:&error];
-        self.evaluateArray = [[arr reverseObjectEnumerator] allObjects];
+        self.evaluateArray = [ArticleEvaluateModel arrayOfModelsFromDictionaries:response error:&error];
+//        self.evaluateArray = [[arr reverseObjectEnumerator] allObjects];
         self.evaluateTableViewHei.constant = [self calculateTableViewHei];
         [self.evaluateTableView reloadData];
         NSLog(@"get article evaluate success");

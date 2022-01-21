@@ -51,8 +51,8 @@
     _dataSource = [NSMutableArray array];
     [_dataSource addObjectsFromArray:
          @[@{@"image":@"add-account",@"title":kLocalizedString(@"REFERS")},
-           @{@"image":@"group",@"title":kLocalizedString(@"FORUM")},
-           @{@"image":@"most-used",@"title":kLocalizedString(@"REVIEWS")},
+           @{@"image":@"group",@"title":kLocalizedString(@"Community")},
+           @{@"image":@"most-used",@"title":kLocalizedString(@"RATING")},
            @{@"image":@"pin",@"title":kLocalizedString(@"ADDRESS")},
            @{@"image":@"call-centre",@"title":kLocalizedString(@"SERVICE")},
            @{@"image":@"read",@"title":kLocalizedString(@"Policies")},
@@ -228,10 +228,10 @@
         if ([cell.label.text isEqualToString:kLocalizedString(@"Distributor_center")]) {
             DistributeCenterViewController *vc = [[DistributeCenterViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:kLocalizedString(@"REFERS")]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"Community")]){
             InviteViewController *vc = [[InviteViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:kLocalizedString(@"REVIEWS")]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"RATING")]){
             ReviewViewController *vc = [[ReviewViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"ADDRESS")]){
@@ -240,7 +240,7 @@
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"SERVICE")]){
             SupportViewController *vc = [[SupportViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:kLocalizedString(@"FORUM")]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"REFERS")]){
             self.tabBarController.selectedIndex = 2;
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"Policies")]){
             PolicesViewController *vc = [[PolicesViewController alloc] init];

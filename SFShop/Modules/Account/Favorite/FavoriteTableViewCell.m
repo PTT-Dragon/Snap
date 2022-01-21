@@ -33,7 +33,7 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.productName;
     _priceLabel.text = [NSString stringWithFormat:@"%@",[model.salesPrice currency]];
-    _downLabel.text = [NSString stringWithFormat:@"↓ %@",[model.markdownPrice currency]];
+    _downLabel.text = model.markdownPrice.floatValue == 0 ? @"": [NSString stringWithFormat:@"↓ %@",[model.markdownPrice currency]];
     _discountLabel.text = [NSString stringWithFormat:@" RP %@OFF ",model.markdownPrice];
 }
 - (IBAction)spCartAction:(id)sender {

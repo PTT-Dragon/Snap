@@ -32,5 +32,6 @@
 #import "NSString+Add.h"
 #import "FFLocalization.h"
 #import "AppDelegate.h"
+#import "UIView+YYAdd.h"
 
 #endif /* PrefixHeader_pch */

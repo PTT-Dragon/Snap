@@ -11,12 +11,17 @@
 #import "CategoryContentCollectionView.h"
 #import "CategoryRankViewController.h"
 #import "SFSearchNav.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
 @interface CategoryViewController ()<UITableViewDelegate>
 @property (nonatomic, readwrite, strong) CategorySideTableView *sideTableView;//侧边栏
 @property (nonatomic, readwrite, strong) CategoryContentCollectionView *contentCollectionView;//内容栏
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cacheDatas;//缓存数据
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
+//@property (nonatomic, readwrite, strong) BaseMoreView *moreView;
+//@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
+
 @end
 
 @implementation CategoryViewController
@@ -26,8 +31,6 @@
     self.title = kLocalizedString(@"Category");
     [self loadSides];
     [self loadsubviews];
-//    self.sideTableView.dataArray = @[CategorySideModel.new,CategorySideModel.new];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,11 +42,13 @@
     [self.view addSubview:self.navSearchView];
     [self.view addSubview:self.sideTableView];
     [self.view addSubview:self.contentCollectionView];
+//    [self.view addSubview:self.moreView];
 }
 
 - (void)loadSides {
     [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"catgLevel":@"1"} success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
         NSArray *array = response;
         for (NSDictionary *dict in array) {
             CategoryModel *model = [CategoryModel yy_modelWithDictionary:dict];
@@ -59,6 +64,7 @@
 }
 
 - (void)loadContentDatas:(NSInteger)parentCatgId {
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"parentCatgId":@(parentCatgId)} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSArray *array = response;
@@ -103,6 +109,7 @@
 }
 
 #pragma mark - Getter
+
 - (CategorySideTableView *)sideTableView {
     if (_sideTableView == nil) {
         _sideTableView = [[CategorySideTableView alloc] initWithFrame:CGRectMake(0, navBarHei, KScale(95), self.view.bounds.size.height - navBarHei - tabbarHei) style:UITableViewStylePlain];
@@ -156,4 +163,12 @@
     }
     return _navSearchView;
 }
+
+//- (BaseMoreView *)moreView {
+//    if (!_moreView) {
+//        _moreView = [[BaseMoreView alloc] initWithFrame:CGRectMake(0, self.navSearchView.bottom, MainScreen_width, self.view.height)];
+//    }
+//    return _moreView;
+//}
+
 @end
