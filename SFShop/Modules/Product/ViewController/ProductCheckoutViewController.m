@@ -378,8 +378,8 @@
                 NSString *logisticsModeId = detailModel.currentLogisticsItem.logisticsModeId?detailModel.currentLogisticsItem.logisticsModeId:@"";
                 NSString *selUserCouponId = detailModel.currentStoreCoupon.userCouponId > 0? [NSString stringWithFormat:@"%ld",detailModel.currentStoreCoupon.userCouponId] : @"";
                 NSMutableArray *products = [NSMutableArray array];
-                for (int subIndex = 0; subIndex < detailModel.products.count; subIndex ++) {
-                    ProductItemModel *item = detailModel.products[subIndex];
+                for (int subIndex = 0; subIndex < detailModel.selectedProducts.count; subIndex ++) {
+                    ProductItemModel *item = detailModel.selectedProducts[subIndex];
                     NSNumber *idN = @(item.productId);
                     NSNumber *count = @(item.currentBuyCount);
                     if (item.inCmpIdList && item.inCmpIdList.count > 0) {
@@ -394,6 +394,10 @@
                 if (detailModel.shareBuyMode.length > 0) {
                     [storeDict setObject:detailModel.shareBuyMode forKey:@"shareBuyMode"];
                 }
+                if (detailModel.shareBuyOrderId.length > 0) {
+                    [storeDict setObject:detailModel.shareBuyOrderId forKey:@"shareBuyOrderId"];
+                }
+                
                 [storeDict setObject:storeId forKey:@"storeId"];
                 [storeDict setObject:storeId forKey:@"storeId"];
                 [storeDict setObject:leaveMsg forKey:@"leaveMsg"];
@@ -503,7 +507,7 @@
             if ([cellId isEqualToString:@"ProductCheckoutGoodsCell"]) {
                 NSMutableArray *pList = [NSMutableArray array];
                 if (productModels.count > 0) {
-                    for (ProductItemModel *item in productModel.products) {
+                    for (ProductItemModel *item in productModel.selectedProducts) {
                         SFCellCacheModel *model = [SFCellCacheModel new];
                         model.cellId = cellId;
                         model.obj = item;

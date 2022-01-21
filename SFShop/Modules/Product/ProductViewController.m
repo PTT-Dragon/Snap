@@ -659,10 +659,11 @@
         return cell;
     }
     ProductGroupListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductGroupListCell"];
-    cell.model = self.groupModel.list[indexPath.row-1];
+    ProductGroupListModel *model = self.groupModel.list[indexPath.row-1];
+    cell.model = model;
     MPWeakSelf(self)
     cell.joinBlock = ^{
-        [weakself buyNow:self.buyBtn];
+        [weakself buyWithOrderId:model.shareBuyOrderId];
     };
     return cell;
 }
@@ -774,7 +775,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
 - (IBAction)buyNow:(UIButton *)sender {
+    [self buyWithOrderId:nil];
+}
+
+- (void)buyWithOrderId:(nullable NSString *)shareBuyOrderId {
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (!model || [model.accessToken isEqualToString:@""]) {
         LoginViewController *vc = [[LoginViewController alloc] init];
@@ -788,7 +794,7 @@
     if (!_isCheckingSaleInfo) {
         [self showAttrsView];
     } else {
-        //跳转checkout页        
+        //跳转checkout页
         ProductItemModel *item = self.getSelectedProductItem;
         item.storeName = self.model.storeName;
         for (cmpShareBuysModel *buyModel in self.campaignsModel.cmpShareBuys) {
@@ -797,11 +803,16 @@
             }
         }
         item.currentBuyCount = self.attrView.count;
-        self.model.products = @[item];
         if (item.inCmpIdList) {//团购情况
-            self.model.shareBuyMode = @"A";
+            if (shareBuyOrderId.length > 0) {
+                self.model.shareBuyOrderId = shareBuyOrderId;
+                self.model.shareBuyMode = @"B";
+            } else {
+                self.model.shareBuyMode = @"A";
+            }
             self.model.orderType = @"B";
         }
+        self.model.selectedProducts = @[item];
         ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
         [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
             if (isSuccess) {
@@ -811,6 +822,7 @@
         }];
     }
 }
+
 
 - (void)showAttrsView {
     _isCheckingSaleInfo = YES;
