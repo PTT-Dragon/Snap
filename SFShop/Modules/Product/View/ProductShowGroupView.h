@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductShowGroupView : UIView
 @property (nonatomic,strong) NSArray <ProductGroupListModel *>*dataSource;
+
+@property (nonatomic, copy) void(^joinBlock)(ProductGroupListModel *model);
+
 @end
 
 NS_ASSUME_NONNULL_END

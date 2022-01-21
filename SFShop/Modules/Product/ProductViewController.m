@@ -561,7 +561,12 @@
 }
 - (void)showGroupView
 {
+    MPWeakSelf(self)
     ProductShowGroupView *groupView = [[ProductShowGroupView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height)];
+    groupView.joinBlock = ^(ProductGroupListModel * _Nonnull model) {
+        weakself.currentShareBuyOrderId = model.shareBuyOrderId;
+        [weakself buyNow:nil];
+    };
     groupView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
     groupView.dataSource = self.groupModel.list;
     [self.view addSubview:groupView];
