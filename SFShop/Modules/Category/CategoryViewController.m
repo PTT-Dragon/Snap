@@ -19,9 +19,9 @@
 @property (nonatomic, readwrite, strong) CategoryContentCollectionView *contentCollectionView;//内容栏
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cacheDatas;//缓存数据
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
+@property (nonatomic, readwrite, strong) NSURLSessionDataTask *lastRequestTask;
 //@property (nonatomic, readwrite, strong) BaseMoreView *moreView;
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
-
 @end
 
 @implementation CategoryViewController
@@ -47,7 +47,7 @@
 
 - (void)loadSides {
     [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
-    [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"catgLevel":@"1"} success:^(id  _Nullable response) {
+     [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"catgLevel":@"1"} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSArray *array = response;
         for (NSDictionary *dict in array) {
@@ -65,7 +65,11 @@
 
 - (void)loadContentDatas:(NSInteger)parentCatgId {
     [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
-    [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"parentCatgId":@(parentCatgId)} success:^(id  _Nullable response) {
+    if (self.lastRequestTask) {
+        [self.lastRequestTask cancel];
+    }
+    __block NSURLSessionDataTask *task;
+    task = [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"parentCatgId":@(parentCatgId)} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSArray *array = response;
         NSMutableArray *container = [NSMutableArray array];
@@ -75,12 +79,20 @@
                 [container addObject:model.children];
             }
         }
-        self.contentCollectionView.dataArray = container;
+        
+        if (task.taskIdentifier == self.lastRequestTask.taskIdentifier) {
+            self.contentCollectionView.dataArray = container;
+        }
         [self.cacheDatas setObject:container forKey:[NSString stringWithFormat:@"%ld",parentCatgId]];
         [self.contentCollectionView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+        if (error.code == -999) {//取消
+            [MBProgressHUD hideFromKeyWindow];
+        } else {
+            [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+        }
     }];
+    self.lastRequestTask = task;
 }
 
 #pragma mark - UICollectionDelegate

@@ -7,7 +7,6 @@
 
 #import "SFNetworkManager.h"
 #import "SFNetworkURL.h"
-#import <AFNetworking/AFNetworking.h>
 #import <dispatch/dispatch.h>
 #import "LoginViewController.h"
 
@@ -48,7 +47,7 @@
     [self get:url parameters:nil success:success failed:failed];
 }
 
-+ (void)get:(NSString *)url parameters:(nullable NSDictionary *)parameters success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed {
++ (NSURLSessionDataTask *)get:(NSString *)url parameters:(nullable NSDictionary *)parameters success:(void(^)(_Nullable id response))success failed:(void(^)(NSError *error))failed {
     AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -60,7 +59,7 @@
     manager.securityPolicy = securityPolicy;
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     MPWeakSelf(self)
-    [manager GET:url parameters:parameters headers:@{@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    return [manager GET:url parameters:parameters headers:@{@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error;
         id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:&error];
         !success?:success(obj);
