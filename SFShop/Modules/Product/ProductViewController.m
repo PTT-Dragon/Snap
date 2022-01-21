@@ -567,13 +567,14 @@
 
 - (void)setModel:(ProductDetailModel *)model {
     _model = model;
-    [self.carouselImgView reloadData];
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
     self.selProductModel = [model.products jk_filter:^BOOL(ProductItemModel *object) {
         return object.productId == self.productId;
     }].firstObject;
+    
+    [self.carouselImgView reloadData];
 }
 - (void)setSelProductModel:(ProductItemModel *)selProductModel
 {
@@ -853,6 +854,7 @@
     };
     _attrView.chooseAttrBlock = ^() {
         weakself.selProductModel = weakself.attrView.selProductModel;
+        [weakself.carouselImgView reloadData];
         // 切换属性，可能会走团购逻辑
         [weakself requestGroupInfo];
     };
@@ -888,7 +890,7 @@
 
 #pragma mark - iCarouselDataSource
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
-    return _model.carouselImgUrls.count;
+    return _model.carouselImgUrls.count + 1;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
@@ -899,7 +901,7 @@
     } else {
         iv = (UIImageView *)view;
     }
-    [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf:self.model.carouselImgUrls[index]])]];
+    [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: (index == 0 ? self.selProductModel : self.model.carouselImgUrls[index])])]];
     return iv;
 }
 
