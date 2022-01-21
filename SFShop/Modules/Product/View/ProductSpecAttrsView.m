@@ -174,18 +174,42 @@
     }];
 }
 
+
+- (void)setSelProductModel:(ProductItemModel *)selProductModel {
+    _selProductModel = selProductModel;
+    
+    [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage(selProductModel.imgUrl)]];
+    self.titleLabel.text = selProductModel.productName;
+    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+    self.priceLabel.text = [NSString stringWithFormat:@"%@ %ld", currency, (long)selProductModel.salesPrice];
+}
+
+- (void)setStockModel:(NSArray<ProductStockModel *> *)stockModel {
+    _stockModel = stockModel;
+    [stockModel enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+            if (obj1.productId.integerValue == self.selProductModel.productId) {
+                self.stockLabel.text = [NSString stringWithFormat:@"Persediaan: %@", obj1.stock];
+                *stop = YES;
+                *stop1 = YES;
+            }
+        }];
+    }];
+}
+
 -(void)setModel:(ProductDetailModel *)model {
     _model = model;
     MPWeakSelf(self)
-    [model.offerSpecAttrs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        // TODO: 此处默认选择第一个
-        [weakself.selectedAttrValue addObject:@0];
+    [model.offerSpecAttrs enumerateObjectsUsingBlock:^(ProductAttrModel *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [obj.attrValues enumerateObjectsUsingBlock:^(ProductAttrValueModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+            [weakself.selProductModel.prodSpcAttrs enumerateObjectsUsingBlock:^(ProdSpcAttrsModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                if ([obj.attrName isEqualToString:obj2.attrName] && [obj1.value isEqualToString:obj2.value]) {
+                    [weakself.selectedAttrValue addObject:@(idx1)];
+                }
+            }];
+        }];
     }];
-    [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf:self.model.carouselImgUrls[0]])]];
-    self.titleLabel.text = model.offerName;
-    self.priceLabel.text = [NSString stringWithFormat:@"%ld", model.salesPrice].currency;
-    // TODO: 此处先固定，后续根据库存接口数据调整
-    self.stockLabel.text = @"stock: 25";
     
     __block UIView *preLayoutView = nil;
     NSArray<ProductAttrModel *> *attrs = model.offerSpecAttrs;
@@ -268,6 +292,12 @@
     [sender setSelected:YES];
     [self.selectedAttrBtn replaceObjectAtIndex:sectionIndex withObject:sender];
     self.selectedAttrValue[sectionIndex] = @(sender.tag % 100);
+    
+    self.selProductModel = self.model.products[sender.tag % 100];
+    // 此处为了刷新库存
+    self.stockModel = self.stockModel;
+    
+    
     if(self.chooseAttrBlock) {
         self.chooseAttrBlock();
     }
