@@ -798,6 +798,7 @@
             @"isSelected":@"N"
         };
         MPWeakSelf(self)
+        [MBProgressHUD showHudMsg:@""];
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
             [baseTool updateCartNum];
             [weakself requestCartNum];
@@ -834,16 +835,19 @@
             return object.productId.integerValue == _selProductModel.productId;
         }];
         [self showAttrsViewWithAttrType:isGroupBuy ? groupBuyType: buyType];
-    } else {
-        //跳转checkout页
-        ProductItemModel *item = self.getSelectedProductItem;
-        item.storeName = self.model.storeName;
+    }
+}
+
+- (void)gotoCheckout:(ProductSpecAttrsType)type {
+    //跳转checkout页
+    ProductItemModel *item = self.getSelectedProductItem;
+    item.storeName = self.model.storeName;
+    if (type == groupBuyType) {//团购情况
         for (cmpShareBuysModel *buyModel in self.campaignsModel.cmpShareBuys) {
             if (buyModel.productId.integerValue == item.productId) {
                 item.inCmpIdList = @[@(buyModel.campaignId)];
             }
         }
-        item.currentBuyCount = self.attrView.count;
         if (item.inCmpIdList) {//团购情况
             if (self.currentShareBuyOrderId.length > 0) {
                 self.model.shareBuyOrderId = self.currentShareBuyOrderId;
@@ -853,15 +857,16 @@
             }
             self.model.orderType = @"B";
         }
-        self.model.selectedProducts = @[item];
-        ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
-        [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
-            if (isSuccess) {
-                ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-        }];
     }
+    item.currentBuyCount = self.attrView.count;
+    self.model.selectedProducts = @[item];
+    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
+    [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
+        if (isSuccess) {
+            ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
 }
 
 
@@ -875,6 +880,25 @@
     _attrView.model = self.model;
     MPWeakSelf(self)
     MPWeakSelf(_attrView)
+    _attrView.buyOrCartBlock = ^(ProductSpecAttrsType type) {
+        switch (type) {
+            case cartType:// 加入购物车
+            {
+                [weakself addToCart:nil];
+            }
+                break;
+            case buyType://购买
+            case groupSingleBuyType://团购活动单人购买
+            case groupBuyType://团购
+            {
+                [weakself gotoCheckout:type];
+            }
+                break;
+            default:
+                break;
+        }
+        weak_attrView.dismissBlock();
+    };
     _attrView.dismissBlock = ^{
         [weak_attrView removeFromSuperview];
         weakself.isCheckingSaleInfo = NO;

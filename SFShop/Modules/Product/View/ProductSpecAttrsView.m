@@ -186,6 +186,7 @@
     [_btn1 setTitle:@"立即购买" forState:0];
     _btn1.titleLabel.font = CHINESE_SYSTEM(14);
     [_btn1 setTitleColor:[UIColor whiteColor] forState:0];
+    [_btn1 addTarget:self action:@selector(gotoBuyOrCart:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_btn1];
     [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(contentView.mas_right).offset(-16);
@@ -195,6 +196,7 @@
     }];
     
     _btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_btn2 addTarget:self action:@selector(gotoBuyOrCart:) forControlEvents:UIControlEventTouchUpInside];
     _btn2.backgroundColor = [UIColor whiteColor];
     [_btn2 setTitle:@"加入购物车" forState:0];
     _btn2.titleLabel.font = CHINESE_SYSTEM(14);
@@ -265,6 +267,7 @@
         }];
     }else if (_attrsType == buyType) {
         _btn2.hidden = YES;
+        _btn1.tag = buyType + 100;
         [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
         _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -276,6 +279,7 @@
     }else if (_attrsType == cartType){
         _btn2.hidden = YES;
         [_btn1 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
+        _btn1.tag = cartType + 100;
         _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
@@ -286,6 +290,7 @@
     }else if (_attrsType == groupBuyType){
         _btn2.hidden = YES;
         _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        _btn1.tag = groupBuyType + 100;
         [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
@@ -296,6 +301,8 @@
     }else if (_attrsType == groupSingleBuyType){
         _btn2.hidden = NO;
         _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        _btn1.tag = groupSingleBuyType + 100;
+        _btn2.tag = cartType + 100;
         [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
         [_btn2 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -421,6 +428,10 @@
     if (_dismissBlock) {
         _dismissBlock();
     }
+}
+
+- (void)gotoBuyOrCart:(UIButton *)btn {
+    !self.buyOrCartBlock ?: self.buyOrCartBlock(btn.tag - 100);
 }
 
 - (void)increase: (UIButton *)sender {
