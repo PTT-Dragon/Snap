@@ -135,8 +135,8 @@
     }];
     
     [self.collectionView.mj_header beginRefreshing];
-//    [self.view addSubview:self.emptyView];
-    [self.collectionView addSubview:self.emptyView];
+    [self.view addSubview:self.emptyView];
+//    [self.collectionView addSubview:self.emptyView];
 }
 
 - (void)layout {
@@ -145,6 +145,11 @@
 //        make.left.right.mas_equalTo(0);
 //        make.height.mas_equalTo(400);
 //    }];
+    
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.collectionView.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.collectionView);
+    }];
 }
 
 #pragma mark - Event
@@ -196,7 +201,7 @@
 
 - (void)refreshNoItemsStatus {
     if (!self.dataArray.count) {
-        [self loadDatasIfDataISEmpty];
+//        [self loadDatasIfDataISEmpty];
         self.emptyView.hidden = NO;
     } else {
         self.emptyView.hidden = YES;
@@ -357,7 +362,8 @@
 
 - (EmptyView *)emptyView {
     if (!_emptyView) {
-        _emptyView = [[EmptyView alloc] initWithFrame:CGRectMake(0, -400, MainScreen_width, 400)];
+//        _emptyView = [[EmptyView alloc] initWithFrame:CGRectMake(0, -400, MainScreen_width, 400)];
+        _emptyView = [[EmptyView alloc] init];
         [_emptyView configDataWithEmptyType:EmptyViewNoProductType];
         _emptyView.hidden = YES;
     }
