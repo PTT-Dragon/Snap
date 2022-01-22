@@ -299,7 +299,7 @@
   "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";
   "PEOPLE_SHORT" = "Kurang pembeli";
   "JOIN" = "Join";
-//  "RECOMMENDATIONS" = "Rekomendasi";
+  "RECOMMENDATIONS" = "Rekomendasi";
 //  "FACEBOOK" = "Facebook";
 //  "GOOGLE" = "Google";
 //  "VOUCHER_CODE" = "Kode Voucher";
@@ -457,7 +457,7 @@
 //  "NO_INVITE_RECORDS" = "Tidak ada catatan undangan";
 //  "YOU_HAVEN_VIEWED_ANY_ITEMS" = "Anda belum melihat item apa pun";
 //  "EXPLORE_NOW" = "EXPLORE NOW";
-//  "RECCOMENDATION" = "Rekomendasi";
+  "RECCOMENDATION" = "Rekomendasi";
 //  "AFTE_SALE_CODE" = "After-sale Code";
 //  "FAQ" = "FAQ";
 //  "JOIN_BUY" = "Berpartisipasi dalam grup";

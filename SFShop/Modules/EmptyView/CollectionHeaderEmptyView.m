@@ -11,11 +11,13 @@
 @interface CollectionHeaderEmptyView ()
 @property (nonatomic, strong) UIImageView *emptyImageView;
 @property (nonatomic, strong) UILabel *emptyTipLabel;
+@property (nonatomic, strong) UILabel *sectionTitleLabel;
 @end
 @implementation CollectionHeaderEmptyView
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor whiteColor];
         [self commonInit];
     }
     return self;
@@ -29,17 +31,24 @@
 - (void)initView {
     [self addSubview:self.emptyImageView];
     [self addSubview:self.emptyTipLabel];
+    [self addSubview:self.sectionTitleLabel];
 }
 
 - (void)initLayout {
     [self.emptyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(self);
-        make.centerX.mas_equalTo(self.mas_centerX);
+        make.center.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(100, 100));
     }];
+    
     [self.emptyTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.emptyImageView.mas_bottom).offset(16);
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-20);
+    }];
+    
+    [self.sectionTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.bottom.mas_equalTo(-5);
     }];
 }
 
@@ -51,6 +60,10 @@
     self.emptyImageView.image = [UIImage imageNamed:model.imageName];
 }
 
+- (void)updateTitle:(NSString *)title {
+    self.sectionTitleLabel.text = title;
+    self.sectionTitleLabel.hidden = !title.length;
+}
 
 #pragma mark - setter && getter
 
@@ -58,10 +71,6 @@
     if (!_emptyImageView) {
         _emptyImageView = [[UIImageView alloc] init];
         _emptyImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [_emptyImageView setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
-        [_emptyImageView setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
-        [_emptyImageView setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
-        [_emptyImageView setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
     }
     return _emptyImageView;
 }
@@ -76,4 +85,16 @@
     }
     return _emptyTipLabel;
 }
+
+- (UILabel *)sectionTitleLabel {
+    if (!_sectionTitleLabel) {
+        _sectionTitleLabel = [[UILabel alloc] init];
+        _sectionTitleLabel.font = [UIFont systemFontOfSize:14];
+        _sectionTitleLabel.textColor = UIColor.blackColor;
+        _sectionTitleLabel.textAlignment = NSTextAlignmentLeft;
+        _sectionTitleLabel.hidden = YES;
+    }
+    return _sectionTitleLabel;
+}
+
 @end

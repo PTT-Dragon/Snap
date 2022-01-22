@@ -17,7 +17,7 @@
 #import "SFSearchView.h"
 #import "ProductViewController.h"
 #import "CategoryRankNoItemsView.h"
-#import "EmptyView.h"
+#import "CollectionHeaderEmptyView.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 
@@ -31,7 +31,8 @@
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic, readwrite, assign) BOOL showType;//显示类型 0:colletion 1:list
-@property (nonatomic,strong) EmptyView *emptyView;
+@property (nonatomic, readwrite, assign) BOOL showEmptyView;//是否显示空视图
+@property (nonatomic, readwrite, strong) CollectionHeaderEmptyView *emptyView;//是否显示空视图
 
 @end
 
@@ -41,7 +42,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadsubviews];
-    [self layout];
     // Do any additional setup after loading the view.
 }
 
@@ -82,11 +82,10 @@
         if ([self.collectionView.mj_footer isRefreshing]) {
             [self.collectionView.mj_footer endRefreshing];
         }
-        [self refreshNoItemsStatus];
     }];
 }
 
-- (void)loadDatasIfDataISEmpty {
+- (void)loadDatasIfDataISEmpty  {
     NSDictionary *parm = @{
         @"catgIds" : @"",
         @"q": @"",
@@ -97,28 +96,12 @@
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
-        
-        if ([self.collectionView.mj_header isRefreshing]) {
-            [self.collectionView.mj_header endRefreshing];
-            [self.dataArray removeAllObjects];
-        }
-        if ([self.collectionView.mj_footer isRefreshing]) {
-            [self.collectionView.mj_footer endRefreshing];
-        }
         [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
         [self.collectionView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
-        if ([self.collectionView.mj_header isRefreshing]) {
-            [self.collectionView.mj_header endRefreshing];
-        }
-        if ([self.collectionView.mj_footer isRefreshing]) {
-            [self.collectionView.mj_footer endRefreshing];
-        }
     }];
 }
-
-
 
 - (void)loadsubviews {
     [self.view addSubview:self.navSearchView];
@@ -126,30 +109,25 @@
     [self.view addSubview:self.collectionView];
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
-        [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
+        if (!self.showEmptyView) {
+            [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
+        } else {
+            [MBProgressHUD hideFromKeyWindow];
+            [self.collectionView.mj_header endRefreshing];
+        }
     }];
     
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.currentPage += 1;
-        [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
+        if (!self.showEmptyView) {
+            [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
+        } else {
+            [MBProgressHUD hideFromKeyWindow];
+            [self.collectionView.mj_footer endRefreshing];
+        }
     }];
     
     [self.collectionView.mj_header beginRefreshing];
-    [self.view addSubview:self.emptyView];
-//    [self.collectionView addSubview:self.emptyView];
-}
-
-- (void)layout {
-//    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(0);
-//        make.left.right.mas_equalTo(0);
-//        make.height.mas_equalTo(400);
-//    }];
-    
-    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.collectionView.mas_top).offset(90);
-        make.left.right.bottom.mas_equalTo(self.collectionView);
-    }];
 }
 
 #pragma mark - Event
@@ -192,6 +170,7 @@
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
+        [self resetIfEmpty];
         self.dataModel = model;
         self.filterCacheModel = self.dataModel.filterCache;
         [self.collectionView.mj_header beginRefreshing];
@@ -201,10 +180,18 @@
 
 - (void)refreshNoItemsStatus {
     if (!self.dataArray.count) {
-//        [self loadDatasIfDataISEmpty];
-        self.emptyView.hidden = NO;
+        self.showEmptyView = YES;
+        [self loadDatasIfDataISEmpty];
     } else {
-        self.emptyView.hidden = YES;
+        self.showEmptyView = NO;
+    }
+}
+
+- (void)resetIfEmpty {
+    if (self.showEmptyView) {
+        [self.dataArray removeAllObjects];
+        self.showEmptyView = NO;
+        [self.collectionView reloadData];
     }
 }
 
@@ -217,7 +204,7 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.dataArray.count > 0?1:0;
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -229,7 +216,6 @@
     CategoryRankPageInfoListModel *cellModel = self.dataArray[indexPath.row];
     cell.model = cellModel;
     cell.showType = self.showType;
-
     return cell;
 }
 
@@ -260,8 +246,28 @@
     }
 }
 
-#pragma mark - Get and Set
+- (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForSupplementaryViewAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.showEmptyView) {
+        return 400;
+    }
+    self.emptyView.hidden = YES;
+    return 0.01;
+}
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    CollectionHeaderEmptyView *header = [collectionView dequeueReusableSupplementaryViewOfKind:kSupplementaryViewKindHeader withReuseIdentifier:@"CollectionHeader" forIndexPath:indexPath];
+    [header configDataWithEmptyType:EmptyViewNoProductType];
+    if (self.dataArray.count > 0) {
+        [header updateTitle:kLocalizedString(@"RECCOMENDATION")];
+    } else {
+        [header updateTitle:@""];
+    }
+    header.hidden = !self.showEmptyView;
+    self.emptyView = header;
+    return header;
+}
+
+#pragma mark - Get and Set
 - (SFSearchNav *)navSearchView {
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
@@ -282,7 +288,6 @@
                 self.waterfallLayout.columns = 2;
                 self.waterfallLayout.columnSpacing = KScale(12);
                 self.waterfallLayout.insets = UIEdgeInsetsMake(KScale(12), KScale(16), KScale(12), KScale(16));
-
             }
             [self.collectionView reloadData];
         };
@@ -290,6 +295,7 @@
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
             if (![qs isEqualToString:strongSelf.filterCacheModel.qs]) {
+                [strongSelf resetIfEmpty];
                 strongSelf.filterCacheModel.qs = qs;
                 [strongSelf.collectionView.mj_header beginRefreshing];
             }
@@ -313,6 +319,7 @@
         _collectionView.backgroundColor = [UIColor clearColor];
 
         [_collectionView registerClass:CategoryRankCell.class forCellWithReuseIdentifier:@"CategoryRankCell"];
+        [_collectionView registerClass:CollectionHeaderEmptyView.class forSupplementaryViewOfKind:kSupplementaryViewKindHeader withReuseIdentifier:@"CollectionHeader"];
     }
     return _collectionView;
 }
@@ -358,16 +365,6 @@
         self.filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
     }
     return _filterCacheModel;
-}
-
-- (EmptyView *)emptyView {
-    if (!_emptyView) {
-//        _emptyView = [[EmptyView alloc] initWithFrame:CGRectMake(0, -400, MainScreen_width, 400)];
-        _emptyView = [[EmptyView alloc] init];
-        [_emptyView configDataWithEmptyType:EmptyViewNoProductType];
-        _emptyView.hidden = YES;
-    }
-    return _emptyView;
 }
 
 @end
