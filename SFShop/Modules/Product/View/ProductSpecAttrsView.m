@@ -284,8 +284,20 @@
             make.bottom.equalTo(self).offset(-44);
         }];
     }else if (_attrsType == groupBuyType){
+        _btn2.hidden = YES;
+        _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }else if (_attrsType == groupSingleBuyType){
         _btn2.hidden = NO;
         _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
+        [_btn2 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.mas_right).offset(-16);
             make.height.mas_equalTo(46);

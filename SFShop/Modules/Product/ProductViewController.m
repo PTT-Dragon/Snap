@@ -93,9 +93,12 @@
 @property (nonatomic, strong) AreaModel *streetModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupTableViewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *couponsViewHeight;
+@property (weak, nonatomic) IBOutlet UIView *infoView;
 
 @property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
+@property (weak, nonatomic) IBOutlet UIView *marketPriceLabelIndicationView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *priceLabelTop;
 
 @property (nonatomic, strong) NSString *currentShareBuyOrderId;
 
@@ -523,17 +526,21 @@
     self.groupTableViewHei.constant = [self calucateGroupTableviewHei];
     self.flashSaleInfoView.hidden = YES;
     self.groupInfoView.hidden = NO;
+    self.priceLabelTop.constant = 10;
+    self.salesPriceLabel.hidden = YES;
+    self.originalPriceLabel.hidden = YES;
+    self.marketPriceLabelIndicationView.hidden = YES;
+    
     self.viewTop.constant = 64;
     [self.buyBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"SHARE_BUY")] forState:0];
     [self.addCartBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
     [self.campaignsModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         if (model.productId.integerValue == _selProductModel.productId) {
             //找到当前显示的商品
-            NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
             self.groupDiscountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
-            self.groupSalePriceLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency,model.shareBuyPrice];
-            self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",_selProductModel.salesPrice];
+            self.groupSalePriceLabel.text = [[NSString stringWithFormat:@"%.0f", model.shareBuyPrice] currency];
+            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",_selProductModel.salesPrice] currency];
         }
     }];
 }
@@ -768,8 +775,14 @@
 
 - (IBAction)addToCart:(UIButton *)sender {
     if (!_isCheckingSaleInfo) {
-        
-        [self showAttrsViewWithAttrType:self.campaignsModel.cmpShareBuys.count > 0 ? groupBuyType: cartType];
+        ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
+        camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
+            return object.productId.integerValue == _selProductModel.productId;
+        }];
+        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+            return object.productId.integerValue == _selProductModel.productId;
+        }];
+        [self showAttrsViewWithAttrType:isGroupBuy ? groupSingleBuyType: cartType];
     } else {
         // TODO: 添加购物车
         NSDictionary *params =
@@ -813,7 +826,14 @@
         return;
     }
     if (!_isCheckingSaleInfo) {
-        [self showAttrsViewWithAttrType:buyType];
+        ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
+        camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
+            return object.productId.integerValue == _selProductModel.productId;
+        }];
+        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+            return object.productId.integerValue == _selProductModel.productId;
+        }];
+        [self showAttrsViewWithAttrType:isGroupBuy ? groupBuyType: buyType];
     } else {
         //跳转checkout页
         ProductItemModel *item = self.getSelectedProductItem;

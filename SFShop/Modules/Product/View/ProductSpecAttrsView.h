@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef enum :NSUInteger{
     cartType,      // 加入购物车
     buyType,        //购买
-    groupBuyType        //团购活动单人购买
+    groupSingleBuyType,        //团购活动单人购买
+    groupBuyType,        //团购
 }ProductSpecAttrsType;
 
 @interface ProductSpecAttrsView : UIView
