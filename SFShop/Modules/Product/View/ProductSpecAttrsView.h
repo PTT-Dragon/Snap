@@ -11,6 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum :NSUInteger{
+    cartType,      // 加入购物车
+    buyType,        //购买
+    groupBuyType        //团购活动单人购买
+}ProductSpecAttrsType;
+
 @interface ProductSpecAttrsView : UIView
 
 typedef void(^Block)(void);
@@ -23,6 +29,7 @@ typedef void(^ChooseAttrBlock)(void);
 @property (nonatomic, copy) Block dismissBlock;
 @property (nonatomic, copy) ChooseAttrBlock chooseAttrBlock;
 @property (nonatomic, assign) NSUInteger count;
+@property (nonatomic, assign) ProductSpecAttrsType attrsType;
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *selectedAttrValue;
 
 @end

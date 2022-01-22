@@ -768,7 +768,8 @@
 
 - (IBAction)addToCart:(UIButton *)sender {
     if (!_isCheckingSaleInfo) {
-        [self showAttrsView];
+        
+        [self showAttrsViewWithAttrType:self.campaignsModel.cmpShareBuys.count > 0 ? groupBuyType: cartType];
     } else {
         // TODO: 添加购物车
         NSDictionary *params =
@@ -812,7 +813,7 @@
         return;
     }
     if (!_isCheckingSaleInfo) {
-        [self showAttrsView];
+        [self showAttrsViewWithAttrType:buyType];
     } else {
         //跳转checkout页
         ProductItemModel *item = self.getSelectedProductItem;
@@ -844,9 +845,10 @@
 }
 
 
-- (void)showAttrsView {
+- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type {
     _isCheckingSaleInfo = YES;
     _attrView = [[ProductSpecAttrsView alloc] init];
+    _attrView.attrsType = type;
     _attrView.campaignsModel = self.campaignsModel;
     _attrView.selProductModel = self.selProductModel;
     _attrView.stockModel = self.stockModel;

@@ -8,6 +8,8 @@
 #import "ProductSpecAttrsView.h"
 #import "MakeH5Happy.h"
 #import "SysParamsModel.h"
+#import "NSString+Fee.h"
+
 
 @interface ProductSpecAttrsView()
 
@@ -22,6 +24,10 @@
 @property (nonatomic, strong) NSMutableArray<ProductAttrButton *> *selectedAttrBtn;
 @property (nonatomic,strong) UIButton *btn1;
 @property (nonatomic,strong) UIButton *btn2;
+@property (nonatomic,strong) UIView *groupView;
+@property (nonatomic,strong) UILabel *groupLabel;
+@property (nonatomic,strong) UILabel *groupCountLabel;
+
 
 @end
 
@@ -202,17 +208,112 @@
         make.width.mas_equalTo((MainScreen_width-52)/2);
         make.bottom.equalTo(contentView).offset(-44);
     }];
+    
+    _groupView = [[UIView alloc] init];
+    _groupView.backgroundColor = RGBColorFrom16(0xFFE5EB);
+    [self addSubview:_groupView];
+    [_groupView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_stockLabel);
+        make.top.mas_equalTo(_stockLabel.mas_bottom).offset(8);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(18);
+    }];
+    UIView *darkView = [[UIView alloc] init];
+    darkView.backgroundColor = RGBColorFrom16(0xFF1659);
+    [_groupView addSubview:darkView];
+    [darkView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(_groupView);
+        make.width.mas_equalTo(35);
+    }];
+    UIImageView *imgView = [[UIImageView alloc] init];
+    imgView.image = [UIImage imageNamed:@"00005_01_users_outline"];
+    [_groupView addSubview:imgView];
+    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(11);
+        make.left.mas_equalTo(_groupView.mas_left).offset(4);
+        make.centerY.equalTo(_groupView);
+    }];
+    _groupCountLabel = [[UILabel alloc] init];
+    _groupCountLabel.font = CHINESE_SYSTEM(10);
+    _groupCountLabel.textColor = [UIColor whiteColor];
+    [_groupView addSubview:_groupCountLabel];
+    [_groupCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(imgView.mas_right).offset(5);
+        make.centerY.equalTo(_groupView);
+    }];
+    _groupLabel = [[UILabel alloc] init];
+    _groupLabel.font = CHINESE_SYSTEM(10);
+    _groupLabel.textColor = RGBColorFrom16(0xFF1659);
+    _groupLabel.text = kLocalizedString(@"SHAREBUY");
+    [_groupView addSubview:_groupLabel];
+    [_groupLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(darkView.mas_right).offset(5);
+        make.centerY.equalTo(_groupView);
+    }];
 }
-- (void)updateBtn
+- (void)updateView
 {
-    if (1) {
+    if (self.stockModel.count == 0) {
         _btn2.hidden = YES;
+        [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK") forState:0];
+        _btn1.backgroundColor = RGBColorFrom16(0xFFE5EB);
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
             make.height.mas_equalTo(46);
             make.bottom.equalTo(self).offset(-44);
         }];
+    }else if (_attrsType == buyType) {
+        _btn2.hidden = YES;
+        [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
+        _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }else if (_attrsType == cartType){
+        _btn2.hidden = YES;
+        [_btn1 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
+        _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }else if (_attrsType == groupBuyType){
+        _btn2.hidden = NO;
+        _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.width.mas_equalTo((MainScreen_width-52)/2);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+        [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.height.mas_equalTo(46);
+            make.width.mas_equalTo((MainScreen_width-52)/2);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }
+    // ====== 处理活动信息 ======
+    ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
+    camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
+        return object.productId.integerValue == _selProductModel.productId;
+    }];
+    __block NSInteger groupCount = 0;
+    BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+        groupCount = object.shareByNum;
+        return object.productId.integerValue == _selProductModel.productId;
+    }];
+    if (isGroupBuy) {
+        _groupCountLabel.text = [NSString stringWithFormat:@"%ld",groupCount];
+        self.groupView.hidden = NO;
+    }else{
+        self.groupView.hidden = YES;
     }
 }
 
@@ -221,19 +322,7 @@
     
     [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage(selProductModel.imgUrl)]];
     self.titleLabel.text = selProductModel.productName;
-    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %ld", currency, (long)selProductModel.salesPrice];
-    [self updateBtn];
-    
-    // ====== 处理活动信息 ======
-    ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
-    camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
-        return object.productId.integerValue == selProductModel.productId;
-    }];
-    camaignsInfo.cmpShareBuys = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-        return object.productId.integerValue == selProductModel.productId;
-    }];
-
+    self.priceLabel.text = [[NSString stringWithFormat:@"%ld", (long)selProductModel.salesPrice] currency];
 }
 
 - (void)setStockModel:(NSArray<ProductStockModel *> *)stockModel {
@@ -241,12 +330,13 @@
     [stockModel enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
             if (obj1.productId.integerValue == self.selProductModel.productId) {
-                self.stockLabel.text = [NSString stringWithFormat:@"Persediaan: %@", obj1.stock];
+                self.stockLabel.text = [obj1.stock isEqualToString:@"0"] ? kLocalizedString(@"OUT_OF_STOCK"): [NSString stringWithFormat:@"%@: %@", kLocalizedString(@"STOCK"),obj1.stock];
                 *stop = YES;
                 *stop1 = YES;
             }
         }];
     }];
+    [self updateView];
 }
 
 -(void)setModel:(ProductDetailModel *)model {
@@ -366,7 +456,6 @@
 
     // 此处为了刷新库存
     self.stockModel = self.stockModel;
-    
     
     if(self.chooseAttrBlock) {
         self.chooseAttrBlock();

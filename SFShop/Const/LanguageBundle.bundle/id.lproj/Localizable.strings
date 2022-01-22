@@ -84,7 +84,7 @@
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "Stok tidak cukup; mohon kurangi jumlah pesanan";
 //  "COUPON_CENTER" = "Pusat Kupon";
 //  "SHOPPING_CART" = "Keranjang";
-//  "ADD_TO_CART" = "Tambah ke keranjang";
+  "ADD_TO_CART" = "Tambah ke keranjang";
 //  "ADD_TO_CART_SUCCESS" = "Sukses menambahkan ke troli";
 //  "FIND_SIMILAR" = "Temukan yang serupa";
 //  "MOBILE_NUMBER" = "No. telephone";
@@ -102,7 +102,7 @@
 //  "VIEW_REPLIES" = "Lihat balasan";
 //  "CONTACT_US" = "Hubungi kami";
 //  "SIGN_IN" = "Sign in";
-//  "OUT_OF_STOCK" = "Stok habis";
+  "OUT_OF_STOCK" = "Stok habis";
   "My_coupon" = "Kupon Saya";
 //  "PASSWORD" = "Password";
 //  "CURRENT_PWD" = "Password lama";
@@ -129,7 +129,7 @@
 //  "STAR" = "Bintang";
 //  "ENDS_IN" = "Berakhir dalam";
 //  "TOTAL" = "Jumlah";
-//  "BUY_NOW" = "Beli sekarang";
+  "BUY_NOW" = "Beli sekarang";
 //  "BRANDS" = "Brand";
 //  "PRICE" = "Harga";
 //  "REFUND" = "Refund";
@@ -377,7 +377,7 @@
   "TERMS_CON" = "Syarat Ketentuan & Kebijakan Privasi";
 //  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "Orang-orang bergabung dengan grup klik untuk bergabung";
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "Pengelompokan telah selesai; Silakan bergabung dengan grup lain";
-//  "STOCK" = "Stok";
+  "STOCK" = "Stok";
 //  "WHATS_APP" = "WhatsApp";
 //  "PLEASE_FILL_IN_COMMENTS" = "Silahkan isi komentar anda";
 //  "ERROR" = "Error";
