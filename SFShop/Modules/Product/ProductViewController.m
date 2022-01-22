@@ -857,6 +857,11 @@
             }
             self.model.orderType = @"B";
         }
+    } else {
+        self.model.orderType = nil;
+        self.model.shareBuyMode = nil;
+        self.model.shareBuyOrderId = nil;
+        item.inCmpIdList = nil;
     }
     item.currentBuyCount = self.attrView.count;
     self.model.selectedProducts = @[item];
