@@ -248,7 +248,7 @@
         _noteTF.font = [UIFont systemFontOfSize:12];
         _noteTF.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
         _noteTF.delegate = self;
-        _noteTF.placeholder = @"Input your message";
+        _noteTF.placeholder = kLocalizedString(@"INPUT_MESSAGE");
     }
     return _noteTF;
 }

@@ -436,7 +436,7 @@
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "There are no items in this cart";
 //  "NOTES" = "Notes";
 //  "STORE_PROMOTION" = "Store Promo";
-//  "INPUT_MESSAGE" = "Input your message…";
+  "INPUT_MESSAGE" = "Input your message…";
 //  "DELIVERY_RANGE" = "Est.Arrival ={range} Days";
 //  "DELIVERY_MEHOD" = "Delivery Method";
 //  "PAYMENT_UNSUCCESSFUL" = "Payment Unsuccessful";

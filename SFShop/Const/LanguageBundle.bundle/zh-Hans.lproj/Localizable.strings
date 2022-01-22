@@ -440,7 +440,7 @@
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "购物车为空";
 //  "NOTES" = "备注";
 //  "STORE_PROMOTION" = "店铺优惠券";
-//  "INPUT_MESSAGE" = "输入备注";
+  "INPUT_MESSAGE" = "输入备注";
 //  "DELIVERY_RANGE" = "预计到达时间 ={range}天";
 //  "DELIVERY_MEHOD" = "邮寄方式";
 //  "PAYMENT_UNSUCCESSFUL" = "支付失败";

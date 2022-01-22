@@ -317,11 +317,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     SFCellCacheModel *model = self.dataArray[indexPath.section][indexPath.row];
-    if (!model.height) {
+//    if (!model.height) {
         if ([model.cellId isEqualToString:@"ProductCheckoutAddressCell"]) {
-            CGFloat addressHeight = [self.dataModel.addressModel.customAddress calHeightWithFont:[UIFont boldSystemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - 66 - 16 * 2, 200)];
+            UIFont *font = [UIFont boldSystemFontOfSize:12];
             CGFloat mailHeight = 30;
-            model.height = 21 + addressHeight + 12 + mailHeight + 16;
+            CGSize size = CGSizeMake(MainScreen_width - 66 - 16 * 2, 400);
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0,size.width, 0)];
+            textView.text = self.dataModel.addressModel.customAddress;
+            textView.font = font;
+            CGSize finalSize = [textView sizeThatFits:size];
+            CGFloat addressHeight = finalSize.height;
+            model.height = 16 + addressHeight + 12 + mailHeight + 6;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutGoodsCell"]) {
             model.height = 118;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
@@ -331,7 +337,7 @@
         } else if ([model.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
             model.height = 44;
         }
-    }
+//    }
 
     return  model.height;
 }
