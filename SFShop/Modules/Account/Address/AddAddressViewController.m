@@ -76,6 +76,8 @@
         self.defaultSwitch.on = [_model.isDefault isEqualToString:@"Y"];
         self.selAgreementBtn.selected = YES;
         self.emailField.text = _model.email;
+        self.saveBtn.userInteractionEnabled = YES;
+        self.saveBtn.backgroundColor = RGBColorFrom16(0xFF1659);
     }else{
         
     }
