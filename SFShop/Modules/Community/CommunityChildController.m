@@ -111,4 +111,8 @@
     return cellHeight;
 }
 
+-(CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForSupplementaryViewAtIndexPath:(NSIndexPath *)indexPath {
+    return 200;
+}
+
 @end

@@ -7,6 +7,9 @@
 
 #import "CommunityWaterfallLayout.h"
 
+NSString *const kSupplementaryViewKindHeader = @"Header";
+CGFloat const kSupplementaryViewKindHeaderPinnedHeight = 44.f;
+
 @interface CommunityWaterfallLayout()
 
 /** 保存所有Item的LayoutAttributes */
@@ -94,6 +97,15 @@
         [attributesArray addObject:attributes];
     }
     
+    //2、计算rect中出现的SupplementaryViews
+    //这里只计算了kSupplementaryViewKindHeader
+    indexPaths = [self indexPathForSupplementaryViewsOfKind:kSupplementaryViewKindHeader InRect:rect];
+    for(NSIndexPath *indexPath in indexPaths){
+        //计算对应的LayoutAttributes
+        UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:kSupplementaryViewKindHeader atIndexPath:indexPath];
+        [attributesArray addObject:attributes];
+    }
+
     return attributesArray;
 }
 
@@ -115,6 +127,9 @@
     //外部返回Item高度
     CGFloat itemHeight = [self.delegate collectionViewLayout:self heightForItemAtIndexPath:indexPath];
         
+    //headerView高度
+    CGFloat headerHeight = [self.delegate collectionViewLayout:self heightForSupplementaryViewAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+
     //找出所有列中高度最小的
     NSInteger columnIndex = [self columnOfLessHeight];
     CGFloat lessHeight = [self.columnHeights[columnIndex] floatValue];
@@ -123,7 +138,7 @@
     CGFloat width = (self.collectionView.bounds.size.width-(_insets.left+_insets.right)-_columnSpacing*(_columns-1)) / _columns;
     CGFloat height = itemHeight;
     CGFloat x = _insets.left+(width+_columnSpacing)*columnIndex;
-    CGFloat y = lessHeight==0 ? _insets.top : lessHeight+_itemSpacing;
+    CGFloat y = lessHeight==0 ? headerHeight + _insets.top : lessHeight+_itemSpacing;
     attributes.frame = CGRectMake(x, y, width, height);
     
     //更新列高度
@@ -137,7 +152,20 @@
  */
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
-    
+    //计算LayoutAttributes
+    if([elementKind isEqualToString:kSupplementaryViewKindHeader]){
+        CGFloat width = self.collectionView.bounds.size.width;
+        CGFloat height = [self.delegate collectionViewLayout:self heightForSupplementaryViewAtIndexPath:indexPath];
+        CGFloat x = 0;
+        //根据offset计算kSupplementaryViewKindHeader的y
+        //y = offset.y-(header高度-固定高度)
+        CGFloat offsetY = self.collectionView.contentOffset.y;
+        CGFloat y = MAX(0,
+                        offsetY-(height-kSupplementaryViewKindHeaderPinnedHeight));
+        attributes.frame = CGRectMake(x, y, width, height);
+        attributes.zIndex = 1024;
+    }
+
     return attributes;
 }
 
@@ -195,6 +223,17 @@
  */
 - (NSMutableArray<NSIndexPath *> *)indexPathForSupplementaryViewsOfKind:(NSString *)kind InRect:(CGRect)rect {
     NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
+    if([kind isEqualToString:kSupplementaryViewKindHeader]){
+        //在这个瀑布流自定义布局中，只有一个位于列表顶部的SupplementaryView
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+        
+        //如果当前区域可以看到SupplementaryView，则返回
+        CGFloat height = [self.delegate collectionViewLayout:self heightForSupplementaryViewAtIndexPath:indexPath];
+        if(CGRectGetMinY(rect) <= height + _insets.top){
+            //Header默认总是需要显示
+            [indexPaths addObject:indexPath];
+        }
+    }
     return indexPaths;
 }
 
