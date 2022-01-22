@@ -93,9 +93,12 @@
 @property (nonatomic, strong) AreaModel *streetModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupTableViewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *couponsViewHeight;
+@property (weak, nonatomic) IBOutlet UIView *infoView;
 
 @property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
+@property (weak, nonatomic) IBOutlet UIView *marketPriceLabelIndicationView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *priceLabelTop;
 
 @property (nonatomic, strong) NSString *currentShareBuyOrderId;
 
@@ -523,17 +526,21 @@
     self.groupTableViewHei.constant = [self calucateGroupTableviewHei];
     self.flashSaleInfoView.hidden = YES;
     self.groupInfoView.hidden = NO;
+    self.priceLabelTop.constant = 10;
+    self.salesPriceLabel.hidden = YES;
+    self.originalPriceLabel.hidden = YES;
+    self.marketPriceLabelIndicationView.hidden = YES;
+    
     self.viewTop.constant = 64;
     [self.buyBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"SHARE_BUY")] forState:0];
     [self.addCartBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
     [self.campaignsModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         if (model.productId.integerValue == _selProductModel.productId) {
             //找到当前显示的商品
-            NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-            self.groupDiscountLabel.text = [NSString stringWithFormat:@"%.0f%%",model.discountPercent];
+            self.groupDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
-            self.groupSalePriceLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency,model.shareBuyPrice];
-            self.groupMarketPriceLabel.text = [NSString stringWithFormat:@"%ld",_selProductModel.salesPrice];
+            self.groupSalePriceLabel.text = [[NSString stringWithFormat:@"%.0f", model.shareBuyPrice] currency];
+            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",_selProductModel.salesPrice] currency];
         }
     }];
 }
@@ -768,7 +775,14 @@
 
 - (IBAction)addToCart:(UIButton *)sender {
     if (!_isCheckingSaleInfo) {
-        [self showAttrsView];
+        ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
+        camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
+            return object.productId.integerValue == _selProductModel.productId;
+        }];
+        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+            return object.productId.integerValue == _selProductModel.productId;
+        }];
+        [self showAttrsViewWithAttrType:isGroupBuy ? groupSingleBuyType: cartType];
     } else {
         // TODO: 添加购物车
         NSDictionary *params =
@@ -784,6 +798,7 @@
             @"isSelected":@"N"
         };
         MPWeakSelf(self)
+        [MBProgressHUD showHudMsg:@""];
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
             [baseTool updateCartNum];
             [weakself requestCartNum];
@@ -812,17 +827,27 @@
         return;
     }
     if (!_isCheckingSaleInfo) {
-        [self showAttrsView];
-    } else {
-        //跳转checkout页
-        ProductItemModel *item = self.getSelectedProductItem;
-        item.storeName = self.model.storeName;
+        ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
+        camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
+            return object.productId.integerValue == _selProductModel.productId;
+        }];
+        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+            return object.productId.integerValue == _selProductModel.productId;
+        }];
+        [self showAttrsViewWithAttrType:isGroupBuy ? groupBuyType: buyType];
+    }
+}
+
+- (void)gotoCheckout:(ProductSpecAttrsType)type {
+    //跳转checkout页
+    ProductItemModel *item = self.getSelectedProductItem;
+    item.storeName = self.model.storeName;
+    if (type == groupBuyType) {//团购情况
         for (cmpShareBuysModel *buyModel in self.campaignsModel.cmpShareBuys) {
             if (buyModel.productId.integerValue == item.productId) {
                 item.inCmpIdList = @[@(buyModel.campaignId)];
             }
         }
-        item.currentBuyCount = self.attrView.count;
         if (item.inCmpIdList) {//团购情况
             if (self.currentShareBuyOrderId.length > 0) {
                 self.model.shareBuyOrderId = self.currentShareBuyOrderId;
@@ -832,27 +857,53 @@
             }
             self.model.orderType = @"B";
         }
-        self.model.selectedProducts = @[item];
-        ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
-        [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
-            if (isSuccess) {
-                ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-        }];
+    } else {
+        self.model.orderType = nil;
+        self.model.shareBuyMode = nil;
+        self.model.shareBuyOrderId = nil;
+        item.inCmpIdList = nil;
     }
+    item.currentBuyCount = self.attrView.count;
+    self.model.selectedProducts = @[item];
+    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
+    [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
+        if (isSuccess) {
+            ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
 }
 
 
-- (void)showAttrsView {
+- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type {
     _isCheckingSaleInfo = YES;
     _attrView = [[ProductSpecAttrsView alloc] init];
+    _attrView.attrsType = type;
     _attrView.campaignsModel = self.campaignsModel;
     _attrView.selProductModel = self.selProductModel;
     _attrView.stockModel = self.stockModel;
     _attrView.model = self.model;
     MPWeakSelf(self)
     MPWeakSelf(_attrView)
+    _attrView.buyOrCartBlock = ^(ProductSpecAttrsType type) {
+        switch (type) {
+            case cartType:// 加入购物车
+            {
+                [weakself addToCart:nil];
+            }
+                break;
+            case buyType://购买
+            case groupSingleBuyType://团购活动单人购买
+            case groupBuyType://团购
+            {
+                [weakself gotoCheckout:type];
+            }
+                break;
+            default:
+                break;
+        }
+        weak_attrView.dismissBlock();
+    };
     _attrView.dismissBlock = ^{
         [weak_attrView removeFromSuperview];
         weakself.isCheckingSaleInfo = NO;
@@ -868,7 +919,7 @@
     [rootView addSubview:_attrView];
     [_attrView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(rootView);
-        make.bottom.equalTo(_buyBtn.mas_top).offset(-16);
+        make.bottom.equalTo(self.view.mas_bottom).offset(0);
     }];
 }
 
@@ -907,7 +958,7 @@
     } else {
         iv = (UIImageView *)view;
     }
-    [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: (index == 0 ? self.selProductModel : self.model.carouselImgUrls[index])])]];
+    [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: (index == 0 ? self.selProductModel : self.model.carouselImgUrls[index-1])])]];
     return iv;
 }
 

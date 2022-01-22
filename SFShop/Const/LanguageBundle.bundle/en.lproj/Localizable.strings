@@ -84,7 +84,7 @@
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "The following products are insufficient in stock; please adjust the purchase quantity.";
 //  "COUPON_CENTER" = "Voucher Center";
 //  "SHOPPING_CART" = "Shopping Cart";
-//  "ADD_TO_CART" = "Add to Cart";
+  "ADD_TO_CART" = "Add to Cart";
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
 //  "FIND_SIMILAR" = "Find Similar";
 //  "MOBILE_NUMBER" = "Mobile Number";
@@ -101,7 +101,7 @@
 //  "VIEW_REPLIES" = "View replies";
 //  "CONTACT_US" = "Contact Us";
 //  "SIGN_IN" = "Sign in";
-//  "OUT_OF_STOCK" = "Out of Stock";
+  "OUT_OF_STOCK" = "Out of Stock";
   "My_coupon" = "My Voucher";
 //  "CURRENT_PWD" = "Current Password";
 //  "SET_SUCCESSFUL" = "Set Successfully!";
@@ -127,7 +127,7 @@
 //  "STAR" = "star";
 //  "ENDS_IN" = "Ends in";
 //  "TOTAL" = "Total";
-//  "BUY_NOW" = "Buy Now";
+  "BUY_NOW" = "Buy Now";
 //  "BRANDS" = "Brands";
 //  "PRICE" = "Price";
 //  "BIND" = "Bind";
@@ -373,7 +373,7 @@
   "TERMS_CON" = "Terms Conditions & Privacy Policy";
 //  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "People joined the group; click to join";
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "Grouping has ended. Please join other groups";
-//  "STOCK" = "stock";
+  "STOCK" = "stock";
 //  "WHATS_APP" = "WhatsApp";
 //  "PLEASE_FILL_IN_COMMENTS" = "Please fill in your comments";
 //  "ERROR" = "error";
@@ -436,7 +436,7 @@
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "There are no items in this cart";
 //  "NOTES" = "Notes";
 //  "STORE_PROMOTION" = "Store Promo";
-//  "INPUT_MESSAGE" = "Input your message…";
+  "INPUT_MESSAGE" = "Input your message…";
 //  "DELIVERY_RANGE" = "Est.Arrival ={range} Days";
 //  "DELIVERY_MEHOD" = "Delivery Method";
 //  "PAYMENT_UNSUCCESSFUL" = "Payment Unsuccessful";

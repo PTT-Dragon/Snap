@@ -59,6 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *now;
 @property (nonatomic,copy) NSString *offerId;
 @property (nonatomic,copy) NSString *offerName;
+@property (nonatomic,copy) NSString *shareBuyPrice;
 @property (nonatomic,copy) NSString *productId;
 @property (nonatomic,copy) NSString *productName;
 @property (nonatomic,copy) NSString *shareBuyOrderNbr;
