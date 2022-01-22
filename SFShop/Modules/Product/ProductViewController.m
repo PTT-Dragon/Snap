@@ -99,7 +99,7 @@
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 @property (weak, nonatomic) IBOutlet UIView *marketPriceLabelIndicationView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *priceLabelTop;
-
+@property (nonatomic,strong) CartNumModel *cartNumModel;
 @property (nonatomic, strong) NSString *currentShareBuyOrderId;
 
 @end
@@ -121,6 +121,7 @@
     [self addActions];
     [self requestCampaigns];
     [self requestCartNum];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -148,7 +149,7 @@
     UITapGestureRecognizer *addressTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAddress)];
     [self.addressLabel addGestureRecognizer:addressTap];
     
-    UITapGestureRecognizer *variationTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAttrsView)];
+    UITapGestureRecognizer *variationTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAttrsViewWithAttrType:)];
     [self.variationsLabel addGestureRecognizer:variationTap];
     
     UITapGestureRecognizer *couponTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseCoupon)];
@@ -285,6 +286,17 @@
         
     }];
 }
+- (void)requestCartNum
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
+        weakself.cartNumModel = [[CartNumModel alloc] initWithDictionary:response error:nil];
+        weakself.cartNumLabel.text = weakself.cartNumModel.num.integerValue == 0 ? @"": weakself.cartNumModel.num;
+        weakself.cartNumLabel.hidden = weakself.cartNumModel.num.integerValue == 0 ? YES: NO;
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 - (void)requestProductRecord
 {
     //商品浏览记录
@@ -309,16 +321,6 @@
         [hud hideAnimated:YES];
         [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"message"]];
         NSLog(@"get similarfailed");
-    }];
-}
-- (void)requestCartNum
-{
-    MPWeakSelf(self)
-    //商品浏览记录
-    [SFNetworkManager post:SFNet.offer.stock parameters:@{@"offerId":@(self.offerId)} success:^(id  _Nullable response) {
-        
-    } failed:^(NSError * _Nonnull error) {
-        
     }];
 }
 
@@ -532,15 +534,15 @@
     self.marketPriceLabelIndicationView.hidden = YES;
     
     self.viewTop.constant = 64;
-    [self.buyBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"SHARE_BUY")] forState:0];
-    [self.addCartBtn setTitle:[NSString stringWithFormat:@"RP%ld\n%@",(long)self.model.salesPrice,kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
+    [self.addCartBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)self.model.salesPrice] currency],kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
     [self.campaignsModel.cmpShareBuys enumerateObjectsUsingBlock:^(cmpShareBuysModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         if (model.productId.integerValue == _selProductModel.productId) {
             //找到当前显示的商品
             self.groupDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
             self.groupSalePriceLabel.text = [[NSString stringWithFormat:@"%.0f", model.shareBuyPrice] currency];
-            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",_selProductModel.salesPrice] currency];
+            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",self.model.marketPrice] currency];
+            [self.buyBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)model.shareBuyPrice] currency],kLocalizedString(@"SHARE_BUY")] forState:0];
         }
     }];
 }
@@ -686,7 +688,7 @@
     }
     if (indexPath.row == 0) {
         ProductGroupTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductGroupTitleCell"];
-        cell.label.text = [NSString stringWithFormat:@"%ld people share buy, click to join",self.groupModel.total];
+        cell.label.text = [NSString stringWithFormat:@"%ld %@",self.groupModel.total > 5 ? 5 :self.groupModel.total,kLocalizedString(@"PEOPLE_SHARE_BUY_CLICK_TO_JOIN")];
         return cell;
     }
     ProductGroupListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductGroupListCell"];
@@ -748,6 +750,12 @@
 
 - (IBAction)usefulAction:(UIButton *)sender {
     MPWeakSelf(self)
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model.accessToken) {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     [MBProgressHUD showHudMsg:@""];
     if ([self.selProductModel.isCollection isEqualToString:@"1"]) {
         [SFNetworkManager post:SFNet.favorite.del parameters:@{@"productIdList":@[@(_selProductModel.productId)]} success:^(id  _Nullable response) {

@@ -206,6 +206,7 @@
     RecentlyModel *model = arr[indexPath.row];
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = model.offerId.integerValue;
+    vc.productId = model.productId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){

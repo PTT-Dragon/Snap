@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *skuLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
+@property (weak, nonatomic) IBOutlet UIView *priceDownView;
+@property (weak, nonatomic) IBOutlet UILabel *priceDownLabel;
 
 @end
 
@@ -50,6 +52,8 @@
     _priceLabel.text = [[NSString stringWithFormat:@"%.0f",model.salesPrice] currency];
     ProdSpcAttrsModel *skuLabel = model.prodSpcAttrs.firstObject;
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",skuLabel.value];
+    _priceDownView.hidden = !model.cutRate;
+    _priceDownLabel.text = model.cutRate;
     if (_isInvalid) {
         _selBtn.enabled = NO;
     }else{

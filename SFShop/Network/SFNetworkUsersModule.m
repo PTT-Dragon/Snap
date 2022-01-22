@@ -70,6 +70,11 @@
     NSString *url = [NSString stringWithFormat:@"deflangs/%@",languageId];
     return K_users_domain(url);
 }
+- (NSString *)readChatMessage:(NSString *)chatId
+{
+    NSString *url = [NSString stringWithFormat:@"/webchat/user/batch/%@/read",chatId];
+    return K_h5_domain(url);
+}
 
 
 @end

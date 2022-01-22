@@ -14,6 +14,7 @@
 #import "CouponsAvailableModel.h"
 #import "ProductCalcFeeModel.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ProductCarouselImgModel;
@@ -27,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ProductGroupListModel;
 @protocol FlashSaleDateModel;
 @protocol CouponModel;
+
 
 
 
@@ -153,6 +155,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) CGFloat itemHie;
 @end
 
+@interface ProductReviewAddModel : JSONModel
+@property (nonatomic,copy) NSString *reviewComments;
+@property (nonatomic,copy) NSString *reviewDate;
+@property (nonatomic,copy) NSString *reviewTime;
+@property (nonatomic,strong) NSArray <EvaluatesContentsModel>*contents;
+@property(nonatomic,assign) CGFloat itemHie;
+@end
+
 @interface ProductEvalationModel : JSONModel
 @property(nonatomic, strong) NSString *offerEvaluationId;
 @property(nonatomic, strong) NSString *userId;
@@ -169,6 +179,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString *createdDate;
 @property(nonatomic, strong) NSString *userLogo;
 @property(nonatomic, strong) ProductEvalationReplayModel *reply;
+@property(nonatomic, strong) ProductReviewAddModel *review;
 @property(nonatomic,assign) CGFloat itemHie;
 @property (nonatomic,strong) NSArray <EvaluatesContentsModel>*evaluationContents;
 /**

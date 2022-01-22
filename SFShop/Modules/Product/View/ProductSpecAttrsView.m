@@ -27,6 +27,9 @@
 @property (nonatomic,strong) UIView *groupView;
 @property (nonatomic,strong) UILabel *groupLabel;
 @property (nonatomic,strong) UILabel *groupCountLabel;
+@property (nonatomic,strong) UILabel *maxPurchaseLabel;
+@property (nonatomic,assign) NSInteger maxPurchaseCount;//团购最多可买数量
+@property (nonatomic,strong) SingleProductStockModel *selStockModel;//选中的stockmodel
 
 
 @end
@@ -210,6 +213,14 @@
         make.width.mas_equalTo((MainScreen_width-52)/2);
         make.bottom.equalTo(contentView).offset(-44);
     }];
+    _maxPurchaseLabel = [[UILabel alloc] init];
+    _maxPurchaseLabel.textColor = RGBColorFrom16(0x999999);
+    _maxPurchaseLabel.font = CHINESE_SYSTEM(12);
+    [self addSubview:_maxPurchaseLabel];
+    [_maxPurchaseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(quantityLabel);
+        make.top.mas_equalTo(quantityLabel.mas_bottom).offset(5);
+    }];
     
     _groupView = [[UIView alloc] init];
     _groupView.backgroundColor = RGBColorFrom16(0xFFE5EB);
@@ -325,11 +336,15 @@
     }];
     __block NSInteger groupCount = 0;
     BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-        groupCount = object.shareByNum;
+        if (object.productId.integerValue == _selProductModel.productId) {
+            groupCount = object.shareByNum;
+            self.maxPurchaseCount = object.buyAmtLimit;
+        }
         return object.productId.integerValue == _selProductModel.productId;
     }];
     if (isGroupBuy) {
         _groupCountLabel.text = [NSString stringWithFormat:@"%ld",groupCount];
+        _maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld",self.maxPurchaseCount];
         self.groupView.hidden = NO;
     }else{
         self.groupView.hidden = YES;
@@ -349,6 +364,7 @@
     [stockModel enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
             if (obj1.productId.integerValue == self.selProductModel.productId) {
+                self.selStockModel = obj1;
                 self.stockLabel.text = [obj1.stock isEqualToString:@"0"] ? kLocalizedString(@"OUT_OF_STOCK"): [NSString stringWithFormat:@"%@: %@", kLocalizedString(@"STOCK"),obj1.stock];
                 *stop = YES;
                 *stop1 = YES;
@@ -436,7 +452,11 @@
 
 - (void)increase: (UIButton *)sender {
     self.count++;
-    _decreaseBtn.enabled = self.count > 1;
+    if (_maxPurchaseCount) {
+        _decreaseBtn.enabled = (self.count > 1 && self.count < _maxPurchaseCount);
+    }else{
+        _decreaseBtn.enabled = (self.count > 1 && self.count < self.selStockModel.stock.integerValue);
+    }
     _countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
 }
 

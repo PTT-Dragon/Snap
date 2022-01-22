@@ -71,6 +71,23 @@
 }
 @end
 
+@implementation ProductReviewAddModel
+- (CGFloat)itemHie
+{
+    //计算label高度
+    CGFloat labelHei = 0;
+    labelHei = [self.reviewComments calHeightWithFont:[UIFont systemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-32, MAXFLOAT)];
+    //计算图片高度
+    CGFloat itemHei = (MainScreen_width-34-30)/4;
+    CGFloat imageHei = 0;
+    imageHei = self.contents.count == 0 ? 0: self.contents.count < 4 ? itemHei+5: self.contents.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+    return labelHei + imageHei+55;
+}
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+
 @implementation ProductEvalationModel
 - (CGFloat)itemHie
 {

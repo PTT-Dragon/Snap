@@ -106,9 +106,12 @@
             if (image) {
                 [self.imgArr addObject:image];
             }
+            CGFloat itemHei = (MainScreen_width-32-30)/4;
+            self.photoCollectionViewHei.constant = self.imgArr.count < 4 ? itemHei+5:  self.imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
             [self.photoCollectionView reloadData];
         }];
     }
+    
 }
 - (void)loadDatas
 {
@@ -143,6 +146,15 @@
     MPWeakSelf(self)
     cell.block = ^(NSInteger index) {
         [weakself.imgArr removeObjectAtIndex:index];
+        __block BOOL a = NO;
+        [weakself.imgArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                a = YES;
+            }
+        }];
+        if (weakself.imgArr.count < 9 && !a) {
+            [weakself.imgArr insertObject:@"1" atIndex:weakself.imgArr.count];
+        }
         CGFloat itemHei = (MainScreen_width-32-30)/4;
         weakself.photoCollectionViewHei.constant = weakself.imgArr.count < 4 ? itemHei+5:  weakself.imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
         [weakself.photoCollectionView reloadData];

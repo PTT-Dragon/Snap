@@ -9,6 +9,7 @@
 #import "ProductEvalationCell.h"
 #import "ProductReviewReplyCell.h"
 #import "ProductViewController.h"
+#import "ProductReviewAddCell.h"
 
 @interface ProductReviewDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -26,17 +27,18 @@
     self.title = kLocalizedString(@"Review_detail");
     [self.tableView registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ProductReviewReplyCell" bundle:nil] forCellReuseIdentifier:@"ProductReviewReplyCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ProductReviewAddCell" bundle:nil] forCellReuseIdentifier:@"ProductReviewAddCell"];
+    
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(self.model.productImgUrl)]];
     self.nameLabel.text = self.model.productName;
-//    NSDictionary *dic = [self.model.productName jk_dictionaryValue];
-//    self.skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
+    self.skuLabel.text = [NSString stringWithFormat:@"  %@  ",self.model.attrValues];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toProductDetail)];
     [_imgView addGestureRecognizer:tap];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1+(self.model.reply?1:0);
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -44,24 +46,28 @@
         ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
         cell.model = self.model;
         return cell;
+    }else if (indexPath.row == 1){
+        ProductReviewAddCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductReviewAddCell"];
+        cell.model = self.model.review;
+        return cell;
     }
-    ProductReviewReplyCell *cell = [[ProductReviewReplyCell alloc] init];
+    ProductReviewReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductReviewReplyCell"];
     cell.model = self.model.reply;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? self.model.itemHie : self.model.reply.itemHie; 
+    return indexPath.row == 0 ? self.model.itemHie : indexPath.row == 1 ? self.model.review.itemHie : self.model.reply.itemHie;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
 }
 - (void)toProductDetail
 {
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = [self.model.offerId integerValue];
+    vc.productId = self.model.productId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end

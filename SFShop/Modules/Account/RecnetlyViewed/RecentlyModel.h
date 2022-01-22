@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*imgUrl;
 @property (nonatomic,assign) BOOL isCollection;
 @property (nonatomic,copy) NSString <Optional>*offerId;
+@property (nonatomic,copy) NSString <Optional>*productId;
 @property (nonatomic,copy) NSString <Optional>*offerName;
 @property (nonatomic,copy) NSString <Optional>*offerType;
 @property (nonatomic,copy) NSString <Optional>*offerViewLogId;

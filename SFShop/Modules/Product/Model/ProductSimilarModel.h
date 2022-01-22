@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 当前价格
 @property(nonatomic, assign) NSInteger salesPrice;
+
 // 市场价
 @property(nonatomic, assign) NSInteger marketPrice;
 // 折扣
@@ -28,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString <Optional> * evaluationCnt;
 
 @property(nonatomic, assign) NSInteger offerId;
+
+@property(nonatomic, assign) NSInteger productId;
 
 
 

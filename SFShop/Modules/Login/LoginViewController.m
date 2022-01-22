@@ -33,7 +33,11 @@
 @implementation LoginViewController
 static BOOL _accountSuccess = NO;
 static BOOL _passwordSuccess = NO;
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

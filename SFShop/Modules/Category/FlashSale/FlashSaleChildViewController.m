@@ -106,6 +106,7 @@
     FlashSaleProductModel *model = self.dataSource[indexPath.row];
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = model.offerId.integerValue;
+    vc.productId = model.productId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

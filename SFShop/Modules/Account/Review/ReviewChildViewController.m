@@ -173,6 +173,7 @@
     ProductViewController *vc = [[ProductViewController alloc] init];
     orderItemsModel *itemModel = model.orderItems[indexPath.row];
     vc.offerId = itemModel.offerId.integerValue;
+    vc.productId = itemModel.productId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

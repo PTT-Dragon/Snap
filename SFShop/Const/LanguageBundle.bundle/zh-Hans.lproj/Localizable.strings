@@ -170,7 +170,7 @@
 //  "REVIEW" = "评价";
 //  "EDIT" = "修改";
 //  "ADDITIONAL_REVIEW" = "追评";
-//  "ADDITIONAL_DAY" = "支付成功{day}天后追加评价";
+  "ADDITIONAL_DAY" = "支付成功{day}天后追加评价";
 //  "GO_SHOPPING" = "继续购物";
 //  "REVIEW_LIST" = "评价列表";
 //  "VALID_RANGE" = "领取{day}天后失效";
@@ -375,7 +375,7 @@
   "Today" = "今天";
 //  "POLICIES" = "政策";
   "TERMS_CON" = "协议隐私政策";
-//  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "人拼团，点击加入";
+  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "人拼团，点击加入";
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "拼团已完成，请加入其它拼团";
   "STOCK" = "库存";
 //  "WHATS_APP" = "WhatsApp";

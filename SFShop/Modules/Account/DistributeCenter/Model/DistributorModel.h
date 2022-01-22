@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DistributorRankProductModel : JSONModel
 @property (nonatomic,copy) NSString <Optional> *distriSpuLibId;
 @property (nonatomic,copy) NSString <Optional> *offerId;
+@property (nonatomic,copy) NSString <Optional> *productId;
 @property (nonatomic,copy) NSString <Optional> *offerName;
 @property (nonatomic,copy) NSString <Optional> *commission;
 @property (nonatomic,copy) NSString <Optional> *commissionRate;

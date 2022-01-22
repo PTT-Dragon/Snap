@@ -108,6 +108,7 @@
     CategoryRankPageInfoListModel *model = self.dataArray[indexPath.row-2];
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = model.offerId;
+    vc.productId = model.productId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter

@@ -99,11 +99,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 //    CategoryRankPageInfoListModel *cellModel = self.similarList[indexPath.row];
     ProductViewController *vc = [[ProductViewController alloc] init];
-//<<<<<<< HEAD
-//    vc.offerId = cellModel.offerId;
-//=======
     vc.offerId = self.similarList[indexPath.row].offerId;
-//>>>>>>> 4d144dfc40f7593807ac273d9cc974cd537821c0
+    vc.productId = self.similarList[indexPath.row].productId;
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 

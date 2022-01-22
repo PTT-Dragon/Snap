@@ -266,6 +266,8 @@
 		1BC7A2CB272AFC9600755832 /* FAQDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2C9272AFC9600755832 /* FAQDetailViewController.xib */; };
 		1BC7A2CF272B081E00755832 /* UseCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CD272B081E00755832 /* UseCouponViewController.m */; };
 		1BC7A2D0272B081E00755832 /* UseCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */; };
+		1BCD2E85279BF70F008A530B /* ProductReviewAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCD2E83279BF70F008A530B /* ProductReviewAddCell.m */; };
+		1BCD2E86279BF70F008A530B /* ProductReviewAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BCD2E84279BF70F008A530B /* ProductReviewAddCell.xib */; };
 		1BD10C332761DE4300BFC1AD /* ProductEvalationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */; };
 		1BD10C342761DE4300BFC1AD /* ProductEvalationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */; };
 		1BD10C382761E80100BFC1AD /* ProductEvalationTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD10C362761E80000BFC1AD /* ProductEvalationTitleCell.m */; };
@@ -979,6 +981,9 @@
 		1BC7A2CC272B081E00755832 /* UseCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponViewController.h; sourceTree = "<group>"; };
 		1BC7A2CD272B081E00755832 /* UseCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponViewController.m; sourceTree = "<group>"; };
 		1BC7A2CE272B081E00755832 /* UseCouponViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponViewController.xib; sourceTree = "<group>"; };
+		1BCD2E82279BF70F008A530B /* ProductReviewAddCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewAddCell.h; sourceTree = "<group>"; };
+		1BCD2E83279BF70F008A530B /* ProductReviewAddCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductReviewAddCell.m; sourceTree = "<group>"; };
+		1BCD2E84279BF70F008A530B /* ProductReviewAddCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductReviewAddCell.xib; sourceTree = "<group>"; };
 		1BD10C302761DE4300BFC1AD /* ProductEvalationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductEvalationCell.h; sourceTree = "<group>"; };
 		1BD10C312761DE4300BFC1AD /* ProductEvalationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductEvalationCell.m; sourceTree = "<group>"; };
 		1BD10C322761DE4300BFC1AD /* ProductEvalationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductEvalationCell.xib; sourceTree = "<group>"; };
@@ -2180,6 +2185,9 @@
 				1B78865A276C7E74009A080A /* ProductReviewReplyCell.h */,
 				1B78865B276C7E74009A080A /* ProductReviewReplyCell.m */,
 				1B78865C276C7E74009A080A /* ProductReviewReplyCell.xib */,
+				1BCD2E82279BF70F008A530B /* ProductReviewAddCell.h */,
+				1BCD2E83279BF70F008A530B /* ProductReviewAddCell.m */,
+				1BCD2E84279BF70F008A530B /* ProductReviewAddCell.xib */,
 			);
 			path = ProductReview;
 			sourceTree = "<group>";
@@ -3422,6 +3430,7 @@
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
 				1BC7A2D0272B081E00755832 /* UseCouponViewController.xib in Resources */,
 				1BD8E7B4275DFDAD00130DCC /* ReviewAddNewPhotoCell.xib in Resources */,
+				1BCD2E86279BF70F008A530B /* ProductReviewAddCell.xib in Resources */,
 				1B49D11D27192CFB002461ED /* AddressViewController.xib in Resources */,
 				4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */,
 				1B552EC1276C721C0086604B /* ProductReviewDetailViewController.xib in Resources */,
@@ -3888,6 +3897,7 @@
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */,
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
+				1BCD2E85279BF70F008A530B /* ProductReviewAddCell.m in Sources */,
 				1B6C52A0275B672200A1C617 /* ToastUtils.m in Sources */,
 				1BF00F69272FDC4B0081C8E4 /* DistribitorRankTopCell.m in Sources */,
 				1BB1CB5F2763415C008D71DF /* FlashSaleViewController.m in Sources */,
@@ -4103,7 +4113,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.4;
+				CURRENT_PROJECT_VERSION = 4.5;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4144,7 +4154,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.4;
+				CURRENT_PROJECT_VERSION = 4.5;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -63,6 +63,7 @@
 - (IBAction)buyAction:(UIButton *)sender {
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = [self.model.offerId integerValue];
+    vc.productId = self.model.productId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -89,6 +90,7 @@
     ProductSimilarModel *model = self.dataSource[indexPath.row];
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = model.offerId;
+    vc.productId = model.productId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

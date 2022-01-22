@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *addon;
 @property (nonatomic,copy) NSString *productName;
 @property (nonatomic,copy) NSString *imgUrl;
+@property (nonatomic,copy) NSString *cutRate;
 @property (nonatomic,copy) NSString *noStock;
 @property (nonatomic,copy) NSString *campaignId;
 @property (nonatomic,copy) NSString *isCollection;

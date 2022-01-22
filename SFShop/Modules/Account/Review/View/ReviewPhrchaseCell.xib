@@ -33,9 +33,6 @@
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="NAq-BD-Zdh">
                         <rect key="frame" x="8" y="66" width="304" height="76"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="76" id="9Ex-7P-1Iz"/>
-                        </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9bQ-JS-cvO">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -53,6 +50,7 @@
                     <constraint firstItem="NAq-BD-Zdh" firstAttribute="top" secondItem="Lkp-26-IUN" secondAttribute="bottom" constant="10" id="PBB-vb-CGE"/>
                     <constraint firstItem="V6D-41-7Dh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="VWK-Rl-rA0"/>
                     <constraint firstItem="Lkp-26-IUN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Wgy-dq-aAg"/>
+                    <constraint firstAttribute="bottom" secondItem="NAq-BD-Zdh" secondAttribute="bottom" constant="8" id="uW8-8a-TIc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

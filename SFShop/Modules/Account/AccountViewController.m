@@ -228,7 +228,7 @@
         if ([cell.label.text isEqualToString:kLocalizedString(@"Distributor_center")]) {
             DistributeCenterViewController *vc = [[DistributeCenterViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:kLocalizedString(@"Community")]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"REFERS")]){
             InviteViewController *vc = [[InviteViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"RATING")]){
@@ -240,7 +240,7 @@
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"SERVICE")]){
             SupportViewController *vc = [[SupportViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }else if ([cell.label.text isEqualToString:kLocalizedString(@"REFERS")]){
+        }else if ([cell.label.text isEqualToString:kLocalizedString(@"Community")]){
             self.tabBarController.selectedIndex = 2;
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"Policies")]){
             PolicesViewController *vc = [[PolicesViewController alloc] init];

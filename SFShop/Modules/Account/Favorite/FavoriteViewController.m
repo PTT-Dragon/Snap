@@ -112,7 +112,7 @@
 - (void)updateNum
 {
     NSString *all = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"All"),self.numModel.totalNum];
-    NSString *Pricedown = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"All"),self.numModel.priceDownNum];
+    NSString *Pricedown = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"DROP_IN_PRICE"),self.numModel.priceDownNum];
     self.menuList = @[all, Pricedown];
     [self.magicController.magicView reloadMenuTitles];
 }

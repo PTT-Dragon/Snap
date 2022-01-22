@@ -96,6 +96,7 @@
     CategoryRankPageInfoListModel *cellModel = self.similarList[indexPath.row];
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = cellModel.offerId;
+    vc.productId = cellModel.productId.integerValue;
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 

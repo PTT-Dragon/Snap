@@ -81,6 +81,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ProductViewController *vc = [[ProductViewController alloc] init];
     vc.offerId = model.offerId;
+    vc.productId = model.productId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

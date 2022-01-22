@@ -90,11 +90,39 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ct6-i0-Q4T">
+                                <rect key="frame" x="86" y="95" width="50" height="15"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGP-hl-2ya">
+                                        <rect key="frame" x="20" y="1.5" width="27" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scroll-down-fill" translatesAutoresizingMaskIntoConstraints="NO" id="gwP-Jn-BYz">
+                                        <rect key="frame" x="3" y="2.5" width="10" height="10"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="524-ZW-AsU"/>
+                                            <constraint firstAttribute="width" constant="10" id="chA-nW-NWX"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="0Cy-hR-irN"/>
+                                    <constraint firstAttribute="trailing" secondItem="LGP-hl-2ya" secondAttribute="trailing" constant="3" id="4GH-Si-iIb"/>
+                                    <constraint firstItem="gwP-Jn-BYz" firstAttribute="leading" secondItem="Ct6-i0-Q4T" secondAttribute="leading" constant="3" id="6hA-rb-bGC"/>
+                                    <constraint firstAttribute="height" constant="15" id="Gtd-04-0aC"/>
+                                    <constraint firstItem="LGP-hl-2ya" firstAttribute="centerY" secondItem="Ct6-i0-Q4T" secondAttribute="centerY" id="IbL-5e-loG"/>
+                                    <constraint firstItem="gwP-Jn-BYz" firstAttribute="centerY" secondItem="Ct6-i0-Q4T" secondAttribute="centerY" id="fId-F6-B4Q"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xDM-D5-S5g" firstAttribute="leading" secondItem="kJB-Fa-M5g" secondAttribute="trailing" constant="32" id="1aK-LN-3gW"/>
                             <constraint firstItem="8nW-Ol-sVX" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="21L-7M-pKT"/>
+                            <constraint firstItem="Ct6-i0-Q4T" firstAttribute="trailing" secondItem="5Uk-UU-CJV" secondAttribute="trailing" id="2sy-5h-aii"/>
                             <constraint firstItem="MvD-Qt-BbY" firstAttribute="centerY" secondItem="9Dn-fL-1do" secondAttribute="centerY" id="3vK-aM-dln"/>
                             <constraint firstItem="8nW-Ol-sVX" firstAttribute="bottom" secondItem="5Uk-UU-CJV" secondAttribute="bottom" id="Ddg-US-4iR"/>
                             <constraint firstAttribute="trailing" secondItem="xDM-D5-S5g" secondAttribute="trailing" constant="20" id="K2H-gp-cQz"/>
@@ -104,6 +132,7 @@
                             <constraint firstItem="xDM-D5-S5g" firstAttribute="leading" secondItem="jWp-Ge-qwV" secondAttribute="trailing" id="ZHR-dW-vlB"/>
                             <constraint firstItem="jWp-Ge-qwV" firstAttribute="centerY" secondItem="kJB-Fa-M5g" secondAttribute="centerY" id="a7V-gb-ycf"/>
                             <constraint firstItem="kJB-Fa-M5g" firstAttribute="centerY" secondItem="xDM-D5-S5g" secondAttribute="centerY" id="b9j-8C-Dl9"/>
+                            <constraint firstItem="Ct6-i0-Q4T" firstAttribute="bottom" secondItem="5Uk-UU-CJV" secondAttribute="bottom" id="br8-Bc-d1U"/>
                             <constraint firstItem="jWp-Ge-qwV" firstAttribute="leading" secondItem="kJB-Fa-M5g" secondAttribute="trailing" id="eG1-vE-xvB"/>
                             <constraint firstItem="p92-dv-aGh" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="gQd-tV-DXm"/>
                             <constraint firstItem="5Uk-UU-CJV" firstAttribute="centerY" secondItem="9Dn-fL-1do" secondAttribute="centerY" id="jOO-x8-TLE"/>
@@ -128,6 +157,8 @@
                 <outlet property="countLabel" destination="jWp-Ge-qwV" id="GLs-vB-4gl"/>
                 <outlet property="imgView" destination="5Uk-UU-CJV" id="LC3-sa-uCQ"/>
                 <outlet property="nameLabel" destination="2OE-4E-Ucf" id="geg-Hm-xwy"/>
+                <outlet property="priceDownLabel" destination="LGP-hl-2ya" id="QLT-Ot-jJe"/>
+                <outlet property="priceDownView" destination="Ct6-i0-Q4T" id="JQF-dQ-nLZ"/>
                 <outlet property="priceLabel" destination="8nW-Ol-sVX" id="EDJ-W8-Jlb"/>
                 <outlet property="selBtn" destination="MvD-Qt-BbY" id="k3Q-56-MNs"/>
                 <outlet property="skuLabel" destination="p92-dv-aGh" id="GKK-tg-VV9"/>
@@ -140,6 +171,7 @@
         <image name="Vector" width="16" height="16"/>
         <image name="block" width="200" height="200"/>
         <image name="new-alternative" width="200" height="200"/>
+        <image name="scroll-down-fill" width="32" height="32"/>
         <image name="subtract" width="200" height="200"/>
         <image name="已选中" width="52" height="52"/>
         <systemColor name="systemBackgroundColor">

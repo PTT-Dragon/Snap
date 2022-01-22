@@ -67,9 +67,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 300;
+        EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+        CGFloat itemHei = (MainScreen_width-32-30)/4;
+        CGFloat hei = evaModel.contents.count < 4 ? itemHei+5:  evaModel.contents.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+        return hei+224;
     }
-    return 156;
+    return 150;
 }
 
 

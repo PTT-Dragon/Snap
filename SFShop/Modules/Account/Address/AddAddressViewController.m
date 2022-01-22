@@ -44,7 +44,7 @@
 @end
 
 @implementation AddAddressViewController
-
+static BOOL changePhone = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -68,6 +68,7 @@
     _streetField.layer.borderWidth = 1;
     if (_model) {
         //修改地址
+        changePhone = YES;
         self.nameField.text = _model.contactName;
         self.phoneField.text = _model.contactNbr;
         self.areaField.text = [NSString stringWithFormat:@"%@,%@,%@",_model.district,_model.city,_model.province];
@@ -111,6 +112,8 @@
                 
         }];
         return NO;
+    }else if (textField == _phoneField){
+        changePhone = NO;
     }
     return YES;
 }
@@ -131,8 +134,14 @@
 - (BOOL)checkAction
 {
     BOOL canPublish = NO;
+    BOOL b = NO;
+    if (changePhone) {
+        //不需要修改手机号
+        b = YES;
+    }else{
+        b = [_phoneField textFieldState:CHECKPHONETYPE label:_label2 tipLabel:_tipLabel2];
+    }
     BOOL a = [_nameField textFieldState:ANOTHERTYPE label:_label1 tipLabel:_tipLabel1];
-    BOOL b = [_phoneField textFieldState:CHECKPHONETYPE label:_label2 tipLabel:_tipLabel2];
     BOOL c = [_emailField textFieldState:CHECKEMAILTYPE label:_label3 tipLabel:_tipLabel3];
     BOOL d = [_areaField textFieldState:ANOTHERTYPE label:_label4 tipLabel:_tipLabel4];
     BOOL e = [_streetField textFieldState:ANOTHERTYPE label:_label5 tipLabel:_tipLabel5];
@@ -180,7 +189,9 @@
 - (void)modifyAction
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:_phoneField.text forKey:@"contactNbr"];
+    if (!changePhone) {
+        [params setValue:_phoneField.text forKey:@"contactNbr"];
+    }
     [params setValue:_nameField.text forKey:@"contactName"];
     [params setValue:_defaultSwitch.isOn ? @"Y":@"N"  forKey:@"isDefault"];
     [params setValue:_detailField.text forKey:@"contactAddress"];

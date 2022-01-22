@@ -212,6 +212,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ProductViewController *productVC = [[ProductViewController alloc] init];
     productVC.offerId = ((CategoryRankPageInfoListModel *)self.dataArray[indexPath.row]).offerId;
+    productVC.productId = ((CategoryRankPageInfoListModel *)self.dataArray[indexPath.row]).productId.integerValue;
     [self.navigationController pushViewController:productVC animated:YES];
 }
 

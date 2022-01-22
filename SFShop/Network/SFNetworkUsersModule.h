@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *messageNum;
 
 - (NSString *)setLanguageWithId:(NSString *)languageId;
+- (NSString *)readChatMessage:(NSString *)chatId;
 
 
 @end

@@ -408,10 +408,11 @@
 {
     if (!_totalAmountLabel) {
         NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-        _totalAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 103, 135, 19)];
+        _totalAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 141, 135, 19)];
         _totalAmountLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
         _totalAmountLabel.text = currency;
         _totalAmountLabel.textAlignment = NSTextAlignmentRight;
+        _totalAmountLabel.textColor = RGBColorFrom16(0xFF1659);
     }
     return _totalAmountLabel;
 }
@@ -419,10 +420,9 @@
 {
     if (!_preferentialAmountLabel) {
         NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-        _preferentialAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 141, 135, 19)];
+        _preferentialAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 103, 135, 19)];
         _preferentialAmountLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
         _preferentialAmountLabel.text = currency;
-        _preferentialAmountLabel.textColor = RGBColorFrom16(0xFF1659);
         _preferentialAmountLabel.textAlignment = NSTextAlignmentRight;
     }
     return _preferentialAmountLabel;

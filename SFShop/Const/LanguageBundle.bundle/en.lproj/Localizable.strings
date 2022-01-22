@@ -165,7 +165,7 @@
 //  "REVIEW" = "Review";
 //  "EDIT" = "Edit";
 //  "ADDITIONAL_REVIEW" = "Additional Review";
-//  "ADDITIONAL_DAY" = "Additional Reviews {day} days after purchase";
+  "ADDITIONAL_DAY" = "Additional Reviews {day} days after purchase";
 //  "GO_SHOPPING" = "Go Shopping";
 //  "REVIEW_LIST" = "Review List";
 //  "VALID_RANGE" = "Valid within {day} days";
@@ -371,7 +371,7 @@
   "Today" = "Today";
 //  "POLICIES" = "Policies";
   "TERMS_CON" = "Terms Conditions & Privacy Policy";
-//  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "People joined the group; click to join";
+  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "People joined the group; click to join";
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "Grouping has ended. Please join other groups";
   "STOCK" = "stock";
 //  "WHATS_APP" = "WhatsApp";

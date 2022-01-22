@@ -170,7 +170,7 @@
 //  "REVIEW" = "Ulasan";
 //  "EDIT" = "Edit";
 //  "ADDITIONAL_REVIEW" = "Ulasan Tambahan";
-//  "ADDITIONAL_DAY" = "Ulasan Tambahan {day} hari setelah pembelian";
+  "ADDITIONAL_DAY" = "Ulasan Tambahan {day} hari setelah pembelian";
 //  "GO_SHOPPING" = "Belanja";
 //  "REVIEW_LIST" = "Review list";
   "VALID_RANGE" = "Berlaku dalam {day} hari";
@@ -375,7 +375,7 @@
   "Today" = "Hari ini";
 //  "POLICIES" = "kebijakan";
   "TERMS_CON" = "Syarat Ketentuan & Kebijakan Privasi";
-//  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "Orang-orang bergabung dengan grup klik untuk bergabung";
+  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "Orang-orang bergabung dengan grup klik untuk bergabung";
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "Pengelompokan telah selesai; Silakan bergabung dengan grup lain";
   "STOCK" = "Stok";
 //  "WHATS_APP" = "WhatsApp";
