@@ -128,7 +128,10 @@ CGFloat const kSupplementaryViewKindHeaderPinnedHeight = 44.f;
     CGFloat itemHeight = [self.delegate collectionViewLayout:self heightForItemAtIndexPath:indexPath];
         
     //headerView高度
-    CGFloat headerHeight = [self.delegate collectionViewLayout:self heightForSupplementaryViewAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    CGFloat headerHeight = 0;
+    if ([self.delegate respondsToSelector:@selector(collectionViewLayout:heightForSupplementaryViewAtIndexPath:)]) {
+        headerHeight = [self.delegate collectionViewLayout:self heightForSupplementaryViewAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    }
 
     //找出所有列中高度最小的
     NSInteger columnIndex = [self columnOfLessHeight];
@@ -155,7 +158,11 @@ CGFloat const kSupplementaryViewKindHeaderPinnedHeight = 44.f;
     //计算LayoutAttributes
     if([elementKind isEqualToString:kSupplementaryViewKindHeader]){
         CGFloat width = self.collectionView.bounds.size.width;
-        CGFloat height = [self.delegate collectionViewLayout:self heightForSupplementaryViewAtIndexPath:indexPath];
+        CGFloat height = 0;
+        if ([self.delegate respondsToSelector:@selector(collectionViewLayout:heightForSupplementaryViewAtIndexPath:)]) {
+            height = [self.delegate collectionViewLayout:self heightForSupplementaryViewAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+        }
+
         CGFloat x = 0;
         //根据offset计算kSupplementaryViewKindHeader的y
         //y = offset.y-(header高度-固定高度)
@@ -228,10 +235,12 @@ CGFloat const kSupplementaryViewKindHeaderPinnedHeight = 44.f;
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
         
         //如果当前区域可以看到SupplementaryView，则返回
-        CGFloat height = [self.delegate collectionViewLayout:self heightForSupplementaryViewAtIndexPath:indexPath];
-        if(CGRectGetMinY(rect) <= height + _insets.top){
-            //Header默认总是需要显示
-            [indexPaths addObject:indexPath];
+        if ([self.delegate respondsToSelector:@selector(collectionViewLayout:heightForSupplementaryViewAtIndexPath:)]) {
+            CGFloat height = [self.delegate collectionViewLayout:self heightForSupplementaryViewAtIndexPath:indexPath];
+            if(CGRectGetMinY(rect) <= height + _insets.top){
+                //Header默认总是需要显示
+                [indexPaths addObject:indexPath];
+            }
         }
     }
     return indexPaths;

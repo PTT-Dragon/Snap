@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath;
 
+@optional
 - (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForSupplementaryViewAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
