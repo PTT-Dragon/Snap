@@ -303,7 +303,7 @@
         _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
         _btn1.tag = groupSingleBuyType + 100;
         _btn2.tag = cartType + 100;
-        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
+        [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
         [_btn2 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.mas_right).offset(-16);

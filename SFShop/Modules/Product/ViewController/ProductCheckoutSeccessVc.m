@@ -64,8 +64,9 @@
     self.seeShareBuyBtn.layer.borderWidth = 1;
     self.seeShareBuyBtn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     [self.productImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(self.groupModel.imgUrl)]];
+    self.needMemberCountLabel.text = [NSString stringWithFormat:@"%ld",self.groupModel.shareByNum];
     self.productNameLabel.text = self.groupModel.offerName;
-    self.priceLabel.text = [self.groupModel.shareBuyOrderNbr currency];
+    self.productPriceLabel.text = [self.groupModel.shareBuyPrice currency];
     ReviewUserInfoModel *userModel = self.groupModel.groupMembers.firstObject;
     [self.userImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(userModel.photo)]];
     //倒计时
