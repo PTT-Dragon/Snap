@@ -155,6 +155,10 @@
     UITapGestureRecognizer *couponTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseCoupon)];
     [self.couponsView addGestureRecognizer:couponTap];
 }
+
+- (void)showAttrsView {
+    [self showAttrsViewWithAttrType: buyType];
+}
 - (void)chooseCoupon
 {
     CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;

@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const kSupplementaryViewKindHeader;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol CommunityWaterfallLayoutProtocol;
@@ -24,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CommunityWaterfallLayoutProtocol <NSObject>
 
 - (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@optional
+- (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForSupplementaryViewAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

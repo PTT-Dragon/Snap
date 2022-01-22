@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)configDataWithEmptyType:(EmptyViewType)type;
 
+- (void)updateTitle:(NSString *)title;
+
 @end
 
 NS_ASSUME_NONNULL_END
