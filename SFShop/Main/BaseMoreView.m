@@ -7,6 +7,7 @@
 
 #import "BaseMoreView.h"
 #import "UIButton+FFImagePosition.h"
+#import "UIView+Response.h"
 
 @interface BaseMoreView ()
 
@@ -92,6 +93,7 @@
     self.hidden = YES;
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate.tabVC setSelectedIndex:0];
+    [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)inboxBtnAction {
@@ -102,7 +104,8 @@
 - (void)accountBtnAction {
     self.hidden = YES;
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate.tabVC setSelectedIndex:3];
+    [appDelegate.tabVC setSelectedIndex:4];
+    [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)mysfBtnAction {
