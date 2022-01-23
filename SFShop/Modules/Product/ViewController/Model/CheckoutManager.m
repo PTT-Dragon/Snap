@@ -27,7 +27,7 @@ static CheckoutManager *_instance = nil;
 }
 
 #pragma mark - 订单、支付
-- (void)startPayWithOrderIds:(NSArray *)orderIds shareBuyOrderNbr:(NSString *)shareBuyOrderNbr totalPrice:(NSString *)totalPrice complete:(void(^)(SFPayResult result,NSString *urlOrHtml))complete {
+- (void)startPayWithOrderIds:(NSArray *)orderIds shareBuyOrderNbr:(NSString *)shareBuyOrderNbr totalPrice:(NSString *)totalPrice complete:(void(^)(SFPayResult result, NSString *urlOrHtml, NSDictionary *response))complete {
     NSAssert(orderIds.count > 0, @"订单iD 不能为空");
     NSAssert(totalPrice.length > 0, @"订单价格不能为空");
 
@@ -49,12 +49,12 @@ static CheckoutManager *_instance = nil;
             [self jumpToWebPayWithOrderIds:orderIds shareBuyOrderNbr:shareBuyOrderNbr totalPrice:totalPrice paymentChannel:paymentChannelCode paymentMethod:paymentMethodCode complete:complete];
         }
     } failed:^(NSError * _Nonnull error) {
-        !complete ?: complete(SFPayResultFailed,nil);
+        !complete ?: complete(SFPayResultFailed,nil,nil);
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
-- (void)jumpToWebPayWithOrderIds:(NSArray *)orderIds shareBuyOrderNbr:(NSString *)shareBuyOrderNbr totalPrice:(NSString *)totalPrice paymentChannel:(NSString *)paymentChannel paymentMethod:(NSString *)paymentMethod complete:(void(^)(SFPayResult result,NSString *urlOrHtml))complete {
+- (void)jumpToWebPayWithOrderIds:(NSArray *)orderIds shareBuyOrderNbr:(NSString *)shareBuyOrderNbr totalPrice:(NSString *)totalPrice paymentChannel:(NSString *)paymentChannel paymentMethod:(NSString *)paymentMethod complete:(void(^)(SFPayResult result,NSString *urlOrHtml, NSDictionary *response))complete {
     //{"orders":["178013","178014"],"totalPrice":106000,"returnUrl":"https://www.smartfrenshop.com/paying?type=back&orderId=178013"}
     NSString *returnUrl = nil;
     if (![shareBuyOrderNbr isKindOfClass:[NSNull class]] && shareBuyOrderNbr.length > 0) {
@@ -74,36 +74,36 @@ static CheckoutManager *_instance = nil;
         [MBProgressHUD hideFromKeyWindow];
         NSString *urlOrHtml = response[@"urlOrHtml"];
         if (![urlOrHtml isKindOfClass:[NSNull class]] && urlOrHtml.length > 0) {
-            !complete ?: complete(SFPayResultJumpToWebPay,urlOrHtml);
+            !complete ?: complete(SFPayResultJumpToWebPay,urlOrHtml,response);
         } else {
             [self confirmPay:orderIds complete:complete];
         }
     } failed:^(NSError * _Nonnull error) {
-        !complete ?: complete(SFPayResultFailed,nil);
+        !complete ?: complete(SFPayResultFailed,nil,nil);
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
-- (void)confirmPay:(NSArray *)orderIds complete:(void(^)(SFPayResult result,NSString *urlOrHtml))complete {
+- (void)confirmPay:(NSArray *)orderIds complete:(void(^)(SFPayResult result,NSString *urlOrHtml, NSDictionary *response))complete {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedString(@"Order_payment_processing") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:kLocalizedString(@"YES") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [MBProgressHUD showHudMsg:@""];
         [SFNetworkManager post:SFNet.order.confirm parametersArr:orderIds success:^(id  _Nullable response) {
             [MBProgressHUD autoDismissShowHudMsg:@"支付成功"];
-            !complete ?: complete(SFPayResultSuccess,nil);
+            !complete ?: complete(SFPayResultSuccess,nil,response);
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }];
     [alert addAction:okAction];
     UIAlertAction *calcelAction = [UIAlertAction actionWithTitle:kLocalizedString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        !complete ?: complete(SFPayResultFailed,nil);
+        !complete ?: complete(SFPayResultFailed,nil,nil);
     }];
     [alert addAction:calcelAction];
     [UIViewController.sf_topViewController presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)showPaymentAlertWithOrderIds:(NSArray *)orderIds shareBuyOrderNbr:(NSString *)shareBuyOrderNbr totalPrice:(NSString *)totalPrice methods:(NSArray *)methodsResponse complete:(void(^)(SFPayResult result,NSString *urlOrHtml))complete {
+- (void)showPaymentAlertWithOrderIds:(NSArray *)orderIds shareBuyOrderNbr:(NSString *)shareBuyOrderNbr totalPrice:(NSString *)totalPrice methods:(NSArray *)methodsResponse complete:(void(^)(SFPayResult result,NSString *urlOrHtml, NSDictionary *response))complete {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedString(@"Order_payment_processing") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     for (NSDictionary *method in methodsResponse) {
         NSString *paymentChannelCode = [method objectForKey:@"paymentChannelCode"];
