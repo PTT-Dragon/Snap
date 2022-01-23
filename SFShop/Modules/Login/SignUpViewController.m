@@ -43,9 +43,9 @@ static BOOL _passwordSuccess = NO;
 -(void)changedTextField:(UITextField *)textField
 {
     if (textField == _PhoneField) {
-        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:EIDTTYPE labels:@[_phoneLabel]];
+        _accountSuccess = [textField textFieldState:CHECKMEAILORPHONE editType:EIDTTYPE labels:@[_phoneLabel,_accountQesLabel]];
     }else if (textField == _passwordField){
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_passwordLabel]];
+        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_passwordLabel,_passwordQesLabel]];
     }
     if (_accountSuccess && _passwordSuccess) {
         self.signUpBtn.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -58,7 +58,7 @@ static BOOL _passwordSuccess = NO;
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == _PhoneField) {
-        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:BEGINEDITTYPE labels:@[_phoneLabel]];
+        _accountSuccess = [textField textFieldState:CHECKMEAILORPHONE editType:BEGINEDITTYPE labels:@[_phoneLabel]];
     }else if (textField == _passwordField){
         _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:BEGINEDITTYPE labels:@[_passwordLabel]];
     }
@@ -66,7 +66,7 @@ static BOOL _passwordSuccess = NO;
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _PhoneField) {
-        _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:ENDEDITTYPE labels:@[_phoneLabel]];
+        _accountSuccess = [textField textFieldState:CHECKMEAILORPHONE editType:ENDEDITTYPE labels:@[_phoneLabel]];
     }else if (textField == _passwordField){
         _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:ENDEDITTYPE labels:@[_passwordLabel]];
     }

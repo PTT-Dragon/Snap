@@ -390,9 +390,9 @@
 //  "LOGIN_VIA_OPT" = "Masuk melalui OTP";
 //  "SMARTFREN_NUMBER" = "Nomor Smartfren";
 //  "PHONE_NUMBER_EMAIL" = "Nomor Telepon / Email";
-//  "YOUR_CODE_WAS_SENT_TO" = "Kode Anda telah dikirim ke";
-//  "RESEND_CODE_IN" = "Kirim ulang kode masuk";
-//  "RESEND" = "resend";
+  "YOUR_CODE_WAS_SENT_TO" = "Kode Anda telah dikirim ke";
+  "RESEND_CODE_IN" = "Kirim ulang kode masuk";
+  "RESEND" = "RESEND";
 //  "FORGOT_PWD_SELECT_MODAL_TITLE" = "Anda dapat mengatur ulang kata sandi Anda dengan SMS atau Email";
 //  "RESET_WITH_SMS" = "SETEL ULANG DENGAN SMS";
 //  "RESET_WITH_EMAIL" = "SETEL ULANG DENGAN EMAIL";

@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *offLabel;
 @property (weak, nonatomic) IBOutlet UILabel *macketPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *starImgView;
 
 @end
 
@@ -30,11 +31,15 @@
 }
 - (void)setContent:(ProductSimilarModel *)model
 {
+    _typeLabel.text = model.offerType;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.offerName;
     _priceLabel.text = [NSString stringWithFormat:@"RP%ld",model.salesPrice];
     _macketPriceLabel.text = [NSString stringWithFormat:@"%ld",model.marketPrice];
     _offLabel.text = [NSString stringWithFormat:@"%ld%%",model.discountPercent];
-    _scoreLabel.text = [NSString stringWithFormat:@"%@  (%@)",model.evaluationRate,model.evaluationCnt];
+    NSString *score = ([model.evaluationRate isEqualToString:@"0"] || !model.evaluationRate) ? @"": model.evaluationRate;
+    NSString *evaCount = ([model.evaluationCnt isEqualToString:@"0"] || !model.evaluationCnt) ? @"": model.evaluationRate;
+    self.starImgView.hidden = ([model.evaluationRate isEqualToString:@"0"] || !model.evaluationRate);
+    _scoreLabel.text = [NSString stringWithFormat:@"%@  %@",score,evaCount];
 }
 @end

@@ -34,6 +34,7 @@
                         obj.hidden = YES;
                     }];
                 }
+                return NO;
             }else if (editType == BEGINEDITTYPE){
                 if ([self.text isEqualToString:@""]) {
                     self.layer.borderColor = defaultColor.CGColor;
@@ -42,10 +43,11 @@
                         obj.hidden = NO;
                     }];
                 }
+                return NO;
             }else{
-                self.layer.borderColor = defaultColor.CGColor;
+                self.layer.borderColor = highlightColor.CGColor;
                 [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    obj.textColor = defaultColor;
+                    obj.textColor = highlightColor;
                     obj.hidden = NO;
                 }];
             }
@@ -67,6 +69,7 @@
                         obj.hidden = YES;
                     }];
                 }
+                return NO;
             }else if (editType == BEGINEDITTYPE){
                 if ([self.text isEqualToString:@""]) {
                     self.layer.borderColor = defaultColor.CGColor;
@@ -75,10 +78,11 @@
                         obj.hidden = NO;
                     }];
                 }
+                return NO;
             }else{
-                self.layer.borderColor = defaultColor.CGColor;
+                self.layer.borderColor = highlightColor.CGColor;
                 [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    obj.textColor = defaultColor;
+                    obj.textColor = highlightColor;
                     obj.hidden = NO;
                 }];
             }
@@ -100,6 +104,7 @@
                         obj.hidden = YES;
                     }];
                 }
+                return NO;
             }else if (editType == BEGINEDITTYPE){
                 if ([self.text isEqualToString:@""]) {
                     self.layer.borderColor = defaultColor.CGColor;
@@ -108,12 +113,50 @@
                         obj.hidden = NO;
                     }];
                 }
+                return NO;
             }else{
-                self.layer.borderColor = defaultColor.CGColor;
+                self.layer.borderColor = highlightColor.CGColor;
                 [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    obj.textColor = defaultColor;
+                    obj.textColor = highlightColor;
                     obj.hidden = NO;
                 }];
+                return NO;
+            }
+        }
+    }else if (type == CHECKMEAILORPHONE){
+        if ([self.text emailTextCheck] || [self.text phoneTextCheck]) {
+            self.layer.borderColor = defaultColor.CGColor;
+            [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.textColor = defaultColor;
+                obj.hidden = YES;
+            }];
+            return YES;
+        }else{
+            if (editType == ENDEDITTYPE) {
+                if ([self.text isEqualToString:@""]) {
+                    self.layer.borderColor = defaultColor.CGColor;
+                    [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        obj.textColor = defaultColor;
+                        obj.hidden = YES;
+                    }];
+                }
+                return NO;
+            }else if (editType == BEGINEDITTYPE){
+                if ([self.text isEqualToString:@""]) {
+                    self.layer.borderColor = defaultColor.CGColor;
+                    [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        obj.textColor = defaultColor;
+                        obj.hidden = NO;
+                    }];
+                }
+                return NO;
+            }else{
+                self.layer.borderColor = highlightColor.CGColor;
+                [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    obj.textColor = highlightColor;
+                    obj.hidden = NO;
+                }];
+                return NO;
             }
         }
     }

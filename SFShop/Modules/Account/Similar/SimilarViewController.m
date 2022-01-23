@@ -113,7 +113,8 @@
 //    CGFloat labelWidth = cellWidth - 8 * 2;
 //    CGFloat labelHeight = [labelString jk_heightWithFont: [UIFont systemFontOfSize:14] constrainedToWidth: labelWidth];
 //    CGFloat cellHeight = cellWidth + 8 + 20 + 24 + 8 + labelHeight;
-    return [cellModel.offerType isEqualToString:@"P"] ? 330: 305;
+    NSString *score = ([cellModel.evaluationRate isEqualToString:@"0"] || !cellModel.evaluationRate) ? @"": cellModel.evaluationRate;
+    return [cellModel.offerType isEqualToString:@"P"] ? [score isEqualToString:@""] ? 300: 330: [score isEqualToString:@""] ? 275:305;
 }
 
 @end
