@@ -36,6 +36,9 @@
                 <outlet property="tipLabel4" destination="bHb-vu-zGt" id="wzd-nb-0tc"/>
                 <outlet property="tipLabel5" destination="gUR-9C-VnZ" id="qnZ-wT-TfT"/>
                 <outlet property="tipLabel6" destination="OB3-yG-5hx" id="gq5-Ku-OKD"/>
+                <outlet property="titleLabel1" destination="Gva-CR-cxG" id="f9o-l0-tQ6"/>
+                <outlet property="titleLabel2" destination="ay4-5U-SD2" id="4bY-j1-pVi"/>
+                <outlet property="titleLabel3" destination="gKk-VA-eEz" id="4gh-2n-Rao"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewWidth" destination="LxK-Tz-yos" id="yvd-8V-6Rg"/>
             </connections>

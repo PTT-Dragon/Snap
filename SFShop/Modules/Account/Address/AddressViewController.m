@@ -170,8 +170,13 @@
         completionHandler (YES);
         [self deleteCellWithRow:indexPath.row];
     }];
-    deleteRowAction.image = [UIImage imageNamed:@"删除"];
     deleteRowAction.backgroundColor = [UIColor redColor];
+    
+    UIContextualAction *defaultAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"set default" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        completionHandler (YES);
+        [self setDefaultWithRow:indexPath.row];
+    }];
+    defaultAction.backgroundColor = RGBColorFrom16(0xeab861);
     UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction]];
     return config;
 }
@@ -199,6 +204,18 @@
 }
 
 - (void)deleteCellWithRow:(NSInteger)row
+{
+    addressModel *model = self.dataSource[row-1];
+    MPWeakSelf(self)
+    [SFNetworkManager post:[SFNet.address setAddressDeleteOfdeliveryAddressId:model.deliveryAddressId] parameters:@{} success:^(id  _Nullable response) {
+        [weakself.dataSource removeObjectAtIndex:row-1];
+        [weakself.tableView reloadData];
+        [weakself showEmptyView];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself showEmptyView];
+    }];
+}
+- (void)setDefaultWithRow:(NSInteger)row
 {
     addressModel *model = self.dataSource[row-1];
     MPWeakSelf(self)

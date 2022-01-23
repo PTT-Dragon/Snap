@@ -30,8 +30,8 @@
 //  "SALES_RANKING" = "Sales Ranking";
 //  "DISTRIBUTION_HISTORY" = "Distribution History";
 //  "DISTRIBUTION_LIST" = "Distribution List";
-//  "ADDRESS_DETAIL" = "Address Detail";
-//  "CONTACT_INFORMATION" = "Contact Information";
+  "ADDRESS_DETAIL" = "Address Detail";
+  "CONTACT_INFORMATION" = "Contact Information";
 //  "TOTAL_PAYMENT" = "Total Payment";
 //  "DELIVERY_TOTAL" = "Delivery Total";
 //  "MIN_CASH_OUT" = "The balance is insufficient to be withdrawn. The minimum cash withdrawal is {amount}";
