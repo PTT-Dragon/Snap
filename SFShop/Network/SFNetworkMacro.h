@@ -10,8 +10,8 @@
 
 //*********************************************接口域名👇*********************************************//
 #ifdef DEBUG
-//#define Host @"http://47.243.193.90:8064"
-#define Host @"https://www.smartfrenshop.com"
+#define Host @"http://47.243.193.90:8064"
+//#define Host @"https://www.smartfrenshop.com"
 #else
 #define Host @"http://47.243.193.90:8064"
 #endif

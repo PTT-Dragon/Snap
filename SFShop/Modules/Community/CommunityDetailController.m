@@ -107,7 +107,7 @@
         shareObject.thumbImage =[UIImage imageNamed:@"icon"];
         [shareObject setShareImage:[UIImage imageNamed:@"share"]];
         messageObject.shareObject = shareObject;
-        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_Facebook messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
             if (error) {
                 UMSocialLogInfo(@"************Share fail with error %@*********",error);
             }else{
