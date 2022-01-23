@@ -119,6 +119,7 @@
         _recommendCollectionView.backgroundColor = [UIColor whiteColor];
         _recommendCollectionView.delegate = self;
         _recommendCollectionView.dataSource = self;
+        _recommendCollectionView.showsVerticalScrollIndicator = NO;
         [_recommendCollectionView registerClass:[ProductionRecommendCell class] forCellWithReuseIdentifier:@"ProductionRecommendCell"];
         [_recommendCollectionView registerClass:[ProductionRecommendCell class] forCellWithReuseIdentifier:@"ProductionRecommendCell"];
         [_recommendCollectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader"];

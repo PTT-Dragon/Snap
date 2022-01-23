@@ -10,7 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductEvalationTitleCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+
+- (void)setAveRate: (CGFloat)aveRate count: (NSInteger)count;
 
 @end
 

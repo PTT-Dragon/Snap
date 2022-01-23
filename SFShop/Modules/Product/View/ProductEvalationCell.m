@@ -38,7 +38,7 @@
     _model = model;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userLogo)]];
     _nameLabel.text = model.userName;
-    _rateLabel.text = model.rate;
+    _rateLabel.text = [NSString stringWithFormat:@"%.1f", model.rate.floatValue];
     _contentLabel.text = model.evaluationComments;
     _timeLabel.text = model.createdDate;
     [_collectionView reloadData];
