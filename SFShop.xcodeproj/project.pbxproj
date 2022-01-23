@@ -408,6 +408,8 @@
 		8E1EC2CE2799A1FF00CE0088 /* BaseNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC2CD2799A1FF00CE0088 /* BaseNavView.m */; };
 		8E1EC400279AFD5900CE0088 /* BaseMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC3FF279AFD5900CE0088 /* BaseMoreView.m */; };
 		8E1EC535279B0C4500CE0088 /* UIButton+FFImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC533279B0C4500CE0088 /* UIButton+FFImagePosition.m */; };
+		8E1EC868279D736A00CE0088 /* CommunitySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC867279D736A00CE0088 /* CommunitySelectView.m */; };
+		8E1EC987279D810200CE0088 /* CommunitySelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC986279D810200CE0088 /* CommunitySelectTableViewCell.m */; };
 		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
 		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
 		8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */; };
@@ -1230,6 +1232,10 @@
 		8E1EC3FF279AFD5900CE0088 /* BaseMoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseMoreView.m; sourceTree = "<group>"; };
 		8E1EC533279B0C4500CE0088 /* UIButton+FFImagePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+FFImagePosition.m"; sourceTree = "<group>"; };
 		8E1EC534279B0C4500CE0088 /* UIButton+FFImagePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+FFImagePosition.h"; sourceTree = "<group>"; };
+		8E1EC866279D736A00CE0088 /* CommunitySelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunitySelectView.h; sourceTree = "<group>"; };
+		8E1EC867279D736A00CE0088 /* CommunitySelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunitySelectView.m; sourceTree = "<group>"; };
+		8E1EC985279D810200CE0088 /* CommunitySelectTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunitySelectTableViewCell.h; sourceTree = "<group>"; };
+		8E1EC986279D810200CE0088 /* CommunitySelectTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunitySelectTableViewCell.m; sourceTree = "<group>"; };
 		8E4821FA277A14F000857FF5 /* EmptyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyModel.h; sourceTree = "<group>"; };
 		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
 		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
@@ -2438,6 +2444,10 @@
 				1B82AE3427701F4F00D75E00 /* ArticleEvaluateBottomCell.h */,
 				1B82AE3527701F4F00D75E00 /* ArticleEvaluateBottomCell.m */,
 				1B82AE3627701F4F00D75E00 /* ArticleEvaluateBottomCell.xib */,
+				8E1EC866279D736A00CE0088 /* CommunitySelectView.h */,
+				8E1EC867279D736A00CE0088 /* CommunitySelectView.m */,
+				8E1EC985279D810200CE0088 /* CommunitySelectTableViewCell.h */,
+				8E1EC986279D810200CE0088 /* CommunitySelectTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3576,6 +3586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E1EC868279D736A00CE0088 /* CommunitySelectView.m in Sources */,
 				AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */,
 				1B6C52A3275B672200A1C617 /* ZLVideoPlayerControl.m in Sources */,
 				AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */,
@@ -3848,6 +3859,7 @@
 				1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,
 				AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */,
+				8E1EC987279D810200CE0088 /* CommunitySelectTableViewCell.m in Sources */,
 				AE4C6C012768E76B006788FE /* OrderLogisticsModel.m in Sources */,
 				1B6C5293275B672200A1C617 /* ZLAlbumListController.m in Sources */,
 				1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */,
