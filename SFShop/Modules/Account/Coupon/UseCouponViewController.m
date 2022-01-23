@@ -11,6 +11,8 @@
 #import <MJRefresh/MJRefresh.h>
 #import "UseCouponProductCell.h"
 #import "ProductViewController.h"
+#import "ProductSpecAttrsView.h"
+
 
 @interface UseCouponViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *couponNameLabel;
@@ -23,11 +25,16 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
 @property (nonatomic, readwrite, assign) NSInteger currentPage;
+@property (nonatomic, strong) ProductSpecAttrsView *attrView;
 
 @end
 
 @implementation UseCouponViewController
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -196,6 +203,57 @@
     }
     return _headSelectorView;
 }
+
+
+- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type {
+    _attrView = [[ProductSpecAttrsView alloc] init];
+    _attrView.attrsType = type;
+    _attrView.campaignsModel = self.campaignsModel;
+    _attrView.selProductModel = self.selProductModel;
+    _attrView.stockModel = self.stockModel;
+    _attrView.model = self.model;
+    MPWeakSelf(self)
+    MPWeakSelf(_attrView)
+    _attrView.buyOrCartBlock = ^(ProductSpecAttrsType type) {
+        switch (type) {
+            case cartType:// 加入购物车
+            {
+                [weakself addToCart];
+            }
+                break;
+            case buyType://购买
+            case groupSingleBuyType://团购活动单人购买
+            case groupBuyType://团购
+            {
+                
+            }
+                break;
+            default:
+                break;
+        }
+        weak_attrView.dismissBlock();
+    };
+    _attrView.dismissBlock = ^{
+        [weak_attrView removeFromSuperview];
+        
+        
+    };
+    _attrView.chooseAttrBlock = ^() {
+        
+    };
+    UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+    [rootView addSubview:_attrView];
+    [_attrView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(rootView);
+        make.bottom.equalTo(self.view.mas_bottom).offset(0);
+    }];
+}
+- (void)addToCart
+{
+    
+}
+
+
 - (NSMutableArray *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];

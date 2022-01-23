@@ -36,7 +36,7 @@
 - (void)setContent:(CategoryRankPageInfoListModel *)model
 {
     _model = model;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.productImg.url)]];
     _nameLabel.text = model.offerName;
     _priceLabel.text = [[NSString stringWithFormat:@"%ld",model.salesPrice] currency];
     _marketLabel.text = [[NSString stringWithFormat:@"%ld",model.marketPrice] currency];
@@ -47,6 +47,9 @@
     _offLabel.text = [NSString stringWithFormat:@" %@ ",model.discountPercent];
 }
 - (IBAction)spCartAction:(UIButton *)sender {
+    if (self.block) {
+        self.block(_model);
+    }
     [SFNetworkManager post:SFNet.cart.cart parameters:@{@"isSelected":@"N",@"contactChannel":@"3",@"addon":@"",@"productId":_model.productId?_model.productId:@"",@"storeId":@(_model.storeId),@"offerId":@(_model.offerId),@"num":@(1),@"unitPrice":@(_model.salesPrice)} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
     } failed:^(NSError * _Nonnull error) {
