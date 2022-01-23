@@ -106,7 +106,7 @@
     NSString *labelString = cellModel.contentTitle;
     CGFloat cellWidth = (MainScreen_width - 18 * 2) / 2;
     CGFloat labelWidth = cellWidth - 8 * 2;
-    CGFloat labelHeight = [labelString jk_heightWithFont: [UIFont systemFontOfSize:14] constrainedToWidth: labelWidth];
+    CGFloat labelHeight = 25;//[labelString jk_heightWithFont: [UIFont systemFontOfSize:14] constrainedToWidth: labelWidth];
     CGFloat cellHeight = cellWidth + 8 + 20 + 24 + 8 + labelHeight;
     return cellHeight;
 }

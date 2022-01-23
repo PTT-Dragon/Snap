@@ -12,10 +12,6 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) NSMutableArray *favoriteList;
-
-@property (nonatomic, strong) NSMutableArray *unFavoriteList;
-
 @property (nonatomic, strong) UIView *maskView;
 
 @end
@@ -69,17 +65,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return self.favoriteList.count;
+        return self.titleModel.recCatgs.count+self.titleModel.collectCatgs.count;
     }
-    return self.unFavoriteList.count;
+    return self.titleModel.unCollectCatgs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CommunitySelectTableViewCell *cell = [CommunitySelectTableViewCell selectCellWithTableView:tableView cellId:@"CommunitySelectTableViewCell"];
     if (indexPath.section == 0) {
-        [cell configDataWithTitle:@"1" isFavoriteType:NO];
-    } else {
-        [cell configDataWithTitle:@"2" isFavoriteType:YES];
+        ArticleTitleItemModel *itemModel;
+        if (indexPath.row >= self.titleModel.recCatgs.count) {
+            itemModel = self.titleModel.collectCatgs[indexPath.row-self.titleModel.recCatgs.count];
+        }else{
+            itemModel = self.titleModel.recCatgs[indexPath.row];
+        }
+        [cell configDataWithTitle:itemModel.articleCatgName isFavoriteType:YES isRecommend:indexPath.row < self.titleModel.recCatgs.count];
+    }else{
+        ArticleTitleItemModel *itemModel = self.titleModel.unCollectCatgs[indexPath.row];
+        [cell configDataWithTitle:itemModel.articleCatgName isFavoriteType:NO isRecommend:NO];
     }
     return cell;
 }
@@ -88,12 +91,30 @@
     if (indexPath.section == 0) {
         // 取消喜欢
 //        xxxmodel
-//        [self.favoriteList removeObject:xxx];
-//        [self.unFavoriteList addObject:xxx];
+        if (indexPath.row < self.titleModel.recCatgs.count) {
+            return;
+        }
+        ArticleTitleItemModel *itemModel = self.titleModel.collectCatgs[indexPath.row-self.titleModel.recCatgs.count];
+        NSMutableArray *unArr = [NSMutableArray arrayWithArray:self.titleModel.unCollectCatgs];
+        [unArr addObject:itemModel];
+        self.titleModel.unCollectCatgs = unArr;
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.titleModel.collectCatgs];
+        [arr removeObjectAtIndex:indexPath.row-self.titleModel.recCatgs.count];
+        self.titleModel.collectCatgs = arr;
+        if (self.block) {
+            self.block(self.titleModel);
+        }
     } else {
-        // 加入喜欢
-//        [self.favoriteList addObject:xxx];
-//        [self.unFavoriteList removeObject:xxx];
+        ArticleTitleItemModel *itemModel = self.titleModel.unCollectCatgs[indexPath.row];
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.titleModel.collectCatgs];
+        [arr addObject:itemModel];
+        NSMutableArray *unArr = [NSMutableArray arrayWithArray:self.titleModel.unCollectCatgs];
+        [unArr removeObject:itemModel];
+        self.titleModel.unCollectCatgs = unArr;
+        self.titleModel.collectCatgs = arr;
+        if (self.block) {
+            self.block(self.titleModel);
+        }
     }
     [self.tableView reloadData];
 }
@@ -105,9 +126,9 @@
     titleLabel.textColor = UIColor.blackColor;
     [headerView addSubview:titleLabel];
     if (section == 0) {
-        titleLabel.text = @"Favorite";
+        titleLabel.text = @"My Favorite";
     } else {
-        titleLabel.text = @"Kategori";
+        titleLabel.text = @"Categories";
     }
     return headerView;
 }

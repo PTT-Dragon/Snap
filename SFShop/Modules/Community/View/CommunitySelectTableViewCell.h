@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
                                  cellId:(NSString *)cellId;
 
 - (void)configDataWithTitle:(NSString *)title
-             isFavoriteType:(BOOL)isFavoriteType;
+             isFavoriteType:(BOOL)isFavoriteType isRecommend:(BOOL)isRecommend;
 @end
 
 NS_ASSUME_NONNULL_END

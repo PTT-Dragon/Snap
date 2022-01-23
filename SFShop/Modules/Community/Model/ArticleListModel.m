@@ -14,3 +14,21 @@
 @implementation ArticleListModel
 
 @end
+
+@implementation ArticleTitleItemModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+
+@end
+
+@implementation ArticleTitleModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+
+@end

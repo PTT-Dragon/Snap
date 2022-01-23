@@ -177,7 +177,7 @@
         [self setDefaultWithRow:indexPath.row];
     }];
     defaultAction.backgroundColor = RGBColorFrom16(0xeab861);
-    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction]];
+    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction,defaultAction]];
     return config;
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -218,13 +218,15 @@
 - (void)setDefaultWithRow:(NSInteger)row
 {
     addressModel *model = self.dataSource[row-1];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:model.deliveryAddressId forKey:@"deliveryAddressId"];
+    [params setValue:@"Y" forKey:@"isDefault"];
     MPWeakSelf(self)
-    [SFNetworkManager post:[SFNet.address setAddressDeleteOfdeliveryAddressId:model.deliveryAddressId] parameters:@{} success:^(id  _Nullable response) {
-        [weakself.dataSource removeObjectAtIndex:row-1];
-        [weakself.tableView reloadData];
-        [weakself showEmptyView];
+    [SFNetworkManager post:[SFNet.address setAddressModifyOfdeliveryAddressId:model.deliveryAddressId] parameters:params success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+        [weakself.tableView.mj_header beginRefreshing];
     } failed:^(NSError * _Nonnull error) {
-        [weakself showEmptyView];
+        
     }];
 }
 

@@ -61,11 +61,13 @@
 #pragma mark - configData
 
 - (void)configDataWithTitle:(NSString *)title
-             isFavoriteType:(BOOL)isFavoriteType {
+             isFavoriteType:(BOOL)isFavoriteType isRecommend:(BOOL)isRecommend {
     self.titleLabel.text = title;
-    if (isFavoriteType) {
+    if (isRecommend) {
+        self.selectTypeImageView.image = [UIImage imageNamed:@""];
+    } else if(isFavoriteType){
         self.selectTypeImageView.image = [UIImage imageNamed:@"ic_community_close"];
-    } else {
+    }else{
         self.selectTypeImageView.image = [UIImage imageNamed:@"ic_community_add"];
     }
 }

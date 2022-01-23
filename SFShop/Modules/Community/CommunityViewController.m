@@ -9,6 +9,8 @@
 #import "CommunityChildController.h"
 #import <Masonry/Masonry.h>
 #import "CommunitySelectView.h"
+#import "ArticleListModel.h"
+
 
 @interface CommunityViewController ()
 
@@ -48,6 +50,8 @@
 @property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 @property (nonatomic,strong) CommunitySelectView *selectView;
+@property (nonatomic,strong) ArticleTitleModel *dataModel;
+@property (nonatomic,strong) UIButton *rightBtn;
 
 @end
 
@@ -58,10 +62,10 @@
     [self.viewControllers enumerateObjectsUsingBlock:^(__kindof CommunityChildController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj request];
     }];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self request];
 }
 
@@ -69,11 +73,20 @@
     [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager get: SFNet.article.articleCatgs parameters: nil success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
+        self.dataModel = [[ArticleTitleModel alloc] initWithDictionary:response error:nil];
+        NSMutableArray *arr = [NSMutableArray array];
         NSArray *recCatgs = [(NSDictionary *)response objectForKey:@"recCatgs"];
-        self.menuList = [recCatgs jk_map:^NSString *(NSDictionary *object) {
+        NSArray *collCatgs = [(NSDictionary *)response objectForKey:@"collectCatgs"];
+        if (recCatgs && recCatgs.count>0 && ![recCatgs isKindOfClass:[NSNull class]]) {
+            [arr addObjectsFromArray:recCatgs];
+        }
+        if (collCatgs && recCatgs.count>0 && ![collCatgs isKindOfClass:[NSNull class]]) {
+            [arr addObjectsFromArray:collCatgs];
+        }
+        self.menuList = [arr jk_map:^NSString *(NSDictionary *object) {
             return [object jk_stringForKey:@"articleCatgName"];
         }];
-        self.articleCatgIdList = [recCatgs jk_map:^NSString *(NSDictionary *object) {
+        self.articleCatgIdList = [arr jk_map:^NSString *(NSDictionary *object) {
             return [object jk_stringForKey:@"articleCatgId"];
         }];
         [self setupMagicView];
@@ -94,16 +107,7 @@
     self.magicView.navigationHeight = 40.f;
     self.magicView.dataSource = self;
     self.magicView.delegate = self;
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, MainScreen_width-40, 40, 40);
-    btn.backgroundColor = [UIColor blueColor];
-    @weakify(self)
-    [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        @strongify(self)
-        btn.selected = !btn.selected;
-        self.selectView.hidden = !btn.selected;
-    }];
-    self.magicView.rightNavigatoinItem = btn;
+    self.magicView.rightNavigatoinItem = self.rightBtn;
     
     [self.magicView reloadData];
 }
@@ -132,10 +136,10 @@
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
     static NSString *gridId = @"community.childController.identifier";
     CommunityChildController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
-    if (!gridViewController) {
+//    if (!gridViewController) {
         gridViewController = [[CommunityChildController alloc] init];
-        gridViewController.articleCatgId = self.articleCatgIdList[pageIndex];
-    }
+//    }
+    gridViewController.articleCatgId = self.articleCatgIdList[pageIndex];
     return gridViewController;
 }
 
@@ -153,14 +157,49 @@
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex {
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
 }
-
+- (void)updateTitleData
+{
+    NSMutableArray *arr = [NSMutableArray array];
+    [self.dataModel.collectCatgs enumerateObjectsUsingBlock:^(ArticleTitleItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [arr addObject:@{@"articleCatgId":obj.articleCatgId,@"seq":@"0"}];
+    }];
+    [SFNetworkManager post:SFNet.article.collectionCatgs parametersArr:arr success:^(id  _Nullable response) {
+        [self request];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 
 - (CommunitySelectView *)selectView
 {
     if (!_selectView) {
-        _selectView = [[CommunitySelectView alloc] initWithFrame:CGRectMake(0, 40, MainScreen_width, 100)];
+        _selectView = [[CommunitySelectView alloc] initWithFrame:CGRectMake(0, 40, MainScreen_width, 220)];
+        _selectView.hidden = YES;
+        _selectView.titleModel = self.dataModel;
+        MPWeakSelf(self)
+        _selectView.block = ^(ArticleTitleModel * _Nonnull titleModel) {
+            weakself.dataModel = titleModel;
+            [weakself updateTitleData];
+            weakself.rightBtn.selected = NO;
+            weakself.selectView.hidden = YES;
+        };
     }
     return _selectView;
 }
-
+- (UIButton *)rightBtn
+{
+    if (!_rightBtn) {
+        _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rightBtn.frame = CGRectMake(10, MainScreen_width-40, 20, 20);
+        [_rightBtn setImage:[UIImage imageNamed:@"swipe-down"] forState:0];
+        [_rightBtn setImage:[UIImage imageNamed:@"swipe-up"] forState:UIControlStateSelected];
+        @weakify(self)
+        [[_rightBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self)
+            self.rightBtn.selected = !self.rightBtn.selected;
+            self.selectView.hidden = !self.rightBtn.selected;
+        }];
+    }
+    return _rightBtn;
+}
 @end

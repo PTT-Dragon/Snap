@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, copy) NSString *articleCatgs;
 
+@property (nonatomic, readonly, copy) NSString *collectionCatgs;
+
+
+
 - (NSString *)getDetailOf: (NSString *)articleId;
 
 - (NSString *)getEvaluateOf: (NSString *)articleId;

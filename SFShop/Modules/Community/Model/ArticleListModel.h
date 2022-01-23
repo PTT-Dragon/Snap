@@ -10,6 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ArticleModel;
+@protocol ArticleTitleItemModel;
+
 
 @interface ArticleModel : JSONModel
 
@@ -33,6 +35,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) NSInteger total;
 @property(nonatomic, assign) NSInteger pages;
 @property(nonatomic, strong) NSArray <ArticleModel *> <ArticleModel> *list;
+
+@end
+
+@interface ArticleTitleItemModel : JSONModel
+@property (nonatomic,copy) NSString *articleCatgId;
+@property (nonatomic,copy) NSString *articleCatgName;
+@property (nonatomic,copy) NSString *articleCatgType;
+@property (nonatomic,copy) NSString *seq;
+@property (nonatomic,copy) NSString *comments;
+@end
+
+@interface ArticleTitleModel : JSONModel
+@property (nonatomic,strong) NSArray <ArticleTitleItemModel>*recCatgs;
+@property (nonatomic,strong) NSArray <ArticleTitleItemModel> *unCollectCatgs;
+@property (nonatomic,strong) NSArray <ArticleTitleItemModel> *collectCatgs;
 
 @end
 

@@ -29,7 +29,8 @@
 {
     _model = model;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.photo)]];
-    _countLabel.text = model.memberQty;
+    NSInteger a = model.shareByNum.integerValue - model.memberQty.integerValue;
+    _countLabel.text = [NSString stringWithFormat:@"%ld",a];
     _nameLabel.text = model.nickName;
 }
 

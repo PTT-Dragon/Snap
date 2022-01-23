@@ -16,6 +16,9 @@
 - (NSString *)articleCatgs {
     return K_articles_domain(@"catgs");
 }
+- (NSString *)collectionCatgs {
+    return K_articles_domain(@"catgs/usercollection");
+}
 
 - (NSString *)getDetailOf: (NSString *)articleId {
     return K_articles_domain(articleId);
@@ -37,5 +40,7 @@
 - (NSString *)getEvaluateOf: (NSString *)articleId {
     return K_articles_evaluate_domain(articleId);
 }
+
+
 
 @end
