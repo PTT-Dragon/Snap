@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString <Optional>*gender;
 @property(nonatomic, copy) NSString *genderStr;
 @property(nonatomic, copy) NSDictionary <Optional>*distributorDto;
+@property(nonatomic, copy) NSString <Optional>*defLangCode;
 
 
 @end

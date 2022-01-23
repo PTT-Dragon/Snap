@@ -124,6 +124,13 @@ static BOOL _passwordSuccess = NO;
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
         [[FMDBManager sharedInstance] insertUser:model ofAccount:weakself.accountField.text];
+        if ([model.userRes.defLangCode isEqualToString:@"zh"]) {
+            UserDefaultSetObjectForKey(kLanguageChinese, @"Language");
+            [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageChinese];
+        } else {
+            [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:model.userRes.defLangCode];
+            UserDefaultSetObjectForKey(model.userRes.defLangCode, @"Language");
+        }
         if (weakself.didLoginBlock)  {
             weakself.didLoginBlock();
         }

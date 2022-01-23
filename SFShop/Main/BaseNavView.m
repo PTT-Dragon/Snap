@@ -66,7 +66,7 @@
         make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.backBtn.mas_top);
+        make.top.mas_equalTo(self.backBtn.mas_top).offset(3);
         make.left.mas_equalTo(self.backBtn.mas_right).offset(20);
     }];
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -154,7 +154,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = UIColor.blackColor;
-        _titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _titleLabel;
 }
