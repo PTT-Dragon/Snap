@@ -9,6 +9,7 @@
 #import "OrderChildViewController.h"
 #import "SFSearchNav.h"
 #import "OrderModel.h"
+#import "BaseMoreView.h"
 
 @interface OrderViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
 @property(nonatomic, strong) NSArray *menuList;
@@ -18,14 +19,16 @@
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @property (nonatomic,strong) VTMagicController *magicController;
 @property (nonatomic,strong) OrderNumModel *orderNumModel;
+@property (nonatomic,strong) BaseMoreView *moreView;
 
 @end
 
 @implementation OrderViewController
-- (BOOL)shouldCheckLoggedIn
-{
+
+- (BOOL)shouldCheckLoggedIn {
     return YES;
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -53,8 +56,8 @@
     [self.magicController switchToPage:page animated:YES];
     [self.view addSubview:self.navSearchView];
 }
-- (void)loadOrderNum
-{
+
+- (void)loadOrderNum {
     [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.order.num parameters:@{} success:^(id  _Nullable response) {
@@ -65,8 +68,7 @@
         [MBProgressHUD hideFromKeyWindow];
     }];
 }
-- (void)layoutSubview
-{
+- (void)layoutSubview {
     NSString *all = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"ALL"),self.orderNumModel.toPayNum+self.orderNumModel.toReceiveNum+self.orderNumModel.toDeliveryNum+self.orderNumModel.completedNum+self.orderNumModel.canceledNum];
     NSString *topay = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TO_PAY"),self.orderNumModel.toPayNum];
     NSString *toship = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TO_SHIP"),self.orderNumModel.toDeliveryNum];
@@ -150,18 +152,24 @@
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"more-horizontal";
         rightItem.selectedIcon = @"more-vertical";
-        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
-            
-        };
         __weak __typeof(self)weakSelf = self;
+        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
+            __weak __typeof(weakSelf)strongSelf = weakSelf;
+            [strongSelf.moreView removeFromSuperview];
+            strongSelf.moreView = [[BaseMoreView alloc] init];
+            [strongSelf.view addSubview:self.moreView];
+            [strongSelf.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.top.mas_equalTo(strongSelf.navSearchView.mas_bottom);
+            }];
+        };
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
-            OrderChildViewController *vc = self.magicController.currentViewController;
+            OrderChildViewController *vc = strongSelf.magicController.currentViewController;
             vc.searchText = qs;
         }];
     }
     return _navSearchView;
 }
-    
     
 @end

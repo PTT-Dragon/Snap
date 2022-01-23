@@ -52,7 +52,7 @@
 #pragma mark - init
 
 - (void)initView {
-    self.backgroundColor = UIColor.whiteColor;
+    self.backgroundColor = UIColor.clearColor;
     [self addSubview:self.bgView];
     [self.bgView addSubview:self.homeBtn];
     [self.bgView addSubview:self.inboxBtn];

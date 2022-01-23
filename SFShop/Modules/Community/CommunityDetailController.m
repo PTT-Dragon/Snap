@@ -17,8 +17,10 @@
 #import "ArticleEvaluateBottomCell.h"
 //#import <SJVideoPlayer/SJVideoPlayer.h>
 #import<UShareUI/UShareUI.h>
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
-@interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BaseNavViewDelegate>
 
 @property(nonatomic, strong) ArticleDetailModel *model;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateTableViewHei;
@@ -38,15 +40,48 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *bgScrollview;
 @property (nonatomic,strong) ArticleEvaluateModel *selEvaluateModel;//回复
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *moreView;
 
 @end
 
 @implementation CommunityDetailController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_moreView removeFromSuperview];
+    _moreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_moreView];
+    [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
     [self setUpSubViews];
     [self request];
 }
@@ -68,13 +103,13 @@
     _articlePictures.bounces = NO;
     _articlePictures.pagingEnabled = YES;
     
-    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"share"] style: UIBarButtonItemStylePlain target: self action:@selector(shareBtn:)];
-    _headIV = [[UIImageView alloc] init];
-    // 防止拉伸
-    [[[_headIV widthAnchor] constraintEqualToConstant:32] setActive: YES];
-    [[[_headIV heightAnchor] constraintEqualToConstant:32] setActive: YES];
-    UIBarButtonItem *headItem = [[UIBarButtonItem alloc] initWithCustomView: _headIV];
-    self.navigationItem.rightBarButtonItems = @[shareItem, headItem];
+    //    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"share"] style: UIBarButtonItemStylePlain target: self action:@selector(shareBtn:)];
+    //    _headIV = [[UIImageView alloc] init];
+    //    // 防止拉伸
+    //    [[[_headIV widthAnchor] constraintEqualToConstant:32] setActive: YES];
+    //    [[[_headIV heightAnchor] constraintEqualToConstant:32] setActive: YES];
+    //    UIBarButtonItem *headItem = [[UIBarButtonItem alloc] initWithCustomView: _headIV];
+    //    self.navigationItem.rightBarButtonItems = @[shareItem, headItem];
     
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     self.detailWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
@@ -98,9 +133,9 @@
         // 根据获取的platformType确定所选平台进行下一步操作
         //创建分享消息对象
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-
-//        UMShareObject *shareObject = [UMShareObject shareObjectWithTitle:@"ceshi" descr:@"" thumImage:[UIImage imageNamed: @"share"]];
-//        messageObject.shareObject = shareObject;
+        
+        //        UMShareObject *shareObject = [UMShareObject shareObjectWithTitle:@"ceshi" descr:@"" thumImage:[UIImage imageNamed: @"share"]];
+        //        messageObject.shareObject = shareObject;
         //创建图片内容对象
         UMShareImageObject*shareObject =[[UMShareImageObject alloc] init];
         //如果有缩略图，则设置缩略图
@@ -151,7 +186,7 @@
         [MBProgressHUD hideFromKeyWindow];
         NSError *error;
         self.evaluateArray = [ArticleEvaluateModel arrayOfModelsFromDictionaries:response error:&error];
-//        self.evaluateArray = [[arr reverseObjectEnumerator] allObjects];
+        //        self.evaluateArray = [[arr reverseObjectEnumerator] allObjects];
         self.evaluateTableViewHei.constant = [self calculateTableViewHei];
         [self.evaluateTableView reloadData];
         NSLog(@"get article evaluate success");
@@ -311,7 +346,7 @@
             model.showAll = NO;
             [self.evaluateTableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
         }else{
-//            [self.replyField becomeFirstResponder];
+            //            [self.replyField becomeFirstResponder];
         }
     }else{
         model.showAll = YES;
@@ -347,13 +382,13 @@
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
-//    ArticleImageModel *imgModel = self.model.imgs[index];
-//    if ([imgModel.type isEqual:@"C"]) {
-//        SJVideoPlayerURLAsset *asset = [SJVideoPlayerURLAsset.alloc initWithURL: [NSURL URLWithString: SFImage(self.model.imgs[index].url)] startPosition:10];
-//        SJVideoPlayer *player = SJVideoPlayer.player;
-//        player.URLAsset = asset;
-//        return player.view;
-//    }
+    //    ArticleImageModel *imgModel = self.model.imgs[index];
+    //    if ([imgModel.type isEqual:@"C"]) {
+    //        SJVideoPlayerURLAsset *asset = [SJVideoPlayerURLAsset.alloc initWithURL: [NSURL URLWithString: SFImage(self.model.imgs[index].url)] startPosition:10];
+    //        SJVideoPlayer *player = SJVideoPlayer.player;
+    //        player.URLAsset = asset;
+    //        return player.view;
+    //    }
     UIImageView *iv = nil;
     if (view == nil) {
         iv = [[UIImageView alloc] initWithFrame:carousel.bounds];

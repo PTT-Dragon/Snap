@@ -12,8 +12,10 @@
 #import "EmptyView.h"
 #import <MJRefresh/MJRefresh.h>
 #import "ProductViewController.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
-@interface RecentlyViewedViewController ()<JTCalendarDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface RecentlyViewedViewController ()<JTCalendarDelegate,UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 {
     NSMutableDictionary *_eventsByDate;
     NSDate *_minDate;
@@ -33,6 +35,8 @@
 @property (nonatomic,strong) NSMutableArray *dataListSource;
 @property (nonatomic,strong) EmptyView *emptyView;
 @property (nonatomic,assign) NSInteger pageIndex;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *moreView;
 
 @end
 
@@ -41,14 +45,34 @@
 {
     return YES;
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_moreView removeFromSuperview];
+    _moreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_moreView];
+    [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"Recently_Viewed");
     _dataSource = [NSMutableArray array];
     _dataListSource = [NSMutableArray array];
     _calendarManager = [JTCalendarManager new];
@@ -71,6 +95,17 @@
 }
 - (void)initUI
 {
+    
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"Recently_Viewed")];
+    
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);

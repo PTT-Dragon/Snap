@@ -53,6 +53,7 @@
 
 - (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView
 {
+    [_moreView removeFromSuperview];
     _moreView = [[BaseMoreView alloc] init];
     [self.view addSubview:_moreView];
     [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {

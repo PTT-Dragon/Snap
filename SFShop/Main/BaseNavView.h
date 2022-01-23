@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseNavViewDelegate <NSObject>
 
+@optional
+
 - (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView;
 
 - (void)baseNavViewDidClickSearchBtn:(BaseNavView *)navView;
