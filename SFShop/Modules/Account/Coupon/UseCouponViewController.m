@@ -73,6 +73,9 @@
 {
     UseCouponProductCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UseCouponProductCell"];
     [cell setContent:self.dataArray[indexPath.section]];
+    cell.block = ^(CategoryRankPageInfoListModel * _Nonnull model) {
+        [self showAttrsViewWithAttrType:cartType model:model];
+    };
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -205,13 +208,13 @@
 }
 
 
-- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type {
+- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type model:(CategoryRankPageInfoListModel *)model{
     _attrView = [[ProductSpecAttrsView alloc] init];
     _attrView.attrsType = type;
-    _attrView.campaignsModel = self.campaignsModel;
-    _attrView.selProductModel = self.selProductModel;
-    _attrView.stockModel = self.stockModel;
-    _attrView.model = self.model;
+    _attrView.campaignsModel = model.campaigns;
+//    _attrView.selProductModel = model.pro self.selProductModel;
+//    _attrView.stockModel = model.sto;
+//    _attrView.model = model.;
     MPWeakSelf(self)
     MPWeakSelf(_attrView)
     _attrView.buyOrCartBlock = ^(ProductSpecAttrsType type) {
