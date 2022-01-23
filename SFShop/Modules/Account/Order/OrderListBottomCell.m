@@ -53,19 +53,23 @@
 - (void)setContent:(OrderModel *)model
 {
     _model = model;
-    _countLabel.text = [NSString stringWithFormat:@"%ld products",model.orderItems.count];
+    _countLabel.text = [NSString stringWithFormat:@"%ld %@",model.orderItems.count,kLocalizedString(@"ITEMS")];
     _amountLabel.text = [NSString stringWithFormat:@"%@",[model.orderPrice currency]];
     [_btn1 setTitle:[self getBtn1StrWithState:model.state] forState:0];
     [_btn2 setTitle:[self getBtn2StrWithState:model.state] forState:0];
+    _btn2.hidden = [model.state isEqualToString:@"B"];
     self.moreBtn.hidden = !([_model.state isEqualToString:@"D"] || [_model.state isEqualToString:@"C"]);
     [self.moreActionBtn1 setTitle:kLocalizedString(@"REBUY") forState:0];
     _groupView.hidden = !model.shareBuyBriefInfo || [[NSDate dateFromString:model.shareBuyBriefInfo.expDate] utcTimeStamp] < [[NSDate date] utcTimeStamp];
-    if (model.shareBuyBriefInfo && !_timer && !_groupView.hidden) {
+    if (model.shareBuyBriefInfo && !_timer && !_groupView.hidden && (model.shareBuyBriefInfo.shareByNum != model.shareBuyBriefInfo.memberQty)) {
         [self layoutGroupView];
+    }else{
+        self.groupView.hidden = YES;
     }
 }
 - (void)layoutGroupView
 {
+    self.groupView.hidden = NO;
     self.countLabel.text = [NSString stringWithFormat:@"%ld",_model.shareBuyBriefInfo.memberQty];
     self.allCountLabel.text = [NSString stringWithFormat:@"/%ld",_model.shareBuyBriefInfo.shareByNum];
     //倒计时
@@ -278,7 +282,8 @@
     if ([state isEqualToString:@"A"]) {
         str = kLocalizedString(@"CANCEL");
     }else if ([state isEqualToString:@"B"]){
-        str = kLocalizedString(@"RECEIPT");
+//        str = kLocalizedString(@"RECEIPT");
+        str = @"";
     }else if ([state isEqualToString:@"C"]){
         str = kLocalizedString(@"LOGISTICS");
     }else if ([state isEqualToString:@"D"]){
@@ -287,7 +292,6 @@
         }else{
             str = @"VIEW REVIEW";
         }
-        
     }else if ([state isEqualToString:@"E"]){
         str = @"REVIEW";
     }else if ([state isEqualToString:@"F"]){

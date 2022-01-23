@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = kLocalizedString(@"Shopping_Cart");
+    self.title = kLocalizedString(@"CART");
     _addressArr = [NSMutableArray array];
     [self updateDatas];NSLocalizedString(@"test", nil);
     [self initUI];
@@ -257,6 +257,9 @@
     self.checkBtn.backgroundColor = !hasSel ? RGBColorFrom16(0xFFE5EB):RGBColorFrom16(0xFF1659);
     self.checkBtn.userInteractionEnabled = hasSel;
     [self updateNumData];
+    if (self.block) {
+        self.block();
+    }
 }
 - (void)updateNumData
 {

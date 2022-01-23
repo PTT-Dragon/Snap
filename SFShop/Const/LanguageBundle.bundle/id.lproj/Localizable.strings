@@ -218,7 +218,7 @@
 //  "CANCAL" = "Cancel";
 //  "CHOOSE_SHIPPING_ADDRESS" = "Pilih alamat pengiriman";
   "COUPON" = "Kupon";
-//  "ITEMS" = "Item";
+  "ITEMS" = "Item";
 //  "PLATFORM_VOUCHER" = "SF.shop Voucher";
 //  "PLACE_ORDER" = "Tempatkan Pesanan";
 //  "RECIPIENT_NAME" = "Nama penerima";
@@ -450,7 +450,7 @@
   "SEE_DETAIL" = "Lihat Detail";
 //  "SEE_SHARE_BY" = "Lihat join group";
 //  "GROUP_FAIL" = "Grup Gagal";
-//  "GROUPED" = "Grouped";
+  "GROUPED" = "Grouped";
 //  "INVITE_MORE" = "Undang lebih banyak pembeli yang diperlukan berakhir dalam";
   "INVITE_ONE" = "Diperlukan satu pembeli lagi yang berakhir dalam";
 //  "GROUP_DETAIL" = "Rincian Grup";

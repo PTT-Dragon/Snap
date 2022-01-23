@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *socialCode;
 @property (nonatomic,copy) NSString *flowNo;
 @property (nonatomic,copy) NSString *message;
+@property (nonatomic,copy) NSMutableAttributedString *messageSttrStr;
 @property (nonatomic,copy) NSString *createDate;
 @property (nonatomic,copy) NSString *contentType;
 @property (nonatomic,assign) NSInteger unreadNum;
@@ -27,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSInteger unreadNum;
 @property (nonatomic,copy) NSString *sendTime;
 @property (nonatomic,copy) NSString *content;
+@property (nonatomic,copy) NSMutableAttributedString *contentSttrStr;
 @property (nonatomic,copy) NSString *state;
 @property (nonatomic,copy) NSString *subject;
 

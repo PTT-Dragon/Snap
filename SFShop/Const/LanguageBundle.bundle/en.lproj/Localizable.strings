@@ -213,7 +213,7 @@
 //  "CANCAL" = "Cancel";
 //  "CHOOSE_SHIPPING_ADDRESS" = "Choose shipping address";
   "COUPON" = "Voucher";
-//  "ITEMS" = "item(s)";
+  "ITEMS" = "item(s)";
 //  "PLATFORM_VOUCHER" = "SF.shop Voucher";
 //  "PLACE_ORDER" = "Place Order";
 //  "RECIPIENT_NAME" = "Recipient Name";
@@ -289,7 +289,7 @@
 //  "VARIATIONS" = "Variations";
 //  "SPECIFICATION" = "Specification";
 //  "DETAIL" = "Detail";
-//  "CART" = "Cart";
+  "CART" = "Cart";
   "COUPONS" = "Vouchers";
   "ONLY_SHOW_5_SHARE" = "Only show 5 share";
   "PEOPLE_SHORT" = "People Short";
@@ -446,7 +446,7 @@
   "SEE_DETAIL" = "See Detail";
 //  "SEE_SHARE_BY" = "See Group Buy";
 //  "GROUP_FAIL" = "Group Failed";
-//  "GROUPED" = "Grouped";
+  "GROUPED" = "Grouped";
 //  "INVITE_MORE" = "Invite more buyer required expire in";
   "INVITE_ONE" = "One more buyer reauired Expire in";
 //  "GROUP_DETAIL" = "Group Detail";

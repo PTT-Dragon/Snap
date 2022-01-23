@@ -8,9 +8,17 @@
 #import "MessageModel.h"
 
 @implementation MessageUnreadModel
+
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
     return YES;
+}
+- (NSMutableAttributedString *)messageSttrStr
+{
+    NSString* htmlString = self.message;
+
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    return attrStr;
 }
 @end
 @implementation MessageContactModel
@@ -18,6 +26,14 @@
 {
     return YES;
 }
+- (NSMutableAttributedString *)contentSttrStr
+{
+    NSString* htmlString = self.content;
+
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    return attrStr;
+}
+
 @end
 
 @implementation MessageModel

@@ -81,7 +81,7 @@
 }
 - (void)receiveReloadWebviewNotification:(NSNotification *)noti
 {
-    [self.webView reloadFromOrigin];
+//    [self.webView reloadFromOrigin];
 }
 
 - (void)addJsBridge

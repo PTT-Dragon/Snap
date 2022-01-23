@@ -217,7 +217,7 @@
 //  "CANCAL" = "取消";
 //  "CHOOSE_SHIPPING_ADDRESS" = "选择发货地址";
 //  "COUPON" = "优惠券";
-//  "ITEMS" = "个";
+  "ITEMS" = "个";
 //  "PLATFORM_VOUCHER" = "SF.shop Voucher";
 //  "PLACE_ORDER" = "确认下单";
 //  "RECIPIENT_NAME" = "收件人姓名";
@@ -450,7 +450,7 @@
   "SEE_DETAIL" = "详情";
 //  "SEE_SHARE_BY" = "查看拼团";
 //  "GROUP_FAIL" = "拼团失败";
-//  "GROUPED" = "已成团";
+  "GROUPED" = "已成团";
 //  "INVITE_MORE" = "邀请更多的团员加入，倒计时";
   "INVITE_ONE" = "还差一个团员加入，倒计时";
 //  "GROUP_DETAIL" = "拼团详情";

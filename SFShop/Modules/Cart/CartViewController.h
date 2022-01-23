@@ -10,8 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CartViewController : BaseViewController
+typedef void(^CartViewControllerBlock)(void);
 
+@interface CartViewController : BaseViewController
+@property (nonatomic,copy) CartViewControllerBlock block;
 @property (strong, nonatomic) UIView *bottomView;
 
 @end

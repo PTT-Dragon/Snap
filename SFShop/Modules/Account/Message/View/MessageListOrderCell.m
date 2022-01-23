@@ -78,7 +78,7 @@
 {
     _model = model;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.product.imgUrl)]];
-    self.contentLabel.text = model.message.content;
+    self.contentLabel.attributedText = model.message.contentSttrStr;
     self.titleLabel.text = model.message.subject;
     self.storeNameLabel.text = model.store.storeName;
     [self.storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.store.logoUrl)]];

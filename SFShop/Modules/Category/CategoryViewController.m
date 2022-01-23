@@ -158,7 +158,7 @@
         SFSearchItem *backItem = [SFSearchItem new];
         backItem.icon = @"nav_back";
         backItem.itemActionBlock = ^(SFSearchModel *model,BOOL isSelected) {
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.tabBarController setSelectedIndex:0];
         };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"nav_addition";

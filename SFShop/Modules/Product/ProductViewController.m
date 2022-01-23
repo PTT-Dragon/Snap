@@ -86,7 +86,6 @@
 @property (strong, nonatomic) ProductionRecomandView *recommendView;
 @property (weak, nonatomic) IBOutlet UILabel *cartNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *originalPriceLabel;
-
 @property (nonatomic, strong) AreaModel *provinceModel;
 @property (nonatomic, strong) AreaModel *cityModel;
 @property (nonatomic, strong) AreaModel *districtModel;
@@ -94,7 +93,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupTableViewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *couponsViewHeight;
 @property (weak, nonatomic) IBOutlet UIView *infoView;
-
 @property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
 @property (nonatomic,strong) NSMutableArray<addressModel *> *addressDataSource;
 @property (weak, nonatomic) IBOutlet UIView *marketPriceLabelIndicationView;
@@ -182,6 +180,10 @@
         vc.view.frame = CGRectMake(0, 0, self.view.jk_width, self.view.jk_height);
         MPWeakSelf(self)
         vc.selBlock = ^(addressModel * model) {
+            [weakself.addressDataSource enumerateObjectsUsingBlock:^(addressModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.sel = NO;
+            }];
+            model.sel = YES;
             weakself.selectedAddressModel = model;
         };
         [self.view addSubview:vc.view];
@@ -191,7 +193,7 @@
 
 - (void)setSelectedAddressModel:(addressModel *)selectedAddressModel {
     _selectedAddressModel = selectedAddressModel;
-    self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", selectedAddressModel.province, selectedAddressModel.city, selectedAddressModel.district, selectedAddressModel.postCode];
+    self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@", selectedAddressModel.province, selectedAddressModel.city, selectedAddressModel.district];
 }
 
 - (void)request {
@@ -267,11 +269,18 @@
         for (NSDictionary *dic in response) {
             addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
             if ([model.isDefault isEqualToString:@"Y"]) {
+                model.sel = YES;
                 weakself.selectedAddressModel = model;
-                [self requestStock];
             }
             [weakself.addressDataSource addObject:model];
         }
+        if (!weakself.selectedAddressModel && weakself.addressDataSource.count > 0) {
+            //如果没有默认地址 选择第一个
+            addressModel *model = weakself.addressDataSource.firstObject;
+            model.sel = YES;
+            weakself.selectedAddressModel = model;
+        }
+        [weakself requestStock];
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -782,6 +791,10 @@
 }
 - (IBAction)goToCart:(UIButton *)sender {
     CartViewController *cartVC = [[CartViewController alloc] init];
+    MPWeakSelf(self)
+    cartVC.block = ^{
+        [weakself requestCartNum];
+    };
     [self.navigationController pushViewController:cartVC animated:YES];
 }
 
