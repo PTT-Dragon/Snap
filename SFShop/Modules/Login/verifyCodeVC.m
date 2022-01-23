@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet HWTFCodeBView *codeView;
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (weak, nonatomic) IBOutlet UIButton *recendBtn;
+@property (nonatomic, strong) dispatch_source_t timer;//倒计时
 
 @end
 
@@ -27,7 +28,8 @@
     // Do any additional setup after loading the view from its nib.
     _codeView.delegate = self;
     UserModel *model = [FMDBManager sharedInstance].currentUser;
-    self.contentLabel.text = [NSString stringWithFormat:@"Your code was sent to %@",_account ? _account: model.userRes.mobilePhone];
+    self.contentLabel.text = [NSString stringWithFormat:@"%@ %@",kLocalizedString(@"YOUR_CODE_WAS_SENT_TO"),_account ? _account: model.userRes.mobilePhone];
+    [self.recendBtn setTitle:kLocalizedString(@"RECEND") forState:0];
     [self getCode];
 }
 - (void)getCode
@@ -41,10 +43,45 @@
     [params setValue:@"Terminal" forKey:@"userType"];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.getCode parameters:params success:^(id  _Nullable response) {
-        [[CountDown sharedCountDown] countDown:120 andObject:weakself.recendBtn];
+        weakself.recendBtn.userInteractionEnabled = NO;
+        weakself.recendBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+        [weakself showCountLabel];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
+}
+- (void)showCountLabel
+{
+    _countdownLabel.hidden = NO;
+    //倒计时
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    MPWeakSelf(self)
+    __block NSInteger timeout = 120; // 倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){
+            
+            dispatch_source_cancel(weakself.timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakself.recendBtn.backgroundColor = RGBColorFrom16(0xFF1659);
+                weakself.recendBtn.userInteractionEnabled = YES;
+                weakself.countdownLabel.hidden = YES;
+            });
+        }else{
+            NSInteger days = (int)(timeout/(3600*24));
+            NSInteger hours = (int)((timeout-days*24*3600)/3600);
+            NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
+            NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakself.countdownLabel.text = [NSString stringWithFormat:@"%@ %ld:%ld:%ld",kLocalizedString(@"RESEND_CODE_IN"),hours,minute,second];
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
 }
 //完成输入验证码
 - (void)codeFinish

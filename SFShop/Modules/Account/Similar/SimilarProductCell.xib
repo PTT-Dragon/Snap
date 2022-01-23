@@ -31,6 +31,9 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlN-Yc-bpv">
                         <rect key="frame" x="11" y="197" width="42" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="eNV-7t-vRb"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -106,6 +109,7 @@
                 <outlet property="offLabel" destination="ENl-HR-J3q" id="iRy-ex-ZIp"/>
                 <outlet property="priceLabel" destination="OD8-0y-OPN" id="6wF-Ts-0Qx"/>
                 <outlet property="scoreLabel" destination="eC7-Vn-nfd" id="RE3-lW-u6b"/>
+                <outlet property="starImgView" destination="ZSv-B2-qbZ" id="MlN-Nr-BgV"/>
                 <outlet property="typeLabel" destination="pb0-4D-TYx" id="0GT-e5-sXN"/>
             </connections>
             <point key="canvasLocation" x="112" y="72"/>

@@ -10,6 +10,7 @@
 #import "forgotPasswordView.h"
 #import "LoginViaOTP.h"
 #import "UITextField+expand.h"
+#import "NSString+Add.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -57,12 +58,12 @@ static BOOL _passwordSuccess = NO;
 {
     if (textField == _accountField) {
         if (_type == 1) {
-            _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:EIDTTYPE labels:@[_label1]];
+            _accountSuccess = ![textField.text isEqualToString:@""];//[textField textFieldState:CHECKPHONETYPE editType:EIDTTYPE labels:@[_label1]];
         }else{
-            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:EIDTTYPE labels:@[_label1]];
+            _accountSuccess = ![textField.text isEqualToString:@""];//[textField textFieldState:CHECKEMAILTYPE editType:EIDTTYPE labels:@[_label1]];
         }
     }else{
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label2]];
+        _passwordSuccess = ![textField.text isEqualToString:@""];//[textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label2]];
     }
     if (_accountSuccess && _passwordSuccess) {
         self.loginBtn.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -75,26 +76,36 @@ static BOOL _passwordSuccess = NO;
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == _accountField) {
-        if (_type == 1) {
-            _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:BEGINEDITTYPE labels:@[_label1]];
-        }else{
-            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:BEGINEDITTYPE labels:@[_label1]];
-        }
-    }else if (textField == _passwordField){
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:BEGINEDITTYPE labels:@[_label2]];
+        _label1.hidden = NO;
+    }else{
+        _label2.hidden = NO;
     }
+//    if (textField == _accountField) {
+//        if (_type == 1) {
+//            _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:BEGINEDITTYPE labels:@[_label1]];
+//        }else{
+//            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:BEGINEDITTYPE labels:@[_label1]];
+//        }
+//    }else if (textField == _passwordField){
+//        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:BEGINEDITTYPE labels:@[_label2]];
+//    }
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _accountField) {
-        if (_type == 1) {
-            _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:ENDEDITTYPE labels:@[_label1]];
-        }else{
-            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:ENDEDITTYPE labels:@[_label1]];
-        }
-    }else if (textField == _passwordField){
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:ENDEDITTYPE labels:@[_label2]];
+        _label1.hidden = [textField.text isEqualToString:@""];
+    }else{
+        _label2.hidden = [textField.text isEqualToString:@""];
     }
+//    if (textField == _accountField) {
+//        if (_type == 1) {
+//            _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:ENDEDITTYPE labels:@[_label1]];
+//        }else{
+//            _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:ENDEDITTYPE labels:@[_label1]];
+//        }
+//    }else if (textField == _passwordField){
+//        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:ENDEDITTYPE labels:@[_label2]];
+//    }
 }
 - (IBAction)phoneAction:(UIButton *)sender {
     _type = 1;
@@ -118,6 +129,18 @@ static BOOL _passwordSuccess = NO;
 }
 - (IBAction)loginAction:(id)sender {
     //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234  18861484865/Abc@1234
+    //在登录时候只校验是手机号还是邮箱
+    if (_type == 1) {
+        if (![self.accountField.text phoneTextCheck]) {
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"INCORRECT_PHONE")];
+            return;
+        }
+    }else{
+        if (![self.accountField.text emailTextCheck]) {
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"INCORRECT_EMAIL")];
+            return;
+        }
+    }
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.login parameters:@{@"account":_accountField.text,@"pwd":login_aes_128_cbc_encrypt(_passwordField.text)} success:^(id  _Nullable response) {
         NSError *error = nil;
@@ -158,6 +181,8 @@ static BOOL _passwordSuccess = NO;
     sender.selected = !sender.selected;
     _passwordField.secureTextEntry = sender.selected;
 }
+
+
 
 
 @end

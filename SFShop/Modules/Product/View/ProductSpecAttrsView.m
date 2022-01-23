@@ -131,6 +131,10 @@
     [_increaseBtn addTarget:self action:@selector(increase:) forControlEvents:UIControlEventTouchUpInside];
     [_increaseBtn setTitle:@"+" forState:UIControlStateNormal];
     [_increaseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+    [_increaseBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    [_increaseBtn jk_setBackgroundColor:[UIColor jk_colorWithHexString:@"F5F5F5"] forState:UIControlStateDisabled];
+    [_increaseBtn jk_setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _increaseBtn.layer.borderWidth = 1;
     _increaseBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#cccccc"].CGColor;
     _increaseBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -157,10 +161,14 @@
     [_decreaseBtn addTarget:self action:@selector(decrease:) forControlEvents:UIControlEventTouchUpInside];
     [_decreaseBtn setTitle:@"-" forState:UIControlStateNormal];
     [_decreaseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_decreaseBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    [_decreaseBtn jk_setBackgroundColor:[UIColor jk_colorWithHexString:@"F5F5F5"] forState:UIControlStateDisabled];
+    [_decreaseBtn jk_setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _decreaseBtn.layer.borderWidth = 1;
     _decreaseBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#cccccc"].CGColor;
     _decreaseBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_decreaseBtn];
+    
     [_decreaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(36, 36));
         make.centerY.equalTo(quantityLabel);
@@ -468,18 +476,14 @@
     !self.buyOrCartBlock ?: self.buyOrCartBlock(btn.tag - 100);
 }
 
-- (void)increase: (UIButton *)sender {
+- (void)increase:(UIButton *)sender {
     self.count++;
-    _increaseBtn.enabled = self.count < MIN(self.maxPurchaseCount, self.selStockModel.stock.integerValue);
-    _decreaseBtn.enabled = self.count > 1;
-    _countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
+    [self updateQuantityState];
 }
 
-- (void)decrease: (UIButton *)sender {
+- (void)decrease:(UIButton *)sender {
     self.count--;
-    _increaseBtn.enabled = self.count < MIN(self.maxPurchaseCount, self.selStockModel.stock.integerValue);
-    _decreaseBtn.enabled = self.count > 1;
-    _countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
+    [self updateQuantityState];
 }
 
 - (void)selcteAttr: (ProductAttrButton *)sender {
@@ -515,9 +519,21 @@
     // 此处为了刷新库存
     self.stockModel = self.stockModel;
     
+    //重置当前选中数量,并更新按钮状态和显示
+    if (MIN(self.maxPurchaseCount, self.selStockModel.stock.integerValue) > 0) {
+        self.count = 1;
+        [self updateQuantityState];
+    }
+    
     if(self.chooseAttrBlock) {
         self.chooseAttrBlock();
     }
+}
+
+- (void)updateQuantityState {
+    _increaseBtn.enabled = self.count < MIN(self.maxPurchaseCount, self.selStockModel.stock.integerValue);
+    _decreaseBtn.enabled = self.count > 1;
+    _countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
 }
 
 

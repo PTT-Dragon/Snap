@@ -31,6 +31,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame backItme:(SFSearchItem *)bItem rightItem:(SFSearchItem *)rItem searchBlock:(nonnull void (^)(NSString *qs))searchBlock {
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
         _searchBlock = searchBlock;
         _bItem = bItem;
         _rItem = rItem;

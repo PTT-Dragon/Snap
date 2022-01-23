@@ -30,8 +30,8 @@
 //  "SALES_RANKING" = "Sales Ranking";
 //  "DISTRIBUTION_HISTORY" = "Distribution History";
 //  "DISTRIBUTION_LIST" = "Distribution List";
-//  "ADDRESS_DETAIL" = "Address Detail";
-//  "CONTACT_INFORMATION" = "Contact Information";
+  "ADDRESS_DETAIL" = "Address Detail";
+  "CONTACT_INFORMATION" = "Contact Information";
 //  "TOTAL_PAYMENT" = "Total Payment";
 //  "DELIVERY_TOTAL" = "Delivery Total";
 //  "MIN_CASH_OUT" = "The balance is insufficient to be withdrawn. The minimum cash withdrawal is {amount}";
@@ -140,8 +140,8 @@
 //  "MY_ADDRESS" = "My Address";
 "REQUIREDTIP" = "Please Input";
 //  "INCORRECT_NAME" = "Please input 4 ~ 40 characters for recipient name.";
-//  "INCORRECT_PHONE" = "Please input the correct phone number.";
-//  "INCORRECT_EMAIL" = "Please input the correct email.";
+  "INCORRECT_PHONE" = "Please input the correct phone number.";
+  "INCORRECT_EMAIL" = "Please input the correct email.";
 //  "ADDRESS_DEFAULT" = "Set Default";
 //  "ADDRESS_ADD_SUCCESS" = "Add address successfully.";
 //  "MODIFY_ADD_SUCCESS" = "Modify address successfully.";
@@ -386,9 +386,9 @@
 //  "LOGIN_VIA_OPT" = "Login via OTP";
 //  "SMARTFREN_NUMBER" = "Smartfren Number";
 //  "PHONE_NUMBER_EMAIL" = "Phone number/Email";
-//  "YOUR_CODE_WAS_SENT_TO" = "Your code was sent to";
-//  "RESEND_CODE_IN" = "Resend code in";
-//  "RESEND" = "resend";
+  "YOUR_CODE_WAS_SENT_TO" = "Your code was sent to";
+  "RESEND_CODE_IN" = "Resend code in";
+  "RESEND" = "RESEND";
 //  "FORGOT_PWD_SELECT_MODAL_TITLE" = "You can reset your password with SMS or Email";
 //  "RESET_WITH_SMS" = "RESET WITH SMS";
 //  "RESET_WITH_EMAIL" = "RESET WITH EMAIL";

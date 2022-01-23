@@ -40,6 +40,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel5;
 @property (weak, nonatomic) IBOutlet UILabel *label6;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel6;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel3;
 
 @end
 
@@ -66,6 +69,8 @@ static BOOL changePhone = NO;
     _phoneField.layer.borderWidth = 1;
     _detailField.layer.borderWidth = 1;
     _streetField.layer.borderWidth = 1;
+    _titleLabel1.text = kLocalizedString(@"CONTACT_INFORMATION");
+    _titleLabel2.text = kLocalizedString(@"ADDRESS_DETAIL");
     if (_model) {
         //修改地址
         changePhone = YES;
