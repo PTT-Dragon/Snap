@@ -21,7 +21,7 @@
 + (NSString *)ffLocalizedStringForKey:(NSString *)key {
     NSString *language = UserDefaultObjectForKey(@"Language");
     if (!language) {
-        language = @"en";
+        language = kLanguageHindi;
     }
     NSBundle *resource_bundle = [NSBundle ffStringBundleWithLanguage:language];
     NSString *baseValue = [resource_bundle localizedStringForKey:key value:key table:@"Localizable"];

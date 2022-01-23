@@ -71,9 +71,9 @@
 }
 
 - (void)configUSharePlatforms {
-//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Twitter appKey:@"fB5tvRpna1CKK97xZUslbxiet"  appSecret:@"YcbSvseLIwZ4hZg9YmgJPP5uWzd4zr6BpBKGZhf07zzh3oj62K" redirectURL:nil];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Twitter appKey:@"GrhZesIx4mD6rmhBufaabj8ac"  appSecret:@"6HUB0ch9yrsIJQG5iqqeMNHmnlall7fydviuveyYjKtZ3g5Aw5" redirectURL:nil];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Facebook appKey:@"640405423870824"  appSecret:@"c6410391d3be2bc1c2718b32af2b2d25" redirectURL:@"http://www.umeng.com/social"];
-//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Whatsapp appKey:@"" appSecret:@"" redirectURL:@""];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Whatsapp appKey:@"64b0257eadbe5ec9c8ccca64a871ae5d-133ed03e-1e33-412b-a6b4-c061e7a8a5b3" appSecret:@"" redirectURL:@"ejyr31.api.infobip.com"];
 //    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Instagram appKey:@"" appSecret:@"" redirectURL:@""];
 }
 - (void)loadSysConfig

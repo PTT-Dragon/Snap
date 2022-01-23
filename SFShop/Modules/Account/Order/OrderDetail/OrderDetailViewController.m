@@ -27,9 +27,10 @@
 #import "PublicAlertView.h"
 #import "ReviewChildViewController.h"
 #import "LogisticsVC.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
-
-@interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (nonatomic,strong) UITableView *tableView;
@@ -42,18 +43,50 @@
 @property (weak, nonatomic) IBOutlet UIButton *moreActionBtn1;
 @property (nonatomic,strong) OrderGroupModel *groupModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btn2Left;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *navMoreView;
+
 @end
 
 @implementation OrderDetailViewController
-- (void)viewWillAppear:(BOOL)animated
-{
+
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_navMoreView removeFromSuperview];
+    _navMoreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_navMoreView];
+    [_navMoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = kLocalizedString(@"Order_details");
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"Order_details")];
+    
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
     _dataSource = [NSMutableArray array];
@@ -70,7 +103,7 @@
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.bottom.mas_equalTo(self.bottomView.mas_top);
-        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+        make.top.mas_equalTo(self.navView.mas_bottom);
     }];
     [self loadDatas];
 }
