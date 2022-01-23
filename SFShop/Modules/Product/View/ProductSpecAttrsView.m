@@ -208,7 +208,7 @@
     
     _btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
     [_btn2 addTarget:self action:@selector(gotoBuyOrCart:) forControlEvents:UIControlEventTouchUpInside];
-    _btn2.backgroundColor = [UIColor whiteColor];
+    [_btn2 jk_setBackgroundColor: [UIColor whiteColor] forState:UIControlStateNormal];
     [_btn2 setTitle:@"加入购物车" forState:0];
     _btn2.titleLabel.font = CHINESE_SYSTEM(14);
     [_btn2 setTitleColor:RGBColorFrom16(0xFF1659) forState:0];
@@ -277,7 +277,8 @@
     if (self.stockModel.count == 0 || self.maxPurchaseCount == 0) {
         _btn2.hidden = YES;
         [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK") forState:0];
-        _btn1.backgroundColor = RGBColorFrom16(0xFFE5EB);
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFFE5EB) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -289,7 +290,8 @@
         _btn2.hidden = YES;
         _btn1.tag = buyType + 100;
         [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
-        _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -300,7 +302,8 @@
         _btn2.hidden = YES;
         [_btn1 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
         _btn1.tag = cartType + 100;
-        _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -309,7 +312,8 @@
         }];
     }else if (_attrsType == groupBuyType){
         _btn2.hidden = YES;
-        _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         _btn1.tag = groupBuyType + 100;
         [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -320,18 +324,20 @@
         }];
     }else if (_attrsType == groupSingleBuyType){
         _btn2.hidden = NO;
-        _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [_btn2 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         _btn1.tag = groupSingleBuyType + 100;
         _btn2.tag = cartType + 100;
         [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
         [_btn2 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
-        [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.mas_right).offset(-16);
             make.height.mas_equalTo(46);
             make.width.mas_equalTo((MainScreen_width-52)/2);
             make.bottom.equalTo(self).offset(-44);
         }];
-        [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_btn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.height.mas_equalTo(46);
             make.width.mas_equalTo((MainScreen_width-52)/2);
@@ -360,7 +366,10 @@
     }else{
         self.groupView.hidden = YES;
     }
+    //更新商量购买按钮状态和显示
     [self updateQuantityState];
+    //更新按钮点击状态,没有库存时,不让点击
+    [self updateBuyState];
 }
 
 - (void)setSelProductModel:(ProductItemModel *)selProductModel {
@@ -507,21 +516,25 @@
     // 此处为了刷新库存
     self.stockModel = self.stockModel;
     
-    //重置当前选中数量,并更新按钮状态和显示
+    //重置当前选中数量,并更新商量购买按钮状态和显示
     self.count = 1;
     [self updateQuantityState];
     
     //更新按钮点击状态,没有库存时,不让点击
-    if (MIN(self.maxPurchaseCount, self.selStockModel.stock.intValue) > 0) {
-        self.btn1.enabled = NO;
-        self.btn2.enabled = NO;
-    } else {
-        self.btn1.enabled = YES;
-        self.btn2.enabled = YES;
-    }
+    [self updateBuyState];
     
     if(self.chooseAttrBlock) {
         self.chooseAttrBlock();
+    }
+}
+
+- (void)updateBuyState {
+    if (MIN(self.maxPurchaseCount, self.selStockModel.stock.intValue) > 0) {
+        self.btn1.enabled = YES;
+        self.btn2.enabled = YES;
+    } else {
+        self.btn1.enabled = NO;
+        self.btn2.enabled = NO;
     }
 }
 
