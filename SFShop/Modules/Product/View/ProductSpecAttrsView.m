@@ -131,6 +131,7 @@
     [_increaseBtn addTarget:self action:@selector(increase:) forControlEvents:UIControlEventTouchUpInside];
     [_increaseBtn setTitle:@"+" forState:UIControlStateNormal];
     [_increaseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
     [_increaseBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [_increaseBtn jk_setBackgroundColor:[UIColor jk_colorWithHexString:@"F5F5F5"] forState:UIControlStateDisabled];
     [_increaseBtn jk_setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -151,7 +152,7 @@
     _countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
     [self addSubview:_countLabel];
     [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_increaseBtn.mas_left).offset(-25);
+        make.right.equalTo(self.increaseBtn.mas_left).offset(-25);
         make.width.mas_equalTo(40);
         make.centerY.equalTo(quantityLabel);
     }];
@@ -167,7 +168,6 @@
     _decreaseBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#cccccc"].CGColor;
     _decreaseBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_decreaseBtn];
-    [self updateQuantityState];
     
     [_decreaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(36, 36));
@@ -274,7 +274,7 @@
 }
 - (void)updateView
 {
-    if (self.stockModel.count == 0) {
+    if (self.maxPurchaseCount == 0) {
         _btn2.hidden = YES;
         [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK") forState:0];
         _btn1.backgroundColor = RGBColorFrom16(0xFFE5EB);
@@ -284,6 +284,11 @@
             make.height.mas_equalTo(46);
             make.bottom.equalTo(self).offset(-44);
         }];
+        
+        _increaseBtn.enabled = false;
+        _decreaseBtn.enabled = false;
+        _countLabel.text = @"0";
+        _maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
     }else if (_attrsType == buyType) {
         _btn2.hidden = YES;
         _btn1.tag = buyType + 100;
@@ -338,21 +343,28 @@
         }];
     }
     // ====== 处理活动信息 ======
+    MPWeakSelf(self)
     ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
     camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
-        return object.productId.integerValue == _selProductModel.productId;
+        return object.productId.integerValue == weakself.selProductModel.productId;
     }];
     __block NSInteger groupCount = 0;
     BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-        if (object.productId.integerValue == _selProductModel.productId) {
+        if (object.productId.integerValue == weakself.selProductModel.productId) {
             groupCount = object.shareByNum;
-            self.maxPurchaseCount = object.buyAmtLimit;
+            if (self.selStockModel) {
+                self.maxPurchaseCount = MIN(object.buyAmtLimit, self.selStockModel.stock.integerValue);
+            } else {
+                self.maxPurchaseCount = object.buyAmtLimit;
+            }
+
         }
-        return object.productId.integerValue == _selProductModel.productId;
-    }];
+        return object.productId.integerValue == weakself.selProductModel.productId;
+    }].count > 0;
     if (isGroupBuy) {
         _groupCountLabel.text = [NSString stringWithFormat:@"%ld",groupCount];
-        _maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld",self.maxPurchaseCount];
+        _maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
+
         self.groupView.hidden = NO;
     }else{
         self.groupView.hidden = YES;
@@ -365,6 +377,12 @@
     [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage(selProductModel.imgUrl)]];
     self.titleLabel.text = selProductModel.productName;
     self.priceLabel.text = [[NSString stringWithFormat:@"%ld", (long)selProductModel.salesPrice] currency];
+    if (self.selStockModel) {
+        self.maxPurchaseCount = MIN(selProductModel.maxBuyCount, self.selStockModel.stock.integerValue);
+    } else {
+        self.maxPurchaseCount = selProductModel.maxBuyCount;
+    }
+    self.maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
 }
 
 - (void)setStockModel:(NSArray<ProductStockModel *> *)stockModel {
@@ -468,20 +486,6 @@
     [self updateQuantityState];
 }
 
-- (void)updateQuantityState {
-    if (self.maxPurchaseCount) {
-        self.increaseBtn.enabled = (self.count < MIN(self.maxPurchaseCount, self.selStockModel.stock.intValue));
-    } else {
-        self.increaseBtn.enabled = (self.count < self.selStockModel.stock.integerValue);
-    }
-    self.decreaseBtn.enabled = self.count > 1;
-    //如果两个都是不可点击,说明无货
-    if (!self.increaseBtn.enabled && !self.decreaseBtn.enabled) {
-        self.count = 0;
-    }
-    self.countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.count];
-}
-
 - (void)selcteAttr: (ProductAttrButton *)sender {
     NSUInteger sectionIndex = sender.tag / 100;
     ProductAttrButton *selectedBtn = self.selectedAttrBtn[sectionIndex];
@@ -516,12 +520,20 @@
     self.stockModel = self.stockModel;
     
     //重置当前选中数量,并更新按钮状态和显示
-    self.count = 1;
-    [self updateQuantityState];
+    if (MIN(self.maxPurchaseCount, self.selStockModel.stock.integerValue) > 0) {
+        self.count = 1;
+        [self updateQuantityState];
+    }
     
     if(self.chooseAttrBlock) {
         self.chooseAttrBlock();
     }
+}
+
+- (void)updateQuantityState {
+    _increaseBtn.enabled = self.count < MIN(self.maxPurchaseCount, self.selStockModel.stock.integerValue);
+    _decreaseBtn.enabled = self.count > 1;
+    _countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
 }
 
 
