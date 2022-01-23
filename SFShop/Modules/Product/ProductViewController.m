@@ -65,7 +65,6 @@
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
 @property (nonatomic,strong) addressModel *selectedAddressModel;
 @property (nonatomic,strong) ProductItemModel *selProductModel;
-@property (nonatomic,copy) NSNumber *allEvaCount;//评价总数
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
 @property (weak, nonatomic) IBOutlet UILabel *flashSaleStateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *flashSaleBeginTimeLabel;
@@ -324,7 +323,6 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.offer.evaluationList parameters:@{@"offerId":@(_offerId),@"pageIndex":@(1),@"pageSize":@(2)} success:^(id  _Nullable response) {
         weakself.evalationArr = [ProductEvalationModel arrayOfModelsFromDictionaries:response[@"list"] error:nil];
-        weakself.allEvaCount = response[@"total"];
         [weakself.evalationTableview reloadData];
         weakself.tableviewHie.constant = [weakself calucateTableviewHei];
     } failed:^(NSError * _Nonnull error) {
@@ -724,7 +722,12 @@
     if (tableView == _evalationTableview) {
         if (indexPath.row == 0) {
             ProductEvalationTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationTitleCell"];
-            cell.contentLabel.text = [NSString stringWithFormat:@"%@(%@)",@"5",_allEvaCount];
+            __block CGFloat totalRate = 0;
+            [self.evalationArr enumerateObjectsUsingBlock:^(ProductEvalationModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                totalRate += obj.rate.floatValue;
+            }];
+            CGFloat aveRate = totalRate / self.evalationArr.count;
+            [cell setAveRate:aveRate count:self.evalationArr.count];
             return cell;
         }
         ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
