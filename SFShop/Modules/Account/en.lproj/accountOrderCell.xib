@@ -95,50 +95,50 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfk-dZ-b2F">
-                                <rect key="frame" x="320" y="46" width="0.0" height="0.0"/>
+                                <rect key="frame" x="320" y="46" width="0.0" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Rfk-dZ-b2F" secondAttribute="height" multiplier="7:7" id="14g-dT-oHS"/>
+                                    <constraint firstAttribute="height" constant="12" id="V6A-St-ym2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf8-19-hbm">
-                                <rect key="frame" x="257.5" y="46" width="0.0" height="0.0"/>
+                                <rect key="frame" x="251.5" y="46" width="0.0" height="15"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="pf8-19-hbm" secondAttribute="height" multiplier="7:7" id="ccp-nq-rmm"/>
+                                    <constraint firstAttribute="height" constant="15" id="Tv0-WV-NSz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aq6-OP-JKc">
-                                <rect key="frame" x="195" y="46" width="0.0" height="0.0"/>
+                                <rect key="frame" x="195" y="46" width="0.0" height="15"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Aq6-OP-JKc" secondAttribute="height" multiplier="7:7" id="ObN-D7-7qg"/>
+                                    <constraint firstAttribute="height" constant="15" id="jmM-Fa-kej"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmI-di-YuS">
-                                <rect key="frame" x="69.5" y="46" width="0.0" height="0.0"/>
+                                <rect key="frame" x="69.5" y="46" width="0.0" height="15"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="wmI-di-YuS" secondAttribute="height" multiplier="7:7" id="VVH-Rf-wUz"/>
+                                    <constraint firstAttribute="height" constant="15" id="9Cy-6i-TvG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwk-jH-cb4">
-                                <rect key="frame" x="132" y="46" width="0.0" height="0.0"/>
+                                <rect key="frame" x="132" y="46" width="0.0" height="15"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="qwk-jH-cb4" secondAttribute="height" multiplier="7:7" id="eHi-iA-fMs"/>
+                                    <constraint firstAttribute="height" constant="15" id="Ze3-eK-0yD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
@@ -183,7 +183,7 @@
                             <constraint firstAttribute="trailing" secondItem="Bsb-hE-gyw" secondAttribute="trailing" constant="15" id="7hl-x3-y9T"/>
                             <constraint firstItem="uxe-mX-Df5" firstAttribute="leading" secondItem="g2C-9O-ecD" secondAttribute="leading" constant="15" id="8Ti-lT-2Gt"/>
                             <constraint firstItem="HXb-7r-1rp" firstAttribute="leading" secondItem="g2C-9O-ecD" secondAttribute="leading" constant="15" id="8Wt-7q-QM1"/>
-                            <constraint firstItem="pf8-19-hbm" firstAttribute="trailing" secondItem="cNM-QF-3IG" secondAttribute="trailing" constant="-8" id="ArF-MM-IXE"/>
+                            <constraint firstItem="pf8-19-hbm" firstAttribute="trailing" secondItem="cNM-QF-3IG" secondAttribute="trailing" constant="-14" id="ArF-MM-IXE"/>
                             <constraint firstItem="IhV-xd-XOa" firstAttribute="top" secondItem="g2C-9O-ecD" secondAttribute="top" constant="31" id="BGo-7v-rpN"/>
                             <constraint firstItem="HXb-7r-1rp" firstAttribute="top" secondItem="g2C-9O-ecD" secondAttribute="top" constant="31" id="BjO-2U-6f7"/>
                             <constraint firstItem="qwk-jH-cb4" firstAttribute="trailing" secondItem="P2X-bT-a9a" secondAttribute="trailing" constant="-8" id="CtJ-ko-nv1"/>

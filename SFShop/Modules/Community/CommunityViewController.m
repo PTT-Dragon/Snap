@@ -8,10 +8,12 @@
 #import "CommunityViewController.h"
 #import "CommunityChildController.h"
 #import <Masonry/Masonry.h>
+#import "CommunitySelectView.h"
 
 @interface CommunityViewController ()
 
 @property (nonatomic, strong) CommunityTabContainer *container;
+
 
 @end
 
@@ -45,6 +47,7 @@
 @property(nonatomic, strong) NSArray *menuList;
 @property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
+@property (nonatomic,strong) CommunitySelectView *selectView;
 
 @end
 
@@ -82,7 +85,7 @@
 
 - (void)setupMagicView {
     self.currentMenuIndex = 0;
-
+    [self.view addSubview:self.selectView];
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor jk_colorWithHexString: @"#FF1659"];
     self.magicView.sliderHeight = 1.0f;
@@ -91,10 +94,23 @@
     self.magicView.navigationHeight = 40.f;
     self.magicView.dataSource = self;
     self.magicView.delegate = self;
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, MainScreen_width-40, 40, 40);
+    btn.backgroundColor = [UIColor blueColor];
+    @weakify(self)
+    [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
+        btn.selected = !btn.selected;
+        self.selectView.hidden = !btn.selected;
+    }];
+    self.magicView.rightNavigatoinItem = btn;
     
     [self.magicView reloadData];
 }
-
+- (void)showSelTableView
+{
+    
+}
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
     return self.menuList;
@@ -139,6 +155,12 @@
 }
 
 
-
+- (CommunitySelectView *)selectView
+{
+    if (!_selectView) {
+        _selectView = [[CommunitySelectView alloc] initWithFrame:CGRectMake(0, 40, MainScreen_width, 100)];
+    }
+    return _selectView;
+}
 
 @end

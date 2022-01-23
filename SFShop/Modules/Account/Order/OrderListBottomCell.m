@@ -19,6 +19,7 @@
 #import "ReviewChildViewController.h"
 #import "AddReviewViewController.h"
 #import "NSDate+Helper.h"
+#import "AddReviewVC.h"
 
 
 
@@ -171,11 +172,16 @@
         }];
     }else if ([state isEqualToString:@"D"]){
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
-            AddReviewViewController *vc = [[AddReviewViewController alloc] init];
-            [vc setContent:_model row:0 orderItemId:[_model.orderItems.firstObject orderItemId] block:^{
-                            
-            }];
-            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+            if (_model.orderItems.count > 1) {
+                AddReviewVC *vc = [[AddReviewVC alloc] init];
+                [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+            }else{
+                AddReviewViewController *vc = [[AddReviewViewController alloc] init];
+                [vc setContent:_model row:0 orderItemId:[_model.orderItems.firstObject orderItemId] block:^{
+                        
+                }];
+                [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+            }
         }else{
             ReviewChildViewController *vc = [[ReviewChildViewController alloc] init];
             vc.type = 0;

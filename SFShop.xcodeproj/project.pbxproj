@@ -43,6 +43,11 @@
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
 		1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B412839273141F100513430 /* CashOutHistoryViewController.m */; };
+		1B43A409279D91D900E7E786 /* AddReviewItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43A407279D91D900E7E786 /* AddReviewItemCell.m */; };
+		1B43A40A279D91D900E7E786 /* AddReviewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B43A408279D91D900E7E786 /* AddReviewItemCell.xib */; };
+		1B43A40D279D950900E7E786 /* AddReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43A40C279D950900E7E786 /* AddReviewVC.m */; };
+		1B43A411279D954200E7E786 /* AddReviewStoreItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43A40F279D954200E7E786 /* AddReviewStoreItemCell.m */; };
+		1B43A412279D954200E7E786 /* AddReviewStoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B43A410279D954200E7E786 /* AddReviewStoreItemCell.xib */; };
 		1B478304272A785200F2A945 /* RefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478303272A785200F2A945 /* RefundViewController.m */; };
 		1B478308272A7B1000F2A945 /* RefundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478306272A7B1000F2A945 /* RefundCell.m */; };
 		1B478309272A7B1000F2A945 /* RefundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B478307272A7B1000F2A945 /* RefundCell.xib */; };
@@ -596,6 +601,14 @@
 		1B3C123026FC808F00235294 /* accountSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountSubCell.xib; sourceTree = "<group>"; };
 		1B412838273141F100513430 /* CashOutHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashOutHistoryViewController.h; sourceTree = "<group>"; };
 		1B412839273141F100513430 /* CashOutHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashOutHistoryViewController.m; sourceTree = "<group>"; };
+		1B43A406279D91D900E7E786 /* AddReviewItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewItemCell.h; sourceTree = "<group>"; };
+		1B43A407279D91D900E7E786 /* AddReviewItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewItemCell.m; sourceTree = "<group>"; };
+		1B43A408279D91D900E7E786 /* AddReviewItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewItemCell.xib; sourceTree = "<group>"; };
+		1B43A40B279D950900E7E786 /* AddReviewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewVC.h; sourceTree = "<group>"; };
+		1B43A40C279D950900E7E786 /* AddReviewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewVC.m; sourceTree = "<group>"; };
+		1B43A40E279D954200E7E786 /* AddReviewStoreItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewStoreItemCell.h; sourceTree = "<group>"; };
+		1B43A40F279D954200E7E786 /* AddReviewStoreItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewStoreItemCell.m; sourceTree = "<group>"; };
+		1B43A410279D954200E7E786 /* AddReviewStoreItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewStoreItemCell.xib; sourceTree = "<group>"; };
 		1B478302272A785200F2A945 /* RefundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundViewController.h; sourceTree = "<group>"; };
 		1B478303272A785200F2A945 /* RefundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundViewController.m; sourceTree = "<group>"; };
 		1B478305272A7B0F00F2A945 /* RefundCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundCell.h; sourceTree = "<group>"; };
@@ -1915,6 +1928,8 @@
 				1B787B5D272A354C00E6A983 /* AddReviewViewController.h */,
 				1B787B5E272A354C00E6A983 /* AddReviewViewController.m */,
 				1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */,
+				1B43A40B279D950900E7E786 /* AddReviewVC.h */,
+				1B43A40C279D950900E7E786 /* AddReviewVC.m */,
 				1BD8E7D427604FC900130DCC /* AdditionalReviewViewController.h */,
 				1BD8E7D527604FC900130DCC /* AdditionalReviewViewController.m */,
 				1BD8E7D627604FC900130DCC /* AdditionalReviewViewController.xib */,
@@ -2245,6 +2260,12 @@
 				1BD8E7A6275D1B5900130DCC /* ReviewPhrchaseCell.h */,
 				1BD8E7A7275D1B5900130DCC /* ReviewPhrchaseCell.m */,
 				1BD8E7A8275D1B5900130DCC /* ReviewPhrchaseCell.xib */,
+				1B43A406279D91D900E7E786 /* AddReviewItemCell.h */,
+				1B43A407279D91D900E7E786 /* AddReviewItemCell.m */,
+				1B43A408279D91D900E7E786 /* AddReviewItemCell.xib */,
+				1B43A40E279D954200E7E786 /* AddReviewStoreItemCell.h */,
+				1B43A40F279D954200E7E786 /* AddReviewStoreItemCell.m */,
+				1B43A410279D954200E7E786 /* AddReviewStoreItemCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3431,6 +3452,7 @@
 				1B24A3832797E449006D3412 /* ProductCheckoutSeccessVc.xib in Resources */,
 				1B74DB3027253AF900B30ECC /* OrderPayInfoCell.xib in Resources */,
 				1BD8E78F275CAF7500130DCC /* ReviewDetailViewController.xib in Resources */,
+				1B43A412279D954200E7E786 /* AddReviewStoreItemCell.xib in Resources */,
 				AE81BDE626FB6E7300AB4225 /* LaunchScreen.storyboard in Resources */,
 				1B63D463272D238C0062762B /* CartChooseAddressViewController.xib in Resources */,
 				1B2AE442272E8EDD00FB23D3 /* ChooseReasonViewController.xib in Resources */,
@@ -3457,6 +3479,7 @@
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				1B6C52CC275C894C00A1C617 /* RelationOrderDetailInfoCell.xib in Resources */,
 				1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */,
+				1B43A40A279D91D900E7E786 /* AddReviewItemCell.xib in Resources */,
 				1BD10C3E2761F4B100BFC1AD /* ProductReviewViewController.xib in Resources */,
 				AE81BDE326FB6E7300AB4225 /* Assets.xcassets in Resources */,
 				1B273C59278F0BCD00DDE2DA /* RefundOrReturnViewController.xib in Resources */,
@@ -3610,6 +3633,7 @@
 				AE81BDDE26FB6E7000AB4225 /* ViewController.m in Sources */,
 				1B82AEE6277080B700D75E00 /* CALayer+YYWebImage.m in Sources */,
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
+				1B43A409279D91D900E7E786 /* AddReviewItemCell.m in Sources */,
 				1B6C529C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				1BD8E79D275D005900130DCC /* AccountActiveCell.m in Sources */,
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
@@ -3739,9 +3763,11 @@
 				1BF4DD4B2774644600972265 /* NSArray+ErrorHandle.m in Sources */,
 				1B82AE3727701F4F00D75E00 /* ArticleEvaluateBottomCell.m in Sources */,
 				1B6C52B7275BC02400A1C617 /* ImageCollectionViewCell.m in Sources */,
+				1B43A40D279D950900E7E786 /* AddReviewVC.m in Sources */,
 				1BF00F59272FD4090081C8E4 /* SFNetworkDistributorModule.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
 				1BD8E7A9275D1B5900130DCC /* ReviewPhrchaseCell.m in Sources */,
+				1B43A411279D954200E7E786 /* AddReviewStoreItemCell.m in Sources */,
 				1B63D459272D212A0062762B /* CartChildViewController.m in Sources */,
 				1B96475C273E4CC600345DDA /* RelationOrderViewController.m in Sources */,
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
