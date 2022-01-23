@@ -174,6 +174,9 @@
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
             if (_model.orderItems.count > 1) {
                 AddReviewVC *vc = [[AddReviewVC alloc] init];
+                [vc setContent:_model block:^{
+                                    
+                }];
                 [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
             }else{
                 AddReviewViewController *vc = [[AddReviewViewController alloc] init];

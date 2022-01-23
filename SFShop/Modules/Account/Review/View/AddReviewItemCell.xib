@@ -141,6 +141,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="collectionViewHei" destination="JTn-2Y-1yg" id="PpW-EL-5pi"/>
                 <outlet property="imgView" destination="V37-a4-a83" id="Szt-Ju-Kcr"/>
                 <outlet property="nameLabel" destination="vCF-LJ-P8D" id="Vye-OS-LGK"/>
                 <outlet property="photoCollectionView" destination="e0R-nd-SEt" id="E0P-Zf-z6S"/>

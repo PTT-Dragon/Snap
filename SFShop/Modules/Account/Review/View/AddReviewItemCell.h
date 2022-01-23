@@ -6,11 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddReviewItemCell : UITableViewCell
+typedef void(^reviewItemBlock)(NSInteger row);
 
+@interface AddReviewItemCell : UITableViewCell
+@property (nonatomic,copy) reviewItemBlock block;
+- (void)setContent:(orderItemsModel *)orderModel row:(NSInteger)row imgArr:(NSMutableArray *)imgArr;
 @end
 
 NS_ASSUME_NONNULL_END
