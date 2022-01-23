@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, SFPayResult) {
 
 
 // 开始购买
-- (void)startPayWithOrderIds:(NSArray *)orderIds shareBuyOrderNbr:(NSString *)shareBuyOrderNbr totalPrice:(NSString *)totalPrice complete:(void(^)(SFPayResult result, NSString *urlOrHtml))complete;
+- (void)startPayWithOrderIds:(NSArray *)orderIds shareBuyOrderNbr:(NSString *)shareBuyOrderNbr totalPrice:(NSString *)totalPrice complete:(void(^)(SFPayResult result, NSString * _Nullable urlOrHtml, NSDictionary * _Nullable response))complete;
 
 #pragma mark - 加载结算数据
 /// 加载进入checkout 页面所需数据

@@ -116,7 +116,7 @@
         }
         //付款
         NSString *shareBuyOrderNbr = self.model.shareBuyBriefInfo.shareBuyOrderNbr;
-        [CheckoutManager.shareInstance startPayWithOrderIds:@[self.model.orderId] shareBuyOrderNbr:shareBuyOrderNbr totalPrice:self.model.orderPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml) {
+        [CheckoutManager.shareInstance startPayWithOrderIds:@[self.model.orderId] shareBuyOrderNbr:shareBuyOrderNbr totalPrice:self.model.orderPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml, NSDictionary *response) {
             switch (result) {
                 case SFPayResultSuccess:
                     [SceneManager transToHome];

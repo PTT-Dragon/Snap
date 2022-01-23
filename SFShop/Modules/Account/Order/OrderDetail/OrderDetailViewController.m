@@ -298,7 +298,7 @@
          shareBuyOrderNbr 这里有更新  不知是否适配
          **/
         NSString *shareBuyOrderNbr = self.model.shareBuyOrderNbr;
-        [CheckoutManager.shareInstance startPayWithOrderIds:@[self.model.orderId] shareBuyOrderNbr:shareBuyOrderNbr totalPrice:self.model.orderPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml) {
+        [CheckoutManager.shareInstance startPayWithOrderIds:@[self.model.orderId] shareBuyOrderNbr:shareBuyOrderNbr totalPrice:self.model.orderPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml, NSDictionary *response) {
             switch (result) {
                 case SFPayResultSuccess:
                     [SceneManager transToHome];

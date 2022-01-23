@@ -442,7 +442,7 @@
                 NSString *totalPrice = [NSString stringWithFormat:@"%@",[response objectForKey:@"totalPrice"]];//总价
                 NSString *shareBuyOrderNbr = [orders.firstObject objectForKey:@"shareBuyOrderNbr"];//分享号
                 [MBProgressHUD hideFromKeyWindow];
-                [CheckoutManager.shareInstance startPayWithOrderIds:orderIds shareBuyOrderNbr:shareBuyOrderNbr totalPrice:totalPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml) {
+                [CheckoutManager.shareInstance startPayWithOrderIds:orderIds shareBuyOrderNbr:shareBuyOrderNbr totalPrice:totalPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml, NSDictionary *response) {
                     switch (result) {
                         case SFPayResultSuccess:{
                             ProductCheckoutSeccessVc *vc = [[ProductCheckoutSeccessVc alloc] init];
