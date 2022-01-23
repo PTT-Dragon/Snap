@@ -274,7 +274,7 @@
 }
 - (void)updateView
 {
-    if (self.selStockModel.stock.integerValue == 0) {
+    if (self.maxPurchaseCount == 0) {
         _btn2.hidden = YES;
         [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK") forState:0];
         _btn1.backgroundColor = RGBColorFrom16(0xFFE5EB);
