@@ -43,7 +43,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlh-vo-S40">
                                 <rect key="frame" x="176" y="90" width="33" height="15"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeT-Le-b3E">
@@ -126,6 +126,7 @@
                 <outlet property="priceLabel" destination="nlh-vo-S40" id="Aw0-dx-gXK"/>
                 <outlet property="scoreLabel" destination="tEf-XD-N6f" id="vGx-tJ-oee"/>
                 <outlet property="spCartBtn" destination="AoD-7G-fKY" id="ran-gH-oHZ"/>
+                <outlet property="starImgView" destination="w4D-16-6Lb" id="Kvy-RD-IoY"/>
                 <outlet property="subView" destination="Mb7-hQ-9AE" id="ktX-17-Pch"/>
             </connections>
             <point key="canvasLocation" x="75" y="72"/>

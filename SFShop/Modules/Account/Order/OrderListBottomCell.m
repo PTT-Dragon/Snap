@@ -18,6 +18,7 @@
 #import "LogisticsVC.h"
 #import "ReviewChildViewController.h"
 #import "AddReviewViewController.h"
+#import "NSDate+Helper.h"
 
 
 
@@ -58,8 +59,8 @@
     [_btn2 setTitle:[self getBtn2StrWithState:model.state] forState:0];
     self.moreBtn.hidden = !([_model.state isEqualToString:@"D"] || [_model.state isEqualToString:@"C"]);
     [self.moreActionBtn1 setTitle:kLocalizedString(@"REBUY") forState:0];
-    _groupView.hidden = !model.shareBuyBriefInfo;
-    if (model.shareBuyBriefInfo && !_timer) {
+    _groupView.hidden = !model.shareBuyBriefInfo || [[NSDate dateFromString:model.shareBuyBriefInfo.expDate] utcTimeStamp] < [[NSDate date] utcTimeStamp];
+    if (model.shareBuyBriefInfo && !_timer && !_groupView.hidden) {
         [self layoutGroupView];
     }
 }

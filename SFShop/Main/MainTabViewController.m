@@ -60,6 +60,8 @@
 {
     if ([item.title isEqualToString:kLocalizedString(@"Cart")]) {
         [baseTool updateCartNum];
+    }else if ([item.title isEqualToString:kLocalizedString(@"Home")]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"KReloadWebview" object:nil];
     }
 }
 @end

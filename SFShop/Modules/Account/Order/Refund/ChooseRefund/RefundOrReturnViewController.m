@@ -10,7 +10,6 @@
 #import "OrderListStateCell.h"
 #import "OrderListItemCell.h"
 #import "CancelOrderChooseReason.h"
-#import "ChooseReasonViewController.h"
 #import "RefundDetailImagesCell.h"
 #import "RefundOrReturnExplainCell.h"
 #import "RefundViewController.h"
@@ -21,6 +20,7 @@
 @property (nonatomic,strong) NSMutableArray *imgArr;//存放图片数组
 @property (nonatomic,strong) NSMutableArray *imgUrlArr;//存放图片url数组
 @property (nonatomic,copy) NSString *questionDesc;
+@property (nonatomic,strong) NSMutableArray *reasonArr;
 @end
 
 @implementation RefundOrReturnViewController
@@ -32,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self layoutSubviews];
+    [self loadReasonDatas];
 }
 - (void)layoutSubviews
 {
@@ -51,6 +52,7 @@
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-140);
     }];
+    self.reasonArr = [NSMutableArray array];
     self.imgArr = [NSMutableArray array];
     self.imgUrlArr = [NSMutableArray array];
 }
@@ -109,7 +111,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == _model.orderItems.count+1) {
-        [self loadReasonDatas];
+        ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
+        vc.dataSource = _reasonArr;
+        vc.delegate = self;
+        [self presentViewController:vc animated:YES completion:^{
+                    
+        }];
     }
 }
 - (void)loadReasonDatas
@@ -119,14 +126,7 @@
     MPWeakSelf(self)
     [SFNetworkManager get:[SFNet.order getReasonlOf:reasonId] success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
-        NSMutableArray *dataSource = [NSMutableArray array];
-        [dataSource addObjectsFromArray:[CancelOrderReasonModel arrayOfModelsFromDictionaries:response error:nil]];
-        ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
-        vc.dataSource = dataSource;
-        vc.delegate = weakself;
-        [weakself presentViewController:vc animated:YES completion:^{
-                    
-        }];
+        [weakself.reasonArr addObjectsFromArray:[CancelOrderReasonModel arrayOfModelsFromDictionaries:response error:nil]];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];

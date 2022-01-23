@@ -36,7 +36,11 @@
 - (void)loadsubviews {
     self.couponView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
     self.couponView.layer.borderWidth = 1;
-    self.couponNameLabel.text = self.couponModel.couponName;
+    if ([self.couponModel.discountMethod isEqualToString:@"DISC"]) {
+        _couponNameLabel.text = [NSString stringWithFormat:@"Discount %@ Min.spend %@",[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency],[[NSString stringWithFormat:@"%@f",self.couponModel.thAmount] currency]];
+    }else{
+        _couponNameLabel.text = [NSString stringWithFormat:@"Discount %@ Without limit",[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency]];
+    }
     self.expiredDataLabel.text = self.couponModel.expDate;
     [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.tableView];
@@ -44,6 +48,7 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.headSelectorView.mas_bottom).offset(12);
     }];
+    self.currentType = CategoryRankTypePopularity;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
         [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];

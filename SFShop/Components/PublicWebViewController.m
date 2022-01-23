@@ -69,12 +69,19 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangeNotification:)
                                                  name:@"KLanguageChange"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveReloadWebviewNotification:)
+                                                 name:@"KReloadWebview"
+                                               object:nil];
 }
 - (void)receiveLanguageChangeNotification:(NSNotification *)noti
 {
     
     [self.webView removeFromSuperview];
     [self initWebview];
+}
+- (void)receiveReloadWebviewNotification:(NSNotification *)noti
+{
+    [self.webView reloadFromOrigin];
 }
 
 - (void)addJsBridge
@@ -118,8 +125,12 @@
 }
 
 // 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
+{
     
+}
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     

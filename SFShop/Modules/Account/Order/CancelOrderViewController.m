@@ -14,6 +14,7 @@
 @interface CancelOrderViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseReasonViewControllerDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) CancelOrderReasonModel *selReasonModel;
+@property (nonatomic,strong) NSMutableArray *reasonArr;
 @end
 
 @implementation CancelOrderViewController
@@ -27,6 +28,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Cancellation_Request");
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    self.reasonArr = [NSMutableArray array];
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
@@ -38,6 +40,7 @@
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-140);
     }];
+    [self loadReasonDatas];
 }
 - (void)setModel:(OrderModel *)model
 {
@@ -75,7 +78,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == _model.orderItems.count+1) {
-        [self loadReasonDatas];
+        ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
+        vc.dataSource = self.reasonArr;
+        vc.delegate = self;
+        [self presentViewController:vc animated:YES completion:^{
+                    
+        }];
     }
 }
 - (void)loadReasonDatas
@@ -84,14 +92,7 @@
     MPWeakSelf(self)
     [SFNetworkManager get:[SFNet.order getReasonlOf:@"1"] success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
-        NSMutableArray *dataSource = [NSMutableArray array];
-        [dataSource addObjectsFromArray:[CancelOrderReasonModel arrayOfModelsFromDictionaries:response error:nil]];
-        ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
-        vc.dataSource = dataSource;
-        vc.delegate = weakself;
-        [weakself presentViewController:vc animated:YES completion:^{
-                    
-        }];
+        [weakself.reasonArr addObjectsFromArray:[CancelOrderReasonModel arrayOfModelsFromDictionaries:response error:nil]];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];

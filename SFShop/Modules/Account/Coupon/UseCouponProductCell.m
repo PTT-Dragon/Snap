@@ -6,6 +6,8 @@
 //
 
 #import "UseCouponProductCell.h"
+#import "NSString+Fee.h"
+
 
 @interface UseCouponProductCell ()
 @property (weak, nonatomic) IBOutlet UIView *subView;
@@ -17,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *marketLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (nonatomic,strong) CategoryRankPageInfoListModel *model;
+@property (weak, nonatomic) IBOutlet UIImageView *starImgView;
 
 @end
 
@@ -35,9 +38,12 @@
     _model = model;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.offerName;
-    _priceLabel.text = [NSString stringWithFormat:@"RP %ld",model.salesPrice];
-    _marketLabel.text = [NSString stringWithFormat:@"%ld",model.marketPrice];
-    _scoreLabel.text = [NSString stringWithFormat:@"%@ (%ld)",model.evaluationRate,model.evaluationCnt];
+    _priceLabel.text = [[NSString stringWithFormat:@"%ld",model.salesPrice] currency];
+    _marketLabel.text = [[NSString stringWithFormat:@"%ld",model.marketPrice] currency];
+    NSString *score = ([model.evaluationRate isEqualToString:@"0"] || !model.evaluationRate) ? @"":model.evaluationRate;
+    NSString *count = (model.evaluationCnt == 0 || !model.evaluationCnt) ? @"":[NSString stringWithFormat:@"(%ld)",model.evaluationCnt];
+    self.starImgView.hidden = [score isEqualToString:@""];
+    _scoreLabel.text = [NSString stringWithFormat:@"%@ %@",score,count];
     _offLabel.text = [NSString stringWithFormat:@" %@ ",model.discountPercent];
 }
 - (IBAction)spCartAction:(UIButton *)sender {
