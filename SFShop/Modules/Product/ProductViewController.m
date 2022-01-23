@@ -178,7 +178,7 @@
     UITapGestureRecognizer *addressTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAddress)];
     [self.addressLabel addGestureRecognizer:addressTap];
     
-    UITapGestureRecognizer *variationTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAttrsViewWithAttrType:)];
+    UITapGestureRecognizer *variationTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAttrsView)];
     [self.variationsLabel addGestureRecognizer:variationTap];
     
     UITapGestureRecognizer *couponTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseCoupon)];

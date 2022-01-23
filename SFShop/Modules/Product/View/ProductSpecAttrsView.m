@@ -289,7 +289,8 @@
         _decreaseBtn.enabled = false;
         _countLabel.text = @"0";
         _maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
-    }else if (_attrsType == buyType) {
+    }
+    if (_attrsType == buyType) {
         _btn2.hidden = YES;
         _btn1.tag = buyType + 100;
         [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
