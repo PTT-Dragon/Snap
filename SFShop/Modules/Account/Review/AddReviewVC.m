@@ -146,7 +146,6 @@
     [MBProgressHUD showHudMsg:@""];
     dispatch_group_t group = dispatch_group_create();
     MPWeakSelf(self)
-    __block NSInteger i = 0;
     __block NSInteger count = 0;
     NSInteger allCount = 0;
     for (NSArray *arr in self.imgArr) {
@@ -156,21 +155,21 @@
             }
         }
     }
-    for (NSMutableArray *arr in self.imgArr) {
-        NSMutableArray *itemArr = [NSMutableArray array];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (int index = 0; index < self.imgArr.count; index ++) {
+        NSArray *arr = self.imgArr[index];
+        __block NSMutableArray *itemArr = [NSMutableArray array];
+        __block NSInteger i = 0;
         for (id item in arr) {
             if ([item isKindOfClass:[UIImage class]]) {
                 dispatch_group_enter(group);
                 [SFNetworkManager postImage:SFNet.h5.publishImg image:item success:^(id  _Nullable response) {
                     @synchronized (response) {
                         [itemArr addObject:@{@"catgType":@"B",@"url":response[@"fullPath"],@"imgUrl":@"",@"seq":@(i),@"name":response[@"fileName"]}];
+                        [dict setObject:itemArr forKey:[NSString stringWithFormat:@"%ld",(long)index]];
                         i++;
-                    }
-                    dispatch_group_leave(group);
-                    count = count+1;
-                    if (count == allCount) {
-                        [MBProgressHUD hideFromKeyWindow];
-                        [self publishReview];
+                        count++;
+                        dispatch_group_leave(group);
                     }
                 } failed:^(NSError * _Nonnull error) {
                     dispatch_group_leave(group);
@@ -180,11 +179,13 @@
     }
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        
-        
+        [MBProgressHUD hideFromKeyWindow];
+        if (count == allCount) {
+            [self publishReview:dict];
+        }
     });
 }
-- (void)publishReview
+- (void)publishReview:(NSDictionary *)imgUrlDict
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSMutableArray *evaluateItems = [NSMutableArray array];
@@ -194,7 +195,7 @@
         [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
         [dic setValue:self.textArr[i] forKey:@"ratingComments"];
         [dic setValue:self.rateArr[i] forKey:@"rate"];
-        [dic setValue:self.imgUrlArr forKey:@"contents"];
+        [dic setValue:[imgUrlDict objectForKey:[NSString stringWithFormat:@"%ld",(long)i]] forKey:@"contents"];
         [dic setValue:_Anonymous forKey:@"isAnonymous"];
         [evaluateItems addObject:dic];
     }
