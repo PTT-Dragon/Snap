@@ -133,7 +133,7 @@
 //  "BIND" = "Bind";
 //  "BIND_EMAIL" = "Bind Email";
 //  "BIND_MOBILE" = "Bind Mobile Number";
-//  "EXCHANGE" = "Exchange";
+  "EXCHANGE" = "Replacement";
 //  "DELIVERY" = "Delivery";
 //  "DELETE_ADDRESS_TXT" = "Are you sure to delete this address?";
   "ADD_ADDRESS" = "ADD ADDRESS";

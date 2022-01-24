@@ -65,7 +65,7 @@
                                     <constraint firstItem="OX3-GP-ejd" firstAttribute="leading" secondItem="sKp-w0-k5O" secondAttribute="leading" constant="8" id="weD-0b-XnH"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EA6-Lv-wFj">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EA6-Lv-wFj">
                                 <rect key="frame" x="225" y="230" width="100" height="24"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

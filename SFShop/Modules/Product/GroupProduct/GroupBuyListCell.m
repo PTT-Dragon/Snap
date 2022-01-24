@@ -6,6 +6,8 @@
 //
 
 #import "GroupBuyListCell.h"
+#import "NSString+Fee.h"
+
 
 @interface GroupBuyListCell ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -31,7 +33,7 @@
     _model = model;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.offerName;
-    _priceLabel.text = [NSString stringWithFormat:@"Rp %@", model.specialPrice];
+    _priceLabel.text = [[NSString stringWithFormat:@"%f", model.specialPrice] currency];
     _marketPriceLabel.text = [NSString stringWithFormat:@"Rp %ld", (long)model.salesPrice];
     _groupCountLabel.text = [NSString stringWithFormat:@"%ld",model.evaluationCnt];
     _soldLabel.text = [NSString stringWithFormat:@"%ld Sold",(long)model.salesCnt];

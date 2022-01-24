@@ -138,7 +138,7 @@
 //  "BIND" = "Link";
 //  "BIND_EMAIL" = "Link e-mail";
 //  "BIND_MOBILE" = "Link no. telephone";
-//  "EXCHANGE" = "Exchange";
+  "EXCHANGE" = "Exchange";
 //  "DELIVERY" = "Pengiriman";
 //  "DELETE_ADDRESS_TXT" = "Hapus alamat ";
   "ADD_ADDRESS" = "Tambah Alamat";
