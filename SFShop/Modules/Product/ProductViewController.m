@@ -586,6 +586,7 @@
             self.groupSalePriceLabel.text = [[NSString stringWithFormat:@"%.0f", model.shareBuyPrice] currency];
             self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",self.model.marketPrice] currency];
             [self.buyBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)model.shareBuyPrice] currency],kLocalizedString(@"SHARE_BUY")] forState:0];
+            [self.addCartBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)self.selProductModel.salesPrice] currency],kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
         }
     }];
 }

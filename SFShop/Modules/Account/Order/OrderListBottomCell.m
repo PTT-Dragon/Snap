@@ -36,7 +36,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *secondLabel;
 @property (weak, nonatomic) IBOutlet UILabel *hasCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *allCountLabel;
-@property (nonatomic, strong) dispatch_source_t timer;//倒计时
+//@property (nonatomic, strong) static dispatch_source_t timer;//倒计时
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;
 @property (weak, nonatomic) IBOutlet UIButton *moreActionBtn1;
 
@@ -44,6 +44,8 @@
 @end
 
 @implementation OrderListBottomCell
+
+static dispatch_source_t _timer;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -62,13 +64,17 @@
     self.moreBtn.hidden = !([_model.state isEqualToString:@"D"] || [_model.state isEqualToString:@"C"]);
     [self.moreActionBtn1 setTitle:kLocalizedString(@"REBUY") forState:0];
     _groupView.hidden = !model.shareBuyBriefInfo || [[NSDate dateFromString:model.shareBuyBriefInfo.expDate] utcTimeStamp] < [[NSDate date] utcTimeStamp];
-    if (model.shareBuyBriefInfo && !_groupView.hidden && (model.shareBuyBriefInfo.shareByNum != model.shareBuyBriefInfo.memberQty)) {
-        [self layoutGroupView];
+    if (model.shareBuyBriefInfo && !_timer && !_groupView.hidden && (model.shareBuyBriefInfo.shareByNum != model.shareBuyBriefInfo.memberQty)) {
+        [self layoutGroupViewWithUpdateTime:YES];
     }else{
-        self.groupView.hidden = YES;
+        if (_timer) {
+            [self layoutGroupViewWithUpdateTime:NO];
+        }else{
+            self.groupView.hidden = YES;
+        }
     }
 }
-- (void)layoutGroupView
+- (void)layoutGroupViewWithUpdateTime:(BOOL)updateTime
 {
     self.groupView.hidden = NO;
     self.hasCountLabel.text = [NSString stringWithFormat:@"%ld",_model.shareBuyBriefInfo.memberQty];
@@ -79,35 +85,38 @@
     NSDate *nowDate = [formatter dateFromString:_model.shareBuyBriefInfo.now];
     NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
     NSDate *expDate = [formatter dateFromString:_model.shareBuyBriefInfo.expDate];
-//    NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
-//    MPWeakSelf(self)
-//    __block NSInteger timeout = expTimeInterval - timeInterval; // 倒计时时间
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-////    if (!_timer) {
-//        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-////    }
-//    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-//    dispatch_source_set_event_handler(_timer, ^{
-//        if(timeout<=0){
-//
-//            dispatch_source_cancel(weakself.timer);
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//
-//            });
-//        }else{
-//            NSInteger days = (int)(timeout/(3600*24));
-//            NSInteger hours = (int)((timeout-days*24*3600)/3600);
-//            NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
-//            NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
-//                weakself.minuLabel.text = [NSString stringWithFormat:@"%02ld",minute];
-//                weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
-//            });
-//            timeout--;
-//        }
-//    });
-//    dispatch_resume(_timer);
+    NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
+    if (updateTime) {
+        MPWeakSelf(self)
+        __block NSInteger timeout = expTimeInterval - timeInterval; // 倒计时时间
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        if (!_timer) {
+            _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        }
+        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+        dispatch_source_set_event_handler(_timer, ^{
+            if(timeout<=0){
+
+                dispatch_source_cancel(_timer);
+                dispatch_async(dispatch_get_main_queue(), ^{
+
+                });
+            }else{
+                NSInteger days = (int)(timeout/(3600*24));
+                NSInteger hours = (int)((timeout-days*24*3600)/3600);
+                NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
+                NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
+                    weakself.minuLabel.text = [NSString stringWithFormat:@"%02ld",minute];
+                    weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
+                });
+                timeout--;
+            }
+        });
+        dispatch_resume(_timer);
+    }
+    
 }
 - (IBAction)btn1Action:(UIButton *)sender {
     NSString *state = _model.state;
@@ -216,7 +225,7 @@
         dispatch_group_enter(group);
         NSDictionary *params =
         @{
-            @"num": @(1),
+            @"num": obj.offerCnt,
             @"offerId": self.model.orderId,
             @"productId": obj.productId,
             @"storeId": self.model.storeId,

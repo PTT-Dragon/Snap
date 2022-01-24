@@ -29,7 +29,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *productNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *productPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *needMemberCountLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userImgView;
+@property (weak, nonatomic) IBOutlet UIView *showImgView;
+
 @property (weak, nonatomic) IBOutlet UILabel *needTimeLabel;
 @property (weak, nonatomic) IBOutlet UIView *groupView;
 @property (nonatomic, strong) dispatch_source_t timer;//倒计时
@@ -107,8 +108,17 @@
     self.needMemberCountLabel.text = [NSString stringWithFormat:@"%ld",self.groupModel.shareByNum];
     self.productNameLabel.text = self.groupModel.offerName;
     self.productPriceLabel.text = [self.groupModel.shareBuyPrice currency];
-    ReviewUserInfoModel *userModel = self.groupModel.groupMembers.firstObject;
-    [self.userImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(userModel.photo)]];
+    CGFloat width = 48;
+    NSInteger i = 0;
+    CGFloat right = self.groupModel.groupMembers.count>3 ? 24: 50;
+    for (ReviewUserInfoModel *memberModel in self.groupModel.groupMembers) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.showImgView.width-48-i*right, 0, width, width)];
+        [imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(memberModel.photo)]];
+        imgView.clipsToBounds = YES;
+        imgView.layer.cornerRadius = 24;
+        [self.showImgView addSubview:imgView];
+        i++;
+    }
     
 }
 - (void)layoutsubviews
@@ -116,11 +126,16 @@
     
     NSArray *arr = _infoDic[@"orders"];
     NSDictionary *dic = arr.firstObject;
+    NSArray *codeArr = _infoDic[@"orderNbrList"];
+    NSString *orderCode = @"";
+    for (NSString *str in codeArr) {
+        orderCode = [orderCode stringByAppendingFormat:@"%@ ",str];
+    }
     _storeNameLabel.text = @"Nuri.SHOP";
-    _codeLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"ORDER_CODE"),dic[@"orderNbr"]];
-    _timeLabel.text = kLocalizedString(@"PAYMENT_TIME");
+    _codeLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"ORDER_CODE"),orderCode];
+    _timeLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"PAYMENT_TIME"),_infoDic[@"payTime"]];
     _successLabel.text = kLocalizedString(@"PAYMENT_SUCCESS");
-    _priceLabel.text = [[_infoDic[@"totalPrice"] stringValue] currency];
+    _priceLabel.text = [[_infoDic[@"charge"] stringValue] currency];
     [_detailBtn setTitle:kLocalizedString(@"SEE_DETAIL") forState:0];
 }
 - (IBAction)addGroupAction:(UIButton *)sender {
