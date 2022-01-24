@@ -108,7 +108,7 @@
 //  "CURRENT_PWD" = "Password lama";
 //  "SET_SUCCESSFUL" = "Setelan Berhasil";
 //  "DOWNLOAD" = "Downloading";
-//  "SUBMIT" = "Kirim";
+  "SUBMIT" = "Kirim";
 "FORGOT_PWD" = "Lupa Kata Sandi";
 //  "SETTING" = "Pengaturan";
 //  "LOGIN" = "Gabung";
@@ -153,7 +153,7 @@
 //  "SERVICE_DETAIL" = "detail layanan";
 //  "CARGO_STATUS" = "Status pengiriman barang";
 //  "SERVICE_REASON" = "Alasan";
-//  "PLEASE_SELECT" = "Mohon pilih";
+  "PLEASE_SELECT" = "Mohon pilih";
   "REFUND_AMOUNT" = "Jumlah pengembalian uang";
   "INSTRUCTIONS" = "Instruksi";
 //  "REFUND_RETURN" = "Pengembalian dana";
@@ -426,7 +426,7 @@
 //  "ORDER_RECEIPT" = "Resi pesanan";
   "PACKAGE" = "Paket";
   "ADD_PACKAGE" = "Tambahkan Paket";
-//  "IS_REQUIRE" = "diperlukan";
+  "IS_REQUIRE" = "diperlukan";
 //  "SEARCH" = "Cari";
 //  "SURE_CANCEL" = "Apakah Anda yakin untuk membatalkan?";
 //  "SURE_DELETE" = "Apakah Anda yakin untuk menghapus?";

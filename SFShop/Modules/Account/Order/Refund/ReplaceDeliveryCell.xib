@@ -26,7 +26,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E3A-3A-tyX">
-                        <rect key="frame" x="16" y="147" width="343" height="46"/>
+                        <rect key="frame" x="16" y="136" width="343" height="46"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="46" id="GJ2-b5-Mar"/>
                         </constraints>
@@ -34,7 +34,7 @@
                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     </textField>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Password  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXA-rc-Mvb">
-                        <rect key="frame" x="31" y="139" width="68" height="15"/>
+                        <rect key="frame" x="31" y="127" width="68" height="15"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
@@ -48,7 +48,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物流 必填" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPd-qT-y9G">
-                        <rect key="frame" x="16" y="198" width="52.5" height="14.5"/>
+                        <rect key="frame" x="16" y="187" width="52.5" height="14.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
@@ -67,11 +67,19 @@
                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKI-wA-QC8">
+                        <rect key="frame" x="327" y="13" width="32" height="32"/>
+                        <state key="normal" image="trash-1"/>
+                        <connections>
+                            <action selector="deleteAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4c7-A3-FvO"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Ah3-6z-CfU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="0oU-tc-mNi"/>
                     <constraint firstAttribute="trailing" secondItem="Ah3-6z-CfU" secondAttribute="trailing" constant="16" id="68C-YK-QjG"/>
-                    <constraint firstItem="NXA-rc-Mvb" firstAttribute="top" secondItem="Ah3-6z-CfU" secondAttribute="bottom" constant="36" id="8BT-5k-cCe"/>
+                    <constraint firstItem="NXA-rc-Mvb" firstAttribute="top" secondItem="Ah3-6z-CfU" secondAttribute="bottom" constant="24" id="8BT-5k-cCe"/>
+                    <constraint firstItem="zKI-wA-QC8" firstAttribute="centerY" secondItem="25z-pt-KoB" secondAttribute="centerY" id="DQT-Fp-KZB"/>
                     <constraint firstItem="E3A-3A-tyX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="EsB-j0-EnL"/>
                     <constraint firstItem="FDf-0R-2Tu" firstAttribute="top" secondItem="Ah3-6z-CfU" secondAttribute="bottom" constant="5" id="Gyb-WB-zP7"/>
                     <constraint firstItem="cPd-qT-y9G" firstAttribute="top" secondItem="E3A-3A-tyX" secondAttribute="bottom" constant="5" id="Kzm-gR-eXY"/>
@@ -79,12 +87,13 @@
                     <constraint firstItem="25z-pt-KoB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Np7-0R-zHP"/>
                     <constraint firstItem="cPd-qT-y9G" firstAttribute="leading" secondItem="FDf-0R-2Tu" secondAttribute="leading" id="Ns0-TQ-8Yr"/>
                     <constraint firstItem="NXA-rc-Mvb" firstAttribute="leading" secondItem="gyl-7h-Zpu" secondAttribute="leading" id="UHd-O7-Jtp"/>
+                    <constraint firstAttribute="trailing" secondItem="zKI-wA-QC8" secondAttribute="trailing" constant="16" id="bS0-pW-mZg"/>
                     <constraint firstItem="25z-pt-KoB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dH1-ir-ubQ"/>
                     <constraint firstItem="FDf-0R-2Tu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="u5e-RA-rJH"/>
                     <constraint firstItem="gyl-7h-Zpu" firstAttribute="bottom" secondItem="Ah3-6z-CfU" secondAttribute="bottom" constant="-38" id="wig-Zf-Y2Q"/>
                     <constraint firstItem="Ah3-6z-CfU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="57" id="xvZ-I3-O77"/>
                     <constraint firstAttribute="trailing" secondItem="E3A-3A-tyX" secondAttribute="trailing" constant="16" id="yrX-SB-1rl"/>
-                    <constraint firstItem="E3A-3A-tyX" firstAttribute="top" secondItem="Ah3-6z-CfU" secondAttribute="bottom" constant="44" id="zxl-BC-lMq"/>
+                    <constraint firstItem="E3A-3A-tyX" firstAttribute="top" secondItem="Ah3-6z-CfU" secondAttribute="bottom" constant="33" id="zxl-BC-lMq"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -100,4 +109,7 @@
             <point key="canvasLocation" x="97" y="56"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="trash-1" width="32" height="32"/>
+    </resources>
 </document>

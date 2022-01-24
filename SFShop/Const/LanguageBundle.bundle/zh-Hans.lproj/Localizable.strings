@@ -107,7 +107,7 @@
 //  "CURRENT_PWD" = "当前密码";
 //  "SET_SUCCESSFUL" = "设置成功";
 //  "DOWNLOAD" = "下载中";
-//  "SUBMIT" = "提交";
+  "SUBMIT" = "提交";
 
 "FORGOT_PWD" = "忘记密码";
 //  "SETTING" = "设置";
@@ -153,7 +153,7 @@
 //  "SERVICE_DETAIL" = "服务详情";
 //  "CARGO_STATUS" = "商品状态";
 //  "SERVICE_REASON" = "原因";
-//  "PLEASE_SELECT" = "请选择";
+  "PLEASE_SELECT" = "请选择";
   "REFUND_AMOUNT" = "退款金额";
   "INSTRUCTIONS" = "说明";
 //  "REFUND_RETURN" = "售后列表";
@@ -426,7 +426,7 @@
 //  "ORDER_RECEIPT" = "订单收据";
   "PACKAGE" = "包裹";
   "ADD_PACKAGE" = "新增包裹";
-//  "IS_REQUIRE" = "必填";
+  "IS_REQUIRE" = "必填";
 //  "SEARCH" = "搜索";
 //  "SURE_CANCEL" = "是否确认取消";
 //  "SURE_DELETE" = "是否确认删除";

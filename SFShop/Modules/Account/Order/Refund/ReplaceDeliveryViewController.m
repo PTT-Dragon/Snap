@@ -12,6 +12,7 @@
 @interface ReplaceDeliveryViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,strong) UIButton *btn;
 
 @end
 
@@ -27,12 +28,31 @@
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-80);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+10);
     }];
-    [self.dataSource addObject:@{@"text1":@"",@"text2":@""}];
+    [self.view addSubview:self.btn];
+    [self.btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).offset(16);
+        make.height.mas_equalTo(46);
+        make.centerX.equalTo(self.view);
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-20);
+    }];
+    self.dataSource = [NSMutableArray array];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"text1":@"",@"text2":@""}];
+    [self.dataSource addObject:dic];
+    [self.tableView reloadData];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
         ReplaceDeliveryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReplaceDeliveryCell"];
+        [cell setContent:self.dataSource[indexPath.row] row:indexPath.row];
+        cell.block = ^(NSDictionary * _Nonnull infoDic, NSInteger row) {
+            [self.dataSource replaceObjectAtIndex:row withObject:infoDic];
+            NSLog(@"%@",self.dataSource);
+        };
+        cell.deleteBlock = ^(NSInteger row) {
+            [self.dataSource removeObjectAtIndex:row];
+            [self.tableView reloadData];
+        };
         return cell;
     }
     ReplaceDeliveryAddCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReplaceDeliveryAddCell"];
@@ -54,9 +74,22 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
-        [self.dataSource addObject:@{@"text1":@"",@"text2":@""}];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"text1":@"",@"text2":@""}];
+        [self.dataSource addObject:dic];
         [self.tableView reloadData];
     }
+}
+- (void)publish
+{
+    NSMutableArray *arr = [NSMutableArray array];
+    for (NSMutableDictionary *dic in self.dataSource) {
+        [arr addObject:@{@"shippingNbr":dic[@"text1"],@"logisticsName":dic[@"text2"]}];
+    }
+    [SFNetworkManager post:SFNet.refund.delivery parameters:@{@"deliverys":arr,@"orderApplyId":self.model.orderApplyId} success:^(id  _Nullable response) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
 }
 
 - (UITableView *)tableView
@@ -82,5 +115,21 @@
         _tableView.estimatedRowHeight = 44;
     }
     return _tableView;
+}
+- (UIButton *)btn
+{
+    if (!_btn) {
+        _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btn.backgroundColor = RGBColorFrom16(0xFF1659);
+        [_btn setTitle:kLocalizedString(@"SUBMIT") forState:0];
+        _btn.titleLabel.font = CHINESE_SYSTEM(14);
+        [_btn setTitleColor:[UIColor whiteColor] forState:0];
+        @weakify(self)
+        [[_btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self)
+            [self publish];
+                }];
+    }
+    return _btn;
 }
 @end

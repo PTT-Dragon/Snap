@@ -70,7 +70,7 @@
             return cell;
         }else if (indexPath.row == _model.orderItems.count+1){
             CancelOrderChooseReason *cell = [tableView dequeueReusableCellWithIdentifier:@"CancelOrderChooseReason"];
-            cell.reasonLabel.text = _selReasonModel ? _selReasonModel.orderReasonName : @"Cancellation Reason";
+            cell.reasonLabel.text = kLocalizedString(@"PLEASE_SELECT");//_selReasonModel ? _selReasonModel.orderReasonName : @"Cancellation Reason";
             return cell;
         }else if (indexPath.row == _model.orderItems.count + 2){
             RefundOrReturnExplainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundOrReturnExplainCell"];

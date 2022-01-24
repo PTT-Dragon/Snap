@@ -7,6 +7,7 @@
 
 #import "RefundCell.h"
 #import "NSString+Fee.h"
+#import "ReplaceDeliveryViewController.h"
 
 @interface RefundCell ()
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (nonatomic,strong) refundModel *model;
 
 @end
 
@@ -37,6 +39,7 @@
 }
 - (void)setContent:(refundModel *)model
 {
+    _model = model;
     refundItemsModel *itemsModel = model.items.firstObject;
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeId)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _storeNameLabel.text = model.storeName;
@@ -105,6 +108,10 @@
     }
 }
 - (IBAction)btnAction:(UIButton *)sender {
+    if ([_model.state isEqualToString:@"C"]) {
+        ReplaceDeliveryViewController *vc = [[ReplaceDeliveryViewController alloc] init];
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }
 }
 - (IBAction)btn2Action:(id)sender {
 }

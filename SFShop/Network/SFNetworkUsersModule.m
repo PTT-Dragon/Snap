@@ -198,6 +198,9 @@
 - (NSString *)refund {
     return K_refund_domain(@"");
 }
+- (NSString *)delivery {
+    return K_refund_domain(@"delivery");
+}
 
 - (NSString *)getDetailOf: (NSString *)offerId {
     NSString *url = [NSString stringWithFormat:@"/%@", offerId];

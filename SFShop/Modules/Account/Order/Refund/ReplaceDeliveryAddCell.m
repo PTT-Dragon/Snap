@@ -18,6 +18,7 @@
     [super awakeFromNib];
     // Initialization code
     _label.text = kLocalizedString(@"ADD_PACKAGE");
+    self.contentView.backgroundColor = RGBColorFrom16(0xf5f5f5);
     
 }
 

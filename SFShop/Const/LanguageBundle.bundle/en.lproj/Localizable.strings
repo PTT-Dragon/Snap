@@ -106,7 +106,7 @@
 //  "CURRENT_PWD" = "Current Password";
 //  "SET_SUCCESSFUL" = "Set Successfully!";
 //  "DOWNLOAD" = "Downloading";
-//  "SUBMIT" = "Submit";
+  "SUBMIT" = "Submit";
 "FORGOT_PWD" = "Forgot Password";
 //  "SETTING" = "Setting";
 //  "LOGIN" = "Login";
@@ -148,7 +148,7 @@
 //  "SERVICE_DETAIL" = "Service Detail";
 //  "CARGO_STATUS" = "Cargo Status";
 //  "SERVICE_REASON" = "Reason";
-//  "PLEASE_SELECT" = "Please Select";
+  "PLEASE_SELECT" = "Please Select";
   "REFUND_AMOUNT" = "Refund amount";
   "INSTRUCTIONS" = "Instructions";
 //  "REFUND_RETURN" = "Refund & Return";
@@ -421,7 +421,7 @@
 //  "ORDER_RECEIPT" = "Order Receipt";
   "PACKAGE" = "Package";
   "ADD_PACKAGE" = "Add Package";
-//  "IS_REQUIRE" = "is require";
+  "IS_REQUIRE" = "is require";
 //  "SEARCH" = "Search";
 //  "SURE_CANCEL" = "Are you sure to cancel?";
 //  "SURE_DELETE" = "Are you sure to delete?";
