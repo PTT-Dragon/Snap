@@ -35,13 +35,14 @@
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Group_buy");
     [self initUI];
+    self.currentType = 2;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.pageIndex = 1;
         [self loadDatas:self.pageIndex sortType:self.currentType filter:self.filterCacheModel];
     }];
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        self.pageIndex = 1;
+        self.pageIndex ++;
         [self loadDatas:self.pageIndex sortType:self.currentType filter:self.filterCacheModel];
     }];
     
@@ -59,7 +60,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    return self.dataArray.count+2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

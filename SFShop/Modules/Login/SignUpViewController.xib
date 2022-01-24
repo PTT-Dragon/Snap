@@ -17,6 +17,7 @@
                 <outlet property="passwordLabel" destination="NBr-4t-cJn" id="tb5-WV-zo5"/>
                 <outlet property="passwordQesLabel" destination="rDk-OG-nhi" id="GBG-uV-9vR"/>
                 <outlet property="phoneLabel" destination="hQT-I0-i1t" id="YQ8-di-p1G"/>
+                <outlet property="secureBtn" destination="SZU-AW-eDK" id="0yb-s8-yCz"/>
                 <outlet property="signUpBtn" destination="5oI-2T-sZk" id="H5x-ET-9WZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -37,6 +38,18 @@
                         <outlet property="delegate" destination="-1" id="yB2-1W-7yl"/>
                     </connections>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZU-AW-eDK">
+                    <rect key="frame" x="364" y="205" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="EwT-Ca-DCV"/>
+                        <constraint firstAttribute="width" constant="24" id="fAK-bP-YRp"/>
+                    </constraints>
+                    <state key="normal" image="eye-open-0"/>
+                    <state key="selected" image="hide-0"/>
+                    <connections>
+                        <action selector="secAction:" destination="-1" eventType="touchUpInside" id="ima-1D-hmo"/>
+                    </connections>
+                </button>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone number/Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q7E-wH-GUA">
                     <rect key="frame" x="16" y="108" width="382" height="46"/>
                     <constraints>
@@ -117,6 +130,8 @@
                 <constraint firstItem="NBr-4t-cJn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="32" id="eod-qA-FUz"/>
                 <constraint firstItem="a27-4w-ekI" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="g3j-QI-QH4"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="N8J-oG-r1A" secondAttribute="trailing" constant="16" id="lZP-fI-flQ"/>
+                <constraint firstItem="SZU-AW-eDK" firstAttribute="centerY" secondItem="N8J-oG-r1A" secondAttribute="centerY" id="uGd-QW-rfM"/>
+                <constraint firstItem="SZU-AW-eDK" firstAttribute="trailing" secondItem="N8J-oG-r1A" secondAttribute="trailing" constant="-10" id="vrQ-xu-C9D"/>
                 <constraint firstItem="hQT-I0-i1t" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="32" id="xAj-cX-qsg"/>
                 <constraint firstItem="hQT-I0-i1t" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="58" id="xKA-GB-lks"/>
             </constraints>
@@ -124,6 +139,8 @@
         </view>
     </objects>
     <resources>
+        <image name="eye-open-0" width="200" height="200"/>
+        <image name="hide-0" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

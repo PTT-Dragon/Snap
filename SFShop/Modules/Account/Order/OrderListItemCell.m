@@ -51,8 +51,8 @@
     _nameLabel.text = model.productName;
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
-    _countLabel.text = [NSString stringWithFormat:@"X%@",model.submitNum];
-    _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
+    _countLabel.text = @"";//[NSString stringWithFormat:@"X%@",model.submitNum];
+    _priceLabel.text = @"";//[NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
 - (IBAction)blockAction:(UIButton *)sender {
     if (self.block) {

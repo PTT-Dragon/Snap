@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *passwordQesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountQesLabel;
+@property (weak, nonatomic) IBOutlet UIButton *secureBtn;
 
 @end
 
@@ -70,6 +71,10 @@ static BOOL _passwordSuccess = NO;
     }else if (textField == _passwordField){
         _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:ENDEDITTYPE labels:@[_passwordLabel]];
     }
+}
+- (IBAction)secAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    _passwordField.secureTextEntry = sender.selected;
 }
 - (IBAction)signUpAction:(id)sender {
     MPWeakSelf(self)

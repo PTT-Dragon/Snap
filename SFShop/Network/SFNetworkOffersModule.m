@@ -33,5 +33,9 @@
     NSString *url = [NSString stringWithFormat:@"detail/%ld", offerId];
     return K_offers_domain(url);
 }
+- (NSString *)getEvaInfoOf: (NSInteger)offerId {
+    NSString *url = [NSString stringWithFormat:@"evaluations/%ld", offerId];
+    return K_offers_domain(url);
+}
 
 @end

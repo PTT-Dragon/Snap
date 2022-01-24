@@ -38,7 +38,10 @@
 {
     return YES;
 }
-
+- (NSString *)getStateStr
+{
+    return [_state isEqualToString:@"B"] ? kLocalizedString(@"TO_SHIP"): ([_state isEqualToString:@"F"] || [_state isEqualToString:@"G"]) ? kLocalizedString(@"TO_SHIP"): [_state isEqualToString:@"C"] ? kLocalizedString(@"TO_RECEIVE"): [_state isEqualToString:@"E"] ? kLocalizedString(@"CANCELLED"): [_state isEqualToString:@"D"] ? kLocalizedString(@"SUCCESSFUL"): kLocalizedString(@"TO_PAY");
+}
 @end
 @implementation CancelOrderReasonModel
 

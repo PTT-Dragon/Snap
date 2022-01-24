@@ -102,6 +102,8 @@
 @property (nonatomic, strong) NSString *currentShareBuyOrderId;
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
+@property (nonatomic,copy) NSDictionary *evaInfoDic;
+@property (weak, nonatomic) IBOutlet UILabel *productDiscountLabel;
 
 @end
 
@@ -155,7 +157,7 @@
     [self addActions];
     [self requestCampaigns];
     [self requestCartNum];
-    
+    [self requestEvaluationsInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -325,6 +327,15 @@
         weakself.evalationArr = [ProductEvalationModel arrayOfModelsFromDictionaries:response[@"list"] error:nil];
         [weakself.evalationTableview reloadData];
         weakself.tableviewHie.constant = [weakself calucateTableviewHei];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)requestEvaluationsInfo
+{
+    [SFNetworkManager get:[SFNet.offer getEvaInfoOf:self.offerId] parameters:@{} success:^(id  _Nullable response) {
+        self.evaInfoDic = response;
+        [self.evalationTableview reloadData];
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -574,6 +585,7 @@
     self.priceLabelTop.constant = 10;
     self.salesPriceLabel.hidden = YES;
     self.originalPriceLabel.hidden = YES;
+    self.productDiscountLabel.hidden = YES;
     self.marketPriceLabelIndicationView.hidden = YES;
     
     self.viewTop.constant = 64;
@@ -641,6 +653,7 @@
     _selProductModel = selProductModel;
     
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+    self.productDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",_selProductModel.discountPercent];
     self.salesPriceLabel.text = [[NSString stringWithFormat:@"%ld", selProductModel.salesPrice] currency];
     NSMutableAttributedString *marketPriceStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@ %ld", currency, selProductModel.marketPrice]];
     [marketPriceStr addAttribute: NSStrikethroughStyleAttributeName value:@2 range: NSMakeRange(0, marketPriceStr.length)];
@@ -716,19 +729,14 @@
     if (tableView == _evalationTableview) {
         return _evalationArr.count+1;
     }
-    return self.groupModel.list.count == 0 ? 0: self.groupModel.list.count+1;
+    return self.groupModel.list.count == 0 ? 0: (self.groupModel.list.count > 2 ? 3: self.groupModel.list.count+1);
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == _evalationTableview) {
         if (indexPath.row == 0) {
             ProductEvalationTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationTitleCell"];
-            __block CGFloat totalRate = 0;
-            [self.evalationArr enumerateObjectsUsingBlock:^(ProductEvalationModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                totalRate += obj.rate.floatValue;
-            }];
-            CGFloat aveRate = totalRate / self.evalationArr.count;
-            [cell setAveRate:aveRate count:self.evalationArr.count];
+            [cell setAveRate: ![self.evaInfoDic[@"evaluationAvg"] isKindOfClass:[NSNull class]] ?[self.evaInfoDic[@"evaluationAvg"] floatValue]:0 count:![self.evaInfoDic[@"evaluationCnt"] isKindOfClass:[NSNull class]] ?[self.evaInfoDic[@"evaluationCnt"] integerValue] : 0];
             return cell;
         }
         ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
@@ -790,7 +798,7 @@
 }
 - (CGFloat)calucateGroupTableviewHei
 {
-    CGFloat hei = self.groupModel.list.count * 47;
+    CGFloat hei = self.groupModel.list.count > 2 ? 94: self.groupModel.list.count * 47;
     return self.groupModel.list.count == 0 ? 0: hei+50;
 }
 

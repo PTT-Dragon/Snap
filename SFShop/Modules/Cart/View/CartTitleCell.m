@@ -6,6 +6,7 @@
 //
 
 #import "CartTitleCell.h"
+#import "UIButton+time.h"
 
 @interface CartTitleCell ()
 @property (weak, nonatomic) IBOutlet UIButton *selBtn;
@@ -25,6 +26,7 @@
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
     [_selBtn setImage:[UIImage imageNamed:@"Vector"] forState:0];
     [_selBtn setImage:[UIImage imageNamed:@"已选中"] forState:1];
+    _selBtn.mm_acceptEventInterval = 2;
 }
 
 - (void)setModel:(CartListModel *)model

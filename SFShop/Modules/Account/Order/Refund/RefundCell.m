@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *statuLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
 
 @end
 
@@ -45,12 +46,16 @@
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allKeys.firstObject];
     _countLabel.text = [NSString stringWithFormat:@"X%@",itemsModel.submitNum];
     _priceLabel.text = [itemsModel.unitPrice currency];
+    NSString *eventType = @"";
     if ([model.eventId isEqualToString:@"2"]) {
         _stateLabel.text = kLocalizedString(@"Return");
+        eventType = kLocalizedString(@"Return");
     }else if ([model.eventId isEqualToString:@"3"]){
         _stateLabel.text = kLocalizedString(@"Refund");
+        eventType = kLocalizedString(@"Refund");
     }else if ([model.eventId isEqualToString:@"4"]){
         _stateLabel.text = kLocalizedString(@"EXCHANGE");
+        eventType = kLocalizedString(@"EXCHANGE");
     }
     if ([model.state isEqualToString:@"B"]) {
         //拒绝
@@ -61,19 +66,14 @@
     }else if ([model.state isEqualToString:@"A"]){
         //待审核
         _statuLabel.text = kLocalizedString(@"Pending_Review");
-        _contentLabel.text = @"";
-        _viewHei.constant = 30;
-        _btn.hidden = YES;
-    }else if ([model.state isEqualToString:@"C"]){
-        //待填写物流信息
-        _statuLabel.text = kLocalizedString(@"waitReturn_tip");
-        _contentLabel.text = @"";
-        _viewHei.constant = 30;
-        _btn.hidden = YES;
+        _contentLabel.text = @"Please wait patiently for review";
+        _viewHei.constant = 52;
+        _btn.hidden = NO;
+        [_btn setTitle:kLocalizedString(@"CANCEL") forState:0];
     }else if ([model.state isEqualToString:@"E"]){
         //待退款
         _statuLabel.text = kLocalizedString(@"waitReturn_tip");
-        _contentLabel.text = [NSString stringWithFormat:@"%@",model.orderApplyCode];
+        _contentLabel.text = [NSString stringWithFormat:@"Wait for %@",eventType];//[NSString stringWithFormat:@"%@",model.orderApplyCode];
         _viewHei.constant = 52;
         _btn.hidden = YES;
     }else if ([model.state isEqualToString:@"X"]){
@@ -94,6 +94,18 @@
     }else if ([model.state isEqualToString:@"F"]){
         _stateLabel.text = @"Refund in progress";
         _contentLabel.text = @"About 1 to 3 working days";
+    }else if ([model.state isEqualToString:@"C"]){
+        //待填写物流信息
+        _statuLabel.text = [NSString stringWithFormat:@"Wait for %@",eventType];
+        _contentLabel.text = @"Please enter delivery informtion";
+        _btn.hidden = NO;_btn2.hidden = NO;
+        [_btn setTitle:kLocalizedString(@"Delivery") forState:0];
+        [_btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
+        _viewHei.constant = 52;
     }
+}
+- (IBAction)btnAction:(UIButton *)sender {
+}
+- (IBAction)btn2Action:(id)sender {
 }
 @end

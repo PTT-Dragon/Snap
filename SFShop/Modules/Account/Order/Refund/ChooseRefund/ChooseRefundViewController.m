@@ -7,7 +7,7 @@
 
 #import "ChooseRefundViewController.h"
 #import "accountSubCell.h"
-#import "OrderListStateCell.h"
+#import "ChooseRefundTitleCell.h"
 #import "OrderListItemCell.h"
 #import "RefundOrReturnViewController.h"
 #import "RefundViewController.h"
@@ -30,7 +30,7 @@
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
-    [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"ChooseRefundTitleCell" bundle:nil] forCellReuseIdentifier:@"ChooseRefundTitleCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
     self.dataSource = @[kLocalizedString(@"I_WANT_TO_REFUND"),kLocalizedString(@"I_WANT_TO_RETURN"),kLocalizedString(@"I_WANT_TO_EXCHANGE"),kLocalizedString(@"VIEW_APPLICATION_RECORDS")];
     
@@ -62,8 +62,9 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
-            [cell setOrderDetailContent:_model];
+            ChooseRefundTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChooseRefundTitleCell"];
+            cell.codeLabel.text = [NSString stringWithFormat:@"%@:%@",kLocalizedString(@"ORDER_CODE"),_model.orderNbr];
+            cell.stateLabel.text = _model.getStateStr;
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];

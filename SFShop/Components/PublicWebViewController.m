@@ -193,6 +193,7 @@
         GroupListViewController *vc = [[GroupListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
+//        decisionHandler(WKNavigationActionPolicyAllow);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/list/"].location != NSNotFound){
         NSRange range1 = [navigationAction.request.URL.absoluteString rangeOfString:@"product/list/"];

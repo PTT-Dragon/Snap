@@ -76,6 +76,9 @@
                                 <state key="normal" title="Delivery">
                                     <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3fo-oW-Sdm"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="glO-Yw-EyR">
                                 <rect key="frame" x="20" y="16" width="16" height="16"/>
@@ -96,12 +99,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rs5-9e-xLB">
+                                <rect key="frame" x="115" y="230" width="100" height="24"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Tts-mk-5Zm"/>
+                                    <constraint firstAttribute="height" constant="24" id="lJB-I1-Uph"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="Delivery">
+                                    <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn2Action:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NjQ-5S-LZJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aIG-r8-5bL" secondAttribute="trailing" constant="24" id="3xd-B7-JGv"/>
                             <constraint firstItem="E3t-kL-Vo7" firstAttribute="centerY" secondItem="glO-Yw-EyR" secondAttribute="centerY" id="86U-3k-Mxi"/>
                             <constraint firstItem="sKp-w0-k5O" firstAttribute="leading" secondItem="3q4-hL-JO8" secondAttribute="leading" constant="19" id="9hs-Uy-Nqo"/>
+                            <constraint firstItem="EA6-Lv-wFj" firstAttribute="leading" secondItem="rs5-9e-xLB" secondAttribute="trailing" constant="10" id="AgY-YW-r27"/>
                             <constraint firstAttribute="bottom" secondItem="EA6-Lv-wFj" secondAttribute="bottom" constant="16" id="DUw-UO-A6i"/>
                             <constraint firstItem="aIG-r8-5bL" firstAttribute="top" secondItem="3q4-hL-JO8" secondAttribute="top" constant="16" id="GY9-vc-SoQ"/>
                             <constraint firstItem="8X5-qg-r9U" firstAttribute="top" secondItem="3q4-hL-JO8" secondAttribute="top" constant="56" id="IJr-Jf-zDy"/>
@@ -113,6 +132,7 @@
                             <constraint firstItem="Z1l-ox-QNg" firstAttribute="leading" secondItem="sXb-Gs-nOo" secondAttribute="trailing" constant="12" id="cp8-Fa-PWB"/>
                             <constraint firstItem="Z1l-ox-QNg" firstAttribute="bottom" secondItem="sXb-Gs-nOo" secondAttribute="bottom" constant="-30" id="e0y-S1-3cF"/>
                             <constraint firstAttribute="trailing" secondItem="EA6-Lv-wFj" secondAttribute="trailing" constant="18" id="e8q-Le-Xhe"/>
+                            <constraint firstItem="rs5-9e-xLB" firstAttribute="centerY" secondItem="EA6-Lv-wFj" secondAttribute="centerY" id="fk3-7J-f6s"/>
                             <constraint firstItem="sXb-Gs-nOo" firstAttribute="top" secondItem="3q4-hL-JO8" secondAttribute="top" constant="56" id="mAf-n4-rpH"/>
                             <constraint firstItem="sXb-Gs-nOo" firstAttribute="leading" secondItem="3q4-hL-JO8" secondAttribute="leading" constant="16" id="mla-4M-TBT"/>
                             <constraint firstItem="glO-Yw-EyR" firstAttribute="top" secondItem="3q4-hL-JO8" secondAttribute="top" constant="16" id="tpi-1z-ntc"/>
@@ -147,6 +167,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="btn" destination="EA6-Lv-wFj" id="qDi-ji-IS6"/>
+                <outlet property="btn2" destination="rs5-9e-xLB" id="1TM-RK-r5R"/>
                 <outlet property="contentLabel" destination="OX3-GP-ejd" id="fwW-c5-Jzf"/>
                 <outlet property="countLabel" destination="B8V-D9-t7K" id="fm0-JE-0YC"/>
                 <outlet property="imgView" destination="sXb-Gs-nOo" id="oQn-IZ-aD3"/>

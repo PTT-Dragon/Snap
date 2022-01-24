@@ -66,7 +66,7 @@
         //登出状态
         self.nameLabel.text = kLocalizedString(@"Login_Or_Register");
         self.nameLabel.userInteractionEnabled = YES;
-        self.imgVIew.image = [UIImage imageNamed:@"account-black"];
+        self.imgVIew.image = [UIImage imageNamed:@"默认头像"];
         self.couponLabel.text = @"--";
         self.WhishlistLabel.text = @"--";
         self.RecentlyCountLabel.text = @"--";

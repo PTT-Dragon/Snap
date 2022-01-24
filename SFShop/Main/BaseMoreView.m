@@ -202,6 +202,7 @@
         _mysfBtn.titleLabel.font = [UIFont systemFontOfSize:9];
         [_mysfBtn setImagePosition:FFImagePositionTop
                            spacing:6];
+        _mysfBtn.hidden = YES;
     }
     return _mysfBtn;
 }

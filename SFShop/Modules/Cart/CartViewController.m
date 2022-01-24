@@ -40,7 +40,11 @@
 {
     return NO;
 }
- 
+ - (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -49,6 +53,7 @@
     [self updateDatas];NSLocalizedString(@"test", nil);
     [self initUI];
     [self updateSubviews];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(aaa:) name:@"bottomViewHidden" object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -174,7 +179,10 @@
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex {
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
 }
-
+- (void)aaa:(NSNotification *)noti
+{
+    self.bottomView.hidden = YES;
+}
 - (void)btnClick:(UIButton *)btn {
     // TODO: 跳转checkout页
     MPWeakSelf(self)
@@ -254,6 +262,10 @@
         }];
     }];
     self.bottomView.hidden = count == 0;
+    if (count == 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"bottomViewHidden" object:count == 0 ? @"Y": @"N"];
+    }
+    
     self.checkBtn.backgroundColor = !hasSel ? RGBColorFrom16(0xFFE5EB):RGBColorFrom16(0xFF1659);
     self.checkBtn.userInteractionEnabled = hasSel;
     [self updateNumData];

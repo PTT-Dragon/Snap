@@ -8,6 +8,7 @@
 #import "CartTableViewCell.h"
 #import "CartChoosePromotion.h"
 #import "NSString+Fee.h"
+#import "UIButton+time.h"
 
 @interface CartTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *additonBtn;
@@ -41,6 +42,9 @@
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
     [_selBtn setImage:[UIImage imageNamed:@"Vector"] forState:0];
     [_selBtn setImage:[UIImage imageNamed:@"已选中"] forState:1];
+    self.subtractBtn.mm_acceptEventInterval = 2;
+    self.additonBtn.mm_acceptEventInterval = 2;
+    self.selBtn.mm_acceptEventInterval = 2;
     [self updateBtnState];
 }
 

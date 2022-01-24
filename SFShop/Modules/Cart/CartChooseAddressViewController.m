@@ -34,6 +34,15 @@
 {
     return 66;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    addressModel *model = self.addressListArr[indexPath.row];
+    if (self.selBlock) {
+        self.selBlock(model);
+        [self closeAction:nil];
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CartChooseAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartChooseAddressCell"];

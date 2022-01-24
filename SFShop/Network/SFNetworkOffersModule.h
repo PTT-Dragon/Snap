@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (NSString *)getDetailOf: (NSInteger)offerId;
-
+- (NSString *)getEvaInfoOf: (NSInteger)offerId;
 
 @end
 
