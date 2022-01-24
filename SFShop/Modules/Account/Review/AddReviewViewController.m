@@ -30,7 +30,6 @@
 @property (weak, nonatomic) IBOutlet IQTextView *textView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (nonatomic,strong) NSMutableArray *imgArr;//存放图片数组
-@property (nonatomic,strong) NSMutableArray *imgUrlArr;//存放图片url数组
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoCollectionViewHei;
 @property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
 @property (nonatomic,strong) ReviewDetailModel *detailModel;
@@ -49,7 +48,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Review");
-    _imgUrlArr = [NSMutableArray array];
     _imgArr = [NSMutableArray array];
     [_imgArr addObject:@"1"];
     _photoCollectionView.delegate = self;
@@ -212,27 +210,27 @@
     dispatch_group_t group = dispatch_group_create();
     MPWeakSelf(self)
     __block NSInteger i = 0;
+    __block NSMutableArray *imgUrlArr = [NSMutableArray array];
     for (id item in _imgArr) {
         if ([item isKindOfClass:[UIImage class]]) {
             dispatch_group_enter(group);
             [SFNetworkManager postImage:SFNet.h5.publishImg image:item success:^(id  _Nullable response) {
                 @synchronized (response) {
-                    [weakself.imgUrlArr addObject:@{@"catgType":@"B",@"url":response[@"fullPath"],@"imgUrl":@"",@"seq":@(i),@"name":response[@"fileName"]}];
+                    [imgUrlArr addObject:@{@"catgType":@"B",@"url":response[@"fullPath"],@"imgUrl":@"",@"seq":@(i),@"name":response[@"fileName"]}];
                     i++;
                 }
                 dispatch_group_leave(group);
             } failed:^(NSError * _Nonnull error) {
                 dispatch_group_leave(group);
             }];
-            
         }
     }
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [MBProgressHUD hideFromKeyWindow];
-        [self publishReview];
+        [self publishReview:imgUrlArr];
     });
 }
-- (void)publishReview
+- (void)publishReview:(NSArray *)imgUrlArr
 {
     [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
@@ -246,7 +244,7 @@
             [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
             [dic setValue:_textView.text forKey:@"ratingComments"];
             [dic setValue:@(_starView.score) forKey:@"rate"];
-            [dic setValue:self.imgUrlArr forKey:@"contents"];
+            [dic setValue:imgUrlArr forKey:@"contents"];
             [evaluateItems addObject:dic];
         }
         [params setValue:evaluateItems forKey:@"evaluateItems"];
@@ -272,7 +270,7 @@
             [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
             [dic setValue:_textView.text forKey:@"ratingComments"];
             [dic setValue:@(_starView.score) forKey:@"rate"];
-            [dic setValue:self.imgUrlArr forKey:@"contents"];
+            [dic setValue:imgUrlArr forKey:@"contents"];
             [dic setValue:_anonymousBtn.selected ? @"Y": @"N" forKey:@"isAnonymous"];
             [evaluateItems addObject:dic];
         }
