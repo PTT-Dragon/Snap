@@ -9,7 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^AddReviewStoreItemRateBlock)(NSString *score1,NSString *score2,NSString *score3);
+typedef void(^AddReviewStoreItemAnonymousBlock)(NSString *Anonymous);
+
 @interface AddReviewStoreItemCell : UITableViewCell
+@property (nonatomic,copy) AddReviewStoreItemRateBlock block;
+@property (nonatomic,copy) AddReviewStoreItemAnonymousBlock anonymousblock;
 
 @end
 

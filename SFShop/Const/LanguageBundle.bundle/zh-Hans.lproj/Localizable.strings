@@ -393,6 +393,7 @@
   "YOUR_CODE_WAS_SENT_TO" = "你的验证码发送到";
   "RESEND_CODE_IN" = "重新发送验证码";
   "RESEND" = "重新发送";
+"DONE" = "完成";
 //  "FORGOT_PWD_SELECT_MODAL_TITLE" = "您可以通过短信或电子邮件重置密码";
 //  "RESET_WITH_SMS" = "通过短信重置密码";
 //  "RESET_WITH_EMAIL" = "通过邮箱重置密码";

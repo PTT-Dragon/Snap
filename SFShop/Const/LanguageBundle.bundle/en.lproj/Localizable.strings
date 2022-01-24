@@ -613,6 +613,7 @@
 "LOGIN_INVALID_PHONE" = "Please input the correct phone number.";
 "ACCOUNT_DOES_NOT_EXIST" = "Account does not exist.";
 "PASSWORD" = "Password";
+"DONE" = "done";
 "EMAIL" = "Email";
 "CHANGE_MOBILE" = "Change Mobile Number";
 "CHANGE_EMAIL" = "Change Email";

@@ -390,6 +390,7 @@
 //  "LOGIN_VIA_OPT" = "Masuk melalui OTP";
 //  "SMARTFREN_NUMBER" = "Nomor Smartfren";
 //  "PHONE_NUMBER_EMAIL" = "Nomor Telepon / Email";
+"DONE" = "done";
   "YOUR_CODE_WAS_SENT_TO" = "Kode Anda telah dikirim ke";
   "RESEND_CODE_IN" = "Kirim ulang kode masuk";
   "RESEND" = "RESEND";

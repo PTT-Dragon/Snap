@@ -13,12 +13,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)selAll:(BOOL)selAll storeId:(NSString *)storeId;
 - (void)selCouponWithStoreId:(NSString *)storeId productArr:(NSArray *)arr;
+- (void)selCouponWithStoreId:(NSString *)storeId productArr:(NSArray *)arr row:(NSInteger)row;
 @end
 
 @interface CartTitleCell : UITableViewCell
 @property (nonatomic,assign) id<CartTitleCellDelegate>delegate;
 @property (nonatomic,assign) BOOL isInvalid;
+@property (nonatomic,assign) BOOL hasCoupon;
 @property (nonatomic,weak) CartListModel *model;
+@property (nonatomic,assign) NSInteger section;
+
 @end
 
 NS_ASSUME_NONNULL_END

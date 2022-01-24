@@ -72,11 +72,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJB-Fa-M5g">
                                 <rect key="frame" x="251" y="96" width="20" height="20"/>
+                                <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="AcQ-X1-MuI"/>
                                     <constraint firstAttribute="height" constant="20" id="LTD-w0-TIH"/>
                                 </constraints>
                                 <state key="normal" image="subtract"/>
+                                <state key="disabled" image="subtract-2"/>
                                 <connections>
                                     <action selector="subtractAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="T2S-DR-Tca"/>
                                 </connections>
@@ -173,6 +175,7 @@
         <image name="new-alternative" width="200" height="200"/>
         <image name="scroll-down-fill" width="32" height="32"/>
         <image name="subtract" width="200" height="200"/>
+        <image name="subtract-2" width="32" height="32"/>
         <image name="已选中" width="52" height="52"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

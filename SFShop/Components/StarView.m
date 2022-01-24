@@ -52,6 +52,9 @@
         }
     }
     _score = btn.tag-999;
+    if (self.block) {
+        self.block(_score);
+    }
 }
 - (void)setScore:(NSInteger)score
 {

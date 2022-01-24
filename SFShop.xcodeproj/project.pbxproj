@@ -48,6 +48,7 @@
 		1B43A40D279D950900E7E786 /* AddReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43A40C279D950900E7E786 /* AddReviewVC.m */; };
 		1B43A411279D954200E7E786 /* AddReviewStoreItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43A40F279D954200E7E786 /* AddReviewStoreItemCell.m */; };
 		1B43A412279D954200E7E786 /* AddReviewStoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B43A410279D954200E7E786 /* AddReviewStoreItemCell.xib */; };
+		1B43A414279E372700E7E786 /* AddReviewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B43A413279E372700E7E786 /* AddReviewVC.xib */; };
 		1B478304272A785200F2A945 /* RefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478303272A785200F2A945 /* RefundViewController.m */; };
 		1B478308272A7B1000F2A945 /* RefundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B478306272A7B1000F2A945 /* RefundCell.m */; };
 		1B478309272A7B1000F2A945 /* RefundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B478307272A7B1000F2A945 /* RefundCell.xib */; };
@@ -609,6 +610,7 @@
 		1B43A40E279D954200E7E786 /* AddReviewStoreItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewStoreItemCell.h; sourceTree = "<group>"; };
 		1B43A40F279D954200E7E786 /* AddReviewStoreItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewStoreItemCell.m; sourceTree = "<group>"; };
 		1B43A410279D954200E7E786 /* AddReviewStoreItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewStoreItemCell.xib; sourceTree = "<group>"; };
+		1B43A413279E372700E7E786 /* AddReviewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewVC.xib; sourceTree = "<group>"; };
 		1B478302272A785200F2A945 /* RefundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundViewController.h; sourceTree = "<group>"; };
 		1B478303272A785200F2A945 /* RefundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundViewController.m; sourceTree = "<group>"; };
 		1B478305272A7B0F00F2A945 /* RefundCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundCell.h; sourceTree = "<group>"; };
@@ -1930,6 +1932,7 @@
 				1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */,
 				1B43A40B279D950900E7E786 /* AddReviewVC.h */,
 				1B43A40C279D950900E7E786 /* AddReviewVC.m */,
+				1B43A413279E372700E7E786 /* AddReviewVC.xib */,
 				1BD8E7D427604FC900130DCC /* AdditionalReviewViewController.h */,
 				1BD8E7D527604FC900130DCC /* AdditionalReviewViewController.m */,
 				1BD8E7D627604FC900130DCC /* AdditionalReviewViewController.xib */,
@@ -3534,6 +3537,7 @@
 				1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */,
 				4B818FD627239C910058038A /* ProductViewController.xib in Resources */,
 				1B47832B272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib in Resources */,
+				1B43A414279E372700E7E786 /* AddReviewVC.xib in Resources */,
 				1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */,
 				AE81BDE126FB6E7000AB4225 /* Main.storyboard in Resources */,
 				8EACB67A2781E7F20066BD3A /* UMCommonLog.bundle in Resources */,
@@ -4151,7 +4155,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.6;
+				CURRENT_PROJECT_VERSION = 4.7;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4192,7 +4196,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.6;
+				CURRENT_PROJECT_VERSION = 4.7;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

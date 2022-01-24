@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) NSInteger salesPrice;
 @property(nonatomic, assign) NSInteger marketPrice;
 @property(nonatomic, assign) NSInteger minBuyCount;
-@property(nonatomic, assign) NSInteger maxBuyCount;
+@property(nonatomic, copy) NSString *maxBuyCount;
 @property(nonatomic, strong) NSString *isCollection;
 @property(nonatomic, strong) NSString *imgUrl;
 @property (nonatomic,strong) NSArray <ProdSpcAttrsModel *> <ProdSpcAttrsModel> *prodSpcAttrs;

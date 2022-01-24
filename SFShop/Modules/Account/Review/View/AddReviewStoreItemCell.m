@@ -23,12 +23,28 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _starView1.canSel = YES;
+    _starView2.canSel = YES;
+    _starView3.canSel = YES;
+    _starView1.score = 5;
+    _starView2.score = 5;
+    _starView3.score = 5;
+}
+- (void)layoutSubviews
+{
+    _starView1.score = 5;
+    _starView1.canSel = YES;
+    _starView2.score = 5;
+    _starView2.canSel = YES;
+    _starView3.score = 5;
+    _starView3.canSel = YES;
+}
+- (IBAction)selAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (self.anonymousblock) {
+        self.anonymousblock(sender.selected ? @"Y": @"N");
+    }
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

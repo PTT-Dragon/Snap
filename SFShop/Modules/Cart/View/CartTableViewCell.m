@@ -41,6 +41,7 @@
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
     [_selBtn setImage:[UIImage imageNamed:@"Vector"] forState:0];
     [_selBtn setImage:[UIImage imageNamed:@"已选中"] forState:1];
+    [self updateBtnState];
 }
 
 - (void)setModel:(CartItemModel *)model
@@ -50,8 +51,11 @@
     _nameLabel.text = model.productName;
     _countLabel.text = model.num;
     _priceLabel.text = [[NSString stringWithFormat:@"%.0f",model.salesPrice] currency];
-    ProdSpcAttrsModel *skuLabel = model.prodSpcAttrs.firstObject;
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",skuLabel.value];
+    NSString *sku = @"";
+    for (ProdSpcAttrsModel *prodModel in model.prodSpcAttrs) {
+        sku = [sku stringByAppendingFormat:@"%@ ",prodModel.value];
+    }
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _priceDownView.hidden = !model.cutRate;
     _priceDownLabel.text = model.cutRate;
     if (_isInvalid) {
@@ -64,6 +68,11 @@
 - (void)setIsInvalid:(BOOL)isInvalid
 {
     _isInvalid = isInvalid;
+}
+- (void)updateBtnState
+{
+    self.subtractBtn.enabled = ![self.subtractBtn.titleLabel.text isEqualToString:@"1"];
+    self.subtractBtn.layer.borderWidth = self.subtractBtn.enabled ? 1: 0;
 }
 - (IBAction)selAction:(UIButton *)sender {
     _model.isSelected = sender.selected ? @"N": @"Y";
@@ -91,6 +100,7 @@
     _model.num = [NSString stringWithFormat:@"%ld",i];
     [self setModel:_model];
     [self cartModifyAction];
+    [self updateBtnState];
 }
 - (void)skuAction
 {

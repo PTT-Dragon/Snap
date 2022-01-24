@@ -357,7 +357,7 @@
         _checkBtn.frame = CGRectMake(MainScreen_width-176, 16, 160, 46);
         _checkBtn.backgroundColor = RGBColorFrom16(0xFF1659);
         [_checkBtn setTitle:@"CHECK OUT" forState:0];
-        _checkBtn.titleLabel.font = CHINESE_BOLD(14);
+        _checkBtn.titleLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
         [_checkBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _checkBtn;
@@ -393,6 +393,7 @@
         _amountLabel.font = [UIFont fontWithName:@"System SemiBold" size:16];
         _amountLabel.text = currency;
         _amountLabel.textAlignment = NSTextAlignmentLeft;
+        _amountLabel.textColor = RGBColorFrom16(0xFF1659);
     }
     return _amountLabel;
 }

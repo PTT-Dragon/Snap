@@ -278,7 +278,7 @@
         _btn2.hidden = YES;
         [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK") forState:0];
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFFE5EB) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -291,7 +291,7 @@
         _btn1.tag = buyType + 100;
         [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -303,7 +303,7 @@
         [_btn1 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
         _btn1.tag = cartType + 100;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -313,7 +313,7 @@
     }else if (_attrsType == groupBuyType){
         _btn2.hidden = YES;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         _btn1.tag = groupBuyType + 100;
         [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -325,8 +325,8 @@
     }else if (_attrsType == groupSingleBuyType){
         _btn2.hidden = NO;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-        [_btn2 jk_setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn2 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         _btn1.tag = groupSingleBuyType + 100;
         _btn2.tag = cartType + 100;
         [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
@@ -378,8 +378,8 @@
     [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage(selProductModel.imgUrl)]];
     self.titleLabel.text = selProductModel.productName;
     self.priceLabel.text = [[NSString stringWithFormat:@"%ld", (long)selProductModel.salesPrice] currency];
-    self.maxPurchaseCount = selProductModel.maxBuyCount;
-    self.maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
+    self.maxPurchaseCount = _selProductModel.maxBuyCount ? selProductModel.maxBuyCount.integerValue : 100000;
+    self.maxPurchaseLabel.text = self.maxPurchaseCount == 100000 ? @"": [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
 }
 
 - (void)setStockModel:(NSArray<ProductStockModel *> *)stockModel {
@@ -533,6 +533,7 @@
         self.btn1.enabled = YES;
         self.btn2.enabled = YES;
     } else {
+        [self.btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK") forState:0];
         self.btn1.enabled = NO;
         self.btn2.enabled = NO;
     }

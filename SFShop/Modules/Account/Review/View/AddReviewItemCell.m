@@ -10,8 +10,9 @@
 #import "ImageCollectionViewCell.h"
 #import <SDWebImage/SDWebImage.h>
 #import "ReviewAddNewPhotoCell.h"
+#import <IQTextView.h>
 
-@interface AddReviewItemCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface AddReviewItemCell ()<UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet StarView *starView;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoCollectionViewHei;
 @property (nonatomic,strong) orderItemsModel *orderModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewHei;
+@property (weak, nonatomic) IBOutlet IQTextView *textView;
 @property (nonatomic,assign) NSInteger row;
 @end
 
@@ -30,14 +32,26 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    _starView.score = 5;
-    _starView.canSel = YES;
+    
     _imgUrlArr = [NSMutableArray array];
     [_imgArr addObject:@"1"];
     _photoCollectionView.delegate = self;
     _photoCollectionView.dataSource = self;
     [_photoCollectionView registerNib:[UINib nibWithNibName:@"ReviewAddNewPhotoCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewAddNewPhotoCell"];
     [_photoCollectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
+    _skuLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
+    _skuLabel.layer.borderWidth = 1;
+    _textView.layer.borderColor = RGBColorFrom16(0xc4c4c4).CGColor;
+    _textView.layer.borderWidth = 1;
+    _starView.block = ^(NSInteger score) {
+        self.rateBlock([NSString stringWithFormat:@"%ld",score], self.row);
+    };
+    _textView.delegate = self;
+}
+- (void)layoutSubviews
+{
+    _starView.score = 5;
+    _starView.canSel = YES;
 }
 - (void)setContent:(orderItemsModel *)orderModel row:(NSInteger)row imgArr:(NSMutableArray *)imgArr
 {
@@ -52,6 +66,11 @@
     CGFloat itemHei = (MainScreen_width-32-30)/4;
     self.photoCollectionViewHei.constant = imgArr.count < 4 ? itemHei+5: imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
     [self.photoCollectionView reloadData];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    self.textBlock(textView.text, _row);
 }
 
 #pragma mark - UICollectionViewDataSource

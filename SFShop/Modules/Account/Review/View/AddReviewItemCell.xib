@@ -68,6 +68,9 @@
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Type your review…"/>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="ehh-eK-T9U"/>
+                        </connections>
                     </textView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBh-hX-9Lb">
                         <rect key="frame" x="0.0" y="115" width="375" height="10"/>
@@ -148,6 +151,7 @@
                 <outlet property="photoCollectionViewHei" destination="JTn-2Y-1yg" id="udM-lY-6Kx"/>
                 <outlet property="skuLabel" destination="yP6-pz-NJA" id="2bV-NO-Fbo"/>
                 <outlet property="starView" destination="CbQ-39-Xyd" id="CNO-uJ-9r7"/>
+                <outlet property="textView" destination="bmI-ve-8Pj" id="9j8-nz-Fsy"/>
             </connections>
             <point key="canvasLocation" x="107" y="73"/>
         </tableViewCell>

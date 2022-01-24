@@ -28,6 +28,7 @@
 @property (nonatomic, strong) CartEmptyView *emptyView;
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
+@property (nonatomic,strong) NSMutableArray *hasCouponArr;
 
 @end
 
@@ -49,6 +50,7 @@
 }
 - (void)initUI
 {
+    _hasCouponArr = [NSMutableArray array];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"CartTableViewCell" bundle:nil] forCellReuseIdentifier:@"CartTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"CartTitleCell" bundle:nil] forCellReuseIdentifier:@"CartTitleCell"];
@@ -113,6 +115,7 @@
     NSLog(@"%ld-----%ld",indexPath.section,indexPath.row);
     if (indexPath.row == 0) {
         CartTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTitleCell"];
+        cell.section = indexPath.section;
         CartListModel *model;
         if (indexPath.section >= self.cartModel.validCarts.count) {
             model = self.cartModel.invalidCarts[indexPath.section-self.cartModel.validCarts.count];
@@ -120,6 +123,7 @@
         }else{
             model = self.cartModel.validCarts[indexPath.section];
             cell.isInvalid = NO;
+            cell.hasCoupon = _hasCouponArr[indexPath.section];
         }
         cell.model = model;
         cell.delegate = self;
@@ -226,6 +230,21 @@
     [params setValue:_addModel.contactStdId forKey:@"stdAddrId"];
     [SFNetworkManager get:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
         weakself.cartModel = [[CartModel alloc] initWithDictionary:response error:nil];
+        NSInteger i = 0;
+        for (CartListModel *listModel in weakself.cartModel.validCarts) {
+            [weakself.hasCouponArr addObject:@"N"];
+            NSMutableArray *arr = [NSMutableArray array];
+            [listModel.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+                [listModel.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+                    }];
+                }];
+            }];
+            [weakself loadCouponsDatasWithStoreId:listModel.storeId productArr:arr row:i];
+            i++;
+        }
         [weakself handleDatas];
         [weakself.tableView reloadData];
         [weakself.tableView.mj_header endRefreshing];
@@ -275,6 +294,25 @@
         [MBProgressHUD hideFromKeyWindow];
         weakself.couponDataSource = [CouponModel arrayOfModelsFromDictionaries:response error:nil];
         [weakself showCouponsView];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD hideFromKeyWindow];
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
+- (void)loadCouponsDatasWithStoreId:(NSString *)storeId productArr:(NSArray *)productArr row:(NSInteger)row
+{
+    [MBProgressHUD showHudMsg:@""];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:storeId forKey:@"storeId"];
+    [params setValue:productArr forKey:@"products"];
+    [SFNetworkManager post:SFNet.cart.coupons parameters:params success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        NSMutableArray *arr = [NSMutableArray array];
+        arr = [CouponModel arrayOfModelsFromDictionaries:response error:nil];
+        for (NSInteger i = 0; i<self.hasCouponArr.count; i++) {
+            [self.hasCouponArr replaceObjectAtIndex:row  withObject:(arr.count == 0 ? @"N":@"Y")];
+        }
+        [self.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
@@ -334,6 +372,10 @@
 - (void)selCouponWithStoreId:(NSString *)storeId productArr:(nonnull NSArray *)arr
 {
     [self loadCouponsDatasWithStoreId:storeId productArr:arr];
+}
+- (void)selCouponWithStoreId:(NSString *)storeId productArr:(nonnull NSArray *)arr row:(NSInteger)row
+{
+    [self loadCouponsDatasWithStoreId:storeId productArr:arr row:row];
 }
 - (UITableView *)tableView
 {

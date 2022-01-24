@@ -9,12 +9,21 @@
 #import "AddReviewItemCell.h"
 #import "AddReviewStoreItemCell.h"
 #import "ZLPhotoBrowser.h"
+#import "ReviewSuccessViewController.h"
 
 @interface AddReviewVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) OrderModel *model;
 @property (nonatomic,strong) NSMutableArray <NSMutableArray *>*imgArr;
+@property (nonatomic,strong) NSMutableArray <NSMutableArray *>*imgUrlArr;
+@property (nonatomic,strong) NSMutableArray *textArr;
+@property (nonatomic,strong) NSMutableArray *rateArr;
+@property (nonatomic,copy) NSString *score1;
+@property (nonatomic,copy) NSString *score2;
+@property (nonatomic,copy) NSString *score3;
+@property (nonatomic,copy) NSString *Anonymous;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
 @end
 
@@ -32,6 +41,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = kLocalizedString(@"Review");
+    self.score1 = @"5";
+    self.score2 = @"5";
+    self.score3 = @"5";
+    self.Anonymous = @"N";
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_offset(0);
@@ -44,10 +57,14 @@
     _model = model;
     _block = block;
     self.imgArr = [NSMutableArray arrayWithCapacity:model.orderItems.count];
+    self.textArr = [NSMutableArray array];
+    self.rateArr = [NSMutableArray array];
     for (orderItemsModel *itemModel in model.orderItems) {
         NSMutableArray *arr = [NSMutableArray array];
         [arr addObject:@"1"];
         [self.imgArr addObject:arr];
+        [self.textArr addObject:@""];
+        [self.rateArr addObject:@"5"];
     }
     [_tableView reloadData];
 }
@@ -59,6 +76,11 @@
 {
     if (indexPath.row == _model.orderItems.count) {
         AddReviewStoreItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddReviewStoreItemCell"];
+        cell.block = ^(NSString * _Nonnull score1, NSString * _Nonnull score2, NSString * _Nonnull score3) {
+            self.score1 = score1;
+            self.score2 = score1;
+            self.score3 = score1;
+        };
         return cell;
     }
     AddReviewItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddReviewItemCell"];
@@ -66,11 +88,17 @@
     cell.block = ^(NSInteger row) {
         [self uploadAvatarWithRow:row];
     };
+    cell.textBlock = ^(NSString * _Nonnull text, NSInteger row) {
+        [self.textArr replaceObjectAtIndex:row withObject:text];
+    };
+    cell.rateBlock = ^(NSString * _Nonnull score, NSInteger row) {
+        [self.rateArr replaceObjectAtIndex:row withObject:score];
+    };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 500;
+    return indexPath.row == self.model.orderItems.count ? 300: 600;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -108,7 +136,84 @@
     // 调用相册
     [ac showPreviewAnimated:YES];
 }
+- (IBAction)submitAction:(UIButton *)sender {
+    [self publishImage];
+}
 
+- (void)publishImage
+{
+    //先上传图片
+    [MBProgressHUD showHudMsg:@""];
+    dispatch_group_t group = dispatch_group_create();
+    MPWeakSelf(self)
+    __block NSInteger i = 0;
+    __block NSInteger count = 0;
+    NSInteger allCount = 0;
+    for (NSArray *arr in self.imgArr) {
+        for (id item in arr) {
+            if ([item isKindOfClass:[UIImage class]]) {
+                allCount +=1;
+            }
+        }
+    }
+    for (NSMutableArray *arr in self.imgArr) {
+        NSMutableArray *itemArr = [NSMutableArray array];
+        for (id item in arr) {
+            if ([item isKindOfClass:[UIImage class]]) {
+                dispatch_group_enter(group);
+                [SFNetworkManager postImage:SFNet.h5.publishImg image:item success:^(id  _Nullable response) {
+                    @synchronized (response) {
+                        [itemArr addObject:@{@"catgType":@"B",@"url":response[@"fullPath"],@"imgUrl":@"",@"seq":@(i),@"name":response[@"fileName"]}];
+                        i++;
+                    }
+                    dispatch_group_leave(group);
+                    count = count+1;
+                    if (count == allCount) {
+                        [MBProgressHUD hideFromKeyWindow];
+                        [self publishReview];
+                    }
+                } failed:^(NSError * _Nonnull error) {
+                    dispatch_group_leave(group);
+                }];
+            }
+        }
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        
+        
+    });
+}
+- (void)publishReview
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSMutableArray *evaluateItems = [NSMutableArray array];
+    for (NSInteger i = 0; i<_model.orderItems.count; i++) {
+        orderItemsModel *itemModel = _model.orderItems[i];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
+        [dic setValue:self.textArr[i] forKey:@"ratingComments"];
+        [dic setValue:self.rateArr[i] forKey:@"rate"];
+        [dic setValue:self.imgUrlArr forKey:@"contents"];
+        [dic setValue:_Anonymous forKey:@"isAnonymous"];
+        [evaluateItems addObject:dic];
+    }
+    [params setValue:evaluateItems forKey:@"evaluateItems"];
+    [params setValue:@{@"rate":_score1,@"rate1":_score2,@"rate2":_score3,@"storeId":self.model.storeId,@"orderId":self.model.orderId,@"isAnonymous":_Anonymous} forKey:@"store"];
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.evaluate.addEvaluate parameters:params success:^(id  _Nullable response) {
+        [MBProgressHUD hideFromKeyWindow];
+        if (weakself.block) {
+            weakself.block();
+        }
+        ReviewSuccessViewController *vc = [[ReviewSuccessViewController alloc] init];
+        [weakself.navigationController pushViewController:vc animated:YES];
+        [baseTool removeVCFromNavigation:self];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD hideFromKeyWindow];
+        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
 
 - (UITableView *)tableView
 {
