@@ -8,6 +8,7 @@
 #import "BaseMoreView.h"
 #import "UIButton+FFImagePosition.h"
 #import "UIView+Response.h"
+#import "MessageViewController.h"
 
 @interface BaseMoreView ()
 
@@ -98,7 +99,8 @@
 
 - (void)inboxBtnAction {
     self.hidden = YES;
-
+    MessageViewController *vc = [[MessageViewController alloc] init];
+    [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)accountBtnAction {
