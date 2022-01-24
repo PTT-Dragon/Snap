@@ -214,6 +214,7 @@
                 vc.addressBlock = ^(addressModel * _Nonnull model) {
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
                     [MBProgressHUD showHudMsg:@""];
+                    [strongSelf.navigationController popViewControllerAnimated:YES];
                     [CheckoutManager.shareInstance calfeeByAddress:model complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
                         [strongSelf refreshCalFee];
                         [MBProgressHUD hideFromKeyWindow];

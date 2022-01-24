@@ -426,6 +426,7 @@
 		8E1EC987279D810200CE0088 /* CommunitySelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC986279D810200CE0088 /* CommunitySelectTableViewCell.m */; };
 		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
 		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
+		8E760190279F06EB006A1918 /* TextCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76018F279F06EB006A1918 /* TextCountView.m */; };
 		8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */; };
 		8EACB65D2781E7E50066BD3A /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EACB6412781E7E50066BD3A /* UShareUI.framework */; };
 		8EACB65E2781E7E50066BD3A /* UMShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EACB6422781E7E50066BD3A /* UMShare.framework */; };
@@ -1276,6 +1277,8 @@
 		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
 		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		8E4821FE277A150A00857FF5 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
+		8E76018E279F06EB006A1918 /* TextCountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCountView.h; sourceTree = "<group>"; };
+		8E76018F279F06EB006A1918 /* TextCountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCountView.m; sourceTree = "<group>"; };
 		8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		8EACB6412781E7E50066BD3A /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
 		8EACB6422781E7E50066BD3A /* UMShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMShare.framework; sourceTree = "<group>"; };
@@ -2301,6 +2304,8 @@
 				1B43A40E279D954200E7E786 /* AddReviewStoreItemCell.h */,
 				1B43A40F279D954200E7E786 /* AddReviewStoreItemCell.m */,
 				1B43A410279D954200E7E786 /* AddReviewStoreItemCell.xib */,
+				8E76018E279F06EB006A1918 /* TextCountView.h */,
+				8E76018F279F06EB006A1918 /* TextCountView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3709,6 +3714,7 @@
 				1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */,
 				8E1EC2CE2799A1FF00CE0088 /* BaseNavView.m in Sources */,
 				1BDBEBCC2700BA470018109B /* MyCouponCell.m in Sources */,
+				8E760190279F06EB006A1918 /* TextCountView.m in Sources */,
 				1BE28C10279B082E000683B8 /* AddressTitleCell.m in Sources */,
 				1B964758273E494A00345DDA /* IncomeAndExpenseCell.m in Sources */,
 				AE8F32DA272EA42F008E3DD8 /* SFCellCacheModel.m in Sources */,

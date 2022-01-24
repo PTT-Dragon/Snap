@@ -13,8 +13,9 @@
 #import "ImageCollectionViewCell.h"
 #import <SDWebImage/SDWebImage.h>
 #import "ReviewSuccessViewController.h"
+#import "TextCountView.h"
 
-@interface AddReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface AddReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *storeLogoImgView;
 @property (weak, nonatomic) IBOutlet UIButton *anonymousBtn;
 @property (weak, nonatomic) IBOutlet UILabel *anonymousLabel;
@@ -36,6 +37,8 @@
 @property (nonatomic,strong) OrderModel *model;
 @property (nonatomic,assign) NSInteger row;
 @property (nonatomic,copy) NSString *orderItemId;
+@property (nonatomic,strong) TextCountView *countView;
+
 @end
 
 @implementation AddReviewViewController
@@ -67,6 +70,9 @@
     _skuLabel.layer.borderWidth = 1;
     _textView.layer.borderColor = RGBColorFrom16(0xc4c4c4).CGColor;
     _textView.layer.borderWidth = 1;
+    _textView.delegate = self;
+    [_textView addSubview:self.countView];
+    self.countView.frame = CGRectMake(self.textView.width - 70, self.textView.height - 30, 100, 30);
     orderItemsModel *itemModel = _model.orderItems[_row];
     NSDictionary *dic = [itemModel.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
@@ -292,6 +298,21 @@
 }
 - (IBAction)anonymousAction:(UIButton *)sender {
     sender.selected = !sender.selected;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.text.length > 500) {
+        textView.text = [textView.text substringWithRange:NSMakeRange(0, 500)];
+    }
+    [_countView configDataWithTotalCount:500 currentCount:textView.text.length];
+}
+
+- (TextCountView *)countView {
+    if (!_countView) {
+        _countView = [[TextCountView alloc] init];
+        [_countView configDataWithTotalCount:500 currentCount:0];
+    }
+    return _countView;
 }
 
 @end

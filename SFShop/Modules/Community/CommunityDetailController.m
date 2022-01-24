@@ -84,6 +84,9 @@
     }];
     [self setUpSubViews];
     [self request];
+    [self.replyField addTarget:self
+                        action:@selector(textFieldChanged:)
+              forControlEvents:UIControlEventEditingChanged];
 }
 
 - (BOOL)shouldCheckLoggedIn {
@@ -374,6 +377,12 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     _selEvaluateModel = nil;
+}
+
+- (void)textFieldChanged:(UITextField *)textField {
+    if (textField.text.length > 200) {
+        textField.text = [textField.text substringWithRange:NSMakeRange(0, 200)];
+    }
 }
 
 #pragma mark - iCarouselDataSource

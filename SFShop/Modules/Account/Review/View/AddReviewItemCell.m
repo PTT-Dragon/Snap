@@ -11,6 +11,7 @@
 #import <SDWebImage/SDWebImage.h>
 #import "ReviewAddNewPhotoCell.h"
 #import <IQTextView.h>
+#import "TextCountView.h"
 
 @interface AddReviewItemCell ()<UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet StarView *starView;
@@ -25,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewHei;
 @property (weak, nonatomic) IBOutlet IQTextView *textView;
 @property (nonatomic,assign) NSInteger row;
+@property (nonatomic,strong) TextCountView *countView;
+
 @end
 
 @implementation AddReviewItemCell
@@ -47,6 +50,8 @@
         self.rateBlock([NSString stringWithFormat:@"%ld",score], self.row);
     };
     _textView.delegate = self;
+    [_textView addSubview:self.countView];
+    self.countView.frame = CGRectMake(self.textView.width - 70, self.textView.height - 30, 100, 30);
 }
 - (void)layoutSubviews
 {
@@ -120,4 +125,21 @@
         self.block(_row);
     }
 }
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.text.length > 500) {
+        textView.text = [textView.text substringWithRange:NSMakeRange(0, 500)];
+    }
+    [_countView configDataWithTotalCount:500 currentCount:textView.text.length];
+}
+
+- (TextCountView *)countView {
+    if (!_countView) {
+        _countView = [[TextCountView alloc] init];
+        [_countView configDataWithTotalCount:500 currentCount:0];
+    }
+    return _countView;
+}
+
+
 @end

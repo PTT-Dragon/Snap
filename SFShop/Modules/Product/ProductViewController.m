@@ -35,7 +35,7 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 
-@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate>
+@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
@@ -472,15 +472,22 @@
     
     "document.getElementsByTagName('head')[0].appendChild(script);";
     
+    NSString *jScript = @"var meta = document.createElement('meta'); \
+            meta.name = 'viewport'; \
+            meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'; \
+            var head = document.getElementsByTagName('head')[0];\
+            head.appendChild(meta);";
+    
     js = [NSString stringWithFormat:js,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.width-15];
     js = [NSString stringWithFormat:@"%@%@",js,@""];
     
-    WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
     WKUserContentController *userController = [WKUserContentController new];
     [userController addUserScript:script];
     config.userContentController = userController;
     self.detailWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
     self.detailWebView.scrollView.scrollEnabled = NO;
+    self.detailWebView.navigationDelegate = self;
     [self.detailWebView.scrollView addObserver:self forKeyPath:@"contentSize" options: NSKeyValueObservingOptionNew context:nil];
     [self.scrollContentView addSubview:self.detailWebView];
 
@@ -641,7 +648,7 @@
     _model = model;
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
-    [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+    [self.detailWebView loadHTMLString:[MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
     self.selProductModel = [model.products jk_filter:^BOOL(ProductItemModel *object) {
         return object.productId == self.productId;
     }].firstObject;

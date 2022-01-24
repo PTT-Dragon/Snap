@@ -44,6 +44,35 @@
 + (NSString *)replaceHtmlSourceOfRelativeImageSource: (NSString *)htmlString {
     NSString *replacedHtmlString = [htmlString stringByReplacingOccurrencesOfString: @"src=\"" withString: [NSString stringWithFormat:@"src=\"%@", Host]];
     [replacedHtmlString stringByAppendingFormat:@""];
+    replacedHtmlString = [replacedHtmlString stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    replacedHtmlString = [replacedHtmlString stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
+    replacedHtmlString = [replacedHtmlString stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    replacedHtmlString = [replacedHtmlString stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    replacedHtmlString = [replacedHtmlString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    
+    
+    
+//    NSString *htmls = [NSString stringWithFormat:@"<html> \n"
+//                       "<head> \n"
+//                       "<meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" /> \n"
+//                       "<style type=\"text/css\"> \n"
+//                       "body {font-size:15px;}\n"
+//                       "</style> \n"
+//                       "</head> \n"
+//                       "<body>"
+//                       "<script type='text/javascript'>"
+//                       "window.onload = function(){\n"
+//                       "var $img = document.getElementsByTagName('img');\n"
+//                       "for(var p in  $img){\n"
+//                       " $img[p].style.width = '100%%';\n"
+//                       "$img[p].style.height ='auto'\n"
+//                       "}\n"
+//                       "}"
+//                       "</script>%@"
+//                       "</body>"
+//                       "</html>",replacedHtmlString];
+    
+    
     return replacedHtmlString;
 }
 

@@ -68,6 +68,10 @@
     if (_gender) {
         [params setValue:_gender forKey:@"gender"];
     }
+    if (self.nameField.text.length < 4 || self.nameField.text.length > 20) {
+        [MBProgressHUD showHudMsg:@"超过字符限制"];
+        return;
+    }
     [params setValue:_nameField.text forKey:@"nickName"];
     [SFNetworkManager post:SFNet.account.modify parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"Set Successful"];
