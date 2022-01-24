@@ -29,6 +29,7 @@
 #import "LogisticsVC.h"
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import <OYCountDownManager/OYCountDownManager.h>
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -86,7 +87,7 @@
         make.height.mas_equalTo(navBarHei);
     }];
     [_navView configDataWithTitle:kLocalizedString(@"Order_details")];
-    
+    [kCountDownManager start];
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
     _dataSource = [NSMutableArray array];

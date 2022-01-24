@@ -74,7 +74,6 @@ static dispatch_source_t _timer;
         self.minuLabel.text = [NSString stringWithFormat:@"%02ld",(timeout/60)%60];
         self.secondLabel.text = [NSString stringWithFormat:@"%02ld",timeout%60];
     }
-    
 }
 - (void)setContent:(OrderModel *)model
 {
