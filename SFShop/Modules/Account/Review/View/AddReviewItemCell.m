@@ -63,7 +63,7 @@
     _nameLabel.text = orderModel.productName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(orderModel.imagUrl)]];
     [_photoCollectionView reloadData];
-    CGFloat itemHei = (MainScreen_width-32-30)/4;
+    CGFloat itemHei = (MainScreen_width-32-60)/4;
     self.photoCollectionViewHei.constant = imgArr.count < 4 ? itemHei+5: imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
     [self.photoCollectionView reloadData];
 }
@@ -104,14 +104,14 @@
         if (weakself.imgArr.count < 9 && !a) {
             [weakself.imgArr insertObject:@"1" atIndex:weakself.imgArr.count];
         }
-        CGFloat itemHei = (MainScreen_width-32-30)/4;
+        CGFloat itemHei = (MainScreen_width-32-60)/4;
         weakself.photoCollectionViewHei.constant = weakself.imgArr.count < 4 ? itemHei+5:  weakself.imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
         [weakself.photoCollectionView reloadData];
     };
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((MainScreen_width-32-30)/4 , (MainScreen_width-32-30)/4);
+    return CGSizeMake((MainScreen_width-32-60)/4 , (MainScreen_width-32-60)/4);
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

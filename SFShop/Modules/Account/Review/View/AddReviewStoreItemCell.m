@@ -39,6 +39,12 @@
     _starView3.score = 5;
     _starView3.canSel = YES;
 }
+- (void)setModel:(OrderModel *)model
+{
+    _model = model;
+    [self.storeLogoImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
+    self.storeNameLabel.text = model.storeName;
+}
 - (IBAction)selAction:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (self.anonymousblock) {

@@ -13,6 +13,8 @@
 #import "OrderDetailViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "EmptyView.h"
+#import <OYCountDownManager/OYCountDownManager.h>
+
 
 @interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource,OrderListBottomCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -41,7 +43,7 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
-    
+    [kCountDownManager start];
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self loadDatas];
     }];

@@ -11,6 +11,8 @@
 #import "ZLPhotoBrowser.h"
 #import "ReviewSuccessViewController.h"
 
+
+
 @interface AddReviewVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
@@ -76,6 +78,7 @@
 {
     if (indexPath.row == _model.orderItems.count) {
         AddReviewStoreItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddReviewStoreItemCell"];
+        cell.model = self.model;
         cell.block = ^(NSString * _Nonnull score1, NSString * _Nonnull score2, NSString * _Nonnull score3) {
             self.score1 = score1;
             self.score2 = score1;
@@ -98,7 +101,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == self.model.orderItems.count ? 300: 600;
+    CGFloat itemHei = (MainScreen_width-32-60)/4;
+    CGFloat hei = _imgArr[indexPath.row].count < 4 ? itemHei+5: _imgArr[indexPath.row].count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+    return indexPath.row == self.model.orderItems.count ? 300: hei+438;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -2,6 +2,7 @@ source 'https://cdn.cocoapods.org'
 
 target 'SFShop' do
   pod 'AFNetworking'
+  pod 'OYCountDownManager'
   pod 'Masonry'
   pod 'MBProgressHUD'
   pod 'JSONModel'

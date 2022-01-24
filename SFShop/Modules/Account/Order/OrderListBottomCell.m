@@ -20,6 +20,7 @@
 #import "AddReviewViewController.h"
 #import "NSDate+Helper.h"
 #import "AddReviewVC.h"
+#import <OYCountDownManager/OYCountDownManager.h>
 
 
 
@@ -52,6 +53,28 @@ static dispatch_source_t _timer;
     // Initialization code
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countDownNotification) name:OYCountDownNotification object:nil];
+
+}
+- (void)countDownNotification {
+    /// 计算倒计时
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *nowDate = [formatter dateFromString:_model.shareBuyBriefInfo.now];
+    NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
+    NSDate *expDate = [formatter dateFromString:_model.shareBuyBriefInfo.expDate];
+    NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
+    NSInteger timeout = expTimeInterval - timeInterval-kCountDownManager.timeInterval; // 倒计时时间
+    if (timeout <= 0) {
+          // 倒计时结束时回调
+          
+    }else{
+        /// 重新赋值
+        self.hourLabel.text = [NSString stringWithFormat:@"%02ld",timeout/3600];
+        self.minuLabel.text = [NSString stringWithFormat:@"%02ld",(timeout/60)%60];
+        self.secondLabel.text = [NSString stringWithFormat:@"%02ld",timeout%60];
+    }
+    
 }
 - (void)setContent:(OrderModel *)model
 {
@@ -67,11 +90,11 @@ static dispatch_source_t _timer;
     if (model.shareBuyBriefInfo && !_timer && !_groupView.hidden && (model.shareBuyBriefInfo.shareByNum != model.shareBuyBriefInfo.memberQty)) {
         [self layoutGroupViewWithUpdateTime:YES];
     }else{
-        if (_timer) {
-            [self layoutGroupViewWithUpdateTime:NO];
-        }else{
+//        if (_timer) {
+//            [self layoutGroupViewWithUpdateTime:NO];
+//        }else{
             self.groupView.hidden = YES;
-        }
+//        }
     }
 }
 - (void)layoutGroupViewWithUpdateTime:(BOOL)updateTime
@@ -80,42 +103,42 @@ static dispatch_source_t _timer;
     self.hasCountLabel.text = [NSString stringWithFormat:@"%ld",_model.shareBuyBriefInfo.memberQty];
     self.allCountLabel.text = [NSString stringWithFormat:@"/%ld",_model.shareBuyBriefInfo.shareByNum];
     //倒计时
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *nowDate = [formatter dateFromString:_model.shareBuyBriefInfo.now];
-    NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
-    NSDate *expDate = [formatter dateFromString:_model.shareBuyBriefInfo.expDate];
-    NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
-    if (updateTime) {
-        MPWeakSelf(self)
-        __block NSInteger timeout = expTimeInterval - timeInterval; // 倒计时时间
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        if (!_timer) {
-            _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-        }
-        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-        dispatch_source_set_event_handler(_timer, ^{
-            if(timeout<=0){
-
-                dispatch_source_cancel(_timer);
-                dispatch_async(dispatch_get_main_queue(), ^{
-
-                });
-            }else{
-                NSInteger days = (int)(timeout/(3600*24));
-                NSInteger hours = (int)((timeout-days*24*3600)/3600);
-                NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
-                NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
-                    weakself.minuLabel.text = [NSString stringWithFormat:@"%02ld",minute];
-                    weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
-                });
-                timeout--;
-            }
-        });
-        dispatch_resume(_timer);
-    }
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    NSDate *nowDate = [formatter dateFromString:_model.shareBuyBriefInfo.now];
+//    NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
+//    NSDate *expDate = [formatter dateFromString:_model.shareBuyBriefInfo.expDate];
+//    NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
+//    if (updateTime) {
+//        MPWeakSelf(self)
+//        __block NSInteger timeout = expTimeInterval - timeInterval; // 倒计时时间
+//        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//        if (!_timer) {
+//            _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+//        }
+//        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+//        dispatch_source_set_event_handler(_timer, ^{
+//            if(timeout<=0){
+//
+//                dispatch_source_cancel(_timer);
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//
+//                });
+//            }else{
+//                NSInteger days = (int)(timeout/(3600*24));
+//                NSInteger hours = (int)((timeout-days*24*3600)/3600);
+//                NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
+//                NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
+//                    weakself.minuLabel.text = [NSString stringWithFormat:@"%02ld",minute];
+//                    weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
+//                });
+//                timeout--;
+//            }
+//        });
+//        dispatch_resume(_timer);
+//    }
     
 }
 - (IBAction)btn1Action:(UIButton *)sender {
@@ -184,13 +207,13 @@ static dispatch_source_t _timer;
             if (_model.orderItems.count > 1) {
                 AddReviewVC *vc = [[AddReviewVC alloc] init];
                 [vc setContent:_model block:^{
-                                    
+                    [self.delegate refreshDatas];
                 }];
                 [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
             }else{
                 AddReviewViewController *vc = [[AddReviewViewController alloc] init];
                 [vc setContent:_model row:0 orderItemId:[_model.orderItems.firstObject orderItemId] block:^{
-                        
+                    [self.delegate refreshDatas];
                 }];
                 [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
             }
