@@ -16,7 +16,10 @@
 
 @interface RefundDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnWidth;
 @property (nonatomic,strong) RefundDetailModel *model;
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 @end
 
 @implementation RefundDetailViewController
@@ -90,6 +93,8 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             hei = 40;
+        }else if(indexPath.row == self.model.memos.count+1){
+            hei = [self.model.eventId isEqualToString:@"3"] ? 0: 75;
         }else{
             hei = 75;
         }
@@ -121,11 +126,37 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (void)updateView
+{
+    if ([self.model.state isEqualToString:@"A"]) {
+        [self.btn setTitle:kLocalizedString(@"CANCEL") forState:0];
+        self.btn.hidden = NO;
+        self.btnWidth.constant = MainScreen_width-32;
+        self.btn2.hidden = YES;
+        self.btn.height = 46;
+    }else if ([self.model.state isEqualToString:@"C"]){
+        [self.btn setTitle:kLocalizedString(@"CANCEL") forState:0];
+        [self.btn2 setTitle:kLocalizedString(@"Delivery") forState:0];
+        self.btn.hidden = NO;
+        self.btnWidth.constant = (MainScreen_width-32)/2-16;
+        self.btn2.hidden = NO;
+    }
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).offset(16);
+        make.right.mas_equalTo(self.view.mas_right).offset(-16);
+        make.bottom.mas_equalTo(self.btn.mas_top).offset(-10);
+        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+    }];
+}
 - (void)loadDatas
 {
     MPWeakSelf(self)
     [SFNetworkManager get:[SFNet.refund getDetailOf:self.orderApplyId] parameters:@{} success:^(id  _Nullable response) {
         weakself.model = [RefundDetailModel yy_modelWithDictionary:response];
+        NSArray *arr = self.model.memos;
+        self.model.memos = [[arr reverseObjectEnumerator] allObjects];
+        [self updateView];
         [self.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         
@@ -137,6 +168,7 @@
 {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStylePlain];
+        _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

@@ -93,6 +93,7 @@
             <connections>
                 <outlet property="amountLabel" destination="re6-h4-zlK" id="GHj-jI-RVz"/>
                 <outlet property="instructionsView" destination="NGn-BO-V5B" id="uqA-dE-Om4"/>
+                <outlet property="label" destination="rjE-CQ-k3t" id="gc4-6g-Uke"/>
                 <outlet property="reasonLabel" destination="caT-xQ-xDd" id="Bmh-eW-hDc"/>
                 <outlet property="typeLabel" destination="Tbq-jB-oOZ" id="9DG-Ld-obS"/>
             </connections>

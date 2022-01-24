@@ -164,6 +164,7 @@
 		1B74D323279E7F5A00577E46 /* UIButton+time.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74D321279E7F5A00577E46 /* UIButton+time.m */; };
 		1B74D327279E9BF800577E46 /* ChooseRefundTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74D325279E9BF800577E46 /* ChooseRefundTitleCell.m */; };
 		1B74D328279E9BF800577E46 /* ChooseRefundTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B74D326279E9BF800577E46 /* ChooseRefundTitleCell.xib */; };
+		1B74D32B279EF6FC00577E46 /* ReplaceDeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74D32A279EF6FC00577E46 /* ReplaceDeliveryViewController.m */; };
 		1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC3271F192400B30ECC /* CouponModel.m */; };
 		1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DAC6271FF06500B30ECC /* favoriteModel.m */; };
 		1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B74DACC272007D900B30ECC /* SWCenterDatePickerView.m */; };
@@ -811,6 +812,8 @@
 		1B74D324279E9BF800577E46 /* ChooseRefundTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseRefundTitleCell.h; sourceTree = "<group>"; };
 		1B74D325279E9BF800577E46 /* ChooseRefundTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseRefundTitleCell.m; sourceTree = "<group>"; };
 		1B74D326279E9BF800577E46 /* ChooseRefundTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseRefundTitleCell.xib; sourceTree = "<group>"; };
+		1B74D329279EF6FC00577E46 /* ReplaceDeliveryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplaceDeliveryViewController.h; sourceTree = "<group>"; };
+		1B74D32A279EF6FC00577E46 /* ReplaceDeliveryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplaceDeliveryViewController.m; sourceTree = "<group>"; };
 		1B74DAC2271F192400B30ECC /* CouponModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		1B74DAC3271F192400B30ECC /* CouponModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
 		1B74DAC5271FF06500B30ECC /* favoriteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = favoriteModel.h; sourceTree = "<group>"; };
@@ -1553,6 +1556,8 @@
 				1BD8E7C6275F532100130DCC /* RefundDetailImagesCell.xib */,
 				1B47830A272A838500F2A945 /* refundModel.h */,
 				1B47830B272A838500F2A945 /* refundModel.m */,
+				1B74D329279EF6FC00577E46 /* ReplaceDeliveryViewController.h */,
+				1B74D32A279EF6FC00577E46 /* ReplaceDeliveryViewController.m */,
 			);
 			path = Refund;
 			sourceTree = "<group>";
@@ -3779,6 +3784,7 @@
 				1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */,
 				1B27A4C7272F8C7F0042AD30 /* PublicWebViewController.m in Sources */,
 				1BF4DD4B2774644600972265 /* NSArray+ErrorHandle.m in Sources */,
+				1B74D32B279EF6FC00577E46 /* ReplaceDeliveryViewController.m in Sources */,
 				1B82AE3727701F4F00D75E00 /* ArticleEvaluateBottomCell.m in Sources */,
 				1B6C52B7275BC02400A1C617 /* ImageCollectionViewCell.m in Sources */,
 				1B43A40D279D950900E7E786 /* AddReviewVC.m in Sources */,

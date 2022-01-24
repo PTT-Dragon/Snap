@@ -22,6 +22,6 @@
 {
     _model = model;
     NSString *str = ([model.refund.paymentMode isEqualToString:@"A"] && model.refund) ? model.refund.paymentMethodName: @"Bank Transfer";
-    _methodLabel.text = [NSString stringWithFormat:@"Refund to %@",str];
+    _methodLabel.text = [model.eventId isEqualToString:@"3"] ? @"": [NSString stringWithFormat:@"Refund to %@",str];
 }
 @end

@@ -30,7 +30,7 @@
     _type = type;
     _imgView.image = [UIImage imageNamed:type == 1 ? @"data" : @"checkout_product"];
     [_btn setImage:[UIImage imageNamed:type == 1 ? @"right-scroll": @"call-centre"] forState:0];
-    _label.text = [model.eventId isEqualToString:@"2"] ? kLocalizedString(@"Return"):[model.eventId isEqualToString:@"3"] ? kLocalizedString(@"Refund"):kLocalizedString(@"EXCHANGE");
+    _label.text = type == 1 ? [model.eventId isEqualToString:@"2"] ? kLocalizedString(@"Return"):[model.eventId isEqualToString:@"3"] ? kLocalizedString(@"Refund"):kLocalizedString(@"EXCHANGE"): model.storeName;
 }
 - (IBAction)btnAction:(UIButton *)sender {
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
