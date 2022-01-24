@@ -424,8 +424,8 @@
   "DELIVERY_ADDRESS" = "收货地址";
 //  "DELIVERY_INFORMATION" = "配送信息";
 //  "ORDER_RECEIPT" = "订单收据";
-//  "PACKAGE" = "包裹";
-//  "ADD_PACKAGE" = "新增包裹";
+  "PACKAGE" = "包裹";
+  "ADD_PACKAGE" = "新增包裹";
 //  "IS_REQUIRE" = "必填";
 //  "SEARCH" = "搜索";
 //  "SURE_CANCEL" = "是否确认取消";

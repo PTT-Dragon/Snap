@@ -419,8 +419,8 @@
   "DELIVERY_ADDRESS" = "Delivery Address";
 //  "DELIVERY_INFORMATION" = "Delivery Information";
 //  "ORDER_RECEIPT" = "Order Receipt";
-//  "PACKAGE" = "Package";
-//  "ADD_PACKAGE" = "Add Package";
+  "PACKAGE" = "Package";
+  "ADD_PACKAGE" = "Add Package";
 //  "IS_REQUIRE" = "is require";
 //  "SEARCH" = "Search";
 //  "SURE_CANCEL" = "Are you sure to cancel?";
