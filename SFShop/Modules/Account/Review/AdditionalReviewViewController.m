@@ -12,8 +12,9 @@
 #import "ImageCollectionViewCell.h"
 #import "ProductDetailModel.h"
 #import "ReviewSuccessViewController.h"
+#import "TextCountView.h"
 
-@interface AdditionalReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface AdditionalReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource , UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewHei;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -25,6 +26,7 @@
 @property (nonatomic,strong) NSMutableArray *imgArr;//存放图片数组
 @property (nonatomic,strong) NSMutableArray *imgUrlArr;//存放图片数组
 @property (nonatomic,strong) ReviewDetailModel *model;
+@property (nonatomic,strong) TextCountView *countView;
 
 @end
 
@@ -49,6 +51,9 @@
     _skuLabel.layer.borderWidth = 1;
     _textView.layer.borderColor = RGBColorFrom16(0xc4c4c4).CGColor;
     _textView.layer.borderWidth = 1;
+    _textView.delegate = self;
+    [_textView addSubview:self.countView];
+    self.countView.frame = CGRectMake(self.textView.width - 70, self.textView.height - 30, 100, 30);
     [self loadDatas];
 //    [self updateDatas];
 }
@@ -212,4 +217,19 @@
 - (IBAction)submitAction:(id)sender {
     [self publishImage];
 }
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.text.length > 500) {
+        textView.text = [textView.text substringWithRange:NSMakeRange(0, 500)];
+    }
+    [_countView configDataWithTotalCount:500 currentCount:textView.text.length];
+}
+
+- (TextCountView *)countView {
+    if (!_countView) {
+        _countView = [[TextCountView alloc] init];
+        [_countView configDataWithTotalCount:500 currentCount:0];
+    }
+    return _countView;
+}
+
 @end
