@@ -198,8 +198,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    addressModel *model = self.dataSource[indexPath.row];
-//    [self.navigationController popViewControllerAnimated:YES];
+    addressModel *model = self.dataSource[indexPath.row - 1];
     !self.addressBlock?:self.addressBlock(model);
 }
 
