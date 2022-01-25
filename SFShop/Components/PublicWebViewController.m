@@ -91,6 +91,30 @@
     [_jsBridge registerHandler:@"COUPON" handler:^(id data, WVJBResponseCallback responseCallback) {
         
     }];
+    [_jsBridge registerHandler:@"SEARCH" handler:^(id data, WVJBResponseCallback responseCallback) {
+        
+    }];
+    [_jsBridge registerHandler:@"CATG" handler:^(id data, WVJBResponseCallback responseCallback) {
+        
+    }];
+    [_jsBridge registerHandler:@"CUST_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
+        
+    }];
+    [_jsBridge registerHandler:@"PROD_DETAIL" handler:^(id data, WVJBResponseCallback responseCallback) {
+        
+    }];
+    [_jsBridge registerHandler:@"FILTER_PRODUCT" handler:^(id data, WVJBResponseCallback responseCallback) {
+        
+    }];
+    [_jsBridge registerHandler:@"FUNCTION_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
+        
+    }];
+    [_jsBridge registerHandler:@"FLASH_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
+        
+    }];
+    [_jsBridge registerHandler:@"GROUP_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
+        
+    }];
 }
 - (void)setIsHome:(BOOL)isHome
 {
