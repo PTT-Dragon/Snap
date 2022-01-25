@@ -108,7 +108,7 @@
     __block NSString *catgId = @"";
     [_rankModel.catgIds enumerateObjectsUsingBlock:^(CategoryRankCategoryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.isSelected) {
-            catgId = obj.catgId;
+            catgId = obj.idStr;
         }
     }];
     [params setValue:catgId forKey:@"catgId"];

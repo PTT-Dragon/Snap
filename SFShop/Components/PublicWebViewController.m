@@ -214,6 +214,7 @@
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"search-page"].location != NSNotFound){
         CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+        vc.activeSearch = YES;
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;

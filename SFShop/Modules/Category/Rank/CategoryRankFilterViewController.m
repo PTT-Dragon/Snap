@@ -73,9 +73,15 @@
 }
 
 #pragma mark - Event
-- (void)dismiss {
+- (void)dismiss:(void(^)(void))complete {
     [self dismissViewControllerAnimated:YES completion:^{
-        !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshUpdate,self.model);
+        !complete ?: complete();
+    }];
+}
+
+- (void)cancel {
+    [self dismiss:^{
+        !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshCancel,self.model);
     }];
 }
 
@@ -83,13 +89,23 @@
     self.model.filterCache = nil;
     self.model.priceModel = nil;
     [self.dataArray removeAllObjects];
-    [self dismiss];
+    [self dismiss:^{
+        !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshReset,self.model);
+    }];
+}
+
+- (void)confirm {
+    [self dismiss:^{
+        !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshUpdate,self.model);
+    }];
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    id cellModel = self.dataArray[indexPath.section][indexPath.row];
+    CategoryRankFilterModel *cellModel = self.dataArray[indexPath.section][indexPath.row];
     if ([cellModel isKindOfClass:CategoryRankFilterModel.class]) {
+        
+        BOOL originSelected = cellModel.isSelected;
         
         //先全部重置isSelected
         NSArray *arr = self.dataArray[indexPath.section];
@@ -99,18 +115,18 @@
         
         //设置当前的selected
         CategoryRankFilterModel *model = cellModel;
-        model.isSelected = YES;
+        model.isSelected = !originSelected;
         [collectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
         
         //存储数据到缓存中
         if ([cellModel isKindOfClass:CategoryRankServiceModel.class]) {
-            self.model.filterCache.serverId = model.idStr;
+            self.model.filterCache.serverId = model.isSelected?model.idStr:nil;
         } else if ([cellModel isKindOfClass:CategoryRankBrandModel.class]) {
-            self.model.filterCache.brandId = model.idStr;
+            self.model.filterCache.brandId = model.isSelected?model.idStr:nil;
         } else if ([cellModel isKindOfClass:CategoryRankCategoryModel.class]) {
-            self.model.filterCache.categoryId = model.idStr;
+            self.model.filterCache.categoryId = model.isSelected?model.idStr:nil;
         } else if ([cellModel isKindOfClass:CategoryRankEvaluationModel.class]) {
-            self.model.filterCache.evaluationId = model.idStr;
+            self.model.filterCache.evaluationId = model.isSelected?model.idStr:nil;
         }
     }
 }
@@ -250,7 +266,7 @@
 - (UIButton *)closeBtn {
     if (_closeBtn == nil) {
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_closeBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+        [_closeBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
         [_closeBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
         [_closeBtn setImage:[UIImage imageNamed:@"nav_close_bold"] forState:UIControlStateNormal];
     }
@@ -274,7 +290,7 @@
 - (UIButton *)confirmBtn {
     if (_confirmBtn == nil) {
         _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_confirmBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+        [_confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
         [_confirmBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
         [_confirmBtn setTitle:@"CONFIRM" forState:UIControlStateNormal];
         [_confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
