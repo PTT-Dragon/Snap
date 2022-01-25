@@ -503,6 +503,7 @@
 		AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6727020E2400AB4225 /* SFNetworkOffersModule.m */; };
 		AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */; };
 		AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE81BE6F2704B94E00AB4225 /* CategoryRankModel.m */; };
+		AE8DB8AB279FFE0E001DEFE4 /* TransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8DB8AA279FFE0E001DEFE4 /* TransactionManager.m */; };
 		AE8F32BF272E904C008E3DD8 /* ProductCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8F32BE272E904C008E3DD8 /* ProductCheckoutViewController.m */; };
 		AE8F32C4272E95BD008E3DD8 /* ProductCheckoutAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8F32C3272E95BD008E3DD8 /* ProductCheckoutAddressCell.m */; };
 		AE8F32C7272E95FA008E3DD8 /* ProductCheckoutGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8F32C6272E95FA008E3DD8 /* ProductCheckoutGoodsCell.m */; };
@@ -1409,6 +1410,8 @@
 		AE81BE6B2702158600AB4225 /* CategoryRankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankViewController.m; sourceTree = "<group>"; };
 		AE81BE6E2704B94E00AB4225 /* CategoryRankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryRankModel.h; sourceTree = "<group>"; };
 		AE81BE6F2704B94E00AB4225 /* CategoryRankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryRankModel.m; sourceTree = "<group>"; };
+		AE8DB8A9279FFE0E001DEFE4 /* TransactionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionManager.h; sourceTree = "<group>"; };
+		AE8DB8AA279FFE0E001DEFE4 /* TransactionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionManager.m; sourceTree = "<group>"; };
 		AE8F32BD272E904C008E3DD8 /* ProductCheckoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCheckoutViewController.h; sourceTree = "<group>"; };
 		AE8F32BE272E904C008E3DD8 /* ProductCheckoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCheckoutViewController.m; sourceTree = "<group>"; };
 		AE8F32C2272E95BD008E3DD8 /* ProductCheckoutAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCheckoutAddressCell.h; sourceTree = "<group>"; };
@@ -2611,6 +2614,8 @@
 				AEE3FC912761D8EC00A96E2A /* PDFReader.m */,
 				AE06DA2A278D89F9004F397C /* SceneManager.h */,
 				AE06DA2B278D89F9004F397C /* SceneManager.m */,
+				AE8DB8A9279FFE0E001DEFE4 /* TransactionManager.h */,
+				AE8DB8AA279FFE0E001DEFE4 /* TransactionManager.m */,
 				8E11A8CC278DD14D005D1FC3 /* UIViewController+parentViewController.h */,
 				8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */,
 				8E11A8CF278DD1F4005D1FC3 /* UIView+Response.h */,
@@ -3700,6 +3705,7 @@
 				1B74DB492728EF7300B30ECC /* SimilarViewController.m in Sources */,
 				1B74DB332725ABB700B30ECC /* UIButton+SGImagePosition.m in Sources */,
 				1BF00F64272FDC2E0081C8E4 /* DistributorRelationOrderCell.m in Sources */,
+				AE8DB8AB279FFE0E001DEFE4 /* TransactionManager.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1B82AED2277080B700D75E00 /* YYMemoryCache.m in Sources */,
 				1B552EB5276C3A700086604B /* ProductGroupListCell.m in Sources */,
