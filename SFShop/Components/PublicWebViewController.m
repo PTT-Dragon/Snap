@@ -187,10 +187,8 @@
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    }else if ([navigationAction.request.URL.absoluteString isEqualToString:@"https://www.smartfrenshop.com/search-page"]){
-        
-        return;
-    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/message-center"].location != NSNotFound){
+    }
+    else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/message-center"].location != NSNotFound){
         MessageViewController *vc = [[MessageViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);

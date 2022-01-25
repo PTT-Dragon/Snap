@@ -10,27 +10,23 @@
 @implementation NSString (Fee)
 - (CGFloat)currencyFloat {
     NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
-    if (precision > 0) {
-        return self.floatValue / pow(10, precision);
-    }
-    return self.floatValue / 1000.0;
+    return self.floatValue / pow(10, precision);
 }
+
 - (CGFloat)multiplyCurrencyFloat {
     NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
-    if (precision > 0) {
-        return self.floatValue * pow(10, precision);
-    }
-    return self.floatValue / 1000.0;
+    return self.floatValue * pow(10, precision);
 }
 
 - (NSString *)currency {
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
-    if (!precision) {
-        precision = 3;//默认3
+    NSString *precisionStr = [NSString stringWithFormat:@"%%.%ldf", precision];//精度
+    NSString *thousandthStr = [[NSString stringWithFormat:precisionStr,self.currencyFloat] thousandthFormat:precision];//千位分割显示
+    NSString *fullStr = [NSString stringWithFormat:@"%@ %@",currency,thousandthStr];//添加货币符号
+    if ([currency caseInsensitiveCompare:@"rp"] == NSOrderedSame) {//越南盾，替换"," == > '.'
+        fullStr = [fullStr stringByReplacingOccurrencesOfString:@"," withString:@"."];
     }
-    NSString *precisionStr = [NSString stringWithFormat:@"%@ %%.%ldf",currency, precision];
-    NSString *result = [NSString stringWithFormat:precisionStr,self.currencyFloat];
-    return result;
+    return fullStr;
 }
 @end

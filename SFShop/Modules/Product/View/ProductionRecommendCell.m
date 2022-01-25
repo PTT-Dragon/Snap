@@ -7,6 +7,7 @@
 
 #import "ProductionRecommendCell.h"
 #import "SysParamsModel.h"
+#import "NSString+Fee.h"
 
 @interface ProductionRecommendCell()
 
@@ -132,12 +133,11 @@
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
     self.titleLabel.text = _model.offerName;
-    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@%@", currency, [[NSString stringWithFormat:@"%ld",_model.salesPrice] thousandthFormat]] ;
+    self.priceLabel.text = [NSString stringWithFormat:@"%ld",_model.salesPrice].currency;
     self.discountLabel.text = [NSString stringWithFormat:@"%ld%%",_model.discountPercent];
 
     NSAttributedString *attrStr =
-    [[NSAttributedString alloc]initWithString: [NSString stringWithFormat:@"%@ %@", currency, [[NSString stringWithFormat:@"%ld",_model.marketPrice] thousandthFormat]] attributes:
+    [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld",_model.marketPrice].currency attributes:
     @{NSFontAttributeName:[UIFont systemFontOfSize:10],
       NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
       NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
