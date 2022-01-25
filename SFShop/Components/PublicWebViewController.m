@@ -48,10 +48,10 @@
     webview.UIDelegate = self;
 //    NSString *jsFounction = [NSString stringWithFormat:@"sysAccount('%@')", _sysAccount];
 //    [self.webView evaluateJavaScript:jsFounction completionHandler:nil];
-//    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//        NSString *newUserAgent = [result stringByAppendingFormat:@"/%@",@"app/CYLON-APP"];
-//        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
-//    }];
+    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSString *newUserAgent = [result stringByAppendingFormat:@"/%@",@"app/CYLON-APP"];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":@"app/CYLON-APP"}];
+    }];
     [self.view addSubview:webview];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     [self addJsBridge];
@@ -84,36 +84,38 @@
 //    [self.webView reloadFromOrigin];
 }
 
-- (void)addJsBridge
-{
+- (void)addJsBridge {
     _jsBridge = [WKWebViewJavascriptBridge bridgeForWebView:_webView];
     [_jsBridge setWebViewDelegate:self];
     [_jsBridge registerHandler:@"COUPON" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
+        NSLog(@"1");
     }];
     [_jsBridge registerHandler:@"SEARCH" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
+        NSLog(@"2");
     }];
     [_jsBridge registerHandler:@"CATG" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
+        NSLog(@"3");
     }];
     [_jsBridge registerHandler:@"CUST_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
+        NSLog(@"4");
     }];
     [_jsBridge registerHandler:@"PROD_DETAIL" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
+        NSLog(@"5");
     }];
     [_jsBridge registerHandler:@"FILTER_PRODUCT" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
+        NSLog(@"6");
     }];
     [_jsBridge registerHandler:@"FUNCTION_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
+        NSLog(@"7");
     }];
     [_jsBridge registerHandler:@"FLASH_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
+        NSLog(@"8");
     }];
     [_jsBridge registerHandler:@"GROUP_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
+        NSLog(@"9");
+    }];
+    [_jsBridge registerHandler:@"PROD_CLICK" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"10");
     }];
 }
 - (void)setIsHome:(BOOL)isHome
