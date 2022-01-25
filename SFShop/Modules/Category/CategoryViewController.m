@@ -14,7 +14,7 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 
-@interface CategoryViewController ()<UITableViewDelegate>
+@interface CategoryViewController ()<UITableViewDelegate,UICollectionViewDelegate>
 @property (nonatomic, readwrite, strong) CategorySideTableView *sideTableView;//侧边栏
 @property (nonatomic, readwrite, strong) CategoryContentCollectionView *contentCollectionView;//内容栏
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cacheDatas;//缓存数据
@@ -102,6 +102,15 @@
     CategoryRankViewController *rank = [[CategoryRankViewController alloc] init];
     rank.model = model;
     [self.navigationController pushViewController:rank animated:YES];
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeMake(MainScreen_width, KScale(47));
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeMake(MainScreen_width, KScale(16));
 }
 
 #pragma mark UITableviewDelegate

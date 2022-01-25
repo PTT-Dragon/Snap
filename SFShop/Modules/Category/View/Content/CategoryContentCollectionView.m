@@ -50,14 +50,6 @@
     return view;
 }
 
-#pragma mark - UICollectionViewDelegateFlowLayout
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(MainScreen_width, KScale(47));
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    return CGSizeMake(MainScreen_width, KScale(16));
-}
 
 #pragma mark - Getter
 - (NSMutableArray<NSArray<CategoryModel *> *> *)dataArray {
