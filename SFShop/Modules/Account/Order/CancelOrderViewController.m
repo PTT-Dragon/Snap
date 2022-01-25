@@ -58,12 +58,13 @@
         CancelOrderChooseReason *cell = [tableView dequeueReusableCellWithIdentifier:@"CancelOrderChooseReason"];
         __block CancelOrderChooseReason *cellBlock = cell;
         cell.block = ^(BOOL sel) {
+            cellBlock.btn.selected = NO;
             ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
             vc.dataSource = self.reasonArr;
             vc.delegate = self;
-            [self presentViewController:vc animated:YES completion:^{
-                cellBlock.btn.selected = NO;
-            }];
+            [self addChildViewController:vc];
+            [self.view addSubview:vc.view];
+            vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
         };
         cell.reasonLabel.text = _selReasonModel ? _selReasonModel.orderReasonName : @"Cancellation Reason";
         return cell;

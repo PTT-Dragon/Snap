@@ -353,6 +353,7 @@
     }else if ([state isEqualToString:@"D"]){
         ReviewChildViewController *vc = [[ReviewChildViewController alloc] init];
         vc.type = 0;
+        vc.showNav = NO;
         vc.orderItemId = self.model.orderNbr;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }else if ([state isEqualToString:@"C"]){

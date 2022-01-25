@@ -430,6 +430,9 @@
 //  "SEARCH" = "Cari";
   "SURE_CANCEL" = "Apakah Anda yakin untuk membatalkan?";
   "SURE_DELETE" = "Apakah Anda yakin untuk menghapus?";
+"RESET_WITH_SMS" = "Ganti dengan SMS";
+"RESET_WITH_EMAIL" = "Ganti dengan Email";
+"FORGOT_PWD_SELECT_MODAL_TITLE" = "Anda bisa mengganti kata sandi menggunakan SMS atau Email";
 //  "SEARCH_DISCOVERY" = "History";
 //  "MAX_DISCOUNT" = "Diskon maksimum";
 //  "EMPTYING" = "Kosong";

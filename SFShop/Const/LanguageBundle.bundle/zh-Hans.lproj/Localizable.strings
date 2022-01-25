@@ -42,6 +42,9 @@
 //  "IN_REVIEW" = "待确认";
 //  "PLEASE_SELECT_DELIVERY_ADDRESS" = "请选择收货地址";
   "ADD_ADDRESS_TIPS" = "请添加收货地址的详细信息";
+"RESET_WITH_SMS" = "通过短信修改密码";
+"RESET_WITH_EMAIL" = "通过邮箱修改密码";
+"FORGOT_PWD_SELECT_MODAL_TITLE" = "您可以通过短信或电子邮件修改密码";
 //  "NO_AVAILABLE_DELIVERY_METHOD" = "没有可用的送货方式";
 //  "NO_DATA_AVAILABLE" = "暂无数据可用";
 //  "VISIT" = "进入店铺";

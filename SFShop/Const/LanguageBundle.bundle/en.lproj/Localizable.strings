@@ -134,6 +134,8 @@
 //  "BIND_EMAIL" = "Bind Email";
 //  "BIND_MOBILE" = "Bind Mobile Number";
   "EXCHANGE" = "Replacement";
+"RESET_WITH_SMS" = "CHANGE WITH SMS";
+"RESET_WITH_EMAIL" = "CHANGE WITH EMAIL";
 //  "DELIVERY" = "Delivery";
 //  "DELETE_ADDRESS_TXT" = "Are you sure to delete this address?";
   "ADD_ADDRESS" = "ADD ADDRESS";
@@ -394,7 +396,8 @@
   "YOUR_CODE_WAS_SENT_TO" = "Your code was sent to";
   "RESEND_CODE_IN" = "Resend code in";
   "RESEND" = "RESEND";
-//  "FORGOT_PWD_SELECT_MODAL_TITLE" = "You can reset your password with SMS or Email";
+  "FORGOT_PWD_SELECT_MODAL_TITLE" = "You can reset your password with SMS or Email";
+"FORGOT_PWD_SELECT_MODAL_TITLE" = "You can change your password with SMS or Email";
 //  "RESET_WITH_SMS" = "RESET WITH SMS";
 //  "RESET_WITH_EMAIL" = "RESET WITH EMAIL";
 //  "RESET_PASSWORD" = "Reset Password";

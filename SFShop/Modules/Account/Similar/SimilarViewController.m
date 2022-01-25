@@ -10,6 +10,7 @@
 #import "CommunityWaterfallLayout.h"
 #import "SimilarProductCell.h"
 #import "ProductViewController.h"
+#import "NSString+Fee.h"
 
 @interface SimilarViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, CommunityWaterfallLayoutProtocol>
 @property (nonatomic,strong) NSMutableArray *dataSource;
@@ -39,13 +40,17 @@
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    _collectionView.frame = CGRectMake(0, _topView.jk_bottom+20, MainScreen_width, self.view.jk_height-154);
+//    _collectionView.frame = CGRectMake(0, _topView.jk_bottom+20, MainScreen_width, self.view.jk_height-154);
+    [_collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.topView.mas_bottom).offset(10);
+    }];
 }
 - (void)initUI
 {
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
     _nameLabel.text = _model.offerName;
-    _priceLabel.text = [NSString stringWithFormat:@"RP%@",_model.salesPrice];
+    _priceLabel.text = [_model.salesPrice currency];
 }
 - (void)loadDatas
 {
@@ -113,8 +118,8 @@
 //    CGFloat labelWidth = cellWidth - 8 * 2;
 //    CGFloat labelHeight = [labelString jk_heightWithFont: [UIFont systemFontOfSize:14] constrainedToWidth: labelWidth];
 //    CGFloat cellHeight = cellWidth + 8 + 20 + 24 + 8 + labelHeight;
-    NSString *score = ([cellModel.evaluationRate isEqualToString:@"0"] || !cellModel.evaluationRate) ? @"": cellModel.evaluationRate;
-    return [cellModel.offerType isEqualToString:@"P"] ? [score isEqualToString:@""] ? 300: 330: [score isEqualToString:@""] ? 275:305;
+    NSString *score = (cellModel.evaluationAvg == 0 || !cellModel.evaluationAvg) ? @"": [NSString stringWithFormat:@"%.1f",cellModel.evaluationAvg];
+    return [cellModel.offerType isEqualToString:@"P"] ? [score isEqualToString:@""] ? 300: 305: [score isEqualToString:@""] ? 275:305;
 }
 
 @end

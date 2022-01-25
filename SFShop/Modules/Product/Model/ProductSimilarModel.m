@@ -8,5 +8,8 @@
 #import "ProductSimilarModel.h"
 
 @implementation ProductSimilarModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 @end

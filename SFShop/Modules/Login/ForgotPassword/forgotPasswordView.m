@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *smsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailBtn;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 
 @end
 
@@ -33,7 +35,19 @@
     [_smsBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -90, 0, 50)];
     [_emailBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 30)];
     [_emailBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -90, 0, 50)];
-    _titleLabel.text = _type == forgetType ? kLocalizedString(@"FORGOT_PWD"): kLocalizedString(@"CHANGE_PASS");
+    
+}
+- (void)setType:(changePasswordType)type
+{
+    _type = type;
+//    _titleLabel.text = _type == forgetType ? kLocalizedString(@"FORGOT_PWD"): kLocalizedString(@"CHANGE_PASS");
+//    _contentLabel.text = _type == forgetType ? kLocalizedString(@"FORGOT_PWD_SELECT_MODAL_TITLE"): kLocalizedString(@"FORGOT_PWD_SELECT_MODAL_TITLE");
+//    [_smsBtn setTitle:_type == forgetType ? kLocalizedString(@"RESET_WITH_SMS"): kLocalizedString(@"RESET_WITH_SMS") forState:0];
+    _titleLabel.text = kLocalizedString(@"CHANGE_PASS");
+    _contentLabel.text = kLocalizedString(@"FORGOT_PWD_SELECT_MODAL_TITLE");
+    [_smsBtn setTitle:kLocalizedString(@"RESET_WITH_SMS") forState:0];
+    [_emailBtn setTitle:kLocalizedString(@"RESET_WITH_EMAIL") forState:0];
+    [_cancelBtn setTitle:kLocalizedString(@"CANCEL") forState:0];
 }
 - (IBAction)SMSAction:(id)sender {
 //    if (_type == resetType) {

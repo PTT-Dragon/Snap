@@ -34,6 +34,7 @@
 #import "ProductShowGroupView.h"
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import "TransactionManager.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -148,7 +149,7 @@
     [_navView configDataWithTitle:kLocalizedString(@"Product_detail")];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    [self setDefaultAddress];
     [self request];
     [self requestSimilar];
     [self setupSubViews];
@@ -175,7 +176,20 @@
         NSLog(@"可能多次释放，避免crash");
     }
 }
-
+- (void)setDefaultAddress
+{
+    //addrPath: 'countryId|6|153', city: 'Kota Jakarta Barat', contactStdId: 1488, country: 'Indonesia', district: 'Kalideres', province: 'DKI Jakarta',
+    addressModel *defalutModel = [[addressModel alloc] init];
+    defalutModel = [[addressModel alloc] init];
+    defalutModel.city = @"Kota Jakarta Barat";
+    defalutModel.province = @"DKI Jakarta";
+    defalutModel.district = @"Kalideres";
+    defalutModel.street = @"countryId|6|153";
+    defalutModel.country = @"Indonesia";
+    defalutModel.contactStdId = @"1488";
+    defalutModel.isNoAdd = YES;
+    self.selectedAddressModel = defalutModel;
+}
 - (void)addActions {
     UITapGestureRecognizer *addressTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAddress)];
     [self.addressLabel addGestureRecognizer:addressTap];
@@ -225,6 +239,9 @@
 }
 
 - (void)setSelectedAddressModel:(addressModel *)selectedAddressModel {
+    if (_selectedAddressModel) {
+        _selectedAddressModel = nil;
+    }
     _selectedAddressModel = selectedAddressModel;
     self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@", selectedAddressModel.province, selectedAddressModel.city, selectedAddressModel.district];
 }
@@ -245,10 +262,10 @@
 }
 - (void)requestCampaigns
 {
-    MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
+//    MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     MPWeakSelf(self)
     [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":@(_offerId)} success:^(id  _Nullable response) {
-        [hud hideAnimated:YES];
+//        [hud hideAnimated:YES];
         weakself.campaignsModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];
         if (weakself.campaignsModel.cmpFlashSales.count > 0) {
             //说明是参与抢购活动
@@ -264,7 +281,7 @@
         }
         
     } failed:^(NSError * _Nonnull error) {
-        [hud hideAnimated:YES];
+//        [hud hideAnimated:YES];
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
@@ -290,11 +307,6 @@
 }
 
 - (void)requestAddressInfo {
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    if (!model ||[model.accessToken isEqualToString:@""]) {
-        //只有在登录的情况下才去请求
-        return;
-    }
 
     self.addressDataSource = [NSMutableArray array];
     MPWeakSelf(self)
@@ -315,7 +327,7 @@
         }
         [weakself requestStock];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself requestStock];
     }];
 }
 
@@ -649,6 +661,9 @@
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
     [self.detailWebView loadHTMLString:[MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+    if (!self.productId) {
+        self.productId = self.productId?self.productId:[self.model.products.firstObject productId];
+    }
     self.selProductModel = [model.products jk_filter:^BOOL(ProductItemModel *object) {
         return object.productId == self.productId;
     }].firstObject;
@@ -853,10 +868,10 @@
     if (!_isCheckingSaleInfo) {
         ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
         camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
-            return object.productId.integerValue == _selProductModel.productId;
+            return object.productId.integerValue == self.selProductModel.productId;
         }];
         BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-            return object.productId.integerValue == _selProductModel.productId;
+            return object.productId.integerValue == self.selProductModel.productId;
         }];
         [self showAttrsViewWithAttrType:isGroupBuy ? groupSingleBuyType: cartType];
     } else {
@@ -873,6 +888,14 @@
             @"addon":@"",
             @"isSelected":@"N"
         };
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        if (!model) {
+            [TransactionManager triggerWithoutClearWithId:@"1" obj:params];
+            [TransactionManager addItem:^(id  _Nonnull obj) {
+                obj = params;
+            }];
+            [TransactionManager trigger:@"1"];
+        }
         MPWeakSelf(self)
         [MBProgressHUD showHudMsg:@""];
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
@@ -941,7 +964,7 @@
     }
     item.currentBuyCount = self.attrView.count;
     self.model.selectedProducts = @[item];
-    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel productModels:@[self.model]];
+    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel.isNoAdd ? nil:self.selectedAddressModel  productModels:@[self.model]];
     [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
         if (isSuccess) {
             ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];

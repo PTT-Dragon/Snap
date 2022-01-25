@@ -30,12 +30,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
 - (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -108,6 +102,7 @@
     if (!reviewViewController) {
         reviewViewController = [[ReviewChildViewController alloc] init];
         reviewViewController.type = pageIndex == 0 ? 1: 2;
+        reviewViewController.showNav = YES;
     }
     return reviewViewController;
 }

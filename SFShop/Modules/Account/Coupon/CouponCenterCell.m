@@ -10,6 +10,7 @@
 #import "CouponAlertView.h"
 #import "NSString+Fee.h"
 #import "UseCouponViewController.h"
+#import "NSString+Add.h"
 
 @interface CouponCenterCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -35,10 +36,13 @@
 {
     _model = model;
     if ([model.discountMethod isEqualToString:@"DISC"]) {
-        _discountLabel.text = [[NSString stringWithFormat:@"%.0f",model.discountAmount] currency];
+        _discountLabel.text =[NSString stringWithFormat:@"%.0f%% off",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat]];
+        _discountLabel.attributedText = [NSMutableString difereentFontStr:_discountLabel.text font:[UIFont fontWithName:@"Helvetica-Bold" size:13] changeText:@"off"];
     }else{
-        _discountLabel.text = [[NSString stringWithFormat:@"%.0f",model.discountAmount] currency];
+        _discountLabel.text = [NSString stringWithFormat:@"%@ off",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
+        _discountLabel.font = CHINESE_BOLD(14);
     }
+    
     if (model.userCoupons.count > 0) {
         [self.getBtn setTitle:kLocalizedString(@"USE_NOW") forState:0];
     }else{

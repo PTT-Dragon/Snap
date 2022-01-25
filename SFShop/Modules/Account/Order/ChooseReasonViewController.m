@@ -10,6 +10,7 @@
 
 @interface ChooseReasonViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHei;
 
 @end
 
@@ -18,9 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"CancelOrderReasonCell" bundle:nil] forCellReuseIdentifier:@"CancelOrderReasonCell"];
+    self.tableViewHei.constant = self.dataSource.count * 56+100;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -30,7 +33,7 @@
     cell.selBtn.selected = model.sel;
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath\
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 56;
 }
@@ -47,9 +50,8 @@
     CancelOrderReasonModel *model = self.dataSource[indexPath.row];
     model.sel = YES;
     [self.delegate chooseReason:model];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 @end

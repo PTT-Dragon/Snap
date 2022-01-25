@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy) NSString <Optional>*contactAddress;
 @property(nonatomic,assign) BOOL sel;
+@property(nonatomic,assign) BOOL isNoAdd;
 @property(nonatomic,copy) NSString <Optional>*city;
 @property(nonatomic,copy) NSString <Optional>*province;
 @property(nonatomic,copy) NSString <Optional>*district;

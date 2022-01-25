@@ -37,9 +37,9 @@
     _priceLabel.text = [NSString stringWithFormat:@"RP%ld",model.salesPrice];
     _macketPriceLabel.text = [NSString stringWithFormat:@"%ld",model.marketPrice];
     _offLabel.text = [NSString stringWithFormat:@"%ld%%",model.discountPercent];
-    NSString *score = ([model.evaluationRate isEqualToString:@"0"] || !model.evaluationRate) ? @"": model.evaluationRate;
-    NSString *evaCount = ([model.evaluationCnt isEqualToString:@"0"] || !model.evaluationCnt) ? @"": model.evaluationRate;
-    self.starImgView.hidden = ([model.evaluationRate isEqualToString:@"0"] || !model.evaluationRate);
+    NSString *score = (model.evaluationAvg == 0 || !model.evaluationAvg) ? @"": [NSString stringWithFormat:@"%.1f",model.evaluationAvg];
+    NSString *evaCount = ([model.evaluationCnt isEqualToString:@"0"] || !model.evaluationCnt) ? @"": [NSString stringWithFormat:@"(%@)",model.evaluationCnt];
+    self.starImgView.hidden = (model.evaluationAvg == 0 || !model.evaluationAvg);
     _scoreLabel.text = [NSString stringWithFormat:@"%@  %@",score,evaCount];
 }
 @end

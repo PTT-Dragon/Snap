@@ -32,7 +32,11 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
     _nameLabel.text = model.productName;
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
+    NSString *sku = @"";
+    for (NSString *key in dic.allKeys) {
+        sku = [sku stringByAppendingFormat:@"%@ ",dic[key]];
+    }
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
     _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
@@ -42,7 +46,11 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
     _nameLabel.text = model.productName;
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
+    NSString *sku = @"";
+    for (NSString *key in dic.allKeys) {
+        sku = [sku stringByAppendingFormat:@"%@ ",dic[key]];
+    }
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
     _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
@@ -51,7 +59,11 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
     _nameLabel.text = model.productName;
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
+    NSString *sku = @"";
+    for (NSString *key in dic.allKeys) {
+        sku = [sku stringByAppendingFormat:@"%@ ",dic[key]];
+    }
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _countLabel.text = @"";//[NSString stringWithFormat:@"X%@",model.submitNum];
     _priceLabel.text = @"";//[NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }

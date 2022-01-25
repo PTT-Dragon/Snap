@@ -114,9 +114,9 @@
         ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
         vc.dataSource = _reasonArr;
         vc.delegate = self;
-        [self presentViewController:vc animated:YES completion:^{
-                    
-        }];
+        [self addChildViewController:vc];
+        [self.view addSubview:vc.view];
+        vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
     }
 }
 - (void)loadReasonDatas

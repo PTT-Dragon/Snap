@@ -118,7 +118,7 @@
 //中文字体
 #define CHINESE_FONT_NAME  iOS9 ?@"PingFangSC-Regular" :@"Helvetica"//@"PingFangSC-Medium"//
 #define CHINESE_FONT_MEDIUM iOS9 ? @"PingFangSC-Medium" :@"Helvetica"
-#define CHINESE_FONT_BOLD @"PingFang-SC-Bold"
+#define CHINESE_FONT_BOLD @"Helvetica-Bold"
 
 #define CHINESE_SYSTEM(x) [UIFont fontWithName:CHINESE_FONT_NAME size:AdaptedWidth(x)]
 #define CHINESE_MEDIUM(x) [UIFont fontWithName:CHINESE_FONT_MEDIUM size:AdaptedWidth(x)]
