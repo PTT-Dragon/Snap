@@ -138,6 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *charge;
 @property (nonatomic, readwrite, strong) NSString *refund;
 @property (nonatomic, readwrite, strong) NSString *delivery;
+@property (nonatomic, readwrite, strong) NSString *cancel;
 
 
 - (NSString *)getDetailOf: (NSString *)offerId;

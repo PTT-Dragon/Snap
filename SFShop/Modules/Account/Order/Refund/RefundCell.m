@@ -8,6 +8,7 @@
 #import "RefundCell.h"
 #import "NSString+Fee.h"
 #import "ReplaceDeliveryViewController.h"
+#import "PublicAlertView.h"
 
 @interface RefundCell ()
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
@@ -81,9 +82,9 @@
         _btn.hidden = YES;
     }else if ([model.state isEqualToString:@"X"]){
         //取消 作废
-        _statuLabel.text = @"";
-        _contentLabel.text = @"";
-        _viewHei.constant = 0;
+        _statuLabel.text = kLocalizedString(@"CANCELLED");
+        _contentLabel.text = @"Service has been canceled";
+        _viewHei.constant = 52;
         _btn.hidden = YES;
     }else if ([model.state isEqualToString:@"G"]){
         //成功
@@ -107,10 +108,27 @@
         _viewHei.constant = 52;
     }
 }
+- (void)cancelAction
+{
+    [SFNetworkManager post:SFNet.refund.cancel parameters:@{@"orderApplyId":_model.orderApplyId} success:^(id  _Nullable response) {
+        if (self.block) {
+            self.block();
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 - (IBAction)btnAction:(UIButton *)sender {
     if ([_model.state isEqualToString:@"C"]) {
         ReplaceDeliveryViewController *vc = [[ReplaceDeliveryViewController alloc] init];
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([_model.state isEqualToString:@"A"]){
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"SURE_CANCEL") btnTitle:kLocalizedString(@"CONFIRM") block:^{
+            [self cancelAction];
+        } btn2Title:kLocalizedString(@"CANCEL") block2:^{
+            
+        }];
+        [[baseTool getCurrentVC].view addSubview:alert];
     }
 }
 - (IBAction)btn2Action:(id)sender {

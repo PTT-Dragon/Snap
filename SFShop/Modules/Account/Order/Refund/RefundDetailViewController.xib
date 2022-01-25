@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="btn" destination="rLf-V0-55s" id="TQY-Pn-lJA"/>
                 <outlet property="btn2" destination="xa7-L5-SZ8" id="9UJ-In-g9G"/>
+                <outlet property="btnHei" destination="gIi-cX-Z7E" id="fz6-OA-xPu"/>
                 <outlet property="btnWidth" destination="ZgT-A0-Mk7" id="bc7-gJ-1jL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

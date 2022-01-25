@@ -428,8 +428,8 @@
   "ADD_PACKAGE" = "新增包裹";
   "IS_REQUIRE" = "必填";
 //  "SEARCH" = "搜索";
-//  "SURE_CANCEL" = "是否确认取消";
-//  "SURE_DELETE" = "是否确认删除";
+  "SURE_CANCEL" = "是否确认取消";
+  "SURE_DELETE" = "是否确认删除";
 //  "SEARCH_DISCOVERY" = "搜索历史";
 //  "MAX_DISCOUNT" = "最大折扣为";
 //  "EMPTYING" = "清空";

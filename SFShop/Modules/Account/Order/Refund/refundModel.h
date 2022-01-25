@@ -80,6 +80,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*userId;
 @property (nonatomic,copy) NSString <Optional>*userName;
 @property (nonatomic,strong) NSArray <refundItemsModel>*items;
+
+
 /**
  A:待审核B:审核拒绝C:待填写物流信息D:待商家收货E:待退款F:退款中G:完成X:作废
  **/
@@ -181,6 +183,7 @@ userName = "hxf01@qq.com";
 @property (nonatomic,copy) NSString *storeLogoUrl;
 @property (nonatomic,copy) NSString *storeName;
 @property (nonatomic,copy) NSString *uccAccount;
+@property (nonatomic,strong) deliveryAddress *returnAddress;
 @property (nonatomic,copy) NSString *submitNum;
 
 /**

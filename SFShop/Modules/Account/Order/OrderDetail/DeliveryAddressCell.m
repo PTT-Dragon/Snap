@@ -28,4 +28,12 @@
     _contentLabel.text = model.deliveryAddress.contactAddress;
     _emailLabel.text = [NSString stringWithFormat:@"  %@",model.deliveryAddress.contactEmail];
 }
+- (void)setRefundContent:(RefundDetailModel *)model
+{
+    _emailLabel.hidden = YES;
+    _nameLabel.text = model.returnAddress.contactName;
+    _phoneLabel.text = model.returnAddress.contactNbr;
+    _contentLabel.text = model.returnAddress.fullAddress;
+    _emailLabel.text = [NSString stringWithFormat:@"  %@",model.returnAddress.contactEmail];
+}
 @end

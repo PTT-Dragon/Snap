@@ -13,6 +13,7 @@
 #import "RefundDetailProductInfoCell.h"
 #import "OrderListItemCell.h"
 #import "RefundDetailImagesCell.h"
+#import "DeliveryAddressCell.h"
 
 @interface RefundDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnWidth;
 @property (nonatomic,strong) RefundDetailModel *model;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnHei;
 @end
 
 @implementation RefundDetailViewController
@@ -36,6 +38,7 @@
     [_tableView registerNib:[UINib nibWithNibName:@"RefundDetailProductInfoCell" bundle:nil] forCellReuseIdentifier:@"RefundDetailProductInfoCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"RefundDetailImagesCell" bundle:nil] forCellReuseIdentifier:@"RefundDetailImagesCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"DeliveryAddressCell" bundle:nil] forCellReuseIdentifier:@"DeliveryAddressCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
@@ -60,6 +63,10 @@
         [cell setContent:self.model.memos[indexPath.row-1] hideView:indexPath.row != 1];
         return cell;
     }else if (indexPath.section == 1){
+        DeliveryAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeliveryAddressCell"];
+        [cell setRefundContent:self.model];
+        return cell;
+    }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
             RefundDetailTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundDetailTitleCell"];
             [cell setContent:self.model type:2];
@@ -81,11 +88,12 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? self.model.memos.count+2: section == 1 ? self.model.items.count+2:1;
+    BOOL hasDelivery = (([self.model.eventId isEqualToString:@"4"] || [self.model.eventId isEqualToString:@"2"]) && [self.model.state isEqualToString:@"D"]) ? YES: NO;
+    return section == 0 ? self.model.memos.count+2: section == 1 ? hasDelivery ? 1 : 0: section == 2 ? self.model.items.count+2:1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -94,11 +102,13 @@
         if (indexPath.row == 0) {
             hei = 40;
         }else if(indexPath.row == self.model.memos.count+1){
-            hei = [self.model.eventId isEqualToString:@"3"] ? 0: 75;
+            hei = [self.model.eventId isEqualToString:@"3"] && [self.model.state isEqualToString:@"D"] ? 75: 0;
         }else{
             hei = 75;
         }
     }else if (indexPath.section == 1){
+        hei = 170;
+    }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
             hei = 40;
         }else if (indexPath.row == self.model.items.count+1){
@@ -141,6 +151,18 @@
         self.btn.hidden = NO;
         self.btnWidth.constant = (MainScreen_width-32)/2-16;
         self.btn2.hidden = NO;
+    }else if ([self.model.state isEqualToString:@"X"]){
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
+    }else if ([self.model.state isEqualToString:@"D"]){
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
+    }else if ([self.model.state isEqualToString:@"E"]){
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
     }
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);

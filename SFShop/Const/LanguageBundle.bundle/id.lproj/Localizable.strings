@@ -428,8 +428,8 @@
   "ADD_PACKAGE" = "Tambahkan Paket";
   "IS_REQUIRE" = "diperlukan";
 //  "SEARCH" = "Cari";
-//  "SURE_CANCEL" = "Apakah Anda yakin untuk membatalkan?";
-//  "SURE_DELETE" = "Apakah Anda yakin untuk menghapus?";
+  "SURE_CANCEL" = "Apakah Anda yakin untuk membatalkan?";
+  "SURE_DELETE" = "Apakah Anda yakin untuk menghapus?";
 //  "SEARCH_DISCOVERY" = "History";
 //  "MAX_DISCOUNT" = "Diskon maksimum";
 //  "EMPTYING" = "Kosong";

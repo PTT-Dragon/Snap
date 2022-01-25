@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^RefundCellBlock)(void);
+
 @interface RefundCell : UITableViewCell
+@property (nonatomic,copy) RefundCellBlock block;
 - (void)setContent:(refundModel *)model;
 @end
 

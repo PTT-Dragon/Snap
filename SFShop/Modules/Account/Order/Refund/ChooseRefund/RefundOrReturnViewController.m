@@ -180,7 +180,11 @@
     [params setValue:[_model.orderItems[_row] orderItemId] forKey:@"orderItemId"];
     [params setValue:@"1" forKey:@"refundMode"];
     [params setValue:serviceType forKey:@"serviceType"];
-    [params setValue:self.chargeModel.refundCharge forKey:@"refundCharge"];
+    if (_type != REPLACETYPE) {
+        [params setValue:self.chargeModel.refundCharge forKey:@"refundCharge"];
+    }else{
+        [params setValue:@(0) forKey:@"refundCharge"];
+    }
     [params setValue:self.selReasonModel.orderReasonId forKey:@"orderReasonId"];
     [params setValue:self.selReasonModel.orderReasonName forKey:@"orderReason"];
     [params setValue:self.questionDesc forKey:@"questionDesc"];
@@ -188,7 +192,7 @@
     [params setValue:@"2" forKey:@"goodReturnType"];
     [params setValue:@"Y" forKey:@"receivedFlag"];
     [params setValue:@"3" forKey:@"contactChannel"];
-    [params setValue:_model.offerCnt forKey:@"submitNum"];
+    [params setValue:[_model.orderItems[_row] offerCnt] forKey:@"submitNum"];
     
     
     //{"orderId":25010,"orderItemId":24010,"refundMode":1,"serviceType":3,"refundCharge":80000,"submitNum":1,"orderReasonId":2,"orderReason":"尺码过大","questionDesc":"距离健健康康","goodReturnType":2,"contactChannel":3,"contents":[{"id":null,"catgType":"B","url":"/get/resource/ecs/20220119/picture/4CFF7CD0-1436-4963-9E93-F47AC677500C1483630588477521920.png","seq":1}],"receivedFlag":"Y"}

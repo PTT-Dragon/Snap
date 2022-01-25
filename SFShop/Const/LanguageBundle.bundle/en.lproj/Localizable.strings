@@ -428,8 +428,8 @@
   "ADD_PACKAGE" = "Add Package";
   "IS_REQUIRE" = "is require";
 //  "SEARCH" = "Search";
-//  "SURE_CANCEL" = "Are you sure to cancel?";
-//  "SURE_DELETE" = "Are you sure to delete?";
+  "SURE_CANCEL" = "Are you sure to cancel?";
+  "SURE_DELETE" = "Are you sure to delete?";
 //  "SEARCH_DISCOVERY" = "Search Discovery";
 //  "MAX_DISCOUNT" = "Discount max";
 //  "EMPTYING" = "Emptying";

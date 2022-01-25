@@ -144,6 +144,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*contactNbr;
 @property (nonatomic,copy) NSString <Optional>*contactStdId;
 @property (nonatomic,copy) NSString <Optional>*postCode;
+@property (nonatomic,copy) NSString <Optional>*fullAddress;
+
 @end
 
 @interface DeliveryInfoModel : JSONModel
