@@ -50,8 +50,12 @@
         self.rateBlock([NSString stringWithFormat:@"%ld",score], self.row);
     };
     _textView.delegate = self;
-    [_textView addSubview:self.countView];
-    self.countView.frame = CGRectMake(self.textView.width - 70, self.textView.height - 30, 100, 30);
+    _textView.contentInset = UIEdgeInsetsMake(0, 0, 15, 0);
+    [self.contentView addSubview:self.countView];
+    [self.countView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.textView.mas_bottom).offset(-30);
+        make.right.mas_equalTo(self.textView.mas_right).offset(-40);
+    }];
 }
 - (void)layoutSubviews
 {
