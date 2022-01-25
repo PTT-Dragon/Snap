@@ -85,6 +85,10 @@
     self.searchView.dataArray = _dataArray;
 }
 
+- (void)activeSearch {
+    [self.textField becomeFirstResponder];
+}
+
 #pragma mark - Event
 - (void)btnClick:(UIButton *)btn {
     if (btn == self.backBtn) {

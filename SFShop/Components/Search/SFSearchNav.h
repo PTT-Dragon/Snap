@@ -31,6 +31,9 @@ typedef NS_ENUM(NSUInteger, SFSearchType) {
 /// @param sectionData 搜索数据
 - (void)addSearchSection:(NSMutableArray<SFSearchModel *> *)sectionData;
 
+/// 激活搜索条
+- (void)activeSearch;
+
 @end
 
 NS_ASSUME_NONNULL_END

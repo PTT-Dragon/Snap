@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 上一级传入数据
 @property (nonatomic, readwrite, strong) CategoryModel *model;
 
+/// 是否聚焦搜索
+@property (nonatomic, readwrite, assign, getter=isActiveSearch) BOOL activeSearch;
+
 @end
 
 NS_ASSUME_NONNULL_END
