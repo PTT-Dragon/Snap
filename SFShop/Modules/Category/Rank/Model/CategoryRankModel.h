@@ -131,8 +131,8 @@ NS_ASSUME_NONNULL_BEGIN
         @property (nonatomic, readwrite, copy) NSString *storeName;
         @property (nonatomic, readwrite, copy) NSString *storeLogoUrl;
         @property (nonatomic, readwrite, copy) NSString *subheadName;
-        @property (nonatomic, readwrite, copy) NSString *evaluationAvg;
-        @property (nonatomic, readwrite, copy) NSString *evaluationRate;
+        @property (nonatomic, readwrite, assign) double evaluationAvg;
+        @property (nonatomic, readwrite, assign) long evaluationRate;
         @property (nonatomic, readwrite, copy) NSString *goodsIntroduce;
         @property (nonatomic, readwrite, copy) NSString *currencySymbol;
         @property (nonatomic, readwrite, copy) NSString *isCollection;

@@ -154,7 +154,7 @@
 //  "REFUND_RETURN" = "Refund & Return";
 //  "REASON_TITLE" = "Please Select Reason";
 //  "MANY_SALES_HINT" = "This item cannot be replaced/refunded again. For more help please contact support.";
-//  "ORDER_CANCEL_REASON" = "Reason for cancellation";
+  "ORDER_CANCEL_REASON" = "Reason for cancellation";
 //  "CHECK_OUT" = "Check Out";
   "USE_NOW" = "Use Now";
 //  "HINT_SUCCESS" = "Successfully";
@@ -447,7 +447,7 @@
 //  "SEE_SHARE_BY" = "See Group Buy";
 //  "GROUP_FAIL" = "Group Failed";
   "GROUPED" = "Grouped";
-//  "INVITE_MORE" = "Invite more buyer required expire in";
+  "INVITE_MORE" = "Invite more buyer required expire in";
   "INVITE_ONE" = "One more buyer reauired Expire in";
 //  "GROUP_DETAIL" = "Group Detail";
 //  "NO_INVITE_RECORDS" = "No invite records";

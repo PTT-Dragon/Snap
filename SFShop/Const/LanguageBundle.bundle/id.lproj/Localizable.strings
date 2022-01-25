@@ -159,7 +159,7 @@
 //  "REFUND_RETURN" = "Pengembalian dana";
 //  "REASON_TITLE" = "Silakan Pilih Alasan";
 //  "MANY_SALES_HINT" = "Item ini tidak dapat diganti / dikembalikan lagi. Untuk bantuan lebih lanjut; silahkan hubungi costumer support.";
-//  "ORDER_CANCEL_REASON" = "Alasan Pembatalan";
+  "ORDER_CANCEL_REASON" = "Alasan Pembatalan";
 //  "CHECK_OUT" = "Check out";
   "USE_NOW" = "Gunakan sekarang";
 //  "HINT_SUCCESS" = "Berhasil";
@@ -452,7 +452,7 @@
 //  "SEE_SHARE_BY" = "Lihat join group";
 //  "GROUP_FAIL" = "Grup Gagal";
   "GROUPED" = "Grouped";
-//  "INVITE_MORE" = "Undang lebih banyak pembeli yang diperlukan berakhir dalam";
+  "INVITE_MORE" = "Undang lebih banyak pembeli yang diperlukan berakhir dalam";
   "INVITE_ONE" = "Diperlukan satu pembeli lagi yang berakhir dalam";
 //  "GROUP_DETAIL" = "Rincian Grup";
 //  "NO_INVITE_RECORDS" = "Tidak ada catatan undangan";

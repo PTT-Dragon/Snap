@@ -76,6 +76,7 @@
 - (void)updateBtnState
 {
     self.subtractBtn.enabled = ![self.subtractBtn.titleLabel.text isEqualToString:@"1"];
+    [self.subtractBtn setImage: self.subtractBtn.enabled ? [UIImage imageNamed:@"subtract-2"]: [UIImage imageNamed:@"subtract"] forState:0];
     self.subtractBtn.layer.borderWidth = self.subtractBtn.enabled ? 1: 0;
 }
 - (IBAction)selAction:(UIButton *)sender {

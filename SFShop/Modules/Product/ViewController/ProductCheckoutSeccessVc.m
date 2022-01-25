@@ -12,9 +12,11 @@
 #import "OrderModel.h"
 #import "NSString+Fee.h"
 #import <UIButton+WebCache.h>
+#import "GroupListViewController.h"
 
 
 @interface ProductCheckoutSeccessVc ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollviewWidth;
 @property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *codeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
@@ -30,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *productPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *needMemberCountLabel;
 @property (weak, nonatomic) IBOutlet UIView *showImgView;
+@property (weak, nonatomic) IBOutlet UIButton *inviteBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnWidth;
 
 @property (weak, nonatomic) IBOutlet UILabel *needTimeLabel;
 @property (weak, nonatomic) IBOutlet UIView *groupView;
@@ -68,6 +72,7 @@
         self.addBtn.userInteractionEnabled = NO;
         self.needTimeLabel.text = kLocalizedString(@"GROUPED");
     }else{
+        self.inviteBtn.hidden = NO;
         self.addBtn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
         self.addBtn.layer.borderWidth = 1;
         //倒计时
@@ -95,7 +100,7 @@
                 NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
                 NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    weakself.needTimeLabel.text = [NSString stringWithFormat:@"%@ %ld:%ld:%ld",kLocalizedString(@"INVITE_ONE"),hours,minute,second];
+                    weakself.needTimeLabel.text = [NSString stringWithFormat:@"%@ %ld:%ld:%ld",kLocalizedString(@"INVITE_MORE"),hours,minute,second];
                 });
                 timeout--;
             }
@@ -123,7 +128,8 @@
 }
 - (void)layoutsubviews
 {
-    
+    self.scrollviewWidth.constant = MainScreen_width;
+    self.btnWidth.constant = MainScreen_width-32;
     NSArray *arr = _infoDic[@"orders"];
     NSDictionary *dic = arr.firstObject;
     NSArray *codeArr = _infoDic[@"orderNbrList"];
@@ -141,6 +147,8 @@
 - (IBAction)addGroupAction:(UIButton *)sender {
 }
 - (IBAction)seeShareBuyAction:(UIButton *)sender {
+    GroupListViewController *vc = [[GroupListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)detailAction:(UIButton *)sender {

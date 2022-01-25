@@ -234,7 +234,7 @@
             }
             
             CGFloat gradeHeught = 0;
-            if (cellModel.evaluationAvg.length > 0 || cellModel.evaluationCnt > 0) {
+            if (cellModel.evaluationAvg > 0 || cellModel.evaluationCnt > 0) {
                 gradeHeught = KScale(12) + KScale(12);
             }
             CGFloat priceHeight = KScale(14);

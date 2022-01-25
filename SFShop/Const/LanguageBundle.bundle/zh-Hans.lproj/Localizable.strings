@@ -159,7 +159,7 @@
 //  "REFUND_RETURN" = "售后列表";
 //  "REASON_TITLE" = "请选择原因";
 //  "MANY_SALES_HINT" = "商品无法再次申请退换服务，有关更多帮助，请联系客服。";
-//  "ORDER_CANCEL_REASON" = "取消原因";
+  "ORDER_CANCEL_REASON" = "取消原因";
 //  "CHECK_OUT" = "确认订单";
   "USE_NOW" = "立即使用";
 //  "HINT_SUCCESS" = "成功";
@@ -452,7 +452,7 @@
 //  "SEE_SHARE_BY" = "查看拼团";
 //  "GROUP_FAIL" = "拼团失败";
   "GROUPED" = "已成团";
-//  "INVITE_MORE" = "邀请更多的团员加入，倒计时";
+  "INVITE_MORE" = "邀请更多的团员加入，倒计时";
   "INVITE_ONE" = "还差一个团员加入，倒计时";
 //  "GROUP_DETAIL" = "拼团详情";
 //  "NO_INVITE_RECORDS" = "无邀请数据";

@@ -218,8 +218,8 @@
     self.titleLabel.text = _model.offerName;
     
     self.priceLabel.text = [NSString stringWithFormat:@"%ld", _model.specialPrice>0?_model.specialPrice: _model.salesPrice].currency;
-    if (_model.evaluationAvg.length > 0 || _model.evaluationCnt > 0) {
-        self.gradeLevelLabel.text = [NSString stringWithFormat:@"%.1f",(float)_model.evaluationAvg.doubleValue * 1.0];
+    if (_model.evaluationAvg > 0 || _model.evaluationCnt > 0) {
+        self.gradeLevelLabel.text = [NSString stringWithFormat:@"%.1f",_model.evaluationAvg * 1.0];
         self.gradeNumberLabel.text = [NSString stringWithFormat:@"(%ld)",_model.evaluationCnt];
         self.gradeLevelLabel.hidden = NO;
         self.gradeNumberLabel.hidden = NO;

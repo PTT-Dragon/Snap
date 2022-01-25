@@ -40,7 +40,7 @@
     _nameLabel.text = model.offerName;
     _priceLabel.text = [[NSString stringWithFormat:@"%ld",model.salesPrice] currency];
     _marketLabel.text = [[NSString stringWithFormat:@"%ld",model.marketPrice] currency];
-    NSString *score = ([model.evaluationRate isEqualToString:@"0"] || !model.evaluationRate) ? @"":model.evaluationRate;
+    NSString *score = (model.evaluationAvg == 0 || !model.evaluationAvg) ? @"":[NSString stringWithFormat:@"%.1f",model.evaluationAvg];
     NSString *count = (model.evaluationCnt == 0 || !model.evaluationCnt) ? @"":[NSString stringWithFormat:@"(%ld)",model.evaluationCnt];
     self.starImgView.hidden = [score isEqualToString:@""];
     _scoreLabel.text = [NSString stringWithFormat:@"%@ %@",score,count];

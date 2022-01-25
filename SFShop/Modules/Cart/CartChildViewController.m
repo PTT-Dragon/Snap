@@ -123,7 +123,8 @@
         }else{
             model = self.cartModel.validCarts[indexPath.section];
             cell.isInvalid = NO;
-            cell.hasCoupon = _hasCouponArr[indexPath.section];
+            NSString *hasCoupon = _hasCouponArr[indexPath.section];
+            cell.hasCoupon = [hasCoupon isEqualToString:@"Y"];
         }
         cell.model = model;
         cell.delegate = self;
@@ -231,6 +232,7 @@
     [SFNetworkManager get:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
         weakself.cartModel = [[CartModel alloc] initWithDictionary:response error:nil];
         NSInteger i = 0;
+        [weakself.hasCouponArr removeAllObjects];
         for (CartListModel *listModel in weakself.cartModel.validCarts) {
             [weakself.hasCouponArr addObject:@"N"];
             NSMutableArray *arr = [NSMutableArray array];
@@ -301,7 +303,6 @@
 }
 - (void)loadCouponsDatasWithStoreId:(NSString *)storeId productArr:(NSArray *)productArr row:(NSInteger)row
 {
-    [MBProgressHUD showHudMsg:@""];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:storeId forKey:@"storeId"];
     [params setValue:productArr forKey:@"products"];
