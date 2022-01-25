@@ -188,7 +188,9 @@
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
-        [self.tableView.mj_header beginRefreshing];
+        if (type != CategoryRankFilterRefreshCancel) {
+            [self.tableView.mj_header beginRefreshing];
+        }
     };
     [self presentViewController:filterVc animated:YES completion:nil];
 }

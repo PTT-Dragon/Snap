@@ -99,8 +99,8 @@
     };
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
-        self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
-        [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
+        CategoryRankModel *rankModel  = [CategoryRankModel yy_modelWithDictionary:response];
+        [self.dataArray addObjectsFromArray:rankModel.pageInfo.list];
         [self.collectionView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
@@ -174,10 +174,12 @@
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
-        [self resetIfEmpty];
-        self.dataModel = model;
-        self.filterCacheModel = self.dataModel.filterCache;
-        [self.collectionView.mj_header beginRefreshing];
+        if (type != CategoryRankFilterRefreshCancel) {
+            [self resetIfEmpty];
+            self.dataModel = model;
+            self.filterCacheModel = self.dataModel.filterCache;
+            [self.collectionView.mj_header beginRefreshing];
+        }
     };
     [self presentViewController:filterVc animated:YES completion:nil];
 }
