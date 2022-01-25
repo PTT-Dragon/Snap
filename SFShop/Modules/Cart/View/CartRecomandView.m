@@ -63,9 +63,10 @@
 #pragma mark - UICollectionView delegate & dataSource
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader" forIndexPath:indexPath];
-        UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 5, 150, 30)];
+    if ([kind isEqualToString:kSupplementaryViewKindHeader]) {
+        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kSupplementaryViewKindHeader withReuseIdentifier:@"ProductionRecommendHeader" forIndexPath:indexPath];
+        view.backgroundColor = [UIColor whiteColor];
+        UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 7, 150, 30)];
         title.text = kLocalizedString(@"Recommendations");
         title.font = [UIFont boldSystemFontOfSize:17];
         title.textColor = [UIColor blackColor];
@@ -79,6 +80,9 @@
     return self.similarList.count == 0 ? CGSizeZero :CGSizeMake(MainScreen_width, 44);
 }
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.similarList.count == 0 ? 0 : self.similarList.count;
@@ -100,8 +104,11 @@
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 
-
 #pragma mark - CollectionWaterfallLayoutProtocol
+- (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForSupplementaryViewAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
+
 - (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath {
     CategoryRankPageInfoListModel *cellModel = self.similarList[indexPath.row];
     if (!cellModel.height) {
@@ -131,7 +138,7 @@
         _recommendCollectionView.backgroundColor = [UIColor clearColor];
         
         [_recommendCollectionView registerClass:CategoryRankCell.class forCellWithReuseIdentifier:@"CategoryRankCell"];
-        [_recommendCollectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader"];
+        [_recommendCollectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:kSupplementaryViewKindHeader withReuseIdentifier:@"ProductionRecommendHeader"];
     }
     return _recommendCollectionView;
 }
