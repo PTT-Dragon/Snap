@@ -52,28 +52,28 @@
     
     
     
-//    NSString *htmls = [NSString stringWithFormat:@"<html> \n"
-//                       "<head> \n"
-//                       "<meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" /> \n"
-//                       "<style type=\"text/css\"> \n"
-//                       "body {font-size:15px;}\n"
-//                       "</style> \n"
-//                       "</head> \n"
-//                       "<body>"
-//                       "<script type='text/javascript'>"
-//                       "window.onload = function(){\n"
-//                       "var $img = document.getElementsByTagName('img');\n"
-//                       "for(var p in  $img){\n"
-//                       " $img[p].style.width = '100%%';\n"
-//                       "$img[p].style.height ='auto'\n"
-//                       "}\n"
-//                       "}"
-//                       "</script>%@"
-//                       "</body>"
-//                       "</html>",replacedHtmlString];
+    NSString *htmls = [NSString stringWithFormat:@"<html> \n"
+                       "<head> \n"
+                       "<meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" /> \n"
+                       "<style type=\"text/css\"> \n"
+                       "body {font-size:15px;}\n"
+                       "</style> \n"
+                       "</head> \n"
+                       "<body>"
+                       "<script type='text/javascript'>"
+                       "window.onload = function(){\n"
+                       "var $img = document.getElementsByTagName('img');\n"
+                       "for(var p in  $img){\n"
+                       " $img[p].style.width = '100%%';\n"
+                       "$img[p].style.height ='auto'\n"
+                       "}\n"
+                       "}"
+                       "</script>%@"
+                       "</body>"
+                       "</html>",replacedHtmlString];
     
     
-    return replacedHtmlString;
+    return htmls;
 }
 
 @end
