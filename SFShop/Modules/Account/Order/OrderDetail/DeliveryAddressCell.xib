@@ -38,7 +38,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcL-hL-1zj">
-                        <rect key="frame" x="19" y="57" width="277" height="14.5"/>
+                        <rect key="frame" x="19" y="73" width="277" height="41"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -53,18 +53,35 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqh-wc-q9J">
+                        <rect key="frame" x="16" y="47" width="34.5" height="16.5"/>
+                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmQ-eJ-L0o">
+                        <rect key="frame" x="60.5" y="48.5" width="30" height="14"/>
+                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="12"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="QcL-hL-1zj" firstAttribute="top" secondItem="GsT-xg-iGP" secondAttribute="bottom" constant="16" id="2Sx-dU-21q"/>
+                    <constraint firstItem="QcL-hL-1zj" firstAttribute="top" secondItem="GsT-xg-iGP" secondAttribute="bottom" constant="32" id="2Sx-dU-21q"/>
                     <constraint firstItem="QcL-hL-1zj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="605-wA-f3G"/>
                     <constraint firstItem="w3t-x3-i7M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="9Ss-ZJ-Q3r"/>
                     <constraint firstItem="W4s-m7-j5i" firstAttribute="leading" secondItem="tNn-qT-r1B" secondAttribute="trailing" constant="4" id="A6z-vd-QXM"/>
                     <constraint firstItem="tNn-qT-r1B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Ba2-Uf-Udh"/>
+                    <constraint firstItem="w3t-x3-i7M" firstAttribute="top" secondItem="QcL-hL-1zj" secondAttribute="bottom" constant="10" id="Fc1-WT-jqh"/>
+                    <constraint firstItem="hmQ-eJ-L0o" firstAttribute="leading" secondItem="Lqh-wc-q9J" secondAttribute="trailing" constant="10" id="Gmt-wh-SK9"/>
+                    <constraint firstItem="Lqh-wc-q9J" firstAttribute="top" secondItem="GsT-xg-iGP" secondAttribute="bottom" constant="6" id="Hxr-4i-n0J"/>
                     <constraint firstAttribute="bottom" secondItem="w3t-x3-i7M" secondAttribute="bottom" constant="16" id="R7o-ZR-FNk"/>
+                    <constraint firstItem="Lqh-wc-q9J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="TDZ-yH-FEk"/>
                     <constraint firstItem="GsT-xg-iGP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="bV6-ea-d3H"/>
                     <constraint firstItem="W4s-m7-j5i" firstAttribute="centerY" secondItem="tNn-qT-r1B" secondAttribute="centerY" id="f3U-f3-eZh"/>
                     <constraint firstItem="tNn-qT-r1B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="hrT-FF-f3j"/>
                     <constraint firstItem="GsT-xg-iGP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ifv-qF-2Qb"/>
+                    <constraint firstItem="hmQ-eJ-L0o" firstAttribute="centerY" secondItem="Lqh-wc-q9J" secondAttribute="centerY" id="in8-ux-b0h"/>
                     <constraint firstAttribute="trailing" secondItem="w3t-x3-i7M" secondAttribute="trailing" constant="19" id="jQ0-Dc-kQv"/>
                     <constraint firstAttribute="trailing" secondItem="QcL-hL-1zj" secondAttribute="trailing" constant="47" id="oAT-X3-Xp5"/>
                     <constraint firstAttribute="trailing" secondItem="GsT-xg-iGP" secondAttribute="trailing" id="zkG-dM-nji"/>
@@ -74,6 +91,8 @@
             <connections>
                 <outlet property="contentLabel" destination="QcL-hL-1zj" id="DrQ-od-4vT"/>
                 <outlet property="emailLabel" destination="w3t-x3-i7M" id="9vT-bC-BMN"/>
+                <outlet property="nameLabel" destination="Lqh-wc-q9J" id="7rr-Hr-Ujp"/>
+                <outlet property="phoneLabel" destination="hmQ-eJ-L0o" id="XZS-cp-6hb"/>
             </connections>
             <point key="canvasLocation" x="112" y="73"/>
         </tableViewCell>

@@ -9,8 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^CancelOrderChooseReasonBlock)(BOOL sel);
+
 @interface CancelOrderChooseReason : UITableViewCell
+@property (nonatomic,copy) CancelOrderChooseReasonBlock block;
 @property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @end
 

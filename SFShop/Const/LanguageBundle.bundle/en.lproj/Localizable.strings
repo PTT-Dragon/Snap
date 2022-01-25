@@ -147,16 +147,20 @@
 //  "MODIFY_ADD_SUCCESS" = "Modify address successfully.";
 //  "SERVICE_DETAIL" = "Service Detail";
 //  "CARGO_STATUS" = "Cargo Status";
-//  "SERVICE_REASON" = "Reason";
+  "SERVICE_REASON" = "Reason";
   "PLEASE_SELECT" = "Please Select";
   "REFUND_AMOUNT" = "Refund amount";
   "INSTRUCTIONS" = "Instructions";
-//  "REFUND_RETURN" = "Refund & Return";
+  "REFUND_RETURN" = "Refund & Return";
 //  "REASON_TITLE" = "Please Select Reason";
 //  "MANY_SALES_HINT" = "This item cannot be replaced/refunded again. For more help please contact support.";
   "ORDER_CANCEL_REASON" = "Reason for cancellation";
 //  "CHECK_OUT" = "Check Out";
   "USE_NOW" = "Use Now";
+"OUT_OF_STOCK_IN_CURRENT_REGION" = "OUT OF STOCK IN CURRENT REGION";
+
+
+
 //  "HINT_SUCCESS" = "Successfully";
 //  "COLLECT_MORE_COUPON" = "Collect More Vouchers";
 //  "COUPON_NO_DATA_TXT" = "Sorry; no coupons were found.";
@@ -214,6 +218,7 @@
 //  "CHOOSE_SHIPPING_ADDRESS" = "Choose shipping address";
   "COUPON" = "Voucher";
   "ITEMS" = "item(s)";
+"ITEM" = "items";
 //  "PLATFORM_VOUCHER" = "SF.shop Voucher";
 //  "PLACE_ORDER" = "Place Order";
 //  "RECIPIENT_NAME" = "Recipient Name";
@@ -613,7 +618,7 @@
 "LOGIN_INVALID_PHONE" = "Please input the correct phone number.";
 "ACCOUNT_DOES_NOT_EXIST" = "Account does not exist.";
 "PASSWORD" = "Password";
-"DONE" = "done";
+"DONE" = "Done";
 "EMAIL" = "Email";
 "CHANGE_MOBILE" = "Change Mobile Number";
 "CHANGE_EMAIL" = "Change Email";

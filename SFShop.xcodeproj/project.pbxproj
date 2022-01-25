@@ -270,6 +270,8 @@
 		1BB1CB6D276344DF008D71DF /* FlashSaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6C276344DF008D71DF /* FlashSaleModel.m */; };
 		1BB1CB7127634DF6008D71DF /* FlashSaleProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */; };
 		1BB1CB7227634DF6008D71DF /* FlashSaleProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */; };
+		1BBB594D279FDA18002ED0E8 /* RefundOrReturnReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */; };
+		1BBB594E279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */; };
 		1BBCA963279A674800F4A4FF /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBCA962279A674800F4A4FF /* accountInfoCell.xib */; };
 		1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2B9272AF1E400755832 /* FAQViewController.m */; };
 		1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BA272AF1E400755832 /* FAQViewController.xib */; };
@@ -1003,6 +1005,9 @@
 		1BB1CB6E27634DF6008D71DF /* FlashSaleProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleProductCell.h; sourceTree = "<group>"; };
 		1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleProductCell.m; sourceTree = "<group>"; };
 		1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleProductCell.xib; sourceTree = "<group>"; };
+		1BBB594A279FDA18002ED0E8 /* RefundOrReturnReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundOrReturnReasonCell.h; sourceTree = "<group>"; };
+		1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundOrReturnReasonCell.m; sourceTree = "<group>"; };
+		1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundOrReturnReasonCell.xib; sourceTree = "<group>"; };
 		1BBCA961279A66F000F4A4FF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/accountOrderCell.xib; sourceTree = "<group>"; };
 		1BBCA962279A674800F4A4FF /* accountInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
 		1BC7A2B8272AF1E400755832 /* FAQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
@@ -1536,6 +1541,9 @@
 				1B273C57278F0BCD00DDE2DA /* RefundOrReturnViewController.xib */,
 				1BDCBFA52796AD7B008CEBAB /* RefundOrReturnExplainCell.h */,
 				1BDCBFA62796AD7C008CEBAB /* RefundOrReturnExplainCell.m */,
+				1BBB594A279FDA18002ED0E8 /* RefundOrReturnReasonCell.h */,
+				1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */,
+				1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */,
 			);
 			path = ChooseRefund;
 			sourceTree = "<group>";
@@ -3588,6 +3596,7 @@
 				1B6C52AA275B672200A1C617 /* ZLPhotoActionSheet.xib in Resources */,
 				1BF56CD52761A5B100B40CAA /* ResetPasswordDoViewController.xib in Resources */,
 				1BD2A61E276B0A0A00F994C5 /* FlashSaleProductViewController.xib in Resources */,
+				1BBB594E279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib in Resources */,
 				1B74DB162724466100B30ECC /* OrderListBottomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3827,6 +3836,7 @@
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
 				AE8F32BF272E904C008E3DD8 /* ProductCheckoutViewController.m in Sources */,
 				1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */,
+				1BBB594D279FDA18002ED0E8 /* RefundOrReturnReasonCell.m in Sources */,
 				1BD2A61D276B0A0900F994C5 /* FlashSaleProductViewController.m in Sources */,
 				AE8F32D0272E9684008E3DD8 /* ProductCheckoutVoucherCell.m in Sources */,
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
@@ -4203,7 +4213,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.1;
+				CURRENT_PROJECT_VERSION = 5.5;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4244,7 +4254,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.1;
+				CURRENT_PROJECT_VERSION = 5.5;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -105,12 +105,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    CategoryRankPageInfoListModel *model = self.dataArray[indexPath.row-2];
-    ProductViewController *vc = [[ProductViewController alloc] init];
-    vc.offerId = model.offerId;
-    vc.productId = model.productId.integerValue;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.row > 1) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        CategoryRankPageInfoListModel *model = self.dataArray[indexPath.row-2];
+        ProductViewController *vc = [[ProductViewController alloc] init];
+        vc.offerId = model.offerId;
+        vc.productId = model.productId.integerValue;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter
 {

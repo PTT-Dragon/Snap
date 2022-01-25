@@ -50,9 +50,9 @@
 }
 - (void)loadRefundCharge
 {
-    //这里暂时是一个商品
+    //TODO:这里暂时是一个商品
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.refund.charge parameters:@{@"orderId":self.model.orderId,@"orderItemId":[self.model.orderItems.firstObject orderItemId]} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.refund.charge parameters:@{@"orderId":self.model.orderId,@"orderItemId":[self.model.orderItems[_row] orderItemId]} success:^(id  _Nullable response) {
         weakself.chargeModel = [[RefundChargeModel alloc] initWithDictionary:response error:nil];
     } failed:^(NSError * _Nonnull error) {
         
@@ -68,7 +68,7 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setContent:_model.orderItems[indexPath.row-1]];
+        [cell setRefundContent:_model.orderItems[_row]];
         return cell;
     }
     accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
@@ -82,7 +82,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? _model.orderItems.count+1: 4;
+    return section == 0 ? 2: 4;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -102,6 +102,7 @@
         }
         RefundOrReturnViewController *vc = [[RefundOrReturnViewController alloc] init];
         vc.model = self.model;
+        vc.row = _row;
         vc.chargeModel = self.chargeModel;
         vc.type = indexPath.row == 0 ? REFUNDTYPE: indexPath.row == 1 ? RETURNTYPE: REPLACETYPE;
         [self.navigationController pushViewController:vc animated:YES];

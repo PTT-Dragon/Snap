@@ -25,6 +25,7 @@
     // Initialization code
     _skuLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _skuLabel.layer.borderWidth = 1;
+    [_afterSaleBtn setTitle:kLocalizedString(@"REFUND_RETURN") forState:0];
 }
 - (void)setContent:(orderItemsModel *)model
 {

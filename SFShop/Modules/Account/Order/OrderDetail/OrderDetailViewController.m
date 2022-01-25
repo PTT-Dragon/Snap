@@ -136,6 +136,7 @@
         [cell setOrderContent:self.model.orderItems[indexPath.row-1] state:self.model.state];
         cell.block = ^{
             ChooseRefundViewController *vc = [[ChooseRefundViewController alloc] init];
+            vc.row = indexPath.row-1;
             vc.model = self.model;
             [self.navigationController pushViewController:vc animated:YES];
         };
@@ -183,7 +184,7 @@
     [SFNetworkManager get:url parameters:@{} success:^(id  _Nullable response) {
         weakself.model = [[OrderDetailModel alloc] initWithDictionary:response error:nil];
         [weakself handleDatas];
-        if (weakself.model.shareBuyOrderId) {
+        if (weakself.model.shareBuyOrderId && ![weakself.model.state isEqualToString:@"E"]) {
             //需要加载团购信息
             [weakself loadGroupDatas];
         }

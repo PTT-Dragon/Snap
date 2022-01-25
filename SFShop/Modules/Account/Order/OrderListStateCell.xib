@@ -36,11 +36,24 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tB6-rm-0Gg">
+                        <rect key="frame" x="299" y="9" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="2ql-lw-3Dr"/>
+                            <constraint firstAttribute="height" constant="22" id="FhL-Cl-7Ku"/>
+                        </constraints>
+                        <state key="normal" image="call-centre-1"/>
+                        <connections>
+                            <action selector="chatAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="E6F-3z-znP"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="rHB-xz-pqh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4fh-Za-3tu"/>
+                    <constraint firstItem="tB6-rm-0Gg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4m3-ge-Mhg"/>
                     <constraint firstItem="UnU-1W-jlf" firstAttribute="leading" secondItem="T3T-9K-Uki" secondAttribute="trailing" constant="5" id="Bl1-Vs-NWL"/>
                     <constraint firstItem="T3T-9K-Uki" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="21" id="QmO-1F-JJw"/>
+                    <constraint firstAttribute="trailing" secondItem="tB6-rm-0Gg" secondAttribute="trailing" constant="22" id="Z4V-va-mUp"/>
                     <constraint firstItem="UnU-1W-jlf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dIC-gO-9Eu"/>
                     <constraint firstItem="T3T-9K-Uki" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pAr-6P-X9L"/>
                     <constraint firstAttribute="trailing" secondItem="rHB-xz-pqh" secondAttribute="trailing" constant="24" id="xla-Rv-gMK"/>
@@ -48,6 +61,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="chatBtn" destination="tB6-rm-0Gg" id="R1X-IN-BQ7"/>
                 <outlet property="statuLabel" destination="rHB-xz-pqh" id="FVL-Lh-eZj"/>
                 <outlet property="storeIconImgview" destination="T3T-9K-Uki" id="7uW-h9-kK3"/>
                 <outlet property="storeNameLabel" destination="UnU-1W-jlf" id="c94-6p-FJB"/>
@@ -55,4 +69,7 @@
             <point key="canvasLocation" x="75" y="73"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="call-centre-1" width="32" height="32"/>
+    </resources>
 </document>

@@ -13,8 +13,10 @@
 @property (nonatomic,strong) UIImageView *imgView;
 @property (nonatomic,strong) UILabel *contentLabel;
 @property (nonatomic,strong) UILabel *titleLabel;
+@property (nonatomic,strong) UILabel *timeLabel;
 @property (nonatomic,strong) UIImageView *rightImgView;
 @property (nonatomic,strong) UIView *bgView;
+@property (nonatomic,strong) UILabel *moreItemLabel;
 @end
 
 @implementation MessageListOrderCell
@@ -73,6 +75,16 @@
         make.right.mas_equalTo(_bgView.mas_right).offset(-12);
         make.centerY.equalTo(_storeNameLabel);
     }];
+    [_bgView addSubview:self.timeLabel];
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(_rightImgView.mas_left).offset(-8);
+        make.centerY.equalTo(_rightImgView);
+    }];
+    [_bgView addSubview:self.moreItemLabel];
+    [_moreItemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(_imgView);
+        make.height.mas_equalTo(15);
+    }];
 }
 - (void)setModel:(MessageOrderListModel *)model
 {
@@ -81,7 +93,10 @@
     self.contentLabel.attributedText = model.message.contentSttrStr;
     self.titleLabel.text = model.message.subject;
     self.storeNameLabel.text = model.store.storeName;
-    [self.storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.store.logoUrl)]];
+    [self.storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.store.logoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
+    _timeLabel.text = model.message.sendTime;
+    _moreItemLabel.hidden = [model.product.productNum isEqualToString:@"1"];
+    _moreItemLabel.text = [NSString stringWithFormat:@"%@%@",model.product.productNum,kLocalizedString(@"ITEM")];
 }
 
 - (UIView *)bgView
@@ -108,6 +123,15 @@
     }
     return _contentLabel;
 }
+- (UILabel *)timeLabel
+{
+    if (!_timeLabel) {
+        _timeLabel = [[UILabel alloc] init];
+        _timeLabel.numberOfLines = 1;
+        _timeLabel.font = CHINESE_SYSTEM(14);
+    }
+    return _timeLabel;
+}
 - (UILabel *)storeNameLabel
 {
     if (!_storeNameLabel) {
@@ -123,6 +147,17 @@
         _titleLabel.font = CHINESE_MEDIUM(14);
     }
     return _titleLabel;
+}
+- (UILabel *)moreItemLabel
+{
+    if (!_moreItemLabel) {
+        _moreItemLabel = [[UILabel alloc] init];
+        _moreItemLabel.font = CHINESE_MEDIUM(12);
+        _moreItemLabel.textAlignment = NSTextAlignmentCenter;
+        _moreItemLabel.textColor = [UIColor whiteColor];
+        _moreItemLabel.backgroundColor = RGBColorFrom16(0xff1659);
+    }
+    return _moreItemLabel;
 }
 - (UIImageView *)storeImgView
 {

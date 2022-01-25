@@ -179,6 +179,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*canReview;
 @property (nonatomic,copy) NSString <Optional>*cancelReason;
 @property (nonatomic,copy) NSString *getStateStr;
+@property (nonatomic,copy) NSString <Optional>*uccAccount;
 @property (nonatomic,copy) NSString <Optional>*completionDate;
 @property (nonatomic,copy) NSString <Optional>*createdDate;
 @property (nonatomic,copy) NSString <Optional>*deductionPrice;

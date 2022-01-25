@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChooseRefundViewController : BaseViewController
 @property (nonatomic,copy) OrderDetailModel *model;
+@property (nonatomic,assign) NSInteger row;
 @end
 
 NS_ASSUME_NONNULL_END

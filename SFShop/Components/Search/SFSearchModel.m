@@ -13,7 +13,7 @@
     SFSearchModel *model = [[SFSearchModel alloc] init];
     model.name = name;
     model.sectionTitle = @"Search Discovery";
-    model.sectionIcon = @"search_clear";
+    model.sectionIcon = @"trash-1";
     model.type = SFSearchHeadTypeDelete;
     model.width = 0;
     return model;

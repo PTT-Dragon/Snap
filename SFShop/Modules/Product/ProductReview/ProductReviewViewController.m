@@ -79,7 +79,7 @@
     _starView4.score = 2;
     _starView5.score = 1;
     _allStarView.score = self.model.evaluationAvg.integerValue;
-    _rateLabel.text = self.model.evaluationAvg;
+    _rateLabel.text = [NSString stringWithFormat:@"%.1f",self.model.evaluationAvg.floatValue];
     _reviewCountLabel.text = [NSString stringWithFormat:@"%ld Reviews",self.model.evaluationCnt];
     _oneCountLabel.text = [NSString stringWithFormat:@"%.0f",self.model.oneStarCnt];
     _twoCountLabel.text = [NSString stringWithFormat:@"%.0f",self.model.twoStarCnt];

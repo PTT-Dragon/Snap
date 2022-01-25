@@ -37,6 +37,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *needTimeLabel;
 @property (weak, nonatomic) IBOutlet UIView *groupView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *showViewWidth;
 @property (nonatomic, strong) dispatch_source_t timer;//倒计时
 
 @end
@@ -65,12 +66,12 @@
 {
     self.groupView.hidden = NO;
     self.seeShareBuyBtn.hidden = NO;
+    CGFloat viewWidth = 0 ;
     if (self.groupModel.groupMembers.count == self.groupModel.shareByNum) {
         //已成团
-        ReviewUserInfoModel *model = self.groupModel.groupMembers.lastObject;
-        [self.addBtn sd_setImageWithURL:[NSURL URLWithString:SFImage(model.photo)] forState:0];
-        self.addBtn.userInteractionEnabled = NO;
+        self.addBtn.hidden = YES;
         self.needTimeLabel.text = kLocalizedString(@"GROUPED");
+        viewWidth = _groupModel.groupMembers.count * 53;
     }else{
         self.inviteBtn.hidden = NO;
         self.addBtn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
@@ -106,6 +107,8 @@
             }
         });
         dispatch_resume(_timer);
+        viewWidth = (_groupModel.groupMembers.count+1) * 53;
+        _addBtn.frame = CGRectMake(_groupModel.groupMembers.count * 53, 0, 48, 48);
     }
     self.seeShareBuyBtn.layer.borderWidth = 1;
     self.seeShareBuyBtn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
@@ -113,14 +116,24 @@
     self.needMemberCountLabel.text = [NSString stringWithFormat:@"%ld",self.groupModel.shareByNum];
     self.productNameLabel.text = self.groupModel.offerName;
     self.productPriceLabel.text = [self.groupModel.shareBuyPrice currency];
+//    CGFloat width = 48;
+//    NSInteger i = 0;
+//    CGFloat right = self.groupModel.groupMembers.count>3 ? 24: 50;
+//    for (ReviewUserInfoModel *memberModel in self.groupModel.groupMembers) {
+//        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.showImgView.width-48-i*right, 0, width, width)];
+//        [imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(memberModel.photo)]];
+//        imgView.clipsToBounds = YES;
+//        imgView.layer.cornerRadius = 24;
+//        [self.showImgView addSubview:imgView];
+//        i++;
+//    }
+    _showViewWidth.constant = viewWidth;
     CGFloat width = 48;
     NSInteger i = 0;
-    CGFloat right = self.groupModel.groupMembers.count>3 ? 24: 50;
-    for (ReviewUserInfoModel *memberModel in self.groupModel.groupMembers) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.showImgView.width-48-i*right, 0, width, width)];
+//    CGFloat right = _model.groupMembers.count>3 ? 24: 50;
+    for (ReviewUserInfoModel *memberModel in _groupModel.groupMembers) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*53, 0, width, width)];
         [imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(memberModel.photo)]];
-        imgView.clipsToBounds = YES;
-        imgView.layer.cornerRadius = 24;
         [self.showImgView addSubview:imgView];
         i++;
     }

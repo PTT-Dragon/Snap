@@ -195,7 +195,7 @@
     _btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
     _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
     [_btn1 setTitle:@"立即购买" forState:0];
-    _btn1.titleLabel.font = CHINESE_SYSTEM(14);
+    _btn1.titleLabel.font = [UIFont fontWithName:@"semiblod" size:15];
     [_btn1 setTitleColor:[UIColor whiteColor] forState:0];
     [_btn1 addTarget:self action:@selector(gotoBuyOrCart:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_btn1];
@@ -210,7 +210,7 @@
     [_btn2 addTarget:self action:@selector(gotoBuyOrCart:) forControlEvents:UIControlEventTouchUpInside];
     [_btn2 jk_setBackgroundColor: [UIColor whiteColor] forState:UIControlStateNormal];
     [_btn2 setTitle:@"加入购物车" forState:0];
-    _btn2.titleLabel.font = CHINESE_SYSTEM(14);
+    _btn2.titleLabel.font = [UIFont fontWithName:@"semiblod" size:15];
     [_btn2 setTitleColor:RGBColorFrom16(0xFF1659) forState:0];
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
@@ -276,7 +276,7 @@
 {
     if (self.stockModel.count == 0 || self.maxPurchaseCount == 0) {
         _btn2.hidden = YES;
-        [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK") forState:0];
+        [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK_IN_CURRENT_REGION") forState:0];
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFFE5EB) forState:UIControlStateNormal];
         [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -533,9 +533,16 @@
         self.btn1.enabled = YES;
         self.btn2.enabled = YES;
     } else {
-        [self.btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK") forState:0];
+        [self.btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK_IN_CURRENT_REGION") forState:0];
         self.btn1.enabled = NO;
         self.btn2.enabled = NO;
+        self.btn2.hidden = YES;
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
     }
 }
 

@@ -7,17 +7,17 @@
 
 #import "CancelOrderChooseReason.h"
 
+
 @implementation CancelOrderChooseReason
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _label.text = kLocalizedString(@"ORDER_CANCEL_REASON");
+    _reasonLabel.text = kLocalizedString(@"PLEASE_SELECT");
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (IBAction)btnAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    self.block(sender.selected);
 }
-
 @end

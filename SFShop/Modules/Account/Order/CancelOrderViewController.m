@@ -49,17 +49,27 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
-        [cell setContent:_model];
-        return cell;
-    }else if (indexPath.row == _model.orderItems.count+1){
+//    if (indexPath.row == 0) {
+//        OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
+//        [cell setContent:_model];
+//        return cell;
+//    }else
+        if (indexPath.row == _model.orderItems.count){
         CancelOrderChooseReason *cell = [tableView dequeueReusableCellWithIdentifier:@"CancelOrderChooseReason"];
+        __block CancelOrderChooseReason *cellBlock = cell;
+        cell.block = ^(BOOL sel) {
+            ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
+            vc.dataSource = self.reasonArr;
+            vc.delegate = self;
+            [self presentViewController:vc animated:YES completion:^{
+                cellBlock.btn.selected = NO;
+            }];
+        };
         cell.reasonLabel.text = _selReasonModel ? _selReasonModel.orderReasonName : @"Cancellation Reason";
         return cell;
     }
     OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-    [cell setContent:_model.orderItems[indexPath.row-1]];
+    [cell setRefundContent:_model.orderItems[indexPath.row]];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -68,22 +78,22 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _model.orderItems.count+2;
+    return _model.orderItems.count+1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? 40 : indexPath.row == 1+_model.orderItems.count ? 60: 118;
+    return indexPath.row == _model.orderItems.count ? 100: 118;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == _model.orderItems.count+1) {
-        ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
-        vc.dataSource = self.reasonArr;
-        vc.delegate = self;
-        [self presentViewController:vc animated:YES completion:^{
-                    
-        }];
+//        ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
+//        vc.dataSource = self.reasonArr;
+//        vc.delegate = self;
+//        [self presentViewController:vc animated:YES completion:^{
+//
+//        }];
     }
 }
 - (void)loadReasonDatas

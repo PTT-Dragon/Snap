@@ -152,11 +152,11 @@
 //  "MODIFY_ADD_SUCCESS" = "Ganti alamat berhasil";
 //  "SERVICE_DETAIL" = "detail layanan";
 //  "CARGO_STATUS" = "Status pengiriman barang";
-//  "SERVICE_REASON" = "Alasan";
+  "SERVICE_REASON" = "Alasan";
   "PLEASE_SELECT" = "Mohon pilih";
   "REFUND_AMOUNT" = "Jumlah pengembalian uang";
   "INSTRUCTIONS" = "Instruksi";
-//  "REFUND_RETURN" = "Pengembalian dana";
+  "REFUND_RETURN" = "Pengembalian dana";
 //  "REASON_TITLE" = "Silakan Pilih Alasan";
 //  "MANY_SALES_HINT" = "Item ini tidak dapat diganti / dikembalikan lagi. Untuk bantuan lebih lanjut; silahkan hubungi costumer support.";
   "ORDER_CANCEL_REASON" = "Alasan Pembatalan";
@@ -477,7 +477,8 @@
 //  "ORDER" = "Order";
 //  "LIKE" = "Like";
 //  "AGENT_SERVICE" = "Agent Service";
-//  "ITEM" = "Item"
+  "ITEM" = "Items"
+"OUT_OF_STOCK_IN_CURRENT_REGION" = "Tidak tersedia di negara ini";
 "Empty_Tip_NoPage" = "Oops! Halaman tidak ditemukan.";
 "Empty_Tip_NoNetWork" = "Internet error; silakan coba nanti.";
 "Empty_Tip_NoShoppingCar" = "Tidak ada item di dalam karet ini.";

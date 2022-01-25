@@ -37,41 +37,37 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzy-MO-NJU">
-                        <rect key="frame" x="10" y="22" width="136" height="48"/>
+                        <rect key="frame" x="92" y="16" width="136" height="48"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNJ-jE-UvL">
+                                <rect key="frame" x="44" y="0.0" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="00165_02_add_filled"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="width" constant="136" id="cS5-ka-kdF"/>
                             <constraint firstAttribute="height" constant="48" id="cm9-v8-5Ol"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNJ-jE-UvL">
-                        <rect key="frame" x="156" y="22" width="48" height="48"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="48" id="7XS-QG-oqs"/>
-                            <constraint firstAttribute="height" constant="48" id="sqD-av-RCg"/>
-                        </constraints>
-                        <state key="normal" image="00165_02_add_filled"/>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="IHZ-Jl-PkK" secondAttribute="trailing" constant="16" id="0Ou-2f-vco"/>
                     <constraint firstItem="IHZ-Jl-PkK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="2vn-P7-5nw"/>
-                    <constraint firstItem="guV-2Y-zbm" firstAttribute="top" secondItem="PNJ-jE-UvL" secondAttribute="bottom" constant="12" id="3ec-W5-IYP"/>
-                    <constraint firstItem="PNJ-jE-UvL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="Ajf-bL-Oac"/>
+                    <constraint firstItem="yzy-MO-NJU" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="39d-e0-XRw"/>
+                    <constraint firstItem="yzy-MO-NJU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="9Bq-bb-rWr"/>
                     <constraint firstItem="IHZ-Jl-PkK" firstAttribute="top" secondItem="guV-2Y-zbm" secondAttribute="bottom" constant="12" id="FqO-Oo-74E"/>
-                    <constraint firstItem="yzy-MO-NJU" firstAttribute="centerY" secondItem="PNJ-jE-UvL" secondAttribute="centerY" id="Ngw-a5-bfi"/>
                     <constraint firstItem="guV-2Y-zbm" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="QqY-sw-yWs"/>
-                    <constraint firstItem="PNJ-jE-UvL" firstAttribute="leading" secondItem="yzy-MO-NJU" secondAttribute="trailing" constant="10" id="c9a-Pv-0cd"/>
-                    <constraint firstItem="yzy-MO-NJU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ugK-Be-82t"/>
+                    <constraint firstItem="guV-2Y-zbm" firstAttribute="top" secondItem="yzy-MO-NJU" secondAttribute="bottom" constant="18" id="Vmb-5u-uvl"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <constraints>
-                <constraint firstItem="PNJ-jE-UvL" firstAttribute="centerX" secondItem="aW0-zy-SZf" secondAttribute="centerX" constant="20" id="Llb-Jr-J6f"/>
-            </constraints>
             <connections>
                 <outlet property="inviteBtn" destination="PNJ-jE-UvL" id="AKS-Qv-Qv2"/>
                 <outlet property="shareBtn" destination="IHZ-Jl-PkK" id="9r7-5v-gDU"/>
                 <outlet property="showImgView" destination="yzy-MO-NJU" id="toc-jB-720"/>
+                <outlet property="showViewWidth" destination="cS5-ka-kdF" id="YxT-ku-KOY"/>
                 <outlet property="stateLabel" destination="guV-2Y-zbm" id="3wu-Aw-W3H"/>
             </connections>
             <point key="canvasLocation" x="126" y="42"/>

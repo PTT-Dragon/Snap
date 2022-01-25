@@ -54,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSInteger relaType;
 @property (nonatomic,copy) NSString *relaObjId;
 @property (nonatomic,copy) NSString *content;
+@property (nonatomic,copy) NSString *sendTime;
 @property (nonatomic,strong) MessageContactModel *message;
 @property (nonatomic,strong) MessageProductModel *product;
 @property (nonatomic,strong) MessageStoreModel *store;

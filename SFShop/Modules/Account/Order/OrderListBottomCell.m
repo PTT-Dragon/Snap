@@ -85,8 +85,8 @@ static dispatch_source_t _timer;
     _btn2.hidden = [model.state isEqualToString:@"B"] || [model.state isEqualToString:@"G"];
     self.moreBtn.hidden = !([_model.state isEqualToString:@"D"] || [_model.state isEqualToString:@"C"]);
     [self.moreActionBtn1 setTitle:kLocalizedString(@"REBUY") forState:0];
-    _groupView.hidden = !model.shareBuyBriefInfo || [[NSDate dateFromString:model.shareBuyBriefInfo.expDate] utcTimeStamp] < [[NSDate date] utcTimeStamp];
-    if (model.shareBuyBriefInfo && !_timer && !_groupView.hidden && (model.shareBuyBriefInfo.shareByNum != model.shareBuyBriefInfo.memberQty)) {
+    _groupView.hidden = [model.state isEqualToString:@"a"] || !model.shareBuyBriefInfo || [[NSDate dateFromString:model.shareBuyBriefInfo.expDate] utcTimeStamp] < [[NSDate date] utcTimeStamp];
+    if (model.shareBuyBriefInfo && !_timer && !_groupView.hidden && (model.shareBuyBriefInfo.shareByNum != model.shareBuyBriefInfo.memberQty) && ![model.state isEqualToString:@"A"]) {
         [self layoutGroupViewWithUpdateTime:YES];
     }else{
 //        if (_timer) {

@@ -20,6 +20,7 @@ typedef enum :NSUInteger{
 @property (nonatomic,copy) OrderDetailModel *model;
 @property (nonatomic,strong) RefundChargeModel *chargeModel;
 @property (nonatomic,assign) RefundOrReturnViewType type;
+@property (nonatomic,assign) NSInteger row;
 @end
 
 NS_ASSUME_NONNULL_END

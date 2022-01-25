@@ -10,6 +10,8 @@
 @interface DeliveryAddressCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 
 @end
 
@@ -21,6 +23,8 @@
 }
 - (void)setContent:(OrderDetailModel *)model
 {
+    _nameLabel.text = model.deliveryAddress.contactName;
+    _phoneLabel.text = model.deliveryAddress.contactNbr;
     _contentLabel.text = model.deliveryAddress.contactAddress;
     _emailLabel.text = [NSString stringWithFormat:@"  %@",model.deliveryAddress.contactEmail];
 }

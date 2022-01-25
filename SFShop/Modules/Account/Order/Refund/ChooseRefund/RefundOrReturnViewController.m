@@ -9,7 +9,7 @@
 #import "ChooseReasonViewController.h"
 #import "OrderListStateCell.h"
 #import "OrderListItemCell.h"
-#import "CancelOrderChooseReason.h"
+#import "RefundOrReturnReasonCell.h"
 #import "RefundDetailImagesCell.h"
 #import "RefundOrReturnExplainCell.h"
 #import "RefundViewController.h"
@@ -42,7 +42,7 @@
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
-    [_tableView registerNib:[UINib nibWithNibName:@"CancelOrderChooseReason" bundle:nil] forCellReuseIdentifier:@"CancelOrderChooseReason"];
+    [_tableView registerNib:[UINib nibWithNibName:@"RefundOrReturnReasonCell" bundle:nil] forCellReuseIdentifier:@"RefundOrReturnReasonCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"RefundDetailImagesCell" bundle:nil] forCellReuseIdentifier:@"RefundDetailImagesCell"];
     [_tableView registerClass:[RefundOrReturnExplainCell class] forCellReuseIdentifier:@"RefundOrReturnExplainCell"];
     
@@ -68,11 +68,11 @@
             OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
             [cell setOrderDetailContent:_model];
             return cell;
-        }else if (indexPath.row == _model.orderItems.count+1){
-            CancelOrderChooseReason *cell = [tableView dequeueReusableCellWithIdentifier:@"CancelOrderChooseReason"];
-            cell.reasonLabel.text = kLocalizedString(@"PLEASE_SELECT");//_selReasonModel ? _selReasonModel.orderReasonName : @"Cancellation Reason";
+        }else if (indexPath.row == 2){
+            RefundOrReturnReasonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundOrReturnReasonCell"];
+            [cell.selBtn setTitle:_selReasonModel ? _selReasonModel.orderReasonName:kLocalizedString(@"PLEASE_SELECT") forState:0];//_selReasonModel ? _selReasonModel.orderReasonName : @"Cancellation Reason";
             return cell;
-        }else if (indexPath.row == _model.orderItems.count + 2){
+        }else if (indexPath.row == 3){
             RefundOrReturnExplainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundOrReturnExplainCell"];
             cell.chargeModel = self.chargeModel;
             cell.type = self.type;
@@ -82,7 +82,7 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setContent:_model.orderItems[indexPath.row-1]];
+        [cell setRefundContent:_model.orderItems[_row]];
         return cell;
     }
     
@@ -98,19 +98,19 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? _model.orderItems.count+3 : 1;
+    return section == 0 ? 4 : 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return  indexPath.row == 0 ? 40 : indexPath.row == 1+_model.orderItems.count ? 60: indexPath.row == 2 + _model.orderItems.count ? self.type == REPLACETYPE ? 66: 92:  118;
+        return  indexPath.row == 0 ? 40 : indexPath.row == 2 ? 60: indexPath.row == 3 ? self.type == REPLACETYPE ? 66: 92:  118;
     }
     return 200;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == _model.orderItems.count+1) {
+    if (indexPath.row == 2) {
         ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
         vc.dataSource = _reasonArr;
         vc.delegate = self;
@@ -177,7 +177,7 @@
     NSString *serviceType = _type == RETURNTYPE ? @"2": _type == REPLACETYPE ? @"4": @"3";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:_model.orderId forKey:@"orderId"];
-    [params setValue:[_model.orderItems.firstObject orderItemId] forKey:@"orderItemId"];
+    [params setValue:[_model.orderItems[_row] orderItemId] forKey:@"orderItemId"];
     [params setValue:@"1" forKey:@"refundMode"];
     [params setValue:serviceType forKey:@"serviceType"];
     [params setValue:self.chargeModel.refundCharge forKey:@"refundCharge"];
