@@ -10,8 +10,10 @@
 #import <UIKit/UIKit.h>
 
 @interface NSString (Add)
-//转化为千分位格式,例如 :23456789 输出：23,456,789
-- (NSString *)thousandthFormat;
+
+/// 转化为千分位格式,例如 :23456789 输出：23,456,789
+/// @param decimal 小数保留位
+- (NSString *)thousandthFormat:(NSInteger)decimal;
 
 /**
  计算字符出现的次数
