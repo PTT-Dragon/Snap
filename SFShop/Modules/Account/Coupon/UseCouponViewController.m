@@ -74,7 +74,7 @@
     UseCouponProductCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UseCouponProductCell"];
     [cell setContent:self.dataArray[indexPath.section]];
     cell.block = ^(CategoryRankPageInfoListModel * _Nonnull model) {
-        [self showAttrsViewWithAttrType:cartType model:model];
+//        [self showAttrsViewWithAttrType:cartType model:model];
     };
     return cell;
 }
@@ -207,15 +207,27 @@
     }
     return _headSelectorView;
 }
+- (void)loadProductInfoWithModel:(CategoryRankPageInfoListModel *)model
+{
+    [SFNetworkManager get:[SFNet.offer getDetailOf: model.offerId] parameters:@{} success:^(id  _Nullable response) {
+        ProductItemModel *detailModel = [[ProductItemModel alloc] initWithDictionary: response error: nil];
+        [self showAttrsViewWithAttrType:cartType model:model productModel:detailModel];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)loadStock
+{
+    
+}
 
-
-- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type model:(CategoryRankPageInfoListModel *)model{
+- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type model:(CategoryRankPageInfoListModel *)model productModel:(ProductItemModel *)productModel{
     _attrView = [[ProductSpecAttrsView alloc] init];
     _attrView.attrsType = type;
     _attrView.campaignsModel = model.campaigns;
-//    _attrView.selProductModel = model.pro self.selProductModel;
+    _attrView.selProductModel = productModel;
 //    _attrView.stockModel = model.sto;
-//    _attrView.model = model.;
+    _attrView.model = productModel;
     MPWeakSelf(self)
     MPWeakSelf(_attrView)
     _attrView.buyOrCartBlock = ^(ProductSpecAttrsType type) {

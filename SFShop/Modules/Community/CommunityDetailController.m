@@ -21,6 +21,7 @@
 #import "BaseMoreView.h"
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BaseNavViewDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
 
 @property(nonatomic, strong) ArticleDetailModel *model;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateTableViewHei;
@@ -82,6 +83,7 @@
         make.left.top.right.mas_equalTo(0);
         make.height.mas_equalTo(navBarHei);
     }];
+    _viewTop.constant = navBarHei;
     [self setUpSubViews];
     [self request];
     [self.replyField addTarget:self
