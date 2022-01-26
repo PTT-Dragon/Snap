@@ -41,17 +41,18 @@
 - (void)initWebview
 {
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+//    configuration.applicationNameForUserAgent = @"app/CYLON-APP";
     self.configuration = configuration;
     WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, _isHome ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? statuBarHei: navBarHei)) configuration:_configuration];
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
-//    NSString *jsFounction = [NSString stringWithFormat:@"sysAccount('%@')", _sysAccount];
-//    [self.webView evaluateJavaScript:jsFounction completionHandler:nil];
-    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        NSString *newUserAgent = [result stringByAppendingFormat:@"/%@",@"app/CYLON-APP"];
-        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":@"app/CYLON-APP"}];
-    }];
+//    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//        NSString *newUserAgent = [result stringByAppendingFormat:@" %@",@"app/CYLON-APP"];
+//        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
+//        webview.customUserAgent = newUserAgent;
+//    }];
+    
     [self.view addSubview:webview];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     [self addJsBridge];
