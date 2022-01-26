@@ -105,6 +105,7 @@
 
 - (void)chineseBtnAction {
     UserDefaultSetObjectForKey(kLanguageChinese, @"Language");
+    MJRefreshConfig.defaultConfig.languageCode = @"zh-Hans";
     [self.checkImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.chineseBtn.mas_top);
         make.size.mas_equalTo(CGSizeMake(50, 50));
