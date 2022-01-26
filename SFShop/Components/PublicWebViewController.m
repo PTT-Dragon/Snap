@@ -144,7 +144,7 @@
     // 设置localStorage
     NSString *token = [NSString stringWithFormat:@"localStorage.setItem('h5Token', '%@')", model.accessToken];
     NSString *isLogin = [NSString stringWithFormat:@"localStorage.setItem('isLogin', '%d')", model ? YES : NO];
-    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('language', '%@')",UserDefaultObjectForKey(@"Language")];
+    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')",UserDefaultObjectForKey(@"Language")];
     [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];
     [self.webView evaluateJavaScript:language completionHandler:nil];
