@@ -123,7 +123,7 @@
 //  "DONT_HAVE_ACCOUNT" = "还没有账号？";
 //  "SIGN_UP" = "注册";
 //  "SIGN_TO_LOGIN" = "注册成功，请重新登录";
-//  "CATEGORY" = "分类";
+  "CATEGORY" = "分类";
   "GET_NOW" = "领券";
 //  "COLLECT_SUCCESS" = "加入愿望单成功";
 //  "DEL_COLLECT_SUCCESS" = "从愿望单删除成功";
@@ -133,7 +133,7 @@
 //  "ENDS_IN" = "结束";
 //  "TOTAL" = "总共";
   "BUY_NOW" = "立即购买";
-//  "BRANDS" = "品牌";
+  "BRANDS" = "品牌";
 //  "PRICE" = "价格";
 //  "REFUND" = "退款";
   "RETURN" = "退货";
@@ -181,7 +181,7 @@
 //  "REVIEW_DETAIL" = "评价详情";
 //  "RETURN_ADDRESS" = "退货地址";
 //  "MY_FAVORITE" = "我的收藏";
-//  "CATEGORIES" = "分类";
+  "CATEGORIES" = "分类";
 //  "BUY" = "购买";
 //  "REPLIES" = "评论";
 //  "SAYSOMETHING" = "说些什么…";

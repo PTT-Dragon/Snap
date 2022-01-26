@@ -9,6 +9,7 @@
 #import "CustomTextField.h"
 #import "SFSearchView.h"
 #import "SFSearchingView.h"
+#import "SceneManager.h"
 
 @interface SFSearchNav ()<UITextFieldDelegate>
 @property (nonatomic, readwrite, strong) SFSearchItem *bItem;
@@ -93,8 +94,11 @@
     self.searchView.dataArray = _dataArray;
 }
 
-- (void)activeSearch {
-    [self.textField becomeFirstResponder];
+- (void)setActiveSearch:(BOOL)activeSearch {
+    _activeSearch = activeSearch;
+    if (_activeSearch) {
+        [self.textField becomeFirstResponder];
+    }
 }
 
 #pragma mark - Event
@@ -103,6 +107,9 @@
         if ([self.superview.subviews containsObject:self.searchView]) {
             [self.searchView removeFromSuperview];
             [self endEditing:YES];
+            if (self.activeSearch) {
+                [SceneManager transToHome];
+            }
         } else {
             !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(nil,NO);
         }
@@ -119,9 +126,6 @@
             [self.superview addSubview:self.searchView];
         }
     }
-//    if (textField.text.length > 0) {
-//        [self.searchingView requestAssociate:textField.text];
-//    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -143,6 +147,8 @@
     if ([self.superview.subviews containsObject:self.searchView]) {
         [self.searchView removeFromSuperview];
     }
+    self.textField.text = qs;
+    self.activeSearch = NO;
     !self.searchBlock ?: self.searchBlock(qs);
     [self endEditing:YES];
 }

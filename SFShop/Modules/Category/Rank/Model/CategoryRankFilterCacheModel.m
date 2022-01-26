@@ -7,7 +7,7 @@
 
 #import "CategoryRankFilterCacheModel.h"
 #import "NSString+Fee.h"
-
+#import "CategoryRankModel.h"
 
 @implementation CategoryRankFilterCacheModel
 
@@ -33,6 +33,21 @@
     
     if (_evaluationId && ![_evaluationId isEqualToString:@""]) {
         [result setObject:_evaluationId forKey:@"evaluationAvgs"];
+    }
+    
+    NSMutableArray *arr = [NSMutableArray array];
+    for (CategoryRankAttrModel *model in _offerAttrValues) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        if (model.idStr.length > 0) {
+            [dict setObject:model.idStr forKey:@"attrId"];
+        }
+        if (model.name.length > 0) {
+            [dict setObject:model.name forKey:@"attrValues"];
+        }
+        [arr addObject:dict];
+    }
+    if (arr.count) {
+        [result setObject:arr forKey:@"offerAttrValues"];
     }
     
     if (_qs && ![_qs isEqualToString:@""]) {
