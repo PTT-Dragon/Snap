@@ -218,6 +218,7 @@
         _textField.textAlignment = NSTextAlignmentLeft;
         _textField.borderStyle = UITextBorderStyleLine;
         _textField.returnKeyType = UIReturnKeySearch;
+        _textField.placeholder = kLocalizedString(@"Search");
         [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldDidChangeValue:)
                                                  name:UITextFieldTextDidChangeNotification

@@ -52,6 +52,9 @@
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[FAQQuestionModel alloc] initWithDictionary:dic error:nil]];
         }
+        if (weakself.block) {
+            weakself.block(weakself.dataSource.count == 0,self.searchText);
+        }
         [weakself.tableView reloadData];
         [weakself.tableView.mj_header endRefreshing];
     } failed:^(NSError * _Nonnull error) {

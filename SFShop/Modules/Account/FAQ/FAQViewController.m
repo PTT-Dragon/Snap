@@ -17,6 +17,9 @@
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @property (nonatomic,strong) VTMagicController *magicController;
+@property (nonatomic,strong) UIView *emptyView;
+@property (nonatomic,strong) UILabel *label;
+
 
 @end
 
@@ -53,7 +56,7 @@
     }
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
-    _magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-44);
+    _magicController.view.frame = CGRectMake(0, navBarHei+50, MainScreen_width, MainScreen_height-navBarHei-44);
     [_magicController.magicView reloadData];
     [self.view addSubview:self.navSearchView];
 }
@@ -81,6 +84,14 @@
 //    if (!gridViewController) {
         gridViewController = [[FAQChildViewController alloc] init];
         gridViewController.model = self.menuList[pageIndex];
+    gridViewController.block = ^(BOOL show,NSString *qs) {
+        if (show) {
+            [self.view addSubview:self.emptyView];
+            self.label.text = [NSString stringWithFormat:@"Sorry,we were unable to find results for %@",qs];
+        }else{
+            [self.emptyView removeFromSuperview];
+        }
+    };
 //    }
     return gridViewController;
 }
@@ -104,7 +115,7 @@
 - (SFSearchNav *)navSearchView {
     if (_navSearchView == nil) {
         __weak __typeof(self)weakSelf = self;
-        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, 44) backItme:nil rightItem:nil searchBlock:^(NSString * _Nonnull qs) {
+        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(-30, navBarHei, MainScreen_width+80, 44) backItme:nil rightItem:nil searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
             FAQChildViewController *vc = strongSelf.magicController.currentViewController;
             vc.searchText = qs;
@@ -127,5 +138,29 @@
         _magicController.magicView.scrollEnabled = NO;
     }
     return _magicController;
+}
+- (UIView *)emptyView
+{
+    if (!_emptyView) {
+        _emptyView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navSearchView.bottom+10, MainScreen_width, 150)];
+        _emptyView.backgroundColor = [UIColor whiteColor];
+        [_emptyView addSubview:self.label];
+        UILabel *explainLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, _label.bottom+10, MainScreen_width-32, 100)];
+        explainLabel.numberOfLines = 0;
+        explainLabel.textColor = RGBColorFrom16(0x999999);
+        explainLabel.text = @"Please check the spelling use more general words and try again";
+        [_emptyView addSubview:explainLabel];
+    }
+    return _emptyView;
+}
+- (UILabel *)label
+{
+    if (!_label) {
+        _label = [[UILabel alloc] initWithFrame:CGRectMake(16, 10, MainScreen_width-32, 40)];
+        _label.textColor = [UIColor blackColor];
+        _label.font = CHINESE_BOLD(15);
+        _label.numberOfLines = 0;
+    }
+    return _label;
 }
 @end

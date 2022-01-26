@@ -23,5 +23,15 @@
 {
     _titleLabel.text = dic.allKeys.firstObject;
     _contentLabel.text = dic.allValues.firstObject;
+    if ([dic.allKeys.firstObject rangeOfString:[NSString stringWithFormat:@"%@:",kLocalizedString(@"Total")]].location != NSNotFound) {
+        _titleLabel.font = CHINESE_BOLD(15);
+        _contentLabel.font = CHINESE_BOLD(15);
+        _contentLabel.textColor = RGBColorFrom16(0xff1659);
+    }else{
+        _titleLabel.font = CHINESE_SYSTEM(14);
+        _contentLabel.font = CHINESE_SYSTEM(14);
+        
+        _contentLabel.textColor = [UIColor blackColor];
+    }
 }
 @end

@@ -30,6 +30,7 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 #import <OYCountDownManager/OYCountDownManager.h>
+#import "OrderDetailTitleCell.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -100,6 +101,8 @@
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderDetailGroupBuyCell" bundle:nil] forCellReuseIdentifier:@"OrderDetailGroupBuyCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"OrderDetailTitleCell" bundle:nil] forCellReuseIdentifier:@"OrderDetailTitleCell"];
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
@@ -142,17 +145,21 @@
         };
         return cell;
     }
+    if (indexPath.row == 0) {
+        OrderDetailTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderDetailTitleCell"];
+        return cell;
+    }
     OrderPayInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderPayInfoCell"];
-    [cell setContent:self.dataSource[indexPath.row]];
+    [cell setContent:self.dataSource[indexPath.row-1]];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;//self.dataSource.count;
+    return 5;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? self.model.deliverys.count == 0 ? 0: 1: section == 2 ? self.groupModel ? 1:0: section == 1 ? 1: section == 3 ? self.model.orderItems.count+1+self.orderInfoDataSource.count : self.dataSource.count;
+    return section == 0 ? self.model.deliverys.count == 0 ? 0: 1: section == 2 ? self.groupModel ? 1:0: section == 1 ? 1: section == 3 ? self.model.orderItems.count+1+self.orderInfoDataSource.count : self.dataSource.count+1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -206,8 +213,8 @@
 - (void)handleDatas
 {
     OrderDetailPaymentsModel *paymentModel = self.model.payments.firstObject;
-    [_dataSource addObjectsFromArray:@[@{@"Order Code":self.model.orderNbr},@{@"Creation time":self.model.createdDate},@{@"Player Email":self.model.billAddress.contactEmail},@{@"Payment time":paymentModel ? paymentModel.paymentDate : @"--"},@{@"Completion time":self.model.completionDate ? self.model.completionDate: @"--"}]];
-    [_orderInfoDataSource addObjectsFromArray:@[@{@"subtotal":[self.model.offerPrice currency]},@{@"promotion":[NSString stringWithFormat:@"-%@",[self.model.storeCampaignPrice currency]]},@{@"shipping Fee":[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"Total:%@ items",self.model.offerCnt]:[self.model.orderPrice currency]}]];
+    [_dataSource addObjectsFromArray:@[@{kLocalizedString(@"ORDER_CODE"):self.model.orderNbr},@{kLocalizedString(@"CREATION_TIME"):self.model.createdDate},@{kLocalizedString(@"PAYER_EMAIL"):self.model.billAddress.contactEmail},@{kLocalizedString(@"PAYMENT_TIME"):paymentModel ? paymentModel.paymentDate : @"--"},@{kLocalizedString(@"COMPLETION_TIME"):self.model.completionDate ? self.model.completionDate: @"--"}]];
+    [_orderInfoDataSource addObjectsFromArray:@[@{kLocalizedString(@"SUBTOTAL"):[self.model.offerPrice currency]},@{kLocalizedString(@"PROMOTION"):[NSString stringWithFormat:@"-%@",[self.model.storeCampaignPrice currency]]},@{kLocalizedString(@"SHIPPING_FEE"):[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"%@:%@ items",kLocalizedString(@"Total"),self.model.offerCnt]:[self.model.orderPrice currency]}]];
     [self.tableView reloadData];
     [self layoutSubviews];
 }

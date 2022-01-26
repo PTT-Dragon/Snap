@@ -105,6 +105,8 @@
 		1B57FF1F27A0CF360097B6C9 /* LogisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B57FF1D27A0CF360097B6C9 /* LogisticsCell.m */; };
 		1B57FF2027A0CF360097B6C9 /* LogisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B57FF1E27A0CF360097B6C9 /* LogisticsCell.xib */; };
 		1B593E5E2799437100D8CDF3 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B593E5C2799437100D8CDF3 /* NSDate+Helper.m */; };
+		1B595E2F27A117EA0027BCAA /* OrderDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B595E2D27A117EA0027BCAA /* OrderDetailTitleCell.m */; };
+		1B595E3027A117EA0027BCAA /* OrderDetailTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B595E2E27A117EA0027BCAA /* OrderDetailTitleCell.xib */; };
 		1B6246612761FCAE00009DE2 /* ProductReviewChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6246602761FCAE00009DE2 /* ProductReviewChildViewController.m */; };
 		1B62466527624D9E00009DE2 /* ProductReviewLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B62466327624D9E00009DE2 /* ProductReviewLabelCell.m */; };
 		1B62466627624D9E00009DE2 /* ProductReviewLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B62466427624D9E00009DE2 /* ProductReviewLabelCell.xib */; };
@@ -712,6 +714,9 @@
 		1B57FF1E27A0CF360097B6C9 /* LogisticsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogisticsCell.xib; sourceTree = "<group>"; };
 		1B593E5C2799437100D8CDF3 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		1B593E5D2799437100D8CDF3 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
+		1B595E2C27A117EA0027BCAA /* OrderDetailTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailTitleCell.h; sourceTree = "<group>"; };
+		1B595E2D27A117EA0027BCAA /* OrderDetailTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailTitleCell.m; sourceTree = "<group>"; };
+		1B595E2E27A117EA0027BCAA /* OrderDetailTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailTitleCell.xib; sourceTree = "<group>"; };
 		1B62465F2761FCAE00009DE2 /* ProductReviewChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewChildViewController.h; sourceTree = "<group>"; };
 		1B6246602761FCAE00009DE2 /* ProductReviewChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductReviewChildViewController.m; sourceTree = "<group>"; };
 		1B62466227624D9E00009DE2 /* ProductReviewLabelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewLabelCell.h; sourceTree = "<group>"; };
@@ -2043,6 +2048,9 @@
 				1B57FF1C27A0CF360097B6C9 /* LogisticsCell.h */,
 				1B57FF1D27A0CF360097B6C9 /* LogisticsCell.m */,
 				1B57FF1E27A0CF360097B6C9 /* LogisticsCell.xib */,
+				1B595E2C27A117EA0027BCAA /* OrderDetailTitleCell.h */,
+				1B595E2D27A117EA0027BCAA /* OrderDetailTitleCell.m */,
+				1B595E2E27A117EA0027BCAA /* OrderDetailTitleCell.xib */,
 			);
 			path = OrderDetail;
 			sourceTree = "<group>";
@@ -3543,6 +3551,7 @@
 				1B92D15027327F4400E73F98 /* ChooseAreaViewController.xib in Resources */,
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				1B6C52CC275C894C00A1C617 /* RelationOrderDetailInfoCell.xib in Resources */,
+				1B595E3027A117EA0027BCAA /* OrderDetailTitleCell.xib in Resources */,
 				1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */,
 				1B43A40A279D91D900E7E786 /* AddReviewItemCell.xib in Resources */,
 				1BD10C3E2761F4B100BFC1AD /* ProductReviewViewController.xib in Resources */,
@@ -3992,6 +4001,7 @@
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
 				1B6C52A8275B672200A1C617 /* ZLClipItem.m in Sources */,
 				1BB1CB63276341B6008D71DF /* SFNetworkFlashSaleModule.m in Sources */,
+				1B595E2F27A117EA0027BCAA /* OrderDetailTitleCell.m in Sources */,
 				8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */,
 				AE80F26E2732EB9100A2D8DE /* ProductCheckoutBuyView.m in Sources */,
 				4B9FBA0526FB7AB600C90790 /* LoginViewController.m in Sources */,

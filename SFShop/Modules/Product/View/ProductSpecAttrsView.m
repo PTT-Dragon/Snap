@@ -26,6 +26,7 @@
 @property (nonatomic,strong) UIButton *btn1;
 @property (nonatomic,strong) UIButton *btn2;
 @property (nonatomic,strong) UIView *groupView;
+@property (nonatomic,strong) UIView *contentView;
 @property (nonatomic,strong) UILabel *groupLabel;
 @property (nonatomic,strong) UILabel *groupCountLabel;
 @property (nonatomic,strong) UILabel *maxPurchaseLabel;
@@ -48,29 +49,29 @@
 
 -(void)setupSubViews {
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    UIView *contentView = [[UIView alloc] init];
-    contentView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:contentView];
-    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+    _contentView = [[UIView alloc] init];
+    _contentView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:_contentView];
+    [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-        make.top.equalTo(self).offset(100);
+//        make.top.equalTo(self).offset(100);
     }];
     
     UIButton *dismissBtn = [UIButton buttonWithType: UIButtonTypeCustom];
     [dismissBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
     [dismissBtn setImage:[UIImage imageNamed:@"nav_close"] forState:UIControlStateNormal];
-    [contentView addSubview:dismissBtn];
+    [_contentView addSubview:dismissBtn];
     [dismissBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(contentView).offset(15);
-        make.right.equalTo(contentView).offset(-15);
+        make.top.equalTo(_contentView).offset(15);
+        make.right.equalTo(_contentView).offset(-15);
         make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
     
     _imgView = [[UIImageView alloc] init];
     [self addSubview:_imgView];
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(contentView).offset(27);
-        make.left.equalTo(contentView).offset(16);
+        make.top.equalTo(_contentView).offset(27);
+        make.left.equalTo(_contentView).offset(16);
         make.size.mas_equalTo(CGSizeMake(113, 113));
     }];
     
@@ -87,7 +88,7 @@
     
     _priceLabel = [[UILabel alloc] init];
     _priceLabel.font = [UIFont boldSystemFontOfSize:16];
-    [_priceLabel setTextColor: [UIColor jk_colorWithHexString:@"#262626"]];
+    [_priceLabel setTextColor: [UIColor jk_colorWithHexString:@"#ff1659"]];
     _priceLabel.numberOfLines = 1;
     [self addSubview:_priceLabel];
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -111,9 +112,9 @@
     line.backgroundColor = [UIColor jk_colorWithHexString:@"#dddddd"];
     [self addSubview: line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(contentView).offset(16);
-        make.right.equalTo(contentView).offset(-16);
-        make.bottom.equalTo(contentView).offset(-180);
+        make.left.equalTo(_contentView).offset(16);
+        make.right.equalTo(_contentView).offset(-16);
+        make.bottom.equalTo(_contentView).offset(-180);
         make.height.mas_equalTo(1);
     }];
     
@@ -123,8 +124,8 @@
     quantityLabel.text = kLocalizedString(@"Quantity");
     [self addSubview:quantityLabel];
     [quantityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(contentView).offset(16);
-        make.bottom.equalTo(contentView).offset(-130);
+        make.left.equalTo(_contentView).offset(16);
+        make.bottom.equalTo(_contentView).offset(-130);
     }];
     
     _increaseBtn = [UIButton buttonWithType: UIButtonTypeCustom];
@@ -142,7 +143,7 @@
     [_increaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(36, 36));
         make.centerY.equalTo(quantityLabel);
-        make.right.equalTo(contentView).offset(-16);
+        make.right.equalTo(_contentView).offset(-16);
     }];
     
     _countLabel = [[UILabel alloc] init];
@@ -180,7 +181,7 @@
     _attrsScrollView.alwaysBounceVertical = YES;
     [self addSubview:_attrsScrollView];
     [_attrsScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(contentView);
+        make.left.right.equalTo(_contentView);
         make.top.equalTo(_imgView.mas_bottom).offset(10);
         make.bottom.equalTo(line.mas_top).offset(-10);
     }];
@@ -190,6 +191,7 @@
     [_attrsScrollContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(_attrsScrollView);
         make.width.equalTo(self);
+        make.top.bottom.equalTo(_attrsScrollView);
     }];
     
     _btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -200,10 +202,10 @@
     [_btn1 addTarget:self action:@selector(gotoBuyOrCart:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_btn1];
     [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(contentView.mas_right).offset(-16);
+        make.right.mas_equalTo(_contentView.mas_right).offset(-16);
         make.height.mas_equalTo(46);
         make.width.mas_equalTo((MainScreen_width-52)/2);
-        make.bottom.equalTo(contentView).offset(-44);
+        make.bottom.equalTo(_contentView).offset(-44);
     }];
     
     _btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -216,10 +218,10 @@
     _btn2.layer.borderWidth = 1;
     [self addSubview:_btn2];
     [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(contentView.mas_left).offset(16);
+        make.left.mas_equalTo(_contentView.mas_left).offset(16);
         make.height.mas_equalTo(46);
         make.width.mas_equalTo((MainScreen_width-52)/2);
-        make.bottom.equalTo(contentView).offset(-44);
+        make.bottom.equalTo(_contentView).offset(-44);
     }];
     _maxPurchaseLabel = [[UILabel alloc] init];
     _maxPurchaseLabel.textColor = RGBColorFrom16(0x999999);

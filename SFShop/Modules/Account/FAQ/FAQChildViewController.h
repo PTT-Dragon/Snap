@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^FAQChildViewControllerBlock)(BOOL show,NSString *qs);
+
 @interface FAQChildViewController : UIViewController
+@property (nonatomic,copy) FAQChildViewControllerBlock block;
 @property (nonatomic,weak) FAQListModel *model;
 @property (nonatomic,copy) NSString *searchText;
 @end
