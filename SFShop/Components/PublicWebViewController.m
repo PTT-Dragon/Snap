@@ -52,7 +52,13 @@
 //        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
 //        webview.customUserAgent = newUserAgent;
 //    }];
-    
+    // 设置localStorage
+    NSString *currentLanguage = UserDefaultObjectForKey(@"Language");
+    if ([currentLanguage isEqualToString:kLanguageChinese]) {
+        currentLanguage = @"zh";
+    }
+    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
+    [self.webView evaluateJavaScript:language completionHandler:nil];
     [self.view addSubview:webview];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     [self addJsBridge];
@@ -142,9 +148,13 @@
     // iOS调用js
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     // 设置localStorage
+    NSString *currentLanguage = UserDefaultObjectForKey(@"Language");
+    if ([currentLanguage isEqualToString:kLanguageChinese]) {
+        currentLanguage = @"zh";
+    }
+    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
     NSString *token = [NSString stringWithFormat:@"localStorage.setItem('h5Token', '%@')", model.accessToken];
     NSString *isLogin = [NSString stringWithFormat:@"localStorage.setItem('isLogin', '%d')", model ? YES : NO];
-    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('language', '%@')",UserDefaultObjectForKey(@"Language")];
     [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];
     [self.webView evaluateJavaScript:language completionHandler:nil];
