@@ -303,19 +303,19 @@ static dispatch_source_t _timer;
 {
     NSString *str;
     if ([state isEqualToString:@"A"]) {
-        str = kLocalizedString(@"PAYNOW");
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"PAYNOW")];
     }else if ([state isEqualToString:@"B"]){
-        str = kLocalizedString(@"REBUY");
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REBUY")];
     }else if ([state isEqualToString:@"C"]){
-        str = kLocalizedString(@"CONFIRM");
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CONFIRM")];
     }else if ([state isEqualToString:@"D"]){
-        str = kLocalizedString(@"RECEIPT");
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"RECEIPT")];
     }else if ([state isEqualToString:@"E"]){
-        str = kLocalizedString(@"REBUY");
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REBUY")];
     }else if ([state isEqualToString:@"F"]){
-        str = kLocalizedString(@"REBUY");
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REBUY")];
     }else if ([state isEqualToString:@"G"]){
-        str = kLocalizedString(@"SHAREBUY");
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"SHAREBUY")];
     }
     return str;
 }
@@ -323,20 +323,20 @@ static dispatch_source_t _timer;
 {
     NSString *str;
     if ([state isEqualToString:@"A"]) {
-        str = kLocalizedString(@"CANCEL");
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CANCEL")];
     }else if ([state isEqualToString:@"B"]){
 //        str = kLocalizedString(@"RECEIPT");
         str = @"";
     }else if ([state isEqualToString:@"C"]){
-        str = kLocalizedString(@"LOGISTICS");
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"LOGISTICS")];
     }else if ([state isEqualToString:@"D"]){
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
-            str = @"REVIEW";
+            str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REVIEW")];
         }else{
-            str = @"VIEW REVIEW";
+            str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"VIEW REVIEW")];
         }
     }else if ([state isEqualToString:@"E"]){
-        str = @"REVIEW";
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REVIEW")];
     }else if ([state isEqualToString:@"F"]){
         str = @"";
     }else if ([state isEqualToString:@"G"]){

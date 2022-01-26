@@ -89,7 +89,7 @@ static BOOL changePhone = NO;
     _label5.text = kLocalizedString(@"STREET");
     _streetField.placeholder = kLocalizedString(@"STREET");
     _label6.text = kLocalizedString(@"OTHERDETAIL");
-    _detailField.text = kLocalizedString(@"OTHERDETAIL");
+    _detailField.placeholder = kLocalizedString(@"OTHERDETAIL");
     _titleLabel3.text = kLocalizedString(@"ADDRESS_DEFAULT");
     _readLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"HAVE_READ_AND_AGREED"),kLocalizedString(@"SF_AGREEMENT")];
     

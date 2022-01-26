@@ -15,7 +15,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *birthBtn;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (nonatomic,copy) NSString *gender;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *explainLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel3;
 @property (nonatomic, strong) NSString *selectDateStr;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel2;
+@property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 @end
 
 @implementation changeUserInfoVC
@@ -37,6 +42,13 @@
     [_birthBtn setTitle:[NSString stringWithFormat:@"  %@",_selectDateStr?_selectDateStr:@""] forState:0];
     [_genderBtn setTitle:[NSString stringWithFormat:@"  %@",model.userRes.genderStr] forState:0];
     _nameField.text = model.userRes.nickName;
+    _nameField.layer.borderWidth = 1;
+    _explainLabel1.text = kLocalizedString(@"INCORRECT_NAME");
+    _tipLabel1.text = kLocalizedString(@"NICKNAME");
+    _nameField.placeholder = kLocalizedString(@"NICKNAME");
+    _tipLabel2.text = kLocalizedString(@"GENDER");
+    _tipLabel3.text = kLocalizedString(@"DATEOFBIRTH");
+    [_saveBtn setTitle:kLocalizedString(@"SAVEPROFILE") forState:0];
 }
 - (void)selectWithSelectTime:(NSString *)selectTime withYear:(NSString *)year withMonth:(NSString *)month{
     self.selectDateStr = selectTime;
@@ -59,7 +71,6 @@
     [self.view addSubview:genderView];
 }
 - (IBAction)saveAction:(id)sender {
-    [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (_selectDateStr) {
@@ -70,9 +81,13 @@
     }
     if (self.nameField.text.length < 4 || self.nameField.text.length > 20) {
         _nameField.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
-        
+        _tipLabel1.textColor = RGBColorFrom16(0xff1659);
+        _explainLabel1.hidden = NO;
+        _explainLabel1.textColor = RGBColorFrom16(0xff1659);
         return;
     }
+    _explainLabel1.hidden = YES;
+    _nameField.layer.borderColor = [UIColor blackColor].CGColor;
     [params setValue:_nameField.text forKey:@"nickName"];
     [SFNetworkManager post:SFNet.account.modify parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"Set Successful"];

@@ -94,7 +94,7 @@
   "OTHERDETAIL" = " detail lain";
 //  "OK" = "OK";
 //  "SAVE" = "Simpan";
-//  "SAVEPROFILE" = "Simpan Profil";
+  "SAVEPROFILE" = "Simpan Profil";
 //  "CANCEL" = "Cancel";
 //  "SELECT" = "pilihan";
 //  "AREA" = "Area";
@@ -144,7 +144,7 @@
   "ADD_ADDRESS" = "Tambah Alamat";
 //  "MY_ADDRESS" = "Alamat Saya";
 "REQUIREDTIP" = "Silahkan masukkan";
-//  "INCORRECT_NAME" = "Nama penerima 4-40 huruf";
+  "INCORRECT_NAME" = "Nama penerima 4-40 huruf";
 //  "INCORRECT_PHONE" = "Harap masukkan nomor telepon yang benar.";
 //  "INCORRECT_EMAIL" = "Harap masukkan email yang benar.";
   "ADDRESS_DEFAULT" = "Pilih sebagai alamat utama";
@@ -184,9 +184,9 @@
 //  "SAYSOMETHING" = "Katakan sesuatu";
 //  "TEXTLENGTH" = "Konten melebihi batas";
 //  "PERSONAL_INFORMATION" = "Informasi pribadi";
-//  "NICKNAME" = "Nama panggilan";
-//  "GENDER" = "Jenis kelamin";
-//  "DATEOFBIRTH" = "tanggal lahir";
+  "NICKNAME" = "Nama panggilan";
+  "GENDER" = "Jenis kelamin";
+  "DATEOFBIRTH" = "tanggal lahir";
 //  "SECURITY_CENTER" = "Pusat Keamanan";
 "CHANGE_PASS" = "Ganti kata sandi";
 //  "STOCK_SHORTAGE" = "Stok limited";
@@ -294,7 +294,7 @@
 //  "VARIATIONS" = "Variasi";
 //  "SPECIFICATION" = "Spesifikasi";
 //  "DETAIL" = "Detail";
-//  "CART" = "Keranjang";
+  "CART" = "Keranjang";
   "COUPONS" = "Kupon";
   "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";
   "PEOPLE_SHORT" = "Kurang pembeli";

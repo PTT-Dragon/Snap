@@ -12,8 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="changeUserInfoVC">
             <connections>
                 <outlet property="birthBtn" destination="Nl5-a6-B9u" id="JEN-Ht-yRX"/>
+                <outlet property="explainLabel1" destination="hdR-Qk-b4T" id="JKj-3R-Qaa"/>
                 <outlet property="genderBtn" destination="9tx-Sn-L8h" id="BgG-VY-k3c"/>
                 <outlet property="nameField" destination="M1D-Ku-zRU" id="W2m-0c-qkK"/>
+                <outlet property="saveBtn" destination="74e-Ek-7kv" id="jst-Z8-P3O"/>
+                <outlet property="tipLabel1" destination="h0e-Fa-69p" id="hdR-eD-fwz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -95,7 +98,7 @@
                         <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="jbX-OQ-RKt"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdR-Qk-b4T">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdR-Qk-b4T">
                     <rect key="frame" x="20" y="151" width="374" height="13.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

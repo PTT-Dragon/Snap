@@ -6,6 +6,7 @@
 //
 
 #import "LanguageViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface LanguageViewController ()
 
@@ -115,6 +116,7 @@
 
 - (void)englishBtnAction {
     UserDefaultSetObjectForKey(kLanguageEnglish, @"Language");
+    MJRefreshConfig.defaultConfig.languageCode = @"en";
     [self.checkImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.englishBtn.mas_top);
         make.size.mas_equalTo(CGSizeMake(50, 50));
@@ -126,6 +128,7 @@
 
 - (void)hindiBtnAction {
     UserDefaultSetObjectForKey(kLanguageHindi, @"Language");
+    MJRefreshConfig.defaultConfig.languageCode = @"id";
     [self.checkImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.hindiBtn.mas_bottom);
         make.size.mas_equalTo(CGSizeMake(50, 50));

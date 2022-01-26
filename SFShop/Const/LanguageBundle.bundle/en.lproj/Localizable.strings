@@ -94,7 +94,7 @@
   "OTHERDETAIL" = "Other Detail";
 //  "OK" = "OK";
 //  "SAVE" = "Save";
-//  "SAVEPROFILE" = "Save Profile";
+  "SAVEPROFILE" = "SAVE PROFILE";
 //  "SELECT" = "Select";
 //  "AREA" = "Area";
 //  "HIDE" = "Hide";
@@ -141,7 +141,7 @@
   "ADD_ADDRESS" = "ADD ADDRESS";
 //  "MY_ADDRESS" = "My Address";
 "REQUIREDTIP" = "Please Input";
-//  "INCORRECT_NAME" = "Please input 4 ~ 40 characters for recipient name.";
+  "INCORRECT_NAME" = "Please input 4 ~ 40 characters for recipient name.";
   "INCORRECT_PHONE" = "Please input the correct phone number.";
   "INCORRECT_EMAIL" = "Please input the correct email.";
   "ADDRESS_DEFAULT" = "Set Default";
@@ -185,9 +185,9 @@
 //  "SAYSOMETHING" = "Say Something…";
 //  "TEXTLENGTH" = "Content exceeds limit";
 //  "PERSONAL_INFORMATION" = "Personal Information";
-//  "NICKNAME" = "Nickname";
-//  "GENDER" = "Gender";
-//  "DATEOFBIRTH" = "Date of Birth";
+  "NICKNAME" = "Nickname";
+  "GENDER" = "Gender";
+  "DATEOFBIRTH" = "Date of Birth";
 //  "SECURITY_CENTER" = "Security Center";
 "CHANGE_PASS" = "Change Password";
 //  "STOCK_SHORTAGE" = "Limited stocks";
