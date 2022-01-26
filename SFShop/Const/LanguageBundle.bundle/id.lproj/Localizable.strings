@@ -212,7 +212,7 @@
 //  "SERVICE_ATTITUDE" = "Kualitas pelayanan penjual";
 //  "LOGISTICS_SERVICE" = "Layanan Logistik";
 //  "DISCOUNT" = "Diskon";
-//  "INBOX" = "Inbox";
+  "INBOX" = "Inbox";
   "MY_SF" = "My SF";
 //  "DELETE" = "Delete";
 //  "CANCAL" = "Cancel";
@@ -289,11 +289,11 @@
   "CLOSE" = "Close";
 //  "BACK_TO_HOME" = "Kembali ke home";
 //  "VIEW_ORDER" = "Tampilan Pemesanan";
-//  "DIRECT_FUNCTION" = "Fungsi";
+  "DIRECT_FUNCTION" = "Fungsi";
 //  "SHOPPING" = "Shopping";
-//  "VARIATIONS" = "Variasi";
+  "VARIATIONS" = "Variasi";
 //  "SPECIFICATION" = "Spesifikasi";
-//  "DETAIL" = "Detail";
+  "DETAIL" = "Detail";
   "CART" = "Keranjang";
   "COUPONS" = "Kupon";
   "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";
@@ -646,3 +646,4 @@
 "ADDRESS" = "Alamat";
 "SERVICE" = "Layanan";
 "FAQ" = "FAQ";
+"Share_to" = "Share to";

@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) UIView *lineView;
 
+@property (nonatomic, copy) NSString *currentTitle;
+
 @end
 
 @implementation BaseNavView
@@ -44,6 +46,7 @@
 - (void)commonInit {
     [self initView];
     [self initLayout];
+    [self initNotification];
 }
 
 
@@ -91,19 +94,56 @@
     }];
 }
 
+- (void)initNotification {
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(hiddenMoreView)
+                                               name:@"KBaseMoreViewHidden"
+                                             object:nil];
+}
 
 #pragma mark - config
 
 - (void)configDataWithTitle:(NSString *)title {
+    self.currentTitle = title;
     self.titleLabel.text = title;
 }
 
 - (void)updateIsOnlyShowMoreBtn:(BOOL)isOnly {
-    self.searchBtn.hidden = isOnly;
-    self.shareBtn.hidden = isOnly;
-    self.moreBtn.hidden = !isOnly;
+    if (isOnly) {
+        self.searchBtn.hidden = YES;
+        self.shareBtn.hidden = YES;
+        self.moreBtn.hidden = NO;
+    } else {
+        self.searchBtn.hidden = NO;
+        self.shareBtn.hidden = NO;
+        self.moreBtn.hidden = NO;
+    }
 }
 
+- (void)showMoreView {
+    self.titleLabel.text = kLocalizedString(@"DIRECT_FUNCTION");
+    self.backBtn.hidden = YES;
+    self.moreBtn.selected = YES;
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_safeAreaLayoutGuideTop).offset(19);
+        make.left.mas_equalTo(self.mas_left).offset(10);
+    }];
+}
+
+- (void)hiddenMoreView {
+    self.backBtn.hidden = NO;
+    self.titleLabel.text = self.currentTitle;
+    self.moreBtn.selected = NO;
+    [self.backBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_safeAreaLayoutGuideTop).offset(16);
+        make.left.mas_equalTo(self.mas_left).offset(10);
+        make.size.mas_equalTo(CGSizeMake(24, 24));
+    }];
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.backBtn.mas_top).offset(3);
+        make.left.mas_equalTo(self.backBtn.mas_right).offset(20);
+    }];
+}
 
 #pragma mark - btnAction
 
@@ -126,8 +166,14 @@
 }
 
 - (void)moreBtnAction {
-    if ([self.delegate respondsToSelector:@selector(baseNavViewDidClickMoreBtn:)]) {
-        [self.delegate baseNavViewDidClickMoreBtn:self];
+    if (self.moreBtn.isSelected) {
+        [NSNotificationCenter.defaultCenter postNotificationName:@"KBaseNavViewHiddenMoreView"
+                                                          object:self];
+    } else {
+        [self showMoreView];
+        if ([self.delegate respondsToSelector:@selector(baseNavViewDidClickMoreBtn:)]) {
+            [self.delegate baseNavViewDidClickMoreBtn:self];
+        }
     }
 }
 
@@ -164,6 +210,8 @@
         _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_moreBtn setImage:[UIImage imageNamed:@"more-horizontal"]
                   forState:UIControlStateNormal];
+        [_moreBtn setImage:[UIImage imageNamed:@"more-vertical"]
+                  forState:UIControlStateSelected];
         [_moreBtn addTarget:self
                      action:@selector(moreBtnAction)
            forControlEvents:UIControlEventTouchUpInside];

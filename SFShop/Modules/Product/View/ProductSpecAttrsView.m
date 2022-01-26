@@ -54,7 +54,7 @@
     [self addSubview:_contentView];
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-//        make.top.equalTo(self).offset(100);
+        make.top.equalTo(self).offset(100);
     }];
     
     UIButton *dismissBtn = [UIButton buttonWithType: UIButtonTypeCustom];
@@ -276,76 +276,6 @@
 }
 - (void)updateView
 {
-    if (self.stockModel.count == 0 || self.maxPurchaseCount == 0) {
-        _btn2.hidden = YES;
-        [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK_IN_CURRENT_REGION") forState:0];
-        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFFE5EB) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
-        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.mas_left).offset(16);
-            make.right.mas_equalTo(self.mas_right).offset(-16);
-            make.height.mas_equalTo(46);
-            make.bottom.equalTo(self).offset(-44);
-        }];
-    }
-    if (_attrsType == buyType) {
-        _btn2.hidden = YES;
-        _btn1.tag = buyType + 100;
-        [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
-        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
-        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.mas_left).offset(16);
-            make.right.mas_equalTo(self.mas_right).offset(-16);
-            make.height.mas_equalTo(46);
-            make.bottom.equalTo(self).offset(-44);
-        }];
-    }else if (_attrsType == cartType){
-        _btn2.hidden = YES;
-        [_btn1 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
-        _btn1.tag = cartType + 100;
-        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
-        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.mas_left).offset(16);
-            make.right.mas_equalTo(self.mas_right).offset(-16);
-            make.height.mas_equalTo(46);
-            make.bottom.equalTo(self).offset(-44);
-        }];
-    }else if (_attrsType == groupBuyType){
-        _btn2.hidden = YES;
-        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
-        _btn1.tag = groupBuyType + 100;
-        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
-        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.mas_left).offset(16);
-            make.right.mas_equalTo(self.mas_right).offset(-16);
-            make.height.mas_equalTo(46);
-            make.bottom.equalTo(self).offset(-44);
-        }];
-    }else if (_attrsType == groupSingleBuyType){
-        _btn2.hidden = NO;
-        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
-        [_btn2 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
-        _btn1.tag = groupSingleBuyType + 100;
-        _btn2.tag = cartType + 100;
-        [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
-        [_btn2 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
-        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(self.mas_right).offset(-16);
-            make.height.mas_equalTo(46);
-            make.width.mas_equalTo((MainScreen_width-52)/2);
-            make.bottom.equalTo(self).offset(-44);
-        }];
-        [_btn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.mas_left).offset(16);
-            make.height.mas_equalTo(46);
-            make.width.mas_equalTo((MainScreen_width-52)/2);
-            make.bottom.equalTo(self).offset(-44);
-        }];
-    }
     // ====== 处理活动信息 ======
     MPWeakSelf(self)
     ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
@@ -368,6 +298,92 @@
     }else{
         self.groupView.hidden = YES;
     }
+    if (self.stockModel.count == 0 || self.maxPurchaseCount == 0) {
+        _btn2.hidden = YES;
+        [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK_IN_CURRENT_REGION") forState:0];
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFFE5EB) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }else if (isGroupBuy && _attrsType == buyType) {
+        //是团购  //先满足团购的UI
+        _btn2.hidden = YES;
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        _btn1.tag = 102;
+        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }else if (_attrsType == buyType && !isGroupBuy) {
+        //普通购买
+        _btn2.hidden = YES;
+        _btn1.tag = buyType + 100;
+        [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }else if (_attrsType == cartType && !isGroupBuy){
+        _btn2.hidden = YES;
+        [_btn1 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
+        _btn1.tag = cartType + 100;
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }else if (_attrsType == groupSingleBuyType){
+        //单独购买  这时两个按钮都要显示
+        _btn2.hidden = NO;
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn2 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        _btn1.tag = groupSingleBuyType + 100;
+        _btn2.tag = cartType + 100;
+        [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
+        [_btn2 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.width.mas_equalTo((MainScreen_width-52)/2);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+        [_btn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.height.mas_equalTo(46);
+            make.width.mas_equalTo((MainScreen_width-52)/2);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }else if (_attrsType == cartType && isGroupBuy){
+        //只是加入购物车  有团购的情况下需显示拼团
+        _btn2.hidden = YES;
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        _btn1.tag = groupBuyType + 100;
+        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }
+    
     //更新商量购买按钮状态和显示
     [self updateQuantityState];
     //更新按钮点击状态,没有库存时,不让点击
@@ -458,14 +474,10 @@
             }];
             xOffset += itemWidth + 8;
             preLayoutView = item;
-            [preLayoutView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(weakself.attrsScrollContentView).offset(-100);
-            }];
         }];
     }];
-    
-    [_attrsScrollView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(200);
+    [preLayoutView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(weakself.attrsScrollContentView).offset(-10);
     }];
 }
 

@@ -183,7 +183,7 @@
         LogisticsVC *vc = [[LogisticsVC alloc] init];
         vc.model = self.model;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.section == 3 && indexPath.row != 0 && indexPath.row >= self.model.orderItems.count+1){
+    }else if (indexPath.section == 3 && indexPath.row != 0 && !(indexPath.row >= self.model.orderItems.count+1)){
         orderItemsModel *model = self.model.orderItems[indexPath.row-1];
         ProductViewController *vc = [[ProductViewController alloc] init];
         vc.offerId = model.offerId.integerValue;

@@ -61,7 +61,8 @@
         @"pageSize": @(10),
         @"sortType": [NSString stringWithFormat:@"%ld",type],
         @"offerIdList": [NSNull null],
-        @"catgIds": filter.qs ? @"":@(self.model.inner.catgRela.objValue.objId),//默认是外部传入的分类,如果 filter.filterParam 有该字段,会被新值覆盖
+        @"catgIds": filter.qs ? @"":@(self.model.inner.catgRela.objValue.objId) == 0 ? @"" :@(self.model.inner.catgRela.objValue.objId) ,//默认是外部传入的分类,如果 filter.filterParam 有该字段,会被新值覆盖
+        @"storeId":@(self.model.inner.catgRela.objValue.objId)
     }];
     [parm addEntriesFromDictionary:filter.filterParam];
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {

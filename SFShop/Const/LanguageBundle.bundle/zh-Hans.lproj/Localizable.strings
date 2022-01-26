@@ -214,7 +214,7 @@
 //  "SERVICE_ATTITUDE" = "服务态度";
 //  "LOGISTICS_SERVICE" = "物流服务";
 //  "DISCOUNT" = "优惠";
-//  "INBOX" = "消息";
+  "INBOX" = "消息";
   "MY_SF" = "我的 SF";
 //  "DELETE" = "删除";
 //  "CANCAL" = "取消";
@@ -291,11 +291,11 @@
   "CLOSE" = "关闭";
 //  "BACK_TO_HOME" = "返回首页";
 //  "VIEW_ORDER" = "查看订单";
-//  "DIRECT_FUNCTION" = "功能导航";
+  "DIRECT_FUNCTION" = "功能导航";
 //  "SHOPPING" = "购物";
-//  "VARIATIONS" = "属性";
+  "VARIATIONS" = "属性";
 //  "SPECIFICATION" = "规格";
-//  "DETAIL" = "详情";
+  "DETAIL" = "详情";
   "CART" = "购物车";
   "COUPONS" = "优惠券";
   "ONLY_SHOW_5_SHARE" = "只展示最近的5组拼团活动";
@@ -645,3 +645,4 @@
 "ADDRESS" = "地址";
 "SERVICE" = "客服";
 "FAQ" = "FAQ";
+"Share_to" = "分享到";

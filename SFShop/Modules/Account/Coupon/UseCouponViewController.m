@@ -303,11 +303,11 @@
             }
                 break;
             case buyType://购买
-            case groupSingleBuyType://团购活动单人购买
-            case groupBuyType://团购
-            {
-                
-            }
+//            case groupSingleBuyType://团购活动单人购买
+//            case groupBuyType://团购
+//            {
+//                
+//            }
                 break;
             default:
                 break;

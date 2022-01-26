@@ -9,7 +9,7 @@
 #import "MGCShareCollectionViewCell.h"
 #import "MGCShareManager.h"
 #import "UIView+YYAdd.h"
-
+#import "UIViewController+parentViewController.h"
 
 @interface MGCShareView () <UICollectionViewDelegate,UICollectionViewDataSource>
 //分享按钮
@@ -45,8 +45,6 @@
 @property (nonatomic, strong) UILabel *codeDesLabel;
 //logo
 @property (nonatomic, strong) UIImageView *logoImageView;
-//当前分享的行数
-@property (nonatomic, assign) MGCShareViewType shareViewType;
 
 @property (nonatomic, assign) CGFloat lastTransitionY;
 
@@ -54,79 +52,24 @@
 
 @implementation MGCShareView
 
-+ (MGCShareView *)showShareViewWithSuperView:(UIView *)superView
-                              shareInfoModel:(MGCShareInfoModel *)shareInfoModel
-                                successBlock:(void (^)(NSDictionary *info, MGCShareItemType type))successBlock
-                                   failBlock:(void (^)(NSDictionary *info, MGCShareItemType type))failBlock
-                                   completed:(void (^)(BOOL isShow))completed {
++ (MGCShareView *)showShareViewWithShareInfoModel:(MGCShareInfoModel *)shareInfoModel
+                                     successBlock:(void (^)(NSDictionary *info, UMSocialPlatformType type))successBlock
+                                        failBlock:(void (^)(NSDictionary *info, UMSocialPlatformType type))failBlock
+                                        completed:(void (^)(BOOL isShow))completed {
     MGCShareView *shareView = [[MGCShareView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     shareView.shareInfoModel = shareInfoModel;
     [shareView prepareDefaultShareItem];
-    [shareView prepareCollectionWithViewType:MGCShareViewTypeOnlyShare];
+    [shareView prepareCollection];
     shareView.successBlock = successBlock;
     shareView.failBlock = failBlock;
     if (completed) {
         completed(YES);
     }
-    [shareView showWithView:superView];
+    [shareView showWithView:[UIViewController currentTopViewController].view];
     return shareView;
 }
 
-
-//五个三方分享带自定义工具栏
-+ (MGCShareView *)showWithShareInfoModel:(MGCShareInfoModel *)infoModel
-                       functionItemsArr:(NSMutableArray <MGCShareItemModel *> *)functionItemsArr
-                                superView:(UIView *)superView
-                             successBlock:(void (^)(NSDictionary *info, MGCShareItemType type))successBlock
-                                failBlock:(void (^)(NSDictionary *info, MGCShareItemType type))failBlock
-                                completed:(void (^)(BOOL isShow))completed{
-    MGCShareView *shareView = [[MGCShareView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    shareView.shareInfoModel = infoModel;
-    if (infoModel.isSharePic == YES) {
-        shareView.contentType = @"Image";
-    }
-    [shareView prepareDefaultShareItem];
-    [shareView prepareFunctionItemsWithItemsArr:functionItemsArr];
-    if (functionItemsArr.count > 0) {
-        [shareView prepareCollectionWithViewType:MGCShareViewTypeNormal];
-    }else{
-        [shareView prepareCollectionWithViewType:MGCShareViewTypeOnlyShare];
-    }
-    [shareView prepareShowBigShareImage];
-    shareView.successBlock = successBlock;
-    shareView.failBlock = failBlock;
-
-    if (completed) {
-        completed(YES);
-    }
-    [shareView showWithView:superView];
-    return shareView;
-}
-
-+ (MGCShareView *)showWithFunctionItemsArr:(NSMutableArray <MGCShareItemModel *> *)functionItemsArr
-                                 superView:(UIView *)superView
-                              successBlock:(void (^)(NSDictionary *info, MGCShareItemType type))successBlock
-                                 failBlock:(void (^)(NSDictionary *info, MGCShareItemType type))failBlock
-                                 completed:(void (^)(BOOL isShow))completed{
-    MGCShareView *shareView = [[MGCShareView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [shareView prepareFunctionItemsWithItemsArr:functionItemsArr];
-    if (functionItemsArr.count > 0) {
-        [shareView prepareCollectionWithViewType:MGCShareViewTypeOnlyTool];
-    }else{
-        //等UI图
-    }
-    shareView.successBlock = successBlock;
-    shareView.failBlock = failBlock;
-    if (completed) {
-        completed(YES);
-    }
-    [shareView showWithView:superView];
-    return shareView;
-}
-
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initView];
@@ -137,146 +80,96 @@
 
 #pragma mark - init
 
-- (void)initView{
+- (void)initView {
     [self addSubview:self.maskView];
     [self addSubview:self.bgView];
     [self.bgView addSubview:self.titleLabel];
     [self.bgView addSubview:self.lineView];
     [self.bgView addSubview:self.shareCollectionView];
-    [self.bgView addSubview:self.functionCollectionView];
     [self.bgView addSubview:self.cancelBtn];
 }
 
 
-- (void)initGesture{
+- (void)initGesture {
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
     [self.bgView addGestureRecognizer:pan];
 }
 
 #pragma mark - initData
 
-- (void)prepareFunctionItemsWithItemsArr:(NSMutableArray *)itemsArr{
-    [self.functionItemsArr removeAllObjects];
-    [self.functionItemsArr addObjectsFromArray:itemsArr];
-    [self.functionCollectionView reloadData];
-}
-
 //默认分享配置方法
-- (void)prepareDefaultShareItem{
+- (void)prepareDefaultShareItem {
     [self.shareItemsArr removeAllObjects];
-    
     MGCShareItemModel *faceBookModel = [[MGCShareItemModel alloc] init];
     faceBookModel.itemName = @"FaceBook";
-    faceBookModel.itemType = MGCShareItemTypeFaceBook;
-    faceBookModel.itemImage = @"ic_share_weixin";
+    faceBookModel.itemType = UMSocialPlatformType_Facebook;
+    faceBookModel.itemImage = @"facebook";
     
     MGCShareItemModel *whatsAppModel = [[MGCShareItemModel alloc] init];
     whatsAppModel.itemName = @"WhatsApp";
-    whatsAppModel.itemType = MGCShareItemTypeWhatsApp;
-    whatsAppModel.itemImage = @"ic_share_pengyouquan";
+    whatsAppModel.itemType = UMSocialPlatformType_Whatsapp;
+    whatsAppModel.itemImage = @"whatsapp";
     
-    MGCShareItemModel *insModel = [[MGCShareItemModel alloc] init];
-    insModel.itemName = @"Instagram";
-    insModel.itemType = MGCShareItemTypeInstagram;
-    insModel.itemImage = @"ic_share_qq";
+    MGCShareItemModel *twitterModel = [[MGCShareItemModel alloc] init];
+    twitterModel.itemName = @"Twitter";
+    twitterModel.itemType = UMSocialPlatformType_Twitter;
+    twitterModel.itemImage = @"twitter";
+    
+    
+    MGCShareItemModel *copyModel = [[MGCShareItemModel alloc] init];
+    copyModel.itemName = @"URL";
+    copyModel.itemType = UMSocialPlatformType_UserDefine_Begin;
+    copyModel.itemImage = @"00103_ Connect Fill";
     
     [self.shareItemsArr addObject:faceBookModel];
+    [self.shareItemsArr addObject:twitterModel];
     [self.shareItemsArr addObject:whatsAppModel];
-    [self.shareItemsArr addObject:insModel];
-
+    [self.shareItemsArr addObject:copyModel];
+    
     [self.shareCollectionView reloadData];
 }
 
-- (void)prepareCollectionWithViewType:(MGCShareViewType)type{
-    self.shareViewType = type;
-    
+- (void)prepareCollection {
     CGFloat bgHeight = 145+160;
     CGFloat oneToolHeight = 121+100;
     CGFloat btnHeitght = 16+40;
-
     if (IS_IPHONE_X) {
         bgHeight = 145+160+iPhoneXBottomOffset;
         oneToolHeight = 113+100+iPhoneXBottomOffset;
         btnHeitght = 16+40+iPhoneXBottomOffset;
     }
-    if (type == MGCShareViewTypeNormal) {
-        _bgView.frame = CGRectMake(0, self.height - bgHeight, self.width, bgHeight);
-        _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
-        _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
-        _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60);
-        _functionCollectionView.frame = CGRectMake(0, self.shareCollectionView.bottom + 32, self.width, 60);
-        _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
-        _functionCollectionView.hidden = NO;
-        _shareCollectionView.hidden = NO;
-    }else if (type == MGCShareViewTypeOnlyShare){
-        _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
-        _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
-        _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
-        _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60);
-        _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
-        _functionCollectionView.hidden = YES;
-        _shareCollectionView.hidden = NO;
-    }else if (type == MGCShareViewTypeOnlyTool){
-        _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
-        _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
-        _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
-        _functionCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60);
-        _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
-        _shareCollectionView.hidden = YES;
-        _functionCollectionView.hidden = NO;
-    }
-    [self.functionCollectionView reloadData];
+    _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
+    _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
+    _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
+    _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60);
+    _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
     [self.shareCollectionView reloadData];
-}
-
-- (void)prepareShowBigShareImage{
-    if (self.shareInfoModel.isSharePic == YES && self.shareInfoModel.isSharePersonQRCode == NO) {
-        [self addSubview:self.shareImgaeView];
-        [self.shareImgaeView addSubview:self.bigShareImageView];
-        self.bigShareImageView.image = self.shareInfoModel.shareImage;
-    }
 }
 
 #pragma mark - UICollectionViewDelegate && UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if ([collectionView isEqual:self.shareCollectionView]) {
-        return self.shareItemsArr.count;
-    }else{
-        return self.functionItemsArr.count;
-    }
+    return self.shareItemsArr.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([collectionView isEqual:self.shareCollectionView]) {
-        MGCShareCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MGCShareCollectionViewCell" forIndexPath:indexPath];
-        MGCShareItemModel *itemModel = [self.shareItemsArr objectAtIndex:indexPath.item];
-        [cell configDataWithItemModel:itemModel];
-        return cell;
-    }else{
-        MGCShareCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MGCShareCollectionViewCell" forIndexPath:indexPath];
-        MGCShareItemModel *itemModel = [self.functionItemsArr objectAtIndex:indexPath.item];
-        [cell configDataWithItemModel:itemModel];
-        return cell;
-    }
-    
+    MGCShareCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MGCShareCollectionViewCell" forIndexPath:indexPath];
+    MGCShareItemModel *itemModel = [self.shareItemsArr objectAtIndex:indexPath.item];
+    [cell configDataWithItemModel:itemModel];
+    return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if ([collectionView isEqual:self.shareCollectionView]) {
-        MGCShareItemModel *itemModel = [self.shareItemsArr objectAtIndex:indexPath.item];
-//        [[MGCShareManager sharedInstance] share:itemModel.itemType shareTitle:[NSString replaceNull:self.shareInfoModel.shareTitle] shareText:[NSString replaceNull:self.shareInfoModel.shareText] shareLabel:[NSString replaceNull:self.shareInfoModel.shareLabel] weiboShareText:[NSString replaceNull:self.shareInfoModel.weiboShareText] shareLinkUrl:[NSString replaceNull:self.shareInfoModel.shareLinkUrl] shareIconUrl:[NSString replaceNull:self.shareInfoModel.shareIconUrl] contentType:self.contentType shareImage:self.shareInfoModel.shareImage successBlock:self.successBlock failBlock:self.failBlock];
-    }else{
-        MGCShareItemModel *itemModel = [self.functionItemsArr objectAtIndex:indexPath.item];
-        if (self.successBlock) {
-            self.successBlock(@{@"msg":@"成功"}, itemModel.itemType);
-        }
+    MGCShareItemModel *itemModel = [self.shareItemsArr objectAtIndex:indexPath.item];
+    if (self.successBlock) {
+        self.successBlock(@{}, itemModel.itemType);
     }
     [self cancelBtnAction];
 }
+
+
 #pragma makr - btnAction
 
-- (void)cancelBtnAction{
-
+- (void)cancelBtnAction {
     self.alpha = 1;
     self.maskView.alpha = 1;
     [UIView animateWithDuration:0.25 animations:^{
@@ -288,14 +181,13 @@
             [self removeFromSuperview];
         }
     }];
-    
 }
 
 #pragma mark - show && Hide
 
-- (void)showWithView:(UIView *)superView{
+- (void)showWithView:(UIView *)superView {
     if (!self.superview) {
-        //上述判断isshow在类方法show的时候是无效的 地址都是不一样的。 
+        //上述判断isshow在类方法show的时候是无效的 地址都是不一样的。
         for (UIView *tempView in superView.subviews) {
             if ([tempView isKindOfClass:[MGCShareView class]]) {
                 //先删除
@@ -312,13 +204,8 @@
         height = 145+160+iPhoneXBottomOffset;
         oneToolHeight = 113+100+iPhoneXBottomOffset;
     }
-    CGFloat viewHeight = 0;
-    if (self.shareViewType == MGCShareViewTypeNormal) {
-        viewHeight = height;
-    }else{
-        viewHeight = oneToolHeight;
-    }
-
+    CGFloat viewHeight = oneToolHeight;
+    
     self.alpha = 0;
     self.maskView.alpha = 0;
     self.bgView.frame = CGRectMake(0, self.height, self.width, viewHeight);
@@ -327,24 +214,24 @@
         self.bgView.frame = CGRectMake(0, self.height - viewHeight, self.width, viewHeight);
         self.maskView.alpha = 1;
     } completion:^(BOOL finished) {
-
+        
     }];
 }
 
 
-- (void)panAction:(UIPanGestureRecognizer *)sender{
+- (void)panAction:(UIPanGestureRecognizer *)sender {
     CGPoint translationPoint = [sender translationInView:self.bgView];
-
+    
     CGFloat shareHeight = self.bgView.frame.size.height;
     CGRect newFrame = CGRectMake(0, MainScreen_height - shareHeight, MainScreen_width, shareHeight);
     newFrame.origin.y =  MainScreen_height - shareHeight + translationPoint.y;
-
+    
     if (newFrame.origin.y <= MainScreen_height - shareHeight) {
         newFrame.origin.y = MainScreen_height - shareHeight;
     }
-
+    
     self.bgView.frame = newFrame;
-
+    
     if (sender.state == UIGestureRecognizerStateEnded) {
         CGPoint velocity = [sender velocityInView:self.bgView];
         // 结束时的速度>0 滑动距离> 5 且UIScrollView滑动到最顶部
@@ -357,26 +244,21 @@
     self.lastTransitionY = translationPoint.y;
 }
 
-- (void)reSetbgFrame{
+- (void)reSetbgFrame {
     CGFloat height = 145+160;
     CGFloat oneToolHeight = 113+100;
     if (IS_IPHONE_X) {
         height = 145+160+iPhoneXBottomOffset;
         oneToolHeight = 113+100+iPhoneXBottomOffset;
     }
-    CGFloat viewHeight = 0;
-    if (self.shareViewType == MGCShareViewTypeNormal) {
-        viewHeight = height;
-    }else{
-        viewHeight = oneToolHeight;
-    }
+    CGFloat viewHeight = oneToolHeight;
     self.bgView.frame = CGRectMake(0, self.height - viewHeight, self.width, viewHeight);
 }
 
 #pragma mark - setter && getter
 
 
-- (UIView *)bgView{
+- (UIView *)bgView {
     if (!_bgView) {
         CGFloat height = 145+160;
         if (IS_IPHONE_X) {
@@ -393,7 +275,7 @@
     return _bgView;
 }
 
-- (UIView *)maskView{
+- (UIView *)maskView {
     if (!_maskView) {
         _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
         _maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
@@ -403,25 +285,25 @@
     return _maskView;
 }
 
-- (UILabel *)titleLabel{
+- (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 14, self.width, 21)];
         _titleLabel.font = [UIFont boldSystemFontOfSize:15];
-        _titleLabel.text = @"分享到";
+        _titleLabel.text = kLocalizedString(@"Share_to");
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
 }
 
-- (UIView *)lineView{
+- (UIView *)lineView {
     if (!_lineView) {
         _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1)];
         _lineView.backgroundColor = [UIColor grayColor];
     }
     return _lineView;
 }
-- (UICollectionView *)shareCollectionView{
+- (UICollectionView *)shareCollectionView {
     if (!_shareCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
@@ -439,32 +321,14 @@
     return _shareCollectionView;
 }
 
-- (UICollectionView *)functionCollectionView{
-    if (!_functionCollectionView) {
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        flowLayout.minimumLineSpacing = 32;
-        flowLayout.itemSize = CGSizeMake(50, 60);
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 25, 0, 25);
-        _functionCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.shareCollectionView.bottom + 32, self.width, 60) collectionViewLayout:flowLayout];
-        _functionCollectionView.backgroundColor = [UIColor clearColor];
-        _functionCollectionView.delegate = self;
-        _functionCollectionView.dataSource = self;
-        _functionCollectionView.scrollEnabled = YES;
-        _functionCollectionView.showsHorizontalScrollIndicator = NO;
-        [_functionCollectionView registerClass:[MGCShareCollectionViewCell class] forCellWithReuseIdentifier:@"MGCShareCollectionViewCell"];
-    }
-    return _functionCollectionView;
-}
-
-- (UIButton *)cancelBtn{
+- (UIButton *)cancelBtn {
     if (!_cancelBtn) {
         CGFloat height = 16+40;
         if (IS_IPHONE_X) {
             height = 16+40+iPhoneXBottomOffset;
         }
         _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, self.bgView.height - height, self.width - 30, 40)];
-        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancelBtn setTitle:kLocalizedString(@"CANCEL") forState:UIControlStateNormal];
         [_cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         _cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -476,81 +340,11 @@
     return _cancelBtn;
 }
 
-
-- (UIView *)shareImgaeView{
-    if (!_shareImgaeView) {
-        _shareImgaeView = [[UIView alloc] initWithFrame:CGRectMake((self.width - 280)/2, 47, 280, 374)];
-        _shareImgaeView.backgroundColor = [UIColor clearColor];
-        _shareImgaeView.layer.cornerRadius = 4.0f;
-        _shareImgaeView.layer.masksToBounds = YES;
-    }
-    return _shareImgaeView;
-}
-
-- (UIImageView *)bigShareImageView{
-    if (!_bigShareImageView) {
-        _bigShareImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 374)];
-        _bigShareImageView.backgroundColor = [UIColor clearColor];
-    }
-    return _bigShareImageView;
-}
-
-- (UILabel *)nameLabel{
-    if (!_nameLabel) {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.shareImgaeView.width - 9 - 142, self.shareImgaeView.height - 64, 142, 17)];
-        _nameLabel.textColor = [UIColor blackColor];
-        _nameLabel.font = [UIFont systemFontOfSize:12];
-        _nameLabel.textAlignment = NSTextAlignmentRight;
-    }
-    return _nameLabel;
-}
-
-- (UILabel *)desLabel{
-    if (!_desLabel) {
-        _desLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.shareImgaeView.width - 9 - 126, self.shareImgaeView.height - 45, 126, 15)];
-        _desLabel.textColor = [UIColor blackColor];
-        _desLabel.font = [UIFont systemFontOfSize:10];
-        _desLabel.textAlignment = NSTextAlignmentRight;
-    }
-    return _desLabel;
-}
-
-- (UIImageView *)QRCodeImageView{
-    if (!_QRCodeImageView) {
-        _QRCodeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, self.shareImgaeView.height - 5 - 33, 33, 33)];
-    }
-    return _QRCodeImageView;
-}
-
-- (UILabel *)codeDesLabel{
-    if (!_codeDesLabel) {
-        _codeDesLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.QRCodeImageView.right + 3, self.shareImgaeView.height - 11 - 15, 80, 11)];
-        _codeDesLabel.textColor = [UIColor blackColor];
-        _codeDesLabel.font = [UIFont systemFontOfSize:7];
-        _codeDesLabel.text = @"长按图片识别二维码";
-    }
-    return _codeDesLabel;
-}
-
-- (UIImageView *)logoImageView{
-    if (!_logoImageView) {
-        _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.shareImgaeView.width - 9 - 39, self.shareImgaeView.height - 12 - 11, 39, 11)];
-        _logoImageView.image = [UIImage imageNamed:@"ic_h5_migulogo"];
-    }
-    return _logoImageView;
-}
-
 - (NSMutableArray *)shareItemsArr{
     if (!_shareItemsArr) {
         _shareItemsArr = [NSMutableArray array];
     }
     return _shareItemsArr;
-}
-- (NSMutableArray *)functionItemsArr{
-    if (!_functionItemsArr) {
-        _functionItemsArr = [NSMutableArray array];
-    }
-    return _functionItemsArr;
 }
 
 - (MGCShareInfoModel *)shareInfoModel{

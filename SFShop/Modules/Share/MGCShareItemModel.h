@@ -6,13 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-/// 分享类型
-typedef NS_ENUM(NSUInteger, MGCShareItemType) {
-    MGCShareItemTypeFaceBook = 1,   //facebook
-    MGCShareItemTypeWhatsApp,       //whatsapp
-    MGCShareItemTypeInstagram,      //Ins
-};
+#import <UShareUI/UShareUI.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 //图标imageName
 @property (nonatomic, copy) NSString *itemImage;
 //分享Item类型
-@property (nonatomic, assign) MGCShareItemType itemType;
+@property (nonatomic, assign) UMSocialPlatformType itemType;
 //按钮是否置灰
 @property(nonatomic,assign) BOOL isEnable;
 

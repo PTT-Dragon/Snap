@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *starIcon;
 @property (weak, nonatomic) IBOutlet UILabel *seeAllBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *indicator;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -21,6 +22,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _titleLabel.text = kLocalizedString(@"REVIEWS");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

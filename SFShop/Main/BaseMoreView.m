@@ -47,6 +47,7 @@
 - (void)commonInit {
     [self initView];
     [self initLayout];
+    [self initNotification];
 }
 
 
@@ -87,38 +88,49 @@
     }];
 }
 
+- (void)initNotification {
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(cancel)
+                                               name:@"KBaseNavViewHiddenMoreView"
+                                             object:nil];
+}
 
 #pragma mark - btnAction
 
 - (void)homeBtnAction {
-    self.hidden = YES;
+    [self cancel];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate.tabVC setSelectedIndex:0];
     [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)inboxBtnAction {
-    self.hidden = YES;
+    [self cancel];
     MessageViewController *vc = [[MessageViewController alloc] init];
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)accountBtnAction {
-    self.hidden = YES;
+    [self cancel];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate.tabVC setSelectedIndex:4];
     [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)mysfBtnAction {
-    self.hidden = YES;
+    [self cancel];
 
 }
 
 - (void)tapAction {
-    self.hidden = YES;
+    [self cancel];
 }
 
+- (void)cancel {
+    self.hidden = YES;
+    [NSNotificationCenter.defaultCenter postNotificationName:@"KBaseMoreViewHidden"
+                                                      object:self];
+}
 
 #pragma mark - setter
 
@@ -154,7 +166,7 @@
         _inboxBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_inboxBtn setImage:[UIImage imageNamed:@"ic_nav_more_message"]
                    forState:UIControlStateNormal];
-        [_inboxBtn setTitle:kLocalizedString(@"Message")
+        [_inboxBtn setTitle:kLocalizedString(@"INBOX")
                    forState:UIControlStateNormal];
         [_inboxBtn addTarget:self
                       action:@selector(inboxBtnAction)

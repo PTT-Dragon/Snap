@@ -8,6 +8,7 @@
 #import "MGCShareManager.h"
 #import <UShareUI/UShareUI.h>
 #import "UIViewController+parentViewController.h"
+#import "MGCShareView.h"
 
 @implementation MGCShareManager
 
@@ -20,37 +21,46 @@
     return manager;
 }
 
-+ (void)shareWithShareInfoModel:(MGCShareInfoModel *)infoModel shareType:(MGCShareItemType)type {
-    
-}
-
 - (void)showShareViewWithShareMessage:(NSString *)message {
-    //调用分享面板
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Whatsapp),@(UMSocialPlatformType_Twitter)]];
-    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType,NSDictionary*userInfo){
+    MGCShareInfoModel *infoModel = [[MGCShareInfoModel alloc] init];
+    [MGCShareView showShareViewWithShareInfoModel:infoModel
+                                     successBlock:^(NSDictionary *info, UMSocialPlatformType type) {
         // 根据获取的platformType确定所选平台进行下一步操作
         //创建分享消息对象
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
         messageObject.text = message;
-        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:[UIViewController currentTopViewController] completion:^(id data, NSError *error) {
-            if (error) {
-                UMSocialLogInfo(@"************Share fail with error %@*********",error);
-            }else{
-                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-                    UMSocialShareResponse *resp = data;
-                    //分享结果消息
-                    UMSocialLogInfo(@"response message is %@",resp.message);
-                    //第三方原始返回的数据
-                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-                    
+        if (type == UMSocialPlatformType_UserDefine_Begin) {
+            UIPasteboard *pab = [UIPasteboard generalPasteboard];
+            pab.string = message;
+            [MBProgressHUD showHudMsg:@"复制成功"];
+        } else {
+            [[UMSocialManager defaultManager] shareToPlatform:type
+                                                messageObject:messageObject
+                                        currentViewController:[UIViewController currentTopViewController]
+                                                   completion:^(id data, NSError *error) {
+                if (error) {
+                    UMSocialLogInfo(@"************Share fail with error %@*********",error);
                 }else{
-                    UMSocialLogInfo(@"response data is %@",data);
+                    if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                        UMSocialShareResponse *resp = data;
+                        //分享结果消息
+                        UMSocialLogInfo(@"response message is %@",resp.message);
+                        //第三方原始返回的数据
+                        UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                        
+                    }else{
+                        UMSocialLogInfo(@"response data is %@",data);
+                    }
                 }
-            }
-        }];
+            }];
+        }
+    }
+                                        failBlock:^(NSDictionary *info, UMSocialPlatformType type) {
+        
+    }
+                                        completed:^(BOOL isShow) {
+        
     }];
 }
-
-
 
 @end
