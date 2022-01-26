@@ -141,13 +141,21 @@
     }];
 }
 
+- (void)baseNavViewDidClickShareBtn:(BaseNavView *)navView {
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:@"wwww.baidu.con"];
+}
+
+- (void)baseNavViewDidClickSearchBtn:(BaseNavView *)navView {
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _scrollViewTop.constant = navBarHei;
     _navView = [[BaseNavView alloc] init];
     _navView.delegate = self;
-    [_navView updateIsOnlyShowMoreBtn:YES];
+    [_navView updateIsOnlyShowMoreBtn:NO];
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);

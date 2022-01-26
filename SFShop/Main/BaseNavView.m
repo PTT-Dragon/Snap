@@ -99,9 +99,15 @@
 }
 
 - (void)updateIsOnlyShowMoreBtn:(BOOL)isOnly {
-    self.searchBtn.hidden = isOnly;
-    self.shareBtn.hidden = isOnly;
-    self.moreBtn.hidden = !isOnly;
+    if (isOnly) {
+        self.searchBtn.hidden = YES;
+        self.shareBtn.hidden = YES;
+        self.moreBtn.hidden = NO;
+    } else {
+        self.searchBtn.hidden = NO;
+        self.shareBtn.hidden = NO;
+        self.moreBtn.hidden = NO;
+    }
 }
 
 
