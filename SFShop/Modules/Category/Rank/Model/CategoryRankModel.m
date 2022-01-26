@@ -145,6 +145,10 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"idStr" : @"id"};
 }
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 @end
 
 @implementation CategoryRankPageInfoListLabelsModel

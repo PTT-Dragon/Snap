@@ -236,7 +236,7 @@
 //  "UP_TO" = "up to";
 //  "OFF" = "off";
 //  "MIN_SPEND" = "Min. spending";
-//  "SIMILAR_PRODUCT_RECOMMENDATION" = "Similar product recommendation";
+  "SIMILAR_PRODUCT_RECOMMENDATION" = "Similar product recommendation";
 //  "NEW_PASSWORD" = "New Password";
 //  "CONFIRM_PWD" = "Confirm New Password";
 //  "RE_ENTER_NEW_PASSWORD" = "Re-enter new password";

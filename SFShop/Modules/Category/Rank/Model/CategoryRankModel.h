@@ -172,7 +172,7 @@ NS_ASSUME_NONNULL_BEGIN
             /*------------------------------------------------------------------------------------*/
             //pageInfo - list - ProductImg
             /*------------------------------------------------------------------------------------*/
-            @interface CategoryRankPageInfoListProductImgModel : NSObject
+            @interface CategoryRankPageInfoListProductImgModel : JSONModel
             @property (nonatomic, readwrite, copy) NSString *idStr;
             @property (nonatomic, readwrite, copy) NSString *productId;
             @property (nonatomic, readwrite, copy) NSString *salesPrice;

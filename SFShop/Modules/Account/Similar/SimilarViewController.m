@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (nonatomic,strong) UILabel *label;
 @end
 
 @implementation SimilarViewController
@@ -43,7 +44,7 @@
 //    _collectionView.frame = CGRectMake(0, _topView.jk_bottom+20, MainScreen_width, self.view.jk_height-154);
     [_collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(self.topView.mas_bottom).offset(10);
+        make.top.mas_equalTo(self.topView.mas_bottom).offset(35);
     }];
 }
 - (void)initUI
@@ -51,12 +52,24 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
     _nameLabel.text = _model.offerName;
     _priceLabel.text = [_model.salesPrice currency];
+    _label = [[UILabel alloc] init];
+    _label.font = CHINESE_BOLD(15);
+    _label.backgroundColor = [UIColor whiteColor];
+    _label.hidden = YES;
+    _label.text = [NSString stringWithFormat:@"   %@",kLocalizedString(@"SIMILAR_PRODUCT_RECOMMENDATION")];
+    [self.view addSubview:_label];
+    [_label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(self.topView.mas_bottom).offset(10);
+        make.height.mas_equalTo(25);
+    }];
 }
 - (void)loadDatas
 {
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.favorite.similar parameters:@{@"offerId": self.offerId} success:^(id  _Nullable response) {
         weakself.dataSource = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:nil];
+        weakself.label.hidden = weakself.dataSource.count == 0;
         [weakself.collectionView reloadData];
     } failed:^(NSError * _Nonnull error) {
         

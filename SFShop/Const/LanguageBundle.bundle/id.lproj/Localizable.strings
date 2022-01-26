@@ -234,7 +234,7 @@
 //  "UP_TO" = "hingga";
 //  "OFF" = "Off";
 //  "MIN_SPEND" = "Min. Spend";
-//  "SIMILAR_PRODUCT_RECOMMENDATION" = "Rekomendasi produk serupa";
+  "SIMILAR_PRODUCT_RECOMMENDATION" = "Rekomendasi produk serupa";
 //  "NEW_PASSWORD" = "Kata sandi baru";
 //  "CONFIRM_PWD" = "Confirm New Password";
 //  "RE_ENTER_NEW_PASSWORD" = "Masukkan kembali kata sandi baru";
