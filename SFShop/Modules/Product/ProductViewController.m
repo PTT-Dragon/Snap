@@ -988,11 +988,7 @@
     //跳转checkout页
     ProductItemModel *item = self.getSelectedProductItem;
     item.storeName = self.model.storeName;
-    ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
-    BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-        return object.productId.integerValue == _selProductModel.productId;
-    }];
-    if (isGroupBuy) {//团购情况
+    if (type == groupBuyType) {//团购情况
         for (cmpShareBuysModel *buyModel in self.campaignsModel.cmpShareBuys) {
             if (buyModel.productId.integerValue == item.productId) {
                 item.inCmpIdList = @[@(buyModel.campaignId)];
