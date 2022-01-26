@@ -592,7 +592,14 @@
 
 - (void)hideGroupSubViews {
     self.groupInfoView.hidden = YES;
+    self.flashSaleInfoView.hidden = YES;
     self.viewTop.constant = 0;
+    self.priceLabelTop.constant = 61;
+    self.salesPriceLabel.hidden = NO;
+    self.originalPriceLabel.hidden = NO;
+    self.productDiscountLabel.hidden = NO;
+    self.marketPriceLabelIndicationView.hidden = NO;
+    self.groupTableViewHei.constant = 0;
 }
 
 - (void)layoutGroupSubViews

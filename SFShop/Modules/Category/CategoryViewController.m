@@ -20,7 +20,7 @@
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cacheDatas;//缓存数据
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @property (nonatomic, readwrite, strong) NSURLSessionDataTask *lastRequestTask;
-//@property (nonatomic, readwrite, strong) BaseMoreView *moreView;
+@property (nonatomic, readwrite, strong) BaseMoreView *moreView;
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @end
 
@@ -170,9 +170,20 @@
             [self.tabBarController setSelectedIndex:0];
         };
         SFSearchItem *rightItem = [SFSearchItem new];
-        rightItem.icon = @"nav_addition";
-        rightItem.selectedIcon = @"nav_addtion_list";
+        rightItem.icon = @"more-horizontal";
+        rightItem.selectedIcon = @"more-vertical";
         rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
+            if (isSelected) {
+                [self.moreView removeFromSuperview];
+                self.moreView = [[BaseMoreView alloc] init];
+                [self.view addSubview:self.moreView];
+                [self.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.bottom.mas_equalTo(0);
+                    make.top.mas_equalTo(self.navSearchView.mas_bottom);
+                }];
+            }else{
+                [self.moreView removeFromSuperview];
+            }
             
         };
         __weak __typeof(self)weakSelf = self;
@@ -185,11 +196,11 @@
     return _navSearchView;
 }
 
-//- (BaseMoreView *)moreView {
-//    if (!_moreView) {
-//        _moreView = [[BaseMoreView alloc] initWithFrame:CGRectMake(0, self.navSearchView.bottom, MainScreen_width, self.view.height)];
-//    }
-//    return _moreView;
-//}
+- (BaseMoreView *)moreView {
+    if (!_moreView) {
+        _moreView = [[BaseMoreView alloc] initWithFrame:CGRectMake(0, self.navSearchView.bottom, MainScreen_width, self.view.height)];
+    }
+    return _moreView;
+}
 
 @end

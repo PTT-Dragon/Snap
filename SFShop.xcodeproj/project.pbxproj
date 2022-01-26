@@ -102,6 +102,8 @@
 		1B552EBB276C3D470086604B /* ProductGroupTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B552EB9276C3D470086604B /* ProductGroupTitleCell.xib */; };
 		1B552EC0276C721C0086604B /* ProductReviewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B552EBE276C721B0086604B /* ProductReviewDetailViewController.m */; };
 		1B552EC1276C721C0086604B /* ProductReviewDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B552EBF276C721B0086604B /* ProductReviewDetailViewController.xib */; };
+		1B57FF1F27A0CF360097B6C9 /* LogisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B57FF1D27A0CF360097B6C9 /* LogisticsCell.m */; };
+		1B57FF2027A0CF360097B6C9 /* LogisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B57FF1E27A0CF360097B6C9 /* LogisticsCell.xib */; };
 		1B593E5E2799437100D8CDF3 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B593E5C2799437100D8CDF3 /* NSDate+Helper.m */; };
 		1B6246612761FCAE00009DE2 /* ProductReviewChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6246602761FCAE00009DE2 /* ProductReviewChildViewController.m */; };
 		1B62466527624D9E00009DE2 /* ProductReviewLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B62466327624D9E00009DE2 /* ProductReviewLabelCell.m */; };
@@ -705,6 +707,9 @@
 		1B552EBD276C721B0086604B /* ProductReviewDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewDetailViewController.h; sourceTree = "<group>"; };
 		1B552EBE276C721B0086604B /* ProductReviewDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductReviewDetailViewController.m; sourceTree = "<group>"; };
 		1B552EBF276C721B0086604B /* ProductReviewDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductReviewDetailViewController.xib; sourceTree = "<group>"; };
+		1B57FF1C27A0CF360097B6C9 /* LogisticsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogisticsCell.h; sourceTree = "<group>"; };
+		1B57FF1D27A0CF360097B6C9 /* LogisticsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogisticsCell.m; sourceTree = "<group>"; };
+		1B57FF1E27A0CF360097B6C9 /* LogisticsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogisticsCell.xib; sourceTree = "<group>"; };
 		1B593E5C2799437100D8CDF3 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		1B593E5D2799437100D8CDF3 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		1B62465F2761FCAE00009DE2 /* ProductReviewChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewChildViewController.h; sourceTree = "<group>"; };
@@ -2035,6 +2040,9 @@
 				1BFF68F727968C5F006890D7 /* LogisticsVC.h */,
 				1BFF68F827968C5F006890D7 /* LogisticsVC.m */,
 				1BFF68F927968C5F006890D7 /* LogisticsVC.xib */,
+				1B57FF1C27A0CF360097B6C9 /* LogisticsCell.h */,
+				1B57FF1D27A0CF360097B6C9 /* LogisticsCell.m */,
+				1B57FF1E27A0CF360097B6C9 /* LogisticsCell.xib */,
 			);
 			path = OrderDetail;
 			sourceTree = "<group>";
@@ -3512,6 +3520,7 @@
 				1B63D463272D238C0062762B /* CartChooseAddressViewController.xib in Resources */,
 				1B2AE442272E8EDD00FB23D3 /* ChooseReasonViewController.xib in Resources */,
 				1B478317272A957000F2A945 /* RefundProcessCell.xib in Resources */,
+				1B57FF2027A0CF360097B6C9 /* LogisticsCell.xib in Resources */,
 				1BF44942279B37BF003A38F8 /* ProductShowGroupCell.xib in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
@@ -3724,6 +3733,7 @@
 				4B43852226FEBC5E00BA3D90 /* CommunityWaterfallLayout.m in Sources */,
 				1B82AEE0277080B700D75E00 /* YYWebImageManager.m in Sources */,
 				1B6C52B0275B672200A1C617 /* ZLEditVideoController.m in Sources */,
+				1B57FF1F27A0CF360097B6C9 /* LogisticsCell.m in Sources */,
 				AE81BE65270205B300AB4225 /* CategoryContentSectionFooter.m in Sources */,
 				1BD2A622276B0CF200F994C5 /* GroupListViewController.m in Sources */,
 				1BDB5DBF272EC1E00016C2F3 /* CartModel.m in Sources */,

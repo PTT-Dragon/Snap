@@ -31,10 +31,6 @@
     _emailBtn.layer.borderWidth = 1;
     _smsBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     _emailBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [_smsBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 30)];
-    [_smsBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -90, 0, 50)];
-    [_emailBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 30)];
-    [_emailBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -90, 0, 50)];
     
 }
 - (void)setType:(changePasswordType)type

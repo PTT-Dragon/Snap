@@ -289,7 +289,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*logisticsName;
 @property (nonatomic,copy) NSString <Optional>*url;
 @property (nonatomic,copy) NSString <Optional>*shippingNbr;
-@property (nonatomic,strong) NSArray <Optional>*packageDetailList;
+@property (nonatomic,strong) NSArray <PackageListModel>*packageDetailList;
 
 
 @end

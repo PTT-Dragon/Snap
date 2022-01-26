@@ -480,7 +480,7 @@
 //  "ORDER" = "Order";
 //  "LIKE" = "Like";
 //  "AGENT_SERVICE" = "Agent Service";
-  "ITEM" = "Items"
+"ITEM" = "Items";
 "OUT_OF_STOCK_IN_CURRENT_REGION" = "Tidak tersedia di negara ini";
 "Empty_Tip_NoPage" = "Oops! Halaman tidak ditemukan.";
 "Empty_Tip_NoNetWork" = "Internet error; silakan coba nanti.";
@@ -497,8 +497,8 @@
 "Empty_Tip_NoPrize" = "Kejadian ini berakhir; menunggu kedatangan Anda berikutnya.";
 "Error_system_loading" = "Pemeliharaan system Silahkan coba lagi nanti";
 "Account" = "Akaun";
-"Home" = "Home";
-"Cart" = "Cart";
+"Home" = "Beranda";
+"Cart" = "Keranjang";
 "Community" = "Komunitas";
 "Category" = "Kategori";
 "Group_buy" = "Pembelian kelompok";

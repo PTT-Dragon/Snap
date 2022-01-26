@@ -481,7 +481,7 @@
 //  "LIKE" = "Like";
 //  "AGENT_SERVICE" = "Agent Service";
 "OUT_OF_STOCK_IN_CURRENT_REGION" = "该地区商品无货";
-  "ITEM" = "件"
+  "ITEM" = "件";
 "Empty_Tip_NoPage" = "哦!页面未找到。";
 "Empty_Tip_NoNetWork" = "网络错误，请稍后再试。";
 "Empty_Tip_NoShoppingCar" = "此购物车中无商品";
@@ -497,7 +497,7 @@
 "Empty_Tip_NoPrize" = "活动已经结束，期待您下次的参与";
 "Error_system_loading" = "Pemeliharaan system Silahkan coba lagi nanti";
 "Account" = "帐户";
-"Home" = "家";
+"Home" = "首页";
 "Cart" = "购物车";
 "Community" = "社区";
 "Category" = "类别";

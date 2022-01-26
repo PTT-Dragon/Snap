@@ -11,6 +11,7 @@
 #import "CountDown.h"
 #import "ResetPasswordDoViewController.h"
 #import "LoginViewController.h"
+#import "SysParamsModel.h"
 
 @interface verifyCodeVC ()<HWTFCodeBViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
@@ -47,6 +48,7 @@
         weakself.recendBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
         [weakself showCountLabel];
     } failed:^(NSError * _Nonnull error) {
+        weakself.recendBtn.userInteractionEnabled = YES;
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
@@ -57,7 +59,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     MPWeakSelf(self)
-    __block NSInteger timeout = 120; // 倒计时时间
+    SysParamsItemModel *model = [SysParamsItemModel sharedSysParamsItemModel];
+    __block NSInteger timeout = model.CODE_TTL.integerValue *60; // 倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);

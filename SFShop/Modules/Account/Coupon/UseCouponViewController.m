@@ -12,6 +12,7 @@
 #import "UseCouponProductCell.h"
 #import "ProductViewController.h"
 #import "ProductSpecAttrsView.h"
+#import "addressModel.h"
 
 
 @interface UseCouponViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -24,8 +25,12 @@
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
+@property (nonatomic, readwrite, strong) NSMutableArray *addressDataArray;
 @property (nonatomic, readwrite, assign) NSInteger currentPage;
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
+@property (nonatomic,strong) addressModel *selAddressModel;
+@property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
+@property (nonatomic,strong) ProductItemModel *selProductModel;
 
 @end
 
@@ -65,6 +70,7 @@
         self.currentPage += 1;
         [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
     }];
+    [self loadAddressDatas];
     
     [self.tableView.mj_header beginRefreshing];
 }
@@ -74,6 +80,7 @@
     UseCouponProductCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UseCouponProductCell"];
     [cell setContent:self.dataArray[indexPath.section]];
     cell.block = ^(CategoryRankPageInfoListModel * _Nonnull model) {
+        [self loadProductInfoWithModel:model];
 //        [self showAttrsViewWithAttrType:cartType model:model];
     };
     return cell;
@@ -134,6 +141,24 @@
         }
     }];
 }
+- (void)loadAddressDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.address.addressList parameters:@{@"pageIndex":@(1),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [weakself.addressDataArray removeAllObjects];
+        for (NSDictionary *dic in response) {
+            addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
+            if ([model.isDefault isEqualToString:@"Y"]) {
+                weakself.selAddressModel = model;
+            }
+            [weakself.addressDataArray addObject:model];
+        }
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_header endRefreshing];
+    }];
+}
+
 #pragma mark - Event
 - (void)jumpToFilterDetail {
     //加载缓存配置到数据层
@@ -210,31 +235,71 @@
 - (void)loadProductInfoWithModel:(CategoryRankPageInfoListModel *)model
 {
     [SFNetworkManager get:[SFNet.offer getDetailOf: model.offerId] parameters:@{} success:^(id  _Nullable response) {
-        ProductItemModel *detailModel = [[ProductItemModel alloc] initWithDictionary: response error: nil];
-        [self showAttrsViewWithAttrType:cartType model:model productModel:detailModel];
+        ProductDetailModel *detailModel = [[ProductDetailModel alloc] initWithDictionary: response error: nil];
+        [self requestStockWithDetailModel:detailModel model:model];
     } failed:^(NSError * _Nonnull error) {
         
     }];
 }
-- (void)loadStock
-{
-    
+/**
+ 请求库存信息
+ */
+- (void)requestStockWithDetailModel:(ProductDetailModel *)detailModel model:(CategoryRankPageInfoListModel *)model {
+    NSArray *arr = [detailModel.products jk_map:^id(ProductItemModel *object) {
+        cmpShareBuysModel *sbModel = [model.campaigns.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object1) {
+            return object1.productId.integerValue == object.productId;
+        }].firstObject;
+        NSArray *inCmpIdList = sbModel ? @[@(sbModel.campaignId)] : @[];
+        return @{
+            @"productId": @(object.productId),
+            @"offerCnt": @1,
+            @"inCmpIdList": inCmpIdList
+        };
+    }];
+    NSDictionary *param = @{
+        @"stdAddrId": self.selAddressModel ? self.selAddressModel.contactStdId : @"1488",
+                       @"stores": @[
+                           @{
+                               @"storeId": @(model.storeId),
+                               @"products": arr
+                           }
+                       ]
+    };
+    [SFNetworkManager post:SFNet.offer.stock parameters: param success:^(id  _Nullable response) {
+        self.stockModel = [ProductStockModel arrayOfModelsFromDictionaries:response error:nil];
+        [self showAttrsViewWithAttrType:cartType model:model productModel:detailModel stockModel:self.stockModel];
+//        [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+//            [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+//                if (obj2.productId.integerValue == weakself.productId) {
+//                    weakself.deliveryLabel.text = [NSString stringWithFormat:@"%@-%@day(s)", obj2.minDeliveryDays, obj2.maxDeliveryDays];
+//                    *stop1 = YES;
+//                    *stop2 = YES;
+//                }
+//            }];
+//        }];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+
 }
 
-- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type model:(CategoryRankPageInfoListModel *)model productModel:(ProductItemModel *)productModel{
+- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type model:(CategoryRankPageInfoListModel *)model productModel:(ProductDetailModel *)productDetailModel stockModel:(NSArray<ProductStockModel *> *)stockModel{
+    self.selProductModel = [productDetailModel.products jk_filter:^BOOL(ProductItemModel *object) {
+        return object.productId == model.productId.integerValue;
+    }].firstObject;
     _attrView = [[ProductSpecAttrsView alloc] init];
     _attrView.attrsType = type;
     _attrView.campaignsModel = model.campaigns;
-    _attrView.selProductModel = productModel;
-//    _attrView.stockModel = model.sto;
-    _attrView.model = productModel;
+    _attrView.selProductModel = self.selProductModel;
+    _attrView.stockModel = stockModel;
+    _attrView.model = productDetailModel;
     MPWeakSelf(self)
     MPWeakSelf(_attrView)
     _attrView.buyOrCartBlock = ^(ProductSpecAttrsType type) {
         switch (type) {
             case cartType:// 加入购物车
             {
-                [weakself addToCart];
+                [weakself addToCartWithModel:model productModel:productDetailModel];
             }
                 break;
             case buyType://购买
@@ -255,7 +320,7 @@
         
     };
     _attrView.chooseAttrBlock = ^() {
-        
+        weakself.selProductModel = weakself.attrView.selProductModel;
     };
     UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
     [rootView addSubview:_attrView];
@@ -264,9 +329,13 @@
         make.bottom.equalTo(self.view.mas_bottom).offset(0);
     }];
 }
-- (void)addToCart
+- (void)addToCartWithModel:(CategoryRankPageInfoListModel *)model productModel:(ProductDetailModel *)productDetailModel
 {
-    
+    [SFNetworkManager post:SFNet.cart.cart parameters:@{@"isSelected":@"N",@"contactChannel":@"3",@"addon":@"",@"productId":_selProductModel.productId?@(_selProductModel.productId):@"",@"storeId":@(model.storeId),@"offerId":@(model.offerId),@"num":@(self.attrView.count),@"unitPrice":@(_selProductModel.salesPrice)} success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+    }];
 }
 
 
@@ -275,6 +344,12 @@
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
+}
+- (NSMutableArray *)addressDataArray {
+    if (_addressDataArray == nil) {
+        _addressDataArray = [NSMutableArray array];
+    }
+    return _addressDataArray;
 }
 - (UITableView *)tableView
 {

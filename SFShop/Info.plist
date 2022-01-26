@@ -137,13 +137,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>aaa</string>
+	<string>Your consent is required to access the camera for taking comment pictures or avatars</string>
 	<key>NSExceptionMinimumTLSVersion</key>
 	<string>TLSv1.0</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>save photo</string>
+	<string>Select pictures from albums when uploading avatars or comment pictures</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>save photo</string>
+	<string>Select pictures from albums when uploading avatars or comment pictures</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
