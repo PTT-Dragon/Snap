@@ -55,7 +55,9 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"CartTableViewCell" bundle:nil] forCellReuseIdentifier:@"CartTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"CartTitleCell" bundle:nil] forCellReuseIdentifier:@"CartTitleCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.view);
+        make.top.equalTo(self.view);
+        make.left.offset(16);
+        make.right.offset(-16);
         make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
     [self.view addSubview:self.emptyView];
@@ -63,6 +65,7 @@
         make.top.mas_equalTo(self.view.mas_top).offset(30);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
+    self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
 }
 
 - (void)requestSimilar {
@@ -115,6 +118,8 @@
     NSLog(@"%ld-----%ld",indexPath.section,indexPath.row);
     if (indexPath.row == 0) {
         CartTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTitleCell"];
+        cell.leftMargin.constant = 0;
+        cell.rightMargin.constant = 0;
         cell.section = indexPath.section;
         CartListModel *model;
         if (indexPath.section >= self.cartModel.validCarts.count) {
@@ -132,6 +137,8 @@
     }
     CartListModel *listModel;
     CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartTableViewCell"];
+    cell.leftMargin.constant = 0;
+    cell.rightMargin.constant = 0;
     if (indexPath.section >= self.cartModel.validCarts.count) {
         listModel = self.cartModel.invalidCarts[indexPath.section-self.cartModel.validCarts.count];
         cell.isInvalid = YES;
@@ -151,6 +158,7 @@
     cell.delegate = self;
     return cell;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 10)];
@@ -161,6 +169,17 @@
 {
     return 10;
 }
+
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 10)];
+//    view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+//    return view;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return 10;
+//}
+
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     if (indexPath.row == 0) {
         return nil;

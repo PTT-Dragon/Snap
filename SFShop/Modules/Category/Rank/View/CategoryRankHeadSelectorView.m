@@ -12,6 +12,8 @@
 @property (nonatomic, readwrite, strong) UIButton *popularityBtn;
 @property (nonatomic, readwrite, strong) UIButton *salesBtn;
 @property (nonatomic, readwrite, strong) UIButton *priceBtn;
+@property (nonatomic, readwrite, strong) UIImageView *priceSortUpImg;
+@property (nonatomic, readwrite, strong) UIImageView *priceSortDownImg;
 @property (nonatomic, readwrite, strong) UIButton *filterBtn;
 @property (nonatomic, readwrite, strong) UIButton *lastBtn;
 @end
@@ -56,6 +58,19 @@
         make.width.mas_equalTo(KScale(78));
     }];
     
+    [self.priceBtn addSubview:self.priceSortUpImg];
+    [self.priceBtn addSubview:self.priceSortDownImg];
+    [self.priceSortUpImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(10);
+        make.bottom.equalTo(self.priceBtn.mas_centerY).offset(0);
+        make.right.offset(-10);
+    }];
+    [self.priceSortDownImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(10);
+        make.top.equalTo(self.priceBtn.mas_centerY).offset(0);
+        make.right.offset(-10);
+    }];
+    
     [self.filterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(KScale(-25));
         make.centerY.mas_equalTo(0);
@@ -73,12 +88,21 @@
         if (isSeleted) {
             if (type == CategoryRankTypePriceDescending) {
                 btn.tag = CategoryRankTypePriceAscending + 100;
+                self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up-red"];
+                self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down"];
             } else {
                 btn.tag = CategoryRankTypePriceDescending + 100;
+                self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
+                self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down-red"];
             }
         } else {//从未选中到选中状态默认未降序
             btn.tag = CategoryRankTypePriceDescending + 100;
+            self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
+            self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down-red"];
         }
+    }else {
+        self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
+        self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down"];
     }
     
     //回调给外部
@@ -144,9 +168,30 @@
         [_priceBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateSelected];
         _priceBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
         _priceBtn.layer.borderWidth = 1;
+        [_priceBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 5)];
+        
+        
+        
     }
     return _priceBtn;
 }
+
+-(UIImageView *)priceSortUpImg {
+    if (!_priceSortUpImg) {
+        _priceSortUpImg = [[UIImageView alloc] init];
+        _priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
+    }
+    return _priceSortUpImg;
+}
+
+-(UIImageView *)priceSortDownImg {
+    if (!_priceSortDownImg) {
+        _priceSortDownImg = [[UIImageView alloc] init];
+        _priceSortDownImg.image = [UIImage imageNamed:@"swipe-down"];
+    }
+    return _priceSortDownImg;
+}
+
 
 - (UIButton *)filterBtn {
     if (_filterBtn == nil) {

@@ -73,7 +73,8 @@
     [_navView configDataWithTitle:kLocalizedString(@"My_Address")];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) { 
         make.top.mas_equalTo(self.navView.mas_bottom).offset(20);
-        make.left.right.mas_equalTo(self.view);
+        make.left.offset(16);
+        make.right.offset(-16);
         make.bottom.mas_equalTo(self.bottomView.mas_top);
     }];
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{

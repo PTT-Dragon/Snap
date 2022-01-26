@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -158,10 +158,12 @@
                 <outlet property="additonBtn" destination="xDM-D5-S5g" id="dnF-2g-GqA"/>
                 <outlet property="countLabel" destination="jWp-Ge-qwV" id="GLs-vB-4gl"/>
                 <outlet property="imgView" destination="5Uk-UU-CJV" id="LC3-sa-uCQ"/>
+                <outlet property="leftMargin" destination="EPI-1o-fUc" id="Wcg-sz-Yus"/>
                 <outlet property="nameLabel" destination="2OE-4E-Ucf" id="geg-Hm-xwy"/>
                 <outlet property="priceDownLabel" destination="LGP-hl-2ya" id="QLT-Ot-jJe"/>
                 <outlet property="priceDownView" destination="Ct6-i0-Q4T" id="JQF-dQ-nLZ"/>
                 <outlet property="priceLabel" destination="8nW-Ol-sVX" id="EDJ-W8-Jlb"/>
+                <outlet property="rightMargin" destination="udz-ZI-62s" id="yXK-QQ-UF2"/>
                 <outlet property="selBtn" destination="MvD-Qt-BbY" id="k3Q-56-MNs"/>
                 <outlet property="skuLabel" destination="p92-dv-aGh" id="GKK-tg-VV9"/>
                 <outlet property="subtractBtn" destination="kJB-Fa-M5g" id="Iqy-b7-PfR"/>

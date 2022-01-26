@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -105,7 +105,9 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="iconImgView" destination="gnT-YZ-mU4" id="I8j-aG-tOm"/>
+                <outlet property="leftMargin" destination="CPs-hD-cFY" id="6mv-qA-keh"/>
                 <outlet property="offLabel" destination="x5R-y6-jzR" id="Niq-4R-4n9"/>
+                <outlet property="rightMargin" destination="dhI-2L-K11" id="uL0-iz-eIJ"/>
                 <outlet property="selBtn" destination="wRO-ee-qdu" id="KMg-pD-6tM"/>
                 <outlet property="storeNameLabel" destination="KN5-62-ZdT" id="iih-6w-iqe"/>
                 <outlet property="vouchBtn" destination="wfM-NY-SbM" id="CZr-FN-KHi"/>

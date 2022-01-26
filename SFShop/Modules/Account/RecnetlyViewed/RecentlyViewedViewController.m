@@ -108,7 +108,9 @@
     
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+        make.left.offset(16);
+        make.right.offset(-16);
         make.top.mas_equalTo(_calendarContentView.mas_bottom).offset(20);
     }];
     [self.tableView registerNib:[UINib nibWithNibName:@"RecentlyViewedCell" bundle:nil] forCellReuseIdentifier:@"RecentlyViewedCell"];
@@ -118,6 +120,8 @@
         make.top.mas_equalTo(self.tableView.mas_top).offset(90);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
+    self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
+
 }
 - (void)loadDatas
 {

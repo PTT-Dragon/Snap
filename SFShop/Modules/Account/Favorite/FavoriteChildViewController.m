@@ -138,7 +138,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 160;
+    return 150;
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     //删除
@@ -185,6 +185,16 @@
     vc.offerId = model.offerId.integerValue;
     vc.productId = model.productId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, App_Frame_Width, 10)];
+    headerView.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
+    return headerView;
 }
 
 #pragma mark -
