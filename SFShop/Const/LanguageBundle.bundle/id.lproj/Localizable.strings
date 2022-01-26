@@ -212,7 +212,7 @@
 //  "SERVICE_ATTITUDE" = "Kualitas pelayanan penjual";
 //  "LOGISTICS_SERVICE" = "Layanan Logistik";
 //  "DISCOUNT" = "Diskon";
-//  "INBOX" = "Inbox";
+  "INBOX" = "Inbox";
   "MY_SF" = "My SF";
 //  "DELETE" = "Delete";
 //  "CANCAL" = "Cancel";

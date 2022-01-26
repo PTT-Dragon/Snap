@@ -213,7 +213,7 @@
 //  "SERVICE_ATTITUDE" = "Service Attitude";
 //  "LOGISTICS_SERVICE" = "Logistics Service";
 //  "DISCOUNT" = "Discount";
-//  "INBOX" = "Inbox";
+  "INBOX" = "Inbox";
   "MY_SF" = "My SF";
 //  "DELETE" = "Delete";
 //  "CANCAL" = "Cancel";
@@ -651,4 +651,5 @@
 "ADDRESS" = "Address";
 "SERVICE" = "Service";
 "FAQ" = "FAQ";
+"Share_to" = "Share to";
 "Share_to" = "Share to";

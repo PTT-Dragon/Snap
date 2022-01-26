@@ -154,7 +154,7 @@
         _inboxBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_inboxBtn setImage:[UIImage imageNamed:@"ic_nav_more_message"]
                    forState:UIControlStateNormal];
-        [_inboxBtn setTitle:kLocalizedString(@"Message")
+        [_inboxBtn setTitle:kLocalizedString(@"INBOX")
                    forState:UIControlStateNormal];
         [_inboxBtn addTarget:self
                       action:@selector(inboxBtnAction)
