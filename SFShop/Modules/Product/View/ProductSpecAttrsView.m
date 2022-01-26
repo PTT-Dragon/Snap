@@ -54,7 +54,7 @@
     [self addSubview:_contentView];
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-//        make.top.equalTo(self).offset(100);
+        make.top.equalTo(self).offset(100);
     }];
     
     UIButton *dismissBtn = [UIButton buttonWithType: UIButtonTypeCustom];

@@ -8,8 +8,8 @@
 "Recently_Viewed" = "最近浏览";
 //  "PLEASE_SELECT_THE_PROVINCE_FIRST" = "Please select the province first";
 //  "DATA_ERROR" = "Data Error";
-//  "SF_AGREEMENT" = "SF的用户协议和政策";
-//  "HAVE_READ_AND_AGREED" = "已阅读并同意";
+  "SF_AGREEMENT" = "Nuri的用户协议和政策";
+  "HAVE_READ_AND_AGREED" = "已阅读并同意";
 //  "COPY" = "复制";
 //  "REPLY_SUCCESSFULLY" = "评论成功";
 //  "PREFER_NOT_TO_RESPOND" = "不回答";
@@ -93,8 +93,8 @@
 //  "MOBILE_NUMBER" = "手机号码";
 //  "NEW_MOBILE_NUMBER" = "新手机号码";
 //  "ADDRESS" = "地址";
-//  "STREET" = "街道/建筑物名称和邮编";
-//  "OTHERDETAIL" = "详细地址";
+  "STREET" = "街道/建筑物名称和邮编";
+  "OTHERDETAIL" = "详细地址";
 //  "OK" = "好的";
 //  "SAVE" = "保存";
 //  "SAVEPROFILE" = "保存配置";
@@ -150,7 +150,7 @@
 //  "INCORRECT_NAME" = "收件人姓名请输入4 ~ 40个字符。";
 //  "INCORRECT_PHONE" = "请输入正确的手机号";
 //  "INCORRECT_EMAIL" = "请输入正确的邮箱";
-//  "ADDRESS_DEFAULT" = "设为默认地址";
+  "ADDRESS_DEFAULT" = "设为默认地址";
 //  "ADDRESS_ADD_SUCCESS" = "成功添加地址";
 //  "MODIFY_ADD_SUCCESS" = "成功修改地址";
 //  "SERVICE_DETAIL" = "服务详情";
@@ -223,9 +223,9 @@
   "ITEMS" = "个";
 //  "PLATFORM_VOUCHER" = "SF.shop Voucher";
 //  "PLACE_ORDER" = "确认下单";
-//  "RECIPIENT_NAME" = "收件人姓名";
-//  "PROVINCE_CITY_DISTRICT" = "省; 市; 区";
-//  "MODIFY_ADDRESS" = "修改地址";
+  "RECIPIENT_NAME" = "收件人姓名";
+  "PROVINCE_CITY_DISTRICT" = "省; 市; 区";
+  "MODIFY_ADDRESS" = "修改地址";
   "DEFAULT" = "默认";
 //  "REFUND_BANK_ACCOUNT" = "退款银行账号";
 //  "FINAL_REFUND_AMOUNT" = "最终退款金额";
@@ -440,7 +440,7 @@
 //  "COUPON_DETAIL" = "优惠券详情";
 //  "GOT_IT" = "了解";
   "DROP_IN_PRICE" = "降价";
-//  "MOVE_TO_FAVOURITE" = "加入收藏";
+  "MOVE_TO_FAVOURITE" = "加入收藏";
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "购物车为空";
 //  "NOTES" = "备注";
 //  "STORE_PROMOTION" = "店铺优惠券";

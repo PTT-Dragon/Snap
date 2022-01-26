@@ -34,7 +34,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="boY-Fj-fn6">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="1922"/>
+                    <rect key="frame" x="0.0" y="100" width="414" height="1822"/>
                     <subviews>
                         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FK-SL-g3c">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="732"/>
@@ -204,7 +204,7 @@
                 <constraint firstAttribute="bottom" secondItem="boY-Fj-fn6" secondAttribute="bottom" constant="78" id="Wz7-1Q-oOm"/>
                 <constraint firstItem="boY-Fj-fn6" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="owc-Nr-WIC"/>
                 <constraint firstItem="Cci-3u-5Ve" firstAttribute="bottom" secondItem="GJf-Rq-Lru" secondAttribute="bottom" id="sm0-8v-v4U"/>
-                <constraint firstItem="boY-Fj-fn6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="u0u-kk-k2p"/>
+                <constraint firstItem="boY-Fj-fn6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="u0u-kk-k2p"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="137.68115942028987" y="57.589285714285708"/>

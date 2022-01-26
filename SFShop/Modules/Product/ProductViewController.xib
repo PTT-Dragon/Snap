@@ -46,6 +46,7 @@
                 <outlet property="productDiscountLabel" destination="pFq-ea-8zd" id="94l-RG-d2x"/>
                 <outlet property="salesPriceLabel" destination="zUg-Wd-3Ad" id="Gxx-HB-GTn"/>
                 <outlet property="scrollContentView" destination="TNw-J5-BPH" id="xT7-Tf-TwZ"/>
+                <outlet property="scrollViewTop" destination="Bgi-l4-8u2" id="Uk0-Rb-Emf"/>
                 <outlet property="secondLabel" destination="foh-OB-okc" id="iL8-aS-wpe"/>
                 <outlet property="subheadNameLabel" destination="t4A-ep-h6d" id="COK-q1-zDp"/>
                 <outlet property="tableviewHie" destination="7MT-fX-Ecc" id="RRy-GZ-NpF"/>

@@ -7,8 +7,8 @@
 //*/
 //  "PLEASE_SELECT_THE_PROVINCE_FIRST" = "Please select the province first";
 //  "DATA_ERROR" = "Data Error";
-//  "SF_AGREEMENT" = "my SF's User Agreement and Privacy";
-//  "HAVE_READ_AND_AGREED" = "I have read and agreed to the";
+  "SF_AGREEMENT" = "Nuri's User Agreement and Privacy";
+  "HAVE_READ_AND_AGREED" = "I have read and agreed to the";
 //  "COPY" = "COPY";
 //  "REPLY_SUCCESSFULLY" = "Reply successfully";
 //  "PREFER_NOT_TO_RESPOND" = "Prefer not to respond";
@@ -90,8 +90,8 @@
 //  "MOBILE_NUMBER" = "Mobile Number";
 //  "NEW_MOBILE_NUMBER" = "New Mobile Number";
 //  "ADDRESS" = "Address";
-//  "STREET" = "Street/building name and number";
-//  "OTHERDETAIL" = "Other Detail";
+  "STREET" = "Street/building name and number";
+  "OTHERDETAIL" = "Other Detail";
 //  "OK" = "OK";
 //  "SAVE" = "Save";
 //  "SAVEPROFILE" = "Save Profile";
@@ -144,7 +144,7 @@
 //  "INCORRECT_NAME" = "Please input 4 ~ 40 characters for recipient name.";
   "INCORRECT_PHONE" = "Please input the correct phone number.";
   "INCORRECT_EMAIL" = "Please input the correct email.";
-//  "ADDRESS_DEFAULT" = "Set Default";
+  "ADDRESS_DEFAULT" = "Set Default";
 //  "ADDRESS_ADD_SUCCESS" = "Add address successfully.";
 //  "MODIFY_ADD_SUCCESS" = "Modify address successfully.";
 //  "SERVICE_DETAIL" = "Service Detail";
@@ -223,9 +223,9 @@
 "ITEM" = "items";
 //  "PLATFORM_VOUCHER" = "SF.shop Voucher";
 //  "PLACE_ORDER" = "Place Order";
-//  "RECIPIENT_NAME" = "Recipient Name";
-//  "PROVINCE_CITY_DISTRICT" = "Province; City; District";
-//  "MODIFY_ADDRESS" = "Modify Address";
+  "RECIPIENT_NAME" = "Recipient Name";
+  "PROVINCE_CITY_DISTRICT" = "Province; City; District";
+  "MODIFY_ADDRESS" = "Modify Address";
   "DEFAULT" = "Default";
 //  "REFUND_BANK_ACCOUNT" = "Refund to {bank account}";
 //  "FINAL_REFUND_AMOUNT" = "Final refund amount";
@@ -326,7 +326,7 @@
 //  "SUPPORT" = "Support";
 //  "COMMUNITY" = "Community";
 //  "REJECT_REASON" = "Reject Reason";
-//  "PHONE_NUMBER" = "Phone Number";
+  "PHONE_NUMBER" = "Phone Number";
 //  "TWITTER" = "Twitter";
 //  "POSTER" = "Poster";
 //  "VIDEO" = "Video";
@@ -440,7 +440,7 @@
 //  "COUPON_DETAIL" = "Voucher Detail";
 //  "GOT_IT" = "GOT IT";
   "DROP_IN_PRICE" = "Drop in price";
-//  "MOVE_TO_FAVOURITE" = "Move to favourite";
+  "MOVE_TO_FAVOURITE" = "Move to favourite";
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "There are no items in this cart";
 //  "NOTES" = "Notes";
 //  "STORE_PROMOTION" = "Store Promo";

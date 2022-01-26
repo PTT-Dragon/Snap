@@ -43,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel3;
+@property (weak, nonatomic) IBOutlet UILabel *readLabel;
 
 @end
 
@@ -71,6 +72,27 @@ static BOOL changePhone = NO;
     _streetField.layer.borderWidth = 1;
     _titleLabel1.text = kLocalizedString(@"CONTACT_INFORMATION");
     _titleLabel2.text = kLocalizedString(@"ADDRESS_DETAIL");
+    _tipLabel1.text = kLocalizedString(@"REQUIREDTIP");
+    _tipLabel2.text = kLocalizedString(@"REQUIREDTIP");
+    _tipLabel3.text = kLocalizedString(@"REQUIREDTIP");
+    _tipLabel4.text = kLocalizedString(@"REQUIREDTIP");
+    _tipLabel5.text = kLocalizedString(@"REQUIREDTIP");
+    _tipLabel6.text = kLocalizedString(@"REQUIREDTIP");
+    _label1.text = kLocalizedString(@"RECIPIENT_NAME");
+    _nameField.placeholder = kLocalizedString(@"RECIPIENT_NAME");
+    _label2.text = kLocalizedString(@"Phone_number");
+    _phoneField.placeholder = kLocalizedString(@"Phone_number");
+    _label3.text = kLocalizedString(@"Email");
+    _emailField.placeholder = kLocalizedString(@"Email");
+    _label4.text = kLocalizedString(@"PROVINCE_CITY_DISTRICT");
+    _areaField.placeholder = kLocalizedString(@"PROVINCE_CITY_DISTRICT");
+    _label5.text = kLocalizedString(@"STREET");
+    _streetField.placeholder = kLocalizedString(@"STREET");
+    _label6.text = kLocalizedString(@"OTHERDETAIL");
+    _detailField.text = kLocalizedString(@"OTHERDETAIL");
+    _titleLabel3.text = kLocalizedString(@"ADDRESS_DEFAULT");
+    _readLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"HAVE_READ_AND_AGREED"),kLocalizedString(@"SF_AGREEMENT")];
+    
     if (_model) {
         //修改地址
         changePhone = YES;

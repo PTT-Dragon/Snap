@@ -26,6 +26,7 @@
                 <outlet property="nameField" destination="IxV-cw-9Pd" id="Y1F-Wl-CDw"/>
                 <outlet property="officeBtn" destination="bcO-PD-dXS" id="JvP-U4-bbb"/>
                 <outlet property="phoneField" destination="G8I-e7-lBd" id="l1u-VQ-wK9"/>
+                <outlet property="readLabel" destination="vhW-jM-cOD" id="TAU-iv-EB6"/>
                 <outlet property="saveBtn" destination="qWu-vM-18D" id="Jzr-nO-egq"/>
                 <outlet property="schoolBtn" destination="wCC-6K-AcD" id="lJW-iA-rhr"/>
                 <outlet property="selAgreementBtn" destination="jcD-qw-eUR" id="nVU-XL-YIL"/>

@@ -105,6 +105,7 @@
 @property (nonatomic,strong) BaseMoreView *moreView;
 @property (nonatomic,copy) NSDictionary *evaInfoDic;
 @property (weak, nonatomic) IBOutlet UILabel *productDiscountLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTop;
 
 @end
 
@@ -137,7 +138,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    _scrollViewTop.constant = navBarHei;
     _navView = [[BaseNavView alloc] init];
     _navView.delegate = self;
     [_navView updateIsOnlyShowMoreBtn:YES];

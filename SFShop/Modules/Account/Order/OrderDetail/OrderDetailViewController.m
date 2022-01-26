@@ -31,6 +31,7 @@
 #import "BaseMoreView.h"
 #import <OYCountDownManager/OYCountDownManager.h>
 #import "OrderDetailTitleCell.h"
+#import "ProductViewController.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -181,6 +182,12 @@
     if (indexPath.section == 0) {
         LogisticsVC *vc = [[LogisticsVC alloc] init];
         vc.model = self.model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 3 && indexPath.row != 0 && indexPath.row >= self.model.orderItems.count+1){
+        orderItemsModel *model = self.model.orderItems[indexPath.row-1];
+        ProductViewController *vc = [[ProductViewController alloc] init];
+        vc.offerId = model.offerId.integerValue;
+        vc.productId = model.productId.integerValue;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
