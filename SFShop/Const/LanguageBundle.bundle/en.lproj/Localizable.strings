@@ -293,9 +293,9 @@
 //  "VIEW_ORDER" = "View Order";
 //  "DIRECT_FUNCTION" = "Direct Function";
 //  "SHOPPING" = "Shopping";
-//  "VARIATIONS" = "Variations";
+  "VARIATIONS" = "Variations";
 //  "SPECIFICATION" = "Specification";
-//  "DETAIL" = "Detail";
+  "DETAIL" = "Detail";
   "CART" = "Cart";
   "COUPONS" = "Vouchers";
   "ONLY_SHOW_5_SHARE" = "Only show 5 share";

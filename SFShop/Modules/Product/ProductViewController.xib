@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductViewController">
             <connections>
                 <outlet property="addCartBtn" destination="4Dc-YH-2NV" id="Svx-rV-jMS"/>
+                <outlet property="addLabel" destination="Rit-kN-wBG" id="ePd-gB-eAp"/>
                 <outlet property="addressLabel" destination="S5Q-39-22Q" id="u1S-Ty-i6t"/>
                 <outlet property="buyBtn" destination="7Oj-2V-4K5" id="ZHZ-k6-SYc"/>
                 <outlet property="carouselImgView" destination="3B5-HJ-OKN" id="WOE-eV-rRG"/>
@@ -20,6 +21,8 @@
                 <outlet property="couponsView" destination="1ze-5y-re2" id="cNs-fH-cdW"/>
                 <outlet property="couponsViewHeight" destination="Sss-pG-inW" id="rCI-VT-10S"/>
                 <outlet property="deliveryLabel" destination="4Me-5e-Gsz" id="anj-nw-b8k"/>
+                <outlet property="deliveryTitleLabel" destination="gA8-iA-PSx" id="pEF-qP-il1"/>
+                <outlet property="detailTitleLabel" destination="FHz-XN-MUs" id="mWS-Fl-lr9"/>
                 <outlet property="detailViewHeader" destination="Sh5-6B-V3T" id="8Fb-HR-30Q"/>
                 <outlet property="evalationTableview" destination="GgT-97-s4m" id="o2F-vV-Mnd"/>
                 <outlet property="flashSaleBeginTimeLabel" destination="9l0-zx-C0d" id="Fyi-Z9-eSo"/>
@@ -48,13 +51,16 @@
                 <outlet property="scrollContentView" destination="TNw-J5-BPH" id="xT7-Tf-TwZ"/>
                 <outlet property="scrollViewTop" destination="Bgi-l4-8u2" id="Uk0-Rb-Emf"/>
                 <outlet property="secondLabel" destination="foh-OB-okc" id="iL8-aS-wpe"/>
+                <outlet property="shareBuyLabel" destination="U0j-l0-8rQ" id="izH-p4-hgS"/>
                 <outlet property="subheadNameLabel" destination="t4A-ep-h6d" id="COK-q1-zDp"/>
                 <outlet property="tableviewHie" destination="7MT-fX-Ecc" id="RRy-GZ-NpF"/>
                 <outlet property="timeStateLabel" destination="J8Z-TM-P05" id="mp2-Vw-G34"/>
                 <outlet property="usefulBtn" destination="61R-er-eJ3" id="37C-zU-ogR"/>
                 <outlet property="variationsLabel" destination="VCq-9r-WHQ" id="tpl-gQ-54y"/>
+                <outlet property="variationsTitleLabel" destination="tUI-50-buy" id="yOl-jC-rW8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewTop" destination="ScG-dH-a35" id="Geg-lo-S8Y"/>
+                <outlet property="vouchersTitleLabel" destination="hAH-ei-aLu" id="jkE-fD-3ME"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -291,9 +291,9 @@
 //  "VIEW_ORDER" = "Tampilan Pemesanan";
 //  "DIRECT_FUNCTION" = "Fungsi";
 //  "SHOPPING" = "Shopping";
-//  "VARIATIONS" = "Variasi";
+  "VARIATIONS" = "Variasi";
 //  "SPECIFICATION" = "Spesifikasi";
-//  "DETAIL" = "Detail";
+  "DETAIL" = "Detail";
   "CART" = "Keranjang";
   "COUPONS" = "Kupon";
   "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";

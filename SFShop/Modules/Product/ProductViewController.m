@@ -106,6 +106,12 @@
 @property (nonatomic,copy) NSDictionary *evaInfoDic;
 @property (weak, nonatomic) IBOutlet UILabel *productDiscountLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTop;
+@property (weak, nonatomic) IBOutlet UILabel *shareBuyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addLabel;
+@property (weak, nonatomic) IBOutlet UILabel *deliveryTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *variationsTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *vouchersTitleLabel;
 
 @end
 
@@ -148,6 +154,13 @@
         make.height.mas_equalTo(navBarHei);
     }];
     [_navView configDataWithTitle:kLocalizedString(@"Product_detail")];
+    _shareBuyLabel.text = kLocalizedString(@"SHAREBUY");
+    _deliveryTitleLabel.text = kLocalizedString(@"Delivery");
+    _detailTitleLabel.text = kLocalizedString(@"DETAIL");
+    _variationsTitleLabel.text = kLocalizedString(@"VARIATIONS");
+    _vouchersTitleLabel.text = kLocalizedString(@"COUPONS");
+    _addLabel.text = kLocalizedString(@"ADDRESS");
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self setDefaultAddress];
