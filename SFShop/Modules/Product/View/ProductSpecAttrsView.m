@@ -54,7 +54,7 @@
     [self addSubview:_contentView];
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-        make.top.equalTo(self).offset(100);
+//        make.top.equalTo(self).offset(100);
     }];
     
     UIButton *dismissBtn = [UIButton buttonWithType: UIButtonTypeCustom];
@@ -458,10 +458,14 @@
             }];
             xOffset += itemWidth + 8;
             preLayoutView = item;
+            [preLayoutView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(weakself.attrsScrollContentView).offset(-100);
+            }];
         }];
     }];
-    [preLayoutView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(weakself.attrsScrollContentView).offset(-10);
+    
+    [_attrsScrollView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(200);
     }];
 }
 
