@@ -176,7 +176,7 @@
             if (isSelected) {
                 [self.moreView removeFromSuperview];
                 self.moreView = [[BaseMoreView alloc] init];
-                [self.view addSubview:self.moreView];
+                [self.tabBarController.view addSubview:self.moreView];
                 [self.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.right.bottom.mas_equalTo(0);
                     make.top.mas_equalTo(self.navSearchView.mas_bottom);
