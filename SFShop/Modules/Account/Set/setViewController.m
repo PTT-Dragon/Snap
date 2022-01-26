@@ -17,6 +17,7 @@
 #import "LanguageViewController.h"
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface setViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -145,6 +146,8 @@
         PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:@"confirm to logout" btnTitle:@"LOGOUT" block:^{
             [SFNetworkManager post:SFNet.account.logout success:^(id  _Nullable response) {
                 [MBProgressHUD autoDismissShowHudMsg:@"LogOut Success"];
+                UserDefaultSetObjectForKey(kLanguageHindi, @"Language");
+                MJRefreshConfig.defaultConfig.languageCode = @"id";
                 [[FMDBManager sharedInstance] deleteUserData];
                 [baseTool removeVCFromNavigation:weakself];                
             } failed:^(NSError * _Nonnull error) {

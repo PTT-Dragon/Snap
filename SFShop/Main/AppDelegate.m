@@ -9,6 +9,7 @@
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
 #import "SysParamsModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface AppDelegate ()
 
@@ -31,7 +32,7 @@
     self.tabVC = [[MainTabViewController alloc] init];
     self.window.rootViewController = self.tabVC;
     [self.window makeKeyAndVisible];
-    
+    MJRefreshConfig.defaultConfig.languageCode = @"id";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangeNotification:)
                                                  name:@"KLanguageChange"
                                                object:nil];

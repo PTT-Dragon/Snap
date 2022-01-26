@@ -601,6 +601,8 @@
     self.productDiscountLabel.hidden = NO;
     self.marketPriceLabelIndicationView.hidden = NO;
     self.groupTableViewHei.constant = 0;
+    [self.buyBtn setTitle:kLocalizedString(@"BUY_NOW") forState:0];
+    [self.addCartBtn setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
 }
 
 - (void)layoutGroupSubViews
@@ -878,12 +880,12 @@
         camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
             return object.productId.integerValue == self.selProductModel.productId;
         }];
-        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-            return object.productId.integerValue == self.selProductModel.productId;
-        }];
-        [self showAttrsViewWithAttrType:isGroupBuy ? groupSingleBuyType: cartType];
+        NSInteger productId = self.selProductModel.productId;
+        cmpShareBuysModel *subModel = [self.campaignsModel.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+            return [object.productId integerValue] == productId;
+        }].firstObject;
+        [self showAttrsViewWithAttrType:subModel ? groupSingleBuyType: cartType];
     } else {
-        // TODO: 添加购物车
         NSDictionary *params =
         @{
             @"campaignId":@"3",
@@ -938,10 +940,8 @@
         camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
             return object.productId.integerValue == _selProductModel.productId;
         }];
-        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-            return object.productId.integerValue == _selProductModel.productId;
-        }];
-        [self showAttrsViewWithAttrType:isGroupBuy ? groupBuyType: buyType];
+        
+        [self showAttrsViewWithAttrType:buyType];
     }
 }
 
@@ -949,7 +949,11 @@
     //跳转checkout页
     ProductItemModel *item = self.getSelectedProductItem;
     item.storeName = self.model.storeName;
-    if (type == groupBuyType) {//团购情况
+    ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
+    BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+        return object.productId.integerValue == _selProductModel.productId;
+    }];
+    if (isGroupBuy) {//团购情况
         for (cmpShareBuysModel *buyModel in self.campaignsModel.cmpShareBuys) {
             if (buyModel.productId.integerValue == item.productId) {
                 item.inCmpIdList = @[@(buyModel.campaignId)];
