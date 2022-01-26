@@ -314,7 +314,7 @@
         _btn2.hidden = YES;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
         [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
-        _btn1.tag = 102;
+        _btn1.tag = groupBuyType + 100;
         [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
