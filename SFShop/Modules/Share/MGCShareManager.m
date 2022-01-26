@@ -7,6 +7,7 @@
 
 #import "MGCShareManager.h"
 #import <UShareUI/UShareUI.h>
+#import "UIViewController+parentViewController.h"
 
 @implementation MGCShareManager
 
@@ -31,7 +32,7 @@
         //创建分享消息对象
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
         messageObject.text = message;
-        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:[UIViewController currentTopViewController] completion:^(id data, NSError *error) {
             if (error) {
                 UMSocialLogInfo(@"************Share fail with error %@*********",error);
             }else{
