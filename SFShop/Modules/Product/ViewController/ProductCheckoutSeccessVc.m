@@ -158,10 +158,16 @@
     [_detailBtn setTitle:kLocalizedString(@"SEE_DETAIL") forState:0];
 }
 - (IBAction)addGroupAction:(UIButton *)sender {
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/group-detail/%@",Host,self.groupModel.shareBuyOrderNbr];
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }
 - (IBAction)seeShareBuyAction:(UIButton *)sender {
     GroupListViewController *vc = [[GroupListViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (IBAction)inviteAction:(UIButton *)sender {
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/group-detail/%@",Host,self.groupModel.shareBuyOrderNbr];
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }
 
 - (IBAction)detailAction:(UIButton *)sender {

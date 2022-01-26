@@ -35,6 +35,8 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 #import "TransactionManager.h"
+#import "CategoryRankViewController.h"
+
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -142,11 +144,14 @@
 }
 
 - (void)baseNavViewDidClickShareBtn:(BaseNavView *)navView {
-    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:@"wwww.baidu.con"];
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/product/detail/%ld",Host,self.offerId];
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }
 
 - (void)baseNavViewDidClickSearchBtn:(BaseNavView *)navView {
-    
+    CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+    vc.activeSearch = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewDidLoad {

@@ -32,7 +32,7 @@
 @property (nonatomic,strong) UILabel *maxPurchaseLabel;
 @property (nonatomic,assign) NSInteger maxPurchaseCount;//团购最多可买数量
 @property (nonatomic,strong) SingleProductStockModel *selStockModel;//选中的stockmodel
-
+@property (nonatomic,assign) float scrollViewHei;
 
 @end
 
@@ -54,7 +54,7 @@
     [self addSubview:_contentView];
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-        make.top.equalTo(self).offset(100);
+//        make.top.equalTo(self).offset(100);
     }];
     
     UIButton *dismissBtn = [UIButton buttonWithType: UIButtonTypeCustom];
@@ -442,6 +442,7 @@
             make.top.equalTo(preLayoutView ? preLayoutView.mas_bottom : weakself.attrsScrollContentView).offset(10);
             make.height.mas_equalTo(20);
         }];
+        weakself.scrollViewHei += 30;
         preLayoutView = titleLabel;
         __block CGFloat xOffset = 16;
         __block BOOL newLine = YES;
@@ -463,6 +464,7 @@
             } else {
                 newLine = NO;
             }
+            weakself.scrollViewHei += (newLine ? 42: 0);
             [item mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(weakself.attrsScrollContentView).offset(xOffset);
                 make.size.mas_equalTo(CGSizeMake(itemWidth, 32));
@@ -477,10 +479,12 @@
         }];
     }];
     [preLayoutView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(weakself.attrsScrollContentView).offset(-10);
+        make.bottom.equalTo(weakself.attrsScrollView).offset(-10);
+    }];
+    [_attrsScrollView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self.scrollViewHei);
     }];
 }
-
 - (void)dismiss: (UIButton *)sender {
     if (_dismissBlock) {
         _dismissBlock();

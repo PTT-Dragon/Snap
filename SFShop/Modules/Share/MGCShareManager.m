@@ -32,7 +32,7 @@
         if (type == UMSocialPlatformType_UserDefine_Begin) {
             UIPasteboard *pab = [UIPasteboard generalPasteboard];
             pab.string = message;
-            [MBProgressHUD showHudMsg:@"复制成功"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COPY_SUCCESS")];
         } else {
             [[UMSocialManager defaultManager] shareToPlatform:type
                                                 messageObject:messageObject

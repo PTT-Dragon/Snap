@@ -48,7 +48,7 @@
 }
 
 - (void)baseNavViewDidClickShareBtn:(BaseNavView *)navView {
-    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:@"wwww.baidu.con"];
+    
 }
 
 

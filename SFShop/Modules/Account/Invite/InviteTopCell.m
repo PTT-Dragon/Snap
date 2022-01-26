@@ -16,9 +16,9 @@
     // Initialization code
 }
 - (IBAction)inviteAction:(id)sender {
-    PublicShareView *view = [[NSBundle mainBundle] loadNibNamed:@"PublicShareView" owner:self options:nil].firstObject;
-    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-    [[baseTool getCurrentVC].view addSubview:view];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/sign-up-gift/%@",Host,model.userRes.userCode];
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }
 - (IBAction)ruleAction:(UIButton *)sender {
     [SFNetworkManager get:SFNet.invite.activityInvRule parameters:@{} success:^(id  _Nullable response) {

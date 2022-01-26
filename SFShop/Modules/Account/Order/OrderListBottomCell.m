@@ -188,9 +188,13 @@ static dispatch_source_t _timer;
         [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
             //返回错误和本地地址
         }];
+    }else if ([state isEqualToString:@"G"]){
+         NSString *shareUrl = [NSString stringWithFormat:@"%@/group-detail/%@",Host,_model.shareBuyBriefInfo.shareBuyOrderNbr];
+         [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
     }
 }
 - (IBAction)btn2Action:(UIButton *)sender {
+
     NSString *state = _model.state;
     if ([state isEqualToString:@"F"] || [state isEqualToString:@"A"]) {
         //取消订单
