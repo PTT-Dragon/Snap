@@ -53,6 +53,12 @@
 //        webview.customUserAgent = newUserAgent;
 //    }];
     // 设置localStorage
+    NSString *currentLanguage = UserDefaultObjectForKey(@"Language");
+    if ([currentLanguage isEqualToString:kLanguageChinese]) {
+        currentLanguage = @"zh";
+    }
+    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
+    [self.webView evaluateJavaScript:language completionHandler:nil];
     [self.view addSubview:webview];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     [self addJsBridge];
