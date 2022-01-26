@@ -64,16 +64,16 @@
         make.top.mas_equalTo(self.scrollView);
         make.left.mas_equalTo(self.mas_left);
         make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo(182);
+        make.height.mas_equalTo(152);
     }];
     [self.goShoppingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.emptyView.mas_bottom).offset(-30);
-        make.left.mas_equalTo(self.mas_left).offset(20);
-        make.right.mas_equalTo(self.mas_right).offset(-20);
+        make.top.mas_equalTo(self.emptyView.mas_bottom).offset(-60);
+        make.left.mas_equalTo(self.mas_left).offset(80);
+        make.right.mas_equalTo(self.mas_right).offset(-80);
         make.height.mas_equalTo(46);
     }];
     [self.recomandView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.goShoppingBtn.mas_bottom).offset(0);
+        make.top.mas_equalTo(self.goShoppingBtn.mas_bottom).offset(30);
         make.left.right.mas_equalTo(self);
         make.height.mas_equalTo(400);
     }];

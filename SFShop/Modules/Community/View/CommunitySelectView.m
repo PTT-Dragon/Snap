@@ -122,11 +122,27 @@
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
     headerView.backgroundColor = UIColor.whiteColor;
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, tableView.frame.size.width, 30)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, tableView.frame.size.width-20, 30)];
     titleLabel.textColor = UIColor.blackColor;
     [headerView addSubview:titleLabel];
     if (section == 0) {
         titleLabel.text = @"My Favorite";
+        
+        UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [headerView addSubview:closeBtn];
+        [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.right.bottom.equalTo(headerView);
+            make.width.mas_equalTo(40);
+        }];
+        [closeBtn setTitle:@"▲" forState:UIControlStateNormal];
+        [closeBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        closeBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+        @weakify(self);
+        [closeBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            @strongify(self);
+            self.hidden = YES;
+        }];
+        
     } else {
         titleLabel.text = @"Categories";
     }

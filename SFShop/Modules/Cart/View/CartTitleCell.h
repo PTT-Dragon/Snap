@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) BOOL hasCoupon;
 @property (nonatomic,weak) CartListModel *model;
 @property (nonatomic,assign) NSInteger section;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightMargin;
 
 @end
 

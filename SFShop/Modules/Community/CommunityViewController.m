@@ -21,6 +21,7 @@
 
 @implementation CommunityViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -173,7 +174,7 @@
 - (CommunitySelectView *)selectView
 {
     if (!_selectView) {
-        _selectView = [[CommunitySelectView alloc] initWithFrame:CGRectMake(0, 40, MainScreen_width, 220)];
+        _selectView = [[CommunitySelectView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 220)];
         _selectView.hidden = YES;
         _selectView.titleModel = self.dataModel;
         MPWeakSelf(self)
@@ -196,8 +197,9 @@
         @weakify(self)
         [[_rightBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             @strongify(self)
-            self.rightBtn.selected = !self.rightBtn.selected;
-            self.selectView.hidden = !self.rightBtn.selected;
+//            self.rightBtn.selected = !self.rightBtn.selected;
+//            self.selectView.hidden = !self.rightBtn.selected;
+            self.selectView.hidden = NO;
         }];
     }
     return _rightBtn;

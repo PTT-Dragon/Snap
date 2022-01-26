@@ -184,7 +184,7 @@
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor whiteColor];
-        _magicController.magicView.sliderColor = [UIColor redColor];
+        _magicController.magicView.sliderColor = [UIColor jk_colorWithHexString:@"333333"];
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.navigationHeight = 40.f;

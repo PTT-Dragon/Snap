@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface CartTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightMargin;
 @property (nonatomic,assign) id<CartTableViewCellDelegate>delegate;
 @property (nonatomic,weak) CartItemModel *model;
 @property (nonatomic,assign) BOOL isInvalid;

@@ -18,6 +18,7 @@
 @property (nonatomic, readwrite, strong) UIButton *rightBtn;
 @property (nonatomic, readwrite, strong) SFSearchView *searchView;
 @property (nonatomic, readwrite, strong) SFSearchingView *searchingView;
+@property (nonatomic, readwrite, strong) UIView *lineView;
 @property (nonatomic, readwrite, copy) void(^searchBlock)(NSString *qs);
 @property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFSearchModel *> *> *dataArray;
 @property (nonatomic, readwrite, strong) NSMutableArray<SFSearchModel *> *searchHistory;
@@ -56,6 +57,7 @@
     [self addSubview:self.backBtn];
     [self addSubview:self.textField];
     [self addSubview:self.rightBtn];
+    [self addSubview:self.lineView];
 }
 
 - (void)layout {
@@ -77,6 +79,12 @@
         make.left.equalTo(self.backBtn.mas_right).offset(12);
         make.height.mas_equalTo(35);
     }];
+    
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self);
+        make.height.mas_equalTo(0.5);
+    }];
+    
 }
 
 #pragma mark - Publice
@@ -238,5 +246,14 @@
     }
     return _rightBtn;
 }
+
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = [UIColor jk_colorWithHexString:@"#eeeeee"];
+    }
+    return _lineView;
+}
+
 
 @end
