@@ -163,39 +163,6 @@
 - (void)jumpToFilterDetail {
     //加载缓存配置到数据层
     self.dataModel.filterCache = self.filterCacheModel;
-    
-    CategoryRankPriceModel *priceModel = [CategoryRankPriceModel new];
-    priceModel.minPrice = self.filterCacheModel.minPrice;
-    priceModel.maxPrice = self.filterCacheModel.maxPrice;
-    self.dataModel.priceModel = priceModel;
-    for (CategoryRankServiceModel *model in self.dataModel.serviceIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.serverId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankCategoryModel *model in self.dataModel.catgIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.categoryId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankBrandModel *model in self.dataModel.brandIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.brandId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankEvaluationModel *model in self.dataModel.evaluations) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.evaluationId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {

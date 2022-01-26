@@ -12,6 +12,7 @@
 #import "UIButton+EnlargeTouchArea.h"
 #import "CategoryRankFilterHeader.h"
 #import "CategoryRankFilterInputItem.h"
+#import "CategoryRankFilterCacheModel.h"
 
 @interface CategoryRankFilterViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, readwrite, strong) UIView *bottomView;
@@ -106,11 +107,14 @@
     if ([cellModel isKindOfClass:CategoryRankFilterModel.class]) {
         
         BOOL originSelected = cellModel.isSelected;
+        BOOL isSupportMul = cellModel.isSupportMul;
         
         //先全部重置isSelected
-        NSArray *arr = self.dataArray[indexPath.section];
-        for (CategoryRankFilterModel *filter in arr) {
-            filter.isSelected = NO;
+        if (!isSupportMul) {
+            NSArray *arr = self.dataArray[indexPath.section];
+            for (CategoryRankFilterModel *filter in arr) {
+                filter.isSelected = NO;
+            }
         }
         
         //设置当前的selected
@@ -122,11 +126,35 @@
         if ([cellModel isKindOfClass:CategoryRankServiceModel.class]) {
             self.model.filterCache.serverId = model.isSelected?model.idStr:nil;
         } else if ([cellModel isKindOfClass:CategoryRankBrandModel.class]) {
-            self.model.filterCache.brandId = model.isSelected?model.idStr:nil;
+            NSMutableArray *arr = [NSMutableArray arrayWithArray:[self.model.filterCache.brandId componentsSeparatedByString:@","]];
+            if (!arr.count && self.model.filterCache.brandId.length > 0) {
+                [arr addObject:self.model.filterCache.brandId];
+            }
+            if (model.isSelected && ![arr containsObject:model.idStr]) {
+                [arr addObject:model.idStr];
+            } else if (!model.isSelected && [arr containsObject:model.idStr]) {
+                [arr removeObject:model.idStr];
+            }
+            NSString *brandId = [arr componentsJoinedByString:@","];
+            self.model.filterCache.brandId = brandId;
         } else if ([cellModel isKindOfClass:CategoryRankCategoryModel.class]) {
             self.model.filterCache.categoryId = model.isSelected?model.idStr:nil;
         } else if ([cellModel isKindOfClass:CategoryRankEvaluationModel.class]) {
             self.model.filterCache.evaluationId = model.isSelected?model.idStr:nil;
+        } else if ([cellModel isKindOfClass:CategoryRankAttrModel.class]) {
+            NSMutableArray *arr = [NSMutableArray arrayWithArray:self.model.filterCache.offerAttrValues];
+            CategoryRankAttrModel *removeModel = nil;
+            for (CategoryRankAttrModel *cacheModel in self.model.filterCache.offerAttrValues) {
+                if ([cacheModel.idStr isEqualToString:model.idStr]) {
+                    removeModel = cacheModel;
+                }
+            }
+            if (model.isSelected && !removeModel) {
+                [arr addObject:model];
+            } else if (!model.isSelected && removeModel) {
+                [arr removeObject:removeModel];
+            }
+            self.model.filterCache.offerAttrValues = arr;
         }
     }
 }
@@ -204,6 +232,11 @@
 - (void)setModel:(CategoryRankModel *)model {
     _model = model;
     
+    CategoryRankPriceModel *priceModel = [CategoryRankPriceModel new];
+    priceModel.minPrice = model.filterCache.minPrice;
+    priceModel.maxPrice = model.filterCache.maxPrice;
+    model.priceModel = priceModel;
+    
     //组装需要显示的数据
     NSMutableArray *arr = [NSMutableArray array];
     if (model.serviceIds && model.serviceIds.count > 0) {
@@ -221,17 +254,56 @@
     if (model.evaluations && model.evaluations.count > 0) {
         [arr addObject:model.evaluations];
     }
+    if (model.offerAttrValues && model.offerAttrValues.count > 0) {
+        [arr addObject:model.offerAttrValues];
+    }
     for (NSArray *subArr in arr) {
         if (subArr.count) {
             [self.dataArray addObject:[NSMutableArray arrayWithArray:subArr]];
         }
     }
     
-//    //组装price 数据
-//    [self.dataArray addObject:[NSMutableArray arrayWithArray:@[price]]];
-//
-//    //拼接好自定义组装的评价数据
-//    [self.dataArray addObject:[NSMutableArray arrayWithArray:model.evaluations]];
+    //选中数据
+    for (CategoryRankServiceModel *subModel in model.serviceIds) {
+        if (subModel.idStr && [subModel.idStr isEqualToString:model.filterCache.serverId]) {
+            subModel.isSelected = YES;
+            break;
+        }
+    }
+    
+    for (CategoryRankCategoryModel *subModel in model.catgIds) {
+        if (subModel.idStr && [subModel.idStr isEqualToString:model.filterCache.categoryId]) {
+            subModel.isSelected = YES;
+            break;
+        }
+    }
+
+    for (CategoryRankBrandModel *subModel in model.brandIds) {
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:[model.filterCache.brandId componentsSeparatedByString:@","]];
+        if (!arr.count && model.filterCache.brandId.length > 0) {
+            [arr addObject:model.filterCache.brandId];
+        }
+        for (NSString *idStr in arr) {
+            if (subModel.idStr && [subModel.idStr isEqualToString:idStr]) {
+                subModel.isSelected = YES;
+            }
+        }
+    }
+
+    for (CategoryRankEvaluationModel *subModel in model.evaluations) {
+        if (subModel.idStr && [subModel.idStr isEqualToString:model.filterCache.evaluationId]) {
+            subModel.isSelected = YES;
+            break;
+        }
+    }
+
+    for (CategoryRankAttrModel *subModel in model.offerAttrValues) {
+        for (CategoryRankAttrModel *cacheModel in model.filterCache.offerAttrValues) {
+            if (subModel.idStr && [subModel.idStr isEqualToString:cacheModel.idStr]) {
+                subModel.isSelected = YES;
+            }
+        }
+    }
 }
 
 - (UICollectionView *)collectionView {

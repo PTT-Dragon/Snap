@@ -31,8 +31,8 @@ typedef NS_ENUM(NSUInteger, SFSearchType) {
 /// @param sectionData 搜索数据
 - (void)addSearchSection:(NSMutableArray<SFSearchModel *> *)sectionData;
 
-/// 激活搜索条
-- (void)activeSearch;
+/// 是否聚焦搜索
+@property (nonatomic, readwrite, assign, getter=isActiveSearch) BOOL activeSearch;
 
 @end
 

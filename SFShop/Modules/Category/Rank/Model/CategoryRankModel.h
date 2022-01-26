@@ -16,12 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @class CategoryRankPageInfoModel;
 @class CategoryRankEvaluationModel;
 @class CategoryRankPriceModel;
+@class CategoryRankAttrModel;
 @interface CategoryRankModel : NSObject
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankServiceModel *> *serviceIds;
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankCategoryModel *> *catgIds;
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankBrandModel *> *brandIds;
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankBrandModel *> *catgNumList;
-@property (nonatomic, readwrite, strong) NSArray *offerAttrValues;
+@property (nonatomic, readwrite, strong) NSArray<CategoryRankAttrModel *> *offerAttrValues;
 @property (nonatomic, readwrite, strong) CategoryRankPageInfoModel *pageInfo;
 @property (nonatomic, readwrite, copy) NSString *evaluationAvgs;
 @property (nonatomic, readwrite, copy) NSString *salesPrices;
@@ -41,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
     @property (nonatomic, readwrite, copy) NSString *catgName;
 
     //⚠️:自定义
+    @property (nonatomic, readwrite, assign) BOOL isSupportMul;
     @property (nonatomic, readwrite, assign) BOOL isSelected;
     @property (nonatomic, readwrite, copy) NSString *groupName;
     @end
@@ -67,6 +69,12 @@ NS_ASSUME_NONNULL_BEGIN
     //Evaluation ⚠️:自定义评价model
     /*------------------------------------------------------------------------------------*/
     @interface CategoryRankEvaluationModel : CategoryRankFilterModel
+    @end
+
+    /*------------------------------------------------------------------------------------*/
+    //Evaluation ⚠️:自定义Attrmodel
+    /*------------------------------------------------------------------------------------*/
+    @interface CategoryRankAttrModel : CategoryRankFilterModel
     @end
 
     /*------------------------------------------------------------------------------------*/
