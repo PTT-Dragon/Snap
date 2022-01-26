@@ -36,6 +36,7 @@
 #import "BaseMoreView.h"
 #import "TransactionManager.h"
 #import "CategoryRankViewController.h"
+#import "CartModel.h"
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate>
@@ -926,11 +927,13 @@
         };
         UserModel *model = [FMDBManager sharedInstance].currentUser;
         if (!model) {
-            [TransactionManager triggerWithoutClearWithId:@"1" obj:params];
-            [TransactionManager addItem:^(id  _Nonnull obj) {
-                obj = params;
-            }];
-            [TransactionManager trigger:@"1"];
+            //没登录  缓存本地
+            
+            NSString *file = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"aaa"];
+            CartModel *aaa  = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
+            aaa.platformCouponPrice;
+            
+            return;
         }
         MPWeakSelf(self)
         [MBProgressHUD showHudMsg:@""];
@@ -951,6 +954,10 @@
 }
 
 - (IBAction)buyNow:(UIButton *)sender {
+    CartModel *modelsd = [[CartModel alloc] init];
+    modelsd.platformCouponPrice = 10;
+    NSString *filePath =   [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingString:@"aaa"];
+    [NSKeyedArchiver archiveRootObject:modelsd toFile:filePath];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (!model || [model.accessToken isEqualToString:@""]) {
         LoginViewController *vc = [[LoginViewController alloc] init];
