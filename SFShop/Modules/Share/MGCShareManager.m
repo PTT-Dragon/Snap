@@ -26,7 +26,7 @@
 
 - (void)showShareViewWithShareMessage:(NSString *)message {
     //调用分享面板
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Whatsapp),@(UMSocialPlatformType_Instagram)]];
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Whatsapp),@(UMSocialPlatformType_Twitter)]];
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType,NSDictionary*userInfo){
         // 根据获取的platformType确定所选平台进行下一步操作
         //创建分享消息对象
