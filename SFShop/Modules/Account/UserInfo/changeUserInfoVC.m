@@ -69,7 +69,8 @@
         [params setValue:_gender forKey:@"gender"];
     }
     if (self.nameField.text.length < 4 || self.nameField.text.length > 20) {
-        [MBProgressHUD showHudMsg:@"超过字符限制"];
+        _nameField.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+        
         return;
     }
     [params setValue:_nameField.text forKey:@"nickName"];
