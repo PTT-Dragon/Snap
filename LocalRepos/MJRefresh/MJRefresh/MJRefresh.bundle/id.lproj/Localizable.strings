@@ -1,0 +1,19 @@
+"MJRefreshHeaderIdleText" = "Drop dapat disegarkan";
+"MJRefreshHeaderPullingText" = "Rilis sekarang";
+"MJRefreshHeaderRefreshingText" = "Refreshing Data ...";
+
+"MJRefreshTrailerIdleText" = "Geser Lihat detail grafis";
+"MJRefreshTrailerPullingText" = "Rilis tampilan detail grafis";
+
+"MJRefreshAutoFooterIdleText" = "Klik atau tarik lebih banyak";
+"MJRefreshAutoFooterRefreshingText" = "Lebih banyak data sedang dimuat ..";
+"MJRefreshAutoFooterNoMoreDataText" = "Sudah penuh";
+
+"MJRefreshBackFooterIdleText" = "Untuk menarik lebih banyak";
+"MJRefreshBackFooterPullingText" = "Longgarkan segera memuat lebih banyak";
+"MJRefreshBackFooterRefreshingText" = "Memuat lebih banyak data ...";
+"MJRefreshBackFooterNoMoreDataText" = "Sudah penuh";
+
+"MJRefreshHeaderLastTimeText" = "Pembaruan terbaru:";
+"MJRefreshHeaderDateTodayText" = "hari ini";
+"MJRefreshHeaderNoneLastDateText" = "tidak ada catatan";
