@@ -291,7 +291,7 @@
   "CLOSE" = "关闭";
 //  "BACK_TO_HOME" = "返回首页";
 //  "VIEW_ORDER" = "查看订单";
-//  "DIRECT_FUNCTION" = "功能导航";
+  "DIRECT_FUNCTION" = "功能导航";
 //  "SHOPPING" = "购物";
   "VARIATIONS" = "属性";
 //  "SPECIFICATION" = "规格";

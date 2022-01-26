@@ -291,7 +291,7 @@
   "CLOSE" = "Close";
 //  "BACK_TO_HOME" = "Back to Home";
 //  "VIEW_ORDER" = "View Order";
-//  "DIRECT_FUNCTION" = "Direct Function";
+  "DIRECT_FUNCTION" = "Direct Function";
 //  "SHOPPING" = "Shopping";
   "VARIATIONS" = "Variations";
 //  "SPECIFICATION" = "Specification";

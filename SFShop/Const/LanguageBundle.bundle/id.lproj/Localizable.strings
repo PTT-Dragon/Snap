@@ -289,7 +289,7 @@
   "CLOSE" = "Close";
 //  "BACK_TO_HOME" = "Kembali ke home";
 //  "VIEW_ORDER" = "Tampilan Pemesanan";
-//  "DIRECT_FUNCTION" = "Fungsi";
+  "DIRECT_FUNCTION" = "Fungsi";
 //  "SHOPPING" = "Shopping";
   "VARIATIONS" = "Variasi";
 //  "SPECIFICATION" = "Spesifikasi";
