@@ -8,7 +8,7 @@ target 'SFShop' do
   pod 'JSONModel'
   pod 'YYModel'
   pod 'FMDB'
-  pod 'MJRefresh', '3.7.2'
+  pod 'MJRefresh', :path => 'Repos/MJRefresh'
   pod 'IQKeyboardManager'
   pod 'JTCalendar', '~> 2.0'
   pod 'JKCategories'
