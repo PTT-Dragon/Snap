@@ -8,6 +8,7 @@
 #import "MyCouponCell.h"
 #import "UseCouponViewController.h"
 #import "NSString+Fee.h"
+#import "NSDate+Helper.h"
 
 @interface MyCouponCell ()
 @property (weak, nonatomic) IBOutlet UIView *discountView;
@@ -35,9 +36,9 @@
         _nameLabel.text = [NSString stringWithFormat:@"Discount %@ Without limit",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
     }
     if (model.getOffsetExp != nil) {
-        _timeLabel.text = [NSString stringWithFormat:@"Valid within %@ days",model.getOffsetExp];
+        _timeLabel.text = [NSString stringWithFormat:@"Valid within %@ days",[[NSDate dateFromString:model.getOffsetExp] dayMonthYear]];
     }else{
-        _timeLabel.text = [NSString stringWithFormat:@"%@-%@",model.effDateStr,model.expDateStr];
+        _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }
     _statuLabel.text = [model.userCouponState isEqualToString:@"C"] ? @"EXPIRED": [model.userCouponState isEqualToString:@"A"] ? @"USE NOW": @"USED";
     if (model.userCouponState) {

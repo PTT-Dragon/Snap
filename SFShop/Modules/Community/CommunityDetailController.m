@@ -18,6 +18,7 @@
 //#import <SJVideoPlayer/SJVideoPlayer.h>
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import "NSDate+Helper.h"
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
@@ -177,7 +178,7 @@
     self.viewCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.viewCnt];
     self.usefulCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.usefulCnt];
     self.replyCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.replyCnt];
-    self.createDateLabel.text = self.model.createdDate;
+    self.createDateLabel.text = [[NSDate dateFromString:self.model.createdDate] dayMonthYear];
     self.likeBtn.selected = [model.isUseful isEqualToString:@"Y"];
     
     if (self.model.products.count > 0) {

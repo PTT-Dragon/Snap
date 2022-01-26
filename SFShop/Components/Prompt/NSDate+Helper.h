@@ -67,4 +67,7 @@
 + (NSString *)timestampFormatString;
 + (NSString *)dbFormatString;
 
+- (NSString *)dayMonthYear;
+
+
 @end

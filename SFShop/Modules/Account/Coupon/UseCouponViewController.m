@@ -13,6 +13,7 @@
 #import "ProductViewController.h"
 #import "ProductSpecAttrsView.h"
 #import "addressModel.h"
+#import "NSDate+Helper.h"
 
 
 @interface UseCouponViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -53,7 +54,7 @@
     }else{
         _couponNameLabel.text = [NSString stringWithFormat:@"Discount %@ Without limit",[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency]];
     }
-    self.expiredDataLabel.text = self.couponModel.expDate;
+    self.expiredDataLabel.text = [NSString stringWithFormat:@"%@~%@",[[NSDate dateFromString:self.couponModel.effDate] dayMonthYear],[[NSDate dateFromString:self.couponModel.expDate] dayMonthYear]];
     [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
