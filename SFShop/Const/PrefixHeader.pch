@@ -33,5 +33,6 @@
 #import "FFLocalization.h"
 #import "AppDelegate.h"
 #import "UIView+YYAdd.h"
+#import "MGCShareManager.h"
 
 #endif /* PrefixHeader_pch */

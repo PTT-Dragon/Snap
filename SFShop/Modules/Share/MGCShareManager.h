@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
-
+- (void)showShareViewWithShareMessage:(NSString *)message;
 
 @end
 
