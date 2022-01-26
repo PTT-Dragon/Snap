@@ -106,6 +106,7 @@
                 <outlet property="bgView" destination="MKv-qK-1jN" id="yCZ-jQ-o58"/>
                 <outlet property="facebookBtn" destination="Prs-cY-6rw" id="d5A-FJ-tuL"/>
                 <outlet property="twitterBtn" destination="ieT-8o-r2f" id="Tzv-BZ-cLj"/>
+                <outlet property="urlBtn" destination="0FQ-YD-7TX" id="g74-fq-H9p"/>
                 <outlet property="whatsappBtn" destination="UUz-zb-oKZ" id="SBd-P2-hQr"/>
             </connections>
             <point key="canvasLocation" x="248" y="73"/>

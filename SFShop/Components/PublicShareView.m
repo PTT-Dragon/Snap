@@ -7,12 +7,14 @@
 
 #import "PublicShareView.h"
 #import "UIButton+SGImagePosition.h"
+#import "MGCShareManager.h"
 
 @interface PublicShareView ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIButton *facebookBtn;
 @property (weak, nonatomic) IBOutlet UIButton *whatsappBtn;
 @property (weak, nonatomic) IBOutlet UIButton *twitterBtn;
+@property (weak, nonatomic) IBOutlet UIButton *urlBtn;
 
 @end
 
@@ -28,8 +30,10 @@
     [_facebookBtn SG_imagePositionStyle:SGImagePositionStyleTop spacing:5];
     [_whatsappBtn SG_imagePositionStyle:SGImagePositionStyleTop spacing:5];
     [_twitterBtn SG_imagePositionStyle:SGImagePositionStyleTop spacing:5];
+    [_urlBtn SG_imagePositionStyle:SGImagePositionStyleTop spacing:5];
 }
 - (IBAction)btnAction:(UIButton *)sender {
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:@"wwww.baidu.con"];
 }
 - (void)removeSelf:(UITapGestureRecognizer *)tap
 {
