@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 //
 //@end
 
-@interface CartModel : JSONModel<NSCoding>
+@interface CartModel : JSONModel<NSCopying,NSMutableCopying>
 
 
 

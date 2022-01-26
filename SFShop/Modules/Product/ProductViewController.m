@@ -928,10 +928,20 @@
         UserModel *model = [FMDBManager sharedInstance].currentUser;
         if (!model) {
             //没登录  缓存本地
-            
+            CartModel *modelsd = [[CartModel alloc] init];
+            CartListModel *listModel = [[CartListModel alloc] init];
+            listModel.storeId = [NSString stringWithFormat:@"%ld",self.model.storeId];
+            NSMutableArray *arr = [NSMutableArray array];
+            [arr addObject:listModel];
+            modelsd.validCarts = arr;
+            modelsd.platformCouponPrice = 10;
+            NSString *filePath =   [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingString:@"aaa"];
+            NSError *err;
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:modelsd requiringSecureCoding:false error:&err];
+            [NSKeyedArchiver archiveRootObject:modelsd toFile:filePath];
             NSString *file = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"aaa"];
-            CartModel *aaa  = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
-            aaa.platformCouponPrice;
+            CartModel *aaa  = [NSKeyedUnarchiver unarchivedObjectOfClass:[CartModel class] fromData:data error:nil];
+            aaa.totalPrice;
             
             return;
         }
@@ -954,10 +964,6 @@
 }
 
 - (IBAction)buyNow:(UIButton *)sender {
-    CartModel *modelsd = [[CartModel alloc] init];
-    modelsd.platformCouponPrice = 10;
-    NSString *filePath =   [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingString:@"aaa"];
-    [NSKeyedArchiver archiveRootObject:modelsd toFile:filePath];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (!model || [model.accessToken isEqualToString:@""]) {
         LoginViewController *vc = [[LoginViewController alloc] init];
