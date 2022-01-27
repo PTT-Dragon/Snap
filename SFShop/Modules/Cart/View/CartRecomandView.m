@@ -116,15 +116,6 @@
 
 - (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath {
     CategoryRankPageInfoListModel *cellModel = self.similarList[indexPath.row];
-    if (!cellModel.height) {
-        CGFloat titleHeight = [cellModel.offerName calHeightWithFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - KScale(12) * 3 - KScale(16) * 2, 100)];
-        CGFloat imageHeight = KScale(166);
-        CGFloat tagHeight = KScale(14);
-        CGFloat priceHeight = KScale(14);
-        CGFloat discountHeight = KScale(14);
-        CGFloat levelHeight = KScale(12);
-        cellModel.height = imageHeight  + KScale(12) + titleHeight + KScale(16) + priceHeight + KScale(4) + discountHeight + KScale(12) + levelHeight + KScale(25);
-    }
     return cellModel.height;
 }
 
@@ -137,6 +128,7 @@
         _waterfallLayout.insets = UIEdgeInsetsMake(KScale(12), KScale(16), KScale(12), KScale(16));
         
         _recommendCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, 10 + navBarHei + KScale(64), MainScreen_width, MainScreen_height - 10 - navBarHei - KScale(64)) collectionViewLayout:_waterfallLayout];
+        _recommendCollectionView.scrollEnabled = NO;
         _recommendCollectionView.delegate = self;
         _recommendCollectionView.dataSource = self;
         _recommendCollectionView.showsVerticalScrollIndicator = false;
