@@ -28,7 +28,10 @@
         // 根据获取的platformType确定所选平台进行下一步操作
         //创建分享消息对象
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-        messageObject.text = message;
+//        messageObject.text = message;
+        UMShareWebpageObject *webObje = [UMShareWebpageObject shareObjectWithTitle:@"" descr:@"" thumImage:nil];
+        webObje.webpageUrl = message;
+        messageObject.shareObject = webObje;
         if (type == UMSocialPlatformType_UserDefine_Begin) {
             UIPasteboard *pab = [UIPasteboard generalPasteboard];
             pab.string = message;
