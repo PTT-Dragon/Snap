@@ -166,7 +166,7 @@
 //  "CHECK_OUT" = "确认订单";
   "USE_NOW" = "立即使用";
 //  "HINT_SUCCESS" = "成功";
-//  "COLLECT_MORE_COUPON" = "领取更多优惠券";
+  "COLLECT_MORE_COUPON" = "领取更多优惠券";
 //  "COUPON_NO_DATA_TXT" = "抱歉，暂无优惠券";
 //  "LOGIN_SUCCESS" = "登录成功!";
 //  "REGISTRATION_COUPON_HINT" = "注册赠送的优惠券已发送到您的帐户。";
@@ -174,6 +174,8 @@
 //  "EDIT" = "修改";
 //  "ADDITIONAL_REVIEW" = "追评";
   "ADDITIONAL_DAY" = "支付成功{day}天后追加评价";
+"BUY_MORE_TO_ENJOY_DISCOUNT" = "去买更多以享受折扣";
+"N_DISCOUNT_APPLIED_AT_CHECKOUT" = "结账时将会优惠";
 //  "GO_SHOPPING" = "继续购物";
 //  "REVIEW_LIST" = "评价列表";
 //  "VALID_RANGE" = "领取{day}天后失效";
@@ -213,7 +215,7 @@
 //  "QUALITY_OF_GOODS" = "商品质量";
 //  "SERVICE_ATTITUDE" = "服务态度";
 //  "LOGISTICS_SERVICE" = "物流服务";
-//  "DISCOUNT" = "优惠";
+  "DISCOUNT" = "优惠";
   "INBOX" = "消息";
   "MY_SF" = "我的 SF";
 //  "DELETE" = "删除";
@@ -252,8 +254,8 @@
 //  "EVALUATION" = "评价";
 //  "RESET" = "重置";
 //  "AVAILABLE" = "有效";
-//  "EXPIRED" = "失效";
-//  "USED" = "已使用";
+  "EXPIRED" = "失效";
+  "USED" = "已使用";
 //  "ARE_YOU_SURE" = "是否确认?";
   "TO_PAY" = "去付款";
   "TO_SHIP" = "去发货";
@@ -410,7 +412,7 @@
 //  "REFUND_REJECTED_CONTENT" = "售后单审核不通过";
 //  "IMAGES" = "图片";
   "TO_REVIEW" = "待评价";
-//  "EXPIRY_DATE" = "到期日";
+  "EXPIRY_DATE" = "到期日";
 //  "RATED" = "已评价";
 //  "HOW_RATE_PRODUCT" = "你怎么评价该商品";
 //  "UPLOAD_PHOTO" = "上传图片或视频";

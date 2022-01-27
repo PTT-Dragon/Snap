@@ -100,6 +100,8 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="discountView" destination="Zm7-wj-jxT" id="nkI-ur-nY8"/>
+                <outlet property="label1" destination="YEU-6h-yop" id="p5O-Qg-UG9"/>
+                <outlet property="label2" destination="upX-Dd-DWy" id="dfQ-j9-uYc"/>
                 <outlet property="nameLabel" destination="6cx-xa-j2p" id="Gqs-SI-gYw"/>
                 <outlet property="statuLabel" destination="L3S-ui-GDf" id="sb0-cS-ZMk"/>
                 <outlet property="timeLabel" destination="Tcq-Jy-Gnr" id="AFL-aE-NM6"/>

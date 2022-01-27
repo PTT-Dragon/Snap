@@ -163,7 +163,7 @@
 //  "CHECK_OUT" = "Check out";
   "USE_NOW" = "Gunakan sekarang";
 //  "HINT_SUCCESS" = "Berhasil";
-//  "COLLECT_MORE_COUPON" = "Kumpulkan Lebih Banyak Kupon";
+  "COLLECT_MORE_COUPON" = "Kumpulkan Lebih Banyak Kupon";
 //  "COUPON_NO_DATA_TXT" = "Maaf; tidak ada kupon yang ditemukan.";
 //  "LOGIN_SUCCESS" = "Login Berhasil";
 //  "REGISTRATION_COUPON_HINT" = "Paket kupon pendaftaran telah dikirim ke akun Anda.";
@@ -174,6 +174,8 @@
 //  "GO_SHOPPING" = "Belanja";
 //  "REVIEW_LIST" = "Review list";
   "VALID_RANGE" = "Berlaku dalam {day} hari";
+"BUY_MORE_TO_ENJOY_DISCOUNT" = "Beli lebih banyak untuk menikmati diskon";
+"N_DISCOUNT_APPLIED_AT_CHECKOUT" = " diskon berlaku saat checkout";
 //  "REVIEW_INPUT_COMMENTS" = "Mohon masukan comment";
 //  "REVIEW_DETAIL" = "Review Detail";
 //  "RETURN_ADDRESS" = "Alamat pengembalian";
@@ -211,7 +213,7 @@
 //  "QUALITY_OF_GOODS" = "Kualitas Barang";
 //  "SERVICE_ATTITUDE" = "Kualitas pelayanan penjual";
 //  "LOGISTICS_SERVICE" = "Layanan Logistik";
-//  "DISCOUNT" = "Diskon";
+  "DISCOUNT" = "Diskon";
   "INBOX" = "Inbox";
   "MY_SF" = "My SF";
 //  "DELETE" = "Delete";
@@ -250,8 +252,8 @@
 //  "EVALUATION" = "Evaluasi";
 //  "RESET" = "Re-set";
 //  "AVAILABLE" = "Tersedia";
-//  "EXPIRED" = "Expired";
-//  "USED" = "Non Aktif";
+  "EXPIRED" = "Expired";
+  "USED" = "Non Aktif";
 //  "ARE_YOU_SURE" = "Apakah kamu yakin";
   "TO_PAY" = "Bayar";
   "TO_SHIP" = "Di proses";
@@ -407,7 +409,7 @@
 //  "REFUND_REJECTED_CONTENT" = "Pesanan layanan tidak disetujui";
 //  "IMAGES" = "Gambar";
   "TO_REVIEW" = "Untuk diulas";
-//  "EXPIRY_DATE" = "Expiry date";
+  "EXPIRY_DATE" = "Expiry date";
 //  "RATED" = "Rate";
 //  "HOW_RATE_PRODUCT" = "Bagaimana Anda menilai produk ini?";
 //  "UPLOAD_PHOTO" = "Unggah foto atau video Anda";
@@ -600,7 +602,7 @@
 "SF shop_Voucher" = "SF.shop Voucher";
 "Coupon_Center" = "Pusat Coupon";
 "Login_Or_Register" = "Daftar Atau Daftar";
-"Shopping_Cart" = "Shopping Cart";
+"SHOPPING_CART": "Keranjang belanja",
 "Hide" = "Hide";
 "View_replies" = "View replies";
 "verification_email_code" = "Kode verifikasi akan dikirim ke alamat email Anda. Silakan masukkan email terdaftar Anda.";

@@ -70,7 +70,7 @@
 {
     if (indexPath.row == 0) {
         GroupTopImgCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupTopImgCell"];
-        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:@"https://www.smartfrenshop.com/static/GroupBy.95d35058.png"]];
+        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/static/GroupBy.95d35058.png",Host]]];
         return cell;
     }else if (indexPath.row == 1){
         GroupFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupFilterCell"];

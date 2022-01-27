@@ -98,6 +98,9 @@
 - (NSString *)collection {
     return K_cart_domain(@"usercollection");
 }
+- (NSString *)orifee {
+    return K_cart_domain(@"orifee");
+}
 
 
 @end

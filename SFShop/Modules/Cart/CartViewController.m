@@ -111,7 +111,7 @@
     if (!_selAddModel) {
         [_addressBtn setTitle:@"Set You Address" forState:0];
     }else{
-        [_addressBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@%@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street,_selAddModel.contactAddress] forState:0];
+        [_addressBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street] forState:0];
     }
     for (addressModel *model in self.addressArr) {
         if ([model.deliveryAddressId isEqualToString:_selAddModel.deliveryAddressId]) {

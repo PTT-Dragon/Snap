@@ -164,7 +164,9 @@
 
 
 //  "HINT_SUCCESS" = "Successfully";
-//  "COLLECT_MORE_COUPON" = "Collect More Vouchers";
+  "COLLECT_MORE_COUPON" = "Collect More Vouchers";
+"BUY_MORE_TO_ENJOY_DISCOUNT" = "Buy more to enjoy discount";
+"N_DISCOUNT_APPLIED_AT_CHECKOUT" = " discount applied at checkout";
 //  "COUPON_NO_DATA_TXT" = "Sorry; no coupons were found.";
 //  "LOGIN_SUCCESS" = "Login Success!";
 //  "REGISTRATION_COUPON_HINT" = "The registration coupon package has been sent to your account.";
@@ -212,7 +214,7 @@
 //  "QUALITY_OF_GOODS" = "Quality of Goods";
 //  "SERVICE_ATTITUDE" = "Service Attitude";
 //  "LOGISTICS_SERVICE" = "Logistics Service";
-//  "DISCOUNT" = "Discount";
+  "DISCOUNT" = "Discount";
   "INBOX" = "Inbox";
   "MY_SF" = "My SF";
 //  "DELETE" = "Delete";
@@ -252,8 +254,8 @@
 //  "EVALUATION" = "Evaluation";
 //  "RESET" = "Reset";
 //  "AVAILABLE" = "Available";
-//  "EXPIRED" = "Expired";
-//  "USED" = "Used";
+  "EXPIRED" = "Expired";
+  "USED" = "Used";
 //  "ARE_YOU_SURE" = "Are you sure?";
   "TO_PAY" = "To Pay";
   "TO_SHIP" = "To Ship";
@@ -410,7 +412,7 @@
 //  "REFUND_REJECTED_CONTENT" = "Service order is not approved";
 //  "IMAGES" = "Images";
   "TO_REVIEW" = "To Review";
-//  "EXPIRY_DATE" = "Expiry Date";
+  "EXPIRY_DATE" = "Expiry Date";
 //  "RATED" = "Rated";
 //  "HOW_RATE_PRODUCT" = "How would you rate this product?";
 //  "UPLOAD_PHOTO" = "Upload your photos";
@@ -599,7 +601,7 @@
 "SFshop_Voucher" = "SF.shop Voucher";
 "Coupon_Center" = "Coupon Center";
 "Login_Or_Register" = "Login Or Register";
-"Shopping_Cart" = "Shopping Cart";
+"Shopping_Cart" = "SHOPPING CART";
 "Hide" = "Hide";
 "View_replies" = "View replies";
 "verification_email_code" = "A verification code will be sent to your email address. Please enter your registered email.";

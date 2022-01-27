@@ -351,8 +351,8 @@
 }
 
 - (void)textFieldChanged:(UITextField *)textField {
-    if (textField.text.length > 200) {
-        textField.text = [textField.text substringWithRange:NSMakeRange(0, 200)];
+    if (textField.text.length > 500) {
+        textField.text = [textField.text substringWithRange:NSMakeRange(0, 500)];
     }
 }
 
