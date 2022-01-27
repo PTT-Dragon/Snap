@@ -23,7 +23,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"CancelOrderReasonCell" bundle:nil] forCellReuseIdentifier:@"CancelOrderReasonCell"];
-    self.tableViewHei.constant = self.dataSource.count * 56+100;
+    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, iPhoneXBottomOffset)];
+    self.tableViewHei.constant = self.dataSource.count * 56+100+iPhoneXBottomOffset;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -52,6 +53,13 @@
     [self.delegate chooseReason:model];
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
+}
+
+#pragma mark - <click event>
+- (IBAction)dissEvent:(id)sender {
+    
+    [self removeFromParentViewController];
+    [self.view removeFromSuperview];
 }
 
 @end

@@ -32,7 +32,7 @@
 @property (nonatomic,strong) UILabel *maxPurchaseLabel;
 @property (nonatomic,assign) NSInteger maxPurchaseCount;//团购最多可买数量
 @property (nonatomic,strong) SingleProductStockModel *selStockModel;//选中的stockmodel
-
+@property (nonatomic,assign) float scrollViewHei;
 
 @end
 
@@ -54,7 +54,7 @@
     [self addSubview:_contentView];
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-        make.top.equalTo(self).offset(100);
+//        make.top.equalTo(self).offset(100);
     }];
     
     UIButton *dismissBtn = [UIButton buttonWithType: UIButtonTypeCustom];
@@ -287,6 +287,7 @@
         if (object.productId.integerValue == weakself.selProductModel.productId) {
             groupCount = object.shareByNum;
             self.maxPurchaseCount = object.buyAmtLimit;
+            self.priceLabel.text = [[NSString stringWithFormat:@"%f", object.shareBuyPrice] currency];
         }
         return object.productId.integerValue == weakself.selProductModel.productId;
     }].count > 0;
@@ -294,7 +295,7 @@
         _groupCountLabel.text = [NSString stringWithFormat:@"%ld",groupCount];
         _maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
 
-        self.groupView.hidden = NO;
+        self.groupView.hidden = _attrsType == groupSingleBuyType ? YES: NO;
     }else{
         self.groupView.hidden = YES;
     }
@@ -314,8 +315,8 @@
         _btn2.hidden = YES;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
         [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
-        _btn1.tag = 102;
-        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
+        _btn1.tag = groupBuyType + 100;
+        [_btn1 setTitle:kLocalizedString(@"SHARE_BUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -375,7 +376,7 @@
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
         [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         _btn1.tag = groupBuyType + 100;
-        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
+        [_btn1 setTitle:kLocalizedString(@"SHARE_BUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -392,7 +393,6 @@
 
 - (void)setSelProductModel:(ProductItemModel *)selProductModel {
     _selProductModel = selProductModel;
-    
     [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage(selProductModel.imgUrl)]];
     self.titleLabel.text = selProductModel.productName;
     self.priceLabel.text = [[NSString stringWithFormat:@"%ld", (long)selProductModel.salesPrice] currency];
@@ -442,6 +442,7 @@
             make.top.equalTo(preLayoutView ? preLayoutView.mas_bottom : weakself.attrsScrollContentView).offset(10);
             make.height.mas_equalTo(20);
         }];
+        weakself.scrollViewHei += 30;
         preLayoutView = titleLabel;
         __block CGFloat xOffset = 16;
         __block BOOL newLine = YES;
@@ -463,6 +464,7 @@
             } else {
                 newLine = NO;
             }
+            weakself.scrollViewHei += (newLine ? 42: 0);
             [item mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(weakself.attrsScrollContentView).offset(xOffset);
                 make.size.mas_equalTo(CGSizeMake(itemWidth, 32));
@@ -477,10 +479,12 @@
         }];
     }];
     [preLayoutView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(weakself.attrsScrollContentView).offset(-10);
+        make.bottom.equalTo(weakself.attrsScrollView).offset(-10);
+    }];
+    [_attrsScrollView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self.scrollViewHei);
     }];
 }
-
 - (void)dismiss: (UIButton *)sender {
     if (_dismissBlock) {
         _dismissBlock();

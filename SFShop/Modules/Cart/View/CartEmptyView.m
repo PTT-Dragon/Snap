@@ -58,7 +58,7 @@
 - (void)initLayout {
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
-        make.bottom.mas_equalTo(self.recomandView.mas_bottom);
+        //make.bottom.mas_equalTo(self.recomandView.mas_bottom);
     }];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.scrollView);
@@ -74,8 +74,8 @@
     }];
     [self.recomandView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.goShoppingBtn.mas_bottom).offset(30);
-        make.left.right.mas_equalTo(self);
-        make.height.mas_equalTo(400);
+        make.left.right.bottom.mas_equalTo(self);
+        //make.height.mas_equalTo(400);
     }];
 }
 
@@ -83,6 +83,12 @@
 #pragma mark - configData
 
 - (void)configDataWithSimilarList:(NSMutableArray *)similarList {
+    
+    CGFloat dataHeight = 24+44;
+    CategoryRankPageInfoListModel *cellModel = similarList.firstObject;
+    dataHeight += cellModel.height*similarList.count/2;
+    
+    self.scrollView.contentSize = CGSizeMake(App_Frame_Width, dataHeight+228);
     [self.recomandView configDataWithSimilarList:similarList];
 }
 

@@ -6,6 +6,7 @@
 //
 
 #import "MessageListOrderCell.h"
+#import "NSDate+Helper.h"
 
 @interface MessageListOrderCell ()
 @property (nonatomic,strong) UIImageView *storeImgView;
@@ -94,7 +95,7 @@
     self.titleLabel.text = model.message.subject;
     self.storeNameLabel.text = model.store.storeName;
     [self.storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.store.logoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
-    _timeLabel.text = model.message.sendTime;
+    _timeLabel.text = [[NSDate dateFromString:model.message.sendTime] dayMonthYear];
     _moreItemLabel.hidden = [model.product.productNum isEqualToString:@"1"];
     _moreItemLabel.text = [NSString stringWithFormat:@"%@%@",model.product.productNum,kLocalizedString(@"ITEM")];
 }

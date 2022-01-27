@@ -83,7 +83,7 @@
 //  "DISTRIBUTOR_CENTER" = "Distributor Center";
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "The following products are insufficient in stock; please adjust the purchase quantity.";
 //  "COUPON_CENTER" = "Voucher Center";
-//  "SHOPPING_CART" = "Shopping Cart";
+  "SHOPPING_CART" = "Shopping Cart";
   "ADD_TO_CART" = "Add to Cart";
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
 //  "FIND_SIMILAR" = "Find Similar";
@@ -118,17 +118,17 @@
 //  "DONT_HAVE_ACCOUNT" = "Don’t have an account yet?";
 //  "SIGN_UP" = "Sign Up";
 //  "SIGN_TO_LOGIN" = "Registration successful. Please re-login.";
-//  "CATEGORY" = "Category";
+  "CATEGORY" = "Category";
   "GET_NOW" = "GET NOW";
 //  "COLLECT_SUCCESS" = "Add item to wishlist Successfully！";
 //  "DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully！";
 //  "COLLECT" = "COLLECT";
-  "RATING" = "Rating";
+  "RATING" = "Ratings";
 //  "STAR" = "star";
 //  "ENDS_IN" = "Ends in";
 //  "TOTAL" = "Total";
   "BUY_NOW" = "Buy Now";
-//  "BRANDS" = "Brands";
+  "BRANDS" = "Brands";
 //  "PRICE" = "Price";
 //  "BIND" = "Bind";
 //  "BIND_EMAIL" = "Bind Email";
@@ -164,7 +164,9 @@
 
 
 //  "HINT_SUCCESS" = "Successfully";
-//  "COLLECT_MORE_COUPON" = "Collect More Vouchers";
+  "COLLECT_MORE_COUPON" = "Collect More Vouchers";
+"BUY_MORE_TO_ENJOY_DISCOUNT" = "Buy more to enjoy discount";
+"N_DISCOUNT_APPLIED_AT_CHECKOUT" = " discount applied at checkout";
 //  "COUPON_NO_DATA_TXT" = "Sorry; no coupons were found.";
 //  "LOGIN_SUCCESS" = "Login Success!";
 //  "REGISTRATION_COUPON_HINT" = "The registration coupon package has been sent to your account.";
@@ -179,7 +181,7 @@
 //  "REVIEW_DETAIL" = "Review Detail";
 //  "RETURN_ADDRESS" = "Return Address";
 //  "MY_FAVORITE" = "My Favorite";
-//  "CATEGORIES" = "Categories";
+  "CATEGORIES" = "Categories";
 //  "BUY" = "Buy";
 //  "REPLIES" = "Replies";
 //  "SAYSOMETHING" = "Say Something…";
@@ -212,7 +214,7 @@
 //  "QUALITY_OF_GOODS" = "Quality of Goods";
 //  "SERVICE_ATTITUDE" = "Service Attitude";
 //  "LOGISTICS_SERVICE" = "Logistics Service";
-//  "DISCOUNT" = "Discount";
+  "DISCOUNT" = "Discount";
   "INBOX" = "Inbox";
   "MY_SF" = "My SF";
 //  "DELETE" = "Delete";
@@ -236,7 +238,7 @@
 //  "UP_TO" = "up to";
 //  "OFF" = "off";
 //  "MIN_SPEND" = "Min. spending";
-//  "SIMILAR_PRODUCT_RECOMMENDATION" = "Similar product recommendation";
+  "SIMILAR_PRODUCT_RECOMMENDATION" = "Similar product recommendation";
 //  "NEW_PASSWORD" = "New Password";
 //  "CONFIRM_PWD" = "Confirm New Password";
 //  "RE_ENTER_NEW_PASSWORD" = "Re-enter new password";
@@ -252,8 +254,8 @@
 //  "EVALUATION" = "Evaluation";
 //  "RESET" = "Reset";
 //  "AVAILABLE" = "Available";
-//  "EXPIRED" = "Expired";
-//  "USED" = "Used";
+  "EXPIRED" = "Expired";
+  "USED" = "Used";
 //  "ARE_YOU_SURE" = "Are you sure?";
   "TO_PAY" = "To Pay";
   "TO_SHIP" = "To Ship";
@@ -410,7 +412,7 @@
 //  "REFUND_REJECTED_CONTENT" = "Service order is not approved";
 //  "IMAGES" = "Images";
   "TO_REVIEW" = "To Review";
-//  "EXPIRY_DATE" = "Expiry Date";
+  "EXPIRY_DATE" = "Expiry Date";
 //  "RATED" = "Rated";
 //  "HOW_RATE_PRODUCT" = "How would you rate this product?";
 //  "UPLOAD_PHOTO" = "Upload your photos";
@@ -599,7 +601,7 @@
 "SFshop_Voucher" = "SF.shop Voucher";
 "Coupon_Center" = "Coupon Center";
 "Login_Or_Register" = "Login Or Register";
-"Shopping_Cart" = "Shopping Cart";
+"Shopping_Cart" = "SHOPPING CART";
 "Hide" = "Hide";
 "View_replies" = "View replies";
 "verification_email_code" = "A verification code will be sent to your email address. Please enter your registered email.";
@@ -626,7 +628,7 @@
 "CHANGE_MOBILE" = "Change Mobile Number";
 "CHANGE_EMAIL" = "Change Email";
 "INDIVIDUAL_BUY" = "Individual buy";
-"SHARE_BUY" = "Group Buy";
+"SHARE_BUY" = "GROUP BUY";
 "THIS_EMAIL_ADDRESS" = "This email address";
 "THIS_PHONE_NUMBER" = "This phone number";
 "CANCEL" = "Cancel";

@@ -13,9 +13,12 @@
 #import "ProductViewController.h"
 #import "ProductSpecAttrsView.h"
 #import "addressModel.h"
+#import "NSDate+Helper.h"
+#import "CartViewController.h"
 
 
 @interface UseCouponViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UILabel *couponNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *expiredDataLabel;
 @property (weak, nonatomic) IBOutlet UIView *couponView;
@@ -24,13 +27,19 @@
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic,strong) UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
 @property (nonatomic, readwrite, strong) NSMutableArray *addressDataArray;
 @property (nonatomic, readwrite, assign) NSInteger currentPage;
+@property (weak, nonatomic) IBOutlet UIView *bottomVie;
 @property (nonatomic, strong) ProductSpecAttrsView *attrView;
 @property (nonatomic,strong) addressModel *selAddressModel;
 @property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *explainLabel;
 @property (nonatomic,strong) ProductItemModel *selProductModel;
+@property (nonatomic,strong) CouponOrifeeModel *orifeeModel;
+
 
 @end
 
@@ -53,11 +62,12 @@
     }else{
         _couponNameLabel.text = [NSString stringWithFormat:@"Discount %@ Without limit",[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency]];
     }
-    self.expiredDataLabel.text = self.couponModel.expDate;
+    self.expiredDataLabel.text = [NSString stringWithFormat:@"%@~%@",[[NSDate dateFromString:self.couponModel.effDate] dayMonthYear],[[NSDate dateFromString:self.couponModel.expDate] dayMonthYear]];
     [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.bottom.mas_equalTo(self.bottomVie.mas_top);
         make.top.mas_equalTo(self.headSelectorView.mas_bottom).offset(12);
     }];
     self.currentType = CategoryRankTypePopularity;
@@ -71,7 +81,7 @@
         [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
     }];
     [self loadAddressDatas];
-    
+    [self loadFeeDatas];
     [self.tableView.mj_header beginRefreshing];
 }
 #pragma mark - tableview
@@ -158,44 +168,32 @@
         [weakself.tableView.mj_header endRefreshing];
     }];
 }
+- (void)loadFeeDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.cart.orifee parameters:@{@"couponId":_couponModel.couponId} success:^(id  _Nullable response) {
+        weakself.orifeeModel = [[CouponOrifeeModel alloc] initWithDictionary:response error:nil];
+        [weakself updateBottomView];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)updateBottomView
+{
+    _label1.text = kLocalizedString(@"Total");
+    _amountLabel.text = [self.orifeeModel.totalPrice currency];
+    _explainLabel.text = [self.orifeeModel.totalPrice isEqualToString:@"0"] ? kLocalizedString(@"BUY_MORE_TO_ENJOY_DISCOUNT"): [NSString stringWithFormat:@"%@%@",kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT"),[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currency]];
+    [_cartBtn setTitle:kLocalizedString(@"Shopping_Cart") forState:0];
+}
+- (IBAction)cartAction:(UIButton *)sender {
+    CartViewController *vc = [[CartViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark - Event
 - (void)jumpToFilterDetail {
     //加载缓存配置到数据层
     self.dataModel.filterCache = self.filterCacheModel;
-    
-    CategoryRankPriceModel *priceModel = [CategoryRankPriceModel new];
-    priceModel.minPrice = self.filterCacheModel.minPrice;
-    priceModel.maxPrice = self.filterCacheModel.maxPrice;
-    self.dataModel.priceModel = priceModel;
-    for (CategoryRankServiceModel *model in self.dataModel.serviceIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.serverId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankCategoryModel *model in self.dataModel.catgIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.categoryId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankBrandModel *model in self.dataModel.brandIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.brandId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankEvaluationModel *model in self.dataModel.evaluations) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.evaluationId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
@@ -333,6 +331,7 @@
 {
     [SFNetworkManager post:SFNet.cart.cart parameters:@{@"isSelected":@"N",@"contactChannel":@"3",@"addon":@"",@"productId":_selProductModel.productId?@(_selProductModel.productId):@"",@"storeId":@(model.storeId),@"offerId":@(model.offerId),@"num":@(self.attrView.count),@"unitPrice":@(_selProductModel.salesPrice)} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+        [self loadFeeDatas];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
     }];

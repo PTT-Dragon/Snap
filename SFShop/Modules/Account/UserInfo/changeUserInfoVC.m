@@ -88,6 +88,7 @@
     }
     _explainLabel1.hidden = YES;
     _nameField.layer.borderColor = [UIColor blackColor].CGColor;
+    _tipLabel1.textColor = RGBColorFrom16(0x7b7b7b);
     [params setValue:_nameField.text forKey:@"nickName"];
     [SFNetworkManager post:SFNet.account.modify parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:@"Set Successful"];

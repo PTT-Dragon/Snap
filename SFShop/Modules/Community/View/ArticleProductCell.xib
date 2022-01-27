@@ -43,11 +43,19 @@
                         <constraint firstAttribute="height" constant="88" id="FOf-wW-7lT"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sol-Qi-c59">
+                    <rect key="frame" x="111" y="79" width="43" height="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="7Ie-Zp-iqa"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Sol-Qi-c59" firstAttribute="bottom" secondItem="T51-oA-pND" secondAttribute="bottom" constant="-5" id="DS4-UV-znh"/>
                 <constraint firstItem="Yh7-dT-pBP" firstAttribute="leading" secondItem="T51-oA-pND" secondAttribute="trailing" constant="15" id="GlI-0L-z37"/>
+                <constraint firstItem="Sol-Qi-c59" firstAttribute="leading" secondItem="T51-oA-pND" secondAttribute="trailing" constant="15" id="Hri-qv-meP"/>
                 <constraint firstItem="T51-oA-pND" firstAttribute="leading" secondItem="7Ie-Zp-iqa" secondAttribute="leading" constant="8" id="IND-AC-Pk8"/>
                 <constraint firstItem="Yh7-dT-pBP" firstAttribute="leading" secondItem="T51-oA-pND" secondAttribute="trailing" constant="15" id="LSr-Vv-yUG"/>
                 <constraint firstAttribute="trailing" secondItem="Yh7-dT-pBP" secondAttribute="trailing" constant="16" id="W40-R3-dOu"/>
@@ -60,6 +68,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="priceLabel" destination="Sol-Qi-c59" id="qfj-kG-aGD"/>
                 <outlet property="productIV" destination="T51-oA-pND" id="mzQ-PW-of0"/>
                 <outlet property="productNameLabel" destination="Yh7-dT-pBP" id="gEV-RZ-uIt"/>
             </connections>

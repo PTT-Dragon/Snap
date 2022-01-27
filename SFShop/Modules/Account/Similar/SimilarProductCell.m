@@ -6,6 +6,7 @@
 //
 
 #import "SimilarProductCell.h"
+#import "NSString+Fee.h"
 
 
 @interface SimilarProductCell ()
@@ -32,14 +33,15 @@
 - (void)setContent:(ProductSimilarModel *)model
 {
     _typeLabel.text = model.offerType;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.productImg.url)]];
     _nameLabel.text = model.offerName;
-    _priceLabel.text = [NSString stringWithFormat:@"RP%ld",model.salesPrice];
-    _macketPriceLabel.text = [NSString stringWithFormat:@"%ld",model.marketPrice];
+    _priceLabel.text = [[NSString stringWithFormat:@"%ld",model.salesPrice] currency];
+    _macketPriceLabel.text = [[NSString stringWithFormat:@"%ld",model.marketPrice] currency];
     _offLabel.text = [NSString stringWithFormat:@"%ld%%",model.discountPercent];
     NSString *score = (model.evaluationAvg == 0 || !model.evaluationAvg) ? @"": [NSString stringWithFormat:@"%.1f",model.evaluationAvg];
     NSString *evaCount = ([model.evaluationCnt isEqualToString:@"0"] || !model.evaluationCnt) ? @"": [NSString stringWithFormat:@"(%@)",model.evaluationCnt];
     self.starImgView.hidden = (model.evaluationAvg == 0 || !model.evaluationAvg);
     _scoreLabel.text = [NSString stringWithFormat:@"%@  %@",score,evaCount];
+    
 }
 @end

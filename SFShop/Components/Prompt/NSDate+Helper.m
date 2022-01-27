@@ -359,4 +359,20 @@ static NSDateFormatter *_displayFormatter = nil;
 	return [NSDate timestampFormatString];
 }
 
+
+
+- (NSString *)dayMonthYear
+{
+    NSString *year = [NSString stringWithFormat:@"%ld",self.year];
+    return [NSString stringWithFormat:@"%ld %@ %@",self.day,[self monthEn:self.month],year.length == 4 ? [year substringFromIndex:2]:year];
+}
+- (NSString *)dayMonthYearHHMM
+{
+    NSString *year = [NSString stringWithFormat:@"%ld",self.year];
+    return [NSString stringWithFormat:@"%ld %@ %@ %ld:%ld",self.day,[self monthEn:self.month],year.length == 4 ? [year substringFromIndex:2]:year,self.hour,self.minute];
+}
+- (NSString *)monthEn:(NSInteger)month{
+   NSArray *monthArr = @[@"Jan",@"Feb",@"Mar",@"Apr",@"May",@"Jun",@"Jul",@"Aug",@"Spt",@"Oct",@"Nov",@"Dec"];  // 获取日历月数组
+   return monthArr[month - 1];  // 获得数字月份下的对应英文月缩写
+}
 @end

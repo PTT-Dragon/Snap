@@ -63,6 +63,7 @@
             </constraints>
             <connections>
                 <outlet property="tableView" destination="kEJ-LQ-wrr" id="bxC-Xr-FIf"/>
+                <outlet property="titleLabel" destination="G0K-ZU-1vT" id="Eog-wv-fq0"/>
             </connections>
             <point key="canvasLocation" x="436" y="-192"/>
         </view>

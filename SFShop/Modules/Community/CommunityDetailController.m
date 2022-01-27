@@ -20,6 +20,7 @@
 #import "BaseMoreView.h"
 #import "SRXGoodsImageDetailView.h"
 #import "JPVideoPlayerManager.h"
+#import "NSDate+Helper.h"
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
@@ -87,7 +88,8 @@
     [_navView updateIsOnlyShowMoreBtn:YES];
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(navBarHei);
     }];
     _viewTop.constant = navBarHei;
@@ -187,7 +189,7 @@
     self.viewCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.viewCnt];
     self.usefulCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.usefulCnt];
     self.replyCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.replyCnt];
-    self.createDateLabel.text = self.model.createdDate;
+    self.createDateLabel.text = [[NSDate dateFromString:self.model.createdDate] dayMonthYear];
     self.likeBtn.selected = [model.isUseful isEqualToString:@"Y"];
     
     if (self.model.products.count > 0) {
@@ -360,8 +362,8 @@
 }
 
 - (void)textFieldChanged:(UITextField *)textField {
-    if (textField.text.length > 200) {
-        textField.text = [textField.text substringWithRange:NSMakeRange(0, 200)];
+    if (textField.text.length > 500) {
+        textField.text = [textField.text substringWithRange:NSMakeRange(0, 500)];
     }
 }
 

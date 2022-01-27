@@ -28,11 +28,18 @@
         // 根据获取的platformType确定所选平台进行下一步操作
         //创建分享消息对象
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-        messageObject.text = message;
+        if (type == UMSocialPlatformType_Facebook) {
+            UMShareWebpageObject *webObje = [UMShareWebpageObject shareObjectWithTitle:@"" descr:@"" thumImage:nil];
+            webObje.webpageUrl = message;
+            messageObject.shareObject = webObje;
+        } else {
+            messageObject.text = message;
+        }
+
         if (type == UMSocialPlatformType_UserDefine_Begin) {
             UIPasteboard *pab = [UIPasteboard generalPasteboard];
             pab.string = message;
-            [MBProgressHUD showHudMsg:@"复制成功"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COPY_SUCCESS")];
         } else {
             [[UMSocialManager defaultManager] shareToPlatform:type
                                                 messageObject:messageObject

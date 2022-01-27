@@ -43,6 +43,9 @@
                                 <rect key="frame" x="44" y="0.0" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="00165_02_add_filled"/>
+                                <connections>
+                                    <action selector="inviteAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gFF-Jk-aB0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *modify;
 @property (nonatomic, readwrite, strong) NSString *collection;
 @property (nonatomic, readwrite, strong) NSString *coupons;
+@property (nonatomic, readwrite, strong) NSString *orifee;
+
 
 @end
 

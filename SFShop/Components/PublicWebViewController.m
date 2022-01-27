@@ -30,6 +30,8 @@
     [super viewWillAppear:animated];
     if (_isHome) {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }else{
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
 }
 - (void)viewDidLoad {

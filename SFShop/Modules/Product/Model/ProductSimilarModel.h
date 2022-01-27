@@ -6,6 +6,7 @@
 //
 
 #import "JSONModel.h"
+#import "CategoryRankModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) NSInteger offerId;
 
 @property(nonatomic, assign) NSInteger productId;
+
+@property (nonatomic,strong) CategoryRankPageInfoListProductImgModel *productImg;
 
 
 

@@ -86,6 +86,13 @@
         //已经完成团购
         GroupListViewController *vc = [[GroupListViewController alloc] init];
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([self.model.state isEqualToString:@"B"]){
+        NSString *shareUrl = [NSString stringWithFormat:@"%@/group-detail/%@",Host,self.model.shareBuyOrderNbr];
+        [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
     }
+}
+- (IBAction)inviteAction:(UIButton *)sender {
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/group-detail/%@",Host,self.model.shareBuyOrderNbr];
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }
 @end

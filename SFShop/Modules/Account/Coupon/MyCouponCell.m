@@ -8,6 +8,7 @@
 #import "MyCouponCell.h"
 #import "UseCouponViewController.h"
 #import "NSString+Fee.h"
+#import "NSDate+Helper.h"
 
 @interface MyCouponCell ()
 @property (weak, nonatomic) IBOutlet UIView *discountView;
@@ -15,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statuLabel;
 @property (nonatomic,weak) CouponModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
 
 @end
 
@@ -25,21 +28,24 @@
     // Initialization code
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(useCouponAction)];
     [_statuLabel addGestureRecognizer:tap];
+    _label1.text = kLocalizedString(@"DISCOUNT");
+    _label2.text = kLocalizedString(@"EXPIRY_DATE");
 }
 - (void)setContent:(CouponModel *)model
 {
     _model = model;
     if ([model.discountMethod isEqualToString:@"DISC"]) {
-        _nameLabel.text = [NSString stringWithFormat:@"Discount %@ Min.spend %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency],[[NSString stringWithFormat:@"%@f",model.thAmount] currency]];
+        _nameLabel.text = [NSString stringWithFormat:@"%@ %.2f%% Min.spend %.2f",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],[[NSString stringWithFormat:@"%@",model.thAmount] currencyFloat]];
     }else{
-        _nameLabel.text = [NSString stringWithFormat:@"Discount %@ Without limit",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
+        _nameLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
     }
     if (model.getOffsetExp != nil) {
-        _timeLabel.text = [NSString stringWithFormat:@"Valid within %@ days",model.getOffsetExp];
+//        _timeLabel.text = [NSString stringWithFormat:@"Valid within %@ days",[[NSDate dateFromString:model.getOffsetExp] dayMonthYear]];
+        _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.userCouponEffDate] dayMonthYear],[[NSDate dateFromString:model.userCouponExpDate] dayMonthYear]];
     }else{
-        _timeLabel.text = [NSString stringWithFormat:@"%@-%@",model.effDateStr,model.expDateStr];
+        _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }
-    _statuLabel.text = [model.userCouponState isEqualToString:@"C"] ? @"EXPIRED": [model.userCouponState isEqualToString:@"A"] ? @"USE NOW": @"USED";
+    _statuLabel.text = [model.userCouponState isEqualToString:@"C"] ? @"EXPIRED": [model.userCouponState isEqualToString:@"A"] ? kLocalizedString(@"USE_NOW"): kLocalizedString(@"USED");
     if (model.userCouponState) {
         _statuLabel.textColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);
         _discountView.backgroundColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);

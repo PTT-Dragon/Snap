@@ -42,16 +42,16 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadsubviews];
+    self.navSearchView.activeSearch = self.activeSearch;
+    if (!self.activeSearch) {
+        [self.collectionView.mj_header beginRefreshing];
+    }
     // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    if (self.activeSearch) {
-        [self.navSearchView activeSearch];
-    }
 }
 
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter {
@@ -131,47 +131,12 @@
             [self.collectionView.mj_footer endRefreshing];
         }
     }];
-    
-    [self.collectionView.mj_header beginRefreshing];
 }
 
 #pragma mark - Event
 - (void)jumpToFilterDetail {
     //加载缓存配置到数据层
     self.dataModel.filterCache = self.filterCacheModel;
-    
-    CategoryRankPriceModel *priceModel = [CategoryRankPriceModel new];
-    priceModel.minPrice = self.filterCacheModel.minPrice;
-    priceModel.maxPrice = self.filterCacheModel.maxPrice;
-    self.dataModel.priceModel = priceModel;
-    for (CategoryRankServiceModel *model in self.dataModel.serviceIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.serverId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankCategoryModel *model in self.dataModel.catgIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.categoryId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankBrandModel *model in self.dataModel.brandIds) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.brandId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
-    for (CategoryRankEvaluationModel *model in self.dataModel.evaluations) {
-        if (model.idStr && [model.idStr isEqualToString:self.filterCacheModel.evaluationId]) {
-            model.isSelected = YES;
-            break;
-        }
-    }
-    
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {

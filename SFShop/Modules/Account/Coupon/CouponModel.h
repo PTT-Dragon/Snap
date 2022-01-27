@@ -44,6 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*userCouponState;
 @property (nonatomic,strong) NSArray <Optional>*targetProduct;
 @property (nonatomic,strong) NSArray *userCoupons;
+@property (nonatomic,copy) NSString <Optional>*userCouponEffDate;
+@property (nonatomic,copy) NSString <Optional>*userCouponExpDate;
 /**
  {
 comments = "<null>";
@@ -88,6 +90,13 @@ willExpireShow = 0;
 @property (nonatomic,copy) NSString <Optional>*couponCatgId;
 @property (nonatomic,copy) NSString <Optional>*couponCatgName;
 @property (nonatomic,copy) NSString <Optional>*isPltOnly;
+@end
+
+@interface CouponOrifeeModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*totalPrice;
+@property (nonatomic,strong) CouponModel *couponInfo;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

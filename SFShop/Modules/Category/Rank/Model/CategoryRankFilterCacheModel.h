@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class CategoryRankAttrModel;
 @interface CategoryRankFilterCacheModel : NSObject
 
 //1、多个分组都支持保存选中状态
@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, copy) NSString *brandId;
 @property (nonatomic, readwrite, copy) NSString *evaluationId;
 @property (nonatomic, readwrite, copy) NSString *qs;
+@property (nonatomic, readwrite, strong) NSArray<CategoryRankAttrModel *> *offerAttrValues;
 
 - (NSDictionary *)filterParam;
 

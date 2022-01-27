@@ -37,6 +37,9 @@
 #import "TransactionManager.h"
 #import "SRXGoodsImageDetailView.h"
 #import "JPVideoPlayerManager.h"
+#import "CategoryRankViewController.h"
+#import "CartModel.h"
+
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -127,7 +130,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
@@ -145,11 +148,14 @@
 }
 
 - (void)baseNavViewDidClickShareBtn:(BaseNavView *)navView {
-    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:@"wwww.baidu.con"];
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/product/detail/%ld",Host,self.offerId];
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }
 
 - (void)baseNavViewDidClickSearchBtn:(BaseNavView *)navView {
-    
+    CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+    vc.activeSearch = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -161,7 +167,8 @@
     [_navView updateIsOnlyShowMoreBtn:NO];
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(navBarHei);
     }];
     [_navView configDataWithTitle:kLocalizedString(@"Product_detail")];
@@ -649,7 +656,7 @@
             self.groupDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
             self.groupSalePriceLabel.text = [[NSString stringWithFormat:@"%.0f", model.shareBuyPrice] currency];
-            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",self.model.marketPrice] currency];
+            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",_selProductModel.marketPrice] currency];
             [self.buyBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)model.shareBuyPrice] currency],kLocalizedString(@"SHARE_BUY")] forState:0];
             [self.addCartBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)self.selProductModel.salesPrice] currency],kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
         }
@@ -924,11 +931,23 @@
         };
         UserModel *model = [FMDBManager sharedInstance].currentUser;
         if (!model) {
-            [TransactionManager triggerWithoutClearWithId:@"1" obj:params];
-            [TransactionManager addItem:^(id  _Nonnull obj) {
-                obj = params;
-            }];
-            [TransactionManager trigger:@"1"];
+            //没登录  缓存本地
+            CartModel *modelsd = [[CartModel alloc] init];
+            CartListModel *listModel = [[CartListModel alloc] init];
+            listModel.storeId = [NSString stringWithFormat:@"%ld",self.model.storeId];
+            NSMutableArray *arr = [NSMutableArray array];
+            [arr addObject:listModel];
+            modelsd.validCarts = arr;
+            modelsd.platformCouponPrice = 10;
+            NSString *filePath =   [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingString:@"aaa"];
+            NSError *err;
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:modelsd requiringSecureCoding:false error:&err];
+            [NSKeyedArchiver archiveRootObject:modelsd toFile:filePath];
+            NSString *file = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"aaa"];
+            CartModel *aaa  = [NSKeyedUnarchiver unarchivedObjectOfClass:[CartModel class] fromData:data error:nil];
+            aaa.totalPrice;
+            
+            return;
         }
         MPWeakSelf(self)
         [MBProgressHUD showHudMsg:@""];
@@ -973,11 +992,7 @@
     //跳转checkout页
     ProductItemModel *item = self.getSelectedProductItem;
     item.storeName = self.model.storeName;
-    ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
-    BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-        return object.productId.integerValue == _selProductModel.productId;
-    }];
-    if (isGroupBuy) {//团购情况
+    if (type == groupBuyType) {//团购情况
         for (cmpShareBuysModel *buyModel in self.campaignsModel.cmpShareBuys) {
             if (buyModel.productId.integerValue == item.productId) {
                 item.inCmpIdList = @[@(buyModel.campaignId)];

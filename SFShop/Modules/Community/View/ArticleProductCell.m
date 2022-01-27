@@ -6,11 +6,13 @@
 //
 
 #import "ArticleProductCell.h"
+#import "NSString+Fee.h"
 
 @interface ArticleProductCell()
 
 @property (weak, nonatomic) IBOutlet UIImageView *productIV;
 @property (weak, nonatomic) IBOutlet UILabel *productNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @end
 
 @implementation ArticleProductCell
@@ -22,6 +24,8 @@
 
     [self.productIV sd_setImageWithURL: [NSURL URLWithString: SFImage(model.imgUrl)]];
     self.productNameLabel.text = model.productName;
+    self.priceLabel.text = [[NSString stringWithFormat:@"%ld",model.salesPrice] currency];
+    
 }
 
 - (IBAction)buyAction:(UIButton *)sender {

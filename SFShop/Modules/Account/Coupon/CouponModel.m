@@ -37,3 +37,7 @@
 @implementation CouponCategoryModel
 
 @end
+
+@implementation CouponOrifeeModel
+
+@end

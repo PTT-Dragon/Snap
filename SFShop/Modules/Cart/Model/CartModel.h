@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CartCampaignsModel;
 
 
+
 @interface ProdSpcAttrsModel : JSONModel
 @property (nonatomic,copy) NSString *value;
 @property (nonatomic,copy) NSString *attrName;
@@ -78,7 +79,16 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface CartModel : JSONModel
+//@protocol NSCoding
+//
+//- (void)encodeWithCoder:(NSCoder *)coder;
+//- (instancetype)initWithCoder:(NSCoder *)coder;
+//
+//@end
+
+@interface CartModel : JSONModel<NSCopying,NSMutableCopying>
+
+
 
 @property (nonatomic,assign) double totalOfferPrice;
 @property (nonatomic,assign) double totalPrice;
@@ -91,6 +101,23 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray <CartListModel> *invalidCarts;
 
 @end
+
+@interface LocalCartModel : NSObject
+
+
+
+@property (nonatomic,assign) double totalOfferPrice;
+@property (nonatomic,assign) double totalPrice;
+@property (nonatomic,assign) double totalTax;
+@property (nonatomic,assign) double totalDiscount;
+@property (nonatomic,assign) double storeCouponPrice;
+@property (nonatomic,assign) double platformCouponPrice;
+@property (nonatomic,assign) double storeCampaignPrice;
+@property (nonatomic,strong) NSArray <CartListModel> *validCarts;
+@property (nonatomic,strong) NSArray <CartListModel> *invalidCarts;
+
+@end
+
 
 @interface CartNumModel : JSONModel
 @property (nonatomic,copy) NSString *num;

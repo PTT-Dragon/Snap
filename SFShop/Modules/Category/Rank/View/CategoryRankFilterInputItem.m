@@ -32,7 +32,9 @@
 
 - (void)latout {
     [self.minField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(3);
+        make.bottom.mas_equalTo(-3);
+        make.left.mas_equalTo(0);
         make.width.mas_equalTo(KScale(150));
     }];
     
@@ -45,7 +47,8 @@
     
     [self.maxField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.middleLineImageView.mas_right).offset(4);
-        make.top.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(3);
+        make.bottom.mas_equalTo(-3);
         make.width.mas_equalTo(KScale(150));
     }];
 }
