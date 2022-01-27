@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (weak, nonatomic) IBOutlet UIButton *recendBtn;
 @property (nonatomic, strong) dispatch_source_t timer;//倒计时
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -30,7 +31,8 @@
     _codeView.delegate = self;
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     self.contentLabel.text = [NSString stringWithFormat:@"%@ %@",kLocalizedString(@"YOUR_CODE_WAS_SENT_TO"),_account ? _account: model.userRes.mobilePhone];
-    [self.recendBtn setTitle:kLocalizedString(@"RECEND") forState:0];
+    [self.recendBtn setTitle:kLocalizedString(@"RESEND") forState:0];
+    self.titleLabel.text = kLocalizedString(@"ENTER_CODE");
     [self getCode];
 }
 - (void)getCode
