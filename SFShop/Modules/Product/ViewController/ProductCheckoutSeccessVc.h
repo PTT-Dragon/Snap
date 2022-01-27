@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductCheckoutSeccessVc : UIViewController
 @property (nonatomic,copy) NSDictionary *infoDic;
+@property (nonatomic,copy) NSArray *orderArr;
 @property (nonatomic,copy) NSString *GroupBuyGroupNbr;
 
 @end

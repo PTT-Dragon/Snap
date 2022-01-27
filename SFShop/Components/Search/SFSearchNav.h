@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, SFSearchType) {
     SFSearchTypeImmersion,     //沉浸模式 (默认)
     SFSearchTypeNoneInterface, //无界面模式
+    SFSearchTypeFake,          //假搜索条模式
 };
 
 @interface SFSearchNav : UIView
@@ -26,6 +27,9 @@ typedef NS_ENUM(NSUInteger, SFSearchType) {
 
 /// 搜索模式
 @property (nonatomic, readwrite, assign) SFSearchType searchType;
+
+/// 假搜索条模式, 点击搜索
+@property (nonatomic, readwrite, copy) void(^fakeTouchBock)(void);
 
 /// 添加搜索数据组
 /// @param sectionData 搜索数据

@@ -42,7 +42,7 @@
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         CategoryContentSectionHeader *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CategoryContentSectionHeader" forIndexPath:indexPath];
         CategoryModel *model = self.dataArray[indexPath.section][indexPath.row];
-        view.titleLabel.text = model.inner.catgName;
+        view.titleLabel.text = model.inner.groupName;
         return view;
     }
     

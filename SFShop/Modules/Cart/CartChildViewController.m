@@ -18,6 +18,7 @@
 #import "CartViewController.h"
 #import "favoriteModel.h"
 #import "CategoryRankModel.h"
+#import "ProductViewController.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;

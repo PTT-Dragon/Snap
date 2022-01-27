@@ -45,6 +45,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = kLocalizedString(@"Account");
+    NSLog(@"======aaaaaaaaaaa");
     _unreadMessageCount = 0;
     _favoriteCount = 0;
     _recentCount = 0;

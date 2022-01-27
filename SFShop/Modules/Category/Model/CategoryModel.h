@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, copy) NSString *catgName;
 @property (nonatomic, readwrite, copy) NSString *imgUrl;
 @property (nonatomic, readwrite, strong) CatgRelaModel *catgRela;
+#pragma mark - 自定义属性
+@property (nonatomic, readwrite, copy) NSString *groupName;
 @end
 
 @interface CategoryModel : NSObject
