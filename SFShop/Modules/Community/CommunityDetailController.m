@@ -18,6 +18,8 @@
 //#import <SJVideoPlayer/SJVideoPlayer.h>
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import "SRXGoodsImageDetailView.h"
+#import "JPVideoPlayerManager.h"
 #import "NSDate+Helper.h"
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BaseNavViewDelegate>
@@ -43,6 +45,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
+@property (strong, nonatomic) SRXGoodsImageDetailView *pictureScrollView;
+
 
 @end
 
@@ -56,6 +60,10 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    if ([JPVideoPlayerManager sharedManager].videoPlayer.playerStatus==JPVideoPlayerStatusPlaying) {
+        [[JPVideoPlayerManager sharedManager] pause];
+    }
 }
 
 - (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
@@ -102,6 +110,8 @@
     } @catch (NSException *exception) {
         NSLog(@"可能多次释放，避免crash");
     }
+    [[JPVideoPlayerManager sharedManager] stopPlay];
+
 }
 
 - (void)setUpSubViews {
@@ -370,15 +380,23 @@
     //        player.URLAsset = asset;
     //        return player.view;
     //    }
-    UIImageView *iv = nil;
-    if (view == nil) {
-        iv = [[UIImageView alloc] initWithFrame:carousel.bounds];
-        iv.contentMode = UIViewContentModeScaleAspectFit;
-    } else {
-        iv = (UIImageView *)view;
-    }
-    [iv sd_setImageWithURL: [NSURL URLWithString: SFImage(self.model.articlePictures[index])]];
-    return iv;
+//    UIImageView *iv = nil;
+//    if (view == nil) {
+//        iv = [[UIImageView alloc] initWithFrame:carousel.bounds];
+//        iv.contentMode = UIViewContentModeScaleAspectFit;
+//    } else {
+//        iv = (UIImageView *)view;
+//    }
+//    [iv sd_setImageWithURL: [NSURL URLWithString: SFImage(self.model.articlePictures[index])]];
+//    return iv;
+    
+    self.pictureScrollView = [[SRXGoodsImageDetailView alloc] initWithFrame:carousel.bounds];    
+    [self.pictureScrollView.shufflingArray removeAllObjects];
+    
+    [self.pictureScrollView.shufflingArray addObjectsFromArray:self.model.imgs];
+    [self.pictureScrollView updateView];
+
+    return self.pictureScrollView;
 }
 
 @end

@@ -57,18 +57,19 @@
                     <constraint firstItem="Elx-gE-VeN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="95S-dI-4Er"/>
                     <constraint firstAttribute="bottom" secondItem="rai-3k-Dmx" secondAttribute="bottom" id="B8Q-HX-tZS"/>
                     <constraint firstAttribute="trailing" secondItem="rai-3k-Dmx" secondAttribute="trailing" id="LmJ-2F-iSq"/>
+                    <constraint firstItem="Cao-26-bK9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="52" id="MbK-zQ-A5Q"/>
                     <constraint firstItem="Elx-gE-VeN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="RkS-Hc-i8n"/>
                     <constraint firstAttribute="trailing" secondItem="bON-1j-Gre" secondAttribute="trailing" constant="16" id="XNd-97-pvm"/>
                     <constraint firstItem="bON-1j-Gre" firstAttribute="leading" secondItem="YXv-0r-gTW" secondAttribute="trailing" constant="8" id="kXd-OL-zfy"/>
                     <constraint firstItem="YXv-0r-gTW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qmy-hT-Bgu"/>
                     <constraint firstItem="Cao-26-bK9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qub-FK-wGi"/>
-                    <constraint firstItem="Cao-26-bK9" firstAttribute="leading" secondItem="Elx-gE-VeN" secondAttribute="trailing" constant="12" id="sBH-ch-SXV"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="imgView" destination="Elx-gE-VeN" id="kKK-s0-CTC"/>
                 <outlet property="label" destination="Cao-26-bK9" id="L1N-QK-Gms"/>
+                <outlet property="labelLeading" destination="MbK-zQ-A5Q" id="UrJ-HV-nxN"/>
                 <outlet property="subTitleLabel" destination="YXv-0r-gTW" id="31O-5A-Wv9"/>
             </connections>
             <point key="canvasLocation" x="97" y="90"/>
