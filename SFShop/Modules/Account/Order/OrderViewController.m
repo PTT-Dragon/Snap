@@ -48,9 +48,7 @@
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
     _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei);
-    self.magicController.currentPage = self.selType == OrderListType_All ? 1: 2;
-    self.currentMenuIndex = self.magicController.currentPage;
-    [self.magicController switchToPage:self.currentMenuIndex animated:0];
+    
     [_magicController.magicView reloadData];
     NSInteger page = self.selType == OrderListType_All ? 0: self.selType == OrderListType_ToPay ? 1: self.selType == OrderListType_ToShip ? 2: self.selType == OrderListType_ToReceive ? 3: 0;
     [self.magicController switchToPage:page animated:YES];
@@ -146,14 +144,16 @@
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
         backItem.icon = @"nav_back";
-        backItem.itemActionBlock = ^(SFSearchModel *model,BOOL isSelected) {
-            [self.navigationController popViewControllerAnimated:YES];
+        backItem.itemActionBlock = ^(SFSearchState state,SFSearchModel *model,BOOL isSelected) {
+            if (state == SFSearchStateInUnActive || state == SFSearchStateInFocuActive) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"more-horizontal";
         rightItem.selectedIcon = @"more-vertical";
         __weak __typeof(self)weakSelf = self;
-        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
+        rightItem.itemActionBlock = ^(SFSearchState state,SFSearchModel * _Nullable model,BOOL isSelected) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
             [strongSelf.moreView removeFromSuperview];
             strongSelf.moreView = [[BaseMoreView alloc] init];

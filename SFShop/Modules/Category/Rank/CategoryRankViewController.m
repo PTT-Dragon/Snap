@@ -18,6 +18,7 @@
 #import "ProductViewController.h"
 #import "CategoryRankNoItemsView.h"
 #import "CollectionHeaderEmptyView.h"
+#import "SceneManager.h"
 
 @interface CategoryRankViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 
@@ -276,13 +277,17 @@
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
         backItem.icon = @"nav_back";
-        backItem.itemActionBlock = ^(SFSearchModel *model,BOOL isSelected) {
-            [self.navigationController popViewControllerAnimated:YES];
+        backItem.itemActionBlock = ^(SFSearchState state,SFSearchModel *model,BOOL isSelected) {
+            if (self.shouldBackToHome && state == SFSearchStateInFocuActive) {
+                [SceneManager transToHome];
+            } else if (state == SFSearchStateInUnActive || state == SFSearchStateInFocuActive) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"nav_addition";
         rightItem.selectedIcon = @"nav_addtion_list";
-        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
+        rightItem.itemActionBlock = ^(SFSearchState state,SFSearchModel * _Nullable model,BOOL isSelected) {
             self.showType = isSelected;
             if (self.showType) {
                 self.waterfallLayout.columns = 1;

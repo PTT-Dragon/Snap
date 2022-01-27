@@ -444,6 +444,7 @@
 		62E428E827A2292A00A02F91 /* UITableViewCell+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CC27A2292A00A02F91 /* UITableViewCell+WebVideoCache.m */; };
 		62E428E927A2292A00A02F91 /* JPVideoPlayerCachePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CD27A2292A00A02F91 /* JPVideoPlayerCachePath.m */; };
 		62E428EA27A2292A00A02F91 /* JPResourceLoadingRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CE27A2292A00A02F91 /* JPResourceLoadingRequestTask.m */; };
+		8494185A27A2E0BE007D6D4F /* YCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8494185927A2E0BE007D6D4F /* YCMenuView.m */; };
 		8E11A8CB278DCD57005D1FC3 /* ProductionRecomandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */; };
 		8E11A8CE278DD14D005D1FC3 /* UIViewController+parentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */; };
 		8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */; };
@@ -1348,6 +1349,8 @@
 		62E428CE27A2292A00A02F91 /* JPResourceLoadingRequestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPResourceLoadingRequestTask.m; sourceTree = "<group>"; };
 		62E428CF27A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerScrollViewProtocol.h; sourceTree = "<group>"; };
 		7B387B141A9718B8B8605036 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
+		8494185827A2E0BE007D6D4F /* YCMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCMenuView.h; sourceTree = "<group>"; };
+		8494185927A2E0BE007D6D4F /* YCMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCMenuView.m; sourceTree = "<group>"; };
 		8E11A8C9278DCD57005D1FC3 /* ProductionRecomandView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductionRecomandView.h; sourceTree = "<group>"; };
 		8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductionRecomandView.m; sourceTree = "<group>"; };
 		8E11A8CC278DD14D005D1FC3 /* UIViewController+parentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+parentViewController.h"; sourceTree = "<group>"; };
@@ -2740,6 +2743,7 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8494185727A2E0BE007D6D4F /* YCMenuView */,
 				62E4289627A2292900A02F91 /* ImgAndVideoBanner */,
 				8EACB63C2781E7D30066BD3A /* Umeng */,
 				1B82AE9B277080B700D75E00 /* YYCache */,
@@ -2990,6 +2994,15 @@
 				62E428CF27A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.h */,
 			);
 			path = JPVideoPlayer;
+			sourceTree = "<group>";
+		};
+		8494185727A2E0BE007D6D4F /* YCMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				8494185827A2E0BE007D6D4F /* YCMenuView.h */,
+				8494185927A2E0BE007D6D4F /* YCMenuView.m */,
+			);
+			path = YCMenuView;
 			sourceTree = "<group>";
 		};
 		8E1872C02795A58200DBEE3E /* Share */ = {
@@ -4184,6 +4197,7 @@
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,
+				8494185A27A2E0BE007D6D4F /* YCMenuView.m in Sources */,
 				AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */,
 				8E1EC987279D810200CE0088 /* CommunitySelectTableViewCell.m in Sources */,
 				AE4C6C012768E76B006788FE /* OrderLogisticsModel.m in Sources */,

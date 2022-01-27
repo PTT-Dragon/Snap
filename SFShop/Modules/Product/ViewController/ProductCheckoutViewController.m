@@ -321,14 +321,15 @@
 //    if (!model.height) {
         if ([model.cellId isEqualToString:@"ProductCheckoutAddressCell"]) {
             UIFont *font = [UIFont boldSystemFontOfSize:12];
-            CGFloat mailHeight = 30;
+            CGFloat mailHeight = self.dataModel.addressModel.customAddress.length > 0? (12 + 30) : 0;
             CGSize size = CGSizeMake(MainScreen_width - 66 - 16 * 2, 400);
-            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0,size.width, 0)];
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0,size.width, size.height)];
+            textView.textAlignment = NSTextAlignmentLeft;
             textView.text = self.dataModel.addressModel.customAddress;
             textView.font = font;
             CGSize finalSize = [textView sizeThatFits:size];
-            CGFloat addressHeight = finalSize.height;
-            model.height = 16 + addressHeight + 12 + mailHeight + 6;
+            CGFloat addressHeight = finalSize.height > 20 ? (finalSize.height - 20): finalSize.height;
+            model.height = 20 + addressHeight + mailHeight + 20;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutGoodsCell"]) {
             model.height = 118;
         } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {

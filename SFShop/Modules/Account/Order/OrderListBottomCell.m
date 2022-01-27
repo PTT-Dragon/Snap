@@ -21,8 +21,7 @@
 #import "NSDate+Helper.h"
 #import "AddReviewVC.h"
 #import <OYCountDownManager/OYCountDownManager.h>
-
-
+#import "YCMenuView.h"
 
 @interface OrderListBottomCell ()
 @property (weak, nonatomic) IBOutlet UIView *moreView;
@@ -168,21 +167,18 @@ static dispatch_source_t _timer;
         }];
     }else if ([state isEqualToString:@"B"] || [state isEqualToString:@"E"] || [state isEqualToString:@"F"]){
         [self rebuy];
-        
-        
-        
     }else if ([state isEqualToString:@"C"]){
         //确认订单收货
         MPWeakSelf(self)
-        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:@"Click Yes only if you have received the item" btnTitle:@"YES" block:^{
+        PublicAlertView *alert = [[PublicAlertView alloc]initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"CONFIRM") content:@"Click Yes only if you have received the item" btnTitle:@"YES" block:^{
+            
             [SFNetworkManager post:SFNet.order.confirmOrder parametersArr:@[weakself.model.orderId] success:^(id  _Nullable response) {
                 [weakself.delegate refreshDatas];
             } failed:^(NSError * _Nonnull error) {
                 [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
             }];
-        } btn2Title:@"Cancel" block2:^{
             
-        }];
+        } btn2Title:@"CANCEL" block2:^{}];
         [[baseTool getCurrentVC].view addSubview:alert];
     }else if ([state isEqualToString:@"D"]){
         [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
@@ -232,8 +228,16 @@ static dispatch_source_t _timer;
     }
 }
 - (IBAction)moreAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    _moreView.hidden = !sender.selected;
+    //YCMenuView
+    @weakify(self);
+    YCMenuAction *action1 = [YCMenuAction actionWithTitle:kLocalizedString(@"REBUY") image:nil handler:^(YCMenuAction *action) {
+        @strongify(self);
+        [self moreAction1:nil];
+    }];
+    YCMenuView *menu = [YCMenuView menuWithActions:@[action1] width:114 relyonView:sender];
+    menu.textFont = [UIFont systemFontOfSize:14];
+    menu.cellAlignment = NSTextAlignmentCenter;
+    [menu show];
 }
 - (IBAction)moreAction1:(UIButton *)sender {
     [self rebuy];
