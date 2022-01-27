@@ -83,7 +83,7 @@
 //  "DISTRIBUTOR_CENTER" = "Distributor Center";
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "Stok tidak cukup; mohon kurangi jumlah pesanan";
 //  "COUPON_CENTER" = "Pusat Kupon";
-//  "SHOPPING_CART" = "Keranjang";
+  "SHOPPING_CART" = "Keranjang";
   "ADD_TO_CART" = "Tambah ke keranjang";
 //  "ADD_TO_CART_SUCCESS" = "Sukses menambahkan ke troli";
 //  "FIND_SIMILAR" = "Temukan yang serupa";

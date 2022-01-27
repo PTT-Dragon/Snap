@@ -48,7 +48,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = kLocalizedString(@"CART");
+        self.navigationItem.title=kLocalizedString(@"SHOPPING_CART");
+    self.tabBarItem.title=kLocalizedString(@"CART");
     _addressArr = [NSMutableArray array];
     [self updateDatas];NSLocalizedString(@"test", nil);
     [self initUI];

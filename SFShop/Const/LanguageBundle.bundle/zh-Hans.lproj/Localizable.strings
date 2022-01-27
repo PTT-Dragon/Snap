@@ -87,7 +87,7 @@
 //  "DISTRIBUTOR_CENTER" = "分销中心";
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "以下产品库存不足，请调整采购数量。";
 //  "COUPON_CENTER" = "领券中心";
-//  "SHOPPING_CART" = "购物车";
+  "SHOPPING_CART" = "购物车";
   "ADD_TO_CART" = "加入购物车";
 //  "FIND_SIMILAR" = "查找相似";
 //  "MOBILE_NUMBER" = "手机号码";
