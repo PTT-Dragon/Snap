@@ -189,7 +189,9 @@
         __weak __typeof(self)weakSelf = self;
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
-            
+            CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+            vc.activeSearch = YES;
+            [self.navigationController pushViewController:vc animated:YES];
         }];
         _navSearchView.searchType = SFSearchTypeNoneInterface;
     }

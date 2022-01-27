@@ -448,6 +448,7 @@
                         case SFPayResultSuccess:{
                             ProductCheckoutSeccessVc *vc = [[ProductCheckoutSeccessVc alloc] init];
                             vc.infoDic = response;
+                            vc.orderArr = orderIds;
                             vc.GroupBuyGroupNbr = shareBuyOrderNbr;
                             [weakself.navigationController pushViewController:vc animated:YES];
                         }

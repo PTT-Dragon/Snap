@@ -13,6 +13,7 @@
 #import "NSString+Fee.h"
 #import <UIButton+WebCache.h>
 #import "GroupListViewController.h"
+#import "NSDate+Helper.h"
 
 
 @interface ProductCheckoutSeccessVc ()
@@ -171,10 +172,9 @@
 }
 
 - (IBAction)detailAction:(UIButton *)sender {
-    NSArray *arr = _infoDic[@"orders"];
-    NSDictionary *dic = arr.firstObject;
+    NSNumber *orderId = _orderArr.firstObject;
     OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
-    vc.orderId = dic[@"orderId"];
+    vc.orderId = orderId.stringValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)backAction:(UIButton *)sender {

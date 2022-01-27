@@ -47,6 +47,7 @@
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
 		1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B412839273141F100513430 /* CashOutHistoryViewController.m */; };
+		1B43338527A26F4800DBC196 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43338427A26F4800DBC196 /* PrivacyPolicyViewController.m */; };
 		1B43A409279D91D900E7E786 /* AddReviewItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43A407279D91D900E7E786 /* AddReviewItemCell.m */; };
 		1B43A40A279D91D900E7E786 /* AddReviewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B43A408279D91D900E7E786 /* AddReviewItemCell.xib */; };
 		1B43A40D279D950900E7E786 /* AddReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43A40C279D950900E7E786 /* AddReviewVC.m */; };
@@ -652,6 +653,8 @@
 		1B3C123026FC808F00235294 /* accountSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountSubCell.xib; sourceTree = "<group>"; };
 		1B412838273141F100513430 /* CashOutHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashOutHistoryViewController.h; sourceTree = "<group>"; };
 		1B412839273141F100513430 /* CashOutHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashOutHistoryViewController.m; sourceTree = "<group>"; };
+		1B43338327A26F4800DBC196 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		1B43338427A26F4800DBC196 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		1B43A406279D91D900E7E786 /* AddReviewItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewItemCell.h; sourceTree = "<group>"; };
 		1B43A407279D91D900E7E786 /* AddReviewItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewItemCell.m; sourceTree = "<group>"; };
 		1B43A408279D91D900E7E786 /* AddReviewItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewItemCell.xib; sourceTree = "<group>"; };
@@ -2754,6 +2757,8 @@
 				1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */,
 				1BF56CCE2761000F00B40CAA /* CountDown.h */,
 				1BF56CCF2761001000B40CAA /* CountDown.m */,
+				1B43338327A26F4800DBC196 /* PrivacyPolicyViewController.h */,
+				1B43338427A26F4800DBC196 /* PrivacyPolicyViewController.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -4243,6 +4248,7 @@
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				1B6C52C6275C88FE00A1C617 /* RelationOrderDetailProductCell.m in Sources */,
 				AE8F32C4272E95BD008E3DD8 /* ProductCheckoutAddressCell.m in Sources */,
+				1B43338527A26F4800DBC196 /* PrivacyPolicyViewController.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
 				1B82AED7277080B700D75E00 /* YYSpriteSheetImage.m in Sources */,
 				AEA3297A2725391A00E7827A /* CategoryRankFilterCacheModel.m in Sources */,
@@ -4439,7 +4445,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.3;
+				CURRENT_PROJECT_VERSION = 6.5;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4480,7 +4486,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.3;
+				CURRENT_PROJECT_VERSION = 6.5;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

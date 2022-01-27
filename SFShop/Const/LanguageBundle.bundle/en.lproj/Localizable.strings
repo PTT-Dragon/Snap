@@ -86,7 +86,7 @@
   "SHOPPING_CART" = "Shopping Cart";
   "ADD_TO_CART" = "Add to Cart";
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
-//  "FIND_SIMILAR" = "Find Similar";
+  "FIND_SIMILAR" = "Find Similar";
 //  "MOBILE_NUMBER" = "Mobile Number";
 //  "NEW_MOBILE_NUMBER" = "New Mobile Number";
 //  "ADDRESS" = "Address";

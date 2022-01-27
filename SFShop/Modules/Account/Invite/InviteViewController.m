@@ -129,7 +129,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 635;
+        if (self.dataSource.count == 0) {
+            return MainScreen_height-navBarHei;
+        }
+        return AdaptedHeight(635);
     }
     return 74;
 }
