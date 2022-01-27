@@ -115,6 +115,7 @@
         accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
         cell.label.text = kLocalizedString(@"Share_shop");
         cell.imgView.image = [UIImage imageNamed:@""];
+        cell.labelLeading.constant = 16;
         return cell;
     }
     SetLogOutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetLogOutCell"];
