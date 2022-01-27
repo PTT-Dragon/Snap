@@ -13,6 +13,9 @@
             <connections>
                 <outlet property="btn" destination="lAa-Wl-A7q" id="lnN-Ow-rg9"/>
                 <outlet property="field" destination="OXv-jy-Omp" id="Nrv-Ig-px9"/>
+                <outlet property="label1" destination="Sul-sm-1ma" id="KED-ur-ZZB"/>
+                <outlet property="label2" destination="nHZ-nl-AnK" id="NCg-bp-P6p"/>
+                <outlet property="titleLabel" destination="Ozy-Sw-sSx" id="qdF-DR-cSZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,6 +41,19 @@
                         <outlet property="delegate" destination="-1" id="bsX-ew-dnN"/>
                     </connections>
                 </textField>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Phone number/Email  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sul-sm-1ma">
+                    <rect key="frame" x="29" y="156" width="129.5" height="15"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please input the correct phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHZ-nl-AnK">
+                    <rect key="frame" x="16" y="220" width="188.5" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAa-Wl-A7q">
                     <rect key="frame" x="16" y="339" width="382" height="46"/>
                     <color key="backgroundColor" red="1" green="0.89803921568627454" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -55,6 +71,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Ozy-Sw-sSx" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="64" id="5oV-6Z-A8b"/>
+                <constraint firstItem="Sul-sm-1ma" firstAttribute="leading" secondItem="OXv-jy-Omp" secondAttribute="leading" constant="13" id="62L-ZN-Agj"/>
                 <constraint firstItem="lAa-Wl-A7q" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Iwm-ab-OSn"/>
                 <constraint firstItem="lAa-Wl-A7q" firstAttribute="top" secondItem="OXv-jy-Omp" secondAttribute="bottom" constant="129" id="SpJ-dc-xfb"/>
                 <constraint firstItem="OXv-jy-Omp" firstAttribute="top" secondItem="Ozy-Sw-sSx" secondAttribute="bottom" constant="36" id="TnR-dF-khO"/>
@@ -62,6 +79,9 @@
                 <constraint firstItem="OXv-jy-Omp" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="bMn-6r-7iN"/>
                 <constraint firstItem="lAa-Wl-A7q" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="jMq-cq-hxL"/>
                 <constraint firstItem="Ozy-Sw-sSx" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="jmB-VK-n9X"/>
+                <constraint firstItem="nHZ-nl-AnK" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="lUK-Dt-sh9"/>
+                <constraint firstItem="nHZ-nl-AnK" firstAttribute="top" secondItem="OXv-jy-Omp" secondAttribute="bottom" constant="10" id="pNF-Hg-r4T"/>
+                <constraint firstItem="Sul-sm-1ma" firstAttribute="top" secondItem="OXv-jy-Omp" secondAttribute="top" constant="-8" id="w7M-6H-a8x"/>
             </constraints>
             <point key="canvasLocation" x="90" y="33"/>
         </view>

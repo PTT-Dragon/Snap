@@ -26,11 +26,11 @@ static BOOL _accountSuccess = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.titleLabel.text = kLocalizedString(@"Reset_password");
+    self.titleLabel.text = kLocalizedString(@"CHANGE_PASS");
     [self.field addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     self.field.layer.borderWidth = 1;
     if (_type == 2) {
-        _label.text = kLocalizedString(@"verification_email_code");
+        _label.text = kLocalizedString(@"RESET_PASSWORD_EMAIL");
         _field.placeholder = kLocalizedString(@"Email");
         _explainLabel.text = kLocalizedString(@"EMAIL_ERROR_2");
         _label1.text = kLocalizedString(@"Email");

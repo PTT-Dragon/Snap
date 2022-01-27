@@ -28,6 +28,7 @@
 @property (nonatomic,assign) NSInteger type;//登录方式   1.手机登录  2.邮箱登录
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel2;
+@property (weak, nonatomic) IBOutlet UIButton *OTPButton;
 
 @end
 
@@ -53,6 +54,15 @@ static BOOL _passwordSuccess = NO;
     self.accountField.layer.borderWidth = 1;
     [self.passwordField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     [self.accountField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+    self.label2.text = kLocalizedString(@"PASSWORD");
+    self.passwordField.placeholder = kLocalizedString(@"PASSWORD");
+    [self.forgetBtn setTitle:kLocalizedString(@"FORGOT_PWD") forState:0];
+    [self.loginBtn setTitle:kLocalizedString(@"Login") forState:0];
+    [self.signUpBtn setTitle:[NSString stringWithFormat:@"%@%@",kLocalizedString(@"DONT_HAVE_ACCOUNT"),kLocalizedString(@"SIGN_UP")] forState:0];
+    [self.OTPButton setTitle:kLocalizedString(@"LOGIN_VIA_OPT") forState:0];
+    [self.phoneBtn setTitle:kLocalizedString(@"PHONE") forState:0];
+    _label1.text = kLocalizedString(@"PHONE_NUMBER");
+    _accountField.placeholder = kLocalizedString(@"PHONE_NUMBER");
 }
 - (void)changedTextField:(UITextField *)textField
 {
@@ -110,16 +120,16 @@ static BOOL _passwordSuccess = NO;
 - (IBAction)phoneAction:(UIButton *)sender {
     _type = 1;
     sender.selected = YES;
-    _tipLabel1.text = @"Please input the correct phone number";
+    _tipLabel1.text = kLocalizedString(@"INCORRECT_PHONE");
     _emailBtn.selected = NO;
     _phoneIndicationView.backgroundColor = [UIColor blackColor];
     _emailIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
-    _label1.text = kLocalizedString(@"Phone_number");
-    _accountField.placeholder = kLocalizedString(@"Phone_number");
+    _label1.text = kLocalizedString(@"PHONE_NUMBER");
+    _accountField.placeholder = kLocalizedString(@"PHONE_NUMBER");
 }
 - (IBAction)emailAction:(UIButton *)sender {
     _type = 2;
-    _tipLabel1.text = @"Please input the correct email";
+    _tipLabel1.text = kLocalizedString(@"PLEASE_INPUT_THE_CORRECT_EMAIL");
     sender.selected = YES;
     _phoneBtn.selected = NO;
     _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);

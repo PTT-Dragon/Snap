@@ -29,7 +29,7 @@ static BOOL _passwordSuccess = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"Sign_Up");
+    self.title = kLocalizedString(@"SIGN_UP");
     [self layoutSubviews];
 }
 - (void)layoutSubviews
@@ -40,6 +40,11 @@ static BOOL _passwordSuccess = NO;
     self.PhoneField.layer.borderWidth = 1;
     [self.PhoneField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     [self.passwordField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+    self.accountQesLabel.text = kLocalizedString(@"PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL");
+    _passwordField.placeholder = kLocalizedString(@"PASSWORD");
+    _passwordLabel.text = kLocalizedString(@"PASSWORD");
+    [self.signUpBtn setTitle:kLocalizedString(@"SIGN_UP") forState:0];
+    self.phoneLabel.text = kLocalizedString(@"PHONE_NUMBER_EMAIL");
 }
 -(void)changedTextField:(UITextField *)textField
 {
