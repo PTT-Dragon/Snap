@@ -87,7 +87,7 @@
   "ADD_TO_CART" = "Add to Cart";
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
   "FIND_SIMILAR" = "Find Similar";
-//  "MOBILE_NUMBER" = "Mobile Number";
+  "MOBILE_NUMBER" = "Mobile Number";
 //  "NEW_MOBILE_NUMBER" = "New Mobile Number";
 //  "ADDRESS" = "Address";
   "STREET" = "Street/building name and number";
@@ -115,8 +115,8 @@
 //  "LOGIN_GOOGLE" = "Google";
 //  "LOGIN_SENT_CODE" = "sent code";
 //  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "The two passwords do not match.";
-//  "DONT_HAVE_ACCOUNT" = "Don’t have an account yet?";
-//  "SIGN_UP" = "Sign Up";
+  "DONT_HAVE_ACCOUNT" = "Don’t have an account yet?";
+  "SIGN_UP" = "Sign Up";
 //  "SIGN_TO_LOGIN" = "Registration successful. Please re-login.";
   "CATEGORY" = "Category";
   "GET_NOW" = "GET NOW";
@@ -245,8 +245,8 @@
 //  "PASSWORD_NOT_MATCH" = "Password not match.";
 //  "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "Reset successfully. Please re-login.";
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Please input the correct mobile phone.";
-//  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Please input the correct email.";
-//  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Please input the correct phone number or email.";
+  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Please input the correct email.";
+  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Please input the correct phone number or email.";
   "MEMBERSHIP_AGREEMENT" = "Membership Agreement";
 //  "PLEASE_INPUT" = "Please Input";
 //  "SAFETY_VERIFICATION" = "Security verification";
@@ -392,9 +392,9 @@
 "ENTER_CODE" = "Enter 6-Digit Code";
 //  "PRODUCT_DETAIL" = "Product Detail";
 //  "COPIED_TO_CLIPBOARD" = "Copied to clipboard";
-//  "LOGIN_VIA_OPT" = "Login via OTP";
+  "LOGIN_VIA_OPT" = "Login via OTP";
 //  "SMARTFREN_NUMBER" = "Smartfren Number";
-//  "PHONE_NUMBER_EMAIL" = "Phone number/Email";
+  "PHONE_NUMBER_EMAIL" = "Phone number/Email";
   "YOUR_CODE_WAS_SENT_TO" = "Your code was sent to";
   "RESEND_CODE_IN" = "Resend code in";
   "RESEND" = "RESEND";
@@ -403,7 +403,7 @@
 //  "RESET_WITH_SMS" = "RESET WITH SMS";
 //  "RESET_WITH_EMAIL" = "RESET WITH EMAIL";
 //  "RESET_PASSWORD" = "Reset Password";
-//  "RESET_PASSWORD_EMAIL" = "A verification code will be sent to your email address. Please enter your registered email.";
+  "RESET_PASSWORD_EMAIL" = "A verification code will be sent to your email address. Please enter your registered email.";
 //  "SERVICE_TYPE" = "Service Type";
 //  "REFUND_SUCCESSFUL" = "Refund Successful";
 //  "REFUND_SUCCESS_CONTENT" = "Final refund amount = {amount}";
@@ -611,7 +611,7 @@
 "Reset_password" = "Reset Password";
 "Confirm_password" = "Confirm password";
 "Reset_success" = "Reset Success!";
-"Login" = "Login";
+"Login" = "LOGIN";
 "Phone_number" = "Phone number";
 "Sign_Up" = "Sign Up";
 "Max" = "Max";

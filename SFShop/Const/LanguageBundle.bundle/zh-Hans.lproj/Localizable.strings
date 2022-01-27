@@ -90,7 +90,7 @@
   "SHOPPING_CART" = "购物车";
   "ADD_TO_CART" = "加入购物车";
   "FIND_SIMILAR" = "查找相似";
-//  "MOBILE_NUMBER" = "手机号码";
+  "MOBILE_NUMBER" = "手机号码";
 //  "NEW_MOBILE_NUMBER" = "新手机号码";
 //  "ADDRESS" = "地址";
   "STREET" = "街道/建筑物名称和邮编";
@@ -114,14 +114,14 @@
 
 "FORGOT_PWD" = "忘记密码";
 //  "SETTING" = "设置";
-//  "LOGIN" = "登录";
+  "LOGIN" = "登录";
 //  "LOGIN_BY_SOCIAL_ACCOUNT" = "社交账号登录";
 //  "LOGIN_FACEBOOK" = "脸书";
 //  "LOGIN_GOOGLE" = "谷歌";
 //  "LOGIN_SENT_CODE" = "已发送验证码";
 //  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "两次输入的密码不一致。";
-//  "DONT_HAVE_ACCOUNT" = "还没有账号？";
-//  "SIGN_UP" = "注册";
+  "DONT_HAVE_ACCOUNT" = "还没有账号？";
+  "SIGN_UP" = "注册";
 //  "SIGN_TO_LOGIN" = "注册成功，请重新登录";
   "CATEGORY" = "分类";
   "GET_NOW" = "领券";
@@ -245,8 +245,8 @@
 //  "PASSWORD_NOT_MATCH" = "密码不一致";
 //  "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "重置成功请重新登录";
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "请输入正确的手机号.";
-//  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "请输入正确的邮箱.";
-//  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "请输入正确的手机号或邮箱.";
+  "PLEASE_INPUT_THE_CORRECT_EMAIL" = "请输入正确的邮箱.";
+  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "请输入正确的手机号或邮箱.";
   "MEMBERSHIP_AGREEMENT" = "会员注册协议.";
 //  "PLEASE_INPUT" = "请输入";
 //  "SAFETY_VERIFICATION" = "安全政策";
@@ -328,7 +328,7 @@
 //  "SUPPORT" = "帮助";
 //  "COMMUNITY" = "社区";
 //  "REJECT_REASON" = "拒绝原因";
-//  "PHONE_NUMBER" = "手机号";
+  "PHONE_NUMBER" = "手机号";
 //  "TWITTER" = "推特";
 //  "POSTER" = "海报";
 //  "VIDEO" = "视频";
@@ -392,9 +392,9 @@
 "ENTER_CODE" = "请输入6位验证码";
 //  "PRODUCT_DETAIL" = "商品详情";
 //  "COPIED_TO_CLIPBOARD" = "复制到剪贴板";
-//  "LOGIN_VIA_OPT" = "验证码登录";
+  "LOGIN_VIA_OPT" = "验证码登录";
 //  "SMARTFREN_NUMBER" = "Smartfren 号码";
-//  "PHONE_NUMBER_EMAIL" = "手机号/邮箱";
+  "PHONE_NUMBER_EMAIL" = "手机号/邮箱";
   "YOUR_CODE_WAS_SENT_TO" = "你的验证码发送到";
   "RESEND_CODE_IN" = "重新发送验证码";
   "RESEND" = "重新发送";
@@ -403,7 +403,7 @@
 //  "RESET_WITH_SMS" = "通过短信重置密码";
 //  "RESET_WITH_EMAIL" = "通过邮箱重置密码";
 //  "RESET_PASSWORD" = "重置密码";
-//  "RESET_PASSWORD_EMAIL" = "验证码将发送到你的邮箱，请输入注册的邮箱.";
+  "RESET_PASSWORD_EMAIL" = "验证码将发送到你的邮箱，请输入注册的邮箱.";
 //  "SERVICE_TYPE" = "服务类型";
 //  "REFUND_SUCCESSFUL" = "退款成功";
 //  "REFUND_SUCCESS_CONTENT" = "最终退款金额 = {amount}";

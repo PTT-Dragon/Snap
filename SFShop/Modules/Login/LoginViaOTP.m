@@ -14,6 +14,9 @@
 @interface LoginViaOTP ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *field;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
 
 @end
 
@@ -22,11 +25,16 @@ static BOOL _accountSuccess = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = kLocalizedString(@"Login");
+    self.titleLabel.text = kLocalizedString(@"LOGIN_VIA_OPT");
     [self.field addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+    _label1.text = kLocalizedString(@"PHONE_NUMBER");
+    _field.placeholder = kLocalizedString(@"PHONE_NUMBER");
+    [self.btn setTitle:kLocalizedString(@"Login") forState:0];
 }
 -(void)changedTextField:(UITextField *)textField
 {
-    _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:EIDTTYPE labels:@[]];
+    _accountSuccess = [textField textFieldState:CHECKPHONETYPE label:_label1 tipLabel:_label2];
     
     if (_accountSuccess) {
         self.btn.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -38,11 +46,11 @@ static BOOL _accountSuccess = NO;
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:BEGINEDITTYPE labels:@[]];
+    _accountSuccess = [textField textFieldState:CHECKPHONETYPE label:_label1 tipLabel:_label2];
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    _accountSuccess = [textField textFieldState:CHECKPHONETYPE || CHECKEMAILTYPE editType:ENDEDITTYPE labels:@[]];
+    _accountSuccess = [textField textFieldState:CHECKPHONETYPE label:_label1 tipLabel:_label2];
 }
 - (IBAction)sendAction:(id)sender {
     MPWeakSelf(self)

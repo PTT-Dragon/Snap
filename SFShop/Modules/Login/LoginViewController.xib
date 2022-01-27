@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="OTPButton" destination="cdd-wW-aLM" id="l4I-rb-Ivx"/>
                 <outlet property="accountField" destination="imm-98-TnR" id="gO2-ak-9jh"/>
                 <outlet property="emailBtn" destination="ThS-DP-mIk" id="d4k-iM-Y3a"/>
                 <outlet property="emailIndicationView" destination="pYJ-Me-RM6" id="U6e-G0-Rig"/>
