@@ -414,6 +414,34 @@
 		4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA926FCB13300E3C832 /* FMDBManager.m */; };
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
 		4BEB1223275CB98A00D5342A /* ProductCalcFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */; };
+		62E4289527A228E500A02F91 /* SRXGoodsImageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289327A228E500A02F91 /* SRXGoodsImageDetailView.m */; };
+		62E428D027A2292A00A02F91 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289927A2292900A02F91 /* SDPhotoBrowser.m */; };
+		62E428D127A2292A00A02F91 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289A27A2292900A02F91 /* SDWaitingView.m */; };
+		62E428D227A2292A00A02F91 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289B27A2292900A02F91 /* SDBrowserImageView.m */; };
+		62E428D327A2292A00A02F91 /* TSVideoPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428A027A2292900A02F91 /* TSVideoPlayback.m */; };
+		62E428D427A2292A00A02F91 /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62E428A127A2292900A02F91 /* icon_play@2x.png */; };
+		62E428D527A2292A00A02F91 /* icon_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62E428A227A2292900A02F91 /* icon_video@2x.png */; };
+		62E428D627A2292A00A02F91 /* JPVideoPlayerDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428A927A2292A00A02F91 /* JPVideoPlayerDownloader.m */; };
+		62E428D727A2292A00A02F91 /* JPVideoPlayerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428AA27A2292A00A02F91 /* JPVideoPlayerCache.m */; };
+		62E428D827A2292A00A02F91 /* UIView+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428AD27A2292A00A02F91 /* UIView+WebVideoCache.m */; };
+		62E428D927A2292A00A02F91 /* JPVideoPlayerCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428AE27A2292A00A02F91 /* JPVideoPlayerCompat.m */; };
+		62E428DA27A2292A00A02F91 /* JPVideoPlayerResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428B327A2292A00A02F91 /* JPVideoPlayerResourceLoader.m */; };
+		62E428DB27A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428B527A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.m */; };
+		62E428DC27A2292A00A02F91 /* JPVideoPlayerCacheFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428BB27A2292A00A02F91 /* JPVideoPlayerCacheFile.m */; };
+		62E428DD27A2292A00A02F91 /* JPVideoPlayerControlViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428BC27A2292A00A02F91 /* JPVideoPlayerControlViews.m */; };
+		62E428DE27A2292A00A02F91 /* JPVideoPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62E428BE27A2292A00A02F91 /* JPVideoPlayer.bundle */; };
+		62E428DF27A2292A00A02F91 /* UITableView+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428C027A2292A00A02F91 /* UITableView+WebVideoCache.m */; };
+		62E428E027A2292A00A02F91 /* UICollectionViewCell+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428C127A2292A00A02F91 /* UICollectionViewCell+WebVideoCache.m */; };
+		62E428E127A2292A00A02F91 /* JPVideoPlayerCellProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428C227A2292A00A02F91 /* JPVideoPlayerCellProtocol.m */; };
+		62E428E227A2292A00A02F91 /* JPVideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428C327A2292A00A02F91 /* JPVideoPlayerManager.m */; };
+		62E428E327A2292A00A02F91 /* UICollectionView+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428C627A2292A00A02F91 /* UICollectionView+WebVideoCache.m */; };
+		62E428E427A2292A00A02F91 /* JPGCDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428C827A2292A00A02F91 /* JPGCDExtensions.m */; };
+		62E428E527A2292A00A02F91 /* JPVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428C927A2292A00A02F91 /* JPVideoPlayer.m */; };
+		62E428E627A2292A00A02F91 /* JPMethodInjecting.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CA27A2292A00A02F91 /* JPMethodInjecting.m */; };
+		62E428E727A2292A00A02F91 /* JPVideoPlayerSupportUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CB27A2292A00A02F91 /* JPVideoPlayerSupportUtils.m */; };
+		62E428E827A2292A00A02F91 /* UITableViewCell+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CC27A2292A00A02F91 /* UITableViewCell+WebVideoCache.m */; };
+		62E428E927A2292A00A02F91 /* JPVideoPlayerCachePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CD27A2292A00A02F91 /* JPVideoPlayerCachePath.m */; };
+		62E428EA27A2292A00A02F91 /* JPResourceLoadingRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CE27A2292A00A02F91 /* JPResourceLoadingRequestTask.m */; };
 		8E11A8CB278DCD57005D1FC3 /* ProductionRecomandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */; };
 		8E11A8CE278DD14D005D1FC3 /* UIViewController+parentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */; };
 		8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */; };
@@ -1256,6 +1284,62 @@
 		4BEB1221275CB98A00D5342A /* ProductCalcFeeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCalcFeeModel.h; sourceTree = "<group>"; };
 		4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCalcFeeModel.m; sourceTree = "<group>"; };
 		50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
+		62E4289327A228E500A02F91 /* SRXGoodsImageDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRXGoodsImageDetailView.m; sourceTree = "<group>"; };
+		62E4289427A228E500A02F91 /* SRXGoodsImageDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRXGoodsImageDetailView.h; sourceTree = "<group>"; };
+		62E4289827A2292900A02F91 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		62E4289927A2292900A02F91 /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
+		62E4289A27A2292900A02F91 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
+		62E4289B27A2292900A02F91 /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
+		62E4289C27A2292900A02F91 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
+		62E4289D27A2292900A02F91 /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
+		62E4289E27A2292900A02F91 /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
+		62E428A027A2292900A02F91 /* TSVideoPlayback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSVideoPlayback.m; sourceTree = "<group>"; };
+		62E428A127A2292900A02F91 /* icon_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_play@2x.png"; sourceTree = "<group>"; };
+		62E428A227A2292900A02F91 /* icon_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_video@2x.png"; sourceTree = "<group>"; };
+		62E428A327A2292900A02F91 /* TSVideoPlayback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSVideoPlayback.h; sourceTree = "<group>"; };
+		62E428A527A2292900A02F91 /* JPVideoPlayerCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerCellProtocol.h; sourceTree = "<group>"; };
+		62E428A627A2292900A02F91 /* JPVideoPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerManager.h; sourceTree = "<group>"; };
+		62E428A727A2292900A02F91 /* UICollectionViewCell+WebVideoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewCell+WebVideoCache.h"; sourceTree = "<group>"; };
+		62E428A827A2292A00A02F91 /* UITableView+WebVideoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+WebVideoCache.h"; sourceTree = "<group>"; };
+		62E428A927A2292A00A02F91 /* JPVideoPlayerDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerDownloader.m; sourceTree = "<group>"; };
+		62E428AA27A2292A00A02F91 /* JPVideoPlayerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerCache.m; sourceTree = "<group>"; };
+		62E428AB27A2292A00A02F91 /* JPVideoPlayerCacheFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerCacheFile.h; sourceTree = "<group>"; };
+		62E428AC27A2292A00A02F91 /* JPVideoPlayerControlViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerControlViews.h; sourceTree = "<group>"; };
+		62E428AD27A2292A00A02F91 /* UIView+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebVideoCache.m"; sourceTree = "<group>"; };
+		62E428AE27A2292A00A02F91 /* JPVideoPlayerCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerCompat.m; sourceTree = "<group>"; };
+		62E428AF27A2292A00A02F91 /* JPVideoPlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerProtocol.h; sourceTree = "<group>"; };
+		62E428B027A2292A00A02F91 /* JPVideoPlayerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerKit.h; sourceTree = "<group>"; };
+		62E428B127A2292A00A02F91 /* JPVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayer.h; sourceTree = "<group>"; };
+		62E428B227A2292A00A02F91 /* JPGCDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGCDExtensions.h; sourceTree = "<group>"; };
+		62E428B327A2292A00A02F91 /* JPVideoPlayerResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerResourceLoader.m; sourceTree = "<group>"; };
+		62E428B427A2292A00A02F91 /* UICollectionView+WebVideoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+WebVideoCache.h"; sourceTree = "<group>"; };
+		62E428B527A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerScrollViewProtocol.m; sourceTree = "<group>"; };
+		62E428B627A2292A00A02F91 /* JPResourceLoadingRequestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPResourceLoadingRequestTask.h; sourceTree = "<group>"; };
+		62E428B727A2292A00A02F91 /* JPVideoPlayerCachePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerCachePath.h; sourceTree = "<group>"; };
+		62E428B827A2292A00A02F91 /* UITableViewCell+WebVideoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+WebVideoCache.h"; sourceTree = "<group>"; };
+		62E428B927A2292A00A02F91 /* JPMethodInjecting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPMethodInjecting.h; sourceTree = "<group>"; };
+		62E428BA27A2292A00A02F91 /* JPVideoPlayerSupportUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerSupportUtils.h; sourceTree = "<group>"; };
+		62E428BB27A2292A00A02F91 /* JPVideoPlayerCacheFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerCacheFile.m; sourceTree = "<group>"; };
+		62E428BC27A2292A00A02F91 /* JPVideoPlayerControlViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerControlViews.m; sourceTree = "<group>"; };
+		62E428BD27A2292A00A02F91 /* JPVideoPlayerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerCache.h; sourceTree = "<group>"; };
+		62E428BE27A2292A00A02F91 /* JPVideoPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JPVideoPlayer.bundle; sourceTree = "<group>"; };
+		62E428BF27A2292A00A02F91 /* JPVideoPlayerDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerDownloader.h; sourceTree = "<group>"; };
+		62E428C027A2292A00A02F91 /* UITableView+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+WebVideoCache.m"; sourceTree = "<group>"; };
+		62E428C127A2292A00A02F91 /* UICollectionViewCell+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewCell+WebVideoCache.m"; sourceTree = "<group>"; };
+		62E428C227A2292A00A02F91 /* JPVideoPlayerCellProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerCellProtocol.m; sourceTree = "<group>"; };
+		62E428C327A2292A00A02F91 /* JPVideoPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerManager.m; sourceTree = "<group>"; };
+		62E428C427A2292A00A02F91 /* JPVideoPlayerCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerCompat.h; sourceTree = "<group>"; };
+		62E428C527A2292A00A02F91 /* UIView+WebVideoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebVideoCache.h"; sourceTree = "<group>"; };
+		62E428C627A2292A00A02F91 /* UICollectionView+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+WebVideoCache.m"; sourceTree = "<group>"; };
+		62E428C727A2292A00A02F91 /* JPVideoPlayerResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerResourceLoader.h; sourceTree = "<group>"; };
+		62E428C827A2292A00A02F91 /* JPGCDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGCDExtensions.m; sourceTree = "<group>"; };
+		62E428C927A2292A00A02F91 /* JPVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayer.m; sourceTree = "<group>"; };
+		62E428CA27A2292A00A02F91 /* JPMethodInjecting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPMethodInjecting.m; sourceTree = "<group>"; };
+		62E428CB27A2292A00A02F91 /* JPVideoPlayerSupportUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerSupportUtils.m; sourceTree = "<group>"; };
+		62E428CC27A2292A00A02F91 /* UITableViewCell+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+WebVideoCache.m"; sourceTree = "<group>"; };
+		62E428CD27A2292A00A02F91 /* JPVideoPlayerCachePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerCachePath.m; sourceTree = "<group>"; };
+		62E428CE27A2292A00A02F91 /* JPResourceLoadingRequestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPResourceLoadingRequestTask.m; sourceTree = "<group>"; };
+		62E428CF27A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerScrollViewProtocol.h; sourceTree = "<group>"; };
 		7B387B141A9718B8B8605036 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
 		8E11A8C9278DCD57005D1FC3 /* ProductionRecomandView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductionRecomandView.h; sourceTree = "<group>"; };
 		8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductionRecomandView.m; sourceTree = "<group>"; };
@@ -2519,6 +2603,8 @@
 		4B43851F26FEBC1800BA3D90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				62E4289427A228E500A02F91 /* SRXGoodsImageDetailView.h */,
+				62E4289327A228E500A02F91 /* SRXGoodsImageDetailView.m */,
 				4B43852026FEBC5E00BA3D90 /* CommunityWaterfallLayout.h */,
 				4B43852126FEBC5E00BA3D90 /* CommunityWaterfallLayout.m */,
 				4B43852926FEC1CC00BA3D90 /* ArticleListCell.h */,
@@ -2643,6 +2729,7 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				62E4289627A2292900A02F91 /* ImgAndVideoBanner */,
 				8EACB63C2781E7D30066BD3A /* Umeng */,
 				1B82AE9B277080B700D75E00 /* YYCache */,
 				1B82AEA7277080B700D75E00 /* YYImage */,
@@ -2805,6 +2892,91 @@
 				50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		62E4289627A2292900A02F91 /* ImgAndVideoBanner */ = {
+			isa = PBXGroup;
+			children = (
+				62E4289727A2292900A02F91 /* SDPhotoBrowser */,
+				62E4289F27A2292900A02F91 /* detailVIdeo */,
+				62E428A427A2292900A02F91 /* JPVideoPlayer */,
+			);
+			path = ImgAndVideoBanner;
+			sourceTree = "<group>";
+		};
+		62E4289727A2292900A02F91 /* SDPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				62E4289827A2292900A02F91 /* SDPhotoBrowserConfig.h */,
+				62E4289927A2292900A02F91 /* SDPhotoBrowser.m */,
+				62E4289A27A2292900A02F91 /* SDWaitingView.m */,
+				62E4289B27A2292900A02F91 /* SDBrowserImageView.m */,
+				62E4289C27A2292900A02F91 /* SDWaitingView.h */,
+				62E4289D27A2292900A02F91 /* SDPhotoBrowser.h */,
+				62E4289E27A2292900A02F91 /* SDBrowserImageView.h */,
+			);
+			path = SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		62E4289F27A2292900A02F91 /* detailVIdeo */ = {
+			isa = PBXGroup;
+			children = (
+				62E428A027A2292900A02F91 /* TSVideoPlayback.m */,
+				62E428A127A2292900A02F91 /* icon_play@2x.png */,
+				62E428A227A2292900A02F91 /* icon_video@2x.png */,
+				62E428A327A2292900A02F91 /* TSVideoPlayback.h */,
+			);
+			path = detailVIdeo;
+			sourceTree = "<group>";
+		};
+		62E428A427A2292900A02F91 /* JPVideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				62E428A527A2292900A02F91 /* JPVideoPlayerCellProtocol.h */,
+				62E428A627A2292900A02F91 /* JPVideoPlayerManager.h */,
+				62E428A727A2292900A02F91 /* UICollectionViewCell+WebVideoCache.h */,
+				62E428A827A2292A00A02F91 /* UITableView+WebVideoCache.h */,
+				62E428A927A2292A00A02F91 /* JPVideoPlayerDownloader.m */,
+				62E428AA27A2292A00A02F91 /* JPVideoPlayerCache.m */,
+				62E428AB27A2292A00A02F91 /* JPVideoPlayerCacheFile.h */,
+				62E428AC27A2292A00A02F91 /* JPVideoPlayerControlViews.h */,
+				62E428AD27A2292A00A02F91 /* UIView+WebVideoCache.m */,
+				62E428AE27A2292A00A02F91 /* JPVideoPlayerCompat.m */,
+				62E428AF27A2292A00A02F91 /* JPVideoPlayerProtocol.h */,
+				62E428B027A2292A00A02F91 /* JPVideoPlayerKit.h */,
+				62E428B127A2292A00A02F91 /* JPVideoPlayer.h */,
+				62E428B227A2292A00A02F91 /* JPGCDExtensions.h */,
+				62E428B327A2292A00A02F91 /* JPVideoPlayerResourceLoader.m */,
+				62E428B427A2292A00A02F91 /* UICollectionView+WebVideoCache.h */,
+				62E428B527A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.m */,
+				62E428B627A2292A00A02F91 /* JPResourceLoadingRequestTask.h */,
+				62E428B727A2292A00A02F91 /* JPVideoPlayerCachePath.h */,
+				62E428B827A2292A00A02F91 /* UITableViewCell+WebVideoCache.h */,
+				62E428B927A2292A00A02F91 /* JPMethodInjecting.h */,
+				62E428BA27A2292A00A02F91 /* JPVideoPlayerSupportUtils.h */,
+				62E428BB27A2292A00A02F91 /* JPVideoPlayerCacheFile.m */,
+				62E428BC27A2292A00A02F91 /* JPVideoPlayerControlViews.m */,
+				62E428BD27A2292A00A02F91 /* JPVideoPlayerCache.h */,
+				62E428BE27A2292A00A02F91 /* JPVideoPlayer.bundle */,
+				62E428BF27A2292A00A02F91 /* JPVideoPlayerDownloader.h */,
+				62E428C027A2292A00A02F91 /* UITableView+WebVideoCache.m */,
+				62E428C127A2292A00A02F91 /* UICollectionViewCell+WebVideoCache.m */,
+				62E428C227A2292A00A02F91 /* JPVideoPlayerCellProtocol.m */,
+				62E428C327A2292A00A02F91 /* JPVideoPlayerManager.m */,
+				62E428C427A2292A00A02F91 /* JPVideoPlayerCompat.h */,
+				62E428C527A2292A00A02F91 /* UIView+WebVideoCache.h */,
+				62E428C627A2292A00A02F91 /* UICollectionView+WebVideoCache.m */,
+				62E428C727A2292A00A02F91 /* JPVideoPlayerResourceLoader.h */,
+				62E428C827A2292A00A02F91 /* JPGCDExtensions.m */,
+				62E428C927A2292A00A02F91 /* JPVideoPlayer.m */,
+				62E428CA27A2292A00A02F91 /* JPMethodInjecting.m */,
+				62E428CB27A2292A00A02F91 /* JPVideoPlayerSupportUtils.m */,
+				62E428CC27A2292A00A02F91 /* UITableViewCell+WebVideoCache.m */,
+				62E428CD27A2292A00A02F91 /* JPVideoPlayerCachePath.m */,
+				62E428CE27A2292A00A02F91 /* JPResourceLoadingRequestTask.m */,
+				62E428CF27A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.h */,
+			);
+			path = JPVideoPlayer;
 			sourceTree = "<group>";
 		};
 		8E1872C02795A58200DBEE3E /* Share */ = {
@@ -3500,6 +3672,7 @@
 				1B49D146271D5C14002461ED /* RecentlyViewedViewController.xib in Resources */,
 				1B53A2BC2778ACC900FB00C7 /* CartChoosePromotion.xib in Resources */,
 				1BB1CB7227634DF6008D71DF /* FlashSaleProductCell.xib in Resources */,
+				62E428D427A2292A00A02F91 /* icon_play@2x.png in Resources */,
 				8EACB6612781E7E50066BD3A /* TwitterKitResources.bundle in Resources */,
 				1BD2A623276B0CF200F994C5 /* GroupListViewController.xib in Resources */,
 				1B74DB2627253A3500B30ECC /* DeliveryInformationCell.xib in Resources */,
@@ -3539,6 +3712,7 @@
 				4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */,
 				1B552EC1276C721C0086604B /* ProductReviewDetailViewController.xib in Resources */,
 				1BD8E7BE275F377800130DCC /* RefundDetailMethodCell.xib in Resources */,
+				62E428D527A2292A00A02F91 /* icon_video@2x.png in Resources */,
 				1B478309272A7B1000F2A945 /* RefundCell.xib in Resources */,
 				1B552EB6276C3A700086604B /* ProductGroupListCell.xib in Resources */,
 				1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */,
@@ -3569,6 +3743,7 @@
 				1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */,
 				1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
+				62E428DE27A2292A00A02F91 /* JPVideoPlayer.bundle in Resources */,
 				1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */,
 				1BD8E7A4275D12CF00130DCC /* ReviewDetailInfoCell.xib in Resources */,
 				1B78865E276C7E74009A080A /* ProductReviewReplyCell.xib in Resources */,
@@ -3696,6 +3871,7 @@
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
 				8E11A8D4278DD6C9005D1FC3 /* CartEmptyView.m in Sources */,
+				62E428E027A2292A00A02F91 /* UICollectionViewCell+WebVideoCache.m in Sources */,
 				1B6C52CB275C894C00A1C617 /* RelationOrderDetailInfoCell.m in Sources */,
 				1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */,
 				AE8F32D6272EA117008E3DD8 /* ProductCheckoutBaseCell.m in Sources */,
@@ -3726,6 +3902,7 @@
 				AE8DB8AB279FFE0E001DEFE4 /* TransactionManager.m in Sources */,
 				1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */,
 				1B82AED2277080B700D75E00 /* YYMemoryCache.m in Sources */,
+				62E428E727A2292A00A02F91 /* JPVideoPlayerSupportUtils.m in Sources */,
 				1B552EB5276C3A700086604B /* ProductGroupListCell.m in Sources */,
 				1B2AE43C272E8C7700FB23D3 /* CancelOrderChooseReason.m in Sources */,
 				1B273C4B278EFC4500DDE2DA /* ChooseRefundViewController.m in Sources */,
@@ -3755,6 +3932,7 @@
 				1B82AE33276F7B7F00D75E00 /* CommunityEvaluateCell.m in Sources */,
 				1B74DB152724466100B30ECC /* OrderListBottomCell.m in Sources */,
 				1B18E35A279EFABE00A90152 /* ReplaceDeliveryAddCell.m in Sources */,
+				62E428D327A2292A00A02F91 /* TSVideoPlayback.m in Sources */,
 				1BDBEBB926FF62BF0018109B /* LoginViaOTP.m in Sources */,
 				1B49D12627194CD9002461ED /* AddAddressViewController.m in Sources */,
 				1B2AE428272D36F000FB23D3 /* CartTableViewCell.m in Sources */,
@@ -3781,12 +3959,15 @@
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
 				1B74DAE42721B6FD00B30ECC /* InviteViewController.m in Sources */,
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
+				62E428E627A2292A00A02F91 /* JPMethodInjecting.m in Sources */,
 				1B74DB2527253A3500B30ECC /* DeliveryInformationCell.m in Sources */,
 				1BD8E7CD275FA58300130DCC /* SupportViewController.m in Sources */,
 				AE81BE5C270200F200AB4225 /* BCLoadingView.m in Sources */,
 				1B71AE5E277D840A0088D94A /* UITextField+expand.m in Sources */,
 				8EE292242789AAA10051DF85 /* NSBundle+Language.m in Sources */,
+				62E428EA27A2292A00A02F91 /* JPResourceLoadingRequestTask.m in Sources */,
 				8E1872CF2796A98B00DBEE3E /* MGCShareInfoModel.m in Sources */,
+				62E428E127A2292A00A02F91 /* JPVideoPlayerCellProtocol.m in Sources */,
 				1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */,
 				1BD8E7BD275F377800130DCC /* RefundDetailMethodCell.m in Sources */,
 				1BDBEBAA26FDB8690018109B /* resetPasswordViewController.m in Sources */,
@@ -3794,10 +3975,13 @@
 				1BDBEBAE26FDC8410018109B /* baseTool.m in Sources */,
 				1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */,
 				AE81BE6C2702158600AB4225 /* CategoryRankViewController.m in Sources */,
+				62E4289527A228E500A02F91 /* SRXGoodsImageDetailView.m in Sources */,
 				1B964754273E48BF00345DDA /* IncomeAndExpenseChildViewController.m in Sources */,
+				62E428D827A2292A00A02F91 /* UIView+WebVideoCache.m in Sources */,
 				1B6C5296275B672200A1C617 /* ZLPhotoManager.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1B2AE423272D274300FB23D3 /* CartChooseAddressCell.m in Sources */,
+				62E428E327A2292A00A02F91 /* UICollectionView+WebVideoCache.m in Sources */,
 				1B82AEE7277080B700D75E00 /* YYWebImageOperation.m in Sources */,
 				1B6C5297275B672200A1C617 /* ZLAnimateTransition.m in Sources */,
 				8E1872D52796AB3C00DBEE3E /* UIView+YYAdd.m in Sources */,
@@ -3813,9 +3997,11 @@
 				AE81BE702704B94E00AB4225 /* CategoryRankModel.m in Sources */,
 				1BDCBFA72796AD7C008CEBAB /* RefundOrReturnExplainCell.m in Sources */,
 				AE5C9A6F275B5F3800F34481 /* SFSearchingModel.m in Sources */,
+				62E428DA27A2292A00A02F91 /* JPVideoPlayerResourceLoader.m in Sources */,
 				AE81BE532700A5FF00AB4225 /* CategoryContentCell.m in Sources */,
 				4B815840279B1C3D00EA5485 /* ProductStockModel.m in Sources */,
 				1BDBEBA226FDAEB50018109B /* verifyCodeVC.m in Sources */,
+				62E428E227A2292A00A02F91 /* JPVideoPlayerManager.m in Sources */,
 				1B74DB3927265EDC00B30ECC /* setViewController.m in Sources */,
 				AE81BE1426FB75B400AB4225 /* MainTabViewController.m in Sources */,
 				1BDBEB9226FCC9CE0018109B /* SFNetworkUsersModule.m in Sources */,
@@ -3830,6 +4016,7 @@
 				1B6246742762E8F500009DE2 /* MessageModel.m in Sources */,
 				1BC7A2CA272AFC9600755832 /* FAQDetailViewController.m in Sources */,
 				1B6C523F2758619600A1C617 /* WebViewJavascriptBridge_JS.m in Sources */,
+				62E428D027A2292A00A02F91 /* SDPhotoBrowser.m in Sources */,
 				8E11A8CB278DCD57005D1FC3 /* ProductionRecomandView.m in Sources */,
 				AE5C9A69275B5C7C00F34481 /* SFSearchingView.m in Sources */,
 				1B552E9F276B14F10086604B /* GroupBuyListCell.m in Sources */,
@@ -3843,11 +4030,14 @@
 				AEA3296E2724133100E7827A /* CategoryRankFilterItem.m in Sources */,
 				1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */,
 				1B27A4C7272F8C7F0042AD30 /* PublicWebViewController.m in Sources */,
+				62E428DF27A2292A00A02F91 /* UITableView+WebVideoCache.m in Sources */,
 				1BF4DD4B2774644600972265 /* NSArray+ErrorHandle.m in Sources */,
 				1B74D32B279EF6FC00577E46 /* ReplaceDeliveryViewController.m in Sources */,
+				62E428E527A2292A00A02F91 /* JPVideoPlayer.m in Sources */,
 				1B82AE3727701F4F00D75E00 /* ArticleEvaluateBottomCell.m in Sources */,
 				1B6C52B7275BC02400A1C617 /* ImageCollectionViewCell.m in Sources */,
 				1B43A40D279D950900E7E786 /* AddReviewVC.m in Sources */,
+				62E428E927A2292A00A02F91 /* JPVideoPlayerCachePath.m in Sources */,
 				1BF00F59272FD4090081C8E4 /* SFNetworkDistributorModule.m in Sources */,
 				1B49D1332719809B002461ED /* FavoriteTableViewCell.m in Sources */,
 				1BD8E7A9275D1B5900130DCC /* ReviewPhrchaseCell.m in Sources */,
@@ -3866,6 +4056,7 @@
 				AE8F32D0272E9684008E3DD8 /* ProductCheckoutVoucherCell.m in Sources */,
 				1B49D12C27197D65002461ED /* FavoriteViewController.m in Sources */,
 				1B74DAC4271F192400B30ECC /* CouponModel.m in Sources */,
+				62E428D727A2292A00A02F91 /* JPVideoPlayerCache.m in Sources */,
 				1B478304272A785200F2A945 /* RefundViewController.m in Sources */,
 				1BD10C3D2761F4B100BFC1AD /* ProductReviewViewController.m in Sources */,
 				1BD8E7DC27605D0400130DCC /* ReviewSuccessViewController.m in Sources */,
@@ -3873,6 +4064,7 @@
 				1B6C5299275B672200A1C617 /* ZLPullDownInteractiveTransition.m in Sources */,
 				1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */,
 				1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */,
+				62E428D627A2292A00A02F91 /* JPVideoPlayerDownloader.m in Sources */,
 				1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */,
 				1BF56CD02761001000B40CAA /* CountDown.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
@@ -3886,6 +4078,7 @@
 				1B82AE4B27707CB500D75E00 /* KSProgressLayer.m in Sources */,
 				1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */,
 				1B6C52A1275B672200A1C617 /* ZLEditViewController.m in Sources */,
+				62E428D127A2292A00A02F91 /* SDWaitingView.m in Sources */,
 				1B82AECF277080B700D75E00 /* YYDiskCache.m in Sources */,
 				AEEB51D4279B38D6001BF789 /* CollectionHeaderEmptyView.m in Sources */,
 				AEEC0BB227883D090071F059 /* DeliveryCell.m in Sources */,
@@ -3908,6 +4101,7 @@
 				1B6C52AC275B672200A1C617 /* ZLShowBigImgViewController.m in Sources */,
 				1BF00F6E272FDC5D0081C8E4 /* DistributorRankCell.m in Sources */,
 				1B74DAC7271FF06500B30ECC /* favoriteModel.m in Sources */,
+				62E428DB27A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.m in Sources */,
 				1BD8E7D727604FC900130DCC /* AdditionalReviewViewController.m in Sources */,
 				8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */,
 				1B6C5298275B672200A1C617 /* ZLInteractiveTrasition.m in Sources */,
@@ -3916,6 +4110,7 @@
 				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,
 				1B6246772762F0FD00009DE2 /* MessageOrderListViewController.m in Sources */,
 				1B82AE4A27707CB500D75E00 /* KSPhotoView.m in Sources */,
+				62E428D227A2292A00A02F91 /* SDBrowserImageView.m in Sources */,
 				1B74DB0C2724420A00B30ECC /* OrderChildViewController.m in Sources */,
 				1B74DB022722B68100B30ECC /* InviteModel.m in Sources */,
 				1B787B5B272A34FE00E6A983 /* SetTopCell.m in Sources */,
@@ -3938,6 +4133,7 @@
 				1B74DB2F27253AF900B30ECC /* OrderPayInfoCell.m in Sources */,
 				1BF00F5F272FDC090081C8E4 /* DistributorInfoCell.m in Sources */,
 				AE81BE2C26FE153800AB4225 /* MerchandisePageController.m in Sources */,
+				62E428DC27A2292A00A02F91 /* JPVideoPlayerCacheFile.m in Sources */,
 				1B3122552732306B0055033D /* CashOutHistoryCell.m in Sources */,
 				1B2AE42F272D8F3700FB23D3 /* CartTitleCell.m in Sources */,
 				1B82AEE1277080B700D75E00 /* _YYWebImageSetter.m in Sources */,
@@ -4021,6 +4217,7 @@
 				1B31225A273260980055033D /* CaseOutDetailViewController.m in Sources */,
 				1B74DB102724463500B30ECC /* OrderListStateCell.m in Sources */,
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
+				62E428D927A2292A00A02F91 /* JPVideoPlayerCompat.m in Sources */,
 				8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */,
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
 				1BCD2E85279BF70F008A530B /* ProductReviewAddCell.m in Sources */,
@@ -4028,7 +4225,9 @@
 				1BF00F69272FDC4B0081C8E4 /* DistribitorRankTopCell.m in Sources */,
 				1BB1CB5F2763415C008D71DF /* FlashSaleViewController.m in Sources */,
 				4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */,
+				62E428E827A2292A00A02F91 /* UITableViewCell+WebVideoCache.m in Sources */,
 				1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */,
+				62E428DD27A2292A00A02F91 /* JPVideoPlayerControlViews.m in Sources */,
 				1BF00F7E273131400081C8E4 /* CommissionViewController.m in Sources */,
 				1B74DACF272007D900B30ECC /* InitializationUIMethod.m in Sources */,
 				1BF00F54272FC13D0081C8E4 /* DistributeCenterViewController.m in Sources */,
@@ -4048,6 +4247,7 @@
 				1B82AED7277080B700D75E00 /* YYSpriteSheetImage.m in Sources */,
 				AEA3297A2725391A00E7827A /* CategoryRankFilterCacheModel.m in Sources */,
 				AE81BDE926FB6E7300AB4225 /* main.m in Sources */,
+				62E428E427A2292A00A02F91 /* JPGCDExtensions.m in Sources */,
 				AE81BE3526FF318900AB4225 /* SFNetworkPageModule.m in Sources */,
 				1B6C529B275B672200A1C617 /* ZLProgressHUD.m in Sources */,
 				4B9FB9FF26FB7AAB00C90790 /* HomeViewController.m in Sources */,
