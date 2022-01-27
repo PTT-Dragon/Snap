@@ -56,9 +56,9 @@
 }
 - (void)updateView
 {
-    NSString *AvailableStr = [NSString stringWithFormat:@"Available(%@)",self.numModel.availableNum];
-    NSString *ExpiredStr = [NSString stringWithFormat:@"Expired(%@)",self.numModel.expiredNum];
-    NSString *UsedStr = [NSString stringWithFormat:@"Used(%@)",self.numModel.usedNum];
+    NSString *AvailableStr = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"AVAILABLE"),self.numModel.availableNum];
+    NSString *ExpiredStr = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"EXPIRED"),self.numModel.expiredNum];
+    NSString *UsedStr = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"USED"),self.numModel.usedNum];
     self.menuList = @[AvailableStr, ExpiredStr, UsedStr];
     [_magicController.magicView reloadMenuTitles];
 }

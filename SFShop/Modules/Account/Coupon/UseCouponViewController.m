@@ -39,6 +39,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *explainLabel;
 @property (nonatomic,strong) ProductItemModel *selProductModel;
 @property (nonatomic,strong) CouponOrifeeModel *orifeeModel;
+@property (weak, nonatomic) IBOutlet UILabel *expiryTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *discountTitleLabel;
 
 
 @end
@@ -55,6 +57,8 @@
     [self loadsubviews];
 }
 - (void)loadsubviews {
+    self.discountTitleLabel.text = kLocalizedString(@"DISCOUNT");
+    self.expiryTitleLabel.text = kLocalizedString(@"EXPIRY_DATE");
     self.couponView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
     self.couponView.layer.borderWidth = 1;
     if ([self.couponModel.discountMethod isEqualToString:@"DISC"]) {
@@ -183,7 +187,7 @@
     _label1.text = kLocalizedString(@"Total");
     _amountLabel.text = [self.orifeeModel.totalPrice currency];
     _explainLabel.text = [self.orifeeModel.totalPrice isEqualToString:@"0"] ? kLocalizedString(@"BUY_MORE_TO_ENJOY_DISCOUNT"): [NSString stringWithFormat:@"%@%@",kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT"),[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currency]];
-    [_cartBtn setTitle:kLocalizedString(@"Shopping_Cart") forState:0];
+    [_cartBtn setTitle:kLocalizedString(@"SHOPPING_CART") forState:0];
 }
 - (IBAction)cartAction:(UIButton *)sender {
     CartViewController *vc = [[CartViewController alloc] init];

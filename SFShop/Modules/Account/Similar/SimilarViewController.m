@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (nonatomic,strong) UILabel *label;
+@property (weak, nonatomic) IBOutlet UIButton *buyBtn;
 @end
 
 @implementation SimilarViewController
@@ -49,6 +50,7 @@
 }
 - (void)initUI
 {
+    [self.buyBtn setTitle:kLocalizedString(@"BUY_NOW") forState:0];
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
     _nameLabel.text = _model.offerName;
     _priceLabel.text = [_model.salesPrice currency];

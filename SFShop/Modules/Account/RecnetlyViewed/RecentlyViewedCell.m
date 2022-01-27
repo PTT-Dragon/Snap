@@ -7,6 +7,7 @@
 
 #import "RecentlyViewedCell.h"
 #import "SimilarViewController.h"
+#import "NSString+Fee.h"
 
 @interface RecentlyViewedCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -31,7 +32,7 @@
     _model = model;
     _nameLabel.text = model.offerName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
-    _priceLabel.text = [NSString stringWithFormat:@"RP %@",model.salesPrice];
+    _priceLabel.text = [model.salesPrice currency];
     _favoriteBtn.selected = model.isCollection;
 }
 - (IBAction)cartAction:(UIButton *)sender {

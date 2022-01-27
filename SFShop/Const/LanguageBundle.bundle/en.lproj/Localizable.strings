@@ -84,7 +84,7 @@
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "The following products are insufficient in stock; please adjust the purchase quantity.";
 //  "COUPON_CENTER" = "Voucher Center";
   "SHOPPING_CART" = "Shopping Cart";
-  "ADD_TO_CART" = "Add to Cart";
+  "ADD_TO_CART" = "ADD TO CART";
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
   "FIND_SIMILAR" = "Find Similar";
   "MOBILE_NUMBER" = "Mobile Number";
@@ -128,6 +128,7 @@
 //  "ENDS_IN" = "Ends in";
 //  "TOTAL" = "Total";
   "BUY_NOW" = "Buy Now";
+"BUY_NOWMAX" = "BUY NOW";
   "BRANDS" = "Brands";
 //  "PRICE" = "Price";
 //  "BIND" = "Bind";
@@ -176,13 +177,14 @@
   "ADDITIONAL_DAY" = "Additional Reviews {day} days after purchase";
 //  "GO_SHOPPING" = "Go Shopping";
 //  "REVIEW_LIST" = "Review List";
-//  "VALID_RANGE" = "Valid within {day} days";
+  "VALID_RANGE" = "Valid within";
+"hari" = "days";
 //  "REVIEW_INPUT_COMMENTS" = "Please input comments";
 //  "REVIEW_DETAIL" = "Review Detail";
 //  "RETURN_ADDRESS" = "Return Address";
 //  "MY_FAVORITE" = "My Favorite";
   "CATEGORIES" = "Categories";
-//  "BUY" = "Buy";
+  "BUY" = "Buy";
 //  "REPLIES" = "Replies";
 //  "SAYSOMETHING" = "Say Something…";
 //  "TEXTLENGTH" = "Content exceeds limit";
@@ -253,7 +255,7 @@
   "LOGISTICS_DETAILS" = "Logistics Details";
 //  "EVALUATION" = "Evaluation";
 //  "RESET" = "Reset";
-//  "AVAILABLE" = "Available";
+  "AVAILABLE" = "Available";
   "EXPIRED" = "Expired";
   "USED" = "Used";
 //  "ARE_YOU_SURE" = "Are you sure?";
@@ -322,8 +324,8 @@
 //  "COLLECT_COUPON_SUCCESS" = "Collect coupon success!";
 //  "CASH_BACK" = "Cash Back";
 //  "GIFT" = "Gift";
-//  "MY_FAVORITES" = "My Favorites";
-//  "PIN_TO_TOP" = "Pin to Top";
+  "MY_FAVORITES" = "My Favorites";
+  "PIN_TO_TOP" = "Pin to Top";
 //  "MY_ACCOUNT" = "Account";
 //  "SUPPORT" = "Support";
 //  "COMMUNITY" = "Community";
@@ -442,6 +444,7 @@
 //  "COUPON_DETAIL" = "Voucher Detail";
 //  "GOT_IT" = "GOT IT";
   "DROP_IN_PRICE" = "Drop in price";
+"ADD_COMMENT" = "Add comment...";
   "MOVE_TO_FAVOURITE" = "Move to favourite";
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "There are no items in this cart";
 //  "NOTES" = "Notes";
@@ -452,7 +455,7 @@
 //  "PAYMENT_UNSUCCESSFUL" = "Payment Unsuccessful";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "We are not able to process your request this time.";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT2" = "Please try again later. Sorry for any inconvenience.";
-  "PAYMENT_SUCCESS" = "Purchase Succesful";
+  "PAYMENT_SUCCESS" = "Purchase Successful";
   "SEE_DETAIL" = "See Detail";
 //  "SEE_SHARE_BY" = "See Group Buy";
 //  "GROUP_FAIL" = "Group Failed";
@@ -497,11 +500,11 @@
 "Empty_Tip_NoEvent" = "The event will start soon; please come back later.";
 "Empty_Tip_NoPrize" = "The event has ended; looking forward to your next participation.";
 "Error_system_loading" = "Pemeliharaan system Silahkan coba lagi nanti";
-"Account" = "Account";
-"Home" = "Home";
-"Cart" = "Cart";
-"Community" = "Community";
-"Category" = "Category";
+"ACCOUNT" = "Account";
+"HOME" = "Home";
+"CART" = "Cart";
+"COMMUNITY" = "Community";
+"CATEGORY" = "Category";
 "Group_buy" = "Group buy";
 "Loading" = "Loading...";
 "Calculating" = "Calculating...";
@@ -537,7 +540,7 @@
 "Save_order_success" = "Save order Success!";
 "Quantity" = "Quantity";
 "Special_promo" = "SPECIAL PROMO";
-"Product_detail" = "Product Detail";
+"PRODUCT_DETAIL" = "Product Detail";
 "Star_in" = "Star in";
 "Star_from" = "Star From";
 "Ends_in" = "Ends in";
@@ -586,7 +589,7 @@
 "expire_one_tip" = "more buyer required Expire in";
 "My_orders" = "My Orders";
 "Cancellation_Request" = "Cancellation Request";
-"Recently_Viewed" = "Recently Viewed";
+"RECENTLY_VIEWED" = "Recently Viewed";
 "ADD_SUCCESS" = "ADD SUCCESS";
 "Personal_information" = "Personal Information";
 "Change_Password" = "Change Password";

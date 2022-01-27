@@ -83,7 +83,7 @@
 //  "DISTRIBUTOR_CENTER" = "Distributor Center";
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "Stok tidak cukup; mohon kurangi jumlah pesanan";
 //  "COUPON_CENTER" = "Pusat Kupon";
-  "SHOPPING_CART" = "Keranjang";
+//  "SHOPPING_CART" = "Keranjang";
   "ADD_TO_CART" = "Tambah ke keranjang";
 //  "ADD_TO_CART_SUCCESS" = "Sukses menambahkan ke troli";
   "FIND_SIMILAR" = "Temukan yang serupa";
@@ -131,6 +131,7 @@
 //  "ENDS_IN" = "Berakhir dalam";
 //  "TOTAL" = "Jumlah";
   "BUY_NOW" = "Beli sekarang";
+"BUY_NOWMAX" = "Beli sekarang";
   "BRANDS" = "Merek";
 //  "PRICE" = "Harga";
 //  "REFUND" = "Refund";
@@ -143,6 +144,7 @@
 //  "DELIVERY" = "Pengiriman";
 //  "DELETE_ADDRESS_TXT" = "Hapus alamat ";
   "ADD_ADDRESS" = "Tambah Alamat";
+"Delete" = "Hapus";
 //  "MY_ADDRESS" = "Alamat Saya";
 "REQUIREDTIP" = "Silahkan masukkan";
   "INCORRECT_NAME" = "Nama penerima 4-40 huruf";
@@ -174,7 +176,8 @@
   "ADDITIONAL_DAY" = "Ulasan Tambahan {day} hari setelah pembelian";
 //  "GO_SHOPPING" = "Belanja";
 //  "REVIEW_LIST" = "Review list";
-  "VALID_RANGE" = "Berlaku dalam {day} hari";
+  "VALID_RANGE" = "Berlaku dalam";
+"hari" = "hari";
 "BUY_MORE_TO_ENJOY_DISCOUNT" = "Beli lebih banyak untuk menikmati diskon";
 "N_DISCOUNT_APPLIED_AT_CHECKOUT" = " diskon berlaku saat checkout";
 "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Masukan nomor handphone dan email yang benar.";
@@ -183,7 +186,7 @@
 //  "RETURN_ADDRESS" = "Alamat pengembalian";
 //  "MY_FAVORITE" = "Favorit-ku";
   "CATEGORIES" = "Kategori";
-//  "BUY" = "Beli";
+  "BUY" = "Beli";
 //  "REPLIES" = "Balasan";
 //  "SAYSOMETHING" = "Katakan sesuatu";
 //  "TEXTLENGTH" = "Konten melebihi batas";
@@ -251,9 +254,9 @@
   "LOGISTICS_DETAILS" = "Detail Logistik";
 //  "EVALUATION" = "Evaluasi";
 //  "RESET" = "Re-set";
-//  "AVAILABLE" = "Tersedia";
-  "EXPIRED" = "Expired";
-  "USED" = "Non Aktif";
+  "AVAILABLE" = "Tersedia";
+  "EXPIRED" = "Kadaluwarsa";
+  "USED" = "Telah digunakan";
 //  "ARE_YOU_SURE" = "Apakah kamu yakin";
   "TO_PAY" = "Bayar";
   "TO_SHIP" = "Di proses";
@@ -320,8 +323,8 @@
 //  "COLLECT_COUPON_SUCCESS" = "Klaim kupon sukses!";
 //  "CASH_BACK" = "Cashback";
 //  "GIFT" = "Hadiah";
-//  "MY_FAVORITES" = "Favorit-ku";
-//  "PIN_TO_TOP" = "Pin di atas";
+  "MY_FAVORITES" = "Favorit saya";
+  "PIN_TO_TOP" = "Pin di atas";
 //  "MY_ACCOUNT" = "Akun saya";
 //  "SUPPORT" = "Support";
 //  "COMMUNITY" = "Komunitas";
@@ -393,6 +396,7 @@
 //  "SMARTFREN_NUMBER" = "Nomor Smartfren";
   "PHONE_NUMBER_EMAIL" = "Nomor Telepon / Email";
 "DONE" = "done";
+"ADD_COMMENT" = "Tambah komentar";
   "YOUR_CODE_WAS_SENT_TO" = "Kode Anda telah dikirim ke";
   "RESEND_CODE_IN" = "Kirim ulang kode masuk";
 "RESEND" = "Kirim ulang";
@@ -591,8 +595,6 @@
 "Personal_information" = "Informasi pribadi";
 "Change_Password" = "Change Password";
 "Security_center" = "Security Center";
-"My_Favorites" = "My Favorites";
-"Delete" = "Delete";
 "Delete_success" = "Hapus sukses";
 "My_Address" = "Alamat saya";
 "Modify_Address" = "Ubah Alamat";

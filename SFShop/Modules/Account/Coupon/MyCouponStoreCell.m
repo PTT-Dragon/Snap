@@ -23,7 +23,7 @@
 }
 - (void)setContent:(CouponModel *)model
 {
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogo)] placeholderImage:[UIImage imageNamed:@"get-coupons"]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogo)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _nameLabel.text = model.storeName ? model.storeName: kLocalizedString(@"SFshop_Voucher");
 }
 

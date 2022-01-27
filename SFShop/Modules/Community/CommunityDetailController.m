@@ -118,6 +118,7 @@
     _articlePictures.type = iCarouselTypeLinear;
     _articlePictures.bounces = NO;
     _articlePictures.pagingEnabled = YES;
+    _replyField.placeholder = kLocalizedString(@"ADD_COMMENT");
     
     //    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"share"] style: UIBarButtonItemStylePlain target: self action:@selector(shareBtn:)];
     //    _headIV = [[UIImageView alloc] init];

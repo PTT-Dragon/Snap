@@ -68,6 +68,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="btn" destination="yJk-hF-CMr" id="t1r-t4-FY5"/>
                 <outlet property="priceLabel" destination="Sol-Qi-c59" id="qfj-kG-aGD"/>
                 <outlet property="productIV" destination="T51-oA-pND" id="mzQ-PW-of0"/>
                 <outlet property="productNameLabel" destination="Yh7-dT-pBP" id="gEV-RZ-uIt"/>

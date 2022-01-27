@@ -153,7 +153,7 @@
     }
     _storeNameLabel.text = @"Nuri.SHOP";
     _codeLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"ORDER_CODE"),orderCode];
-    _timeLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"PAYMENT_TIME"),_infoDic[@"payTime"]];
+    _timeLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"PAYMENT_TIME"),[[NSDate dateFromString:_infoDic[@"payTime"]] dayMonthYearHHMM]];
     _successLabel.text = kLocalizedString(@"PAYMENT_SUCCESS");
     _priceLabel.text = [[_infoDic[@"charge"] stringValue] currency];
     [_detailBtn setTitle:kLocalizedString(@"SEE_DETAIL") forState:0];
