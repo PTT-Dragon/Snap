@@ -146,14 +146,16 @@
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
         backItem.icon = @"nav_back";
-        backItem.itemActionBlock = ^(SFSearchModel *model,BOOL isSelected) {
-            [self.navigationController popViewControllerAnimated:YES];
+        backItem.itemActionBlock = ^(SFSearchState state,SFSearchModel *model,BOOL isSelected) {
+            if (state == SFSearchStateInUnActive || state == SFSearchStateInFocuActive) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"more-horizontal";
         rightItem.selectedIcon = @"more-vertical";
         __weak __typeof(self)weakSelf = self;
-        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
+        rightItem.itemActionBlock = ^(SFSearchState state,SFSearchModel * _Nullable model,BOOL isSelected) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
             [strongSelf.moreView removeFromSuperview];
             strongSelf.moreView = [[BaseMoreView alloc] init];

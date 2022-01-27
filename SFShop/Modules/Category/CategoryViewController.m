@@ -76,6 +76,9 @@
         for (NSDictionary *dict in array) {
             CategoryModel *model = [CategoryModel yy_modelWithDictionary:dict];
             if (model.children) {
+                for (CategoryModel *subModel in model.children) {
+                    subModel.inner.groupName = model.inner.catgName;
+                }
                 [container addObject:model.children];
             }
         }
@@ -167,13 +170,15 @@
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
         backItem.icon = @"nav_back";
-        backItem.itemActionBlock = ^(SFSearchModel *model,BOOL isSelected) {
-            [self.tabBarController setSelectedIndex:0];
+        backItem.itemActionBlock = ^(SFSearchState state, SFSearchModel *model,BOOL isSelected) {
+            if (state == SFSearchStateInUnActive || state == SFSearchStateInFocuActive) {
+                [self.tabBarController setSelectedIndex:0];
+            }
         };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"more-horizontal";
         rightItem.selectedIcon = @"more-vertical";
-        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
+        rightItem.itemActionBlock = ^(SFSearchState state, SFSearchModel * _Nullable model,BOOL isSelected) {
             if (isSelected) {
                 [self.moreView removeFromSuperview];
                 self.moreView = [[BaseMoreView alloc] init];
@@ -189,10 +194,15 @@
         };
         __weak __typeof(self)weakSelf = self;
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
-            __weak __typeof(weakSelf)strongSelf = weakSelf;
-            
+
         }];
-        _navSearchView.searchType = SFSearchTypeNoneInterface;
+        _navSearchView.fakeTouchBock = ^{
+            __weak __typeof(weakSelf)strongSelf = weakSelf;
+            CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+            vc.activeSearch = YES;
+            [strongSelf.navigationController pushViewController:vc animated:YES];
+        };
+        _navSearchView.searchType = SFSearchTypeFake;
     }
     return _navSearchView;
 }
