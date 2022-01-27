@@ -65,7 +65,8 @@
     [_navView updateIsOnlyShowMoreBtn:YES];
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.mas_equalTo(0);
+        make.top.mas_equalTo(statuBarHei);
+        make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(navBarHei);
     }];
     [_navView configDataWithTitle:kLocalizedString(@"Invite_friends")];
