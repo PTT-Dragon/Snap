@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// ⚠️:自定义
 @property (nonatomic, readwrite, strong) CategoryRankPriceModel *priceModel;
-@property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCache;//配置缓存
+@property (nonatomic, readwrite, strong, nullable) CategoryRankFilterCacheModel *filterCache;//配置缓存
 @property (nonatomic, readwrite, strong) NSArray<CategoryRankEvaluationModel *> *evaluations;//评价
 @end
     /*------------------------------------------------------------------------------------*/
