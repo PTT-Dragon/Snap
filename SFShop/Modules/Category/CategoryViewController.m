@@ -135,6 +135,7 @@
     if (_sideTableView == nil) {
         _sideTableView = [[CategorySideTableView alloc] initWithFrame:CGRectMake(0, navBarHei, KScale(95), self.view.bounds.size.height - navBarHei - tabbarHei) style:UITableViewStylePlain];
         _sideTableView.delegate = self;
+        _sideTableView.backgroundColor = [UIColor jk_colorWithHexString:@"#f5f5f5"];
     }
     return _sideTableView;
 }

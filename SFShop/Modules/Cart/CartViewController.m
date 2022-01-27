@@ -16,6 +16,8 @@
 #import "CheckoutManager.h"
 #import "SysParamsModel.h"
 #import "NSString+Fee.h"
+#import "UITabBar+CustomBadge.h"
+
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -276,13 +278,13 @@
         weakself.menuList = @[allCount,dropCount];
         [weakself.magicController.magicView reloadMenuTitles];
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        UITabBarItem *item = [[[(UITabBarController*)appDelegate.tabVC tabBar] items] objectAtIndex:3];
-        item.badgeColor = [UIColor redColor];
+        UITabBar *tabbar = [(UITabBarController*)appDelegate.tabVC tabBar];
+        
         if ([model.num isEqualToString:@"0"] && [model.reduceNum isEqualToString:@"0"]) {
             weakself.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei);
-            item.badgeValue = nil;
+            [tabbar setBadgeStyle:kCustomBadgeStyleNone value:0 atIndex:3];
         }else{
-            item.badgeValue = model.num;
+            [tabbar setBadgeStyle:kCustomBadgeStyleRedDot value:[model.num intValue] atIndex:3];
             weakself.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
         }
         

@@ -66,7 +66,7 @@
             [self.view addSubview:vc.view];
             vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
         };
-        cell.reasonLabel.text = _selReasonModel ? _selReasonModel.orderReasonName : @"Cancellation Reason";
+            cell.reasonLabel.text = _selReasonModel ? _selReasonModel.orderReasonName : @"Please Select";//@"Cancellation Reason";
         return cell;
     }
     OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
@@ -83,8 +83,18 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == _model.orderItems.count ? 100: 118;
+    return indexPath.row == _model.orderItems.count ? 110: 118;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width - 32, 5)];
+    view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 5;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
