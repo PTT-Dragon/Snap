@@ -65,7 +65,7 @@
     [_navView updateIsOnlyShowMoreBtn:YES];
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(statuBarHei);
+        make.top.mas_equalTo(0);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(navBarHei);
     }];

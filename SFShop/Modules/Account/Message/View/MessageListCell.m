@@ -6,6 +6,7 @@
 //
 
 #import "MessageListCell.h"
+#import "NSDate+Helper.h"
 
 @interface MessageListCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -28,7 +29,7 @@
 {
     _unreadModel = unreadModel;
     _contentLabel.attributedText = unreadModel.messageSttrStr;
-    _timeLabel.text = unreadModel.createDate;
+    _timeLabel.text = [[NSDate dateFromString:unreadModel.createDate] dayMonthYear];
     _unreadLabel.text = unreadModel.unreadNum == 0 ? @"": [NSString stringWithFormat:@"  %ld  ",unreadModel.unreadNum];
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(unreadModel.storeLogoUrl)]];
     _nameLabel.text = unreadModel.storeName;
@@ -37,7 +38,7 @@
 {
     _contactModel = contactModel;
     _contentLabel.attributedText = contactModel.contentSttrStr;
-    _timeLabel.text = contactModel.sendTime;
+    _timeLabel.text = [[NSDate dateFromString:contactModel.sendTime] dayMonthYear];
     _unreadLabel.text = contactModel.unreadNum == 0 ? @"": [NSString stringWithFormat:@"  %ld  ",contactModel.unreadNum];
     _nameLabel.text = kLocalizedString(@"Order_Logistics");
     _imgView.image = [UIImage imageNamed:@"联合 97"];

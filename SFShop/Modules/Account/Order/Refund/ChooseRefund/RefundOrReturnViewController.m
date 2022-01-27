@@ -139,7 +139,7 @@
 
 - (IBAction)submitAction:(UIButton *)sender {
     if (!_selReasonModel) {
-        [MBProgressHUD autoDismissShowHudMsg:@"请选择原因"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"REASON_TITLE")];
         return;
     }
     [self publishImg];

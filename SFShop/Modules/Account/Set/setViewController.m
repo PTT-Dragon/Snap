@@ -70,7 +70,7 @@
     [_navView updateIsOnlyShowMoreBtn:YES];
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(statuBarHei);
+        make.top.mas_equalTo(0);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(navBarHei);
     }];
@@ -109,10 +109,14 @@
         NSDictionary *dic = _dataSource[indexPath.row];
         accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
         cell.label.text = dic[@"title"];
+        cell.imgView.image = [UIImage imageNamed:@""];
+        cell.labelLeading.constant = 25;
         return cell;
     }else if (indexPath.section == 2){
         accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
         cell.label.text = kLocalizedString(@"Share_shop");
+        cell.imgView.image = [UIImage imageNamed:@""];
+        cell.labelLeading.constant = 25;
         return cell;
     }
     SetLogOutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetLogOutCell"];
@@ -167,6 +171,10 @@
     }else if (indexPath.section == 1 && indexPath.row == 0){
         AddressViewController *vc = [[AddressViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 2){
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        NSString *shareUrl = [NSString stringWithFormat:@"%@/sign-up-gift/%@",Host,model.userRes.userCode];
+        [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
     }
 }
 - (UITableView *)tableView

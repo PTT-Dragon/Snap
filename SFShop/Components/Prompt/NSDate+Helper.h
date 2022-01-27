@@ -68,6 +68,6 @@
 + (NSString *)dbFormatString;
 
 - (NSString *)dayMonthYear;
-
+- (NSString *)dayMonthYearHHMM;
 
 @end

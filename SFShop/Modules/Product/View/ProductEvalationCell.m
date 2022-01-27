@@ -9,6 +9,7 @@
 #import "ImageCollectionViewCell.h"
 #import "KSPhotoBrowser.h"
 #import "StarView.h"
+#import "NSDate+Helper.h"
 
 @interface ProductEvalationCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -40,7 +41,7 @@
     _nameLabel.text = model.userName;
     _rateLabel.text = [NSString stringWithFormat:@"%.1f", model.rate.floatValue];
     _contentLabel.text = model.evaluationComments;
-    _timeLabel.text = model.createdDate;
+    _timeLabel.text = [[NSDate dateFromString:model.createdDate] dayMonthYearHHMM];
     [_collectionView reloadData];
     CGFloat itemHei = (MainScreen_width-34-30)/4;
     self.collectionViewHei.constant = model.evaluationContents.count == 0 ? 0: model.evaluationContents.count < 4 ? itemHei+5: model.evaluationContents.count < 8 ? 2*itemHei+10: 3* itemHei + 15;

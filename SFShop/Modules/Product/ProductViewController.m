@@ -35,6 +35,8 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 #import "TransactionManager.h"
+#import "SRXGoodsImageDetailView.h"
+#import "JPVideoPlayerManager.h"
 #import "CategoryRankViewController.h"
 #import "CartModel.h"
 
@@ -115,6 +117,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *variationsTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *vouchersTitleLabel;
+@property (strong, nonatomic) SRXGoodsImageDetailView *pictureScrollView;
 
 @end
 
@@ -127,7 +130,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
@@ -164,7 +167,7 @@
     [_navView updateIsOnlyShowMoreBtn:NO];
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(statuBarHei);
+        make.top.mas_equalTo(0);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(navBarHei);
     }];
@@ -653,7 +656,7 @@
             self.groupDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
             self.groupSalePriceLabel.text = [[NSString stringWithFormat:@"%.0f", model.shareBuyPrice] currency];
-            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",self.model.marketPrice] currency];
+            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",_selProductModel.marketPrice] currency];
             [self.buyBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)model.shareBuyPrice] currency],kLocalizedString(@"SHARE_BUY")] forState:0];
             [self.addCartBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)self.selProductModel.salesPrice] currency],kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
         }
@@ -1107,6 +1110,15 @@
     }
     [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: (index == 0 ? self.selProductModel : self.model.carouselImgUrls[index-1])])]];
     return iv;
+    
+//    self.pictureScrollView = [[SRXGoodsImageDetailView alloc] initWithFrame:carousel.bounds];
+//    [self.pictureScrollView.shufflingArray removeAllObjects];
+//
+//    [self.pictureScrollView.shufflingArray addObjectsFromArray:self.model];
+//    [self.pictureScrollView updateView];
+//
+//    return self.pictureScrollView;
+    
 }
 
 

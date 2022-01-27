@@ -87,7 +87,7 @@
 //  "DISTRIBUTOR_CENTER" = "分销中心";
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "以下产品库存不足，请调整采购数量。";
 //  "COUPON_CENTER" = "领券中心";
-//  "SHOPPING_CART" = "购物车";
+  "SHOPPING_CART" = "购物车";
   "ADD_TO_CART" = "加入购物车";
 //  "FIND_SIMILAR" = "查找相似";
 //  "MOBILE_NUMBER" = "手机号码";
@@ -160,7 +160,7 @@
   "REFUND_AMOUNT" = "退款金额";
   "INSTRUCTIONS" = "说明";
 //  "REFUND_RETURN" = "售后列表";
-//  "REASON_TITLE" = "请选择原因";
+  "REASON_TITLE" = "请选择原因";
 //  "MANY_SALES_HINT" = "商品无法再次申请退换服务，有关更多帮助，请联系客服。";
   "ORDER_CANCEL_REASON" = "取消原因";
 //  "CHECK_OUT" = "确认订单";
@@ -203,7 +203,7 @@
 //  "SIGN_UP_GIFT" = "立即注册";
 //  "NEW_USER_TRENDS" = "新用户趋势";
 //  "VIEW_MORE" = "加载更多";
-//  "LOG_OUT" = "注销";
+  "LOG_OUT" = "注销";
 //  "CONFIRMDELADDR" = "您确定要删除这个地址吗?";
 //  "CONFIRM_LOGOUT" = "您确定要退出登录吗？";
 //  "LOGOUT" = "退出";

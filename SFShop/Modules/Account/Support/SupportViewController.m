@@ -6,6 +6,7 @@
 //
 
 #import "SupportViewController.h"
+#import "PublicWebViewController.h"
 
 @interface SupportViewController ()
 
@@ -35,6 +36,11 @@
         }];
 }
 - (IBAction)chatAction:(id)sender {
+    PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
+    vc.sysAccount = model.account;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

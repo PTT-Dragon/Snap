@@ -83,7 +83,7 @@
 //  "DISTRIBUTOR_CENTER" = "Distributor Center";
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "The following products are insufficient in stock; please adjust the purchase quantity.";
 //  "COUPON_CENTER" = "Voucher Center";
-//  "SHOPPING_CART" = "Shopping Cart";
+  "SHOPPING_CART" = "Shopping Cart";
   "ADD_TO_CART" = "Add to Cart";
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
 //  "FIND_SIMILAR" = "Find Similar";
@@ -154,7 +154,7 @@
   "REFUND_AMOUNT" = "Refund amount";
   "INSTRUCTIONS" = "Instructions";
   "REFUND_RETURN" = "Refund & Return";
-//  "REASON_TITLE" = "Please Select Reason";
+  "REASON_TITLE" = "Please Select Reason";
 //  "MANY_SALES_HINT" = "This item cannot be replaced/refunded again. For more help please contact support.";
   "ORDER_CANCEL_REASON" = "Reason for cancellation";
 //  "CHECK_OUT" = "Check Out";
@@ -201,7 +201,7 @@
 //  "SIGN_UP_GIFT" = "Sign Up for Gift";
 //  "NEW_USER_TRENDS" = "New User Trends";
 //  "VIEW_MORE" = "View More";
-//  "LOG_OUT" = "Log Out";
+  "LOG_OUT" = "Log Out";
 //  "CONFIRMDELADDR" = "Are you sure you want to delete this address?";
 //  "CONFIRM_LOGOUT" = "Confirm to Logout";
 //  "LOGOUT" = "Logout";
@@ -628,7 +628,7 @@
 "CHANGE_MOBILE" = "Change Mobile Number";
 "CHANGE_EMAIL" = "Change Email";
 "INDIVIDUAL_BUY" = "Individual buy";
-"SHARE_BUY" = "Group Buy";
+"SHARE_BUY" = "GROUP BUY";
 "THIS_EMAIL_ADDRESS" = "This email address";
 "THIS_PHONE_NUMBER" = "This phone number";
 "CANCEL" = "Cancel";
