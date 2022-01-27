@@ -44,6 +44,7 @@
 #pragma mark - init
 
 - (void)initView {
+    self.recommendCollectionView.scrollEnabled = NO;
     [self addSubview:self.recommendCollectionView];
 }
 

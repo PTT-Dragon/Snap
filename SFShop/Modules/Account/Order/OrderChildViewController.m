@@ -15,12 +15,12 @@
 #import "EmptyView.h"
 #import <OYCountDownManager/OYCountDownManager.h>
 
-
 @interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource,OrderListBottomCellDelegate>
-@property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSMutableArray *dataSource;
-@property (nonatomic,assign) NSInteger pageIndex;
-@property (nonatomic,strong) EmptyView *emptyView;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, assign) NSInteger pageIndex;
+@property (nonatomic, strong) EmptyView *emptyView;
+@property (nonatomic, strong) UIButton *gotoShopping;
 
 @end
 
@@ -37,9 +37,9 @@
     _dataSource = [NSMutableArray array];
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
-    [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
-    [_tableView registerNib:[UINib nibWithNibName:@"OrderListBottomCell" bundle:nil] forCellReuseIdentifier:@"OrderListBottomCell"];
-    [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListBottomCell" bundle:nil] forCellReuseIdentifier:@"OrderListBottomCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
@@ -59,6 +59,12 @@
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(90);
         make.left.right.bottom.mas_equalTo(self.view);
+    }];
+    [self.view addSubview:self.gotoShopping];
+    [self.gotoShopping mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(24);
+        make.right.bottom.mas_offset(-24);
+        make.height.mas_offset(46);
     }];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,6 +172,7 @@
     } else {
         self.emptyView.hidden = NO;
     }
+    self.gotoShopping.hidden = self.emptyView.hidden;
 }
 
 - (void)setSearchText:(NSString *)searchText
@@ -174,7 +181,14 @@
     [self.tableView.mj_header beginRefreshing];
 }
 
+#pragma mark - <click event>
+- (void)gotoShoppingEvent{
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:0];
+}
 
+#pragma mark - <lazying>
 - (UITableView *)tableView
 {
     if (!_tableView) {
@@ -204,6 +218,19 @@
         _emptyView.hidden = YES;
     }
     return _emptyView;
+}
+
+- (UIButton *)gotoShopping{
+    
+    if (!_gotoShopping) {
+        
+        _gotoShopping = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_gotoShopping setTitle:kLocalizedString(@"Go_Shopping") forState:UIControlStateNormal];
+        [_gotoShopping setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [_gotoShopping setBackgroundColor:[UIColor jk_colorWithHexString:@"FF1659"]];
+        [_gotoShopping addTarget:self action:@selector(gotoShoppingEvent) forControlEvents:UIControlEventTouchUpInside];
+        
+    }return _gotoShopping;
 }
 
 @end

@@ -13,9 +13,14 @@
 #import "RefundDetailImagesCell.h"
 #import "RefundOrReturnExplainCell.h"
 #import "RefundViewController.h"
+#import "BaseMoreView.h"
+#import "BaseNavView.h"
 
-@interface RefundOrReturnViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseReasonViewControllerDelegate>
+@interface RefundOrReturnViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseReasonViewControllerDelegate,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) BaseMoreView *navMoreView;
+@property (nonatomic,strong) BaseNavView *navView;
+
 @property (nonatomic,strong) CancelOrderReasonModel *selReasonModel;
 @property (nonatomic,strong) NSMutableArray *imgArr;//存放图片数组
 @property (nonatomic,strong) NSMutableArray *imgUrlArr;//存放图片url数组
@@ -34,10 +39,46 @@
     [self layoutSubviews];
     [self loadReasonDatas];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_navMoreView removeFromSuperview];
+    _navMoreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_navMoreView];
+    [_navMoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
+}
+
 - (void)layoutSubviews
 {
     NSString *reasonTitle = _type == RETURNTYPE ? @"Return": _type == REFUNDTYPE ? @"Refund":@"Change";
-    self.title = kLocalizedString(reasonTitle);
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(reasonTitle)];
+    
+    //self.title = kLocalizedString(reasonTitle);
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];

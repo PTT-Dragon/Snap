@@ -86,8 +86,8 @@
     
     CGFloat dataHeight = 24+44;
     CategoryRankPageInfoListModel *cellModel = similarList.firstObject;
-    dataHeight += cellModel.height*similarList.count/2;
-    
+    NSInteger row = similarList.count/2+(similarList.count%2==0?0:1);
+    dataHeight += cellModel.height*row;
     self.scrollView.contentSize = CGSizeMake(App_Frame_Width, dataHeight+228);
     [self.recomandView configDataWithSimilarList:similarList];
 }
