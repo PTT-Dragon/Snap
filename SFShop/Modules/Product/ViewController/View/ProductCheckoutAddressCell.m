@@ -29,15 +29,8 @@
     return self;
 }
 
-- (void)loadsubviews {
-    [self.contentView addSubview:self.bgView];
-    [self.bgView addSubview:self.sectionLine];
-    [self.bgView addSubview:self.addressLabel];
-    [self.bgView addSubview:self.addressExtend];
-    [self.bgView addSubview:self.emailTF];
-}
-
-- (void)layout {
+- (void)layoutSubviews{
+    
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(16);
         make.right.mas_equalTo(-16);
@@ -52,11 +45,7 @@
     }];
     
     [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        if (self.emailTF.hidden) {
-            make.centerY.mas_equalTo(0);
-        } else {
-            make.top.equalTo(self.sectionLine.mas_bottom).offset(16);
-        }
+        make.centerY.mas_equalTo(0);
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-47);
     }];
@@ -72,6 +61,25 @@
         make.left.mas_equalTo(20);
         make.height.mas_equalTo(30);
         make.right.mas_equalTo(-20);
+    }];
+}
+
+- (void)loadsubviews {
+    [self.contentView addSubview:self.bgView];
+    [self.bgView addSubview:self.sectionLine];
+    [self.bgView addSubview:self.addressLabel];
+    [self.bgView addSubview:self.addressExtend];
+    [self.bgView addSubview:self.emailTF];
+}
+
+- (void)layout {
+    
+    [self.addressLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        if (self.emailTF.hidden) {
+            make.centerY.mas_equalTo(0);
+        } else {
+            make.centerY.mas_equalTo(-21);
+        }
     }];
 }
 
