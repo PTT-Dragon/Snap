@@ -138,8 +138,9 @@
         make.right.equalTo(self.scrollContentView).offset(-16);
         make.height.mas_equalTo(50);
     }];
-    [_evaluateTableView registerClass:[CommunityEvaluateCell class] forCellReuseIdentifier:@"CommunityEvaluateCell"];
-    [_evaluateTableView registerNib:[UINib nibWithNibName:@"ArticleEvaluateBottomCell" bundle:nil] forCellReuseIdentifier:@"ArticleEvaluateBottomCell"];
+    self.evaluateTableView.scrollEnabled = NO;
+    [self.evaluateTableView registerClass:[CommunityEvaluateCell class] forCellReuseIdentifier:@"CommunityEvaluateCell"];
+    [self.evaluateTableView registerNib:[UINib nibWithNibName:@"ArticleEvaluateBottomCell" bundle:nil] forCellReuseIdentifier:@"ArticleEvaluateBottomCell"];
 }
 
 - (void)shareBtn:(UIButton *)sender {

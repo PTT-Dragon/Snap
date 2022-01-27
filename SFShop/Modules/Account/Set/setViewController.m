@@ -110,11 +110,13 @@
         accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
         cell.label.text = dic[@"title"];
         cell.imgView.image = [UIImage imageNamed:@""];
+        cell.labelLeading.constant = 25;
         return cell;
     }else if (indexPath.section == 2){
         accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
         cell.label.text = kLocalizedString(@"Share_shop");
         cell.imgView.image = [UIImage imageNamed:@""];
+        cell.labelLeading.constant = 25;
         return cell;
     }
     SetLogOutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetLogOutCell"];

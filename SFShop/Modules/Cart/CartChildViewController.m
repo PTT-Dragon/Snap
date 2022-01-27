@@ -282,14 +282,17 @@
 - (void)showEmptyView {
     if ([[UIViewController currentTopViewController] isKindOfClass:[CartViewController class]]) {
         CartViewController *cartVC = (CartViewController *)[UIViewController currentTopViewController];
+        CGFloat bottomH = CGFLOAT_MIN;
         if (self.cartModel.validCarts.count > 0 || self.cartModel.invalidCarts.count > 0) {
-            cartVC.bottomView.hidden = NO;
+            bottomH = 78;
             self.emptyView.hidden = YES;
         } else {
-            cartVC.bottomView.hidden = YES;
             self.emptyView.hidden = NO;
             [self requestSimilar];
         }
+        [cartVC.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_offset(bottomH);
+        }];
     }
 }
 

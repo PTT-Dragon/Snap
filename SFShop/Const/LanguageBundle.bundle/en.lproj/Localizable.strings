@@ -154,7 +154,7 @@
   "REFUND_AMOUNT" = "Refund amount";
   "INSTRUCTIONS" = "Instructions";
   "REFUND_RETURN" = "Refund & Return";
-//  "REASON_TITLE" = "Please Select Reason";
+  "REASON_TITLE" = "Please Select Reason";
 //  "MANY_SALES_HINT" = "This item cannot be replaced/refunded again. For more help please contact support.";
   "ORDER_CANCEL_REASON" = "Reason for cancellation";
 //  "CHECK_OUT" = "Check Out";
@@ -201,7 +201,7 @@
 //  "SIGN_UP_GIFT" = "Sign Up for Gift";
 //  "NEW_USER_TRENDS" = "New User Trends";
 //  "VIEW_MORE" = "View More";
-//  "LOG_OUT" = "Log Out";
+  "LOG_OUT" = "Log Out";
 //  "CONFIRMDELADDR" = "Are you sure you want to delete this address?";
 //  "CONFIRM_LOGOUT" = "Confirm to Logout";
 //  "LOGOUT" = "Logout";
