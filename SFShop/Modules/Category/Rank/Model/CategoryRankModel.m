@@ -151,6 +151,19 @@
     return nil;
 }
 
+- (CGFloat)height{
+    
+    if (!_height) {
+        CGFloat titleHeight = [self.offerName calHeightWithFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - KScale(12) * 3 - KScale(16) * 2, 100)];
+        CGFloat imageHeight = KScale(166);
+        CGFloat tagHeight = KScale(14);
+        CGFloat priceHeight = KScale(14);
+        CGFloat discountHeight = KScale(14);
+        CGFloat levelHeight = KScale(12);
+        _height = imageHeight  + KScale(12) + titleHeight + KScale(16) + priceHeight + KScale(4) + discountHeight + KScale(12) + levelHeight + KScale(25);
+    }return _height;
+}
+
 @end
 
 @implementation CategoryRankPageInfoListImgModel
