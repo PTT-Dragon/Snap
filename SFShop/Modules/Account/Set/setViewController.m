@@ -168,6 +168,10 @@
     }else if (indexPath.section == 1 && indexPath.row == 0){
         AddressViewController *vc = [[AddressViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 2){
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        NSString *shareUrl = [NSString stringWithFormat:@"%@/sign-up-gift/%@",Host,model.userRes.userCode];
+        [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
     }
 }
 - (UITableView *)tableView

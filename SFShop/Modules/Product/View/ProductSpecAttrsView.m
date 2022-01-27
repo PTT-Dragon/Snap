@@ -287,6 +287,7 @@
         if (object.productId.integerValue == weakself.selProductModel.productId) {
             groupCount = object.shareByNum;
             self.maxPurchaseCount = object.buyAmtLimit;
+            self.priceLabel.text = [[NSString stringWithFormat:@"%f", object.shareBuyPrice] currency];
         }
         return object.productId.integerValue == weakself.selProductModel.productId;
     }].count > 0;
@@ -294,7 +295,7 @@
         _groupCountLabel.text = [NSString stringWithFormat:@"%ld",groupCount];
         _maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
 
-        self.groupView.hidden = NO;
+        self.groupView.hidden = _attrsType == groupSingleBuyType ? YES: NO;
     }else{
         self.groupView.hidden = YES;
     }
@@ -315,7 +316,7 @@
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
         [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         _btn1.tag = groupBuyType + 100;
-        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
+        [_btn1 setTitle:kLocalizedString(@"SHARE_BUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -375,7 +376,7 @@
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
         [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         _btn1.tag = groupBuyType + 100;
-        [_btn1 setTitle:kLocalizedString(@"SHAREBUY") forState:0];
+        [_btn1 setTitle:kLocalizedString(@"SHARE_BUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -392,7 +393,6 @@
 
 - (void)setSelProductModel:(ProductItemModel *)selProductModel {
     _selProductModel = selProductModel;
-    
     [self.imgView sd_setImageWithURL: [NSURL URLWithString: SFImage(selProductModel.imgUrl)]];
     self.titleLabel.text = selProductModel.productName;
     self.priceLabel.text = [[NSString stringWithFormat:@"%ld", (long)selProductModel.salesPrice] currency];

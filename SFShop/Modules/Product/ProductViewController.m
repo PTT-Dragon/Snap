@@ -39,6 +39,7 @@
 #import "CartModel.h"
 
 
+
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
