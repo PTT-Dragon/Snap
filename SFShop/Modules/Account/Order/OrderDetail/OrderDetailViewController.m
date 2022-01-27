@@ -32,6 +32,7 @@
 #import <OYCountDownManager/OYCountDownManager.h>
 #import "OrderDetailTitleCell.h"
 #import "ProductViewController.h"
+#import "YCMenuView.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -298,8 +299,15 @@
     });
 }
 - (IBAction)moreAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    _moreView.hidden = !sender.selected;
+    @weakify(self);
+    YCMenuAction *action1 = [YCMenuAction actionWithTitle:kLocalizedString(@"REBUY") image:nil handler:^(YCMenuAction *action) {
+        @strongify(self);
+        [self moreAction1:nil];
+    }];
+    YCMenuView *menu = [YCMenuView menuWithActions:@[action1] width:114 relyonView:sender];
+    menu.textFont = [UIFont systemFontOfSize:14];
+    menu.cellAlignment = NSTextAlignmentCenter;
+    [menu show];
 }
 - (IBAction)moreAction1:(UIButton *)sender {
     [self rebuy];
