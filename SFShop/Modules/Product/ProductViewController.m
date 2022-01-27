@@ -127,7 +127,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
@@ -652,7 +652,7 @@
             self.groupDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",model.discountPercent];
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
             self.groupSalePriceLabel.text = [[NSString stringWithFormat:@"%.0f", model.shareBuyPrice] currency];
-            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",self.model.marketPrice] currency];
+            self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",_selProductModel.marketPrice] currency];
             [self.buyBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)model.shareBuyPrice] currency],kLocalizedString(@"SHARE_BUY")] forState:0];
             [self.addCartBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)self.selProductModel.salesPrice] currency],kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
         }

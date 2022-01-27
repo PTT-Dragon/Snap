@@ -108,10 +108,12 @@
         NSDictionary *dic = _dataSource[indexPath.row];
         accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
         cell.label.text = dic[@"title"];
+        cell.imgView.image = [UIImage imageNamed:@""];
         return cell;
     }else if (indexPath.section == 2){
         accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
         cell.label.text = kLocalizedString(@"Share_shop");
+        cell.imgView.image = [UIImage imageNamed:@""];
         return cell;
     }
     SetLogOutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetLogOutCell"];

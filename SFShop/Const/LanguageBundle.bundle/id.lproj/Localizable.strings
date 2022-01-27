@@ -602,7 +602,7 @@
 "SF shop_Voucher" = "SF.shop Voucher";
 "Coupon_Center" = "Pusat Coupon";
 "Login_Or_Register" = "Daftar Atau Daftar";
-"SHOPPING_CART": "Keranjang belanja",
+"SHOPPING_CART" = "Keranjang belanja";
 "Hide" = "Hide";
 "View_replies" = "View replies";
 "verification_email_code" = "Kode verifikasi akan dikirim ke alamat email Anda. Silakan masukkan email terdaftar Anda.";
