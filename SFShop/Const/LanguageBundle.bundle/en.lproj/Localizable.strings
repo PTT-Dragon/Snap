@@ -201,7 +201,7 @@
 //  "SIGN_UP_GIFT" = "Sign Up for Gift";
 //  "NEW_USER_TRENDS" = "New User Trends";
 //  "VIEW_MORE" = "View More";
-//  "LOG_OUT" = "Log Out";
+  "LOG_OUT" = "Log Out";
 //  "CONFIRMDELADDR" = "Are you sure you want to delete this address?";
 //  "CONFIRM_LOGOUT" = "Confirm to Logout";
 //  "LOGOUT" = "Logout";

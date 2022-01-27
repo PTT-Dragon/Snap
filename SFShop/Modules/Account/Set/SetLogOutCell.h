@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SetLogOutCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
