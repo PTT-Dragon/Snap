@@ -35,6 +35,8 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 #import "TransactionManager.h"
+#import "SRXGoodsImageDetailView.h"
+#import "JPVideoPlayerManager.h"
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -112,6 +114,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *variationsTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *vouchersTitleLabel;
+@property (strong, nonatomic) SRXGoodsImageDetailView *pictureScrollView;
 
 @end
 
@@ -1092,6 +1095,15 @@
     }
     [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: (index == 0 ? self.selProductModel : self.model.carouselImgUrls[index-1])])]];
     return iv;
+    
+//    self.pictureScrollView = [[SRXGoodsImageDetailView alloc] initWithFrame:carousel.bounds];
+//    [self.pictureScrollView.shufflingArray removeAllObjects];
+//
+//    [self.pictureScrollView.shufflingArray addObjectsFromArray:self.model];
+//    [self.pictureScrollView updateView];
+//
+//    return self.pictureScrollView;
+    
 }
 
 
