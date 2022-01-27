@@ -32,6 +32,7 @@
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic, readwrite, assign) BOOL showType;//显示类型 0:colletion 1:list
 @property (nonatomic, readwrite, assign) BOOL showEmptyView;//是否显示空视图
+@property (nonatomic, readwrite, assign, getter=isInitLoad) BOOL initLoad;//是否初始加载
 @property (nonatomic, readwrite, strong) CollectionHeaderEmptyView *emptyView;//是否显示空视图
 
 @end
@@ -40,6 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.initLoad = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadsubviews];
     self.navSearchView.activeSearch = self.activeSearch;
@@ -54,17 +56,32 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
+
+/*
+ 1、搜索会重置所有的筛选和外部传入的初始化参数
+ 2、筛选会重置传入的初始化参数
+ */
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter {
+    //默认参数
     NSMutableDictionary *parm = [NSMutableDictionary dictionaryWithDictionary:@{
         @"q": filter.qs ? filter.qs: @"",
         @"pageIndex": @(currentPage),
         @"pageSize": @(10),
         @"sortType": [NSString stringWithFormat:@"%ld",type],
         @"offerIdList": [NSNull null],
-        @"catgIds": filter.qs ? @"":@(self.model.inner.catgRela.objValue.objId) == 0 ? @"" :@(self.model.inner.catgRela.objValue.objId) ,//默认是外部传入的分类,如果 filter.filterParam 有该字段,会被新值覆盖
-        @"storeId":@(self.model.inner.catgRela.objValue.objId)
     }];
+    //添加外部传入参数
+    if (self.initLoad) {
+        if (self.model.inner.catgRela.objValue.objId) {
+            [parm setObject:@(self.model.inner.catgRela.objValue.objId) forKey:@"catgIds"];
+        }
+        if (self.model.inner.catgRela.objValue.filteredProductsRela.count) {
+            [parm addEntriesFromDictionary:self.model.inner.catgRela.objValue.filteredProductsRela];
+        }
+    }
+    //添加筛选参数
     [parm addEntriesFromDictionary:filter.filterParam];
+    NSLog(@"");
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
@@ -142,6 +159,7 @@
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
         if (type != CategoryRankFilterRefreshCancel) {
             [self resetIfEmpty];
+            [self resetInitParam];
             self.dataModel = model;
             self.filterCacheModel = self.dataModel.filterCache;
             [self.collectionView.mj_header beginRefreshing];
@@ -159,6 +177,19 @@
     }
 }
 
+/// 点击搜索之前，会重置所有的选中和传入的初始化参数
+- (void)resetAllCacheParam {
+    self.dataModel.filterCache = nil;
+    self.filterCacheModel = nil;
+    [self resetInitParam];
+}
+
+/// 点击搜索或者进行筛选时前，会重置传入的初始化参数
+- (void)resetInitParam {
+    self.initLoad = NO;
+}
+
+/// 筛选后，会重置隐藏空页面
 - (void)resetIfEmpty {
     if (self.showEmptyView) {
         [self.dataArray removeAllObjects];
@@ -269,6 +300,7 @@
             __weak __typeof(weakSelf)strongSelf = weakSelf;
             if (![qs isEqualToString:strongSelf.filterCacheModel.qs]) {
                 [strongSelf resetIfEmpty];
+                [strongSelf resetAllCacheParam];
                 strongSelf.filterCacheModel.qs = qs;
                 [strongSelf.collectionView.mj_header beginRefreshing];
             }

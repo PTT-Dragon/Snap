@@ -6,6 +6,7 @@
 //
 
 #import "CategoryModel.h"
+#import "NSObject+Runtime.h"
 
 @implementation ObjValueModel
 + (BOOL)propertyIsOptional:(NSString *)propertyName
