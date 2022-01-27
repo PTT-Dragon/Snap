@@ -64,26 +64,26 @@
 
 - (void)initLayout {
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei);
         make.left.mas_equalTo(self.mas_left).offset(10);
         make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei);
         make.left.mas_equalTo(self.backBtn.mas_right).offset(20);
     }];
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei);
         make.right.mas_equalTo(self.mas_right).offset(-16);
         make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
     [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei);
         make.right.mas_equalTo(self.moreBtn.mas_left).offset(-16);
         make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
     [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei);
         make.right.mas_equalTo(self.shareBtn.mas_left).offset(-16);
         make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
@@ -125,7 +125,7 @@
     self.backBtn.hidden = YES;
     self.moreBtn.selected = YES;
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei);
         make.left.mas_equalTo(self.mas_left).offset(10);
     }];
 }
@@ -135,12 +135,12 @@
     self.titleLabel.text = self.currentTitle;
     self.moreBtn.selected = NO;
     [self.backBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei);
         make.left.mas_equalTo(self.mas_left).offset(10);
         make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei);
         make.left.mas_equalTo(self.backBtn.mas_right).offset(20);
     }];
 }
