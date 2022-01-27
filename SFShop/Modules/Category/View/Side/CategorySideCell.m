@@ -40,6 +40,11 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     self.lineView.hidden = !selected;
+    if (selected) {
+        self.titlelabel.font = BOLDSYSTEMFONT(12);
+    }else {
+        self.titlelabel.font = [UIFont systemFontOfSize:12];
+    }
     self.contentView.backgroundColor = selected?[UIColor jk_colorWithHexString:@"#FFFFFF"]:[UIColor jk_colorWithHexString:@"#F4F4F4"];
 }
 

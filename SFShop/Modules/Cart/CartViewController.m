@@ -16,6 +16,8 @@
 #import "CheckoutManager.h"
 #import "SysParamsModel.h"
 #import "NSString+Fee.h"
+#import "UITabBar+CustomBadge.h"
+
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -90,18 +92,25 @@
 - (void)initUI
 {
     [self.view addSubview:self.addressBtn];
-    NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count];
-    NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%ld)",0];
-    self.menuList = @[allCount, dropCount];
-    [self addChildViewController:self.magicController];
-    [self.view addSubview:_magicController.view];
-    _magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
-    [_magicController.magicView reloadData];
+    
     [self.view addSubview:self.bottomView];
-    [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self.view);
         make.height.mas_equalTo(78);
     }];
+    
+    NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count];
+    NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%d)",0];
+    self.menuList = @[allCount, dropCount];
+    [self addChildViewController:self.magicController];
+    [self.view addSubview:self.magicController.view];
+    //self.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
+    [self.magicController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_offset(0);
+        make.top.equalTo(self.addressBtn.mas_bottom);
+        make.bottom.equalTo(self.bottomView.mas_top);
+    }];
+    [self.magicController.magicView reloadData];
 }
 - (void)updateSubviews
 {
@@ -257,7 +266,6 @@
             }
         }];
     }];
-    self.bottomView.hidden = count == 0;
     
     self.checkBtn.backgroundColor = !hasSel ? RGBColorFrom16(0xFFE5EB):RGBColorFrom16(0xFF1659);
     self.checkBtn.userInteractionEnabled = hasSel;
@@ -276,13 +284,13 @@
         weakself.menuList = @[allCount,dropCount];
         [weakself.magicController.magicView reloadMenuTitles];
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        UITabBarItem *item = [[[(UITabBarController*)appDelegate.tabVC tabBar] items] objectAtIndex:3];
-        item.badgeColor = [UIColor redColor];
+        UITabBar *tabbar = [(UITabBarController*)appDelegate.tabVC tabBar];
+        
         if ([model.num isEqualToString:@"0"] && [model.reduceNum isEqualToString:@"0"]) {
             weakself.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei);
-            item.badgeValue = nil;
+            [tabbar setBadgeStyle:kCustomBadgeStyleNone value:0 atIndex:3];
         }else{
-            item.badgeValue = model.num;
+            [tabbar setBadgeStyle:kCustomBadgeStyleRedDot value:[model.num intValue] atIndex:3];
             weakself.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
         }
         

@@ -32,6 +32,7 @@
     CancelOrderReasonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CancelOrderReasonCell"];
     cell.contentLabel.text = model.orderReasonName;
     cell.selBtn.selected = model.sel;
+    cell.selBtn.userInteractionEnabled = NO;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

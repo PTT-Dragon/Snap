@@ -7,6 +7,7 @@
 
 #import "baseTool.h"
 #import "CartModel.h"
+#import "UITabBar+CustomBadge.h"
 
 @implementation baseTool
 + (void)removeVCFromNavigation:(UIViewController *)vc
@@ -79,14 +80,13 @@
 {
     [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
         CartNumModel *model = [[CartNumModel alloc] initWithDictionary:response error:nil];
-        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        UITabBarItem *item = [[[(UITabBarController*)appDelegate.tabVC tabBar] items] objectAtIndex:3];
-        if ([model.num isEqualToString:@"0"]) {
-            item.badgeValue = nil;
-//            item.badgeColor = [UIColor whiteColor];
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;  
+        UITabBar *tabbar = [(UITabBarController*)appDelegate.tabVC tabBar];
+        
+        if ([model.num isEqualToString:@"0"] && [model.reduceNum isEqualToString:@"0"]) {
+            [tabbar setBadgeStyle:kCustomBadgeStyleNone value:0 atIndex:3];
         }else{
-            item.badgeValue = model.num;
-            item.badgeColor = [UIColor redColor];
+            [tabbar setBadgeStyle:kCustomBadgeStyleRedDot value:[model.num intValue] atIndex:3];
         }
     } failed:^(NSError * _Nonnull error) {
         

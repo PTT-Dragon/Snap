@@ -415,6 +415,7 @@
 		4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA926FCB13300E3C832 /* FMDBManager.m */; };
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
 		4BEB1223275CB98A00D5342A /* ProductCalcFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */; };
+		62DFB59C27A276580009CCC6 /* UITabBar+CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DFB59B27A276580009CCC6 /* UITabBar+CustomBadge.m */; };
 		62E4289527A228E500A02F91 /* SRXGoodsImageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289327A228E500A02F91 /* SRXGoodsImageDetailView.m */; };
 		62E428D027A2292A00A02F91 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289927A2292900A02F91 /* SDPhotoBrowser.m */; };
 		62E428D127A2292A00A02F91 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289A27A2292900A02F91 /* SDWaitingView.m */; };
@@ -563,6 +564,7 @@
 		AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3298E272AF2C700E7827A /* SFSearchModel.m */; };
 		AEB59C32278ECD13004CD19B /* NSString+Fee.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB59C31278ECD13004CD19B /* NSString+Fee.m */; };
 		AEB5AFC3278EEE90004CD19B /* UIViewController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB5AFC2278EEE8F004CD19B /* UIViewController+Top.m */; };
+		AED00BFF27A27D3300DA954B /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = AED00BFE27A27D3300DA954B /* NSObject+Runtime.m */; };
 		AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE3FC912761D8EC00A96E2A /* PDFReader.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
 		AEEB51D4279B38D6001BF789 /* CollectionHeaderEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEB51D3279B38D6001BF789 /* CollectionHeaderEmptyView.m */; };
@@ -1287,6 +1289,8 @@
 		4BEB1221275CB98A00D5342A /* ProductCalcFeeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCalcFeeModel.h; sourceTree = "<group>"; };
 		4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCalcFeeModel.m; sourceTree = "<group>"; };
 		50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
+		62DFB59A27A276580009CCC6 /* UITabBar+CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+CustomBadge.h"; sourceTree = "<group>"; };
+		62DFB59B27A276580009CCC6 /* UITabBar+CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+CustomBadge.m"; sourceTree = "<group>"; };
 		62E4289327A228E500A02F91 /* SRXGoodsImageDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRXGoodsImageDetailView.m; sourceTree = "<group>"; };
 		62E4289427A228E500A02F91 /* SRXGoodsImageDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRXGoodsImageDetailView.h; sourceTree = "<group>"; };
 		62E4289827A2292900A02F91 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
@@ -1561,6 +1565,8 @@
 		AEB59C31278ECD13004CD19B /* NSString+Fee.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Fee.m"; sourceTree = "<group>"; };
 		AEB5AFC1278EEE8F004CD19B /* UIViewController+Top.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Top.h"; sourceTree = "<group>"; };
 		AEB5AFC2278EEE8F004CD19B /* UIViewController+Top.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Top.m"; sourceTree = "<group>"; };
+		AED00BFD27A27D3300DA954B /* NSObject+Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
+		AED00BFE27A27D3300DA954B /* NSObject+Runtime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
 		AEE3FC902761D8EC00A96E2A /* PDFReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFReader.h; sourceTree = "<group>"; };
 		AEE3FC912761D8EC00A96E2A /* PDFReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFReader.m; sourceTree = "<group>"; };
 		AEEA02B926FD75BD002FE8C8 /* AES128Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES128Util.h; sourceTree = "<group>"; };
@@ -2707,6 +2713,8 @@
 		4B9FB9C826FB781F00C90790 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				62DFB59A27A276580009CCC6 /* UITabBar+CustomBadge.h */,
+				62DFB59B27A276580009CCC6 /* UITabBar+CustomBadge.m */,
 				AEEA02B926FD75BD002FE8C8 /* AES128Util.h */,
 				AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */,
 				4BBFEEA826FCB13300E3C832 /* FMDBManager.h */,
@@ -3383,6 +3391,8 @@
 				1B593E5C2799437100D8CDF3 /* NSDate+Helper.m */,
 				1B74D322279E7F5A00577E46 /* UIButton+time.h */,
 				1B74D321279E7F5A00577E46 /* UIButton+time.m */,
+				AED00BFD27A27D3300DA954B /* NSObject+Runtime.h */,
+				AED00BFE27A27D3300DA954B /* NSObject+Runtime.m */,
 			);
 			path = Prompt;
 			sourceTree = "<group>";
@@ -3873,6 +3883,7 @@
 				AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */,
 				1B6C52A7275B672200A1C617 /* ZLDrawItem.m in Sources */,
 				8E1872C92795AE8900DBEE3E /* MGCShareCollectionViewCell.m in Sources */,
+				AED00BFF27A27D3300DA954B /* NSObject+Runtime.m in Sources */,
 				AE81BE3826FF3F7700AB4225 /* SFNetworkArticlesModule.m in Sources */,
 				4B43858326FF5D2400BA3D90 /* ArticleDetailModel.m in Sources */,
 				8E11A8D4278DD6C9005D1FC3 /* CartEmptyView.m in Sources */,
@@ -4077,6 +4088,7 @@
 				1BD10C382761E80100BFC1AD /* ProductEvalationTitleCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
 				8E11A8CE278DD14D005D1FC3 /* UIViewController+parentViewController.m in Sources */,
+				62DFB59C27A276580009CCC6 /* UITabBar+CustomBadge.m in Sources */,
 				1BD8E7B3275DFDAD00130DCC /* ReviewAddNewPhotoCell.m in Sources */,
 				1B53A2BA2778ACC200FB00C7 /* CartChoosePromotion.m in Sources */,
 				AE81BE62270205A300AB4225 /* CategoryContentSectionHeader.m in Sources */,
