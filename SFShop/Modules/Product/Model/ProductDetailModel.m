@@ -93,11 +93,13 @@
 {
     //计算label高度
     CGFloat labelHei = 0;
-    labelHei = [self.evaluationComments calHeightWithFont:[UIFont systemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-24, MAXFLOAT)];
+//    labelHei = [self.evaluationComments calHeightWithFont:[UIFont systemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-24, MAXFLOAT)];
+    labelHei = [NSString jk_heightTextContent:self.evaluationComments withSizeFont:12 withMaxSize:CGSizeMake(MainScreen_width-24, CGFLOAT_MAX)];
     //计算图片高度
     CGFloat itemHei = (MainScreen_width-34-30)/4;
     CGFloat imageHei = 0;
-    imageHei = self.evaluationContents.count == 0 ? 0: self.evaluationContents.count < 4 ? itemHei+5: self.evaluationContents.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+//    imageHei = self.evaluationContents.count == 0 ? 0: self.evaluationContents.count < 4 ? itemHei+5: self.evaluationContents.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+    imageHei = ceil(self.evaluationContents.count/4.0)*(itemHei+10) + (self.evaluationContents.count == 0 ? 0:12);
     return labelHei + imageHei+78;
 }
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
