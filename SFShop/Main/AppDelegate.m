@@ -10,6 +10,7 @@
 #import <UMCommon/UMCommon.h>
 #import "SysParamsModel.h"
 #import <MJRefresh/MJRefresh.h>
+#import "NSString+Fee.h"
 
 @interface AppDelegate ()
 
@@ -88,9 +89,12 @@
                 model.CURRENCY_PRECISION = dic[@"paramValue"];
             }else if ([dic[@"paramCode"] isEqualToString:@"CODE_TTL"]){
                 model.CURRENCY_DISPLAY = dic[@"paramValue"];
+            }else if ([dic[@"paramCode"] isEqualToString:@"PHONE_REGULAR_RULE"]){
+                model.PHONE_REGULAR_RULE = dic[@"paramValue"];
+            }else if ([dic[@"paramCode"] isEqualToString:@"EMAIL_REGULAR_RULE"]){
+                model.EMAIL_REGULAR_RULE = dic[@"paramValue"];
             }
         }
-        
     } failed:^(NSError * _Nonnull error) {
         [self performSelector:@selector(loadSysConfig) withObject:nil afterDelay:10];
     }];

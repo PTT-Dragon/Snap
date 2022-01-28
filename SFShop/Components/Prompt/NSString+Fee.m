@@ -29,4 +29,18 @@
     }
     return fullStr;
 }
+
+- (BOOL)validatePhoneNumber {
+    NSString *rule = SysParamsItemModel.sharedSysParamsItemModel.PHONE_REGULAR_RULE;
+    if (!rule.length) {return YES;}//没获取到,统一返回YES
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",rule];
+    return [predicate evaluateWithObject:self];
+}
+
+- (BOOL)validateEmail {
+    NSString *rule = SysParamsItemModel.sharedSysParamsItemModel.EMAIL_REGULAR_RULE;
+    if (!rule.length) {return YES;}//没获取到,统一返回YES
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",rule];
+    return [predicate evaluateWithObject:self];
+}
 @end
