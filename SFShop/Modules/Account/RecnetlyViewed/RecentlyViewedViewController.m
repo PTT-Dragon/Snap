@@ -156,7 +156,13 @@
     NSString *selDay = [formatter1 stringFromDate:_dateSelected];
     NSDate *startDate = [_calendarManager.dateHelper addToDate:_dateSelected months:-1];
     [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":startDate,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
-        [weakself.tableView.mj_footer endRefreshing];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
         NSArray *arr = response[@"list"];
         if (!kArrayIsEmpty(arr)) {
             for (NSDictionary *dic in arr) {
