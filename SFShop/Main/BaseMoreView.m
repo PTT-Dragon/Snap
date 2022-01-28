@@ -9,6 +9,7 @@
 #import "UIButton+FFImagePosition.h"
 #import "UIView+Response.h"
 #import "MessageViewController.h"
+#import "CartModel.h"
 
 @interface BaseMoreView ()
 
@@ -23,6 +24,8 @@
 @property (nonatomic, strong) UIButton *mysfBtn;
 
 @property (nonatomic, strong) UIView *maskView;
+
+@property (nonatomic,strong)  UILabel *badgeLabel;
 
 @end
 
@@ -48,6 +51,7 @@
     [self initView];
     [self initLayout];
     [self initNotification];
+    [self loadNoReadNumber];
 }
 
 
@@ -60,6 +64,7 @@
     [self.bgView addSubview:self.inboxBtn];
     [self.bgView addSubview:self.accountBtn];
     [self.bgView addSubview:self.mysfBtn];
+    [self.bgView addSubview:self.badgeLabel];
     [self addSubview:self.maskView];
 }
 
@@ -86,6 +91,11 @@
         make.top.mas_equalTo(self.bgView.mas_bottom);
         make.left.right.bottom.mas_equalTo(self);
     }];
+    [self.badgeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.inboxBtn.mas_right).offset(-AdaptedWidth(20));
+        make.top.mas_equalTo(self.inboxBtn.mas_top).offset(10);
+        make.height.mas_equalTo(15);
+    }];
 }
 
 - (void)initNotification {
@@ -93,6 +103,18 @@
                                            selector:@selector(cancel)
                                                name:@"KBaseNavViewHiddenMoreView"
                                              object:nil];
+}
+
+#pragma mark - loadData
+- (void)loadNoReadNumber
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.account.messageNum parameters:@{} success:^(id  _Nullable response) {
+        NSNumber *num = response;
+        weakself.badgeLabel.text = [num.stringValue isEqualToString:@"0"] ? @"": num.stringValue;;
+    } failed:^(NSError * _Nonnull error) {
+
+    }];
 }
 
 #pragma mark - btnAction
@@ -227,6 +249,17 @@
         [_maskView addGestureRecognizer:tap];
     }
     return _maskView;
+}
+- (UILabel *)badgeLabel
+{
+    if (!_badgeLabel) {
+        _badgeLabel = [[UILabel alloc] init];
+        _badgeLabel.backgroundColor = [UIColor redColor];
+        _badgeLabel.textColor = [UIColor whiteColor];
+        _badgeLabel.textAlignment = NSTextAlignmentNatural;
+        _badgeLabel.font = CHINESE_SYSTEM(10);
+    }
+    return _badgeLabel;
 }
 
 @end

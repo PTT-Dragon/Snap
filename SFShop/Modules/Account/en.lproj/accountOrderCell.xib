@@ -35,9 +35,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqV-Wp-96F">
-                                <rect key="frame" x="235" y="7" width="93" height="27"/>
+                                <rect key="frame" x="229" y="13" width="99" height="15"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="View All Orders">
+                                <state key="normal" title="View All Orders" image="Path 174">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -263,6 +263,7 @@
         <image name="00202_02_delivery_filled" width="27" height="22"/>
         <image name="00324_DebitCardFill" width="28" height="16"/>
         <image name="00341_ Return Fill" width="32" height="32"/>
+        <image name="Path 174" width="6" height="8"/>
         <image name="组 64598" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -106,7 +106,8 @@
     [self.view addSubview:self.magicController.view];
     //self.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
     [self.magicController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_offset(0);
+        make.left.mas_offset(10);
+        make.right.mas_offset(10);
         make.top.equalTo(self.addressBtn.mas_bottom);
         make.bottom.equalTo(self.bottomView.mas_top);
     }];
@@ -467,7 +468,8 @@
         _addressBtn.frame = CGRectMake(0, navBarHei, MainScreen_width, 40);
         _addressBtn.backgroundColor = [UIColor whiteColor];
         _addressBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
-        _addressBtn.titleLabel.numberOfLines = 0;
+        _addressBtn.titleLabel.numberOfLines = 1;
+        _addressBtn.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [_addressBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
             [self toAddressListVC];
         }];

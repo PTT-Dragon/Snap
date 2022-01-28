@@ -43,7 +43,7 @@
     }else{
         [params setValue:@"false" forKey:@"isEmail"];
     }
-    [params setValue:@"Terminal" forKey:@"userType"];
+//    [params setValue:@"Terminal" forKey:@"userType"];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.getCode parameters:params success:^(id  _Nullable response) {
         weakself.recendBtn.userInteractionEnabled = NO;
@@ -61,8 +61,9 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     MPWeakSelf(self)
-    SysParamsItemModel *model = [SysParamsItemModel sharedSysParamsItemModel];
-    __block NSInteger timeout = model.CODE_TTL.integerValue *60; // 倒计时时间
+//    SysParamsItemModel *model = [SysParamsItemModel sharedSysParamsItemModel];
+    NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
+    __block NSInteger timeout = precision *60; // 倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);

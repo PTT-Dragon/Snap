@@ -28,11 +28,19 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    _bgView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
-    _bgView.layer.borderWidth = 1;
+    
+    
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
+}
+- (void)setShowLine:(BOOL)showLine
+{
+    _showLine = showLine;
+    if (showLine) {
+        _bgView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
+        _bgView.layer.borderWidth = 1;
+    }
 }
 - (void)setModel:(ProductEvalationModel *)model
 {

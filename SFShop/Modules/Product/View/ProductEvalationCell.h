@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductEvalationCell : UITableViewCell
 @property (nonatomic,strong) ProductEvalationModel *model;
+@property (nonatomic,assign) BOOL showLine;
 @end
 
 NS_ASSUME_NONNULL_END

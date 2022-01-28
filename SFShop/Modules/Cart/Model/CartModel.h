@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CartItemModel;
 @protocol ProdSpcAttrsModel;
 @protocol CartCampaignsModel;
+@protocol CampaignsModel;
+
 
 
 
@@ -20,6 +22,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *value;
 @property (nonatomic,copy) NSString *attrName;
 @property (nonatomic,copy) NSString *attrId;
+@end
+
+@interface CampaignsModel : JSONModel
+@property (nonatomic,copy) NSString *campaignId;
+@property (nonatomic,copy) NSString *campaignName;
+@property (nonatomic,copy) NSString *effDate;
+@property (nonatomic,copy) NSString *expDate;
+@property (nonatomic,assign) BOOL sel;
+
 @end
 
 @interface CartItemModel : JSONModel
@@ -38,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *campaignId;
 @property (nonatomic,copy) NSString *isCollection;
 @property (nonatomic,copy) NSString *deliveryMode;
-@property (nonatomic,assign) NSInteger maxBuyCount;
+@property (nonatomic,copy) NSString *maxBuyCount;
 @property (nonatomic,assign) NSInteger stock;
 @property (nonatomic,assign) double unitPrice;
 @property (nonatomic,assign) double salesPrice;
@@ -51,6 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) double storeCouponPrice;
 @property (nonatomic,assign) double platformCouponPrice;
 @property (nonatomic,strong) NSArray <ProdSpcAttrsModel> *prodSpcAttrs;
+@property (nonatomic,strong) NSArray <CampaignsModel> *campaigns;
 @end
 
 @interface CartCampaignsModel : JSONModel

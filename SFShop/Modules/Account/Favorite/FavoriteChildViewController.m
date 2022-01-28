@@ -131,7 +131,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FavoriteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FavoriteTableViewCell"];
-    [cell setContent:self.dataSource[indexPath.row]];
+    [cell setContent:self.dataSource[indexPath.section]];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

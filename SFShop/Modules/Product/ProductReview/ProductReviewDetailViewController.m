@@ -44,6 +44,7 @@
 {
     if (indexPath.row == 0) {
         ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
+        cell.showLine = NO;
         cell.model = self.model;
         return cell;
     }else if (indexPath.row == 1){
