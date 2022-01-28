@@ -59,6 +59,7 @@
     [self addSubview:self.backBtn];
     [self addSubview:self.titleLabel];
     [self addSubview:self.clearBtn];
+    self.clearBtn.hidden = YES;
     [self addSubview:self.searchBtn];
     [self addSubview:self.shareBtn];
     [self addSubview:self.moreBtn];
@@ -121,12 +122,10 @@
         self.searchBtn.hidden = YES;
         self.shareBtn.hidden = YES;
         self.moreBtn.hidden = NO;
-        self.clearBtn.hidden = YES;
     } else {
         self.searchBtn.hidden = NO;
         self.shareBtn.hidden = NO;
         self.moreBtn.hidden = NO;
-        self.clearBtn.hidden = NO;
     }
 }
 
