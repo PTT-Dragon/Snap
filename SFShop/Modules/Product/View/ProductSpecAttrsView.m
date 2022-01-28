@@ -286,7 +286,7 @@
     BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
         if (object.productId.integerValue == weakself.selProductModel.productId) {
             groupCount = object.shareByNum;
-            self.maxPurchaseCount = object.buyAmtLimit;
+            self.maxPurchaseCount = MIN(self.maxPurchaseCount, object.buyAmtLimit);
             self.priceLabel.text = self.attrsType == groupSingleBuyType ? [[NSString stringWithFormat:@"%ld",(long)self.selProductModel.salesPrice] currency]: [[NSString stringWithFormat:@"%f", object.shareBuyPrice] currency];
         }
         return object.productId.integerValue == weakself.selProductModel.productId;
