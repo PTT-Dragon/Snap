@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *campaignId;
 @property (nonatomic,copy) NSString *isCollection;
 @property (nonatomic,copy) NSString *deliveryMode;
-@property (nonatomic,assign) NSInteger maxBuyCount;
+@property (nonatomic,copy) NSString *maxBuyCount;
 @property (nonatomic,assign) NSInteger stock;
 @property (nonatomic,assign) double unitPrice;
 @property (nonatomic,assign) double salesPrice;

@@ -31,9 +31,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    _additonBtn.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
+    _additonBtn.layer.borderColor = RGBColorFrom16(0xf0f0f0).CGColor;
     _additonBtn.layer.borderWidth = 1;
-    _subtractBtn.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
+    _subtractBtn.layer.borderColor = RGBColorFrom16(0xf0f0f0).CGColor;
     _subtractBtn.layer.borderWidth = 1;
     _skuLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _skuLabel.layer.borderWidth = 1;
@@ -73,7 +73,7 @@
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _priceDownView.hidden = !model.cutRate;
     _priceDownLabel.text = model.cutRate;
-    self.campaignsBtn.hidden = (model.campaigns && model.campaigns.count != 0);
+    self.campaignsBtn.hidden = !(model.campaigns && model.campaigns.count != 0);
     if (model.campaigns && model.campaigns.count != 0) {
         [self.campaignsBtn setTitle:[model.campaigns.firstObject campaignName] forState:0];
     }
@@ -85,18 +85,15 @@
 }
 - (void)updateBtnState
 {
-    self.subtractBtn.enabled = ![self.subtractBtn.titleLabel.text isEqualToString:@"1"];
-    self.additonBtn.enabled = _countLabel.text.integerValue < _model.stock;
     if (_isInvalid) {
         _selBtn.enabled = NO;
-        _additonBtn.enabled = NO;
-        _subtractBtn.enabled = NO;
     }else{
-        _additonBtn.enabled = YES;
-        _subtractBtn.enabled = YES;
         _selBtn.enabled = YES;
         _selBtn.selected = [_model.isSelected isEqualToString:@"Y"];
     }
+    self.subtractBtn.enabled = _isInvalid ? NO: ![_countLabel.text isEqualToString:@"1"];
+    NSInteger maxBuyCount = [_model.maxBuyCount isKindOfClass:[NSNull class]] ? 100000:[_model.maxBuyCount integerValue];
+    self.additonBtn.enabled = _isInvalid ? NO: (_countLabel.text.integerValue < _model.stock && _countLabel.text.integerValue < maxBuyCount);
     [self.subtractBtn setImage: self.subtractBtn.enabled ? [UIImage imageNamed:@"subtract"]: [UIImage imageNamed:@"subtract-2"] forState:0];
     self.subtractBtn.layer.borderWidth = self.subtractBtn.enabled ? 1: 0;
     [self.additonBtn setImage:self.additonBtn.enabled ? [UIImage imageNamed:@"new-alternative"]:[UIImage imageNamed:@"new-alternative-2"] forState:0];
