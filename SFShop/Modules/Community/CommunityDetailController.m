@@ -101,7 +101,7 @@
 }
 
 - (BOOL)shouldCheckLoggedIn {
-    return YES;
+    return NO;
 }
 
 - (void)dealloc {
