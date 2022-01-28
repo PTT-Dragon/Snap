@@ -89,7 +89,7 @@
                 [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
             }
             [weakself.tableView reloadData];
-            weakself.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+            weakself.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
                 [weakself loadMoreDatas];
             }];
         }
@@ -114,7 +114,13 @@
     NSString *evaluateFlag = _type == 1 ? @"N": @"Y";
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.order.list parameters:@{@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"evaluateFlag":evaluateFlag} success:^(id  _Nullable response) {
-        [weakself.tableView.mj_footer endRefreshing];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
         NSArray *arr = response[@"list"];
         if (kArrayIsEmpty(arr)) {
             return;

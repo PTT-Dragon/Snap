@@ -9,12 +9,15 @@
 #import "ProductionRecommendCell.h"
 #import "ProductViewController.h"
 #import "UIView+Response.h"
+#import "CategoryRankCell.h"
+#import "CommunityWaterfallLayout.h"
 
-@interface ProductionRecomandView () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ProductionRecomandView () <UICollectionViewDelegate, UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 
 @property (strong, nonatomic) UICollectionView *recommendCollectionView;
 
 @property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
+@property (nonatomic, readwrite, strong) CommunityWaterfallLayout *waterfallLayout;
 
 @end
 
@@ -86,13 +89,13 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 //<<<<<<< HEAD
-//    CategoryRankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankCell" forIndexPath:indexPath];
+    CategoryRankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankCell" forIndexPath:indexPath];
 //    CategoryRankPageInfoListModel *cellModel = self.similarList[indexPath.row];
-//    cell.model = cellModel;
-//    cell.showType = 0;
+    cell.similarModel = self.similarList[indexPath.row];
+    cell.showType = 0;
 //=======
-    ProductionRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProductionRecommendCell" forIndexPath:indexPath];
-    cell.model = self.similarList[indexPath.row];
+//    ProductionRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProductionRecommendCell" forIndexPath:indexPath];
+//    cell.model = self.similarList[indexPath.row];
 //>>>>>>> 4d144dfc40f7593807ac273d9cc974cd537821c0
     return cell;
 }
@@ -105,25 +108,59 @@
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 
+- (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath {
+    ProductSimilarModel *cellModel = self.similarList[indexPath.row];
+    if (!cellModel.height) {
+        
+//        CGFloat titleHeight = [cellModel.offerName calHeightWithFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake((MainScreen_width - KScale(12) * 3 - KScale(16) * 2)/2, 100)];
+        
+        CGFloat titleHeight = [NSString jk_heightTextContent:cellModel.offerName withSizeFont:14 withMaxSize:CGSizeMake((MainScreen_width - KScale(12) * 3 - KScale(16) * 2)/2, CGFLOAT_MAX)];
+                        
+        CGFloat imageHeight = KScale(166);
+        CGFloat tagHeight = 0;
+        if (cellModel.sppType.length> 0) {
+            tagHeight = KScale(14) + KScale(16);
+        }
+        
+        CGFloat gradeHeught = 0;
+        if (cellModel.evaluationAvg > 0 || cellModel.evaluationCnt > 0) {
+            gradeHeught = KScale(12) + KScale(12);
+        }
+        CGFloat priceHeight = KScale(14);
+        CGFloat discountHeight = KScale(14);
+        cellModel.height = imageHeight + tagHeight + KScale(12) + titleHeight + KScale(6) + priceHeight + KScale(4) + discountHeight + KScale(12) + gradeHeught;
+    }
+    return cellModel.height;
+}
 
 - (UICollectionView *)recommendCollectionView {
     if (!_recommendCollectionView) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.headerReferenceSize = CGSizeZero;
-        layout.footerReferenceSize = CGSizeZero;
-        layout.minimumLineSpacing = 16;
-        layout.minimumInteritemSpacing = 16;
-        layout.sectionInset = UIEdgeInsetsMake(8, 20, 8, 20);
-        layout.itemSize = CGSizeMake((MainScreen_width - 60) / 2, (MainScreen_width - 60) / 2 + 120);
-        _recommendCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+//        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+//        layout.headerReferenceSize = CGSizeZero;
+//        layout.footerReferenceSize = CGSizeZero;
+//        layout.minimumLineSpacing = 16;
+//        layout.minimumInteritemSpacing = 16;
+//        layout.sectionInset = UIEdgeInsetsMake(8, 20, 8, 20);
+//        layout.itemSize = CGSizeMake((MainScreen_width - 60) / 2, (MainScreen_width - 60) / 2 + 120);
+        
+        _waterfallLayout = [[CommunityWaterfallLayout alloc] init];
+        _waterfallLayout.delegate = self;
+        _waterfallLayout.columns = 2;
+        _waterfallLayout.columnSpacing = KScale(12);
+        _waterfallLayout.insets = UIEdgeInsetsMake(KScale(12), KScale(16), KScale(12), KScale(16));
+        
+        _recommendCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_waterfallLayout];
         _recommendCollectionView.backgroundColor = [UIColor whiteColor];
         _recommendCollectionView.delegate = self;
         _recommendCollectionView.dataSource = self;
         _recommendCollectionView.showsVerticalScrollIndicator = NO;
         [_recommendCollectionView registerClass:[ProductionRecommendCell class] forCellWithReuseIdentifier:@"ProductionRecommendCell"];
         [_recommendCollectionView registerClass:[ProductionRecommendCell class] forCellWithReuseIdentifier:@"ProductionRecommendCell"];
+        [_recommendCollectionView registerClass:[CategoryRankCell class] forCellWithReuseIdentifier:@"CategoryRankCell"];
+
         [_recommendCollectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader"];
+        
     }
     return _recommendCollectionView;
 }

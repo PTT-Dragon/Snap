@@ -34,7 +34,7 @@
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self loadDatas];
     }];
-    self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         [self loadMoreDatas];
     }];
     [self.tableView.mj_header beginRefreshing];
@@ -58,7 +58,13 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.distributor.commissionList parameters:@{@"pageSize":@(10),@"pageIndex":@(self.currentPage),@"commissionOperType":_commissionType} success:^(id  _Nullable response) {
         [weakself.dataSource addObjectsFromArray:[IncomeOrWithdrawListModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
-        [weakself.tableView.mj_footer endRefreshing];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_footer endRefreshing];

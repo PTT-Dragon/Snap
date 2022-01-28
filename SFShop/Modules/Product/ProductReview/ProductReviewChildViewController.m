@@ -33,7 +33,7 @@
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self requestEvaluationsList];
     }];
-    self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         [self requestMoreEvaluationsList];
     }];
     [self.tableView.mj_header beginRefreshing];
@@ -61,7 +61,14 @@
     [SFNetworkManager get:SFNet.offer.evaluationList parameters:@{@"offerId":@(_offerId),@"pageIndex":@(_pageIndex),@"pageSize":@(10),@"evaluationType":_evaluationType,@"labelId":_labelId?_labelId:@""} success:^(id  _Nullable response) {
         [weakself.evalationArr addObjectsFromArray: [ProductEvalationModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
-        [weakself.tableView.mj_footer endRefreshing];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
+        
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_footer endRefreshing];
     }];

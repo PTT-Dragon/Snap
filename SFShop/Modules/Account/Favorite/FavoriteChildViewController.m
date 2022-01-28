@@ -37,7 +37,7 @@
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self loadDatas];
     }];
-    self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         [self loadMoreDatas];
     }];
     [self.tableView.mj_header beginRefreshing];
@@ -71,7 +71,13 @@
         [params setValue:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
     }
     [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
-        [weakself.tableView.mj_header endRefreshing];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
         [weakself.dataSource removeAllObjects];
         [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
