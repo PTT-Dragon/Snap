@@ -19,6 +19,8 @@
 #import "favoriteModel.h"
 #import "CategoryRankModel.h"
 #import "ProductViewController.h"
+#import "ProductSpecAttrsView.h"
+#import "ProductStockModel.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -30,6 +32,9 @@
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
 @property (nonatomic,strong) NSMutableArray *hasCouponArr;
+@property (nonatomic, strong) NSArray<ProductStockModel *> *stockModel;
+@property (nonatomic,strong) ProductItemModel *selProductModel;
+@property (nonatomic, strong) ProductSpecAttrsView *attrView;
 
 @end
 
@@ -355,16 +360,7 @@
 {
     [self.delegate calculateAmount:self.cartModel];
 }
-- (void)modifyCartInfoWithDic:(NSDictionary *)dic
-{
-    MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":@[dic]} success:^(id  _Nullable response) {
-        [weakself loadDatas];
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
-    [self.tableView reloadData];
-}
+
 - (void)showCouponsView
 {
     CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
@@ -393,6 +389,20 @@
         }
     }
 }
+- (void)modifyCartInfoWithDic:(NSDictionary *)dic
+{
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":@[dic]} success:^(id  _Nullable response) {
+        [weakself loadDatas];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+    [self.tableView reloadData];
+}
+- (void)skuActionWithModel:(CartItemModel *)model
+{
+    [self loadProductInfoWithModel:model];
+}
 - (void)selCouponWithStoreId:(NSString *)storeId productArr:(nonnull NSArray *)arr
 {
     [self loadCouponsDatasWithStoreId:storeId productArr:arr];
@@ -401,6 +411,122 @@
 {
     [self loadCouponsDatasWithStoreId:storeId productArr:arr row:row];
 }
+
+
+#pragma mark - 购物车相关
+- (void)loadProductInfoWithModel:(CartItemModel *)model
+{
+    [SFNetworkManager get:[SFNet.offer getDetailOf: model.offerId.integerValue] parameters:@{} success:^(id  _Nullable response) {
+        ProductDetailModel *detailModel = [[ProductDetailModel alloc] initWithDictionary: response error: nil];
+        [self requestStockWithDetailModel:detailModel model:model];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+/**
+ 请求库存信息
+ */
+- (void)requestStockWithDetailModel:(ProductDetailModel *)detailModel model:(CartItemModel *)model {
+    NSArray *arr = [detailModel.products jk_map:^id(ProductItemModel *object) {
+        NSArray *inCmpIdList = model.campaignId ? @[model.campaignId] : @[];
+        return @{
+            @"productId": @(object.productId),
+            @"offerCnt": @1,
+            @"inCmpIdList": inCmpIdList
+        };
+    }];
+    NSDictionary *param = @{
+        @"stdAddrId": self.addModel ? self.addModel.contactStdId : @"1488",
+                       @"stores": @[
+                           @{
+                               @"storeId": @(detailModel.storeId),
+                               @"products": arr
+                           }
+                       ]
+    };
+    [SFNetworkManager post:SFNet.offer.stock parameters: param success:^(id  _Nullable response) {
+        self.stockModel = [ProductStockModel arrayOfModelsFromDictionaries:response error:nil];
+        [self showAttrsViewWithAttrType:cartType model:model productModel:detailModel stockModel:self.stockModel];
+//        [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+//            [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+//                if (obj2.productId.integerValue == weakself.productId) {
+//                    weakself.deliveryLabel.text = [NSString stringWithFormat:@"%@-%@day(s)", obj2.minDeliveryDays, obj2.maxDeliveryDays];
+//                    *stop1 = YES;
+//                    *stop2 = YES;
+//                }
+//            }];
+//        }];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+
+}
+
+- (void)showAttrsViewWithAttrType:(ProductSpecAttrsType)type model:(CartItemModel *)model productModel:(ProductDetailModel *)productDetailModel stockModel:(NSArray<ProductStockModel *> *)stockModel{
+    self.selProductModel = [productDetailModel.products jk_filter:^BOOL(ProductItemModel *object) {
+        return object.productId == model.productId.integerValue;
+    }].firstObject;
+    _attrView = [[ProductSpecAttrsView alloc] init];
+    _attrView.attrsType = type;
+//    _attrView.campaignsModel = model.campaigns;
+    _attrView.selProductModel = self.selProductModel;
+    _attrView.stockModel = stockModel;
+    _attrView.model = productDetailModel;
+    MPWeakSelf(self)
+    MPWeakSelf(_attrView)
+    _attrView.buyOrCartBlock = ^(ProductSpecAttrsType type) {
+        switch (type) {
+            case cartType:// 加入购物车
+            {
+                [weakself addToCartWithModel:model productModel:productDetailModel];
+            }
+                break;
+            case buyType://购买
+//            case groupSingleBuyType://团购活动单人购买
+//            case groupBuyType://团购
+//            {
+//
+//            }
+                break;
+            default:
+                break;
+        }
+        weak_attrView.dismissBlock();
+    };
+    _attrView.dismissBlock = ^{
+        [weak_attrView removeFromSuperview];
+        
+        
+    };
+    _attrView.chooseAttrBlock = ^() {
+        weakself.selProductModel = weakself.attrView.selProductModel;
+    };
+    UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+    [rootView addSubview:_attrView];
+    [_attrView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(rootView);
+        make.bottom.equalTo(_vc.view.mas_bottom).offset(0);
+    }];
+}
+- (void)addToCartWithModel:(CartItemModel *)model productModel:(ProductDetailModel *)productDetailModel
+{
+    //在这里修改productid
+    model.productId = [NSString stringWithFormat:@"%ld",self.selProductModel.productId];
+    NSMutableArray *modifyArr = [NSMutableArray array];
+    NSDictionary *dic = [model toDictionary];
+    [modifyArr addObject:dic];
+    
+    [self.tableView reloadData];
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
+        [weakself loadDatas];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+    }];
+}
+
+
+
 - (UITableView *)tableView
 {
     if (!_tableView) {

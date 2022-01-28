@@ -346,7 +346,7 @@ static dispatch_source_t _timer;
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
             str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REVIEW")];
         }else{
-            str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"VIEW REVIEW")];
+            str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"VIEW_REVIEW")];
         }
     }else if ([state isEqualToString:@"E"]){
         str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REVIEW")];

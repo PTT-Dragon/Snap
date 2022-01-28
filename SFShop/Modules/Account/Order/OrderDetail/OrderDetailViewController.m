@@ -248,7 +248,7 @@
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
             [self.btn2 setTitle:kLocalizedString(@"REVIEW") forState:0];
         }else{
-            [self.btn2 setTitle:@"VIEW REVIEW" forState:0];
+            [self.btn2 setTitle:@"VIEW_REVIEW" forState:0];
         }
         self.moreBtn.hidden = NO;
         self.btn2Left.constant = AdaptedWidth(150);

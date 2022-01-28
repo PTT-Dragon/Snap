@@ -170,6 +170,7 @@
         gridViewController.addModel = _selAddModel;
         gridViewController.reduceFlag = (pageIndex == 0) ? NO: YES;
         gridViewController.delegate = self;
+        gridViewController.vc = self;
     }
     return gridViewController;
 }

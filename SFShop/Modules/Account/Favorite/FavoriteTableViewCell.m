@@ -43,7 +43,7 @@
     [SFNetworkManager post:SFNet.cart.cart parameters:@{@"isSelected":@"N",@"contactChannel":@"3",@"addon":@"",@"productId":_model.productId,@"storeId":_model.storeId,@"offerId":_model.offerId,@"num":@(1),@"unitPrice":_model.salesPrice} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"error"]];
+        [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (IBAction)similarAction:(id)sender {

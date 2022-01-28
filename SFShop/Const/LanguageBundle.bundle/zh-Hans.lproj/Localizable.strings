@@ -12,6 +12,7 @@
   "HAVE_READ_AND_AGREED" = "已阅读并同意";
 //  "COPY" = "复制";
 //  "REPLY_SUCCESSFULLY" = "评论成功";
+"VIEW_REVIEW" = "查看评价";
   "PREFER_NOT_TO_RESPOND" = "不回答";
   "FEMALE" = "女性";
   "MALE" = "男性";

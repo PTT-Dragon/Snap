@@ -130,10 +130,14 @@
     if (_isInvalid) {//$(MARKETING_VERSION)
         return;
     }
+    [self.delegate skuActionWithModel:_model];
 }
 - (void)cartModifyAction
 {
     NSDictionary *dic = [_model toDictionary];
     [self.delegate modifyCartInfoWithDic:dic];
 }
+
+
+
 @end

@@ -610,6 +610,7 @@
 "Login_Or_Register" = "Login Or Register";
 "Shopping_Cart" = "SHOPPING CART";
 "Hide" = "Hide";
+"VIEW_REVIEW" = "VIEW REVIEW";
 "View_replies" = "View replies";
 "verification_email_code" = "A verification code will be sent to your email address. Please enter your registered email.";
 "RESET_PASSWORD_SMS" = "A verification code will be sent to your sms address. Please enter your registered sms.";
