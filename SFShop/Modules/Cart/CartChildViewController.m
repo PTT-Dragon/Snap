@@ -21,6 +21,7 @@
 #import "ProductViewController.h"
 #import "ProductSpecAttrsView.h"
 #import "ProductStockModel.h"
+#import "CartChoosePromotion.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -117,7 +118,21 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? 45: 117;
+    CartListModel *listModel;
+    if (indexPath.section >= self.cartModel.validCarts.count) {
+        listModel = self.cartModel.invalidCarts[indexPath.section-self.cartModel.validCarts.count];
+    }else{
+        listModel = self.cartModel.validCarts[indexPath.section];
+    }
+    CartItemModel *model;
+    if (indexPath.row > listModel.shoppingCarts.count) {
+        NSArray <CartCampaignsModel *>*arr = self.campaignsDataSource[indexPath.section];
+        CartCampaignsModel *campaignsModel = arr[indexPath.row-listModel.shoppingCarts.count-1];
+        model = campaignsModel.shoppingCarts.firstObject;
+    }else{
+        model = listModel.shoppingCarts[indexPath.row-1];
+    }
+    return indexPath.row == 0 ? 45: (model.campaigns && model.campaigns.count != 0) ? 137: 117;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

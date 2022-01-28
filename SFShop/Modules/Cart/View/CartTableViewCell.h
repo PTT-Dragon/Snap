@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)modifyCartInfoWithDic:(NSDictionary *)dic;
 - (void)skuActionWithModel:(CartItemModel *)model;
+- (void)promotionWithArr:(NSArray <CampaignsModel *>*)arr
 
 @end
 

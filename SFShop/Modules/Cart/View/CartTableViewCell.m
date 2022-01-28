@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UIView *priceDownView;
+@property (weak, nonatomic) IBOutlet UIButton *campaignsBtn;
 @property (weak, nonatomic) IBOutlet UILabel *priceDownLabel;
 
 @end
@@ -72,6 +73,7 @@
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _priceDownView.hidden = !model.cutRate;
     _priceDownLabel.text = model.cutRate;
+    self.campaignsBtn.hidden = (model.campaigns && model.campaigns.count != 0);
     [self updateBtnState];
 }
 - (void)setIsInvalid:(BOOL)isInvalid
