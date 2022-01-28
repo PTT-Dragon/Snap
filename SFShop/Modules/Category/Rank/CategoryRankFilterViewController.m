@@ -239,9 +239,9 @@
     
     //组装需要显示的数据
     NSMutableArray *arr = [NSMutableArray array];
-    if (model.serviceIds && model.serviceIds.count > 0) {
-        [arr addObject:model.serviceIds];
-    }
+//    if (model.serviceIds && model.serviceIds.count > 0) {
+//        [arr addObject:model.serviceIds];
+//    }
     if (model.catgIds && model.catgIds.count > 0) {
         [arr addObject:model.catgIds];
     }
