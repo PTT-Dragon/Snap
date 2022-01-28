@@ -304,7 +304,7 @@
 //  "SPECIFICATION" = "Spesifikasi";
   "DETAIL" = "Detail";
   "CART" = "Keranjang";
-  "COUPONS" = "Voucher";
+  "COUPONS" = "Vouchers";
   "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";
   "PEOPLE_SHORT" = "Kurang pembeli";
   "JOIN" = "Join";
@@ -525,7 +525,7 @@
 "SUPPORT_THANK" = "Terima kasih telah menjadi pelanggan setia Smartfren.";
 "SUPPORT_CONTENT" = "Sebagai bentuk komitmen kami untuk memberikan pelayanan terbaik, kami menyediakan Layanan Hotline 24 jam, Email dan Live Chat sehingga Anda dapat menghubungi kami setiap saat.";
 "Delivery_address" = "Alamat Pengiriman";
-"Delivery" = "Delivery";
+"Delivery" = "Pengiriman";
 "Tidak_tersedia" = "Tidak tersedia";
 "Notes" = "Catatan";
 "Voucher" = "Voucher";
@@ -548,7 +548,7 @@
 "Save_order_success" = "Sukses menyimpan perintah!";
 "Quantity" = "Kuantitas";
 "Special_promo" = "SPECIAL PROMO";
-"Product_detail" = "Perincian Produk";
+"Product_detail" = "Rincian Produk";
 "Star_in" = "Bintang masuk";
 "Star_from" = "Bintang Dari";
 "Ends_in" = "Akhir di";
