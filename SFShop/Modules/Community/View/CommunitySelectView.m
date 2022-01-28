@@ -7,6 +7,7 @@
 
 #import "CommunitySelectView.h"
 #import "CommunitySelectTableViewCell.h"
+#import "LoginViewController.h"
 
 @interface CommunitySelectView () <UITableViewDelegate, UITableViewDataSource>
 
@@ -88,6 +89,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model || [model.accessToken isEqualToString:@""]) {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        return;
+    }
     if (indexPath.section == 0) {
         // 取消喜欢
 //        xxxmodel
