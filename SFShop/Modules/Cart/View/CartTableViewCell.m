@@ -10,6 +10,7 @@
 #import "NSString+Fee.h"
 #import "UIButton+time.h"
 #import "ProductViewController.h"
+#import "UIButton+SGImagePosition.h"
 
 @interface CartTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *additonBtn;
@@ -37,6 +38,9 @@
     _subtractBtn.layer.borderWidth = 1;
     _skuLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _skuLabel.layer.borderWidth = 1;
+    _campaignsBtn.layer.borderWidth = 1;
+    _campaignsBtn.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
+    [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skuAction)];
     [_skuLabel addGestureRecognizer:tap];
@@ -44,9 +48,9 @@
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
     [_selBtn setImage:[UIImage imageNamed:@"Vector"] forState:0];
     [_selBtn setImage:[UIImage imageNamed:@"已选中"] forState:1];
-    self.subtractBtn.mm_acceptEventInterval = 1;
-    self.additonBtn.mm_acceptEventInterval = 1;
-    self.selBtn.mm_acceptEventInterval = 1;
+    self.subtractBtn.mm_acceptEventInterval = 0.5;
+    self.additonBtn.mm_acceptEventInterval = 0.5;
+    self.selBtn.mm_acceptEventInterval = 0.5;
     [self updateBtnState];
     UITapGestureRecognizer *productTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toProduct)];
     [self.contentView addGestureRecognizer:productTap];
@@ -92,7 +96,7 @@
         _selBtn.selected = [_model.isSelected isEqualToString:@"Y"];
     }
     self.subtractBtn.enabled = _isInvalid ? NO: ![_countLabel.text isEqualToString:@"1"];
-    NSInteger maxBuyCount = [_model.maxBuyCount isKindOfClass:[NSNull class]] ? 100000:[_model.maxBuyCount integerValue];
+    NSInteger maxBuyCount = !_model.maxBuyCount ? 100000:[_model.maxBuyCount integerValue];
     self.additonBtn.enabled = _isInvalid ? NO: (_countLabel.text.integerValue < _model.stock && _countLabel.text.integerValue < maxBuyCount);
     [self.subtractBtn setImage: self.subtractBtn.enabled ? [UIImage imageNamed:@"subtract"]: [UIImage imageNamed:@"subtract-2"] forState:0];
     self.subtractBtn.layer.borderWidth = self.subtractBtn.enabled ? 1: 0;
@@ -126,6 +130,8 @@
     [self setModel:_model];
     [self cartModifyAction];
     [self updateBtnState];
+}
+- (IBAction)campaignsAction:(UIButton *)sender {
 }
 - (void)skuAction
 {

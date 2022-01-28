@@ -414,6 +414,11 @@
     }];
     [self.tableView reloadData];
 }
+- (void)promotionWithArr:(NSArray<CampaignsModel *> *)arr
+{
+    CartChoosePromotion *view = [[NSBundle mainBundle] loadNibNamed:@"view" owner:self options:nil].firstObject;
+    [self.view addSubview:view];
+}
 - (void)skuActionWithModel:(CartItemModel *)model
 {
     [self loadProductInfoWithModel:model];

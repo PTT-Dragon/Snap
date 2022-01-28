@@ -803,6 +803,7 @@
             return cell;
         }
         ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
+        cell.showLine = YES;
         cell.model = self.evalationArr[indexPath.row-1];
         return cell;
     }

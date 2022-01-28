@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *campaignName;
 @property (nonatomic,copy) NSString *effDate;
 @property (nonatomic,copy) NSString *expDate;
+@property (nonatomic,assign) BOOL sel;
 
 @end
 

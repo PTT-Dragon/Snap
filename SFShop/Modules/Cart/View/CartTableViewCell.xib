@@ -121,14 +121,17 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4C-9y-QlI">
-                                <rect key="frame" x="148" y="97" width="30" height="13"/>
+                                <rect key="frame" x="148" y="82" width="32" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="J9n-hq-Sqc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal">
+                                <state key="normal" image="swipe-down-red">
                                     <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="campaignsAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LpF-nr-utd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -153,7 +156,7 @@
                             <constraint firstItem="5Uk-UU-CJV" firstAttribute="top" secondItem="9Dn-fL-1do" secondAttribute="top" constant="20" symbolic="YES" id="nuj-8B-Yjb"/>
                             <constraint firstItem="2OE-4E-Ucf" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="qre-6d-sJR"/>
                             <constraint firstAttribute="bottom" secondItem="8nW-Ol-sVX" secondAttribute="bottom" constant="20" symbolic="YES" id="saM-cx-H3T"/>
-                            <constraint firstItem="B4C-9y-QlI" firstAttribute="bottom" secondItem="5Uk-UU-CJV" secondAttribute="bottom" id="tXg-xI-YFr"/>
+                            <constraint firstItem="B4C-9y-QlI" firstAttribute="bottom" secondItem="5Uk-UU-CJV" secondAttribute="bottom" constant="-15" id="tXg-xI-YFr"/>
                             <constraint firstItem="MvD-Qt-BbY" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" constant="20" id="tXs-SH-8LB"/>
                         </constraints>
                     </view>
@@ -192,6 +195,7 @@
         <image name="scroll-down-fill" width="32" height="32"/>
         <image name="subtract" width="200" height="200"/>
         <image name="subtract-2" width="32" height="32"/>
+        <image name="swipe-down-red" width="32" height="32"/>
         <image name="已选中" width="52" height="52"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

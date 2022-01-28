@@ -34,10 +34,11 @@
     [super awakeFromNib];
     // Initialization code
     for (UIView *subView in _bgView.subviews) {
-        if ([subView isKindOfClass:[UIButton class]]) {
+        if ([subView isKindOfClass:[UIButton class]] && subView != _allOrderBtn) {
             [(UIButton *)subView SG_imagePositionStyle:SGImagePositionStyleTop spacing:5];
         }
     }
+    [_allOrderBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
     self.orderLabel.text = kLocalizedString(@"ORDERS");
     [self.allOrderBtn setTitle:kLocalizedString(@"VIEW_ALL_ORDERS") forState:0];
     self.toPayLabel.text = kLocalizedString(@"TO_PAY");
