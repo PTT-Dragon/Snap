@@ -40,7 +40,7 @@
     _skuLabel.layer.borderWidth = 1;
     _campaignsBtn.layer.borderWidth = 1;
     _campaignsBtn.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
-    [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
+    [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:0];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skuAction)];
     [_skuLabel addGestureRecognizer:tap];
