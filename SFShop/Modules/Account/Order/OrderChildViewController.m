@@ -140,7 +140,7 @@
     NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B,F,G": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:_searchText forKey:@"q"];
-    [params setValue:@(_pageIndex) forKey:@"pageIndex"];
+    [params setValue:@(self.pageIndex) forKey:@"pageIndex"];
     [params setValue:@(20) forKey:@"pageSize"];
     [params setValue:state forKey:@"states"];
     @weakify(self);
@@ -148,9 +148,15 @@
         @strongify(self);
         if (self->_pageIndex == 1) {
             [self.dataSource removeAllObjects];
-        }
+        }//pageNum pages
         [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+        }
         NSArray *arr = response[@"list"];
         if (!kArrayIsEmpty(arr)) {
             for (NSDictionary *dic in arr) {
