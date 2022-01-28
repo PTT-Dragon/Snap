@@ -28,13 +28,13 @@
     _pageIndex = 1;
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
-    [_tableView registerNib:[UINib nibWithNibName:@"FavoriteTableViewCell" bundle:nil] forCellReuseIdentifier:@"FavoriteTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"FavoriteTableViewCell" bundle:nil] forCellReuseIdentifier:@"FavoriteTableViewCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
-    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self loadDatas];
     }];
     self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
@@ -71,13 +71,7 @@
         [params setValue:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
     }
     [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
-        NSInteger pageNum = [response[@"pageNum"] integerValue];
-        NSInteger pages = [response[@"pages"] integerValue];
-        if (pageNum >= pages) {
-            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
-        }else{
-            [weakself.tableView.mj_footer endRefreshing];
-        }
+        [self.tableView.mj_header endRefreshing];
         [weakself.dataSource removeAllObjects];
         [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
@@ -121,7 +115,13 @@
     [params setValue:@(_rankModel.priceModel.minPrice) forKey:@"startPrice"];
     [params setValue:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
     [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
-        [weakself.tableView.mj_footer endRefreshing];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
         [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
@@ -136,15 +136,15 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;//self.dataSource.count;
+    return self.dataSource.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 120;
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     //删除
@@ -230,13 +230,17 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStyleGrouped];
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         _tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
+        _tableView.sectionFooterHeight = 6;
+        _tableView.sectionHeaderHeight = CGFLOAT_MIN;
+        _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, 0.01)];
+        _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, 0.01)];
         if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
