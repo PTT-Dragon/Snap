@@ -12,9 +12,10 @@
   "HAVE_READ_AND_AGREED" = "已阅读并同意";
 //  "COPY" = "复制";
 //  "REPLY_SUCCESSFULLY" = "评论成功";
-//  "PREFER_NOT_TO_RESPOND" = "不回答";
-//  "FEMALE" = "女性";
-//  "MALE" = "男性";
+"VIEW_REVIEW" = "查看评价";
+  "PREFER_NOT_TO_RESPOND" = "不回答";
+  "FEMALE" = "女性";
+  "MALE" = "男性";
 //  "SSR_DESCRIPTION_PRODUCT" = "我在SF发现了一个很棒的产品!";
 //  "SSR_DESCRIPTION_INVITE" = "收到欢迎礼包!";
 //  "SSR_DESCRIPTION_HOME" = "在SmartFren享受你的购物时光吧!";

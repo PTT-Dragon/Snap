@@ -131,6 +131,10 @@
                 <outlet property="femaleBtn" destination="PpC-YH-eKZ" id="049-dV-1SM"/>
                 <outlet property="maleBtn" destination="NiH-25-73X" id="gsz-Ap-dgK"/>
                 <outlet property="secrecyBtn" destination="ADd-Dw-EC0" id="WFn-L5-dl3"/>
+                <outlet property="titleLabel1" destination="4Um-3q-2b4" id="0td-Pd-GAe"/>
+                <outlet property="titleLabel2" destination="gXO-hS-RcK" id="Erj-H0-yOP"/>
+                <outlet property="titleLabel3" destination="2Za-mS-efI" id="UOx-Dz-Ssq"/>
+                <outlet property="titleLabel4" destination="3wl-0U-whe" id="u2J-Dc-d5J"/>
             </connections>
             <point key="canvasLocation" x="179.71014492753625" y="40.848214285714285"/>
         </view>

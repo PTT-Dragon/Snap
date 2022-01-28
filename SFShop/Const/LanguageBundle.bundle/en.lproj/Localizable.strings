@@ -11,9 +11,9 @@
   "HAVE_READ_AND_AGREED" = "I have read and agreed to the";
 //  "COPY" = "COPY";
 //  "REPLY_SUCCESSFULLY" = "Reply successfully";
-//  "PREFER_NOT_TO_RESPOND" = "Prefer not to respond";
-//  "FEMALE" = "Female";
-//  "MALE" = "Male";
+  "PREFER_NOT_TO_RESPOND" = "Prefer not to respond";
+  "FEMALE" = "Female";
+  "MALE" = "Male";
 //  "SSR_DESCRIPTION_PRODUCT" = "I found a great product from SF!";
 //  "SSR_DESCRIPTION_INVITE" = "Get your Welcome Package!";
 //  "SSR_DESCRIPTION_HOME" = "Enjoy your Shopping Time at SmartFren!";
@@ -199,7 +199,7 @@
   "INVITATION_RECORD" = "Invitation Record";
   "INVITE_NOW" = "Invite Now";
   "SUCC_INVITE_NUM" = "You have successfully invited";
-"teman" : "friends"
+"teman" = "friends";
   "RULE_DESCRIPTION" = "Rule Description";
 //  "SIGN_UP_GIFT" = "Sign Up for Gift";
 //  "NEW_USER_TRENDS" = "New User Trends";
@@ -610,6 +610,7 @@
 "Login_Or_Register" = "Login Or Register";
 "Shopping_Cart" = "SHOPPING CART";
 "Hide" = "Hide";
+"VIEW_REVIEW" = "VIEW REVIEW";
 "View_replies" = "View replies";
 "verification_email_code" = "A verification code will be sent to your email address. Please enter your registered email.";
 "RESET_PASSWORD_SMS" = "A verification code will be sent to your sms address. Please enter your registered sms.";
