@@ -241,6 +241,53 @@
     self.originPriceLabel.attributedText = attrStr;
 }
 
+-(void)setSimilarModel:(ProductSimilarModel *)similarModel {
+    _similarModel = similarModel;
+//    if (_similarModel.labelPictureUrl.length > 0) {
+//        self.iconLabelImageView.hidden = NO;
+//        [self.iconLabelImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_similarModel.labelPictureUrl)]];
+//    } else {
+        self.iconLabelImageView.hidden = YES;
+//    }
+    
+    if ([_similarModel.sppType isEqualToString:@"4"]) {
+        self.promoTypeLabel.text = @"GROUP";
+        self.promoTypeLabel.hidden = NO;
+    } else if ([_model.sppType isEqualToString:@"2"]) {
+        self.promoTypeLabel.hidden = NO;
+        self.promoTypeLabel.text = @"FLASH";
+    } else {
+        self.promoTypeLabel.hidden = YES;
+    }
+    
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_similarModel.productImg.smallImgUrl)]];
+    self.titleLabel.text = _similarModel.offerName;
+    self.priceLabel.text = [NSString stringWithFormat:@"%ld", _similarModel.specialPrice>0?_similarModel.specialPrice: _similarModel.salesPrice].currency;
+
+    self.discountLabel.text = [NSString stringWithFormat:@"%ld%%",_similarModel.discountPercent];
+
+    NSAttributedString *attrStr =
+    [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld",_model.marketPrice].currency attributes:
+    @{NSFontAttributeName:[UIFont systemFontOfSize:10],
+      NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
+      NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
+      NSStrikethroughColorAttributeName:[UIColor jk_colorWithHexString:@"#CCCCCC"]}];
+    self.originPriceLabel.attributedText = attrStr;
+        
+    if (_similarModel.evaluationAvg > 0 || _similarModel.evaluationCnt > 0) {
+        self.gradeLevelLabel.text = [NSString stringWithFormat:@"%.1f",_similarModel.evaluationAvg * 1.0];
+        self.gradeNumberLabel.text = [NSString stringWithFormat:@"(%@)",_similarModel.evaluationCnt];
+        self.gradeLevelLabel.hidden = NO;
+        self.gradeNumberLabel.hidden = NO;
+        self.gradeImageView.hidden = NO;
+    } else {
+        self.gradeLevelLabel.hidden = YES;
+        self.gradeNumberLabel.hidden = YES;
+        self.gradeImageView.hidden = YES;
+    }
+}
+
+
 - (UIImageView *)iconImageView  {
     if (_iconImageView == nil) {
         _iconImageView = [[UIImageView alloc] init];

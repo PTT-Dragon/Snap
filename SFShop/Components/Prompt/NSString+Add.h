@@ -78,6 +78,18 @@
  */
 - (NSString *)md5String;
 
+#pragma mark 1、计算一个文本的高度
+/**
+ 计算一个文本的高度
+
+ @param textContent 文本的内容
+ @param textfont 字体的大小
+ @param maxSize 文本的最大宽高
+ @return 返回文本高度
+ */
++ (CGFloat)jk_heightTextContent:(NSString *)textContent withSizeFont:(CGFloat)textfont withMaxSize:(CGSize)maxSize;
+
+
 
 /**
  遍历一个字符串，返回含有给定标签内的字符串的 所有范围
@@ -122,8 +134,6 @@
 + (NSMutableAttributedString *)difereentFontStr:(NSString *)str font:(UIFont *)font changeText:(NSString *)changeText;
 + (NSMutableAttributedString *)difereentAttr:(NSDictionary *)attrDic str:(NSString *)str changeText:(NSString *)changeText;
 +(NSMutableAttributedString *)stringWithHighLightSubstring:(NSString *)totalString substring:(NSString *)substring color:(UIColor *)color;
-
-
 
 
 @end

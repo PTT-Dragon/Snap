@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CategoryRankModel.h"
+#import "ProductSimilarModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 数据源
 @property (nonatomic, readwrite, strong) CategoryRankPageInfoListModel *model;
+
+/// 数据源2
+@property (nonatomic, strong) ProductSimilarModel *similarModel;
 
 @end
 

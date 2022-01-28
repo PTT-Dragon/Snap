@@ -34,8 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) NSInteger productId;
 
 @property (nonatomic,strong) CategoryRankPageInfoListProductImgModel *productImg;
+@property (nonatomic, readwrite, copy) NSString *sppType;
+@property (nonatomic, readwrite, assign) long specialPrice;
 
-
+/**
+ 高度
+ */
+@property (nonatomic, assign) CGFloat height;
 
 
 
