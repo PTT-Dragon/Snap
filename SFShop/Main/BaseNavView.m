@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) UIButton *moreBtn;
 
+@property (nonatomic, strong) UIButton *clearBtn;
+
 @property (nonatomic, strong) UIView *lineView;
 
 @property (nonatomic, copy) NSString *currentTitle;
@@ -56,6 +58,7 @@
     self.backgroundColor = UIColor.whiteColor;
     [self addSubview:self.backBtn];
     [self addSubview:self.titleLabel];
+    [self addSubview:self.clearBtn];
     [self addSubview:self.searchBtn];
     [self addSubview:self.shareBtn];
     [self addSubview:self.moreBtn];
@@ -71,6 +74,11 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei/2);
         make.left.mas_equalTo(self.backBtn.mas_right).offset(20);
+    }];
+    [self.clearBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei/2);
+        make.left.mas_equalTo(self.titleLabel.mas_right).offset(20);
+        make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei/2);
@@ -113,10 +121,27 @@
         self.searchBtn.hidden = YES;
         self.shareBtn.hidden = YES;
         self.moreBtn.hidden = NO;
+        self.clearBtn.hidden = YES;
     } else {
         self.searchBtn.hidden = NO;
         self.shareBtn.hidden = NO;
         self.moreBtn.hidden = NO;
+        self.clearBtn.hidden = NO;
+    }
+}
+
+- (void)updateIsShowClearBtn:(BOOL)isOnly{
+    
+    if (isOnly) {
+        self.searchBtn.hidden = YES;
+        self.shareBtn.hidden = YES;
+        self.moreBtn.hidden = NO;
+        self.clearBtn.hidden = NO;
+    } else {
+        self.searchBtn.hidden = NO;
+        self.shareBtn.hidden = NO;
+        self.moreBtn.hidden = NO;
+        self.clearBtn.hidden = NO;
     }
 }
 
@@ -177,13 +202,14 @@
     }
 }
 
-
-#pragma mark - function
-
-
+- (void)clearBtnAction {
+    
+    if ([self.delegate respondsToSelector:@selector(baseNavViewDidClickClearBtn:)]) {
+        [self.delegate baseNavViewDidClickClearBtn:self];
+    }
+}
 
 #pragma mark - setter
-
 - (UIButton *)backBtn {
     if (!_backBtn) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -203,6 +229,18 @@
         _titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _titleLabel;
+}
+
+- (UIButton *)clearBtn {
+    if (!_clearBtn) {
+        _clearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_clearBtn setImage:[UIImage imageNamed:@"clear"]
+                  forState:UIControlStateNormal];
+        [_clearBtn addTarget:self
+                     action:@selector(clearBtnAction)
+           forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _clearBtn;
 }
 
 - (UIButton *)moreBtn {

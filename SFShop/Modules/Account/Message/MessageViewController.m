@@ -10,12 +10,16 @@
 #import "MessageModel.h"
 #import "MessageOrderListViewController.h"
 #import "EmptyView.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 #import "PublicWebViewController.h"
 
-@interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) MessageModel *model;
 @property (nonatomic,strong) EmptyView *emptyView;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *navMoreView;
 
 @end
 
@@ -24,22 +28,52 @@
 {
     return YES;
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self loadDatas];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_navMoreView removeFromSuperview];
+    _navMoreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_navMoreView];
+    [_navMoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
+}
+
+- (void)baseNavViewDidClickClearBtn:(BaseNavView *)navView{
+    
+    [self clearUnreadMessage];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"Message");
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(clearUnreadMessage) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(0 , 0, 22, 22);
-    [button setBackgroundImage:[UIImage imageNamed:@"clear"] forState:UIControlStateNormal];
-    [self.view addSubview:button];
-    UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItems = @[rightItem];
+    
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsShowClearBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"Message")];
+    
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageListCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
     self.tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
