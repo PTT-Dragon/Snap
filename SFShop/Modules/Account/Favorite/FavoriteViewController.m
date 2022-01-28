@@ -40,7 +40,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self action:@selector(jumpToFilterDetail) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0 , 0, 44, 44);
-    [button setBackgroundImage:[UIImage imageNamed:@"WX20220121-231052"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"WX20220121-231052"] forState:UIControlStateNormal];
     [self.view addSubview:button];
     UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItems = @[rightItem];

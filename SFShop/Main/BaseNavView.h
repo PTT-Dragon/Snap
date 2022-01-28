@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView;
 
+- (void)baseNavViewDidClickClearBtn:(BaseNavView *)navView;
+
 @end
 
 @interface BaseNavView : UIView
@@ -32,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)configDataWithTitle:(NSString *)title;
 
 - (void)updateIsOnlyShowMoreBtn:(BOOL)isOnly;
+- (void)updateIsShowClearBtn:(BOOL)isOnly;
 
 @end
 
