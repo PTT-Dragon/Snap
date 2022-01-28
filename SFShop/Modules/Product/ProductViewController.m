@@ -39,9 +39,10 @@
 #import "JPVideoPlayerManager.h"
 #import "CategoryRankViewController.h"
 #import "CartModel.h"
+#import "JPVideoPlayerKit.h"
 
 
-@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate>
+@interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate,JPVideoPlayerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
@@ -131,6 +132,9 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 //    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    if ([JPVideoPlayerManager sharedManager].videoPlayer.playerStatus==JPVideoPlayerStatusPlaying) {
+        [[JPVideoPlayerManager sharedManager] pause];
+    }
 }
 
 - (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
@@ -207,6 +211,7 @@
     } @catch (NSException *exception) {
         NSLog(@"可能多次释放，避免crash");
     }
+    [[JPVideoPlayerManager sharedManager] stopPlay];
 }
 - (void)setDefaultAddress
 {
@@ -284,6 +289,7 @@
         [hud hideAnimated:YES];
         NSError *error;
         self.model = [[ProductDetailModel alloc] initWithDictionary: response error: &error];
+      
         [self requestAddressInfo];
         NSLog(@"get product detail success");
     } failed:^(NSError * _Nonnull error) {
@@ -1100,16 +1106,75 @@
     return _model.carouselImgUrls.count + 1;
 }
 
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
-    UIImageView *iv = nil;
-    if (view == nil) {
-        iv = [[UIImageView alloc] initWithFrame:carousel.bounds];
-        iv.contentMode = UIViewContentModeScaleAspectFit;
-    } else {
-        iv = (UIImageView *)view;
+//- (void)carouselDidEndDecelerating:(iCarousel *)carousel {
+//    NSInteger index = carousel.currentItemIndex;
+//    ProductCarouselImgModel *subModel = self.model.carouselImgUrls[index-1];
+//    if (![subModel.contentType isEqualToString:@"B"]) {
+//        if ([JPVideoPlayerManager sharedManager].videoPlayer.playerStatus==JPVideoPlayerStatusPlaying) {
+//            [[JPVideoPlayerManager sharedManager] pause];
+//        }
+//    }
+//}
+
+- (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel {
+    NSInteger index = carousel.currentItemIndex;
+    ProductCarouselImgModel *subModel = self.model.carouselImgUrls[index-1];
+    if (![subModel.contentType isEqualToString:@"B"]) {
+        if ([JPVideoPlayerManager sharedManager].videoPlayer.playerStatus==JPVideoPlayerStatusPlaying) {
+            [[JPVideoPlayerManager sharedManager] pause];
+        }
     }
-    [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: (index == 0 ? self.selProductModel : self.model.carouselImgUrls[index-1])])]];
-    return iv;
+}
+
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
+    UIView *backView = [[UIView alloc] initWithFrame:carousel.bounds];
+    
+    if (index == 0) {
+        UIImageView *iv = nil;
+        if (view == nil) {
+            iv = [[UIImageView alloc] initWithFrame:carousel.bounds];
+            iv.contentMode = UIViewContentModeScaleAspectFit;
+        } else {
+            iv = (UIImageView *)view;
+        }
+        [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: self.selProductModel])]];
+        [backView addSubview:iv];
+    }else {
+        
+        ProductCarouselImgModel *subModel = self.model.carouselImgUrls[index-1];
+        
+        if ([subModel.contentType isEqualToString:@"B"]) {
+            backView.jp_videoPlayerDelegate = self;
+            [backView jp_resumePlayWithURL:[NSURL URLWithString:SFImage(subModel.url)]
+            bufferingIndicator:nil
+                   controlView:nil
+                  progressView:nil
+             configuration:nil];
+                   
+            for (int i = 0; i<10; i++) {
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((0.1*i)*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    if ([JPVideoPlayerManager sharedManager].videoPlayer.playerStatus==JPVideoPlayerStatusPlaying) {
+                        [[JPVideoPlayerManager sharedManager] pause];
+                    }
+                });
+                
+            }
+            
+        }else {
+            UIImageView *iv = nil;
+            if (view == nil) {
+                iv = [[UIImageView alloc] initWithFrame:carousel.bounds];
+                iv.contentMode = UIViewContentModeScaleAspectFit;
+            } else {
+                iv = (UIImageView *)view;
+            }
+            [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: subModel])]];
+            [backView addSubview:iv];
+        }
+    }
+
+    return backView;
     
 //    self.pictureScrollView = [[SRXGoodsImageDetailView alloc] initWithFrame:carousel.bounds];
 //    [self.pictureScrollView.shufflingArray removeAllObjects];
