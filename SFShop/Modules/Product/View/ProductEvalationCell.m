@@ -44,7 +44,9 @@
     _timeLabel.text = [[NSDate dateFromString:model.createdDate] dayMonthYearHHMM];
     [_collectionView reloadData];
     CGFloat itemHei = (MainScreen_width-34-30)/4;
-    self.collectionViewHei.constant = model.evaluationContents.count == 0 ? 0: model.evaluationContents.count < 4 ? itemHei+5: model.evaluationContents.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+//    self.collectionViewHei.constant = model.evaluationContents.count == 0 ? 0: model.evaluationContents.count < 4 ? itemHei+5: model.evaluationContents.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+    self.collectionViewHei.constant = ceil(model.evaluationContents.count/4.0)*(itemHei+10) + (model.evaluationContents.count == 0 ? 0:12);
+
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -90,7 +92,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
     [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage([_model.evaluationContents[indexPath.row] url])]];
-    cell.contentView.backgroundColor = UIColor.redColor;
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
