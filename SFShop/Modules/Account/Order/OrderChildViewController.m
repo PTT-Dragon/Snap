@@ -50,7 +50,7 @@
         self.pageIndex = 1;
         [self loadDatas];
     }];
-    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
         self.pageIndex += 1;
         [self loadDatas];
     }];
@@ -186,6 +186,7 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate.tabVC setSelectedIndex:0];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - <lazying>

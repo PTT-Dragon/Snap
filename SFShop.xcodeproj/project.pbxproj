@@ -4472,7 +4472,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6.5;
-				DEVELOPMENT_TEAM = 45TSGW46CH;
+				DEVELOPMENT_TEAM = 9VDC82RVHW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SFShop/Components/Umeng/share/share_ios_6.10.4/UMSocialUI",
@@ -4513,7 +4513,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6.5;
-				DEVELOPMENT_TEAM = 45TSGW46CH;
+				DEVELOPMENT_TEAM = 9VDC82RVHW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SFShop/Components/Umeng/share/share_ios_6.10.4/UMSocialUI",

@@ -81,9 +81,6 @@
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self loadDatas];
     }];
-//    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-//        [self loadMoreDatas];
-//    }];
     [self.tableView.mj_header beginRefreshing];
     [self.view addSubview:self.emptyView];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
