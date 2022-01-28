@@ -58,7 +58,7 @@
     }];
     [_navView configDataWithTitle:kLocalizedString(@"Review")];
     
-    self.menuList = @[@"To Review", @"Rated"];
+    self.menuList = @[kLocalizedString(@"TO_REVIEW"), kLocalizedString(@"RATED")];
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
     _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei);
@@ -127,7 +127,7 @@
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor whiteColor];
-        _magicController.magicView.sliderColor = [UIColor redColor];
+        _magicController.magicView.sliderColor = [UIColor blackColor];
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.navigationHeight = 40.f;

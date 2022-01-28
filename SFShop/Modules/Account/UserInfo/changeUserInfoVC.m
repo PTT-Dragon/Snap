@@ -11,6 +11,7 @@
 
 
 @interface changeUserInfoVC ()<userInfoGenderViewDelegate,SWCenterDatePickerViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *genderBtn;
 @property (weak, nonatomic) IBOutlet UIButton *birthBtn;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel3;
 @property (nonatomic, strong) NSString *selectDateStr;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *birthLabel;
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 @end
 
@@ -49,6 +51,8 @@
     _tipLabel2.text = kLocalizedString(@"GENDER");
     _tipLabel3.text = kLocalizedString(@"DATEOFBIRTH");
     [_saveBtn setTitle:kLocalizedString(@"SAVEPROFILE") forState:0];
+    _titleLabel.text = kLocalizedString(@"CONTACT_INFORMATION");
+    _birthLabel.text = kLocalizedString(@"DATEOFBIRTH");
 }
 - (void)selectWithSelectTime:(NSString *)selectTime withYear:(NSString *)year withMonth:(NSString *)month{
     self.selectDateStr = selectTime;

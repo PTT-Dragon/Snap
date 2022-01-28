@@ -26,6 +26,7 @@
 @interface OrderListBottomCell ()
 @property (weak, nonatomic) IBOutlet UIView *moreView;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
@@ -52,7 +53,11 @@ static dispatch_source_t _timer;
     // Initialization code
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
+    _btn1.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+    _btn1.layer.borderWidth = 1;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countDownNotification) name:OYCountDownNotification object:nil];
+    [_moreBtn setTitle:kLocalizedString(@"MORE") forState:0];
+    _totalTitleLabel.text = kLocalizedString(@"Total");
 
 }
 - (void)countDownNotification {

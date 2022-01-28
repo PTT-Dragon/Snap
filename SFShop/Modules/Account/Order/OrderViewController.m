@@ -70,8 +70,8 @@
     NSString *all = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"ALL"),self.orderNumModel.toPayNum+self.orderNumModel.toReceiveNum+self.orderNumModel.toDeliveryNum+self.orderNumModel.completedNum+self.orderNumModel.canceledNum];
     NSString *topay = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TO_PAY"),self.orderNumModel.toPayNum];
     NSString *toship = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TO_SHIP"),self.orderNumModel.toDeliveryNum];
-    NSString *shiped = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TORECEIVE"),self.orderNumModel.toReceiveNum];
-    NSString *complete = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"DONE"),self.orderNumModel.completedNum];
+    NSString *shiped = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TO_RECEIVE"),self.orderNumModel.toReceiveNum];
+    NSString *complete = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"COMPLETED"),self.orderNumModel.completedNum];
     NSString *cancel = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"CANCELLED"),self.orderNumModel.canceledNum];
     self.menuList = @[all,topay,toship,shiped,complete,cancel];
     [self.magicController.magicView reloadMenuTitles];
@@ -129,7 +129,8 @@
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor whiteColor];
-        _magicController.magicView.sliderColor = [UIColor redColor];
+        _magicController.magicView.sliderColor = [UIColor blackColor];
+        _magicController.magicView.itemSpacing = 80;
         _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.navigationHeight = 40.f;

@@ -21,8 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZw-Zw-Lsa">
-                        <rect key="frame" x="16" y="166" width="288" height="32"/>
+                        <rect key="frame" x="16" y="153" width="288" height="45"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="6RV-Y7-RH0"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <state key="normal" title="INVITE NOW">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
@@ -51,7 +54,9 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="120" maxY="0.0"/>
-                        <state key="normal" title="Rules Description" image="info-outline"/>
+                        <state key="normal" title="Rules Description" image="联合 7">
+                            <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="deviceRGB"/>
+                        </state>
                         <connections>
                             <action selector="ruleAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bcM-Gf-oGc"/>
                         </connections>
@@ -76,11 +81,15 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="imgView" destination="gZ0-Hf-6Lo" id="5xH-TX-Zv5"/>
+                <outlet property="inviteBtn" destination="MZw-Zw-Lsa" id="slo-YF-Nu1"/>
+                <outlet property="label1" destination="S3W-Gw-dRu" id="Ojf-lb-QsB"/>
+                <outlet property="label2" destination="bfe-4f-QnG" id="ZhA-A9-xjA"/>
+                <outlet property="ruleBtn" destination="JHA-i2-dUG" id="O0c-ip-tDd"/>
             </connections>
             <point key="canvasLocation" x="112" y="73"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="info-outline" width="200" height="200"/>
+        <image name="联合 7" width="18" height="18"/>
     </resources>
 </document>

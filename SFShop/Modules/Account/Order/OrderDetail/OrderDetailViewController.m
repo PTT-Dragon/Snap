@@ -223,7 +223,7 @@
 {
     OrderDetailPaymentsModel *paymentModel = self.model.payments.firstObject;
     [_dataSource addObjectsFromArray:@[@{kLocalizedString(@"ORDER_CODE"):self.model.orderNbr},@{kLocalizedString(@"CREATION_TIME"):self.model.createdDate},@{kLocalizedString(@"PAYER_EMAIL"):self.model.billAddress.contactEmail},@{kLocalizedString(@"PAYMENT_TIME"):paymentModel ? paymentModel.paymentDate : @"--"},@{kLocalizedString(@"COMPLETION_TIME"):self.model.completionDate ? self.model.completionDate: @"--"}]];
-    [_orderInfoDataSource addObjectsFromArray:@[@{kLocalizedString(@"SUBTOTAL"):[self.model.offerPrice currency]},@{kLocalizedString(@"PROMOTION"):[NSString stringWithFormat:@"-%@",[self.model.storeCampaignPrice currency]]},@{kLocalizedString(@"SHIPPING_FEE"):[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"%@:%@ items",kLocalizedString(@"Total"),self.model.offerCnt]:[self.model.orderPrice currency]}]];
+    [_orderInfoDataSource addObjectsFromArray:@[@{kLocalizedString(@"SUBTOTAL"):[self.model.offerPrice currency]},@{kLocalizedString(@"PROMOTION"):[NSString stringWithFormat:@"-%@",[self.model.storeCampaignPrice currency]]},@{kLocalizedString(@"SHIPPING_FEE"):[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"%@:%@ %@",kLocalizedString(@"Total"),self.model.offerCnt,kLocalizedString(@"ITEMS")]:[self.model.orderPrice currency]}]];
     [self.tableView reloadData];
     [self layoutSubviews];
 }

@@ -9,11 +9,23 @@
 #import "PublicShareView.h"
 #import "PublicAlertView.h"
 
+@interface InviteTopCell ()
+@property (weak, nonatomic) IBOutlet UIButton *inviteBtn;
+@property (weak, nonatomic) IBOutlet UIButton *ruleBtn;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+
+@end
+
 @implementation InviteTopCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_inviteBtn setTitle:kLocalizedString(@"INVITE_NOW") forState:0];
+    _label1.text = [NSString stringWithFormat:@"%@%@%@",kLocalizedString(@"SUCC_INVITE_NUM"),@"0",kLocalizedString(@"teman")];
+    [_ruleBtn setTitle:kLocalizedString(@"RULE_DESCRIPTION") forState:0];
+    _label2.text = kLocalizedString(@"INVITATION_RECORD");
 }
 - (IBAction)inviteAction:(id)sender {
     UserModel *model = [FMDBManager sharedInstance].currentUser;

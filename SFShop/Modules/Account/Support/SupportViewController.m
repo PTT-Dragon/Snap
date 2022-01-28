@@ -9,6 +9,8 @@
 #import "PublicWebViewController.h"
 
 @interface SupportViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
 
 @end
 
@@ -25,6 +27,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Support");
+    self.label2.text = kLocalizedString(@"SUPPORT_CONTENT");
+    self.label1.text = kLocalizedString(@"SUPPORT_THANK");
 }
 - (IBAction)emailAction:(id)sender {
     NSString *recipients = @"mailto:ysy@flyrise.cn?subject=Hello from California!";

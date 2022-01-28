@@ -10,6 +10,7 @@
 @interface DeliveryInformationCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -18,6 +19,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _titleLabel.text = kLocalizedString(@"ORDER_INFORMATION");
 }
 - (void)setContent:(OrderDetailModel *)model
 {

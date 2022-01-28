@@ -94,6 +94,10 @@
                 <outlet property="amountLabel" destination="re6-h4-zlK" id="GHj-jI-RVz"/>
                 <outlet property="instructionsView" destination="NGn-BO-V5B" id="uqA-dE-Om4"/>
                 <outlet property="label" destination="rjE-CQ-k3t" id="gc4-6g-Uke"/>
+                <outlet property="label1" destination="E3O-p7-dxd" id="3Lq-k2-hLH"/>
+                <outlet property="label2" destination="rjE-CQ-k3t" id="uGJ-zB-1wg"/>
+                <outlet property="label3" destination="MSc-7l-eF8" id="Lxr-Vs-1RZ"/>
+                <outlet property="label4" destination="AmA-2N-2oF" id="TCe-Ew-wr7"/>
                 <outlet property="reasonLabel" destination="caT-xQ-xDd" id="Bmh-eW-hDc"/>
                 <outlet property="typeLabel" destination="Tbq-jB-oOZ" id="9DG-Ld-obS"/>
             </connections>
