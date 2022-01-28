@@ -161,7 +161,7 @@
   "REFUND_AMOUNT" = "Jumlah pengembalian uang";
   "INSTRUCTIONS" = "Instructions";
   "REFUND_RETURN" = "Pengembalian dana";
-  "REASON_TITLE" = "Silakan Pilih Alasan";
+  "REASON_TITLE" = "Pilih alasan";
 //  "MANY_SALES_HINT" = "Item ini tidak dapat diganti / dikembalikan lagi. Untuk bantuan lebih lanjut; silahkan hubungi costumer support.";
   "ORDER_CANCEL_REASON" = "Alasan Pembatalan";
 //  "CHECK_OUT" = "Check out";

@@ -55,7 +55,7 @@ static BOOL _accountSuccess = NO;
 - (IBAction)sendAction:(id)sender {
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.check parameters:@{@"account":_field.text} success:^(id  _Nullable response) {
-        if ([response[@"isExisting"] isEqualToString:@"0"]) {
+        if ([response[@"isExisting"] isEqualToString:@"1"]) {
             //未注册
             verifyCodeVC *vc = [[verifyCodeVC alloc] init];
             vc.account = weakself.field.text;

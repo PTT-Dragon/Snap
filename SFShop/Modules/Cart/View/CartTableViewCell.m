@@ -74,6 +74,9 @@
     _priceDownView.hidden = !model.cutRate;
     _priceDownLabel.text = model.cutRate;
     self.campaignsBtn.hidden = (model.campaigns && model.campaigns.count != 0);
+    if (model.campaigns && model.campaigns.count != 0) {
+        [self.campaignsBtn setTitle:[model.campaigns.firstObject campaignName] forState:0];
+    }
     [self updateBtnState];
 }
 - (void)setIsInvalid:(BOOL)isInvalid
