@@ -66,7 +66,8 @@
         //登出状态
         self.nameLabel.text = kLocalizedString(@"Login_Or_Register");
         self.nameLabel.userInteractionEnabled = YES;
-        self.imgVIew.image = [UIImage imageNamed:@"默认头像"];
+        self.nameLabel.font = BOLDSYSTEMFONT(16);
+        self.imgVIew.image = [UIImage imageNamed:@"默认头像-黑"];
         self.couponLabel.text = @"--";
         self.WhishlistLabel.text = @"--";
         self.RecentlyCountLabel.text = @"--";
@@ -74,7 +75,8 @@
     }else{
         self.nameLabel.userInteractionEnabled = NO;
         self.nameLabel.text = model.userRes.nickName;
-        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        self.nameLabel.font = [UIFont systemFontOfSize:16];
+        [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"默认头像-黑"]];
         self.mobileLabel.text = model.userRes.mobilePhone;
         self.couponLabel.text = model.userRes.couponNum;
     }
