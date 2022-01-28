@@ -103,17 +103,17 @@
     MGCShareItemModel *faceBookModel = [[MGCShareItemModel alloc] init];
     faceBookModel.itemName = @"FaceBook";
     faceBookModel.itemType = UMSocialPlatformType_Facebook;
-    faceBookModel.itemImage = @"facebook";
+    faceBookModel.itemImage = @"00262_ Facebook Fill";
     
     MGCShareItemModel *whatsAppModel = [[MGCShareItemModel alloc] init];
     whatsAppModel.itemName = @"WhatsApp";
     whatsAppModel.itemType = UMSocialPlatformType_Whatsapp;
-    whatsAppModel.itemImage = @"whatsapp";
+    whatsAppModel.itemImage = @"00266_ Wx Fill";
     
     MGCShareItemModel *twitterModel = [[MGCShareItemModel alloc] init];
     twitterModel.itemName = @"Twitter";
     twitterModel.itemType = UMSocialPlatformType_Twitter;
-    twitterModel.itemImage = @"twitter";
+    twitterModel.itemImage = @"00263_ Twitter Fill";
     
     
     MGCShareItemModel *copyModel = [[MGCShareItemModel alloc] init];
