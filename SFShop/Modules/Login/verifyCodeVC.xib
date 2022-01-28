@@ -15,6 +15,7 @@
                 <outlet property="contentLabel" destination="ZIX-q0-mIt" id="qep-cj-Jaa"/>
                 <outlet property="countdownLabel" destination="txv-cq-KqF" id="2tv-1U-2Z6"/>
                 <outlet property="recendBtn" destination="oef-f3-KgA" id="YCW-oW-4Q6"/>
+                <outlet property="titleLabel" destination="SH9-68-sBi" id="fbx-kO-cza"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

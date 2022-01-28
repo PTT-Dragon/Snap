@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimilarViewController">
             <connections>
+                <outlet property="buyBtn" destination="9BU-5M-Cs7" id="i5S-Hj-L2Y"/>
                 <outlet property="imgView" destination="dfM-aq-66x" id="NXz-5d-g0D"/>
                 <outlet property="nameLabel" destination="z73-ao-53x" id="agJ-To-M4Q"/>
                 <outlet property="priceLabel" destination="mnH-ts-Yyb" id="UWS-eA-4xb"/>

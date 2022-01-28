@@ -12,10 +12,16 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *productIV;
 @property (weak, nonatomic) IBOutlet UILabel *productNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @end
 
 @implementation ArticleProductCell
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [_btn setTitle:kLocalizedString(@"BUY") forState:0];
+}
 
 - (void)setModel:(ArticleProduct *)model {
     _model = model;

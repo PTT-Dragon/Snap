@@ -87,7 +87,7 @@
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a27-4w-ekI">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a27-4w-ekI">
                     <rect key="frame" x="147.5" y="529" width="119" height="27"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="Have account?Login">
@@ -97,8 +97,8 @@
                         <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="G7n-d4-c3F"/>
                     </connections>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum 8 characters with numeric, upper case and lower case" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDk-OG-nhi">
-                    <rect key="frame" x="30" y="245" width="307" height="12"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-50 characters.Must include 3 of the folowing:numbers.uppercase letters.lowercase letters.and special characters." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDk-OG-nhi">
+                    <rect key="frame" x="30" y="245" width="354" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -132,6 +132,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="N8J-oG-r1A" secondAttribute="trailing" constant="16" id="lZP-fI-flQ"/>
                 <constraint firstItem="SZU-AW-eDK" firstAttribute="centerY" secondItem="N8J-oG-r1A" secondAttribute="centerY" id="uGd-QW-rfM"/>
                 <constraint firstItem="SZU-AW-eDK" firstAttribute="trailing" secondItem="N8J-oG-r1A" secondAttribute="trailing" constant="-10" id="vrQ-xu-C9D"/>
+                <constraint firstItem="rDk-OG-nhi" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" constant="-30" id="wF5-UC-jAr"/>
                 <constraint firstItem="hQT-I0-i1t" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="32" id="xAj-cX-qsg"/>
                 <constraint firstItem="hQT-I0-i1t" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="58" id="xKA-GB-lks"/>
             </constraints>

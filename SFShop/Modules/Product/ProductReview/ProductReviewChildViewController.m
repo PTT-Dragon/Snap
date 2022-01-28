@@ -33,7 +33,7 @@
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self requestEvaluationsList];
     }];
-    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         [self requestMoreEvaluationsList];
     }];
     [self.tableView.mj_header beginRefreshing];

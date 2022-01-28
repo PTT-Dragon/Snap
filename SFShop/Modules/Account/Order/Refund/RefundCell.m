@@ -47,7 +47,11 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemsModel.imagUrl)]];
     _nameLabel.text = itemsModel.productName;
     NSDictionary *dic = [itemsModel.productRemark jk_dictionaryValue];
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allKeys.firstObject];
+    NSString *sku = @"";
+    for (NSString *key in dic.allKeys) {
+        sku = [sku stringByAppendingFormat:@"%@ ",dic[key]];
+    }
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _countLabel.text = [NSString stringWithFormat:@"X%@",itemsModel.submitNum];
     _priceLabel.text = [itemsModel.unitPrice currency];
     NSString *eventType = @"";
@@ -69,7 +73,7 @@
         _btn.hidden = YES;
     }else if ([model.state isEqualToString:@"A"]){
         //待审核
-        _statuLabel.text = kLocalizedString(@"Pending_Review");
+        _statuLabel.text = @"Pending_Review";
         _contentLabel.text = @"Please wait patiently for review";
         _viewHei.constant = 52;
         _btn.hidden = NO;

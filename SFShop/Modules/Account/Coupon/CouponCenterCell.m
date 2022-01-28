@@ -11,8 +11,10 @@
 #import "NSString+Fee.h"
 #import "UseCouponViewController.h"
 #import "NSString+Add.h"
+#import "NSDate+Helper.h"
 
 @interface CouponCenterCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet UIImageView *storeImgView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
 @property (nonatomic,strong) CouponModel *model;
@@ -31,18 +33,21 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView reloadData];
+    _getBtn.titleLabel.numberOfLines = 0;
 }
 - (void)setContent:(CouponModel *)model
 {
     _model = model;
     if ([model.discountMethod isEqualToString:@"DISC"]) {
-        _discountLabel.text =[NSString stringWithFormat:@"%.0f%% off",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat]];
-        _discountLabel.attributedText = [NSMutableString difereentFontStr:_discountLabel.text font:[UIFont fontWithName:@"Helvetica-Bold" size:13] changeText:@"off"];
+        _discountLabel.text =[NSString stringWithFormat:@"%.0f%% %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],kLocalizedString(@"DISCOUNT")];
+        _discountLabel.attributedText = [NSMutableString difereentFontStr:_discountLabel.text font:[UIFont fontWithName:@"Helvetica-Bold" size:13] changeText:kLocalizedString(@"DISCOUNT")];
+        _timeLabel.text = [NSString stringWithFormat:@"%@ %@ %@",kLocalizedString(@"VALID_RANGE"),_model.getOffsetExp,kLocalizedString(@"hari")];
     }else{
-        _discountLabel.text = [NSString stringWithFormat:@"%@ off",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
+        _discountLabel.text = [NSString stringWithFormat:@"%@ %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency],kLocalizedString(@"DISCOUNT")];
         _discountLabel.font = CHINESE_BOLD(14);
+        _timeLabel.text = [NSString stringWithFormat:@"%@-%@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }
-    
+    [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogo)] placeholderImage:[UIImage imageNamed:@"toko"]];
     if (model.userCoupons.count > 0) {
         [self.getBtn setTitle:kLocalizedString(@"USE_NOW") forState:0];
     }else{
@@ -54,7 +59,7 @@
         _contentLabel.text = [NSString stringWithFormat:@"%@ Without limit",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
     }
     _storeNameLabel.text = model.storeName;
-    _timeLabel.text = [NSString stringWithFormat:@"%@-%@",model.effDateStr,model.expDateStr];
+    
     [self.collectionView reloadData];
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

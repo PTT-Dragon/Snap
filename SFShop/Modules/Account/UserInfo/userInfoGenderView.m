@@ -12,6 +12,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *femaleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *secrecyBtn;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel3;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel4;
 
 @end
 
@@ -29,6 +33,10 @@
     _maleBtn.selected = [model.userRes.gender isEqualToString:@"M"];
     _femaleBtn.selected = [model.userRes.gender isEqualToString:@"F"];
     _secrecyBtn.selected = [model.userRes.gender isEqualToString:@""];
+//    _titleLabel1.text = kLocalizedString(@"");
+    _titleLabel2.text = kLocalizedString(@"MALE");
+    _titleLabel3.text = kLocalizedString(@"FEMALE");
+    _titleLabel4.text = kLocalizedString(@"PREFER_NOT_TO_RESPOND");
 }
 - (void)aaa
 {

@@ -70,6 +70,7 @@
             <connections>
                 <outlet property="contentLabel" destination="oIa-4e-Gcq" id="gmA-zF-Jvi"/>
                 <outlet property="infoLabel" destination="zPf-Sf-4uf" id="XIh-o1-CVO"/>
+                <outlet property="titleLabel" destination="cne-Rb-f1O" id="VU5-8I-WAW"/>
             </connections>
             <point key="canvasLocation" x="112" y="73"/>
         </tableViewCell>

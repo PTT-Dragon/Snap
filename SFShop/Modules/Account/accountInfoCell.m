@@ -54,7 +54,7 @@
     [_nameLabel addGestureRecognizer:nameLabelTap];
     self.noReadMessageCountLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     self.noReadMessageCountLabel.layer.borderWidth = 1;
-    self.recentlyLabel.text = kLocalizedString(@"Recently_Viewed");
+    self.recentlyLabel.text = kLocalizedString(@"RECENTLY_VIEWED");
     self.wishLabel.text = kLocalizedString(@"WISHLIST");
     self.vouchersLabel.text = kLocalizedString(@"COUPONS");
     self.imgViewTop.constant = statuBarHei+16;

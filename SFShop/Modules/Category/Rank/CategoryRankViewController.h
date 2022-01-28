@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否聚焦搜索
 @property (nonatomic, readwrite, assign, getter=isActiveSearch) BOOL activeSearch;
 
+/// 点击返回是否需要返回到主页
+@property (nonatomic, readwrite, assign, getter=isShouldBackToHome) BOOL shouldBackToHome;
+
 @end
 
 NS_ASSUME_NONNULL_END

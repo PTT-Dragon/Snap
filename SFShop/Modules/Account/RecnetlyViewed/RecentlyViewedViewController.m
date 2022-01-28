@@ -87,7 +87,7 @@
     _dateSelected = [NSDate date];
     _selectionMode = NO;
     [self initUI];
-    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         [self loadMoreDatas];
     }];
     [self loadDatas];

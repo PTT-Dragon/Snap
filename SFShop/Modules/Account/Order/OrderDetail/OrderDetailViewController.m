@@ -32,6 +32,7 @@
 #import <OYCountDownManager/OYCountDownManager.h>
 #import "OrderDetailTitleCell.h"
 #import "ProductViewController.h"
+#import "YCMenuView.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -222,7 +223,7 @@
 {
     OrderDetailPaymentsModel *paymentModel = self.model.payments.firstObject;
     [_dataSource addObjectsFromArray:@[@{kLocalizedString(@"ORDER_CODE"):self.model.orderNbr},@{kLocalizedString(@"CREATION_TIME"):self.model.createdDate},@{kLocalizedString(@"PAYER_EMAIL"):self.model.billAddress.contactEmail},@{kLocalizedString(@"PAYMENT_TIME"):paymentModel ? paymentModel.paymentDate : @"--"},@{kLocalizedString(@"COMPLETION_TIME"):self.model.completionDate ? self.model.completionDate: @"--"}]];
-    [_orderInfoDataSource addObjectsFromArray:@[@{kLocalizedString(@"SUBTOTAL"):[self.model.offerPrice currency]},@{kLocalizedString(@"PROMOTION"):[NSString stringWithFormat:@"-%@",[self.model.storeCampaignPrice currency]]},@{kLocalizedString(@"SHIPPING_FEE"):[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"%@:%@ items",kLocalizedString(@"Total"),self.model.offerCnt]:[self.model.orderPrice currency]}]];
+    [_orderInfoDataSource addObjectsFromArray:@[@{kLocalizedString(@"SUBTOTAL"):[self.model.offerPrice currency]},@{kLocalizedString(@"PROMOTION"):[NSString stringWithFormat:@"-%@",[self.model.storeCampaignPrice currency]]},@{kLocalizedString(@"SHIPPING_FEE"):[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"%@:%@ %@",kLocalizedString(@"Total"),self.model.offerCnt,kLocalizedString(@"ITEMS")]:[self.model.orderPrice currency]}]];
     [self.tableView reloadData];
     [self layoutSubviews];
 }
@@ -247,7 +248,7 @@
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
             [self.btn2 setTitle:kLocalizedString(@"REVIEW") forState:0];
         }else{
-            [self.btn2 setTitle:@"VIEW REVIEW" forState:0];
+            [self.btn2 setTitle:@"VIEW_REVIEW" forState:0];
         }
         self.moreBtn.hidden = NO;
         self.btn2Left.constant = AdaptedWidth(150);
@@ -298,8 +299,15 @@
     });
 }
 - (IBAction)moreAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    _moreView.hidden = !sender.selected;
+    @weakify(self);
+    YCMenuAction *action1 = [YCMenuAction actionWithTitle:kLocalizedString(@"REBUY") image:nil handler:^(YCMenuAction *action) {
+        @strongify(self);
+        [self moreAction1:nil];
+    }];
+    YCMenuView *menu = [YCMenuView menuWithActions:@[action1] width:114 relyonView:sender];
+    menu.textFont = [UIFont systemFontOfSize:14];
+    menu.cellAlignment = NSTextAlignmentCenter;
+    [menu show];
 }
 - (IBAction)moreAction1:(UIButton *)sender {
     [self rebuy];

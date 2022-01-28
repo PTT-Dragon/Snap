@@ -48,9 +48,7 @@
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
     _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei);
-    self.magicController.currentPage = self.selType == OrderListType_All ? 1: 2;
-    self.currentMenuIndex = self.magicController.currentPage;
-    [self.magicController switchToPage:self.currentMenuIndex animated:0];
+    
     [_magicController.magicView reloadData];
     NSInteger page = self.selType == OrderListType_All ? 0: self.selType == OrderListType_ToPay ? 1: self.selType == OrderListType_ToShip ? 2: self.selType == OrderListType_ToReceive ? 3: 0;
     [self.magicController switchToPage:page animated:YES];
@@ -72,8 +70,8 @@
     NSString *all = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"ALL"),self.orderNumModel.toPayNum+self.orderNumModel.toReceiveNum+self.orderNumModel.toDeliveryNum+self.orderNumModel.completedNum+self.orderNumModel.canceledNum];
     NSString *topay = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TO_PAY"),self.orderNumModel.toPayNum];
     NSString *toship = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TO_SHIP"),self.orderNumModel.toDeliveryNum];
-    NSString *shiped = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TORECEIVE"),self.orderNumModel.toReceiveNum];
-    NSString *complete = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"DONE"),self.orderNumModel.completedNum];
+    NSString *shiped = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"TO_RECEIVE"),self.orderNumModel.toReceiveNum];
+    NSString *complete = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"COMPLETED"),self.orderNumModel.completedNum];
     NSString *cancel = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"CANCELLED"),self.orderNumModel.canceledNum];
     self.menuList = @[all,topay,toship,shiped,complete,cancel];
     [self.magicController.magicView reloadMenuTitles];
@@ -131,7 +129,8 @@
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor whiteColor];
-        _magicController.magicView.sliderColor = [UIColor redColor];
+        _magicController.magicView.sliderColor = [UIColor blackColor];
+        _magicController.magicView.itemSpacing = 80;
         _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.navigationHeight = 40.f;
@@ -146,14 +145,16 @@
     if (_navSearchView == nil) {
         SFSearchItem *backItem = [SFSearchItem new];
         backItem.icon = @"nav_back";
-        backItem.itemActionBlock = ^(SFSearchModel *model,BOOL isSelected) {
-            [self.navigationController popViewControllerAnimated:YES];
+        backItem.itemActionBlock = ^(SFSearchState state,SFSearchModel *model,BOOL isSelected) {
+            if (state == SFSearchStateInUnActive || state == SFSearchStateInFocuActive) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         };
         SFSearchItem *rightItem = [SFSearchItem new];
         rightItem.icon = @"more-horizontal";
         rightItem.selectedIcon = @"more-vertical";
         __weak __typeof(self)weakSelf = self;
-        rightItem.itemActionBlock = ^(SFSearchModel * _Nullable model,BOOL isSelected) {
+        rightItem.itemActionBlock = ^(SFSearchState state,SFSearchModel * _Nullable model,BOOL isSelected) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
             [strongSelf.moreView removeFromSuperview];
             strongSelf.moreView = [[BaseMoreView alloc] init];

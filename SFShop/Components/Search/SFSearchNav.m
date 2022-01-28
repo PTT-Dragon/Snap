@@ -108,14 +108,24 @@
             [self.searchView removeFromSuperview];
             [self endEditing:YES];
             if (self.activeSearch) {
-                [SceneManager transToHome];
+                !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(SFSearchStateInFocuActive,nil,NO);
+            } else {
+                !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(self.searchingView.hidden?SFSearchStateInHistory:SFSearchStateInSearching,nil,NO);
             }
         } else {
-            !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(nil,NO);
+            !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(SFSearchStateInUnActive,nil,NO);
         }
     } else if (btn == self.rightBtn) {
         btn.selected = !btn.selected;
-        !self.rItem.itemActionBlock ?: self.rItem.itemActionBlock(nil,btn.selected);
+        if ([self.superview.subviews containsObject:self.searchView]) {
+            if (self.activeSearch) {
+                !self.rItem.itemActionBlock ?: self.rItem.itemActionBlock(SFSearchStateInFocuActive,nil,btn.selected);
+            } else {
+                !self.rItem.itemActionBlock ?: self.rItem.itemActionBlock(self.searchingView.hidden?SFSearchStateInHistory:SFSearchStateInSearching,nil,btn.selected);
+            }
+        } else {
+            !self.rItem.itemActionBlock ?: self.rItem.itemActionBlock(SFSearchStateInUnActive,nil,btn.selected);
+        }
     }
 }
 
@@ -125,6 +135,8 @@
         if (![self.superview.subviews containsObject:self.searchView]) {
             [self.superview addSubview:self.searchView];
         }
+    } else if (self.searchType == SFSearchTypeFake) {
+        !self.fakeTouchBock ?: self.fakeTouchBock();
     }
 }
 

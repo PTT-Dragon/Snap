@@ -77,6 +77,7 @@
     accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
     cell.label.text = dic[@"title"];
     cell.imgView.image = [UIImage imageNamed:dic[@"image"]];
+    cell.labelLeading.constant = 25;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

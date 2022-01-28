@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CartTableViewCellDelegate <NSObject>
 
 - (void)modifyCartInfoWithDic:(NSDictionary *)dic;
+- (void)skuActionWithModel:(CartItemModel *)model;
 
 @end
 

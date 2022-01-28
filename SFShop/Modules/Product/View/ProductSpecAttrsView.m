@@ -286,8 +286,8 @@
     BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
         if (object.productId.integerValue == weakself.selProductModel.productId) {
             groupCount = object.shareByNum;
-            self.maxPurchaseCount = object.buyAmtLimit;
-            self.priceLabel.text = [[NSString stringWithFormat:@"%f", object.shareBuyPrice] currency];
+            self.maxPurchaseCount = MIN(self.maxPurchaseCount, object.buyAmtLimit);
+            self.priceLabel.text = self.attrsType == groupSingleBuyType ? [[NSString stringWithFormat:@"%ld",(long)self.selProductModel.salesPrice] currency]: [[NSString stringWithFormat:@"%f", object.shareBuyPrice] currency];
         }
         return object.productId.integerValue == weakself.selProductModel.productId;
     }].count > 0;
@@ -327,7 +327,7 @@
         //普通购买
         _btn2.hidden = YES;
         _btn1.tag = buyType + 100;
-        [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
+        [_btn1 setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
         [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -356,7 +356,7 @@
         [_btn2 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
         _btn1.tag = groupSingleBuyType + 100;
         _btn2.tag = cartType + 100;
-        [_btn1 setTitle:kLocalizedString(@"BUY_NOW") forState:0];
+        [_btn1 setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
         [_btn2 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.mas_right).offset(-16);

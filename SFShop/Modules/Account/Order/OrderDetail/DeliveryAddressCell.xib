@@ -93,6 +93,7 @@
                 <outlet property="emailLabel" destination="w3t-x3-i7M" id="9vT-bC-BMN"/>
                 <outlet property="nameLabel" destination="Lqh-wc-q9J" id="7rr-Hr-Ujp"/>
                 <outlet property="phoneLabel" destination="hmQ-eJ-L0o" id="XZS-cp-6hb"/>
+                <outlet property="titleLabel" destination="W4s-m7-j5i" id="bTk-I1-rVd"/>
             </connections>
             <point key="canvasLocation" x="112" y="73"/>
         </tableViewCell>

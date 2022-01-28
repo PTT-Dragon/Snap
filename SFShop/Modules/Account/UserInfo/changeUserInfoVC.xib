@@ -12,11 +12,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="changeUserInfoVC">
             <connections>
                 <outlet property="birthBtn" destination="Nl5-a6-B9u" id="JEN-Ht-yRX"/>
+                <outlet property="birthLabel" destination="AJ4-4L-g8z" id="tB5-7n-lWS"/>
                 <outlet property="explainLabel1" destination="hdR-Qk-b4T" id="JKj-3R-Qaa"/>
                 <outlet property="genderBtn" destination="9tx-Sn-L8h" id="BgG-VY-k3c"/>
                 <outlet property="nameField" destination="M1D-Ku-zRU" id="W2m-0c-qkK"/>
                 <outlet property="saveBtn" destination="74e-Ek-7kv" id="jst-Z8-P3O"/>
                 <outlet property="tipLabel1" destination="h0e-Fa-69p" id="hdR-eD-fwz"/>
+                <outlet property="titleLabel" destination="1sT-je-QrT" id="zJB-LX-nwR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

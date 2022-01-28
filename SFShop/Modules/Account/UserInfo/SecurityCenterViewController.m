@@ -48,6 +48,7 @@
     cell.label.text = dic[@"title"];
     cell.imgView.image = [UIImage imageNamed:@""];
     cell.subTitleLabel.text = dic[@"subTitle"];
+    cell.labelLeading.constant = 25;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

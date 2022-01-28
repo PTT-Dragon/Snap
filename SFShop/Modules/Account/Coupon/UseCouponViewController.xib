@@ -16,7 +16,9 @@
                 <outlet property="cartBtn" destination="uLQ-Rc-Yw8" id="Ykc-dM-n4s"/>
                 <outlet property="couponNameLabel" destination="65G-6A-PYd" id="qLt-4o-nBg"/>
                 <outlet property="couponView" destination="RY7-gh-hx9" id="KOj-0s-UWQ"/>
+                <outlet property="discountTitleLabel" destination="Rpd-LE-Kie" id="Tgx-1U-L07"/>
                 <outlet property="expiredDataLabel" destination="Fbp-07-jOy" id="U10-Pe-Ud2"/>
+                <outlet property="expiryTitleLabel" destination="2RI-YF-mv4" id="G0h-oc-Cev"/>
                 <outlet property="explainLabel" destination="Zsv-Ep-zqe" id="Lw0-eA-xex"/>
                 <outlet property="label1" destination="98S-Gg-69e" id="TYc-Bm-W9a"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -28,20 +30,20 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RY7-gh-hx9">
-                    <rect key="frame" x="16" y="60" width="382" height="84"/>
+                    <rect key="frame" x="16" y="60" width="382" height="110"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7re-wl-TOH">
-                            <rect key="frame" x="0.0" y="0.0" width="90" height="84"/>
+                            <rect key="frame" x="0.0" y="0.0" width="90" height="110"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="a-00196_DiscountVoucher" translatesAutoresizingMaskIntoConstraints="NO" id="8nE-9P-zup">
-                                    <rect key="frame" x="25" y="15" width="40" height="40"/>
+                                    <rect key="frame" x="25" y="28" width="40" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="vV0-5B-hNX"/>
                                         <constraint firstAttribute="width" constant="40" id="vVk-Xk-8Dn"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpd-LE-Kie">
-                                    <rect key="frame" x="19.5" y="55" width="51" height="15"/>
+                                    <rect key="frame" x="19.5" y="68" width="51" height="15"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                     <nil key="highlightedColor"/>
@@ -63,13 +65,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbp-07-jOy">
-                            <rect key="frame" x="102" y="57.5" width="34" height="14.5"/>
+                            <rect key="frame" x="102" y="83.5" width="34" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RI-YF-mv4">
-                            <rect key="frame" x="102" y="42" width="56" height="12"/>
+                            <rect key="frame" x="102" y="68" width="56" height="12"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
@@ -79,7 +81,7 @@
                     <constraints>
                         <constraint firstItem="65G-6A-PYd" firstAttribute="top" secondItem="RY7-gh-hx9" secondAttribute="top" constant="12" id="3SJ-92-lns"/>
                         <constraint firstAttribute="bottom" secondItem="2RI-YF-mv4" secondAttribute="bottom" constant="30" id="ES5-Io-DhB"/>
-                        <constraint firstAttribute="height" constant="84" id="ExK-e3-HHM"/>
+                        <constraint firstAttribute="height" constant="110" id="ExK-e3-HHM"/>
                         <constraint firstItem="7re-wl-TOH" firstAttribute="top" secondItem="RY7-gh-hx9" secondAttribute="top" id="FGT-Un-s4T"/>
                         <constraint firstAttribute="trailing" secondItem="65G-6A-PYd" secondAttribute="trailing" constant="13" id="Jfs-az-1nL"/>
                         <constraint firstAttribute="bottom" secondItem="7re-wl-TOH" secondAttribute="bottom" id="JoB-eV-xxw"/>

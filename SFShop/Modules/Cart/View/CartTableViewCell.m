@@ -9,6 +9,7 @@
 #import "CartChoosePromotion.h"
 #import "NSString+Fee.h"
 #import "UIButton+time.h"
+#import "ProductViewController.h"
 
 @interface CartTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *additonBtn;
@@ -42,10 +43,19 @@
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
     [_selBtn setImage:[UIImage imageNamed:@"Vector"] forState:0];
     [_selBtn setImage:[UIImage imageNamed:@"已选中"] forState:1];
-    self.subtractBtn.mm_acceptEventInterval = 2;
-    self.additonBtn.mm_acceptEventInterval = 2;
-    self.selBtn.mm_acceptEventInterval = 2;
+    self.subtractBtn.mm_acceptEventInterval = 1;
+    self.additonBtn.mm_acceptEventInterval = 1;
+    self.selBtn.mm_acceptEventInterval = 1;
     [self updateBtnState];
+    UITapGestureRecognizer *productTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toProduct)];
+    [self.contentView addGestureRecognizer:productTap];
+}
+- (void)toProduct
+{
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = _model.offerId.integerValue;
+    vc.productId = _model.productId.integerValue;
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 
 - (void)setModel:(CartItemModel *)model
@@ -62,12 +72,7 @@
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _priceDownView.hidden = !model.cutRate;
     _priceDownLabel.text = model.cutRate;
-    if (_isInvalid) {
-        _selBtn.enabled = NO;
-    }else{
-        _selBtn.enabled = YES;
-        _selBtn.selected = [model.isSelected isEqualToString:@"Y"];
-    }
+    [self updateBtnState];
 }
 - (void)setIsInvalid:(BOOL)isInvalid
 {
@@ -76,8 +81,20 @@
 - (void)updateBtnState
 {
     self.subtractBtn.enabled = ![self.subtractBtn.titleLabel.text isEqualToString:@"1"];
-    [self.subtractBtn setImage: self.subtractBtn.enabled ? [UIImage imageNamed:@"subtract-2"]: [UIImage imageNamed:@"subtract"] forState:0];
+    self.additonBtn.enabled = _countLabel.text.integerValue < _model.stock;
+    if (_isInvalid) {
+        _selBtn.enabled = NO;
+        _additonBtn.enabled = NO;
+        _subtractBtn.enabled = NO;
+    }else{
+        _additonBtn.enabled = YES;
+        _subtractBtn.enabled = YES;
+        _selBtn.enabled = YES;
+        _selBtn.selected = [_model.isSelected isEqualToString:@"Y"];
+    }
+    [self.subtractBtn setImage: self.subtractBtn.enabled ? [UIImage imageNamed:@"subtract"]: [UIImage imageNamed:@"subtract-2"] forState:0];
     self.subtractBtn.layer.borderWidth = self.subtractBtn.enabled ? 1: 0;
+    [self.additonBtn setImage:self.additonBtn.enabled ? [UIImage imageNamed:@"new-alternative"]:[UIImage imageNamed:@"new-alternative-2"] forState:0];
 }
 - (IBAction)selAction:(UIButton *)sender {
     _model.isSelected = sender.selected ? @"N": @"Y";
@@ -92,6 +109,7 @@
     _model.num = [NSString stringWithFormat:@"%ld",i];
     [self setModel:_model];
     [self cartModifyAction];
+    [self updateBtnState];
 }
 - (IBAction)subtractAction:(UIButton *)sender {
     if (_isInvalid) {
@@ -112,10 +130,14 @@
     if (_isInvalid) {//$(MARKETING_VERSION)
         return;
     }
+    [self.delegate skuActionWithModel:_model];
 }
 - (void)cartModifyAction
 {
     NSDictionary *dic = [_model toDictionary];
     [self.delegate modifyCartInfoWithDic:dic];
 }
+
+
+
 @end

@@ -47,6 +47,7 @@
 		1B3C123126FC808F00235294 /* accountSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122F26FC808F00235294 /* accountSubCell.m */; };
 		1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C123026FC808F00235294 /* accountSubCell.xib */; };
 		1B41283A273141F100513430 /* CashOutHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B412839273141F100513430 /* CashOutHistoryViewController.m */; };
+		1B43338527A26F4800DBC196 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43338427A26F4800DBC196 /* PrivacyPolicyViewController.m */; };
 		1B43A409279D91D900E7E786 /* AddReviewItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43A407279D91D900E7E786 /* AddReviewItemCell.m */; };
 		1B43A40A279D91D900E7E786 /* AddReviewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B43A408279D91D900E7E786 /* AddReviewItemCell.xib */; };
 		1B43A40D279D950900E7E786 /* AddReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B43A40C279D950900E7E786 /* AddReviewVC.m */; };
@@ -443,6 +444,7 @@
 		62E428E827A2292A00A02F91 /* UITableViewCell+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CC27A2292A00A02F91 /* UITableViewCell+WebVideoCache.m */; };
 		62E428E927A2292A00A02F91 /* JPVideoPlayerCachePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CD27A2292A00A02F91 /* JPVideoPlayerCachePath.m */; };
 		62E428EA27A2292A00A02F91 /* JPResourceLoadingRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E428CE27A2292A00A02F91 /* JPResourceLoadingRequestTask.m */; };
+		8494185A27A2E0BE007D6D4F /* YCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8494185927A2E0BE007D6D4F /* YCMenuView.m */; };
 		8E11A8CB278DCD57005D1FC3 /* ProductionRecomandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */; };
 		8E11A8CE278DD14D005D1FC3 /* UIViewController+parentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */; };
 		8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */; };
@@ -654,6 +656,8 @@
 		1B3C123026FC808F00235294 /* accountSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = accountSubCell.xib; sourceTree = "<group>"; };
 		1B412838273141F100513430 /* CashOutHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashOutHistoryViewController.h; sourceTree = "<group>"; };
 		1B412839273141F100513430 /* CashOutHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashOutHistoryViewController.m; sourceTree = "<group>"; };
+		1B43338327A26F4800DBC196 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		1B43338427A26F4800DBC196 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		1B43A406279D91D900E7E786 /* AddReviewItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReviewItemCell.h; sourceTree = "<group>"; };
 		1B43A407279D91D900E7E786 /* AddReviewItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReviewItemCell.m; sourceTree = "<group>"; };
 		1B43A408279D91D900E7E786 /* AddReviewItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReviewItemCell.xib; sourceTree = "<group>"; };
@@ -1345,6 +1349,8 @@
 		62E428CE27A2292A00A02F91 /* JPResourceLoadingRequestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPResourceLoadingRequestTask.m; sourceTree = "<group>"; };
 		62E428CF27A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerScrollViewProtocol.h; sourceTree = "<group>"; };
 		7B387B141A9718B8B8605036 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
+		8494185827A2E0BE007D6D4F /* YCMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCMenuView.h; sourceTree = "<group>"; };
+		8494185927A2E0BE007D6D4F /* YCMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCMenuView.m; sourceTree = "<group>"; };
 		8E11A8C9278DCD57005D1FC3 /* ProductionRecomandView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductionRecomandView.h; sourceTree = "<group>"; };
 		8E11A8CA278DCD57005D1FC3 /* ProductionRecomandView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductionRecomandView.m; sourceTree = "<group>"; };
 		8E11A8CC278DD14D005D1FC3 /* UIViewController+parentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+parentViewController.h"; sourceTree = "<group>"; };
@@ -2737,6 +2743,7 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8494185727A2E0BE007D6D4F /* YCMenuView */,
 				62E4289627A2292900A02F91 /* ImgAndVideoBanner */,
 				8EACB63C2781E7D30066BD3A /* Umeng */,
 				1B82AE9B277080B700D75E00 /* YYCache */,
@@ -2762,6 +2769,8 @@
 				1BD8E7CF275FB8F900130DCC /* PublicShareView.xib */,
 				1BF56CCE2761000F00B40CAA /* CountDown.h */,
 				1BF56CCF2761001000B40CAA /* CountDown.m */,
+				1B43338327A26F4800DBC196 /* PrivacyPolicyViewController.h */,
+				1B43338427A26F4800DBC196 /* PrivacyPolicyViewController.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2985,6 +2994,15 @@
 				62E428CF27A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.h */,
 			);
 			path = JPVideoPlayer;
+			sourceTree = "<group>";
+		};
+		8494185727A2E0BE007D6D4F /* YCMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				8494185827A2E0BE007D6D4F /* YCMenuView.h */,
+				8494185927A2E0BE007D6D4F /* YCMenuView.m */,
+			);
+			path = YCMenuView;
 			sourceTree = "<group>";
 		};
 		8E1872C02795A58200DBEE3E /* Share */ = {
@@ -4179,6 +4197,7 @@
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */,
 				AE81BE1726FCA93A00AB4225 /* SFNetworkManager.m in Sources */,
+				8494185A27A2E0BE007D6D4F /* YCMenuView.m in Sources */,
 				AE81BE2F26FE1FD800AB4225 /* CategoryViewController.m in Sources */,
 				8E1EC987279D810200CE0088 /* CommunitySelectTableViewCell.m in Sources */,
 				AE4C6C012768E76B006788FE /* OrderLogisticsModel.m in Sources */,
@@ -4255,6 +4274,7 @@
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				1B6C52C6275C88FE00A1C617 /* RelationOrderDetailProductCell.m in Sources */,
 				AE8F32C4272E95BD008E3DD8 /* ProductCheckoutAddressCell.m in Sources */,
+				1B43338527A26F4800DBC196 /* PrivacyPolicyViewController.m in Sources */,
 				4B9FB9F326FB7A7C00C90790 /* AccountViewController.m in Sources */,
 				1B82AED7277080B700D75E00 /* YYSpriteSheetImage.m in Sources */,
 				AEA3297A2725391A00E7827A /* CategoryRankFilterCacheModel.m in Sources */,
@@ -4451,7 +4471,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.3;
+				CURRENT_PROJECT_VERSION = 6.5;
 				DEVELOPMENT_TEAM = 9VDC82RVHW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4492,7 +4512,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.3;
+				CURRENT_PROJECT_VERSION = 6.5;
 				DEVELOPMENT_TEAM = 9VDC82RVHW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

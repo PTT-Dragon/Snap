@@ -29,50 +29,47 @@
     return self;
 }
 
-- (void)loadsubviews {
-    [self.contentView addSubview:self.bgView];
-    [self.bgView addSubview:self.sectionLine];
-    [self.bgView addSubview:self.addressLabel];
-    [self.bgView addSubview:self.addressExtend];
-    [self.bgView addSubview:self.emailTF];
-}
-
-- (void)layout {
-    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+- (void)layoutSubviews{
+    
+    [self.bgView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(16);
         make.right.mas_equalTo(-16);
         make.top.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
     }];
     
-    [self.sectionLine mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.sectionLine mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(5);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(0.5);
     }];
     
-    [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        if (self.emailTF.hidden) {
-            make.centerY.mas_equalTo(0);
-        } else {
-            make.top.equalTo(self.sectionLine.mas_bottom).offset(16);
-        }
+    [self.addressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(20);
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-47);
     }];
     
-    [self.addressExtend mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.addressExtend mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15);
         make.size.mas_equalTo(CGSizeMake(16, 16));
         make.centerY.equalTo(self.addressLabel);
     }];
     
-    [self.emailTF mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.emailTF mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.addressLabel.mas_bottom).offset(12);
         make.left.mas_equalTo(20);
         make.height.mas_equalTo(30);
         make.right.mas_equalTo(-20);
     }];
+}
+
+- (void)loadsubviews {
+    [self.contentView addSubview:self.bgView];
+    [self.bgView addSubview:self.sectionLine];
+    [self.bgView addSubview:self.addressLabel];
+    [self.bgView addSubview:self.addressExtend];
+    [self.bgView addSubview:self.emailTF];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -100,7 +97,7 @@
         self.addressLabel.text = dataModel.addressModel.customAddress;
     }
 
-    [self layout];
+    [self layoutSubviews];
 }
 
 - (UIView *)bgView {

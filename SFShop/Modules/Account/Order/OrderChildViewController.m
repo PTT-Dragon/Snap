@@ -15,29 +15,31 @@
 #import "EmptyView.h"
 #import <OYCountDownManager/OYCountDownManager.h>
 
-
 @interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource,OrderListBottomCellDelegate>
-@property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSMutableArray *dataSource;
-@property (nonatomic,assign) NSInteger pageIndex;
-@property (nonatomic,strong) EmptyView *emptyView;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, assign) NSInteger pageIndex;
+@property (nonatomic, strong) EmptyView *emptyView;
+@property (nonatomic, strong) UIButton *gotoShopping;
 
 @end
 
 @implementation OrderChildViewController
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadDatas];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.pageIndex = 1;
     _dataSource = [NSMutableArray array];
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
-    [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
-    [_tableView registerNib:[UINib nibWithNibName:@"OrderListBottomCell" bundle:nil] forCellReuseIdentifier:@"OrderListBottomCell"];
-    [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListBottomCell" bundle:nil] forCellReuseIdentifier:@"OrderListBottomCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
@@ -45,16 +47,24 @@
     }];
     [kCountDownManager start];
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        self.pageIndex = 1;
         [self loadDatas];
     }];
-    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-        [self loadMoreDatas];
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        self.pageIndex += 1;
+        [self loadDatas];
     }];
     [self.tableView.mj_header beginRefreshing];
     [self.view addSubview:self.emptyView];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(90);
         make.left.right.bottom.mas_equalTo(self.view);
+    }];
+    [self.view addSubview:self.gotoShopping];
+    [self.gotoShopping mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(24);
+        make.right.bottom.mas_offset(-24);
+        make.height.mas_offset(46);
     }];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,29 +137,32 @@
 }
 - (void)loadDatas
 {
-    _pageIndex = 1;
     NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B,F,G": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:_searchText forKey:@"q"];
     [params setValue:@(_pageIndex) forKey:@"pageIndex"];
     [params setValue:@(20) forKey:@"pageSize"];
     [params setValue:state forKey:@"states"];
-    MPWeakSelf(self)
+    @weakify(self);
     [SFNetworkManager get:SFNet.order.list parameters:params success:^(id  _Nullable response) {
-        [weakself.dataSource removeAllObjects];
-        [weakself.tableView.mj_header endRefreshing];
+        @strongify(self);
+        if (self->_pageIndex == 1) {
+            [self.dataSource removeAllObjects];
+        }
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         NSArray *arr = response[@"list"];
         if (!kArrayIsEmpty(arr)) {
             for (NSDictionary *dic in arr) {
-                [weakself.dataSource addObject:[[OrderModel alloc]initWithDictionary:dic error:nil]];
+                [self.dataSource addObject:[[OrderModel alloc]initWithDictionary:dic error:nil]];
             }
-         
         }
-        [weakself.tableView reloadData];
-        [weakself showEmptyView];
+        [self.tableView reloadData];
+        [self showEmptyView];
     } failed:^(NSError * _Nonnull error) {
-        [weakself showEmptyView];
-        [weakself.tableView.mj_header endRefreshing];
+        @strongify(self);
+        [self showEmptyView];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 
@@ -159,38 +172,24 @@
     } else {
         self.emptyView.hidden = NO;
     }
+    self.gotoShopping.hidden = self.emptyView.hidden;
 }
 
-- (void)loadMoreDatas
-{
-    _pageIndex ++;
-    NSString *state = _type == OrderListType_All ? @"": _type == OrderListType_ToPay ? @"A": _type == OrderListType_ToShip ? @"B,F,G": _type == OrderListType_ToReceive ? @"C": _type == OrderListType_Cancel ? @"E": _type == OrderListType_Successful ? @"D": @"";
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:_searchText forKey:@"q"];
-    [params setValue:@(_pageIndex) forKey:@"pageIndex"];
-    [params setValue:@(20) forKey:@"pageSize"];
-    [params setValue:state forKey:@"states"];
-    MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.order.list parameters:params success:^(id  _Nullable response) {
-        [weakself.tableView.mj_footer endRefreshing];
-        NSArray *arr = response[@"list"];
-        if (!kArrayIsEmpty(arr)) {
-            for (NSDictionary *dic in arr) {
-                [weakself.dataSource addObject:[[OrderModel alloc]initWithDictionary:dic error:nil]];
-            }            
-        }
-        [weakself.tableView reloadData];
-    } failed:^(NSError * _Nonnull error) {
-        [weakself.tableView.mj_footer endRefreshing];
-    }];
-}
 - (void)setSearchText:(NSString *)searchText
 {
     _searchText = searchText;
     [self.tableView.mj_header beginRefreshing];
 }
 
+#pragma mark - <click event>
+- (void)gotoShoppingEvent{
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:0];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
+#pragma mark - <lazying>
 - (UITableView *)tableView
 {
     if (!_tableView) {
@@ -220,6 +219,19 @@
         _emptyView.hidden = YES;
     }
     return _emptyView;
+}
+
+- (UIButton *)gotoShopping{
+    
+    if (!_gotoShopping) {
+        
+        _gotoShopping = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_gotoShopping setTitle:kLocalizedString(@"Go_Shopping") forState:UIControlStateNormal];
+        [_gotoShopping setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [_gotoShopping setBackgroundColor:[UIColor jk_colorWithHexString:@"FF1659"]];
+        [_gotoShopping addTarget:self action:@selector(gotoShoppingEvent) forControlEvents:UIControlEventTouchUpInside];
+        
+    }return _gotoShopping;
 }
 
 @end

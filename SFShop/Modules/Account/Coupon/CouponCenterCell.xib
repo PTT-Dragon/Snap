@@ -53,13 +53,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20%" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-Xo-jHk">
-                                        <rect key="frame" x="10" y="20" width="100" height="34"/>
+                                        <rect key="frame" x="10" y="20" width="100" height="33.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount max Rp 30RB. Min Purchase Rp 100RB" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asd-8j-vXl">
-                                        <rect key="frame" x="10" y="74" width="100" height="63"/>
+                                        <rect key="frame" x="10" y="58.5" width="100" height="63"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="63" id="3hl-Vb-hNr"/>
                                         </constraints>
@@ -77,9 +77,8 @@
                                     <constraint firstAttribute="bottom" secondItem="ZLK-x8-BMW" secondAttribute="bottom" constant="16" id="GOy-f3-k76"/>
                                     <constraint firstItem="dbf-Xo-jHk" firstAttribute="leading" secondItem="6fF-Ry-sSD" secondAttribute="leading" constant="10" id="Sfi-tk-oAe"/>
                                     <constraint firstItem="ZLK-x8-BMW" firstAttribute="centerX" secondItem="6fF-Ry-sSD" secondAttribute="centerX" id="Th8-K1-CNq"/>
-                                    <constraint firstItem="asd-8j-vXl" firstAttribute="top" secondItem="dbf-Xo-jHk" secondAttribute="bottom" constant="20" id="UA5-5N-ZpM"/>
+                                    <constraint firstItem="asd-8j-vXl" firstAttribute="top" secondItem="dbf-Xo-jHk" secondAttribute="bottom" constant="5" id="UA5-5N-ZpM"/>
                                     <constraint firstAttribute="width" constant="120" id="fP6-yT-VaA"/>
-                                    <constraint firstItem="ZLK-x8-BMW" firstAttribute="top" secondItem="asd-8j-vXl" secondAttribute="bottom" constant="10" id="uDE-M1-1AZ"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="OkS-je-45e">
@@ -135,6 +134,7 @@
                 <outlet property="contentLabel" destination="asd-8j-vXl" id="oFY-cr-6i0"/>
                 <outlet property="discountLabel" destination="dbf-Xo-jHk" id="HkT-Jq-fSL"/>
                 <outlet property="getBtn" destination="ZLK-x8-BMW" id="B2c-nZ-nHz"/>
+                <outlet property="storeImgView" destination="WXO-sE-WWQ" id="rs8-lH-btA"/>
                 <outlet property="storeNameLabel" destination="DN8-M9-xHy" id="AY9-pU-Pp9"/>
                 <outlet property="timeLabel" destination="00z-ni-4Gh" id="LsT-vj-6Dp"/>
             </connections>

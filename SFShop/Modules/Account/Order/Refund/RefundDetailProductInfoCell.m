@@ -14,6 +14,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
 @property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *label3;
+@property (weak, nonatomic) IBOutlet UILabel *label4;
 
 @end
 
@@ -22,6 +26,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _label1.text = kLocalizedString(@"SERVICE_TYPE");
+    _label3.text = kLocalizedString(@"SERVICE_REASON");
+    _label2.text = kLocalizedString(@"REFUND_AMOUNT");
+    _label4.text = kLocalizedString(@"INSTRUCTIONS");
 }
 - (void)setModel:(RefundDetailModel *)model
 {
@@ -29,7 +37,7 @@
     self.label.text = [model.eventId isEqualToString:@"3"] ? kLocalizedString(@"REFUND_AMOUNT"): @"";
     _amountLabel.text = [model.eventId isEqualToString:@"3"] ? [model.refundCharge currency] : @"";
     _reasonLabel.text = model.orderReason;
-    _typeLabel.text = [model.eventId isEqualToString:@"2"] ? @"Return": [model.eventId isEqualToString:@"3"] ? @"Refund": @"Exchange";
+    _typeLabel.text = [model.eventId isEqualToString:@"2"] ? kLocalizedString(@"Return"): [model.eventId isEqualToString:@"3"] ? kLocalizedString(@"Refund"): kLocalizedString(@"EXCHANGE");
     _instructionsView.text = model.questionDesc;
 }
 @end

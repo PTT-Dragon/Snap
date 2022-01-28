@@ -38,6 +38,7 @@
     _btn1.layer.borderWidth = 1;
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
+    [_btn2 setTitle:kLocalizedString(@"EDIT") forState:0];
 }
 - (void)setContent:(OrderModel *)model row:(NSInteger)row type:(NSInteger)type
 {
@@ -46,14 +47,14 @@
     _priceLabel.hidden = type == 1;
     if ([model.canReview isEqualToString:@"Y"]) {
         _btn2.hidden = type == 1;
-        [_btn1 setTitle:type == 1 ? @"REVIEW":@"ADDITIONAL REVIEW" forState:0];
+        [_btn1 setTitle:type == 1 ? kLocalizedString(@"REVIEW"):kLocalizedString(@"ADDITIONAL_REVIEW") forState:0];
         _btn1.hidden = NO;
     }else{
         _btn1.hidden = YES;
         _btn2.hidden = YES;
     }
     orderItemsModel *itemModel = model.orderItems[row];
-    [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)]];
+    [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _storeNameLabel.text = model.storeName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];
     _nameLabel.text = itemModel.productName;

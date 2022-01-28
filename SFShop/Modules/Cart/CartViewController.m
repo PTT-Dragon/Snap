@@ -170,6 +170,7 @@
         gridViewController.addModel = _selAddModel;
         gridViewController.reduceFlag = (pageIndex == 0) ? NO: YES;
         gridViewController.delegate = self;
+        gridViewController.vc = self;
     }
     return gridViewController;
 }
@@ -279,8 +280,8 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
         CartNumModel *model = [[CartNumModel alloc] initWithDictionary:response error:nil];
-        NSString *allCount = [NSString stringWithFormat:@"All(%@)",model.num];
-        NSString *dropCount = [NSString stringWithFormat:@"Drop in price(%@)",model.reduceNum];
+        NSString *allCount = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"All"),model.num];
+        NSString *dropCount = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"DROP_IN_PRICE"),model.reduceNum];
         weakself.menuList = @[allCount,dropCount];
         [weakself.magicController.magicView reloadMenuTitles];
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
