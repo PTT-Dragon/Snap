@@ -89,7 +89,7 @@
                 [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
             }
             [weakself.tableView reloadData];
-            weakself.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+            weakself.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
                 [weakself loadMoreDatas];
             }];
         }

@@ -50,7 +50,7 @@
         self.pageIndex = 1;
         [self loadDatas];
     }];
-    self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         self.pageIndex += 1;
         [self loadDatas];
     }];
