@@ -27,7 +27,7 @@
 - (void)setModel:(ProductReviewAddModel *)model
 {
     _model = model;
-    _replyTimeLabel.text = kLocalizedString(@"ADDITIONAL_DAY");
+    _replyTimeLabel.text = [NSString stringWithFormat:@"%@%@%@",kLocalizedString(@"ADDITIONAL_DAY"),model.reviewTime,kLocalizedString(@"days after purchase")];
     _contentLabel.text = model.reviewComments;
     [self.collectionView reloadData];
 }

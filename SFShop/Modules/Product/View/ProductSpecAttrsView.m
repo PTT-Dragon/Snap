@@ -293,7 +293,7 @@
     }].count > 0;
     if (isGroupBuy) {
         _groupCountLabel.text = [NSString stringWithFormat:@"%ld",groupCount];
-        _maxPurchaseLabel.text = [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
+        _maxPurchaseLabel.text = [NSString stringWithFormat:@"%@ %ld", kLocalizedString(@"MAX_PURCHASE_QUANTITY"),self.maxPurchaseCount];
 
         self.groupView.hidden = _attrsType == groupSingleBuyType ? YES: NO;
     }else{
@@ -397,7 +397,7 @@
     self.titleLabel.text = selProductModel.productName;
     self.priceLabel.text = [[NSString stringWithFormat:@"%ld", (long)selProductModel.salesPrice] currency];
     self.maxPurchaseCount = _selProductModel.maxBuyCount ? selProductModel.maxBuyCount.integerValue : 100000;
-    self.maxPurchaseLabel.text = self.maxPurchaseCount == 100000 ? @"": [NSString stringWithFormat:@"Max purchase quantity %ld", self.maxPurchaseCount];
+    self.maxPurchaseLabel.text = self.maxPurchaseCount == 100000 ? @"": [NSString stringWithFormat:@"%@ %ld", kLocalizedString(@"MAX_PURCHASE_QUANTITY"),self.maxPurchaseCount];
 }
 
 - (void)setStockModel:(NSArray<ProductStockModel *> *)stockModel {

@@ -7,6 +7,7 @@
 
 #import "ReviewCell.h"
 #import "StarView.h"
+#import "NSString+Fee.h"
 
 @interface ReviewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *storeImgView;
@@ -53,13 +54,14 @@
         _btn1.hidden = YES;
         _btn2.hidden = YES;
     }
+    
     orderItemsModel *itemModel = model.orderItems[row];
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _storeNameLabel.text = model.storeName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];
     _nameLabel.text = itemModel.productName;
     _countLabel.text = [NSString stringWithFormat:@"X%@",itemModel.offerCnt];
-    _priceLabel.text = [NSString stringWithFormat:@"RP %@",itemModel.unitPrice];
+    _priceLabel.text = [itemModel.unitPrice currency];
     NSDictionary *dic = [itemModel.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
     _dateLabel.text = [NSString stringWithFormat:@"Review Date:%@",itemModel.evaluation[@"createdDate"]];

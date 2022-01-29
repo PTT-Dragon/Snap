@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = kLocalizedString(@"My_Favorites");
+    self.title = kLocalizedString(@"MY_FAVORITES");
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self action:@selector(jumpToFilterDetail) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0 , 0, 44, 44);

@@ -57,8 +57,11 @@
 }
 - (void)useCouponAction
 {
-    UseCouponViewController *vc = [[UseCouponViewController alloc] init];
-    vc.couponModel = _model;
-    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    if ([_model.userCouponState isEqualToString:@"A"]) {
+        UseCouponViewController *vc = [[UseCouponViewController alloc] init];
+        vc.couponModel = _model;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 @end

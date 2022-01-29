@@ -116,7 +116,8 @@
 //  "LOGIN_SENT_CODE" = "sent code";
 //  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "The two passwords do not match.";
   "DONT_HAVE_ACCOUNT" = "Don’t have an account yet?";
-  "SIGN_UP" = "Sign Up";
+"MAX_PURCHASE_QUANTITY" = "Max purchase quantity";
+  "SIGN_UP" = "SIGN UP";
 //  "SIGN_TO_LOGIN" = "Registration successful. Please re-login.";
   "CATEGORY" = "Category";
   "GET_NOW" = "GET NOW";
@@ -174,7 +175,8 @@
   "REVIEW" = "REVIEW";
   "EDIT" = "EDIT";
 //  "ADDITIONAL_REVIEW" = "Additional Review";
-  "ADDITIONAL_DAY" = "Additional Reviews {day} days after purchase";
+  "ADDITIONAL_DAY" = "Additional Reviews";
+"days after purchase" = " days after purchase";
 //  "GO_SHOPPING" = "Go Shopping";
 //  "REVIEW_LIST" = "Review List";
   "VALID_RANGE" = "Valid within";

@@ -18,7 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 根据配置自动换算金额保留位（带单位，字符串）
 - (NSString *)currency;
 
+/// 筛选等反向放大金额
 - (CGFloat)multiplyCurrencyFloat;
+
+/// 手机号是否通过校验
+- (BOOL)validatePhoneNumber;
+
+/// 邮箱是否通过校验
+- (BOOL)validateEmail;
 
 @end
 
