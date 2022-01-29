@@ -25,7 +25,7 @@
 {
     _model = model;
     _nameLabel.text = model.campaignName;
-    _timeLabel.text = [[NSDate dateFromString:model.expDate] dayMonthYearHHMM];
+    _timeLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"TILL"),[[NSDate dateFromString:model.expDate] dayMonthYearHHMM]];
     _selBtn.selected = model.sel;
 }
 @end

@@ -120,7 +120,7 @@
 - (void)updateAddress
 {
     if (!_selAddModel) {
-        [_addressBtn setTitle:@"Set You Address" forState:0];
+        [_addressBtn setTitle:kLocalizedString(@"CHOOSE_ADDRESS") forState:0];
     }else{
         [_addressBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street] forState:0];
     }
@@ -289,7 +289,7 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
         CartNumModel *model = [[CartNumModel alloc] initWithDictionary:response error:nil];
-        NSString *allCount = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"All"),model.num];
+        NSString *allCount = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"ALL"),model.num];
         NSString *dropCount = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"DROP_IN_PRICE"),model.reduceNum];
         weakself.menuList = @[allCount,dropCount];
         [weakself.magicController.magicView reloadMenuTitles];
@@ -473,9 +473,9 @@
 {
     if (!_addressBtn) {
         _addressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _addressBtn.frame = CGRectMake(0, navBarHei, MainScreen_width, 40);
+        _addressBtn.frame = CGRectMake(16, navBarHei, MainScreen_width-32, 40);
         _addressBtn.backgroundColor = [UIColor whiteColor];
-        _addressBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
+        _addressBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         _addressBtn.titleLabel.numberOfLines = 1;
         _addressBtn.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [_addressBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {

@@ -240,7 +240,7 @@
 //  "FINAL_REFUND_AMOUNT" = "Total pengembalian dana";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Harap verifikasi pengembalian dana yang telah diterima";
 //  "CHOOSE_ANOTHER_ADDRESS" = "Pilih Alamat Lain";
-//  "CHOOSE_ADDRESS" = "Pilih alamat";
+  "CHOOSE_ADDRESS" = "Pilih alamat";
 //  "QUANTITY" = "Jumlah";
 //  "UP_TO" = "hingga";
 //  "OFF" = "Off";
@@ -496,7 +496,7 @@
 "OUT_OF_STOCK_IN_CURRENT_REGION" = "Tidak tersedia di negara ini";
 "Empty_Tip_NoPage" = "Oops! Halaman tidak ditemukan.";
 "Empty_Tip_NoNetWork" = "Internet error; silakan coba nanti.";
-"Empty_Tip_NoShoppingCar" = "Tidak ada item di dalam karet ini.";
+"Empty_Tip_NoShoppingCar" = "Tidak ada barang dikeranjang ini.";
 "Empty_Tip_NoProduct" = "Maaf; tidak ada produk yang berhubungan ditemukan.";
 "Empty_Tip_NoDiscount" = "Anda belum mendapatkan kupon apapun.";
 "Empty_Tip_NoOrder" = "Tidak ada Perintah.";
@@ -555,7 +555,7 @@
 "Star_in" = "Bintang masuk";
 "Star_from" = "Bintang Dari";
 "Ends_in" = "Akhir di";
-"Recommendations" = "Recommendations";
+"Recommendations" = "Rekomendasi";
 "Add_to_cart_success" = "Sukses menambahkan ke troli";
 "Add_to_cart_failed" = "Tambah ke Kereta Gagal!";
 "Terjual" = "Terjual";
@@ -640,9 +640,10 @@
 "THIS_PHONE_NUMBER" = "Nomor telepon ini";
 "CANCEL" = "BATALKAN";
 "LANGUGE" = "Bahasa";
-"Go_Shopping" = "Go Shopping";
+"Go_Shopping" = "LANJUT BELANJA";
 "PAYNOW" = "Bayar Sekarang";
 "REBUY" = "Beli lagi";
+"TILL" = "Sampai";
 "RECEIPT" = "PENERIMA";
 "CONFIRM" = "KONFIRMASI";
 "PACKAGE_CODE" = "Nomor resi";

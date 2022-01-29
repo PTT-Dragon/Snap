@@ -424,7 +424,7 @@
 - (void)promotionWithModel:(CartItemModel *)model
 {
     CartChoosePromotion *view = [[NSBundle mainBundle] loadNibNamed:@"CartChoosePromotion" owner:self options:nil].firstObject;
-    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height-tabbarHei);
     view.model = model;
     [_vc.view addSubview:view];
 }

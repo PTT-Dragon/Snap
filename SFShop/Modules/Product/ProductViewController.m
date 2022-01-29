@@ -182,7 +182,8 @@
     _variationsTitleLabel.text = kLocalizedString(@"VARIATIONS");
     _vouchersTitleLabel.text = kLocalizedString(@"COUPONS");
     _addLabel.text = kLocalizedString(@"ADDRESS");
-    
+    [self.buyBtn setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
+    [self.addCartBtn setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self setDefaultAddress];
@@ -638,7 +639,7 @@
     self.productDiscountLabel.hidden = NO;
     self.marketPriceLabelIndicationView.hidden = NO;
     self.groupTableViewHei.constant = 0;
-    [self.buyBtn setTitle:kLocalizedString(@"BUY_NOW") forState:0];
+    [self.buyBtn setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
     [self.addCartBtn setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
 }
 

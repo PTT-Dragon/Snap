@@ -81,7 +81,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
-    cell.showLine = NO;
+    cell.showLine = YES;
     cell.model = self.evalationArr[indexPath.row];
     return cell;
 }

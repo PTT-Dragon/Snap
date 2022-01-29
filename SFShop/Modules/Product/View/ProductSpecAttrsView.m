@@ -199,6 +199,8 @@
     [_btn1 setTitle:@"立即购买" forState:0];
     _btn1.titleLabel.font = [UIFont fontWithName:@"semiblod" size:15];
     [_btn1 setTitleColor:[UIColor whiteColor] forState:0];
+    _btn1.titleLabel.numberOfLines = 2;
+    _btn1.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_btn1 addTarget:self action:@selector(gotoBuyOrCart:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_btn1];
     [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -212,7 +214,9 @@
     [_btn2 addTarget:self action:@selector(gotoBuyOrCart:) forControlEvents:UIControlEventTouchUpInside];
     [_btn2 jk_setBackgroundColor: [UIColor whiteColor] forState:UIControlStateNormal];
     [_btn2 setTitle:@"加入购物车" forState:0];
+    _btn2.titleLabel.textAlignment = NSTextAlignmentCenter;
     _btn2.titleLabel.font = [UIFont fontWithName:@"semiblod" size:15];
+    _btn2.titleLabel.numberOfLines = 2;
     [_btn2 setTitleColor:RGBColorFrom16(0xFF1659) forState:0];
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;

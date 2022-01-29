@@ -238,7 +238,7 @@
 //  "FINAL_REFUND_AMOUNT" = "Final refund amount";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Please verify the refund has been received";
 //  "CHOOSE_ANOTHER_ADDRESS" = "Choose Another Address";
-//  "CHOOSE_ADDRESS" = "Choose Address";
+  "CHOOSE_ADDRESS" = "Choose Address";
 //  "QUANTITY" = "Quantity";
 //  "UP_TO" = "up to";
 //  "OFF" = "off";
@@ -635,6 +635,7 @@
 "PASSWORD" = "Password";
 "DONE" = "Done";
 "EMAIL" = "Email";
+"TILL" = "Till";
 "CHANGE_MOBILE" = "Change Mobile Number";
 "CHANGE_EMAIL" = "Change Email";
 "INDIVIDUAL_BUY" = "Individual buy";
