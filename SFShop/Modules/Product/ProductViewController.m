@@ -204,6 +204,9 @@
         [self.attrView removeFromSuperview];
         self.isCheckingSaleInfo = NO;
     }
+    if ([JPVideoPlayerManager sharedManager].videoPlayer.playerStatus==JPVideoPlayerStatusPlaying) {
+        [[JPVideoPlayerManager sharedManager] pause];
+    }
 }
 
 - (void)dealloc {
@@ -1152,15 +1155,14 @@
                    controlView:nil
                   progressView:nil
              configuration:nil];
-                   
-            for (int i = 0; i<10; i++) {
-                
+                 
+            //视频不是在banner第一张，一开始暂停不了。暂时用下面这个方式，来暂停视频播放
+            for (int i = 0; i<20; i++) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((0.1*i)*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     if ([JPVideoPlayerManager sharedManager].videoPlayer.playerStatus==JPVideoPlayerStatusPlaying) {
                         [[JPVideoPlayerManager sharedManager] pause];
                     }
                 });
-                
             }
             
         }else {
