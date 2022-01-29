@@ -86,7 +86,7 @@
     [self.bgView addSubview:self.titleLabel];
     [self.bgView addSubview:self.lineView];
     [self.bgView addSubview:self.shareCollectionView];
-    [self.bgView addSubview:self.cancelBtn];
+//    [self.bgView addSubview:self.cancelBtn];
 }
 
 
@@ -130,17 +130,17 @@
 }
 
 - (void)prepareCollection {
-    CGFloat bgHeight = 145+160;
+    CGFloat bgHeight = 145;
     CGFloat oneToolHeight = 121+100;
     CGFloat btnHeitght = 16+40;
     if (IS_IPHONE_X) {
-        bgHeight = 145+160+iPhoneXBottomOffset;
+        bgHeight = 145+iPhoneXBottomOffset;
         oneToolHeight = 113+100+iPhoneXBottomOffset;
         btnHeitght = 16+40+iPhoneXBottomOffset;
     }
     _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
-    _titleLabel.frame = CGRectMake(0, 14, self.width, 21);
-    _lineView.frame = CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1);
+    _titleLabel.frame = CGRectMake(15, 14, self.width, 21);
+    _lineView.frame = CGRectMake(15, self.titleLabel.bottom + 13, self.width-30, 1);
     _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60);
     _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
     [self.shareCollectionView reloadData];
@@ -198,20 +198,20 @@
         [superView addSubview:self];
     }
     
-    CGFloat height = 145+160;
+    CGFloat height = 145;
     CGFloat oneToolHeight = 113+100;
     if (IS_IPHONE_X) {
-        height = 145+160+iPhoneXBottomOffset;
+        height = 145+iPhoneXBottomOffset;
         oneToolHeight = 113+100+iPhoneXBottomOffset;
     }
     CGFloat viewHeight = oneToolHeight;
     
     self.alpha = 0;
     self.maskView.alpha = 0;
-    self.bgView.frame = CGRectMake(0, self.height, self.width, viewHeight);
+    self.bgView.frame = CGRectMake(0, self.height, self.width, height);
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1;
-        self.bgView.frame = CGRectMake(0, self.height - viewHeight, self.width, viewHeight);
+        self.bgView.frame = CGRectMake(0, self.height - height, self.width, height);
         self.maskView.alpha = 1;
     } completion:^(BOOL finished) {
         
@@ -245,10 +245,10 @@
 }
 
 - (void)reSetbgFrame {
-    CGFloat height = 145+160;
+    CGFloat height = 145;
     CGFloat oneToolHeight = 113+100;
     if (IS_IPHONE_X) {
-        height = 145+160+iPhoneXBottomOffset;
+        height = 145+iPhoneXBottomOffset;
         oneToolHeight = 113+100+iPhoneXBottomOffset;
     }
     CGFloat viewHeight = oneToolHeight;
@@ -260,9 +260,9 @@
 
 - (UIView *)bgView {
     if (!_bgView) {
-        CGFloat height = 145+160;
+        CGFloat height = 145;
         if (IS_IPHONE_X) {
-            height = 145+160+iPhoneXBottomOffset;
+            height = 145+iPhoneXBottomOffset;
         }
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - height, self.width, height)];
         UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(6, 0)];
@@ -291,15 +291,15 @@
         _titleLabel.font = [UIFont boldSystemFontOfSize:15];
         _titleLabel.text = kLocalizedString(@"Share_to");
         _titleLabel.textColor = [UIColor blackColor];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
+//        _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
 }
 
 - (UIView *)lineView {
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom + 13, self.width, 1)];
-        _lineView.backgroundColor = [UIColor grayColor];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(15, self.titleLabel.bottom + 13, self.width-30, 0.5)];
+        _lineView.backgroundColor = [UIColor jk_colorWithHexString:@"#eeeeee"];
     }
     return _lineView;
 }
@@ -307,8 +307,8 @@
     if (!_shareCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        flowLayout.minimumLineSpacing = 32;
-        flowLayout.itemSize = CGSizeMake(50, 60);
+        flowLayout.minimumLineSpacing = (App_Frame_Width - 50 - 70*4)/3.0;
+        flowLayout.itemSize = CGSizeMake(70, 60);
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 25, 0, 25);
         _shareCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.lineView.bottom + 24, self.width, 60) collectionViewLayout:flowLayout];
         _shareCollectionView.backgroundColor = [UIColor clearColor];

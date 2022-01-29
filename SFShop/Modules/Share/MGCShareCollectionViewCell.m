@@ -27,7 +27,17 @@
 
 - (void)initView {
     [self.contentView addSubview:self.iconImageView];
+    [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(0);
+        make.width.height.mas_equalTo(42);
+        make.centerX.equalTo(self.contentView);
+    }];
     [self.contentView addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.iconImageView.mas_bottom).offset(4);
+        make.left.right.equalTo(self.contentView);
+        make.centerX.equalTo(self.contentView);
+    }];
 }
 
 - (void)configDataWithItemModel:(MGCShareItemModel *)itemModel{
@@ -38,7 +48,7 @@
 
 - (UIImageView *)iconImageView{
     if (!_iconImageView) {
-        _iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 0, 42, 42)];
+        _iconImageView = [[UIImageView alloc] init];
         _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _iconImageView;
@@ -46,8 +56,8 @@
 
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.iconImageView.bottom + 4, self.width, 15)];
-        _titleLabel.font = [UIFont systemFontOfSize:10];
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = BOLDSYSTEMFONT(11);
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
