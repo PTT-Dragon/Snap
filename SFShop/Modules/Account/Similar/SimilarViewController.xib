@@ -41,11 +41,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BU-5M-Cs7">
-                            <rect key="frame" x="296" y="78" width="72" height="24"/>
+                            <rect key="frame" x="315" y="78" width="53" height="24"/>
                             <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="2IB-OC-jFA"/>
-                                <constraint firstAttribute="width" constant="72" id="Jjh-B1-Hab"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                             <state key="normal" title="Buy Now"/>

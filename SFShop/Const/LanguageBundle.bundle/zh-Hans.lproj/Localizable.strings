@@ -177,7 +177,8 @@
 "SUPPORT_CONTENT" = "作为我们承诺提供最佳服务的一种形式，我们提供24小时热线服务，电子邮件和实时聊天，以便您可以随时联系我们。";
   "EDIT" = "修改";
 //  "ADDITIONAL_REVIEW" = "追评";
-  "ADDITIONAL_DAY" = "支付成功{day}天后追加评价";
+  "ADDITIONAL_DAY" = "支付成功";
+"days after purchase" = "}天后追加评价";
 "BUY_MORE_TO_ENJOY_DISCOUNT" = "去买更多以享受折扣";
 "N_DISCOUNT_APPLIED_AT_CHECKOUT" = "结账时将会优惠";
 //  "GO_SHOPPING" = "继续购物";
@@ -546,6 +547,7 @@
 "Quantity"="数量";
 "Special_promo" = "特别PROMO";
 "Product_detail" = "产品详情";
+"MAX_PURCHASE_QUANTITY" = "Max purchase quantity";
 "Star_in" = "Star in";
 "Star_from" = "Star From";
 "Ends_in" = "结束于";

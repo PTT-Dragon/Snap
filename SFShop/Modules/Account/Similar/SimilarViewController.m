@@ -53,9 +53,9 @@
 }
 - (void)initUI
 {
-    [self.buyBtn setTitle:kLocalizedString(@"BUY_NOW") forState:0];
+    [self.buyBtn setTitle:[NSString stringWithFormat:@"  %@  ",kLocalizedString(@"BUY_NOW")] forState:0];
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
-    _nameLabel.text = _model.offerName;
+    _nameLabel.text = _model.productName;
     _priceLabel.text = [_model.salesPrice currency];
     _label = [[UILabel alloc] init];
     _label.font = CHINESE_BOLD(15);
@@ -74,6 +74,7 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.favorite.similar parameters:@{@"offerId": self.offerId} success:^(id  _Nullable response) {
         weakself.dataSource = [ProductSimilarModel arrayOfModelsFromDictionaries: response[@"pageInfo"][@"list"] error:nil];
+        weakself.collectionView.backgroundColor = weakself.dataSource.count > 0 ? [UIColor whiteColor]:[UIColor jk_colorWithHexString:@"#F5F5F5"] ;
         weakself.label.hidden = weakself.dataSource.count == 0;
         [weakself.collectionView reloadData];
     } failed:^(NSError * _Nonnull error) {
@@ -103,7 +104,7 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = false;
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
     }
     return _collectionView;
 }

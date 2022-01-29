@@ -84,6 +84,7 @@
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
     
+    
     _dateSelected = [NSDate date];
     _selectionMode = NO;
     [self initUI];
@@ -132,7 +133,7 @@
     [formatter1 setDateFormat:@"yyyy-MM-dd"];
     NSString *selDay = [formatter1 stringFromDate:_dateSelected];
     NSDate *startDate = [_calendarManager.dateHelper addToDate:_dateSelected months:-1];
-    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":startDate,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(1000)} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":startDate,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
         [weakself.dataSource removeAllObjects];
         if (!kArrayIsEmpty(arr)) {
@@ -308,11 +309,11 @@
     }else if ([_calendarManager.dateHelper date:dayView.date isEqualOrAfter:date1 andEqualOrBefore:[NSDate date]]){
         dayView.circleView.hidden = YES;
         dayView.dotView.hidden = NO;
-        if ([self hasDataWithDay:dayView.date]) {
-            dayView.dotView.backgroundColor = [UIColor lightGrayColor];
-        }else{
+//        if ([self hasDataWithDay:dayView.date]) {
+//            dayView.dotView.backgroundColor = [UIColor lightGrayColor];
+//        }else{
             dayView.dotView.backgroundColor = [UIColor whiteColor];
-        }
+//        }
         dayView.textLabel.textColor = [UIColor blackColor];
     }
     // Other month

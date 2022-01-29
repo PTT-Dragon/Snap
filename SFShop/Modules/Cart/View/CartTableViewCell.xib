@@ -48,7 +48,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p92-dv-aGh">
-                                <rect key="frame" x="146" y="50" width="29" height="12"/>
+                                <rect key="frame" x="146" y="50" width="29" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="fpr-Ux-v9n"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="10"/>
                                 <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -66,6 +69,7 @@
                                     <constraint firstAttribute="width" constant="20" id="Q25-6x-Qzx"/>
                                     <constraint firstAttribute="height" constant="20" id="geX-WG-qtQ"/>
                                 </constraints>
+                                <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" image="new-alternative"/>
                                 <connections>
                                     <action selector="addAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0xX-ZY-n0X"/>
@@ -78,6 +82,7 @@
                                     <constraint firstAttribute="width" constant="20" id="AcQ-X1-MuI"/>
                                     <constraint firstAttribute="height" constant="20" id="LTD-w0-TIH"/>
                                 </constraints>
+                                <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                 <state key="normal" image="subtract"/>
                                 <state key="disabled" image="subtract-2"/>
                                 <connections>

@@ -11,6 +11,7 @@
 #import "UIButton+time.h"
 #import "ProductViewController.h"
 #import "UIButton+SGImagePosition.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface CartTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *additonBtn;
@@ -40,7 +41,8 @@
     _skuLabel.layer.borderWidth = 1;
     _campaignsBtn.layer.borderWidth = 1;
     _campaignsBtn.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
-    [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:0];
+    [_additonBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
+    [_subtractBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skuAction)];
     [_skuLabel addGestureRecognizer:tap];
@@ -77,10 +79,11 @@
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _priceDownView.hidden = !model.cutRate;
     _priceDownLabel.text = model.cutRate;
-    self.campaignsBtn.hidden = !(model.campaigns && model.campaigns.count != 0);
-    if (model.campaigns && model.campaigns.count != 0) {
-        [self.campaignsBtn setTitle:[model.campaigns.firstObject campaignName] forState:0];
-    }
+//    self.campaignsBtn.hidden = !(model.campaigns && model.campaigns.count != 0);
+//    if (model.campaigns && model.campaigns.count != 0) {
+//        [self.campaignsBtn setTitle:[model.campaigns.firstObject campaignName] forState:0];
+//        [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:0];
+//    }
     [self updateBtnState];
 }
 - (void)setIsInvalid:(BOOL)isInvalid
@@ -99,6 +102,8 @@
     NSInteger maxBuyCount = !_model.maxBuyCount ? 100000:[_model.maxBuyCount integerValue];
     self.additonBtn.enabled = _isInvalid ? NO: (_countLabel.text.integerValue < _model.stock && _countLabel.text.integerValue < maxBuyCount);
     [self.subtractBtn setImage: self.subtractBtn.enabled ? [UIImage imageNamed:@"subtract"]: [UIImage imageNamed:@"subtract-2"] forState:0];
+    self.additonBtn.backgroundColor = self.additonBtn.enabled ? [UIColor whiteColor]: RGBColorFrom16(0xf9f9f9);
+    self.subtractBtn.backgroundColor = self.subtractBtn.enabled ? [UIColor whiteColor]: RGBColorFrom16(0xf9f9f9);
     self.subtractBtn.layer.borderWidth = self.subtractBtn.enabled ? 1: 0;
     [self.additonBtn setImage:self.additonBtn.enabled ? [UIImage imageNamed:@"new-alternative"]:[UIImage imageNamed:@"new-alternative-2"] forState:0];
 }

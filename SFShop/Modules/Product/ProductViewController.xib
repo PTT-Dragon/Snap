@@ -82,7 +82,7 @@
                                 <constraint firstAttribute="width" constant="46" id="Ax3-8a-nLP"/>
                                 <constraint firstAttribute="height" constant="46" id="IHW-hV-fe0"/>
                             </constraints>
-                            <state key="normal" image="product_cart"/>
+                            <state key="normal" image="00010_01_cart_outline"/>
                             <connections>
                                 <action selector="goToCart:" destination="-1" eventType="touchUpInside" id="fRA-zv-Yzr"/>
                             </connections>
@@ -235,7 +235,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="VN4-EP-XYG"/>
                                             </constraints>
                                         </view>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group-1" translatesAutoresizingMaskIntoConstraints="NO" id="J5u-5B-Cbe">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="00005_01_users_outline" translatesAutoresizingMaskIntoConstraints="NO" id="J5u-5B-Cbe">
                                             <rect key="frame" x="359" y="15" width="18" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="RrE-K0-Var"/>
@@ -650,11 +650,11 @@
         </view>
     </objects>
     <resources>
-        <image name="00018_02_location_filled" width="12" height="14"/>
-        <image name="group-1" width="16" height="16"/>
+        <image name="00005_01_users_outline" width="11" height="11"/>
+        <image name="00010_01_cart_outline" width="20" height="20"/>
+        <image name="00018_02_location_filled" width="11" height="14"/>
         <image name="love-0" width="200" height="200"/>
         <image name="love-2" width="48" height="48"/>
-        <image name="product_cart" width="20" height="20"/>
         <image name="联合 103" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
