@@ -496,7 +496,7 @@ shouldPausePlaybackWhenApplicationDidEnterBackgroundForURL:self.managerModel.vid
     if(self.isReturnWhenApplicationDidEnterBackground){
         return;
     }
-
+    return;
     if (self.delegate && [self.delegate respondsToSelector:@selector(videoPlayerManager:shouldResumePlaybackWhenApplicationDidBecomeActiveFromBackgroundForURL:)]) {
         BOOL needResume = [self.delegate videoPlayerManager:self
 shouldResumePlaybackWhenApplicationDidBecomeActiveFromBackgroundForURL:self.managerModel.videoURL];
@@ -511,7 +511,7 @@ shouldResumePlaybackWhenApplicationDidBecomeActiveFromBackgroundForURL:self.mana
     if(self.isReturnWhenApplicationWillResignActive){
         return;
     }
-
+    return;
     if (self.delegate && [self.delegate respondsToSelector:@selector(videoPlayerManager:shouldResumePlaybackWhenApplicationDidBecomeActiveFromResignActiveForURL:)]) {
         BOOL needResume = [self.delegate videoPlayerManager:self
 shouldResumePlaybackWhenApplicationDidBecomeActiveFromResignActiveForURL:self.managerModel.videoURL];

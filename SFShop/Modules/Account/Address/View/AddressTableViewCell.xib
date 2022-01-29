@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,7 +38,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uy3-Mu-BTy">
-                                <rect key="frame" x="20" y="38.5" width="27" height="12"/>
+                                <rect key="frame" x="20" y="38.5" width="26.5" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -67,22 +67,43 @@
                                     <constraint firstAttribute="height" constant="1" id="Dsk-Eh-Kvq"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJE-Qk-snM">
+                                <rect key="frame" x="20" y="56" width="20" height="20"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ea-5Q-aLL">
+                                        <rect key="frame" x="20" y="0.0" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="VFt-yY-vFt"/>
+                                            <constraint firstAttribute="width" constant="20" id="sEK-xh-npQ"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="radio-0"/>
+                                        <state key="selected" image="radio-1"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="1Kt-gK-fU6"/>
+                                    <constraint firstAttribute="height" constant="20" id="Icl-ZU-0iC"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="U4y-7O-gmz" secondAttribute="trailing" constant="20" id="2ns-aR-UgY"/>
                             <constraint firstItem="hwI-E2-x2q" firstAttribute="leading" secondItem="bGi-Y9-Xvd" secondAttribute="trailing" constant="17" id="96O-UW-afn"/>
-                            <constraint firstItem="uy3-Mu-BTy" firstAttribute="leading" secondItem="mC0-IN-mMj" secondAttribute="leading" constant="20" id="CWA-bg-Eed"/>
                             <constraint firstItem="kke-dl-YbG" firstAttribute="top" secondItem="uy3-Mu-BTy" secondAttribute="bottom" constant="12" id="DKx-rZ-C2g"/>
+                            <constraint firstItem="bGi-Y9-Xvd" firstAttribute="leading" secondItem="mC0-IN-mMj" secondAttribute="leading" constant="20" id="H4D-bh-QFT"/>
                             <constraint firstItem="U4y-7O-gmz" firstAttribute="centerY" secondItem="mC0-IN-mMj" secondAttribute="centerY" id="HZr-EW-eyI"/>
+                            <constraint firstItem="RJE-Qk-snM" firstAttribute="leading" secondItem="mC0-IN-mMj" secondAttribute="leading" constant="20" id="R0Y-la-lqK"/>
                             <constraint firstAttribute="bottom" secondItem="lSV-q3-WI0" secondAttribute="bottom" id="U9g-4G-udu"/>
                             <constraint firstItem="uy3-Mu-BTy" firstAttribute="top" secondItem="bGi-Y9-Xvd" secondAttribute="bottom" constant="4" id="UhM-Zw-lb4"/>
-                            <constraint firstItem="bGi-Y9-Xvd" firstAttribute="leading" secondItem="mC0-IN-mMj" secondAttribute="leading" constant="20" id="ab1-EH-PCq"/>
+                            <constraint firstItem="uy3-Mu-BTy" firstAttribute="leading" secondItem="bGi-Y9-Xvd" secondAttribute="leading" id="VSD-1n-VYX"/>
+                            <constraint firstItem="RJE-Qk-snM" firstAttribute="centerY" secondItem="mC0-IN-mMj" secondAttribute="centerY" id="Wrd-tl-wr0"/>
                             <constraint firstItem="hwI-E2-x2q" firstAttribute="centerY" secondItem="bGi-Y9-Xvd" secondAttribute="centerY" id="dkE-o7-09J"/>
-                            <constraint firstItem="kke-dl-YbG" firstAttribute="leading" secondItem="mC0-IN-mMj" secondAttribute="leading" constant="20" id="fmv-IT-GOM"/>
                             <constraint firstAttribute="trailing" secondItem="kke-dl-YbG" secondAttribute="trailing" constant="50" id="oPE-v1-vQ8"/>
                             <constraint firstAttribute="trailing" secondItem="lSV-q3-WI0" secondAttribute="trailing" constant="20" id="uPq-Ry-U9A"/>
                             <constraint firstItem="bGi-Y9-Xvd" firstAttribute="top" secondItem="mC0-IN-mMj" secondAttribute="top" constant="20" id="voL-Hj-ycP"/>
+                            <constraint firstItem="kke-dl-YbG" firstAttribute="leading" secondItem="uy3-Mu-BTy" secondAttribute="leading" id="wFK-ok-gFp"/>
                             <constraint firstItem="lSV-q3-WI0" firstAttribute="leading" secondItem="mC0-IN-mMj" secondAttribute="leading" constant="20" id="zfi-T9-qej"/>
                         </constraints>
                     </view>
@@ -99,15 +120,19 @@
             <connections>
                 <outlet property="contentLabel" destination="kke-dl-YbG" id="O7j-6R-gaw"/>
                 <outlet property="editBtn" destination="U4y-7O-gmz" id="Csh-ck-9BO"/>
+                <outlet property="leftMargin" destination="H4D-bh-QFT" id="pbA-Cy-zEO"/>
                 <outlet property="nameLabel" destination="bGi-Y9-Xvd" id="hMC-PP-ccU"/>
                 <outlet property="phoneLabel" destination="uy3-Mu-BTy" id="ggP-fi-BU0"/>
+                <outlet property="selectBtn" destination="3Ea-5Q-aLL" id="IaM-7k-LoZ"/>
                 <outlet property="tagLabel" destination="hwI-E2-x2q" id="EcN-kf-p5T"/>
             </connections>
-            <point key="canvasLocation" x="75" y="72"/>
+            <point key="canvasLocation" x="74.637681159420296" y="71.651785714285708"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="edit" width="200" height="200"/>
+        <image name="radio-0" width="200" height="200"/>
+        <image name="radio-1" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

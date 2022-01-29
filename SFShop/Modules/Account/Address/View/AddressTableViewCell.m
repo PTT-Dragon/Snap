@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *editBtn;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMargin;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
+
 @property (nonatomic,weak) addressModel *model;
 @end
 
@@ -37,6 +40,24 @@
 - (IBAction)editAction:(id)sender {
     if (self.block) {
         self.block(_model);
+    }
+}
+
+-(void)setCurAddress:(NSString *)curAddress {
+    _curAddress = curAddress;
+    if (curAddress) {
+        self.leftMargin.constant = 60;
+        self.selectBtn.hidden = NO;
+        
+        if ([self.model.modifyDate isEqualToString:curAddress]) {
+            self.selectBtn.selected = YES;
+        }else {
+            self.selectBtn.selected = NO;
+        }
+        
+    }else {
+        self.leftMargin.constant = 20;
+        self.selectBtn.hidden = YES;
     }
 }
 
