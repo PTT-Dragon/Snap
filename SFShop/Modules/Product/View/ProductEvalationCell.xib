@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnU-QT-7Jc">
-                        <rect key="frame" x="17" y="10" width="341" height="223"/>
+                        <rect key="frame" x="17" y="0.0" width="341" height="218"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zc8-hg-QAr">
                                 <rect key="frame" x="12" y="12" width="28" height="28"/>
@@ -95,10 +95,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="gnU-QT-7Jc" secondAttribute="bottom" id="A72-lo-z4N"/>
+                    <constraint firstAttribute="bottom" secondItem="gnU-QT-7Jc" secondAttribute="bottom" constant="15" id="A72-lo-z4N"/>
                     <constraint firstItem="gnU-QT-7Jc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="17" id="QJa-Do-X5o"/>
                     <constraint firstAttribute="trailing" secondItem="gnU-QT-7Jc" secondAttribute="trailing" constant="17" id="eib-8f-wpz"/>
-                    <constraint firstItem="gnU-QT-7Jc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="v80-Xr-C0c"/>
+                    <constraint firstItem="gnU-QT-7Jc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="v80-Xr-C0c"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

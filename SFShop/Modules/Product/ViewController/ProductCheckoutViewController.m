@@ -211,6 +211,7 @@
                 break;
             case ProductCheckoutCellEvent_GotoAddress: {
                 AddressViewController *vc = [[AddressViewController alloc] init];
+                vc.curAddress = self.dataModel.addressModel.modifyDate;
                 vc.addressBlock = ^(addressModel * _Nonnull model) {
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
                     [MBProgressHUD showHudMsg:@""];

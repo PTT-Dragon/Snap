@@ -839,7 +839,7 @@
             return 50;
         }
         ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
-        return model.itemHie;
+        return model.itemHie+15;
     }
     if (indexPath.row == 0) {
         return 50;
@@ -868,7 +868,7 @@
     for (ProductEvalationModel *itemModel in self.evalationArr) {
         hei += itemModel.itemHie;
     }
-    return hei+50;
+    return hei+50+25;
 }
 - (CGFloat)calucateGroupTableviewHei
 {

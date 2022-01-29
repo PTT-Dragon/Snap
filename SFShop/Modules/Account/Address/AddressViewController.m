@@ -157,6 +157,7 @@
         vc.delegate = weakself;
         [weakself.navigationController pushViewController:vc animated:YES];
     };
+    cell.curAddress = self.curAddress;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

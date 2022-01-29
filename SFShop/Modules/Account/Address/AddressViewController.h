@@ -14,6 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readwrite, copy) void(^addressBlock)(addressModel *model);
 
+/**
+ 当前地址标记
+ */
+@property (nonatomic, copy) NSString *curAddress;
+
 @end
 
 NS_ASSUME_NONNULL_END
