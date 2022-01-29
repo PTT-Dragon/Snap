@@ -79,11 +79,11 @@
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _priceDownView.hidden = !model.cutRate;
     _priceDownLabel.text = model.cutRate;
-//    self.campaignsBtn.hidden = !(model.campaigns && model.campaigns.count != 0);
-//    if (model.campaigns && model.campaigns.count != 0) {
-//        [self.campaignsBtn setTitle:[model.campaigns.firstObject campaignName] forState:0];
-//        [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:0];
-//    }
+    self.campaignsBtn.hidden = !(model.campaigns && model.campaigns.count != 0);
+    if (model.campaigns && model.campaigns.count != 0) {
+        [self.campaignsBtn setTitle:[model.campaigns.firstObject campaignName] forState:0];
+        [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:0];
+    }
     [self updateBtnState];
 }
 - (void)setIsInvalid:(BOOL)isInvalid
@@ -137,6 +137,7 @@
     [self updateBtnState];
 }
 - (IBAction)campaignsAction:(UIButton *)sender {
+    [self.delegate promotionWithModel:_model];
 }
 - (void)skuAction
 {

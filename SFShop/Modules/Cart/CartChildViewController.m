@@ -394,6 +394,13 @@
                 NSDictionary *dic = [itemModel toDictionary];
                 [modifyArr addObject:dic];
             }
+            for (CartCampaignsModel *itemModel in subModel.campaignGroups) {
+                for (CartItemModel *itemItemModel in itemModel.shoppingCarts) {
+                    itemItemModel.isSelected = selAll ? @"Y": @"N";
+                    NSDictionary *dic = [itemItemModel toDictionary];
+                    [modifyArr addObject:dic];
+                }
+            }
             [self.tableView reloadData];
             MPWeakSelf(self)
             [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
@@ -414,10 +421,12 @@
     }];
     [self.tableView reloadData];
 }
-- (void)promotionWithArr:(NSArray<CampaignsModel *> *)arr
+- (void)promotionWithModel:(CartItemModel *)model
 {
-    CartChoosePromotion *view = [[NSBundle mainBundle] loadNibNamed:@"view" owner:self options:nil].firstObject;
-    [self.view addSubview:view];
+    CartChoosePromotion *view = [[NSBundle mainBundle] loadNibNamed:@"CartChoosePromotion" owner:self options:nil].firstObject;
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    view.model = model;
+    [_vc.view addSubview:view];
 }
 - (void)skuActionWithModel:(CartItemModel *)model
 {

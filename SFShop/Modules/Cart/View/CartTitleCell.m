@@ -46,6 +46,13 @@
             selAll = NO;
         }
     }
+    for (CartCampaignsModel *subModel in model.campaignGroups) {
+        for (CartItemModel *itemModel in subModel.shoppingCarts) {
+            if (![itemModel.isSelected isEqualToString:@"Y"]) {
+                selAll = NO;
+            }
+        }
+    }
     _selBtn.selected = selAll;
 //    [self getCoupon];
 }

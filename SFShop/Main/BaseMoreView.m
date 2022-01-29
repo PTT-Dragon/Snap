@@ -111,7 +111,7 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.account.messageNum parameters:@{} success:^(id  _Nullable response) {
         NSNumber *num = response;
-        weakself.badgeLabel.text = [num.stringValue isEqualToString:@"0"] ? @"": num.stringValue;;
+        weakself.badgeLabel.text = [num.stringValue isEqualToString:@"0"] ? @"": [NSString stringWithFormat:@" %@ ",num.stringValue];
     } failed:^(NSError * _Nonnull error) {
 
     }];
@@ -254,7 +254,7 @@
 {
     if (!_badgeLabel) {
         _badgeLabel = [[UILabel alloc] init];
-        _badgeLabel.backgroundColor = [UIColor redColor];
+        _badgeLabel.backgroundColor = RGBColorFrom16(0xff1659);
         _badgeLabel.textColor = [UIColor whiteColor];
         _badgeLabel.textAlignment = NSTextAlignmentNatural;
         _badgeLabel.font = CHINESE_SYSTEM(10);

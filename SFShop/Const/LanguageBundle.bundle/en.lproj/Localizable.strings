@@ -638,6 +638,7 @@
 "CHANGE_MOBILE" = "Change Mobile Number";
 "CHANGE_EMAIL" = "Change Email";
 "INDIVIDUAL_BUY" = "Individual buy";
+"CHANGE_PROMOTION" = "Change Promotion";
 "SHARE_BUY" = "GROUP BUY";
 "THIS_EMAIL_ADDRESS" = "This email address";
 "THIS_PHONE_NUMBER" = "This phone number";

@@ -6,10 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CartModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CartChoosePromotion : UIView
+@property (nonatomic,strong) CartItemModel *model;
 
 @end
 

@@ -178,6 +178,7 @@
   "EDIT" = "修改";
 //  "ADDITIONAL_REVIEW" = "追评";
   "ADDITIONAL_DAY" = "支付成功";
+"CHANGE_PROMOTION" = "选择促销活动";
 "days after purchase" = "}天后追加评价";
 "BUY_MORE_TO_ENJOY_DISCOUNT" = "去买更多以享受折扣";
 "N_DISCOUNT_APPLIED_AT_CHECKOUT" = "结账时将会优惠";

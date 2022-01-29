@@ -152,6 +152,7 @@
 //  "INCORRECT_PHONE" = "Harap masukkan nomor telepon yang benar.";
 //  "INCORRECT_EMAIL" = "Harap masukkan email yang benar.";
   "ADDRESS_DEFAULT" = "Pilih sebagai alamat utama";
+"CHANGE_PROMOTION" = "Ganti promosi";
 //  "ADDRESS_ADD_SUCCESS" = "Penambahan alamat telah berhasil.";
 //  "MODIFY_ADD_SUCCESS" = "Ganti alamat berhasil";
 //  "SERVICE_DETAIL" = "detail layanan";

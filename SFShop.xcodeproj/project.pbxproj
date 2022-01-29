@@ -41,6 +41,8 @@
 		1B31225A273260980055033D /* CaseOutDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B312258273260980055033D /* CaseOutDetailViewController.m */; };
 		1B31225B273260980055033D /* CaseOutDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B312259273260980055033D /* CaseOutDetailViewController.xib */; };
 		1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B312260273267630055033D /* IncomeAndExpenseViewController.m */; };
+		1B38916227A4DB7700662006 /* CartPromotionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B38916027A4DB7700662006 /* CartPromotionCell.m */; };
+		1B38916327A4DB7700662006 /* CartPromotionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B38916127A4DB7700662006 /* CartPromotionCell.xib */; };
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
 		1B3C122826FC706000235294 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3C122726FC706000235294 /* LoginViewController.xib */; };
 		1B3C122C26FC7D3600235294 /* accountOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122A26FC7D3600235294 /* accountOrderCell.m */; };
@@ -646,6 +648,9 @@
 		1B312259273260980055033D /* CaseOutDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaseOutDetailViewController.xib; sourceTree = "<group>"; };
 		1B31225F273267630055033D /* IncomeAndExpenseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncomeAndExpenseViewController.h; sourceTree = "<group>"; };
 		1B312260273267630055033D /* IncomeAndExpenseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncomeAndExpenseViewController.m; sourceTree = "<group>"; };
+		1B38915F27A4DB7700662006 /* CartPromotionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartPromotionCell.h; sourceTree = "<group>"; };
+		1B38916027A4DB7700662006 /* CartPromotionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartPromotionCell.m; sourceTree = "<group>"; };
+		1B38916127A4DB7700662006 /* CartPromotionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartPromotionCell.xib; sourceTree = "<group>"; };
 		1B3C122226FC5AC500235294 /* accountInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accountInfoCell.h; sourceTree = "<group>"; };
 		1B3C122326FC5AC500235294 /* accountInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accountInfoCell.m; sourceTree = "<group>"; };
 		1B3C122726FC706000235294 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -2009,6 +2014,9 @@
 				1B53A2B82778ACC200FB00C7 /* CartChoosePromotion.h */,
 				1B53A2B92778ACC200FB00C7 /* CartChoosePromotion.m */,
 				1B53A2BB2778ACC900FB00C7 /* CartChoosePromotion.xib */,
+				1B38915F27A4DB7700662006 /* CartPromotionCell.h */,
+				1B38916027A4DB7700662006 /* CartPromotionCell.m */,
+				1B38916127A4DB7700662006 /* CartPromotionCell.xib */,
 				8E11A8D2278DD6C9005D1FC3 /* CartEmptyView.h */,
 				8E11A8D3278DD6C9005D1FC3 /* CartEmptyView.m */,
 				8E1EC08A27986CC600CE0088 /* CartRecomandView.h */,
@@ -3800,6 +3808,7 @@
 				1BD10C342761DE4300BFC1AD /* ProductEvalationCell.xib in Resources */,
 				1B964759273E494A00345DDA /* IncomeAndExpenseCell.xib in Resources */,
 				1B6C52C7275C88FE00A1C617 /* RelationOrderDetailProductCell.xib in Resources */,
+				1B38916327A4DB7700662006 /* CartPromotionCell.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
 				1B552EAA276B358A0086604B /* GroupTopImgCell.xib in Resources */,
 				1BDBEBD32700C7F00018109B /* MyCouponStoreCell.xib in Resources */,
@@ -3893,6 +3902,7 @@
 				8E1EC868279D736A00CE0088 /* CommunitySelectView.m in Sources */,
 				AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */,
 				1B6C52A3275B672200A1C617 /* ZLVideoPlayerControl.m in Sources */,
+				1B38916227A4DB7700662006 /* CartPromotionCell.m in Sources */,
 				AE81BE6827020E2400AB4225 /* SFNetworkOffersModule.m in Sources */,
 				1B6C52A7275B672200A1C617 /* ZLDrawItem.m in Sources */,
 				8E1872C92795AE8900DBEE3E /* MGCShareCollectionViewCell.m in Sources */,
@@ -4471,7 +4481,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.7;
+				CURRENT_PROJECT_VERSION = 6.8;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4512,7 +4522,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.7;
+				CURRENT_PROJECT_VERSION = 6.8;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

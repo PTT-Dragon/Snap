@@ -267,7 +267,15 @@
                 hasSel = YES;
             }
         }];
+        [obj.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj.isSelected isEqualToString:@"Y"]) {
+                    hasSel = YES;
+                }
+            }];
+        }];
     }];
+    
     
     self.checkBtn.backgroundColor = !hasSel ? RGBColorFrom16(0xFFE5EB):RGBColorFrom16(0xFF1659);
     self.checkBtn.userInteractionEnabled = hasSel;
