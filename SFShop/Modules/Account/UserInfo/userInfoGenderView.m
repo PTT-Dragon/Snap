@@ -11,6 +11,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *maleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *femaleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *secrecyBtn;
+@property (weak, nonatomic) IBOutlet UIButton *maleBigBtn;
+@property (weak, nonatomic) IBOutlet UIButton *femaleBigBtn;
+@property (weak, nonatomic) IBOutlet UIButton *secrecyBigBtn;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
@@ -38,6 +41,19 @@
     _titleLabel3.text = kLocalizedString(@"FEMALE");
     _titleLabel4.text = kLocalizedString(@"PREFER_NOT_TO_RESPOND");
 }
+
+-(void)setGenerStr:(NSString *)generStr {
+    _generStr = generStr;
+    if (!generStr) {
+        _secrecyBtn.selected = YES;
+    }else {
+        _maleBtn.selected = [generStr isEqualToString:@"M"];
+        _femaleBtn.selected = [generStr isEqualToString:@"F"];
+        _secrecyBtn.selected = [generStr isEqualToString:@""];
+    }
+    
+}
+
 - (void)aaa
 {
     [self removeFromSuperview];
@@ -47,25 +63,25 @@
     
 }
 - (IBAction)maleAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    self.maleBtn.selected = YES;
     _femaleBtn.selected = NO;
     _secrecyBtn.selected = NO;
     [self.delegate chooseGender:@"M"];
-    [self removeFromSuperview];
+//    [self removeFromSuperview];
 }
 - (IBAction)femaleAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    self.femaleBtn.selected = YES;
     _maleBtn.selected = NO;
     _secrecyBtn.selected = NO;
     [self.delegate chooseGender:@"F"];
-    [self removeFromSuperview];
+//    [self removeFromSuperview];
 }
 - (IBAction)secrecyAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    self.secrecyBtn.selected = YES;
     _femaleBtn.selected = NO;
     _maleBtn.selected = NO;
     [self.delegate chooseGender:@""];
-    [self removeFromSuperview];
+//    [self removeFromSuperview];
 }
 
 @end

@@ -11,9 +11,11 @@
   "HAVE_READ_AND_AGREED" = "Saya sudah membaca dan mengerti mengenai";
 //  "COPY" = "Salin";
 //  "REPLY_SUCCESSFULLY" = "Jawaban berhasil";
-  "PREFER_NOT_TO_RESPOND" = "Lebih baik tidak merespon";
-  "FEMALE" = "wanita";
-  "MALE" = "jantan";
+//  "PREFER_NOT_TO_RESPOND" = "Lebih baik tidak merespon";
+"PREFER_NOT_TO_RESPOND" = "Memilih untuk tidak menjawab";
+  "FEMALE" = "Wanita";
+//  "MALE" = "jantan";
+"MALE" = "Pria";
 "VIEW_REVIEW" = "LIHAT PENILAIAN";
 //  "SSR_DESCRIPTION_PRODUCT" = "I found a great product from SF!";
 //  "SSR_DESCRIPTION_INVITE" = "Get your Welcome Package!";

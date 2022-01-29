@@ -36,18 +36,27 @@
     [_imgView addGestureRecognizer:tap];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    if (section == 2) {
+        if (!self.model.reply.replyComments) {
+            return 0;
+        }
+    }
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
         cell.showLine = NO;
         cell.model = self.model;
         return cell;
-    }else if (indexPath.row == 1){
+    }else if (indexPath.section == 1){
         ProductReviewAddCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductReviewAddCell"];
         cell.model = self.model.review;
         return cell;
@@ -58,7 +67,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? self.model.itemHie : indexPath.row == 1 ? self.model.review.itemHie : self.model.reply.itemHie;
+    return indexPath.section == 0 ? self.model.itemHie : indexPath.section == 1 ? self.model.review.itemHie : self.model.reply.itemHie;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

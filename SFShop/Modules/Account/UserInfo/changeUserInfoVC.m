@@ -42,7 +42,8 @@
     _birthBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _birthBtn.layer.borderWidth = 1;
     [_birthBtn setTitle:[NSString stringWithFormat:@"  %@",_selectDateStr?_selectDateStr:@""] forState:0];
-    [_genderBtn setTitle:[NSString stringWithFormat:@"  %@",model.userRes.genderStr] forState:0];
+//    [_genderBtn setTitle:[NSString stringWithFormat:@"  %@",model.userRes.genderStr] forState:0];
+    [self chooseGender:_gender];
     _nameField.text = model.userRes.nickName;
     _nameField.layer.borderWidth = 1;
     _explainLabel1.text = kLocalizedString(@"INCORRECT_NAME");
@@ -72,6 +73,7 @@
     userInfoGenderView *genderView = [[NSBundle mainBundle] loadNibNamed:@"userInfoGenderView" owner:self options:nil].firstObject;
     genderView.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
     genderView.delegate = self;
+    genderView.generStr = _gender;
     [self.view addSubview:genderView];
 }
 - (IBAction)saveAction:(id)sender {
@@ -117,7 +119,7 @@
 - (void)chooseGender:(NSString *)gender
 {
     _gender = gender;
-    [_genderBtn setTitle:[gender isEqualToString:@"M"] ? @"  Male":[gender isEqualToString:@"F"] ? @"  Female":@"  Secrecy" forState:0];
+    [_genderBtn setTitle:[gender isEqualToString:@"M"] ? @"  Pria":[gender isEqualToString:@"F"] ? @"  Wanita":@"  Memilih untuk tidak menjawab" forState:0];
 }
 
 @end
