@@ -174,7 +174,7 @@
         _magicController.magicView.sliderColor = [UIColor jk_colorWithHexString:@"333333"];
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
-        _magicController.magicView.navigationHeight = 40.f;
+        _magicController.magicView.navigationHeight = 50.f;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.scrollEnabled = NO;

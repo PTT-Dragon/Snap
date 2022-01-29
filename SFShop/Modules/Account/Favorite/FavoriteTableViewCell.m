@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *discountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *similarBtn;
 @property (weak, nonatomic) IBOutlet UIButton *toCartBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leading2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leading1;
 @property (weak, nonatomic) favoriteModel *model;
 @end
 
@@ -27,8 +29,16 @@
     // Initialization code
     _similarBtn.layer.borderWidth = 1;
     _similarBtn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
-    [_similarBtn setTitle:kLocalizedString(@"FIND_SIMILAR") forState:0];
-    [_toCartBtn setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
+    if ([UserDefaultObjectForKey(@"Language") isEqualToString:kLanguageHindi]) {
+//        _leading1.priority = 750;
+//        _leading2.priority = 250;
+    }else{
+//        _leading1.priority = 250;
+//        _leading2.priority = 750;
+    }
+    [_similarBtn setTitle:[NSString stringWithFormat:@" %@ ",kLocalizedString(@"FIND_SIMILAR")] forState:0];
+    [_toCartBtn setTitle:[NSString stringWithFormat:@" %@ ",kLocalizedString(@"ADD_TO_CART")] forState:0];
+    
 }
 - (void)setContent:(favoriteModel *)model
 {

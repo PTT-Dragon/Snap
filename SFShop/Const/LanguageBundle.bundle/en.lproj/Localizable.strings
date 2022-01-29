@@ -86,7 +86,7 @@
   "SHOPPING_CART" = "Shopping Cart";
   "ADD_TO_CART" = "ADD TO CART";
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
-  "FIND_SIMILAR" = "Find Similar";
+  "FIND_SIMILAR" = "FIND SIMILAR";
   "MOBILE_NUMBER" = "Mobile Number";
 //  "NEW_MOBILE_NUMBER" = "New Mobile Number";
 //  "ADDRESS" = "Address";
@@ -214,7 +214,7 @@
   "VIEW_ALL_ORDERS" = "View All Orders";
 //  "LOGINORREGISTER" = "Login or Register";
 //  "RECENTLY_VIEWED" = "Recently Viewed";
-  "MORE" = "more";
+  "MORE" = "More";
 //  "POINTS" = "Points";
 //  "QUALITY_OF_GOODS" = "Quality of Goods";
 //  "SERVICE_ATTITUDE" = "Service Attitude";
@@ -448,7 +448,7 @@
 //  "INVALID_PRODUCTS" = "Invalid Products";
 //  "COUPON_DETAIL" = "Voucher Detail";
 //  "GOT_IT" = "GOT IT";
-  "DROP_IN_PRICE" = "Drop in price";
+  "DROP_IN_PRICE" = "Pricedown";
 "ADD_COMMENT" = "Add comment...";
   "MOVE_TO_FAVOURITE" = "Move to favourite";
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "There are no items in this cart";
@@ -647,8 +647,8 @@
 "LANGUGE" = "Language";
 "Go_Shopping" = "GO SHOPPING";
 "PAYNOW" = "Pay Now";
-"REBUY" = "Re-buy";
-"RECEIPT" = "Receipt";
+"REBUY" = "RE-BUY";
+"RECEIPT" = "RECEIPT";
 "CONFIRM" = "CONFIRM";
 "PACKAGE_CODE" = "Package Code";
 "I_WANT_TO_REFUND" = "I want to refund";
