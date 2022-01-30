@@ -130,7 +130,7 @@
 //  "DEL_COLLECT_SUCCESS" = "Berhasil dihapus dari wishlist!";
 //  "COLLECT" = "Mengumpulkan";
   "RATING" = "Penilaian";
-//  "STAR" = "Bintang";
+  "STAR" = "Bintang";
 //  "ENDS_IN" = "Berakhir dalam";
 //  "TOTAL" = "Jumlah";
   "BUY_NOW" = "Beli sekarang";
@@ -261,7 +261,7 @@
 //  "SAFETY_VERIFICATION" = "Verifikasi keamanan";
   "LOGISTICS_DETAILS" = "Detail Logistik";
 //  "EVALUATION" = "Evaluasi";
-//  "RESET" = "Re-set";
+  "RESET" = "ATUR ULANG";
   "AVAILABLE" = "Tersedia";
   "EXPIRED" = "Kadaluwarsa";
   "USED" = "Telah digunakan";

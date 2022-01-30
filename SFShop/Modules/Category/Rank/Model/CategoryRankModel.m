@@ -88,7 +88,7 @@
 }
 
 - (NSString *)name {
-    return [NSString stringWithFormat:@"%@ star",self.idStr];
+    return [NSString stringWithFormat:@"%@ %@",self.idStr,kLocalizedString(@"STAR")];
 }
 @end
 

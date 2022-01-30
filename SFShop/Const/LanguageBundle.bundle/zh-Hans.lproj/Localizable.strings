@@ -130,7 +130,7 @@
 //  "DEL_COLLECT_SUCCESS" = "从愿望单删除成功";
 //  "COLLECT" = "领券";
   "RATING" = "待评价";
-//  "STAR" = "开始";
+  "STAR" = "开始";
 //  "ENDS_IN" = "结束";
 //  "TOTAL" = "总共";
   "BUY_NOW" = "立即购买";
@@ -261,7 +261,7 @@
 //  "SAFETY_VERIFICATION" = "安全政策";
   "LOGISTICS_DETAILS" = "物流详情";
 //  "EVALUATION" = "评价";
-//  "RESET" = "重置";
+  "RESET" = "重置";
   "AVAILABLE" = "有效";
   "EXPIRED" = "失效";
   "USED" = "已使用";

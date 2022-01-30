@@ -350,7 +350,7 @@
         _resetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_resetBtn addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
         [_resetBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
-        [_resetBtn setTitle:@"RESET" forState:UIControlStateNormal];
+        [_resetBtn setTitle:kLocalizedString(@"RESET") forState:UIControlStateNormal];
         [_resetBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateNormal];
         _resetBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#FF1659"].CGColor;
         _resetBtn.layer.borderWidth = 1;
@@ -364,7 +364,7 @@
         _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
         [_confirmBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
-        [_confirmBtn setTitle:@"CONFIRM" forState:UIControlStateNormal];
+        [_confirmBtn setTitle:kLocalizedString(@"CONFIRM") forState:UIControlStateNormal];
         [_confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_confirmBtn setBackgroundColor:[UIColor jk_colorWithHexString:@"#FF1659"]];
         _confirmBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];

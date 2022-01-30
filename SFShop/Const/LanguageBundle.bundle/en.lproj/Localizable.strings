@@ -125,7 +125,7 @@
 //  "DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully！";
 //  "COLLECT" = "COLLECT";
   "RATING" = "Ratings";
-//  "STAR" = "star";
+  "STAR" = "star";
 //  "ENDS_IN" = "Ends in";
 //  "TOTAL" = "Total";
   "BUY_NOW" = "Buy Now";
@@ -257,7 +257,7 @@
 //  "SAFETY_VERIFICATION" = "Security verification";
   "LOGISTICS_DETAILS" = "Logistics Details";
 //  "EVALUATION" = "Evaluation";
-//  "RESET" = "Reset";
+  "RESET" = "RESET";
   "AVAILABLE" = "Available";
   "EXPIRED" = "Expired";
   "USED" = "Used";
