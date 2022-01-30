@@ -17,6 +17,7 @@
 @property (nonatomic, readwrite, strong) UIButton *backBtn;
 @property (nonatomic, readwrite, strong) CustomTextField *textField;
 @property (nonatomic, readwrite, strong) UIButton *rightBtn;
+@property (nonatomic, readwrite, strong) UIButton *searchBtn;
 @property (nonatomic, readwrite, strong) SFSearchView *searchView;
 @property (nonatomic, readwrite, strong) SFSearchingView *searchingView;
 @property (nonatomic, readwrite, strong) UIView *lineView;
@@ -58,6 +59,7 @@
     [self addSubview:self.backBtn];
     [self addSubview:self.textField];
     [self addSubview:self.rightBtn];
+    [self addSubview:self.searchBtn];
     [self addSubview:self.lineView];
 }
 
@@ -69,6 +71,12 @@
     }];
     
     [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(10);
+        make.size.mas_equalTo(CGSizeMake(24, 24));
+        make.right.mas_equalTo(-27);
+    }];
+    
+    [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(10);
         make.size.mas_equalTo(CGSizeMake(24, 24));
         make.right.mas_equalTo(-27);
@@ -105,8 +113,7 @@
 - (void)btnClick:(UIButton *)btn {
     if (btn == self.backBtn) {
         if ([self.superview.subviews containsObject:self.searchView]) {
-            [self.searchView removeFromSuperview];
-            [self endEditing:YES];
+            [self searchUIUnActive];
             if (self.activeSearch) {
                 !self.bItem.itemActionBlock ?: self.bItem.itemActionBlock(SFSearchStateInFocuActive,nil,NO);
             } else {
@@ -129,12 +136,31 @@
     }
 }
 
+- (void)searchClick:(UIButton *)btn {
+    [self search:self.textField.text];
+}
+
+- (void)searchUIUnActive {
+    if ([self.superview.subviews containsObject:self.searchView]) {
+        [self.searchView removeFromSuperview];
+        self.searchBtn.hidden = YES;
+        self.rightBtn.hidden = NO;
+        [self endEditing:YES];
+    }
+}
+
+- (void)searchUIActive {
+    if (![self.superview.subviews containsObject:self.searchView]) {
+        [self.superview addSubview:self.searchView];
+        self.searchBtn.hidden = NO;
+        self.rightBtn.hidden = YES;
+    }
+}
+
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if (self.searchType == SFSearchTypeImmersion) {
-        if (![self.superview.subviews containsObject:self.searchView]) {
-            [self.superview addSubview:self.searchView];
-        }
+        [self searchUIActive];
     } else if (self.searchType == SFSearchTypeFake) {
         !self.fakeTouchBock ?: self.fakeTouchBock();
     }
@@ -142,7 +168,14 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self search:textField.text];
-    NSString *qs = textField.text;
+    return YES;
+}
+
+- (void)search:(NSString *)qs {
+    [self searchUIUnActive];
+    self.textField.text = qs;
+    self.activeSearch = NO;
+    !self.searchBlock ?: self.searchBlock(qs);
     if (qs && ![qs isEqualToString:@""]) {
         NSMutableArray *searchHistory = UserDefaultObjectForKey(userDefaultNameSearchHistory) ? [NSMutableArray arrayWithArray:UserDefaultObjectForKey(userDefaultNameSearchHistory)] : [NSMutableArray array];
         if (![searchHistory containsObject:qs]) {
@@ -152,17 +185,6 @@
             [self.searchView reload];
         }
     }
-    return YES;
-}
-
-- (void)search:(NSString *)qs {
-    if ([self.superview.subviews containsObject:self.searchView]) {
-        [self.searchView removeFromSuperview];
-    }
-    self.textField.text = qs;
-    self.activeSearch = NO;
-    !self.searchBlock ?: self.searchBlock(qs);
-    [self endEditing:YES];
 }
 
 #pragma mark - Get and Set
@@ -263,6 +285,16 @@
 
     }
     return _rightBtn;
+}
+
+- (UIButton *)searchBtn {
+    if (_searchBtn == nil) {
+        _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_searchBtn setImage:[UIImage imageNamed:@"ic_nav_search"] forState:UIControlStateNormal];
+        _searchBtn.hidden = YES;
+    }
+    return _searchBtn;
 }
 
 - (UIView *)lineView {

@@ -41,21 +41,24 @@
         make.left.mas_equalTo(KScale(16));
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(KScale(32));
-        make.width.mas_equalTo(KScale(96));
+        CGFloat width = [self.popularityBtn.titleLabel.text calWidthWithLabel:self.popularityBtn.titleLabel] + 30;
+        make.width.mas_equalTo(width);
     }];
     
     [self.salesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.popularityBtn.mas_right).offset(KScale(8));
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(KScale(32));
-        make.width.mas_equalTo(KScale(60));
+        CGFloat width = [self.salesBtn.titleLabel.text calWidthWithLabel:self.salesBtn.titleLabel] + 30;
+        make.width.mas_equalTo(width);
     }];
     
     [self.priceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.salesBtn.mas_right).offset(KScale(8));
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(KScale(32));
-        make.width.mas_equalTo(KScale(78));
+        CGFloat width = [self.priceBtn.titleLabel.text calWidthWithLabel:self.priceBtn.titleLabel] + 30;
+        make.width.mas_equalTo(width);
     }];
     
     [self.priceBtn addSubview:self.priceSortUpImg];
@@ -179,9 +182,6 @@
         _priceBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
         _priceBtn.layer.borderWidth = 1;
         [_priceBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 5)];
-        
-        
-        
     }
     return _priceBtn;
 }

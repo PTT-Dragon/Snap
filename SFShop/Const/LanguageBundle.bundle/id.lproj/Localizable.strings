@@ -447,7 +447,7 @@
 "RESET_WITH_SMS" = "Ganti dengan SMS";
 "RESET_WITH_EMAIL" = "Ganti dengan Email";
 "FORGOT_PWD_SELECT_MODAL_TITLE" = "Anda bisa mengganti kata sandi menggunakan SMS atau Email";
-//  "SEARCH_DISCOVERY" = "History";
+  "SEARCH_DISCOVERY" = "Riwayat Pencarian";
 //  "MAX_DISCOUNT" = "Diskon maksimum";
 //  "EMPTYING" = "Kosong";
 //  "INVALID_PRODUCTS" = "Produk Tidak Valid";

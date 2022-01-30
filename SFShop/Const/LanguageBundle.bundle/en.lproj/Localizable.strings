@@ -442,7 +442,7 @@
 //  "SEARCH" = "Search";
   "SURE_CANCEL" = "Are you sure to cancel?";
   "SURE_DELETE" = "Are you sure to delete?";
-//  "SEARCH_DISCOVERY" = "Search Discovery";
+  "SEARCH_DISCOVERY" = "Search Discovery";
 //  "MAX_DISCOUNT" = "Discount max";
 //  "EMPTYING" = "Emptying";
 //  "INVALID_PRODUCTS" = "Invalid Products";
