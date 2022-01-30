@@ -27,6 +27,10 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
 /// @param type 状态
 - (instancetype)initWithFrame:(CGRect)frame type:(CategoryRankType)type;
 
+/// 选中按钮 (非用户行为)
+/// @param type 排序
+- (void)nonUserBehaviorSelected:(CategoryRankType)type;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -264,17 +264,19 @@
     }
     
     //选中数据
-    for (CategoryRankServiceModel *subModel in model.serviceIds) {
-        if (subModel.idStr && [subModel.idStr isEqualToString:model.filterCache.serverId]) {
-            subModel.isSelected = YES;
-            break;
-        }
-    }
+//    for (CategoryRankServiceModel *subModel in model.serviceIds) {
+//        if (subModel.idStr && [subModel.idStr isEqualToString:model.filterCache.serverId]) {
+//            subModel.isSelected = YES;
+//        } else {
+//            subModel.isSelected = NO;
+//        }
+//    }
     
     for (CategoryRankCategoryModel *subModel in model.catgIds) {
         if (subModel.idStr && [subModel.idStr isEqualToString:model.filterCache.categoryId]) {
             subModel.isSelected = YES;
-            break;
+        } else {
+            subModel.isSelected = NO;
         }
     }
 
@@ -286,6 +288,8 @@
         for (NSString *idStr in arr) {
             if (subModel.idStr && [subModel.idStr isEqualToString:idStr]) {
                 subModel.isSelected = YES;
+            } else {
+                subModel.isSelected = NO;
             }
         }
     }
@@ -293,7 +297,8 @@
     for (CategoryRankEvaluationModel *subModel in model.evaluations) {
         if (subModel.idStr && [subModel.idStr isEqualToString:model.filterCache.evaluationId]) {
             subModel.isSelected = YES;
-            break;
+        } else {
+            subModel.isSelected = NO;
         }
     }
 
@@ -301,6 +306,8 @@
         for (CategoryRankAttrModel *cacheModel in model.filterCache.offerAttrValues) {
             if (subModel.idStr && [subModel.idStr isEqualToString:cacheModel.idStr]) {
                 subModel.isSelected = YES;
+            } else {
+                subModel.isSelected = NO;
             }
         }
     }
