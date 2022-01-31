@@ -125,7 +125,7 @@
 //  "DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully！";
 //  "COLLECT" = "COLLECT";
   "RATING" = "Ratings";
-//  "STAR" = "star";
+  "STAR" = "star";
 //  "ENDS_IN" = "Ends in";
 //  "TOTAL" = "Total";
   "BUY_NOW" = "Buy Now";
@@ -257,7 +257,7 @@
 //  "SAFETY_VERIFICATION" = "Security verification";
   "LOGISTICS_DETAILS" = "Logistics Details";
 //  "EVALUATION" = "Evaluation";
-//  "RESET" = "Reset";
+  "RESET" = "RESET";
   "AVAILABLE" = "Available";
   "EXPIRED" = "Expired";
   "USED" = "Used";
@@ -442,7 +442,7 @@
 //  "SEARCH" = "Search";
   "SURE_CANCEL" = "Are you sure to cancel?";
   "SURE_DELETE" = "Are you sure to delete?";
-//  "SEARCH_DISCOVERY" = "Search Discovery";
+  "SEARCH_DISCOVERY" = "Search Discovery";
 //  "MAX_DISCOUNT" = "Discount max";
 //  "EMPTYING" = "Emptying";
 //  "INVALID_PRODUCTS" = "Invalid Products";

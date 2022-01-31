@@ -130,7 +130,7 @@
 //  "DEL_COLLECT_SUCCESS" = "Berhasil dihapus dari wishlist!";
 //  "COLLECT" = "Mengumpulkan";
   "RATING" = "Penilaian";
-//  "STAR" = "Bintang";
+  "STAR" = "Bintang";
 //  "ENDS_IN" = "Berakhir dalam";
 //  "TOTAL" = "Jumlah";
   "BUY_NOW" = "Beli sekarang";
@@ -261,7 +261,7 @@
 //  "SAFETY_VERIFICATION" = "Verifikasi keamanan";
   "LOGISTICS_DETAILS" = "Detail Logistik";
 //  "EVALUATION" = "Evaluasi";
-//  "RESET" = "Re-set";
+  "RESET" = "ATUR ULANG";
   "AVAILABLE" = "Tersedia";
   "EXPIRED" = "Kadaluwarsa";
   "USED" = "Telah digunakan";
@@ -448,7 +448,7 @@
 "RESET_WITH_SMS" = "Ganti dengan SMS";
 "RESET_WITH_EMAIL" = "Ganti dengan Email";
 "FORGOT_PWD_SELECT_MODAL_TITLE" = "Anda bisa mengganti kata sandi menggunakan SMS atau Email";
-//  "SEARCH_DISCOVERY" = "History";
+  "SEARCH_DISCOVERY" = "Riwayat Pencarian";
 //  "MAX_DISCOUNT" = "Diskon maksimum";
 //  "EMPTYING" = "Kosong";
 //  "INVALID_PRODUCTS" = "Produk Tidak Valid";

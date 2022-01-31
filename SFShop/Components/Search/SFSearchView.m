@@ -19,7 +19,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = RGBColorFrom16(0xf5f5f5);
         [self loadSubviews];
     }
     return self;
