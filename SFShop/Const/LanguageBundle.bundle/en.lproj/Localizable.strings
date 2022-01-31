@@ -417,7 +417,7 @@
 //  "REFUND_SUCCESS_CONTENT1" = "Please verify the refund received";
 //  "REFUND_REJECTED" = "Refund Rejected";
 //  "REFUND_REJECTED_CONTENT" = "Service order is not approved";
-//  "IMAGES" = "Images";
+  "IMAGES" = "Images";
   "TO_REVIEW" = "To Review";
   "EXPIRY_DATE" = "Expiry Date";
   "RATED" = "Rated";
@@ -429,7 +429,7 @@
 //  "REVIEW_PUBLISHED" = "Review Published";
 //  "THANK_REVIEW" = "Thank you for your review!";
 //  "VIEWCODE" = "View Code";
-  "SHAREBUY" = "Group Buy";
+  "SHAREBUY" = "GROUP BUY";
 //  "GROUPSUCCESS" = "Join group successfully.Please check later.";
 //  "TOSHIP" = "To Ship";
   "TORECEIVE" = "Shipped";

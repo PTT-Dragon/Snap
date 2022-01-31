@@ -419,7 +419,7 @@
 //  "REFUND_SUCCESS_CONTENT1" = "请核实收到的退款";
 //  "REFUND_REJECTED" = "拒绝退款";
 //  "REFUND_REJECTED_CONTENT" = "售后单审核不通过";
-//  "IMAGES" = "图片";
+  "IMAGES" = "图片";
   "TO_REVIEW" = "待评价";
   "EXPIRY_DATE" = "到期日";
   "RATED" = "已评价";

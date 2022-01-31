@@ -271,7 +271,8 @@
   "TO_RECEIVE" = "Dikirim";
   "SUCCESSFUL" = "Berhasil";
   "COMPLETED" = "Selesai";
-  "CANCELLED" = "Dibatalkan";
+//  "CANCELLED" = "Dibatalkan";
+"CANCELLED" = "Cancelled";
 //  "BANK" = "Bank";
 //  "ACCOUNT_NAME" = "Nama Akun";
 //  "BANK_ACCOUNT" = "Nomor akun bank";
@@ -419,7 +420,7 @@
 //  "REFUND_SUCCESS_CONTENT1" = "Harap verifikasi pengembalian dana yang diterima";
 //  "REFUND_REJECTED" = "Pengembalian Dana Ditolak";
 //  "REFUND_REJECTED_CONTENT" = "Pesanan layanan tidak disetujui";
-//  "IMAGES" = "Gambar";
+  "IMAGES" = "Gambar";
   "TO_REVIEW" = "Belum Dinilai";
   "EXPIRY_DATE" = "Tanggal kadaluwarsa";
   "RATED" = "Sudah Dinilai";
@@ -431,7 +432,7 @@
 //  "REVIEW_PUBLISHED" = "Ulasan Dipublikasikan";
 //  "THANK_REVIEW" = "Terimakasih untuk ulasan anda";
 //  "VIEWCODE" = "Lihat kode";
-  "SHAREBUY" = "Group Buy";
+  "SHAREBUY" = "GROUP BUY";
 //  "GROUPSUCCESS" = "Join group sukses";
 //  "TOSHIP" = "Dikirim";
   "TORECEIVE" = "Diterima";
@@ -585,7 +586,8 @@
 "Income_Expense" = "Income & Expense";
 "Relation_Order" = "Relation Order";
 "Order_details" = "Rincian Pemesanan";
-"Refund_Return" = "Pengembalian barang dan dana";
+//"Refund_Return" = "Pengembalian barang dan dana";
+"Refund_Return" = "Rincian pelayanan";
 "Search" = "Cari";
 "RETURN" = "Pengembalian barang";
 "Refund" = "Pengembalian dana";
