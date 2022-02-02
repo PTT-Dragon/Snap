@@ -106,8 +106,8 @@
     [self.view addSubview:self.magicController.view];
     //self.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
     [self.magicController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_offset(10);
-        make.right.mas_offset(10);
+        make.left.mas_offset(0);
+        make.right.mas_offset(0);
         make.top.equalTo(self.addressBtn.mas_bottom);
         make.bottom.equalTo(self.bottomView.mas_top);
     }];

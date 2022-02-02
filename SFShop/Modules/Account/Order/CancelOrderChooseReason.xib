@@ -79,6 +79,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="backView" destination="sCs-IC-6VE" id="xIH-Wz-V5Z"/>
                 <outlet property="btn" destination="w2H-si-9WG" id="xLk-Nq-Cei"/>
                 <outlet property="label" destination="wAv-iV-JPi" id="f17-q9-6VQ"/>
                 <outlet property="reasonLabel" destination="xgv-61-tmv" id="s9d-UY-TaJ"/>

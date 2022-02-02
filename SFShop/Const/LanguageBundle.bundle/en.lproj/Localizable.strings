@@ -287,7 +287,8 @@
   "POINTS_DEDUCTION" = "Points Deduction";
   "SHIPPING_FEE" = "Shipping Fee";
   "ATTACHMENT_INFORMATION" = "Attachment Information";
-  "ORDER_INFORMATION" = "Order Information";
+//  "ORDER_INFORMATION" = "Order Information";
+"ORDER_INFORMATION" = "Delivery Information";
   "ORDER_CODE" = "Order Code";
   "CREATION_TIME" = "Creation time";
   "PAYER_EMAIL" = "Payer Email";

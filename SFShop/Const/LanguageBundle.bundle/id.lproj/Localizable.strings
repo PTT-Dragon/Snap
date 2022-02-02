@@ -502,7 +502,7 @@
 "Empty_Tip_NoShoppingCar" = "Tidak ada barang dikeranjang ini.";
 "Empty_Tip_NoProduct" = "Maaf; tidak ada produk yang berhubungan ditemukan.";
 "Empty_Tip_NoDiscount" = "Anda belum mendapatkan kupon apapun.";
-"Empty_Tip_NoOrder" = "Tidak ada Perintah.";
+"Empty_Tip_NoOrder" = "Tidak ada Perintah";
 "Empty_Tip_No favorite" = "Tidak ada produk favorit yang dipilih saat ini.";
 "Empty_Tip_NoReview" = "Anda belum melihat barang apapun dalam 30 hari terakhir.";
 "Empty_Tip_NoAddress" = "Sepertinya Anda belum menyimpan alamat apapun lagi!";
@@ -645,7 +645,7 @@
 "CANCEL" = "BATALKAN";
 "LANGUGE" = "Bahasa";
 "Go_Shopping" = "LANJUT BELANJA";
-"PAYNOW" = "Bayar Sekarang";
+"PAYNOW" = "BAYAR SEKARANG";
 "REBUY" = "Beli lagi";
 "TILL" = "Sampai";
 "RECEIPT" = "PENERIMA";

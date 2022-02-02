@@ -47,8 +47,8 @@
 
 - (void)initLayout {
     [self.emptyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self);
-        make.width.height.mas_equalTo(40);
+        make.top.mas_equalTo(self).offset(20);
+        make.width.height.mas_equalTo(60);
         make.centerX.mas_equalTo(self.mas_centerX);
     }];
     [self.emptyTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -86,7 +86,7 @@
     if (!_emptyTipLabel) {
         _emptyTipLabel = [[UILabel alloc] init];
         _emptyTipLabel.font = [UIFont systemFontOfSize:14];
-        _emptyTipLabel.textColor = [UIColor jk_colorWithHexString:@"#666666"];
+        _emptyTipLabel.textColor = [UIColor jk_colorWithHexString:@"#333333"];
         _emptyTipLabel.textAlignment = NSTextAlignmentCenter;
         _emptyTipLabel.numberOfLines = 0;
     }
