@@ -91,7 +91,7 @@
 //  "ADD_TO_CART_SUCCESS" = "Sukses menambahkan ke troli";
   "FIND_SIMILAR" = "Temukan yang serupa";
 //  "MOBILE_NUMBER" = "No. telephone";
-//  "NEW_MOBILE_NUMBER" = "No. telephone baru";
+  "NEW_MOBILE_NUMBER" = "Nomor Handphone Baru";
 //  "ADDRESS" = "Alamat";
   "STREET" = "Nama dan nomor jalan/gedung";
   "OTHERDETAIL" = " detail lain";

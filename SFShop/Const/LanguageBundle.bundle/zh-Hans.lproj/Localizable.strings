@@ -92,7 +92,7 @@
   "ADD_TO_CART" = "加入购物车";
   "FIND_SIMILAR" = "查找相似";
   "MOBILE_NUMBER" = "手机号码";
-//  "NEW_MOBILE_NUMBER" = "新手机号码";
+  "NEW_MOBILE_NUMBER" = "新手机号码";
 //  "ADDRESS" = "地址";
   "STREET" = "街道/建筑物名称和邮编";
   "OTHERDETAIL" = "详细地址";

@@ -74,6 +74,7 @@
     accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
     cell.label.text = self.dataSource[indexPath.row];
     cell.imgView.image = [UIImage imageNamed:@""];
+    cell.labelLeading.constant = 15;
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
