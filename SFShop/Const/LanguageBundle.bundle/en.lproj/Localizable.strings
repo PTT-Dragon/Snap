@@ -551,8 +551,10 @@
 "Star_from" = "Star From";
 "Ends_in" = "Ends in";
 "Recommendations" = "Recommendations";
-"Add_to_cart_success" = "Add to cart Success!";
+"ADD_TO_CART_SUCCESS" = "Add to cart Success!";
 "Add_to_cart_failed" = "Add to cart Failed!";
+"Favorite_success" = "Add item to wishlish Successfully!";
+"Favorite_cancel" = "Deletes item from wishlish Successfully!";
 "Terjual" = "Terjual";
 "IS_ALREADY_REGISTERED" = "is already registered.";
 "Min" = "Min";

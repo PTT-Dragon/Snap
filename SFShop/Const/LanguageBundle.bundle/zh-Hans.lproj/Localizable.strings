@@ -554,6 +554,8 @@
 "Ends_in" = "结束于";
 "Recommendations"="建议";
 "Add_to_cart_failed" = "添加到购物车失败!";
+"Favorite_success" = "加入愿望单成功";
+"Favorite_cancel" = "从愿望单删除成功";
 "Terjual"="Terjual";
 "IS_ALREADY_REGISTERED" = "已经注册。";
 "Min" = "最小";
@@ -628,6 +630,7 @@
 "Phone_number" = "手机号码";
 "Sign_Up" = "注册";
 "ADD_TO_CART_SUCCESS" = "加入购物车成功";
+"Add_to_cart_success" = "加入购物车成功";
 "EMAIL_ERROR_2" = "请输入正确的邮件地址";
 "LOGIN_INVALID_PHONE" = "请输入正确的手机号";
 "ACCOUNT_DOES_NOT_EXIST" = "账户不存在.";

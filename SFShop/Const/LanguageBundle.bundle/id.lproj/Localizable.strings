@@ -559,8 +559,10 @@
 "Star_from" = "Bintang Dari";
 "Ends_in" = "Akhir di";
 "Recommendations" = "Rekomendasi";
-"Add_to_cart_success" = "Sukses menambahkan ke troli";
+"ADD_TO_CART_SUCCESS" = "Sukses menambahkan ke keranjang";
 "Add_to_cart_failed" = "Tambah ke Kereta Gagal!";
+"Favorite_success" = "Produk berhasi dihapus dari wishlist";
+"Favorite_cancel" = "Produk berhasi dihapus dari wishlist!";
 "Terjual" = "Terjual";
 "IS_ALREADY_REGISTERED" = "Sudah terdaftar";
 "Min" = "Min";

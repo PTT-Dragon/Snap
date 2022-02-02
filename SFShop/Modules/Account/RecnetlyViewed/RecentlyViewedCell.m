@@ -38,9 +38,9 @@
 - (IBAction)cartAction:(UIButton *)sender {
     NSDictionary *params = @{@"storeId":_model.storeId,@"offerId":_model.offerId,@"num":@(1),@"unitPrice":_model.salesPrice,@"contactChannel":@"3",@"addon":@"",@"isSelected":@"N"};
     [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+//        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
     } failed:^(NSError * _Nonnull error) {
-        
     }];
 }
 - (IBAction)similarAction:(UIButton *)sender {
@@ -53,8 +53,12 @@
 - (IBAction)favoriteAction:(UIButton *)sender {
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.favorite.favorite parametersArr:@[@{@"offerId":_model.offerId}] success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_SUCCESS")];
         weakself.model.isCollection = !weakself.model.isCollection;
+        if (weakself.model.isCollection) {
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Favorite_success")];
+        }else {
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Favorite_cancel")];
+        }
         [weakself setContent:weakself.model];
     } failed:^(NSError * _Nonnull error) {
         
