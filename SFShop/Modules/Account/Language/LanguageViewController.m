@@ -150,7 +150,7 @@
 - (UIButton *)chineseBtn {
     if (!_chineseBtn) {
         _chineseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_chineseBtn setTitle:@"中文" forState:UIControlStateNormal];
+        [_chineseBtn setTitle:@"Chinese" forState:UIControlStateNormal];
         [_chineseBtn addTarget:self action:@selector(chineseBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [_chineseBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         [_chineseBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
@@ -174,7 +174,7 @@
 - (UIButton *)hindiBtn {
     if (!_hindiBtn) {
         _hindiBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_hindiBtn setTitle:@"Hindi" forState:UIControlStateNormal];
+        [_hindiBtn setTitle:@"Indonesian" forState:UIControlStateNormal];
         [_hindiBtn addTarget:self action:@selector(hindiBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [_hindiBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         _hindiBtn.titleLabel.font = [UIFont systemFontOfSize:16];
