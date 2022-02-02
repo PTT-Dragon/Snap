@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="allStarView" destination="HzN-d9-n4z" id="fyj-Oa-Tst"/>
                 <outlet property="collectionView" destination="yG6-4M-D3b" id="VpB-Fc-khQ"/>
+                <outlet property="collectionViewHei" destination="PAa-er-bDZ" id="mHv-mJ-FUM"/>
                 <outlet property="fiveCountLabel" destination="Cwy-iT-Icy" id="u7o-Do-mlU"/>
                 <outlet property="fiveWidth" destination="wok-pp-iSQ" id="Yjn-vO-2Kl"/>
                 <outlet property="fourCountLabel" destination="O1d-xu-ekv" id="fxD-du-JK8"/>

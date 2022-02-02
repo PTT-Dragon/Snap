@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *threeWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oneWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *twoWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewHei;
 @property (nonatomic,strong) ProductEvalationLabelsModel *selLabelModel;
 @end
 
@@ -61,7 +62,11 @@
     ];
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
-    _magicController.view.frame = CGRectMake(0, 260, MainScreen_width, MainScreen_height-navBarHei-260);
+//    _magicController.view.frame = CGRectMake(0, 260, MainScreen_width, MainScreen_height-navBarHei-260);
+    [_magicController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(_collectionView.mas_bottom).offset(0);
+    }];
     [_magicController.magicView reloadData];
     [self loadDatas];
 }
@@ -98,6 +103,7 @@
         _oneWidth.constant = self.model.oneStarCnt/self.model.evaluationCnt*120;
     }
     [_collectionView reloadData];
+    _collectionViewHei.constant = _model.evaluationLabels.count == 0 ? 0: 32;
 }
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
@@ -184,9 +190,10 @@
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor whiteColor];
-        _magicController.magicView.sliderColor = [UIColor redColor];
+        _magicController.magicView.sliderColor = [UIColor blackColor];
         _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
+        _magicController.magicView.itemSpacing = 40;
         _magicController.magicView.navigationHeight = 40.f;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;

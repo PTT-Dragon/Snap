@@ -10,6 +10,7 @@
 #import "ProductEvalationCell.h"
 #import <MJRefresh/MJRefresh.h>
 #import "ProductReviewDetailViewController.h"
+#import "ProductReviewGrayCell.h"
 
 @interface ProductReviewChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,assign) NSInteger pageIndex;
@@ -25,6 +26,7 @@
     [self requestEvaluationsList];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"ProductEvalationCell" bundle:nil] forCellReuseIdentifier:@"ProductEvalationCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ProductReviewGrayCell" bundle:nil] forCellReuseIdentifier:@"ProductReviewGrayCell"];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
@@ -76,24 +78,31 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.evalationArr.count;
+    return self.evalationArr.count+1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        ProductReviewGrayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductReviewGrayCell"];
+        return cell;
+    }
     ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
     cell.showLine = YES;
-    cell.model = self.evalationArr[indexPath.row];
+    cell.model = self.evalationArr[indexPath.row-1];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductEvalationModel *model = self.evalationArr[indexPath.row];
+    if (indexPath.row == 0) {
+        return 10;
+    }
+    ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
     return model.itemHie;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ProductEvalationModel *model = self.evalationArr[indexPath.row];
+    ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
     ProductReviewDetailViewController *vc = [[ProductReviewDetailViewController alloc] init];
     vc.model = model;
     [self.navigationController pushViewController:vc animated:YES];

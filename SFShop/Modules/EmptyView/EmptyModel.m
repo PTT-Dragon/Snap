@@ -46,7 +46,7 @@
         }
         case EmptyViewNofavoriteType: {
             imageName = @"ic_empty_favorite";
-            tip = kLocalizedString(@"Empty_Tip_Nofavorite");
+            tip = kLocalizedString(@"Empty_Tip_No favorite");
             break;
         }
         case EmptyViewNoReviewType: {
