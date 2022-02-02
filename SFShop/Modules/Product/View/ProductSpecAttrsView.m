@@ -56,7 +56,7 @@
         make.bottom.left.right.equalTo(self);
 //        make.top.equalTo(self).offset(100);
     }];
-    
+   
     UIButton *dismissBtn = [UIButton buttonWithType: UIButtonTypeCustom];
     [dismissBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
     [dismissBtn setImage:[UIImage imageNamed:@"nav_close"] forState:UIControlStateNormal];
@@ -66,6 +66,30 @@
         make.right.equalTo(_contentView).offset(-15);
         make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
+    
+    UIButton *dismissBtn2 = [UIButton buttonWithType: UIButtonTypeCustom];
+    [dismissBtn2 addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
+    [_contentView addSubview:dismissBtn2];
+    [dismissBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_contentView).offset(5);
+        make.right.equalTo(_contentView).offset(-5);
+        make.size.mas_equalTo(CGSizeMake(40, 40));
+    }];
+    
+    @weakify(self);
+    
+    UIView *topView = [[UIView alloc] init];
+    [self addSubview:topView];
+    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.left.equalTo(self);
+        make.bottom.equalTo(self.contentView.mas_top);
+    }];
+    topView.backgroundColor = [UIColor clearColor];
+    [topView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        @strongify(self);
+        [self dismiss:dismissBtn];
+    }];
+    
     
     _imgView = [[UIImageView alloc] init];
     [self addSubview:_imgView];
