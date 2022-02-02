@@ -64,7 +64,7 @@
         make.top.mas_equalTo(self.scrollView);
         make.left.mas_equalTo(self.mas_left);
         make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo(152);
+        make.height.mas_equalTo(192);
     }];
     [self.goShoppingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.emptyView.mas_bottom).offset(-60);

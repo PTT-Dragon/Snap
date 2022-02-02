@@ -67,8 +67,16 @@
 #pragma mark - Getter
 - (void)setModel:(CategoryRankPriceModel *)model {
     _model = model;
-    self.minField.text = _model.minPriceGinseng;
-    self.maxField.text = _model.maxPriceGinseng;
+    if (_model.minPriceGinseng.length == 0 || [_model.minPriceGinseng isEqualToString:@"0"]) {
+        self.minField.text = @"";
+    }else {
+        self.minField.text = _model.minPriceGinseng;
+    }
+    if (_model.maxPriceGinseng.length == 0 || [_model.maxPriceGinseng isEqualToString:@"0"]) {
+        self.maxField.text = @"";
+    }else {
+        self.maxField.text = _model.maxPriceGinseng;
+    }
 }
 
 - (UIImageView *)middleLineImageView {

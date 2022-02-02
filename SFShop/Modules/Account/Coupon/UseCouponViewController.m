@@ -66,7 +66,18 @@
     }else{
         _couponNameLabel.text = [NSString stringWithFormat:@"Discount %@ Without limit",[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency]];
     }
-    self.expiredDataLabel.text = [NSString stringWithFormat:@"%@~%@",[[NSDate dateFromString:self.couponModel.effDate] dayMonthYear],[[NSDate dateFromString:self.couponModel.expDate] dayMonthYear]];
+    
+    if (self.couponModel.effDate && self.couponModel.expDate) {
+        self.expiredDataLabel.text = [NSString stringWithFormat:@"%@~%@",[[NSDate dateFromString:self.couponModel.effDate] dayMonthYear],[[NSDate dateFromString:self.couponModel.expDate] dayMonthYear]];
+    }else {
+        if (self.couponModel.userCoupons.count != 0) {
+            CouponModel *subModel = [[CouponModel alloc] initWithDictionary:self.couponModel.userCoupons.firstObject error:nil];
+            self.expiredDataLabel.text = [NSString stringWithFormat:@"%@~%@",[[NSDate dateFromString:subModel.effDate] dayMonthYear],[[NSDate dateFromString:subModel.expDate] dayMonthYear]];
+        }else {
+            self.expiredDataLabel.text = @"";
+        }
+    }
+    
     [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

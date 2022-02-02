@@ -39,9 +39,14 @@
     self.articleCatgIdList = @[@(CouponType_Available),@(CouponType_Expired),@(CouponType_Used)];
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
-    _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei-78);
+    _magicController.view.frame = CGRectMake(0, navBarHei+1, MainScreen_width, MainScreen_height-navBarHei-78);
     [_magicController.magicView reloadData];
     [self.view addSubview:self.bottomView];
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, 1)];
+    [self.view addSubview:lineView];
+    lineView.backgroundColor = [UIColor jk_colorWithHexString:@"#f5f5f5"];
+    
     [self loadDatas];
 }
 - (void)loadDatas
