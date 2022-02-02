@@ -30,11 +30,11 @@
     _similarBtn.layer.borderWidth = 1;
     _similarBtn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     if ([UserDefaultObjectForKey(@"Language") isEqualToString:kLanguageHindi]) {
-//        _leading1.priority = 750;
-//        _leading2.priority = 250;
+        _leading1.priority = 750;
+        _leading2.priority = 250;
     }else{
-//        _leading1.priority = 250;
-//        _leading2.priority = 750;
+        _leading1.priority = 250;
+        _leading2.priority = 750;
     }
     [_similarBtn setTitle:[NSString stringWithFormat:@" %@ ",kLocalizedString(@"FIND_SIMILAR")] forState:0];
     [_toCartBtn setTitle:[NSString stringWithFormat:@" %@ ",kLocalizedString(@"ADD_TO_CART")] forState:0];
