@@ -40,7 +40,13 @@
     self.title = kLocalizedString(@"My_orders");
     [self layoutSubviews];
     [self loadOrderNum];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadOrderNum) name:@"KRefreshOrderNum" object:nil];
 }
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KRefreshOrderNum" object:nil];
+}
+
 - (void)layoutSubviews
 {
     self.menuList = @[@"All", @"ToPay", @"ToShip",@"ToReceive",@"Completed",@"Canceled"];

@@ -16,6 +16,7 @@ typedef void(^CancelOrderChooseReasonBlock)(BOOL sel);
 @property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 

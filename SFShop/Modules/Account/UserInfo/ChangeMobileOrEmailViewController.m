@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (weak, nonatomic) IBOutlet UITextField *field2;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
+@property (weak, nonatomic) IBOutlet UILabel *subTitle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMargin;
+
 
 @end
 
@@ -49,9 +52,12 @@ static BOOL _passwordSuccess2 = NO;
 {
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (_type == 1) {
-        self.title = kLocalizedString(@"CHANGE_MOBILE");
+        self.title = kLocalizedString(@"MOBILE_NUMBER");
         _label.text = kLocalizedString(@"PASSWORD");
         _field.placeholder = kLocalizedString(@"PASSWORD");
+        _field2.placeholder = kLocalizedString(@"NEW_MOBILE_NUMBER");
+        self.subTitle.text = kLocalizedString(@"CHANGE_MOBILE");
+        [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:UIControlStateNormal];
         _label2.hidden = NO;
         _field2.hidden = NO;
         
@@ -62,9 +68,12 @@ static BOOL _passwordSuccess2 = NO;
         _label2.hidden = YES;
         _field2.hidden = YES;
         _passwordSuccess2 = YES;
+        self.subTitle.hidden = YES;
+        self.topMargin.constant = 10;
         if (model.userRes.email && ![model.userRes.email isEqualToString:@""]) {
             _field.placeholder = model.userRes.email;
         }
+        [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:UIControlStateNormal];
     }
 }
     

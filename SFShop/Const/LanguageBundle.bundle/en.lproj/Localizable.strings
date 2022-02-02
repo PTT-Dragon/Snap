@@ -88,7 +88,7 @@
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
   "FIND_SIMILAR" = "FIND SIMILAR";
   "MOBILE_NUMBER" = "Mobile Number";
-//  "NEW_MOBILE_NUMBER" = "New Mobile Number";
+  "NEW_MOBILE_NUMBER" = "New Mobile Number";
 //  "ADDRESS" = "Address";
   "STREET" = "Street/building name and number";
   "OTHERDETAIL" = "Other Detail";
@@ -155,7 +155,7 @@
   "PLEASE_SELECT" = "Please Select";
   "REFUND_AMOUNT" = "Refund amount";
   "INSTRUCTIONS" = "Instructions";
-  "REFUND_RETURN" = "Refund & Return";
+  "REFUND_RETURN" = "REFUND & RETURN";
   "REASON_TITLE" = "Please Select Reason";
 //  "MANY_SALES_HINT" = "This item cannot be replaced/refunded again. For more help please contact support.";
   "ORDER_CANCEL_REASON" = "Reason for cancellation";
@@ -287,7 +287,8 @@
   "POINTS_DEDUCTION" = "Points Deduction";
   "SHIPPING_FEE" = "Shipping Fee";
   "ATTACHMENT_INFORMATION" = "Attachment Information";
-  "ORDER_INFORMATION" = "Order Information";
+//  "ORDER_INFORMATION" = "Order Information";
+"ORDER_INFORMATION" = "Delivery Information";
   "ORDER_CODE" = "Order Code";
   "CREATION_TIME" = "Creation time";
   "PAYER_EMAIL" = "Payer Email";
@@ -579,7 +580,7 @@
 "Income_Expense" = "Income & Expense";
 "Relation_Order" = "Relation Order";
 "Order_details" = "Order Details";
-"Refund_Return" = "Refund & Return";
+"Refund_Return" = "REFUND & RETURN";
 "Search" = "Search";
 "Return" = "Return";
 "Refund" = "Refund";
