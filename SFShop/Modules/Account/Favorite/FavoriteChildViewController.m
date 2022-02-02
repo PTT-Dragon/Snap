@@ -145,9 +145,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([UserDefaultObjectForKey(@"Language") isEqualToString:kLanguageHindi]) {
-        return 150;
+        return 158;
     }else{
-        return 150;
+        return 128;
     }
 }
 - ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
