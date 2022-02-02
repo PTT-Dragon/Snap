@@ -131,9 +131,10 @@
     headerView.backgroundColor = UIColor.whiteColor;
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, tableView.frame.size.width-20, 30)];
     titleLabel.textColor = UIColor.blackColor;
+    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     [headerView addSubview:titleLabel];
     if (section == 0) {
-        titleLabel.text = @"My Favorite";
+        titleLabel.text = kLocalizedString(@"MY_FAVORITES");
         
         UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [headerView addSubview:closeBtn];
@@ -151,7 +152,7 @@
         }];
         
     } else {
-        titleLabel.text = @"Categories";
+        titleLabel.text = @"Category";
     }
     return headerView;
 }

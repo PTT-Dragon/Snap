@@ -41,6 +41,8 @@
 		1B31225A273260980055033D /* CaseOutDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B312258273260980055033D /* CaseOutDetailViewController.m */; };
 		1B31225B273260980055033D /* CaseOutDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B312259273260980055033D /* CaseOutDetailViewController.xib */; };
 		1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B312260273267630055033D /* IncomeAndExpenseViewController.m */; };
+		1B33C12427AA7E5300E7EDB9 /* ProductReviewGrayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B33C12227AA7E5300E7EDB9 /* ProductReviewGrayCell.m */; };
+		1B33C12527AA7E5300E7EDB9 /* ProductReviewGrayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B33C12327AA7E5300E7EDB9 /* ProductReviewGrayCell.xib */; };
 		1B38916227A4DB7700662006 /* CartPromotionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B38916027A4DB7700662006 /* CartPromotionCell.m */; };
 		1B38916327A4DB7700662006 /* CartPromotionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B38916127A4DB7700662006 /* CartPromotionCell.xib */; };
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
@@ -648,6 +650,9 @@
 		1B312259273260980055033D /* CaseOutDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaseOutDetailViewController.xib; sourceTree = "<group>"; };
 		1B31225F273267630055033D /* IncomeAndExpenseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncomeAndExpenseViewController.h; sourceTree = "<group>"; };
 		1B312260273267630055033D /* IncomeAndExpenseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncomeAndExpenseViewController.m; sourceTree = "<group>"; };
+		1B33C12127AA7E5300E7EDB9 /* ProductReviewGrayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewGrayCell.h; sourceTree = "<group>"; };
+		1B33C12227AA7E5300E7EDB9 /* ProductReviewGrayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductReviewGrayCell.m; sourceTree = "<group>"; };
+		1B33C12327AA7E5300E7EDB9 /* ProductReviewGrayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductReviewGrayCell.xib; sourceTree = "<group>"; };
 		1B38915F27A4DB7700662006 /* CartPromotionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartPromotionCell.h; sourceTree = "<group>"; };
 		1B38916027A4DB7700662006 /* CartPromotionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartPromotionCell.m; sourceTree = "<group>"; };
 		1B38916127A4DB7700662006 /* CartPromotionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartPromotionCell.xib; sourceTree = "<group>"; };
@@ -2378,6 +2383,9 @@
 				1BCD2E82279BF70F008A530B /* ProductReviewAddCell.h */,
 				1BCD2E83279BF70F008A530B /* ProductReviewAddCell.m */,
 				1BCD2E84279BF70F008A530B /* ProductReviewAddCell.xib */,
+				1B33C12127AA7E5300E7EDB9 /* ProductReviewGrayCell.h */,
+				1B33C12227AA7E5300E7EDB9 /* ProductReviewGrayCell.m */,
+				1B33C12327AA7E5300E7EDB9 /* ProductReviewGrayCell.xib */,
 			);
 			path = ProductReview;
 			sourceTree = "<group>";
@@ -3788,6 +3796,7 @@
 				1B478330272AA1FF00F2A945 /* SecurityCenterViewController.xib in Resources */,
 				1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */,
 				1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */,
+				1B33C12527AA7E5300E7EDB9 /* ProductReviewGrayCell.xib in Resources */,
 				8EE292212789AA400051DF85 /* LanguageBundle.bundle in Resources */,
 				8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */,
 				1BD8E7DD27605D0400130DCC /* ReviewSuccessViewController.xib in Resources */,
@@ -3914,6 +3923,7 @@
 				1B6C52CB275C894C00A1C617 /* RelationOrderDetailInfoCell.m in Sources */,
 				1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */,
 				AE8F32D6272EA117008E3DD8 /* ProductCheckoutBaseCell.m in Sources */,
+				1B33C12427AA7E5300E7EDB9 /* ProductReviewGrayCell.m in Sources */,
 				1B82AE4D27707CB500D75E00 /* KSPhotoBrowser.m in Sources */,
 				1BC7A2C2272AF48600755832 /* FAQTableCell.m in Sources */,
 				1B18E355279EF7F800A90152 /* ReplaceDeliveryCell.m in Sources */,

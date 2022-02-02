@@ -16,6 +16,7 @@
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger pageIndex;
 @property (nonatomic,strong) EmptyView *emptyView;
+@property (nonatomic, strong) UIButton *gotoShopping;
 
 @end
 
@@ -45,6 +46,12 @@
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(90);
         make.left.right.bottom.mas_equalTo(self.view);
+    }];
+    [self.view addSubview:self.gotoShopping];
+    [self.gotoShopping mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(24);
+        make.right.bottom.mas_offset(-24);
+        make.height.mas_offset(46);
     }];
 }
 - (void)loadDatas
@@ -91,6 +98,7 @@
     } else {
         self.emptyView.hidden = NO;
     }
+    self.gotoShopping.hidden = self.emptyView.hidden;
 }
 
 - (void)loadMoreDatas
@@ -207,6 +215,14 @@
     return headerView;
 }
 
+#pragma mark - <click event>
+- (void)gotoShoppingEvent{
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:0];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 #pragma mark -
 - (void)deleteCellWithRow:(NSInteger)row
 {
@@ -264,6 +280,18 @@
         _emptyView.hidden = YES;
     }
     return _emptyView;
+}
+- (UIButton *)gotoShopping{
+    
+    if (!_gotoShopping) {
+        
+        _gotoShopping = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_gotoShopping setTitle:kLocalizedString(@"BACK_TO_HOME") forState:UIControlStateNormal];
+        [_gotoShopping setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [_gotoShopping setBackgroundColor:[UIColor jk_colorWithHexString:@"FF1659"]];
+        [_gotoShopping addTarget:self action:@selector(gotoShoppingEvent) forControlEvents:UIControlEventTouchUpInside];
+        
+    }return _gotoShopping;
 }
 
 

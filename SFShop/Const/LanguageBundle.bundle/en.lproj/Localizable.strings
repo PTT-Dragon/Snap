@@ -296,7 +296,7 @@
 //  "RE_BUY" = "Re-buy";
 //  "CONFIRM_RECEIPT" = "Confirm Receipt";
   "CLOSE" = "Close";
-//  "BACK_TO_HOME" = "Back to Home";
+  "BACK_TO_HOME" = "BACK TO HOME";
 //  "VIEW_ORDER" = "View Order";
   "DIRECT_FUNCTION" = "Direct Function";
 //  "SHOPPING" = "Shopping";
