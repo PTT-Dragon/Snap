@@ -130,7 +130,7 @@
 //  "DEL_COLLECT_SUCCESS" = "Berhasil dihapus dari wishlist!";
 //  "COLLECT" = "Mengumpulkan";
   "RATING" = "Penilaian";
-//  "STAR" = "Bintang";
+  "STAR" = "Bintang";
 //  "ENDS_IN" = "Berakhir dalam";
 //  "TOTAL" = "Jumlah";
   "BUY_NOW" = "Beli sekarang";
@@ -261,7 +261,7 @@
 //  "SAFETY_VERIFICATION" = "Verifikasi keamanan";
   "LOGISTICS_DETAILS" = "Detail Logistik";
 //  "EVALUATION" = "Evaluasi";
-//  "RESET" = "Re-set";
+  "RESET" = "ATUR ULANG";
   "AVAILABLE" = "Tersedia";
   "EXPIRED" = "Kadaluwarsa";
   "USED" = "Telah digunakan";
@@ -271,7 +271,8 @@
   "TO_RECEIVE" = "Dikirim";
   "SUCCESSFUL" = "Berhasil";
   "COMPLETED" = "Selesai";
-  "CANCELLED" = "Dibatalkan";
+//  "CANCELLED" = "Dibatalkan";
+"CANCELLED" = "Cancelled";
 //  "BANK" = "Bank";
 //  "ACCOUNT_NAME" = "Nama Akun";
 //  "BANK_ACCOUNT" = "Nomor akun bank";
@@ -419,7 +420,7 @@
 //  "REFUND_SUCCESS_CONTENT1" = "Harap verifikasi pengembalian dana yang diterima";
 //  "REFUND_REJECTED" = "Pengembalian Dana Ditolak";
 //  "REFUND_REJECTED_CONTENT" = "Pesanan layanan tidak disetujui";
-//  "IMAGES" = "Gambar";
+  "IMAGES" = "Gambar";
   "TO_REVIEW" = "Belum Dinilai";
   "EXPIRY_DATE" = "Tanggal kadaluwarsa";
   "RATED" = "Sudah Dinilai";
@@ -431,7 +432,7 @@
 //  "REVIEW_PUBLISHED" = "Ulasan Dipublikasikan";
 //  "THANK_REVIEW" = "Terimakasih untuk ulasan anda";
 //  "VIEWCODE" = "Lihat kode";
-  "SHAREBUY" = "Group Buy";
+  "SHAREBUY" = "GROUP BUY";
 //  "GROUPSUCCESS" = "Join group sukses";
 //  "TOSHIP" = "Dikirim";
   "TORECEIVE" = "Diterima";
@@ -447,7 +448,7 @@
 "RESET_WITH_SMS" = "Ganti dengan SMS";
 "RESET_WITH_EMAIL" = "Ganti dengan Email";
 "FORGOT_PWD_SELECT_MODAL_TITLE" = "Anda bisa mengganti kata sandi menggunakan SMS atau Email";
-//  "SEARCH_DISCOVERY" = "History";
+  "SEARCH_DISCOVERY" = "Riwayat Pencarian";
 //  "MAX_DISCOUNT" = "Diskon maksimum";
 //  "EMPTYING" = "Kosong";
 //  "INVALID_PRODUCTS" = "Produk Tidak Valid";
@@ -585,7 +586,8 @@
 "Income_Expense" = "Income & Expense";
 "Relation_Order" = "Relation Order";
 "Order_details" = "Rincian Pemesanan";
-"Refund_Return" = "Pengembalian barang dan dana";
+//"Refund_Return" = "Pengembalian barang dan dana";
+"Refund_Return" = "Rincian pelayanan";
 "Search" = "Cari";
 "RETURN" = "Pengembalian barang";
 "Refund" = "Pengembalian dana";

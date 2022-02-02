@@ -41,21 +41,24 @@
         make.left.mas_equalTo(KScale(16));
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(KScale(32));
-        make.width.mas_equalTo(KScale(96));
+        CGFloat width = [self.popularityBtn.titleLabel.text calWidthWithLabel:self.popularityBtn.titleLabel] + 30;
+        make.width.mas_equalTo(width);
     }];
     
     [self.salesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.popularityBtn.mas_right).offset(KScale(8));
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(KScale(32));
-        make.width.mas_equalTo(KScale(60));
+        CGFloat width = [self.salesBtn.titleLabel.text calWidthWithLabel:self.salesBtn.titleLabel] + 30;
+        make.width.mas_equalTo(width);
     }];
     
     [self.priceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.salesBtn.mas_right).offset(KScale(8));
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(KScale(32));
-        make.width.mas_equalTo(KScale(78));
+        CGFloat width = [self.priceBtn.titleLabel.text calWidthWithLabel:self.priceBtn.titleLabel] + 30;
+        make.width.mas_equalTo(width);
     }];
     
     [self.priceBtn addSubview:self.priceSortUpImg];
@@ -81,7 +84,15 @@
 
 #pragma mark - Event
 - (void)sort:(UIButton *)btn {
-    //改变状态之前的逻辑处理
+    //UI 处理
+    [self sortUpdateBtnUI:btn];
+    
+    //回调给外部
+    !self.clickFilterBlock?:self.clickFilterBlock(btn.tag - 100);
+}
+
+//改变状态之前 处理升序、降序价格逻辑
+- (void)dealPrice:(UIButton *)btn {
     if (btn == self.priceBtn) {
         CategoryRankType type = btn.tag - 100;
         BOOL isSeleted = btn.selected;
@@ -100,19 +111,21 @@
             self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
             self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down-red"];
         }
-    }else {
+    } else {
         self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
         self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down"];
     }
-    
-    //回调给外部
-    !self.clickFilterBlock?:self.clickFilterBlock(btn.tag - 100);
-    
-    //UI 处理
-    [self sortUpdateBtnUI:btn];
+}
+
+- (void)nonUserBehaviorSelected:(CategoryRankType)type {
+    UIButton *btn = [self viewWithTag:type + 100];
+    if (btn) {
+        [self sortUpdateBtnUI:btn];
+    }
 }
 
 - (void)sortUpdateBtnUI:(UIButton *)btn {
+    [self dealPrice:btn];
     btn.selected = YES;
     btn.layer.borderColor = [UIColor jk_colorWithHexString:@"#FF1659"].CGColor;
     if (self.lastBtn && self.lastBtn != btn ) {
@@ -169,9 +182,6 @@
         _priceBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
         _priceBtn.layer.borderWidth = 1;
         [_priceBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 5)];
-        
-        
-        
     }
     return _priceBtn;
 }

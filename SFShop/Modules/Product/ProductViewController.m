@@ -143,6 +143,7 @@
 
 - (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
     [_moreView removeFromSuperview];
+    [_navView updateIsOnlyShowMoreBtn:YES];
     _moreView = [[BaseMoreView alloc] init];
     [self.view addSubview:_moreView];
     [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -196,7 +197,14 @@
     [self requestCampaigns];
     [self requestCartNum];
     [self requestEvaluationsInfo];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNaviBtnAction) name:@"KBaseNavViewHiddenMoreView" object:nil];
 }
+
+- (void)showNaviBtnAction {
+    [_navView updateIsOnlyShowMoreBtn:NO];
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

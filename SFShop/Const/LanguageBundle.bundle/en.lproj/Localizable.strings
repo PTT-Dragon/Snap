@@ -125,7 +125,7 @@
 //  "DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully！";
 //  "COLLECT" = "COLLECT";
   "RATING" = "Ratings";
-//  "STAR" = "star";
+  "STAR" = "star";
 //  "ENDS_IN" = "Ends in";
 //  "TOTAL" = "Total";
   "BUY_NOW" = "Buy Now";
@@ -257,7 +257,7 @@
 //  "SAFETY_VERIFICATION" = "Security verification";
   "LOGISTICS_DETAILS" = "Logistics Details";
 //  "EVALUATION" = "Evaluation";
-//  "RESET" = "Reset";
+  "RESET" = "RESET";
   "AVAILABLE" = "Available";
   "EXPIRED" = "Expired";
   "USED" = "Used";
@@ -417,7 +417,7 @@
 //  "REFUND_SUCCESS_CONTENT1" = "Please verify the refund received";
 //  "REFUND_REJECTED" = "Refund Rejected";
 //  "REFUND_REJECTED_CONTENT" = "Service order is not approved";
-//  "IMAGES" = "Images";
+  "IMAGES" = "Images";
   "TO_REVIEW" = "To Review";
   "EXPIRY_DATE" = "Expiry Date";
   "RATED" = "Rated";
@@ -429,7 +429,7 @@
 //  "REVIEW_PUBLISHED" = "Review Published";
 //  "THANK_REVIEW" = "Thank you for your review!";
 //  "VIEWCODE" = "View Code";
-  "SHAREBUY" = "Group Buy";
+  "SHAREBUY" = "GROUP BUY";
 //  "GROUPSUCCESS" = "Join group successfully.Please check later.";
 //  "TOSHIP" = "To Ship";
   "TORECEIVE" = "Shipped";
@@ -442,7 +442,7 @@
 //  "SEARCH" = "Search";
   "SURE_CANCEL" = "Are you sure to cancel?";
   "SURE_DELETE" = "Are you sure to delete?";
-//  "SEARCH_DISCOVERY" = "Search Discovery";
+  "SEARCH_DISCOVERY" = "Search Discovery";
 //  "MAX_DISCOUNT" = "Discount max";
 //  "EMPTYING" = "Emptying";
 //  "INVALID_PRODUCTS" = "Invalid Products";

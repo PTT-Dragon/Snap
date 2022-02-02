@@ -5,7 +5,8 @@
 "MJRefreshTrailerIdleText" = "Geser Lihat detail grafis";
 "MJRefreshTrailerPullingText" = "Rilis tampilan detail grafis";
 
-"MJRefreshAutoFooterIdleText" = "Klik atau tarik lebih banyak";
+//"MJRefreshAutoFooterIdleText" = "Klik atau tarik lebih banyak";
+"MJRefreshAutoFooterIdleText" = "Tidak ada produk lainnya";
 "MJRefreshAutoFooterRefreshingText" = "Lebih banyak data sedang dimuat ..";
 "MJRefreshAutoFooterNoMoreDataText" = "Sudah penuh";
 

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface CatgRelaModel : JSONModel
-@property (nonatomic,copy) NSString *objType;
+@property (nonatomic,copy) NSString *objType;//Category 、CustomizedPage (自定义)
 @property (nonatomic, readwrite, strong) ObjValueModel *objValue;
 @end
 

@@ -14,6 +14,8 @@
 @interface RefundDetailImagesCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray *imgArr;//存放图片数组
+@property (weak, nonatomic) IBOutlet UILabel *theTitle;
+
 
 @end
 
@@ -28,6 +30,8 @@
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     [_collectionView registerNib:[UINib nibWithNibName:@"ReviewAddNewPhotoCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewAddNewPhotoCell"];
+    
+    self.theTitle.text = kLocalizedString(@"IMAGES");
 }
 - (void)setContent:(NSArray<EvaluatesContentsModel *> *)content
 {

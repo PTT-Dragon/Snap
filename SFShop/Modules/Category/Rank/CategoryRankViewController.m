@@ -34,6 +34,7 @@
 @property (nonatomic, readwrite, assign) BOOL showType;//显示类型 0:colletion 1:list
 @property (nonatomic, readwrite, assign) BOOL showEmptyView;//是否显示空视图
 @property (nonatomic, readwrite, assign, getter=isInitLoad) BOOL initLoad;//是否初始加载
+@property (nonatomic, readwrite, assign, getter=isReloadFilter) BOOL reloadFilter;//是否刷新筛选标签
 @property (nonatomic, readwrite, strong) CollectionHeaderEmptyView *emptyView;//是否显示空视图
 
 @end
@@ -43,6 +44,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.initLoad = YES;
+    self.reloadFilter = YES;
+    self.currentType = 2;
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadsubviews];
     self.navSearchView.activeSearch = self.activeSearch;
@@ -85,8 +88,11 @@
     NSLog(@"");
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
-        self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
-        
+        CategoryRankModel *dataModel = [CategoryRankModel yy_modelWithDictionary:response];
+        if (self.reloadFilter) {
+            self.dataModel = dataModel;
+            self.reloadFilter = NO;
+        }
         if ([self.collectionView.mj_header isRefreshing]) {
             [self.collectionView.mj_header endRefreshing];
             [self.dataArray removeAllObjects];
@@ -94,7 +100,7 @@
         if ([self.collectionView.mj_footer isRefreshing]) {
             [self.collectionView.mj_footer endRefreshing];
         }
-        [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
+        [self.dataArray addObjectsFromArray:dataModel.pageInfo.list];
         [self refreshNoItemsStatus];
         [self.collectionView reloadData];
     } failed:^(NSError * _Nonnull error) {
@@ -160,7 +166,7 @@
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
         if (type != CategoryRankFilterRefreshCancel) {
             [self resetIfEmpty];
-            [self resetInitParam];
+            [self disableInitParam];
             self.dataModel = model;
             self.filterCacheModel = self.dataModel.filterCache;
             [self.collectionView.mj_header beginRefreshing];
@@ -182,12 +188,21 @@
 - (void)resetAllCacheParam {
     self.dataModel.filterCache = nil;
     self.filterCacheModel = nil;
-    [self resetInitParam];
+    [self disableInitParam];
 }
 
 /// 点击搜索或者进行筛选时前，会重置传入的初始化参数
-- (void)resetInitParam {
+- (void)disableInitParam {
     self.initLoad = NO;
+}
+
+- (void)resetFilter {
+    self.reloadFilter = YES;
+}
+
+- (void)resetSort {
+    self.currentType = CategoryRankTypePopularity;
+    [self.headSelectorView nonUserBehaviorSelected:CategoryRankTypePopularity];
 }
 
 /// 筛选后，会重置隐藏空页面
@@ -306,12 +321,12 @@
         __weak __typeof(self)weakSelf = self;
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
-            if (![qs isEqualToString:strongSelf.filterCacheModel.qs]) {
-                [strongSelf resetIfEmpty];
-                [strongSelf resetAllCacheParam];
-                strongSelf.filterCacheModel.qs = qs;
-                [strongSelf.collectionView.mj_header beginRefreshing];
-            }
+            [strongSelf resetIfEmpty];
+            [strongSelf resetAllCacheParam];
+            [strongSelf resetFilter];
+            [strongSelf resetSort];
+            strongSelf.filterCacheModel.qs = qs;
+            [strongSelf.collectionView.mj_header beginRefreshing];
         }];
     }
     return _navSearchView;
