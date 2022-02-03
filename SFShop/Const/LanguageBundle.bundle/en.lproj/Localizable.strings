@@ -239,6 +239,8 @@
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Please verify the refund has been received";
 //  "CHOOSE_ANOTHER_ADDRESS" = "Choose Another Address";
   "CHOOSE_ADDRESS" = "Choose Address";
+ "Delivery Option" = "Delivery Option";
+"choose" = "Choose";
 //  "QUANTITY" = "Quantity";
 //  "UP_TO" = "up to";
 //  "OFF" = "off";

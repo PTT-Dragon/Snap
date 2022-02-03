@@ -43,7 +43,8 @@
 //  "CASH_OUT_DETAIL" = "Cash Out Detail";
 //  "IN_REVIEW" = "Tunggu konfirmasi";
 //  "PLEASE_SELECT_DELIVERY_ADDRESS" = "Pilih alamat tujuan";
-  "ADD_ADDRESS_TIPS" = "Mohon isi detail alamat";
+//  "ADD_ADDRESS_TIPS" = "Mohon isi detail alamat";
+"ADD_ADDRESS_TIPS" = "Silakan masukkan alamat pengiriman";
 //  "NO_AVAILABLE_DELIVERY_METHOD" = "Tidak ada pilihan untuk kurir pengiriman";
 //  "NO_DATA_AVAILABLE" = "Tidak ada data yang tersedia";
 //  "VISIT" = "Visit";
@@ -216,7 +217,7 @@
 "LOG_OUT" = "Keluar";
 //  "CONFIRMDELADDR" = "Anda yakin ingin menghapus alamat ini?";
   "CONFIRM_LOGOUT" = "Konfirmasi untuk keluar";
-  "LOGOUT" = "Keluar";
+  "LOGOUT" = "KELUAR";
   "ORDERS" = "Pesanan";
   "VIEW_ALL_ORDERS" = "Lihat semua pesanan";
 //  "LOGINORREGISTER" = "Log in atau daftar";
@@ -243,6 +244,8 @@
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Harap verifikasi pengembalian dana yang telah diterima";
 //  "CHOOSE_ANOTHER_ADDRESS" = "Pilih Alamat Lain";
   "CHOOSE_ADDRESS" = "Pilih alamat";
+"Delivery Option" = "Opsi Pengiriman";
+"choose" = "Pilih";
 //  "QUANTITY" = "Jumlah";
 //  "UP_TO" = "hingga";
 //  "OFF" = "Off";
@@ -502,7 +505,7 @@
 "Empty_Tip_NoShoppingCar" = "Tidak ada barang dikeranjang ini.";
 "Empty_Tip_NoProduct" = "Maaf; tidak ada produk yang berhubungan ditemukan.";
 "Empty_Tip_NoDiscount" = "Anda belum mendapatkan kupon apapun.";
-"Empty_Tip_NoOrder" = "Tidak ada Perintah";
+"Empty_Tip_NoOrder" = "Tidak ada perintah";
 "Empty_Tip_No favorite" = "Tidak ada produk favorit yang dipilih saat ini.";
 "Empty_Tip_NoReview" = "Anda belum melihat barang apapun dalam 30 hari terakhir.";
 "Empty_Tip_NoAddress" = "Sepertinya Anda belum menyimpan alamat apapun lagi!";
@@ -648,7 +651,7 @@
 "LANGUGE" = "Bahasa";
 "Go_Shopping" = "LANJUT BELANJA";
 "PAYNOW" = "BAYAR SEKARANG";
-"REBUY" = "Beli lagi";
+"REBUY" = "BELI LAGI";
 "TILL" = "Sampai";
 "RECEIPT" = "PENERIMA";
 "CONFIRM" = "KONFIRMASI";
