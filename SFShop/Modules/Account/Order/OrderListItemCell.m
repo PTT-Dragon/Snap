@@ -34,9 +34,9 @@
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
     NSString *sku = @"";
     for (NSString *key in dic.allKeys) {
-        sku = [sku stringByAppendingFormat:@"%@ ",dic[key]];
+        sku = [sku stringByAppendingFormat:@"%@",dic[key]];
     }
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
+    _skuLabel.text = [NSString stringWithFormat:@"   %@   ",sku];
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
     _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
@@ -48,9 +48,9 @@
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
     NSString *sku = @"";
     for (NSString *key in dic.allKeys) {
-        sku = [sku stringByAppendingFormat:@"%@ ",dic[key]];
+        sku = [sku stringByAppendingFormat:@"%@",dic[key]];
     }
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
+    _skuLabel.text = [NSString stringWithFormat:@"   %@   ",sku];
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
     _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
@@ -61,9 +61,9 @@
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];
     NSString *sku = @"";
     for (NSString *key in dic.allKeys) {
-        sku = [sku stringByAppendingFormat:@"%@ ",dic[key]];
+        sku = [sku stringByAppendingFormat:@"%@",dic[key]];
     }
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
+    _skuLabel.text = [NSString stringWithFormat:@"   %@   ",sku];
     _countLabel.text = @"";//[NSString stringWithFormat:@"X%@",model.submitNum];
     _priceLabel.text = @"";//[NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }

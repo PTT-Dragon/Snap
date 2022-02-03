@@ -9,7 +9,6 @@
 #import "verifyCodeVC.h"
 #import "UITextField+expand.h"
 
-
 @interface ChangeMobileOrEmailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UITextField *field;
@@ -18,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UILabel *subTitle;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMargin;
+@property (weak, nonatomic) IBOutlet UILabel *redLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *redLabel2;
 
 
 @end
@@ -60,6 +61,36 @@ static BOOL _passwordSuccess2 = NO;
         [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:UIControlStateNormal];
         _label2.hidden = NO;
         _field2.hidden = NO;
+        self.label.hidden = YES;
+        self.label2.hidden = YES;
+        self.redLabel1.hidden = YES;
+        self.redLabel2.hidden = YES;
+        
+        @weakify(self);
+        [[self.field rac_textSignal] subscribeNext:^(NSString * _Nullable x) {
+            @strongify(self);
+            if (x.length == 0) {
+                self.label.hidden = YES;
+                self.redLabel1.hidden = NO;
+            }else {
+                self.label.hidden = NO;
+                self.redLabel1.hidden = YES;
+                self.redLabel1.alpha = 1;
+            }
+        }];
+        
+        [[self.field2 rac_textSignal] subscribeNext:^(NSString * _Nullable x) {
+            @strongify(self);
+            if (x.length == 0) {
+                self.label2.hidden = YES;
+                self.redLabel2.hidden = NO;
+            }else {
+                self.label2.hidden = NO;
+                self.redLabel2.hidden = YES;
+                self.redLabel2.alpha = 1;
+            }
+        }];
+        
         
     }else{
         self.title = kLocalizedString(@"CHANGE_EMAIL");
