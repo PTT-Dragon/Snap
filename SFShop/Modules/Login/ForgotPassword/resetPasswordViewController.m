@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UILabel *explainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
-
+@property (nonatomic,strong) UIView *lfView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end
 
@@ -32,45 +32,72 @@ static BOOL _accountSuccess = NO;
     if (_type == 2) {
         _label.text = kLocalizedString(@"RESET_PASSWORD_EMAIL");
         _field.placeholder = kLocalizedString(@"Email");
-        _explainLabel.text = kLocalizedString(@"EMAIL_ERROR_2");
+        _explainLabel.text = kLocalizedString(@"INCORRECT_EMAIL");
         _label1.text = kLocalizedString(@"Email");
+        
     }else{
         _label.text = kLocalizedString(@"RESET_PASSWORD_SMS");
-        _field.placeholder = kLocalizedString(@"PHONE");
-        _explainLabel.text = kLocalizedString(@"LOGIN_INVALID_PHONE");
-        _label1.text = kLocalizedString(@"PHONE");
+        _field.placeholder = kLocalizedString(@"PHONE_NUMBER");
+        _explainLabel.text = kLocalizedString(@"INCORRECT_PHONE");
+        _label1.text = kLocalizedString(@"PHONE_NUMBER");
+        UIImage *im = [UIImage imageNamed:@"WX20220203-135232"];
+        UIImageView *iv = [[UIImageView alloc] initWithImage:im];
+        _lfView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];//宽度根据需求进行设置，高度必须大于 textField 的高度
+        iv.center = _lfView.center;
+        [_lfView addSubview:iv];
+        _field.leftViewMode = UITextFieldViewModeAlways;
+        _field.leftView = _lfView;
     }
 }
 - (void)changedTextField:(UITextField *)textField
 {
     if (_type == 2) {
-        _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:EIDTTYPE labels:@[_label1]];
+        _accountSuccess = [textField systemPhoneCheck:CHECKEMAILTYPE editType:EIDTTYPE];
     }else{
-        _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:EIDTTYPE labels:@[_label1]];
+        _accountSuccess = [textField systemPhoneCheck:CHECKPHONETYPE editType:EIDTTYPE];
     }
     if (_accountSuccess) {
-        self.sendBtn.backgroundColor = RGBColorFrom16(0xFF1659);
+        self.sendBtn.backgroundColor = RGBColorFrom16(0xff1659);
         self.sendBtn.userInteractionEnabled = YES;
+        self.label1.textColor = RGBColorFrom16(0x7b7b7b);
+        self.explainLabel.textColor = RGBColorFrom16(0x7b7b7b);
     }else{
         self.sendBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
         self.sendBtn.userInteractionEnabled = NO;
+        self.label1.hidden = NO;
+        self.explainLabel.hidden = NO;
+        self.label1.textColor = RGBColorFrom16(0xCE0000);
+        self.explainLabel.textColor = RGBColorFrom16(0xCE0000);
+    }
+    if ([textField.text isEqualToString:@""]) {
+        self.label1.hidden = YES;
+        self.explainLabel.hidden = YES;
     }
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (_type == 2) {
-        _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:BEGINEDITTYPE labels:@[_label1]];
-    }else{
-        _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:BEGINEDITTYPE labels:@[_label1]];
+    if ([textField.text isEqualToString:@""]) {
+        self.label1.hidden = YES;
+        self.explainLabel.hidden = YES;
     }
+//    if (_type == 2) {
+//        _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:BEGINEDITTYPE labels:@[_label1]];
+//    }else{
+//        _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:BEGINEDITTYPE labels:@[_label1]];
+//    }
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (_type == 2) {
-        _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:ENDEDITTYPE labels:@[_label1]];
-    }else{
-        _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:ENDEDITTYPE labels:@[_label1]];
+    if ([textField.text isEqualToString:@""]) {
+        self.label1.hidden = YES;
+        self.explainLabel.hidden = YES;
+        self.field.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     }
+//    if (_type == 2) {
+//        _accountSuccess = [textField textFieldState:CHECKEMAILTYPE editType:ENDEDITTYPE labels:@[_label1]];
+//    }else{
+//        _accountSuccess = [textField textFieldState:CHECKPHONETYPE editType:ENDEDITTYPE labels:@[_label1]];
+//    }
 }
 - (IBAction)sendAction:(UIButton *)sender {
     [MBProgressHUD showHudMsg:@""];

@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
-
+@property (nonatomic,strong) UIView *lfView;
 @end
 
 @implementation LoginViaOTP
@@ -31,6 +31,13 @@ static BOOL _accountSuccess = NO;
     _label1.text = kLocalizedString(@"PHONE_NUMBER");
     _field.placeholder = kLocalizedString(@"PHONE_NUMBER");
     [self.btn setTitle:kLocalizedString(@"Login") forState:0];
+    UIImage *im = [UIImage imageNamed:@"WX20220203-135232"];
+    UIImageView *iv = [[UIImageView alloc] initWithImage:im];
+    _lfView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];//宽度根据需求进行设置，高度必须大于 textField 的高度
+    iv.center = _lfView.center;
+    [_lfView addSubview:iv];
+    _field.leftViewMode = UITextFieldViewModeAlways;
+    _field.leftView = _lfView;
 }
 -(void)changedTextField:(UITextField *)textField
 {

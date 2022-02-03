@@ -49,10 +49,42 @@ static BOOL _passwordSuccess = NO;
 -(void)changedTextField:(UITextField *)textField
 {
     if (textField == _PhoneField) {
-        _accountSuccess = [textField textFieldState:CHECKMEAILORPHONE editType:EIDTTYPE labels:@[_phoneLabel,_accountQesLabel]];
+        _accountSuccess = [textField systemPhoneCheck:CHECKMEAILORPHONE editType:EIDTTYPE];
+        if ([textField.text isEqualToString:@""]) {
+            _phoneLabel.hidden = YES;
+            _accountQesLabel.hidden = YES;
+            _accountQesLabel.textColor = RGBColorFrom16(0xf7f7f7);
+        }
+        if (_accountSuccess) {
+            _phoneLabel.hidden = NO;
+            _phoneLabel.textColor = RGBColorFrom16(0x7b7b7b);
+            _accountQesLabel.hidden = YES;
+        }else{
+            _phoneLabel.hidden = NO;
+            _phoneLabel.textColor = RGBColorFrom16(0xff1659);
+            _accountQesLabel.hidden = NO;
+            _accountQesLabel.textColor = RGBColorFrom16(0xff1659);
+        }
     }else if (textField == _passwordField){
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_passwordLabel,_passwordQesLabel]];
+        _passwordSuccess = [textField systemPhoneCheck:CHECKPASSWORDTYPE editType:EIDTTYPE];
+        if ([textField.text isEqualToString:@""]) {
+            _passwordLabel.hidden = YES;
+            _passwordQesLabel.hidden = NO;
+            _passwordLabel.textColor = RGBColorFrom16(0xf7f7f7);
+        }
+        if (_passwordSuccess) {
+            _passwordLabel.hidden = NO;
+            _passwordLabel.textColor = RGBColorFrom16(0x7b7b7b);
+            _passwordQesLabel.hidden = YES;
+        }else{
+            _passwordLabel.hidden = NO;
+            _passwordLabel.textColor = RGBColorFrom16(0xff1659);
+            _passwordQesLabel.hidden = NO;
+            _passwordQesLabel.textColor = RGBColorFrom16(0xff1659);
+        }
     }
+    
+    
     if (_accountSuccess && _passwordSuccess) {
         self.signUpBtn.backgroundColor = RGBColorFrom16(0xFF1659);
         self.signUpBtn.userInteractionEnabled = YES;
@@ -64,17 +96,33 @@ static BOOL _passwordSuccess = NO;
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == _PhoneField) {
-        _accountSuccess = [textField textFieldState:CHECKMEAILORPHONE editType:BEGINEDITTYPE labels:@[_phoneLabel]];
+        if ([textField.text isEqualToString:@""]) {
+            _phoneLabel.hidden = YES;
+            _accountQesLabel.hidden = YES;
+            _accountQesLabel.textColor = RGBColorFrom16(0xf7f7f7);
+        }
     }else if (textField == _passwordField){
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:BEGINEDITTYPE labels:@[_passwordLabel]];
+        if ([textField.text isEqualToString:@""]) {
+            _passwordLabel.hidden = YES;
+            _passwordQesLabel.hidden = YES;
+            _passwordLabel.textColor = RGBColorFrom16(0xf7f7f7);
+        }
     }
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _PhoneField) {
-        _accountSuccess = [textField textFieldState:CHECKMEAILORPHONE editType:ENDEDITTYPE labels:@[_phoneLabel]];
+        if ([textField.text isEqualToString:@""]) {
+            _phoneLabel.hidden = YES;
+            _accountQesLabel.hidden = YES;
+            _accountQesLabel.textColor = RGBColorFrom16(0xf7f7f7);
+        }
     }else if (textField == _passwordField){
-        _passwordSuccess = [textField textFieldState:CHECKPASSWORDTYPE editType:ENDEDITTYPE labels:@[_passwordLabel]];
+        if ([textField.text isEqualToString:@""]) {
+            _passwordLabel.hidden = YES;
+            _passwordQesLabel.hidden = NO;
+            _passwordLabel.textColor = RGBColorFrom16(0xf7f7f7);
+        }
     }
 }
 - (IBAction)secAction:(UIButton *)sender {
@@ -95,11 +143,11 @@ static BOOL _passwordSuccess = NO;
             weakself.signUpBtn.userInteractionEnabled = NO;
             weakself.signUpBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
             BOOL isEmail = [self.PhoneField.text rangeOfString:@"@"].location != NSNotFound;
-            NSString *str = isEmail ? [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_EMAIL_ADDRESS"),kLocalizedString(@"IS_ALREADY_REGISTERED")]: [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_PHONE_NUMBER"),kLocalizedString(@"IS_ALREADY_REGISTERED")];
-            PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:str btnTitle:kLocalizedString(@"Login") block:^{
-                [weakself.navigationController popViewControllerAnimated:YES];
-            } btn2Title:kLocalizedString(@"CANCEL") block2:^{
+            NSString *str = isEmail ? [NSString stringWithFormat:@"%@ %@",kLocalizedString(@"THIS_EMAIL_ADDRESS"),kLocalizedString(@"IS_ALREADY_REGISTERED")]: [NSString stringWithFormat:@"%@ %@",kLocalizedString(@"THIS_PHONE_NUMBER"),kLocalizedString(@"IS_ALREADY_REGISTERED")];
+            PublicAlertView *alert = [[PublicAlertView alloc] initDarkColorWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:str btnTitle:kLocalizedString(@"CANCEL") block:^{
                 
+            } btn2Title:kLocalizedString(@"Login") block2:^{
+                [weakself.navigationController popViewControllerAnimated:YES];
             }];
             [self.view addSubview:alert];
         }

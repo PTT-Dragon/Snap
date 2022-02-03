@@ -7,11 +7,51 @@
 
 #import "UITextField+expand.h"
 #import "NSString+Add.h"
+#import "NSString+Fee.h"
 
 #define defaultColor RGBColorFrom16(0x7b7b7b)
 #define highlightColor RGBColorFrom16(0xCE0000)
 
 @implementation UITextField (expand)
+
+- (BOOL)systemPhoneCheck:(UITextFieldShowType)type editType:(UITextFieldEditType)editType
+{
+    if (type == CHECKPHONETYPE) {
+        if ([self.text validatePhoneNumber]) {
+            self.layer.borderColor =  defaultColor.CGColor;
+            return YES;
+        }else{
+            self.layer.borderColor =  highlightColor.CGColor;
+            return NO;
+        }
+    }else if (type == CHECKEMAILTYPE){
+        if ([self.text validateEmail]) {
+            self.layer.borderColor =  defaultColor.CGColor;
+            return YES;
+        }else{
+            self.layer.borderColor =  highlightColor.CGColor;
+            return NO;
+        }
+    }else if (type == CHECKMEAILORPHONE){
+        if ([self.text validateEmail] || [self.text validatePhoneNumber]) {
+            self.layer.borderColor =  defaultColor.CGColor;
+            return YES;
+        }else{
+            self.layer.borderColor =  highlightColor.CGColor;
+            return NO;
+        }
+    }else if (type == CHECKPASSWORDTYPE){
+        if ([self.text passwordTextCheck]) {
+            self.layer.borderColor =  defaultColor.CGColor;
+            return YES;
+        }else{
+            self.layer.borderColor =  highlightColor.CGColor;
+            return NO;
+        }
+    }
+    self.layer.borderColor =  highlightColor.CGColor;
+    return NO;
+}
 
 
 - (BOOL)textFieldState:(UITextFieldShowType)type editType:(UITextFieldEditType)editType labels:(NSArray <UILabel *>*)labels

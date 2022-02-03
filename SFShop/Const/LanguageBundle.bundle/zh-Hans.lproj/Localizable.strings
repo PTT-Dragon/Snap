@@ -150,8 +150,8 @@
 //  "MY_ADDRESS" = "我的地址";
 "REQUIREDTIP" = "请输入";
   "INCORRECT_NAME" = "收件人姓名请输入4 ~ 40个字符。";
-//  "INCORRECT_PHONE" = "请输入正确的手机号";
-//  "INCORRECT_EMAIL" = "请输入正确的邮箱";
+  "INCORRECT_PHONE" = "请输入正确的手机号";
+  "INCORRECT_EMAIL" = "请输入正确的邮箱";
   "ADDRESS_DEFAULT" = "设为默认地址";
 //  "ADDRESS_ADD_SUCCESS" = "成功添加地址";
 //  "MODIFY_ADD_SUCCESS" = "成功修改地址";

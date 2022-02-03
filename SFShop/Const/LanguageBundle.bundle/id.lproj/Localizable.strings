@@ -151,8 +151,8 @@
 //  "MY_ADDRESS" = "Alamat Saya";
 "REQUIREDTIP" = "Silahkan masukkan";
   "INCORRECT_NAME" = "Nama penerima 4-40 huruf";
-//  "INCORRECT_PHONE" = "Harap masukkan nomor telepon yang benar.";
-//  "INCORRECT_EMAIL" = "Harap masukkan email yang benar.";
+  "INCORRECT_PHONE" = "Harap masukkan nomor telepon yang benar.";
+  "INCORRECT_EMAIL" = "Harap masukkan email yang benar.";
   "ADDRESS_DEFAULT" = "Pilih sebagai alamat utama";
 "CHANGE_PROMOTION" = "Ganti promosi";
 //  "ADDRESS_ADD_SUCCESS" = "Penambahan alamat telah berhasil.";
@@ -398,7 +398,7 @@
 //  "CODE_INCORRECT_REINPUT" = "Kode verifikasi salah; mohon masukan ulang.";
 //  "NOT_AVAILABLE" = "Tidak tersedia";
 //  "ORDER_LIMIT" = "Batas pesanan";
-"ENTER_CODE" = "Masukkan Kode 6-Digit";
+"ENTER_CODE" = "Masukkan 6 Kode angka";
 //  "PRODUCT_DETAIL" = "Rincian produk";
 //  "COPIED_TO_CLIPBOARD" = "Disalin ke clipboard";
   "LOGIN_VIA_OPT" = "Masuk menggunakan OTP";
@@ -406,9 +406,9 @@
   "PHONE_NUMBER_EMAIL" = "Nomor Telepon / Email";
 "DONE" = "done";
 "ADD_COMMENT" = "Tambah komentar";
-  "YOUR_CODE_WAS_SENT_TO" = "Kode Anda telah dikirim ke";
-  "RESEND_CODE_IN" = "Kirim ulang kode masuk";
-"RESEND" = "Kirim ulang";
+  "YOUR_CODE_WAS_SENT_TO" = "Kode Anda sudah dikirim ke";
+  "RESEND_CODE_IN" = "Kirim ulang kode dalam";
+"RESEND" = "KIRIM ULAND";
 //  "FORGOT_PWD_SELECT_MODAL_TITLE" = "Anda dapat mengatur ulang kata sandi Anda dengan SMS atau Email";
 //  "RESET_WITH_SMS" = "SETEL ULANG DENGAN SMS";
 //  "RESET_WITH_EMAIL" = "SETEL ULANG DENGAN EMAIL";
@@ -635,7 +635,7 @@
 "Sign_Up" = "daftar";
 "PHONE_NUMBER" = "Nomor Handphone";
 "Max" = "Max";
-"ACCOUNT_DOES_NOT_EXIST" = "Akun tidak ada";
+"ACCOUNT_DOES_NOT_EXIST" = "Akun tidak ditemukan.";
 "PASSWORD" = "Kata sandi";
 "EMAIL" = "Email";
 "CHANGE_MOBILE" = "Ganti nomor Handphone";
@@ -643,7 +643,7 @@
 "INDIVIDUAL_BUY" = "Individual buy";//pembelian individual";
 "SHARE_BUY" = "Group Buy";//"Bergabung dengan kelompok";
 "THIS_EMAIL_ADDRESS" = "Alamat email ini";
-"THIS_PHONE_NUMBER" = "Nomor telepon ini";
+"THIS_PHONE_NUMBER" = "Nomor Handphone ini";
 "CANCEL" = "BATALKAN";
 "LANGUGE" = "Bahasa";
 "Go_Shopping" = "LANJUT BELANJA";

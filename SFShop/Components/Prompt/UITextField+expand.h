@@ -30,6 +30,7 @@ typedef enum:NSUInteger {
 - (BOOL)textFieldState:(UITextFieldShowType)type label:(UILabel *)label tipLabel:(UILabel *)tipLabel;
 
 - (UITextField *)textFieldState:(UITextFieldShowType)type label:(UILabel *)label button:(UIButton *)button;
+- (BOOL)systemPhoneCheck:(UITextFieldShowType)type editType:(UITextFieldEditType)editType;
 
 @end
 

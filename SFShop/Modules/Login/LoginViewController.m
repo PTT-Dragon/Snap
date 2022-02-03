@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel2;
 @property (weak, nonatomic) IBOutlet UIButton *OTPButton;
+@property (nonatomic,strong) UIView *lfView;
 
 @end
 
@@ -63,6 +64,13 @@ static BOOL _passwordSuccess = NO;
     [self.phoneBtn setTitle:kLocalizedString(@"PHONE") forState:0];
     _label1.text = kLocalizedString(@"PHONE_NUMBER");
     _accountField.placeholder = kLocalizedString(@"PHONE_NUMBER");
+    UIImage *im = [UIImage imageNamed:@"WX20220203-135232"];
+    UIImageView *iv = [[UIImageView alloc] initWithImage:im];
+    _lfView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];//宽度根据需求进行设置，高度必须大于 textField 的高度
+    iv.center = _lfView.center;
+    [_lfView addSubview:iv];
+    _accountField.leftViewMode = UITextFieldViewModeAlways;
+    _accountField.leftView = _lfView;
 }
 - (void)changedTextField:(UITextField *)textField
 {
@@ -104,8 +112,10 @@ static BOOL _passwordSuccess = NO;
 {
     if (textField == _accountField) {
         _label1.hidden = [textField.text isEqualToString:@""];
+        textField.layer.borderColor = RGBColorFrom16(0xf7f7f7).CGColor;
     }else{
         _label2.hidden = [textField.text isEqualToString:@""];
+        textField.layer.borderColor = RGBColorFrom16(0xf7f7f7).CGColor;
     }
 //    if (textField == _accountField) {
 //        if (_type == 1) {
@@ -126,6 +136,7 @@ static BOOL _passwordSuccess = NO;
     _emailIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
     _label1.text = kLocalizedString(@"PHONE_NUMBER");
     _accountField.placeholder = kLocalizedString(@"PHONE_NUMBER");
+    _accountField.leftView = _lfView;
 }
 - (IBAction)emailAction:(UIButton *)sender {
     _type = 2;
@@ -136,6 +147,7 @@ static BOOL _passwordSuccess = NO;
     _emailIndicationView.backgroundColor = [UIColor blackColor];
     _label1.text = kLocalizedString(@"Email");
     _accountField.placeholder = kLocalizedString(@"Email");
+    _accountField.leftView = nil;
 }
 - (IBAction)loginAction:(id)sender {
     //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234  18861484865/Abc@1234
