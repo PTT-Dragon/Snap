@@ -11,10 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="FavoriteTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
+            <rect key="frame" x="0.0" y="0.0" width="343" height="123"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
+                <rect key="frame" x="0.0" y="0.0" width="343" height="123"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ax4-u6-vZi">
@@ -25,7 +25,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZz-p3-Uzn">
-                        <rect key="frame" x="0.0" y="128" width="343" height="0.0"/>
+                        <rect key="frame" x="0.0" y="123" width="343" height="0.0"/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" id="nbk-Tx-oUB"/>
@@ -64,7 +64,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufO-Tl-RXv">
-                        <rect key="frame" x="116" y="94" width="86" height="24"/>
+                        <rect key="frame" x="116" y="89" width="86" height="24"/>
                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
                         <state key="normal" title="FIND SIMILAR">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
@@ -74,7 +74,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eV6-yF-Vsf">
-                        <rect key="frame" x="216" y="94" width="86" height="24"/>
+                        <rect key="frame" x="216" y="89" width="86" height="24"/>
                         <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="iGh-SG-xPY"/>
@@ -104,7 +104,7 @@
                     <constraint firstAttribute="bottom" secondItem="QZz-p3-Uzn" secondAttribute="bottom" id="Phf-2x-95H"/>
                     <constraint firstItem="Ax4-u6-vZi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="QBu-vo-rwe"/>
                     <constraint firstAttribute="trailing" secondItem="Zvo-jG-9q0" secondAttribute="trailing" constant="14" id="Zz2-QD-ewY"/>
-                    <constraint firstItem="ufO-Tl-RXv" firstAttribute="top" secondItem="Ax4-u6-vZi" secondAttribute="bottom" constant="-10" id="fTE-CT-0xj"/>
+                    <constraint firstItem="ufO-Tl-RXv" firstAttribute="top" secondItem="Ax4-u6-vZi" secondAttribute="bottom" constant="-15" id="fTE-CT-0xj"/>
                     <constraint firstItem="Zvo-jG-9q0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="fn3-cn-Ef5"/>
                     <constraint firstItem="Zvo-jG-9q0" firstAttribute="leading" secondItem="Ax4-u6-vZi" secondAttribute="trailing" constant="12" id="j3s-Ez-qae"/>
                     <constraint firstItem="eV6-yF-Vsf" firstAttribute="leading" secondItem="ufO-Tl-RXv" secondAttribute="trailing" constant="14" id="lIV-hS-2qB"/>

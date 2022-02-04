@@ -121,7 +121,7 @@
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor: [UIColor jk_colorWithHexString: @"#7B7B7B"] forState:UIControlStateNormal];
         [menuItem setTitleColor: [UIColor blackColor] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont fontWithName:@"Trueno" size:17.f];
+        menuItem.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:14.f];
     }
     [menuItem setSelected: (itemIndex == self.currentMenuIndex)];
     return menuItem;
@@ -174,7 +174,7 @@
         _magicController.magicView.sliderColor = [UIColor jk_colorWithHexString:@"333333"];
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
-        _magicController.magicView.navigationHeight = 50.f;
+        _magicController.magicView.navigationHeight = 40.f;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.scrollEnabled = NO;

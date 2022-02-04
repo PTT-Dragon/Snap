@@ -7,6 +7,10 @@
 
 #import "JSONModel.h"
 
+@protocol RecentlyNumListModel
+
+@end
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecentlyImgUrlContentModel : JSONModel
@@ -40,6 +44,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*offerViewLogId;
 @property (nonatomic,copy) NSString <Optional>*salesPrice;
 @property (nonatomic,copy) NSString <Optional>*storeId;
+@end
+
+@interface RecentlyNumListModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*viewDate;
+@property (nonatomic,copy) NSString <Optional>*viewNum;
+
+@end
+
+@interface RecentlyNumModel : JSONModel
+@property (nonatomic,assign) NSInteger totalOfferViewNum;
+@property (nonatomic,strong) NSArray <RecentlyNumListModel> *offerViewNumList;
+
 @end
 
 NS_ASSUME_NONNULL_END

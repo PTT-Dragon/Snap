@@ -8,6 +8,7 @@
 #import "RecentlyViewedCell.h"
 #import "SimilarViewController.h"
 #import "NSString+Fee.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface RecentlyViewedCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -26,6 +27,8 @@
     // Initialization code
     _similarBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _similarBtn.layer.borderWidth = 1;
+    [_cartBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
+    [_favoriteBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
 }
 - (void)setContent:(RecentlyModel *)model
 {

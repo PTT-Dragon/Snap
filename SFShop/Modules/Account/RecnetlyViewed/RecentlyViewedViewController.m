@@ -37,6 +37,7 @@
 @property (nonatomic,assign) NSInteger pageIndex;
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
+@property (nonatomic,strong) RecentlyNumModel *numModel;
 
 @end
 
@@ -93,6 +94,7 @@
     }];
     [self loadDatas];
     [self changeModeAction:self.clickBtn];
+    [self loadRecordDayDatas];
 }
 - (void)initUI
 {
@@ -176,6 +178,22 @@
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_footer endRefreshing];
         [weakself showEmptyView];
+    }];
+}
+- (void)loadRecordDayDatas
+{
+    NSDate *date1 = [_calendarManager.dateHelper addToDate:[NSDate date] months:-1];
+    NSDate *date2 = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *startDate = [dateFormatter stringFromDate:date1];
+    NSString *endDate = [dateFormatter stringFromDate:date2];
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.recent.num parameters:@{@"pageSize":@"100",@"startDate":startDate,@"endDate":endDate} success:^(id  _Nullable response) {
+        weakself.numModel = [[RecentlyNumModel alloc] initWithDictionary:response error:nil];
+        [weakself.calendarMenuView reloadInputViews];
+    } failed:^(NSError * _Nonnull error) {
+        
     }];
 }
 - (void)handleDatas
@@ -309,11 +327,11 @@
     }else if ([_calendarManager.dateHelper date:dayView.date isEqualOrAfter:date1 andEqualOrBefore:[NSDate date]]){
         dayView.circleView.hidden = YES;
         dayView.dotView.hidden = NO;
-//        if ([self hasDataWithDay:dayView.date]) {
-//            dayView.dotView.backgroundColor = [UIColor lightGrayColor];
-//        }else{
+        if ([self hasDataWithDay:dayView.date]) {
+            dayView.dotView.backgroundColor = [UIColor lightGrayColor];
+        }else{
             dayView.dotView.backgroundColor = [UIColor whiteColor];
-//        }
+        }
         dayView.textLabel.textColor = [UIColor blackColor];
     }
     // Other month
@@ -408,6 +426,16 @@
     __block BOOL hasData = NO;
     [self.dataSource enumerateObjectsUsingBlock:^(RecentlyModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([_calendarManager.dateHelper date:date isTheSameDayThan:obj.date]) {
+            hasData = YES;
+        }
+    }];
+    [self.numModel.offerViewNumList enumerateObjectsUsingBlock:^(RecentlyNumListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *birthdayStr=obj.viewDate;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];//解决8小时时间差问题
+        NSDate *viewDate = [dateFormatter dateFromString:birthdayStr];
+        if ([_calendarManager.dateHelper date:date isTheSameDayThan:viewDate]) {
             hasData = YES;
         }
     }];

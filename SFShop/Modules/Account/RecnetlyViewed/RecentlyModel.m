@@ -37,3 +37,15 @@
     return YES;
 }
 @end
+
+@implementation RecentlyNumListModel
+
+@end
+
+@implementation RecentlyNumModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+
+@end
