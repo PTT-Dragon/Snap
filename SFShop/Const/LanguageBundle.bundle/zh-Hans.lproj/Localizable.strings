@@ -238,7 +238,7 @@
   "PROVINCE_CITY_DISTRICT" = "省; 市; 区";
   "MODIFY_ADDRESS" = "修改地址";
   "DEFAULT" = "默认";
-//  "REFUND_BANK_ACCOUNT" = "退款银行账号";
+  "REFUND_BANK_ACCOUNT" = "退款银行账号";
 //  "FINAL_REFUND_AMOUNT" = "最终退款金额";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "请核实收到的退款";
 //  "CHOOSE_ANOTHER_ADDRESS" = "选择其他地址";
@@ -246,7 +246,8 @@
 "Delivery Option" = "Delivery Option";
 "choose" = "选择";
 //  "QUANTITY" = "数量";
-//  "UP_TO" = "最高";
+  "UP_TO" = "最高";
+"UPLOAD_PICTURE" = "Upload gambar";
 //  "OFF" = "Off";
 //  "MIN_SPEND" = "最低支付";
   "SIMILAR_PRODUCT_RECOMMENDATION" = "相似商品推荐";

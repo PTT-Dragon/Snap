@@ -31,7 +31,7 @@
     [_collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     [_collectionView registerNib:[UINib nibWithNibName:@"ReviewAddNewPhotoCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewAddNewPhotoCell"];
     
-    self.theTitle.text = kLocalizedString(@"IMAGES");
+    self.theTitle.text = self.canSel ? [NSString stringWithFormat:@"%@ (%@3)",kLocalizedString(@"UPLOAD_PICTURE"),kLocalizedString(@"UP_TO")] : kLocalizedString(@"IMAGE");
 }
 - (void)setContent:(NSArray<EvaluatesContentsModel *> *)content
 {

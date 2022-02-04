@@ -164,7 +164,7 @@
   "PLEASE_SELECT" = "Mohon pilih";
   "REFUND_AMOUNT" = "Jumlah pengembalian uang";
   "INSTRUCTIONS" = "Instructions";
-  "REFUND_RETURN" = "Pengembalian dana";
+  "REFUND_RETURN" = "PENGEMBALIAN BARANG DAN DANA";
   "REASON_TITLE" = "Pilih alasan";
 //  "MANY_SALES_HINT" = "Item ini tidak dapat diganti / dikembalikan lagi. Untuk bantuan lebih lanjut; silahkan hubungi costumer support.";
   "ORDER_CANCEL_REASON" = "Alasan Pembatalan";
@@ -239,7 +239,7 @@
   "PROVINCE_CITY_DISTRICT" = "Provinsi; Kota; Kabupaten";
   "MODIFY_ADDRESS" = "Ubah Alamat";
   "DEFAULT" = "Utama";
-//  "REFUND_BANK_ACCOUNT" = "Rekening Bank untuk Pengembalian Dana";
+  "REFUND_BANK_ACCOUNT" = "REKENING UNTUK PENGEMBALIAN DANA";
 //  "FINAL_REFUND_AMOUNT" = "Total pengembalian dana";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Harap verifikasi pengembalian dana yang telah diterima";
 //  "CHOOSE_ANOTHER_ADDRESS" = "Pilih Alamat Lain";
@@ -247,7 +247,8 @@
 "Delivery Option" = "Opsi Pengiriman";
 "choose" = "Pilih";
 //  "QUANTITY" = "Jumlah";
-//  "UP_TO" = "hingga";
+  "UP_TO" = "hingga";
+"UPLOAD_PICTURE" = "Upload gambar";
 //  "OFF" = "Off";
 //  "MIN_SPEND" = "Min. Spend";
   "SIMILAR_PRODUCT_RECOMMENDATION" = "Rekomendasi produk serupa";
@@ -622,7 +623,7 @@
 "SF shop_Voucher" = "SF.shop Voucher";
 "Coupon_Center" = "Pusat Coupon";
 "Login_Or_Register" = "Makuk atau daftar";
-"SHOPPING_CART" = "Keranjang belanja";
+"SHOPPING_CART" = "KERANJANG BELANJA";
 "Hide" = "Hide";
 "View_replies" = "View replies";
 "verification_email_code" = "Kode verifikasi akan dikirim ke alamat email Anda. Silakan masukkan email terdaftar Anda.";

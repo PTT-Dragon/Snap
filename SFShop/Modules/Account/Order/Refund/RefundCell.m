@@ -9,6 +9,7 @@
 #import "NSString+Fee.h"
 #import "ReplaceDeliveryViewController.h"
 #import "PublicAlertView.h"
+#import "RefundBankViewController.h"
 
 @interface RefundCell ()
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
@@ -100,8 +101,9 @@
         _statuLabel.text = @"In transit";
         _contentLabel.text = @"waiting for the merchant to receive the Package";
     }else if ([model.state isEqualToString:@"F"]){
-        _stateLabel.text = @"Refund in progress";
+        _statuLabel.text = @"Refund in progress";
         _contentLabel.text = @"About 1 to 3 working days";
+        _btn.hidden = YES;_btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"C"]){
         //待填写物流信息
         _statuLabel.text = [NSString stringWithFormat:@"Wait for %@",eventType];
@@ -109,6 +111,13 @@
         _btn.hidden = NO;_btn2.hidden = NO;
         [_btn setTitle:kLocalizedString(@"Delivery") forState:0];
         [_btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
+        _viewHei.constant = 52;
+    }else if ([model.state isEqualToString:@"I"]){
+        //待填写银行卡
+        _statuLabel.text = @"Provide bank account";
+        _contentLabel.text = @"refund bank account to be confirmed";
+        _btn.hidden = NO;_btn2.hidden = YES;
+        [_btn setTitle:kLocalizedString(@"REFUND_BANK_ACCOUNT") forState:0];
         _viewHei.constant = 52;
     }
 }
@@ -133,6 +142,9 @@
             
         }];
         [[baseTool getCurrentVC].view addSubview:alert];
+    }else if ([_model.state isEqualToString:@"I"]){
+        RefundBankViewController *vc = [[RefundBankViewController alloc] init];
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }
 }
 - (IBAction)btn2Action:(id)sender {

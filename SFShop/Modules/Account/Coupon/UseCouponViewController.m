@@ -15,6 +15,10 @@
 #import "addressModel.h"
 #import "NSDate+Helper.h"
 #import "CartViewController.h"
+#import "SFSearchNav.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
+#import "CategoryRankViewController.h"
 
 
 @interface UseCouponViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -41,7 +45,9 @@
 @property (nonatomic,strong) CouponOrifeeModel *orifeeModel;
 @property (weak, nonatomic) IBOutlet UILabel *expiryTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *discountTitleLabel;
-
+@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
+@property (nonatomic, readwrite, strong) BaseMoreView *moreView;
+//@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 
 @end
 
@@ -49,7 +55,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,10 +63,12 @@
     [self loadsubviews];
 }
 - (void)loadsubviews {
+    [self.view addSubview:self.navSearchView];
     self.discountTitleLabel.text = kLocalizedString(@"DISCOUNT");
     self.expiryTitleLabel.text = kLocalizedString(@"EXPIRY_DATE");
     self.couponView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
     self.couponView.layer.borderWidth = 1;
+    self.cartBtn.titleLabel.numberOfLines = 2;
     if ([self.couponModel.discountMethod isEqualToString:@"DISC"]) {
         _couponNameLabel.text = [NSString stringWithFormat:@"Discount %@ Min.spend %@",[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency],[[NSString stringWithFormat:@"%@f",self.couponModel.thAmount] currency]];
     }else{
@@ -386,5 +394,53 @@
         _tableView.estimatedRowHeight = 44;
     }
     return _tableView;
+}
+- (SFSearchNav *)navSearchView {
+    if (_navSearchView == nil) {
+        SFSearchItem *backItem = [SFSearchItem new];
+        backItem.icon = @"nav_back";
+        backItem.itemActionBlock = ^(SFSearchState state, SFSearchModel *model,BOOL isSelected) {
+            if (state == SFSearchStateInUnActive || state == SFSearchStateInFocuActive) {
+                [self.tabBarController setSelectedIndex:0];
+            }
+        };
+        SFSearchItem *rightItem = [SFSearchItem new];
+        rightItem.icon = @"more-horizontal";
+        rightItem.selectedIcon = @"more-vertical";
+        rightItem.itemActionBlock = ^(SFSearchState state, SFSearchModel * _Nullable model,BOOL isSelected) {
+            if (isSelected) {
+                [self.moreView removeFromSuperview];
+                self.moreView = [[BaseMoreView alloc] init];
+                [self.tabBarController.view addSubview:self.moreView];
+                [self.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.bottom.mas_equalTo(0);
+                    make.top.mas_equalTo(self.navSearchView.mas_bottom);
+                }];
+            }else{
+                [self.moreView removeFromSuperview];
+            }
+            
+        };
+        __weak __typeof(self)weakSelf = self;
+        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
+
+        }];
+        _navSearchView.fakeTouchBock = ^{
+            __weak __typeof(weakSelf)strongSelf = weakSelf;
+            //TODO: 搜索未完成
+            CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+            vc.shouldBackToHome = YES;
+            [strongSelf.navigationController pushViewController:vc animated:YES];
+        };
+        _navSearchView.searchType = SFSearchTypeFake;
+    }
+    return _navSearchView;
+}
+
+- (BaseMoreView *)moreView {
+    if (!_moreView) {
+        _moreView = [[BaseMoreView alloc] initWithFrame:CGRectMake(0, self.navSearchView.bottom, MainScreen_width, self.view.height)];
+    }
+    return _moreView;
 }
 @end

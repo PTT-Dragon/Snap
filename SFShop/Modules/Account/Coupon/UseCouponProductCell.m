@@ -44,7 +44,7 @@
     NSString *count = (model.evaluationCnt == 0 || !model.evaluationCnt) ? @"":[NSString stringWithFormat:@"(%ld)",model.evaluationCnt];
     self.starImgView.hidden = [score isEqualToString:@""];
     _scoreLabel.text = [NSString stringWithFormat:@"%@ %@",score,count];
-    _offLabel.text = [NSString stringWithFormat:@" -%@ ",model.discountPercent];
+    _offLabel.text = [NSString stringWithFormat:@" -%@%% ",model.discountPercent];
 }
 - (IBAction)spCartAction:(UIButton *)sender {
     if (self.block) {

@@ -17,6 +17,7 @@
 #import "BaseNavView.h"
 
 @interface RefundOrReturnViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseReasonViewControllerDelegate,BaseNavViewDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) BaseMoreView *navMoreView;
 @property (nonatomic,strong) BaseNavView *navView;
@@ -66,7 +67,7 @@
 
 - (void)layoutSubviews
 {
-    NSString *reasonTitle = _type == RETURNTYPE ? @"Return": _type == REFUNDTYPE ? @"Refund":@"Change";
+    NSString *reasonTitle = _type == RETURNTYPE ? @"RETURN": _type == REFUNDTYPE ? @"REFUND":@"EXCHANGE";
     _navView = [[BaseNavView alloc] init];
     _navView.delegate = self;
     [_navView updateIsOnlyShowMoreBtn:YES];
@@ -77,6 +78,7 @@
         make.height.mas_equalTo(navBarHei);
     }];
     [_navView configDataWithTitle:kLocalizedString(reasonTitle)];
+    [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:0];
     
     //self.title = kLocalizedString(reasonTitle);
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);

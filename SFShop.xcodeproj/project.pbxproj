@@ -365,6 +365,8 @@
 		1BE28C10279B082E000683B8 /* AddressTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE28C0E279B082E000683B8 /* AddressTitleCell.m */; };
 		1BE28C11279B082E000683B8 /* AddressTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE28C0F279B082E000683B8 /* AddressTitleCell.xib */; };
 		1BE94C1F274B762900B588F4 /* PublicShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE94C1E274B762900B588F4 /* PublicShareView.m */; };
+		1BEB17EE27AD697C005236EF /* RefundBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB17EC27AD697C005236EF /* RefundBankViewController.m */; };
+		1BEB17EF27AD697C005236EF /* RefundBankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEB17ED27AD697C005236EF /* RefundBankViewController.xib */; };
 		1BF00F54272FC13D0081C8E4 /* DistributeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F52272FC13D0081C8E4 /* DistributeCenterViewController.m */; };
 		1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00F53272FC13D0081C8E4 /* DistributeCenterViewController.xib */; };
 		1BF00F59272FD4090081C8E4 /* SFNetworkDistributorModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF00F58272FD4090081C8E4 /* SFNetworkDistributorModule.m */; };
@@ -1204,6 +1206,9 @@
 		1BE28C0F279B082E000683B8 /* AddressTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressTitleCell.xib; sourceTree = "<group>"; };
 		1BE94C1D274B762900B588F4 /* PublicShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicShareView.h; sourceTree = "<group>"; };
 		1BE94C1E274B762900B588F4 /* PublicShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublicShareView.m; sourceTree = "<group>"; };
+		1BEB17EB27AD697C005236EF /* RefundBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundBankViewController.h; sourceTree = "<group>"; };
+		1BEB17EC27AD697C005236EF /* RefundBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundBankViewController.m; sourceTree = "<group>"; };
+		1BEB17ED27AD697C005236EF /* RefundBankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundBankViewController.xib; sourceTree = "<group>"; };
 		1BF00F51272FC13D0081C8E4 /* DistributeCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeCenterViewController.h; sourceTree = "<group>"; };
 		1BF00F52272FC13D0081C8E4 /* DistributeCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeCenterViewController.m; sourceTree = "<group>"; };
 		1BF00F53272FC13D0081C8E4 /* DistributeCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DistributeCenterViewController.xib; sourceTree = "<group>"; };
@@ -1709,6 +1714,9 @@
 				1B18E359279EFABE00A90152 /* ReplaceDeliveryAddCell.xib */,
 				1B3410E127AD26A80068B4B2 /* LogisticsProcessViewController.h */,
 				1B3410E227AD26A80068B4B2 /* LogisticsProcessViewController.m */,
+				1BEB17EB27AD697C005236EF /* RefundBankViewController.h */,
+				1BEB17EC27AD697C005236EF /* RefundBankViewController.m */,
+				1BEB17ED27AD697C005236EF /* RefundBankViewController.xib */,
 			);
 			path = Refund;
 			sourceTree = "<group>";
@@ -3796,6 +3804,7 @@
 				1B787B5C272A34FE00E6A983 /* SetTopCell.xib in Resources */,
 				1BD8E7A4275D12CF00130DCC /* ReviewDetailInfoCell.xib in Resources */,
 				1B78865E276C7E74009A080A /* ProductReviewReplyCell.xib in Resources */,
+				1BEB17EF27AD697C005236EF /* RefundBankViewController.xib in Resources */,
 				1B74DB2B27253AD600B30ECC /* DeliveryAddressCell.xib in Resources */,
 				1B6C52B8275BC02400A1C617 /* ImageCollectionViewCell.xib in Resources */,
 				1B478330272AA1FF00F2A945 /* SecurityCenterViewController.xib in Resources */,
@@ -4078,6 +4087,7 @@
 				8E1EC400279AFD5900CE0088 /* BaseMoreView.m in Sources */,
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
+				1BEB17EE27AD697C005236EF /* RefundBankViewController.m in Sources */,
 				1B82AED0277080B700D75E00 /* YYCache.m in Sources */,
 				1BDB5DBB272E92C10016C2F3 /* CancelOrderReasonCell.m in Sources */,
 				1BD8E7C7275F532100130DCC /* RefundDetailImagesCell.m in Sources */,
