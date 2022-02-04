@@ -310,7 +310,7 @@
 //  "SHOPPING" = "Shopping";
   "VARIATIONS" = "Variasi";
 //  "SPECIFICATION" = "Spesifikasi";
-  "DETAIL" = "Detail";
+
   "CART" = "Keranjang";
   "COUPONS" = "Vouchers";
   "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";
@@ -597,6 +597,7 @@
 "RETURN" = "Pengembalian barang";
 "Refund" = "Pengembalian dana";
 "Exchange" = "Tukar";
+"DETAIL" = "Rincian";
 "Rejection" = "Penolakan";
 "return_tip" = "Kembalian tidak didukung untuk barang rusak";
 "Pending_Review" = "Revisi Tertunggu";

@@ -39,7 +39,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
-        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+10);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-140);
     }];
     [self loadReasonDatas];

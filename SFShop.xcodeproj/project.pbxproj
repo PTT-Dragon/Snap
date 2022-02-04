@@ -43,6 +43,7 @@
 		1B312261273267630055033D /* IncomeAndExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B312260273267630055033D /* IncomeAndExpenseViewController.m */; };
 		1B33C12427AA7E5300E7EDB9 /* ProductReviewGrayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B33C12227AA7E5300E7EDB9 /* ProductReviewGrayCell.m */; };
 		1B33C12527AA7E5300E7EDB9 /* ProductReviewGrayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B33C12327AA7E5300E7EDB9 /* ProductReviewGrayCell.xib */; };
+		1B3410E327AD26A80068B4B2 /* LogisticsProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3410E227AD26A80068B4B2 /* LogisticsProcessViewController.m */; };
 		1B38916227A4DB7700662006 /* CartPromotionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B38916027A4DB7700662006 /* CartPromotionCell.m */; };
 		1B38916327A4DB7700662006 /* CartPromotionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B38916127A4DB7700662006 /* CartPromotionCell.xib */; };
 		1B3C122526FC5AC500235294 /* accountInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3C122326FC5AC500235294 /* accountInfoCell.m */; };
@@ -653,6 +654,8 @@
 		1B33C12127AA7E5300E7EDB9 /* ProductReviewGrayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewGrayCell.h; sourceTree = "<group>"; };
 		1B33C12227AA7E5300E7EDB9 /* ProductReviewGrayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductReviewGrayCell.m; sourceTree = "<group>"; };
 		1B33C12327AA7E5300E7EDB9 /* ProductReviewGrayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductReviewGrayCell.xib; sourceTree = "<group>"; };
+		1B3410E127AD26A80068B4B2 /* LogisticsProcessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogisticsProcessViewController.h; sourceTree = "<group>"; };
+		1B3410E227AD26A80068B4B2 /* LogisticsProcessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogisticsProcessViewController.m; sourceTree = "<group>"; };
 		1B38915F27A4DB7700662006 /* CartPromotionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartPromotionCell.h; sourceTree = "<group>"; };
 		1B38916027A4DB7700662006 /* CartPromotionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartPromotionCell.m; sourceTree = "<group>"; };
 		1B38916127A4DB7700662006 /* CartPromotionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartPromotionCell.xib; sourceTree = "<group>"; };
@@ -1704,6 +1707,8 @@
 				1B18E357279EFABE00A90152 /* ReplaceDeliveryAddCell.h */,
 				1B18E358279EFABE00A90152 /* ReplaceDeliveryAddCell.m */,
 				1B18E359279EFABE00A90152 /* ReplaceDeliveryAddCell.xib */,
+				1B3410E127AD26A80068B4B2 /* LogisticsProcessViewController.h */,
+				1B3410E227AD26A80068B4B2 /* LogisticsProcessViewController.m */,
 			);
 			path = Refund;
 			sourceTree = "<group>";
@@ -4008,6 +4013,7 @@
 				AE81BE1A26FCA9DB00AB4225 /* SFNetworkURL.m in Sources */,
 				1B74DAE42721B6FD00B30ECC /* InviteViewController.m in Sources */,
 				1BDBEB9626FD6A1A0018109B /* SignUpViewController.m in Sources */,
+				1B3410E327AD26A80068B4B2 /* LogisticsProcessViewController.m in Sources */,
 				62E428E627A2292A00A02F91 /* JPMethodInjecting.m in Sources */,
 				1B74DB2527253A3500B30ECC /* DeliveryInformationCell.m in Sources */,
 				1BD8E7CD275FA58300130DCC /* SupportViewController.m in Sources */,
