@@ -113,7 +113,7 @@
 //  "CURRENT_PWD" = "Password lama";
 //  "SET_SUCCESSFUL" = "Setelan Berhasil";
 //  "DOWNLOAD" = "Downloading";
-  "SUBMIT" = "Kirim";
+  "SUBMIT" = "KIRIM";
 "FORGOT_PWD" = "Lupa Kata Sandi";
 //  "SETTING" = "Pengaturan";
 //  "LOGIN" = "Gabung";
@@ -152,8 +152,8 @@
 //  "MY_ADDRESS" = "Alamat Saya";
 "REQUIREDTIP" = "Silahkan masukkan";
   "INCORRECT_NAME" = "Nama penerima 4-40 huruf";
-  "INCORRECT_PHONE" = "Harap masukkan nomor telepon yang benar.";
-  "INCORRECT_EMAIL" = "Harap masukkan email yang benar.";
+"INCORRECT_PHONE" = "Masukkan nomor handphone yang benar.";
+"INCORRECT_EMAIL" = "Masukkan alamat email yang benar.";
   "ADDRESS_DEFAULT" = "Pilih sebagai alamat utama";
 "CHANGE_PROMOTION" = "Ganti promosi";
 //  "ADDRESS_ADD_SUCCESS" = "Penambahan alamat telah berhasil.";

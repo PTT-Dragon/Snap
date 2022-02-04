@@ -55,6 +55,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="rQn-l6-6VZ"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                     <state key="normal" title="Recend"/>
                     <connections>
                         <action selector="recendAction:" destination="-1" eventType="touchUpInside" id="rAd-al-5Wq"/>

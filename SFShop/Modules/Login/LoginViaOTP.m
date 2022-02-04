@@ -41,23 +41,41 @@ static BOOL _accountSuccess = NO;
 }
 -(void)changedTextField:(UITextField *)textField
 {
-    _accountSuccess = [textField textFieldState:CHECKPHONETYPE label:_label1 tipLabel:_label2];
+    _accountSuccess = [textField systemPhoneCheck:CHECKPHONETYPE editType:ENDEDITTYPE];
     
     if (_accountSuccess) {
         self.btn.backgroundColor = RGBColorFrom16(0xFF1659);
         self.btn.userInteractionEnabled = YES;
+        self.label1.hidden = NO;
+        self.label2.hidden = YES;
+        self.label2.textColor = RGBColorFrom16(0xff1659);
+        self.label1.textColor = RGBColorFrom16(0xf7f7f7);
     }else{
+        self.label1.hidden = NO;
+        self.label2.hidden = NO;
+        self.label2.textColor = RGBColorFrom16(0xff1659);
+        self.label1.textColor = RGBColorFrom16(0xff1659);
         self.btn.backgroundColor = RGBColorFrom16(0xFFE5EB);
         self.btn.userInteractionEnabled = NO;
+    }
+    if ([textField.text isEqualToString:@""]) {
+        self.label1.hidden = YES;
+        self.label2.hidden = YES;
     }
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    _accountSuccess = [textField textFieldState:CHECKPHONETYPE label:_label1 tipLabel:_label2];
+    if ([textField.text isEqualToString:@""]) {
+        self.label1.hidden = YES;
+        self.label2.hidden = YES;
+    }
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    _accountSuccess = [textField textFieldState:CHECKPHONETYPE label:_label1 tipLabel:_label2];
+    if ([textField.text isEqualToString:@""]) {
+        self.label1.hidden = YES;
+        self.label2.hidden = YES;
+    }
 }
 - (IBAction)sendAction:(id)sender {
     MPWeakSelf(self)
