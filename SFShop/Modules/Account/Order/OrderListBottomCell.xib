@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -151,7 +151,7 @@
                         </constraints>
                     </view>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvw-Jn-Dk1">
-                        <rect key="frame" x="16" y="48" width="37" height="29"/>
+                        <rect key="frame" x="16" y="58" width="37" height="29"/>
                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
                         <state key="normal" title="More">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
@@ -161,7 +161,7 @@
                         </connections>
                     </button>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVk-UH-0ht">
-                        <rect key="frame" x="16" y="77" width="60" height="20"/>
+                        <rect key="frame" x="16" y="87" width="60" height="20"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDV-Xx-FUf">
                                 <rect key="frame" x="0.0" y="0.0" width="60" height="29"/>
@@ -203,7 +203,7 @@
                     <constraint firstItem="Tu5-Gk-Uml" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="J51-MF-HOK"/>
                     <constraint firstItem="Tu5-Gk-Uml" firstAttribute="top" secondItem="RKv-pe-hZL" secondAttribute="bottom" id="Jwg-EY-ywM"/>
                     <constraint firstItem="RKv-pe-hZL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="MSr-oe-bUC"/>
-                    <constraint firstItem="uvw-Jn-Dk1" firstAttribute="top" secondItem="RKv-pe-hZL" secondAttribute="bottom" constant="5" id="Rg5-ac-Jgv"/>
+                    <constraint firstItem="uvw-Jn-Dk1" firstAttribute="top" secondItem="RKv-pe-hZL" secondAttribute="bottom" constant="15" id="Rg5-ac-Jgv"/>
                     <constraint firstItem="gos-1h-OHP" firstAttribute="leading" secondItem="Ldz-e4-oJh" secondAttribute="trailing" constant="10" id="Tas-av-aGU"/>
                     <constraint firstItem="DVk-UH-0ht" firstAttribute="leading" secondItem="uvw-Jn-Dk1" secondAttribute="leading" id="Vek-qd-bJu"/>
                     <constraint firstAttribute="trailing" secondItem="RKv-pe-hZL" secondAttribute="trailing" constant="20" id="fmq-AS-L4V"/>

@@ -216,9 +216,9 @@
 //  "RECENTLY_VIEWED" = "Recently Viewed";
   "MORE" = "More";
 //  "POINTS" = "Points";
-//  "QUALITY_OF_GOODS" = "Quality of Goods";
-//  "SERVICE_ATTITUDE" = "Service Attitude";
-//  "LOGISTICS_SERVICE" = "Logistics Service";
+  "QUALITY_OF_GOODS" = "Quality of Goods";
+  "SERVICE_ATTITUDE" = "Service Attitude";
+  "LOGISTICS_SERVICE" = "Logistics Service";
   "DISCOUNT" = "Discount";
   "INBOX" = "Inbox";
   "MY_SF" = "My SF";
@@ -263,7 +263,7 @@
   "AVAILABLE" = "Available";
   "EXPIRED" = "Expired";
   "USED" = "Used";
-//  "ARE_YOU_SURE" = "Are you sure?";
+  "ARE_YOU_SURE" = "Are you sure?";
   "TO_PAY" = "To Pay";
   "TO_SHIP" = "To Ship";
   "TO_RECEIVE" = "To Receive";
@@ -362,7 +362,7 @@
 //  "SUPPORT_CONTENT" = "As a form of our commitment to provide the best service; we provide a 24 hours Hotline Service; Email and Live Chat so you can contact us at any time.";
 //  "LIVE_CHAT" = "Live Chat";
 //  "ARE_YOU_SURE_YOU_WANT_TO_PAY_AGAIN" = "Are you sure you want to pay again";
-//  "YES" = "Yes";
+  "YES" = "Yes";
 //  "NO" = "No";
 //  "PLEASE_CONFIRM_WHETHER_THE_PAYMENT_HAS_BEEN_COMPLETED" = "Please confirm whether the payment has been completed";
 //  "FAILED" = "Failed";
@@ -424,11 +424,11 @@
   "TO_REVIEW" = "To Review";
   "EXPIRY_DATE" = "Expiry Date";
   "RATED" = "Rated";
-//  "HOW_RATE_PRODUCT" = "How would you rate this product?";
-//  "UPLOAD_PHOTO" = "Upload your photos";
-//  "TYPE_REVIEW" = "Type your review…";
-//  "KEEP_ANONYMOUS" = "Keep my name anonymous";
-//  "SUBMIT_REVIEW" = "Submit Review";
+  "HOW_RATE_PRODUCT" = "How would you rate this product?";
+  "UPLOAD_PHOTO" = "Upload your photos";
+  "TYPE_REVIEW" = "Type your review…";
+  "KEEP_ANONYMOUS" = "Keep my name anonymous";
+  "SUBMIT_REVIEW" = "Submit Review";
 //  "REVIEW_PUBLISHED" = "Review Published";
 //  "THANK_REVIEW" = "Thank you for your review!";
 //  "VIEWCODE" = "View Code";

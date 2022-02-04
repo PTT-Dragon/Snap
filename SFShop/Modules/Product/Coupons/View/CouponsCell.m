@@ -3,7 +3,7 @@
 //  SFShop
 //
 //  Created by MasterFly on 2022/1/3.
-//
+//USE_NOW
 
 #import "CouponsCell.h"
 

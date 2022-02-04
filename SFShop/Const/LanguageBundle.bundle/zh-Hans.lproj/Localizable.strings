@@ -221,9 +221,9 @@
 "VIEW_ALL_ORDERS" = "查看所有订单";
   "MORE" = "更多";
 //  "POINTS" = "积分";
-//  "QUALITY_OF_GOODS" = "商品质量";
-//  "SERVICE_ATTITUDE" = "服务态度";
-//  "LOGISTICS_SERVICE" = "物流服务";
+  "QUALITY_OF_GOODS" = "商品质量";
+  "SERVICE_ATTITUDE" = "服务态度";
+  "LOGISTICS_SERVICE" = "物流服务";
   "DISCOUNT" = "优惠";
   "INBOX" = "消息";
   "MY_SF" = "我的 SF";
@@ -267,7 +267,7 @@
   "AVAILABLE" = "有效";
   "EXPIRED" = "失效";
   "USED" = "已使用";
-//  "ARE_YOU_SURE" = "是否确认?";
+  "ARE_YOU_SURE" = "是否确认?";
   "TO_PAY" = "去付款";
   "TO_SHIP" = "去发货";
   "TO_RECEIVE" = "去收货";
@@ -363,7 +363,7 @@
 //  "SUPPORT_CONTENT" = "作为我们承诺提供最佳服务的一种形式，我们提供24小时热线服务，电子邮件和实时聊天，以便您可以随时联系我们。";
 //  "LIVE_CHAT" = "在线聊天";
 //  "ARE_YOU_SURE_YOU_WANT_TO_PAY_AGAIN" = "您确定要再次付款吗？";
-//  "YES" = "是的";
+  "YES" = "是的";
 //  "NO" = "不";
 //  "PLEASE_CONFIRM_WHETHER_THE_PAYMENT_HAS_BEEN_COMPLETED" = "请确认付款是否已经完成";
 //  "FAILED" = "失败";
@@ -425,11 +425,11 @@
   "TO_REVIEW" = "待评价";
   "EXPIRY_DATE" = "到期日";
   "RATED" = "已评价";
-//  "HOW_RATE_PRODUCT" = "你怎么评价该商品";
-//  "UPLOAD_PHOTO" = "上传图片或视频";
-//  "TYPE_REVIEW" = "输入评价信息";
-//  "KEEP_ANONYMOUS" = "匿名评价";
-//  "SUBMIT_REVIEW" = "提交修改";
+  "HOW_RATE_PRODUCT" = "你怎么评价该商品";
+  "UPLOAD_PHOTO" = "上传图片或视频";
+  "TYPE_REVIEW" = "输入评价信息";
+  "KEEP_ANONYMOUS" = "匿名评价";
+  "SUBMIT_REVIEW" = "提交修改";
 //  "REVIEW_PUBLISHED" = "评价成功";
 //  "THANK_REVIEW" = "感谢您的评价";
 //  "VIEWCODE" = "查看券码";

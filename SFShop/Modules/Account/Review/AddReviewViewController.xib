@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,6 +15,12 @@
                 <outlet property="anonymousLabel" destination="WVG-v8-uhd" id="fTj-on-ypB"/>
                 <outlet property="bottomView" destination="FVp-G8-o3u" id="OVO-Nk-MMe"/>
                 <outlet property="imgView" destination="cdo-a5-ndh" id="N8R-U9-7mf"/>
+                <outlet property="label1" destination="40V-dS-tOx" id="69j-PC-akh"/>
+                <outlet property="label2" destination="Udd-SM-SOW" id="82g-m5-rce"/>
+                <outlet property="label4" destination="oHz-ZD-jPS" id="lOC-l1-mZo"/>
+                <outlet property="label5" destination="eMc-Xd-W26" id="40z-EO-dVp"/>
+                <outlet property="label6" destination="2aO-Ls-wGd" id="dAq-l7-X6H"/>
+                <outlet property="label7" destination="uFx-FN-dIC" id="fEb-oE-P6O"/>
                 <outlet property="nameLabel" destination="yu7-VZ-fdN" id="IG9-FZ-qpw"/>
                 <outlet property="photoCollectionView" destination="c0t-3g-JAi" id="dbH-cK-8lt"/>
                 <outlet property="photoCollectionViewHei" destination="myS-CV-A2J" id="Jgx-Df-n48"/>
@@ -25,6 +31,7 @@
                 <outlet property="starView3" destination="SZJ-oH-0K4" id="bDj-MZ-UIu"/>
                 <outlet property="storeLogoImgView" destination="hHj-1H-J7y" id="DKh-NU-JQS"/>
                 <outlet property="storeNameLabel" destination="VXw-jU-fSL" id="UNP-hB-Xmb"/>
+                <outlet property="submitBtn" destination="LMV-lq-IHH" id="d0L-iG-eS1"/>
                 <outlet property="textView" destination="lkX-4J-vgf" id="a1M-Yj-61Z"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewWidth" destination="C9O-mr-qkx" id="CAI-J5-OWe"/>
@@ -35,8 +42,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMV-lq-IHH">
+                    <rect key="frame" x="16" y="786" width="382" height="46"/>
+                    <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="f3X-va-aMC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <state key="normal" title="Submit review"/>
+                    <connections>
+                        <action selector="submitAction:" destination="-1" eventType="touchUpInside" id="yow-Bc-dJc"/>
+                    </connections>
+                </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAg-2x-pAz">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="718"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muI-ge-0Hg">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
@@ -121,18 +140,6 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMV-lq-IHH">
-                            <rect key="frame" x="16" y="808" width="382" height="46"/>
-                            <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="46" id="f3X-va-aMC"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                            <state key="normal" title="Submit review"/>
-                            <connections>
-                                <action selector="submitAction:" destination="-1" eventType="touchUpInside" id="yow-Bc-dJc"/>
-                            </connections>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zam-wC-uiY" customClass="StarView">
                             <rect key="frame" x="230" y="156.5" width="168" height="28"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -255,6 +262,7 @@
                         <constraint firstAttribute="trailing" secondItem="lkX-4J-vgf" secondAttribute="trailing" constant="16" id="AJr-gr-Cap"/>
                         <constraint firstItem="WVG-v8-uhd" firstAttribute="leading" secondItem="fhv-hQ-2yg" secondAttribute="trailing" constant="7" id="CN1-QJ-unT"/>
                         <constraint firstItem="Zam-wC-uiY" firstAttribute="centerY" secondItem="40V-dS-tOx" secondAttribute="centerY" id="Dg9-EM-xke"/>
+                        <constraint firstAttribute="bottom" secondItem="FVp-G8-o3u" secondAttribute="bottom" constant="44" id="E3T-3X-ehQ"/>
                         <constraint firstItem="lkX-4J-vgf" firstAttribute="leading" secondItem="qAg-2x-pAz" secondAttribute="leading" constant="16" id="EUH-tb-7rI"/>
                         <constraint firstItem="c0t-3g-JAi" firstAttribute="top" secondItem="oHz-ZD-jPS" secondAttribute="bottom" constant="16" id="Fbo-be-ZvM"/>
                         <constraint firstItem="fhv-hQ-2yg" firstAttribute="leading" secondItem="qAg-2x-pAz" secondAttribute="leading" constant="16" id="H9r-o2-HMO"/>
@@ -264,7 +272,6 @@
                         <constraint firstItem="muI-ge-0Hg" firstAttribute="leading" secondItem="qAg-2x-pAz" secondAttribute="leading" id="P2r-0h-R2n"/>
                         <constraint firstItem="FVp-G8-o3u" firstAttribute="top" secondItem="WVG-v8-uhd" secondAttribute="bottom" constant="53" id="Phd-hN-bai"/>
                         <constraint firstItem="fhv-hQ-2yg" firstAttribute="top" secondItem="lkX-4J-vgf" secondAttribute="bottom" constant="16" id="Pui-P6-RIA"/>
-                        <constraint firstItem="LMV-lq-IHH" firstAttribute="leading" secondItem="qAg-2x-pAz" secondAttribute="leading" constant="16" id="Vdz-iR-uuN"/>
                         <constraint firstAttribute="trailing" secondItem="c0t-3g-JAi" secondAttribute="trailing" constant="8" id="Yy5-HI-JPm"/>
                         <constraint firstItem="WVG-v8-uhd" firstAttribute="centerY" secondItem="fhv-hQ-2yg" secondAttribute="centerY" id="dMr-LZ-SF7"/>
                         <constraint firstAttribute="trailing" secondItem="Zam-wC-uiY" secondAttribute="trailing" constant="16" id="dg3-bv-nAB"/>
@@ -272,13 +279,10 @@
                         <constraint firstItem="c0t-3g-JAi" firstAttribute="leading" secondItem="qAg-2x-pAz" secondAttribute="leading" constant="8" id="iHD-tA-wC3"/>
                         <constraint firstItem="j5H-y3-Lz4" firstAttribute="leading" secondItem="qAg-2x-pAz" secondAttribute="leading" id="lIE-H3-IZp"/>
                         <constraint firstItem="Udd-SM-SOW" firstAttribute="leading" secondItem="qAg-2x-pAz" secondAttribute="leading" constant="16" id="mMU-aU-Dr6"/>
-                        <constraint firstAttribute="bottom" secondItem="LMV-lq-IHH" secondAttribute="bottom" constant="30" id="pmh-LA-w0J"/>
-                        <constraint firstAttribute="trailing" secondItem="LMV-lq-IHH" secondAttribute="trailing" constant="16" id="uzZ-hb-Zdw"/>
                         <constraint firstAttribute="trailing" secondItem="j5H-y3-Lz4" secondAttribute="trailing" id="wuc-8b-2z1"/>
                         <constraint firstItem="oHz-ZD-jPS" firstAttribute="top" secondItem="40V-dS-tOx" secondAttribute="bottom" constant="35" id="x9M-Bg-1nW"/>
                         <constraint firstItem="FVp-G8-o3u" firstAttribute="leading" secondItem="qAg-2x-pAz" secondAttribute="leading" id="xJU-kq-fXu"/>
                         <constraint firstItem="Udd-SM-SOW" firstAttribute="top" secondItem="c0t-3g-JAi" secondAttribute="bottom" constant="16" id="xyC-CN-xCk"/>
-                        <constraint firstItem="LMV-lq-IHH" firstAttribute="top" secondItem="WVG-v8-uhd" secondAttribute="bottom" constant="263" id="yaG-JE-Pw0"/>
                     </constraints>
                 </scrollView>
             </subviews>
@@ -287,8 +291,11 @@
             <constraints>
                 <constraint firstItem="qAg-2x-pAz" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="CkA-eY-3d4"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="qAg-2x-pAz" secondAttribute="trailing" id="DxW-he-2U6"/>
+                <constraint firstItem="LMV-lq-IHH" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="Ewv-nw-ZV2"/>
                 <constraint firstItem="qAg-2x-pAz" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="J9P-0z-IFo"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="qAg-2x-pAz" secondAttribute="bottom" id="iwG-5l-MWf"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="qAg-2x-pAz" secondAttribute="bottom" constant="100" id="iwG-5l-MWf"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="LMV-lq-IHH" secondAttribute="trailing" constant="16" id="m4K-kq-Iy5"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="LMV-lq-IHH" secondAttribute="bottom" constant="30" id="v6e-ra-Mpz"/>
             </constraints>
             <point key="canvasLocation" x="112" y="72"/>
         </view>

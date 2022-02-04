@@ -45,7 +45,7 @@
     }else{
         _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }
-    _statuLabel.text = [model.userCouponState isEqualToString:@"C"] ? kLocalizedString(@"EXPIRED"): [model.userCouponState isEqualToString:@"A"] ? kLocalizedString(@"USE_NOW"): kLocalizedString(@"USED");
+    _statuLabel.text = !model.userCouponState ? kLocalizedString(@"USE_NOW"): [model.userCouponState isEqualToString:@"C"] ? kLocalizedString(@"EXPIRED"): [model.userCouponState isEqualToString:@"A"] ? kLocalizedString(@"USE_NOW"): kLocalizedString(@"USED");
     if (model.userCouponState) {
         _statuLabel.textColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);
         _discountView.backgroundColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);
@@ -57,7 +57,7 @@
 }
 - (void)useCouponAction
 {
-    if ([_model.userCouponState isEqualToString:@"A"]) {
+    if ([_model.userCouponState isEqualToString:@"A"] || !_model.userCouponState) {
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
         vc.couponModel = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];

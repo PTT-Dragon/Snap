@@ -33,6 +33,8 @@
 #import "OrderDetailTitleCell.h"
 #import "ProductViewController.h"
 #import "YCMenuView.h"
+#import "AddReviewVC.h"
+#import "AddReviewViewController.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -374,11 +376,27 @@
             //返回错误和本地地址
         }];
     }else if ([state isEqualToString:@"D"]){
-        ReviewChildViewController *vc = [[ReviewChildViewController alloc] init];
-        vc.type = 0;
-        vc.showNav = NO;
-        vc.orderItemId = self.model.orderNbr;
-        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        if ([_model.canEvaluate isEqualToString:@"Y"]) {
+            if (_model.orderItems.count > 1) {
+                AddReviewVC *vc = [[AddReviewVC alloc] init];
+                [vc setContent:_model block:^{
+                    [self.delegate refreshDatas];
+                }];
+                [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+            }else{
+                AddReviewViewController *vc = [[AddReviewViewController alloc] init];
+                [vc setContent:_model row:0 orderItemId:[_model.orderItems.firstObject orderItemId] block:^{
+                    [self.delegate refreshDatas];
+                }];
+                [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+            }
+        }else{
+            ReviewChildViewController *vc = [[ReviewChildViewController alloc] init];
+            vc.type = 0;
+            vc.showNav = NO;
+            vc.orderItemId = self.model.orderNbr;
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        }
     }else if ([state isEqualToString:@"C"]){
         [self toLogistices];
     }

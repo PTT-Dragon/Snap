@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet StarView *starView;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UILabel *skuLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidth;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -38,6 +39,12 @@
 @property (nonatomic,assign) NSInteger row;
 @property (nonatomic,copy) NSString *orderItemId;
 @property (nonatomic,strong) TextCountView *countView;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *label4;
+@property (weak, nonatomic) IBOutlet UILabel *label5;
+@property (weak, nonatomic) IBOutlet UILabel *label6;
+@property (weak, nonatomic) IBOutlet UILabel *label7;
 
 @end
 
@@ -83,7 +90,19 @@
     _nameLabel.text = itemModel.productName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];
     _storeNameLabel.text = _model.storeName;
-    [_storeLogoImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogoUrl)]];
+    if (![_model isKindOfClass:[OrderDetailModel class]]) {
+        [_storeLogoImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
+    }else{
+        _storeLogoImgView.image = [UIImage imageNamed:@"toko"];
+    }
+    _label1.text = kLocalizedString(@"RATING");
+    _label4.text = kLocalizedString(@"UPLOAD_PHOTO");
+    _label2.text = kLocalizedString(@"HOW_RATE_PRODUCT");
+    _anonymousLabel.text = kLocalizedString(@"KEEP_ANONYMOUS");
+    _textView.placeholder = kLocalizedString(@"TYPE_REVIEW");
+    _label6.text = kLocalizedString(@"SERVICE_ATTITUDE");
+    _label5.text = kLocalizedString(@"QUALITY_OF_GOODS");
+    _label7.text = kLocalizedString(@"LOGISTICS_SERVICE");
 }
 - (void)setContent:(OrderModel *)model row:(NSInteger)row orderItemId:(NSString *)orderItemId block:(AddReviewViewControllerBlock)block
 {
@@ -104,10 +123,12 @@
         self.bottomView.hidden = YES;
         self.anonymousBtn.hidden = YES;
         self.anonymousLabel.hidden = YES;
+        [_submitBtn setTitle:kLocalizedString(@"SUBMIT_REVIEW") forState:0];
     }else{
         self.bottomView.hidden = NO;
         self.anonymousBtn.hidden = NO;
         self.anonymousLabel.hidden = NO;
+        [_submitBtn setTitle:kLocalizedString(@"SUBMIT_REVIEW") forState:0];
     }
     for (EvaluatesContentsModel *contentModel in evaModel.contents) {
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:SFImage(contentModel.url)] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {

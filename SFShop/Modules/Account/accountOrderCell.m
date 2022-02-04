@@ -38,9 +38,10 @@
             [(UIButton *)subView SG_imagePositionStyle:SGImagePositionStyleTop spacing:5];
         }
     }
-    [_allOrderBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
+    
     self.orderLabel.text = kLocalizedString(@"ORDERS");
     [self.allOrderBtn setTitle:kLocalizedString(@"VIEW_ALL_ORDERS") forState:0];
+    [_allOrderBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
     self.toPayLabel.text = kLocalizedString(@"TO_PAY");
     self.toShipLabel.text = kLocalizedString(@"TO_SHIP");
     self.toreceiveLabel.text = kLocalizedString(@"TORECEIVE");
