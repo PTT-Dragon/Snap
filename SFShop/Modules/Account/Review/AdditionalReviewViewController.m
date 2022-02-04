@@ -219,6 +219,10 @@
     }];
 }
 - (IBAction)submitAction:(id)sender {
+    if ([_textView.text isEqualToString:@""]) {
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"PLEASE_FILL_IN_COMMENTS")];
+        return;
+    }
     [self publishImage];
 }
 - (void)textViewDidChange:(UITextView *)textView {

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMargin;
 @property (weak, nonatomic) IBOutlet UILabel *redLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *redLabel2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *field2Top;
 
 
 @end
@@ -39,41 +40,61 @@ static BOOL _passwordSuccess2 = NO;
     if (textField == _field) {
         if ([textField.text isEqualToString:@""]) {
             _field.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
+            _label.hidden = YES;
+            _redLabel1.hidden = NO;
             _passwordSuccess1 = NO;
         }else{
+            _label.hidden = NO;
+            _redLabel1.hidden = YES;
+            _field.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
             _passwordSuccess1 = YES;//[textField systemPhoneCheck:CHECKPASSWORDTYPE editType:EIDTTYPE];
         }
+        if (_passwordSuccess1) {
+            _label.hidden = NO;
+            _label.textColor = RGBColorFrom16(0x7b7b7b);
+        }else{
+            
+        }
     }else if(textField == _field2){
+        _passwordSuccess2 = [textField systemPhoneCheck:CHECKPHONETYPE editType:EIDTTYPE];
+        if (_passwordSuccess2) {
+            _label2.hidden = NO;
+            _label2.textColor = RGBColorFrom16(0x7b7b7b);
+            _redLabel2.hidden = YES;
+        }else{
+            _label2.hidden = NO;
+            _redLabel2.hidden = NO;
+        }
         if ([textField.text isEqualToString:@""]) {
             _passwordSuccess2 = NO;
             _field2.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
             _redLabel2.text = kLocalizedString(@"REQUIREDTIP");
+            _redLabel2.textColor = RGBColorFrom16(0xff1659);
+            _label2.textColor = RGBColorFrom16(0xff1659);
+            _label2.hidden = YES;
         }else{
             _redLabel2.text = kLocalizedString(@"INCORRECT_PHONE");
         }
-        _passwordSuccess2 = [textField systemPhoneCheck:CHECKPHONETYPE editType:EIDTTYPE];
     }
-    if (_passwordSuccess1) {
-        _label.hidden = NO;
-        _label.textColor = RGBColorFrom16(0xf7f7f7);
-        _redLabel1.hidden = YES;
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model.userRes.mobilePhone || [model.userRes.mobilePhone isEqualToString:@""]) {
+        if (_passwordSuccess2) {
+            self.btn.backgroundColor = RGBColorFrom16(0xFF1659);
+            self.btn.userInteractionEnabled = YES;
+        }else{
+            self.btn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+            self.btn.userInteractionEnabled = NO;
+        }
     }else{
-        
+        if (_passwordSuccess1 && _passwordSuccess2) {
+            self.btn.backgroundColor = RGBColorFrom16(0xFF1659);
+            self.btn.userInteractionEnabled = YES;
+        }else{
+            self.btn.backgroundColor = RGBColorFrom16(0xFFE5EB);
+            self.btn.userInteractionEnabled = NO;
+        }
     }
-    if (_passwordSuccess2) {
-        _label2.hidden = NO;
-        _label2.textColor = RGBColorFrom16(0xf7f7f7);
-        _redLabel2.hidden = YES;
-    }else{
-        _redLabel2.hidden = NO;
-    }
-    if (_passwordSuccess1 && _passwordSuccess2) {
-        self.btn.backgroundColor = RGBColorFrom16(0xFF1659);
-        self.btn.userInteractionEnabled = YES;
-    }else{
-        self.btn.backgroundColor = RGBColorFrom16(0xFFE5EB);
-        self.btn.userInteractionEnabled = NO;
-    }
+    
 }
 - (void)layoutSubviews
 {
@@ -84,6 +105,8 @@ static BOOL _passwordSuccess2 = NO;
     _label2.text = kLocalizedString(@"NEW_MOBILE_NUMBER");
     _label.text = kLocalizedString(@"PASSWORD");
     UserModel *model = [FMDBManager sharedInstance].currentUser;
+    [_field addTarget:self action:@selector(changedTextField:) forControlEvents:(UIControlEventEditingChanged)];
+    [_field2 addTarget:self action:@selector(changedTextField:) forControlEvents:(UIControlEventEditingChanged)];
     if (_type == 1) {
         self.title = kLocalizedString(@"MOBILE_NUMBER");
         _label.text = kLocalizedString(@"PASSWORD");
@@ -91,12 +114,20 @@ static BOOL _passwordSuccess2 = NO;
         _field2.placeholder = kLocalizedString(@"NEW_MOBILE_NUMBER");
         self.subTitle.text = kLocalizedString(@"CHANGE_MOBILE");
         [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:UIControlStateNormal];
-        _label2.hidden = NO;
+        _label2.hidden = YES;
         _field2.hidden = NO;
-        self.label.hidden = YES;
-        self.label2.hidden = YES;
-        self.redLabel1.hidden = YES;
-        self.redLabel2.hidden = YES;
+        if (!model.userRes.mobilePhone || [model.userRes.mobilePhone isEqualToString:@""]) {
+            //未有绑定的手机号
+            [self.btn setTitle:kLocalizedString(@"BIND") forState:0];
+            self.label.hidden = YES;
+            self.redLabel1.hidden = YES;
+            self.field.hidden = YES;
+            _field2Top.constant = 88;
+        }
+//        self.label.hidden = YES;
+//        self.label2.hidden = YES;
+//        self.redLabel1.hidden = YES;
+//        self.redLabel2.hidden = YES;
         
 //        @weakify(self);
 //        [[self.field rac_textSignal] subscribeNext:^(NSString * _Nullable x) {
@@ -109,7 +140,7 @@ static BOOL _passwordSuccess2 = NO;
 //                self.label.hidden = NO;
 //                self.redLabel1.hidden = YES;
 //                self.redLabel1.alpha = 1;
-//                self.field.layer.borderColor = RGBColorFrom16(0xf7f7f7).CGColor;
+//                self.field.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
 //            }
 //        }];
         
@@ -137,17 +168,28 @@ static BOOL _passwordSuccess2 = NO;
         self.topMargin.constant = 10;
         if (model.userRes.email && ![model.userRes.email isEqualToString:@""]) {
             _field.placeholder = model.userRes.email;
+            [self.btn setTitle:kLocalizedString(@"EDIT") forState:UIControlStateNormal];
+            _field.userInteractionEnabled = NO;
+            _btn.userInteractionEnabled = YES;
+            self.btn.backgroundColor = RGBColorFrom16(0xFF1659);
+        }else{
+            [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:UIControlStateNormal];
         }
-        [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:UIControlStateNormal];
+        
     }
 }
     
 - (IBAction)submitAction:(UIButton *)sender {
     verifyCodeVC *vc = [[verifyCodeVC alloc] init];
     if (_type == 1) {
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        if (!model.userRes.mobilePhone || [model.userRes.mobilePhone isEqualToString:@""]) {
+            
+        }else{
+            vc.password = _field.text;
+        }
         vc.type = ChangeMobileNumber_Code;
         vc.account = _field2.text;
-        vc.password = _field.text;
     }else{
         vc.type = ChangeEmail_Code;
         vc.account = _field.text;

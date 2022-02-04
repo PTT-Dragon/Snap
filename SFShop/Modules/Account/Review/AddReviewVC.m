@@ -142,6 +142,16 @@
     [ac showPreviewAnimated:YES];
 }
 - (IBAction)submitAction:(UIButton *)sender {
+    BOOL hasComment = YES;
+    for (NSString *str in self.textArr) {
+        if ([str isEqualToString:@""]) {
+            hasComment = NO;
+        }
+    }
+    if (!hasComment) {
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"PLEASE_FILL_IN_COMMENTS")];
+        return;
+    }
     [self publishImage];
 }
 

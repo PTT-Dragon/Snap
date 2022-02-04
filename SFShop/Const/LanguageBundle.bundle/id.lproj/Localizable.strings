@@ -141,7 +141,7 @@
 //  "REFUND" = "Refund";
 //  "RETURN" = "Return";
 //  "CHANGE" = "Penukaran";
-//  "BIND" = "Link";
+  "BIND" = "DAFTARKAN";
 //  "BIND_EMAIL" = "Link e-mail";
 //  "BIND_MOBILE" = "Link no. telephone";
   "EXCHANGE" = "Penukaran";
@@ -183,7 +183,7 @@
   "ADDITIONAL_DAY" = "Ulasan Tambahan";
 "days after purchase" = " hari setelah pembelian";
 //  "GO_SHOPPING" = "Belanja";
-//  "REVIEW_LIST" = "Review list";
+  "REVIEW_LIST" = "DAFTAR ULASAN";
   "VALID_RANGE" = "Berlaku dalam";
 "hari" = "hari";
 "BUY_MORE_TO_ENJOY_DISCOUNT" = "Beli lebih banyak untuk menikmati diskon";
@@ -396,7 +396,7 @@
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "Pengelompokan telah selesai; Silakan bergabung dengan grup lain";
   "STOCK" = "Persediaan";
 //  "WHATS_APP" = "WhatsApp";
-//  "PLEASE_FILL_IN_COMMENTS" = "Silahkan isi komentar anda";
+  "PLEASE_FILL_IN_COMMENTS" = "Silahkan isi komentar anda";
 //  "ERROR" = "Error";
 //  "CODE_INCORRECT_REINPUT" = "Kode verifikasi salah; mohon masukan ulang.";
 //  "NOT_AVAILABLE" = "Tidak tersedia";
@@ -432,8 +432,8 @@
   "TYPE_REVIEW" = "Tuliskan ulasan Anda";
   "KEEP_ANONYMOUS" = "Biarkan nama saya tetap anonim";
   "SUBMIT_REVIEW" = "KIRIM ULASAN";
-//  "REVIEW_PUBLISHED" = "Ulasan Dipublikasikan";
-//  "THANK_REVIEW" = "Terimakasih untuk ulasan anda";
+  "REVIEW_PUBLISHED" = "Ulasan sudah dimuat";
+  "THANK_REVIEW" = "Terima kasih atas ulasan Anda";
 //  "VIEWCODE" = "Lihat kode";
   "SHAREBUY" = "GROUP BUY";
 //  "GROUPSUCCESS" = "Join group sukses";

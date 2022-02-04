@@ -232,6 +232,10 @@
  {"evaluateItems":[{"orderItemId":50004,"ratingComments":"Ffff ","rate":3,"labelIds":[],"contents":[{"catgType":"B","url":"/get/resource/A3840564-1B7D-4A26-B801-9140CC071E811467785989878583296.jpeg","imgUrl":"","seq":0,"name":"A3840564-1B7D-4A26-B801-9140CC071E81.jpeg"},{"catgType":"B","url":"/get/resource/B8ED63AB-8F24-4AB3-A86F-3FAEEFDE031F1467786024691306496.png","imgUrl":"","seq":1,"name":"B8ED63AB-8F24-4AB3-A86F-3FAEEFDE031F.png"}],"isAnonymous":"Y"}],"store":{"rate":4,"rate1":3,"rate2":5,"storeId":11,"orderId":50004,"isAnonymous":"Y"}}
  **/
 - (IBAction)submitAction:(UIButton *)sender {
+    if ([_textView.text isEqualToString:@""]) {
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"PLEASE_FILL_IN_COMMENTS")];
+        return;
+    }
     [self publishImage];
 }
 - (void)publishImage

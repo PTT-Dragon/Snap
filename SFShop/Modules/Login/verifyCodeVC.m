@@ -43,6 +43,10 @@
     }else{
         [params setValue:@"false" forKey:@"isEmail"];
     }
+    if (_password) {
+        //需加入密码验证.
+        [params setValue:login_aes_128_cbc_encrypt(_password) forKey:@"pwd"];
+    }
 //    [params setValue:@"Terminal" forKey:@"userType"];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.getCode parameters:params success:^(id  _Nullable response) {
@@ -52,6 +56,7 @@
     } failed:^(NSError * _Nonnull error) {
         weakself.recendBtn.userInteractionEnabled = YES;
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [weakself.navigationController popViewControllerAnimated:YES];
     }];
 }
 - (void)showCountLabel

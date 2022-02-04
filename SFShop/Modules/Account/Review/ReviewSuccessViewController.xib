@@ -12,6 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReviewSuccessViewController">
             <connections>
                 <outlet property="btn" destination="J8a-0J-48J" id="KO4-7v-WIw"/>
+                <outlet property="btn1" destination="smR-pm-K8Q" id="SPP-hN-26X"/>
+                <outlet property="label1" destination="wlG-tA-WYd" id="lNE-1d-6oW"/>
+                <outlet property="label2" destination="5Du-Vh-oBw" id="K2J-IL-nBF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -132,7 +132,7 @@
 "BUY_NOWMAX" = "BUY NOW";
   "BRANDS" = "Brands";
 //  "PRICE" = "Price";
-//  "BIND" = "Bind";
+  "BIND" = "BIND";
 //  "BIND_EMAIL" = "Bind Email";
 //  "BIND_MOBILE" = "Bind Mobile Number";
   "EXCHANGE" = "Replacement";
@@ -178,7 +178,7 @@
   "ADDITIONAL_DAY" = "Additional Reviews";
 "days after purchase" = " days after purchase";
 //  "GO_SHOPPING" = "Go Shopping";
-//  "REVIEW_LIST" = "Review List";
+  "REVIEW_LIST" = "Review List";
   "VALID_RANGE" = "Valid within";
 "hari" = "days";
 //  "REVIEW_INPUT_COMMENTS" = "Please input comments";
@@ -394,7 +394,7 @@
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "Grouping has ended. Please join other groups";
   "STOCK" = "stock";
 //  "WHATS_APP" = "WhatsApp";
-//  "PLEASE_FILL_IN_COMMENTS" = "Please fill in your comments";
+  "PLEASE_FILL_IN_COMMENTS" = "Please fill in your comments";
 //  "ERROR" = "error";
 //  "CODE_INCORRECT_REINPUT" = "The verification code is incorrect; please re-input.";
 //  "NOT_AVAILABLE" = "Not Available";
@@ -429,8 +429,8 @@
   "TYPE_REVIEW" = "Type your review…";
   "KEEP_ANONYMOUS" = "Keep my name anonymous";
   "SUBMIT_REVIEW" = "Submit Review";
-//  "REVIEW_PUBLISHED" = "Review Published";
-//  "THANK_REVIEW" = "Thank you for your review!";
+  "REVIEW_PUBLISHED" = "Review Published";
+  "THANK_REVIEW" = "Thank you for your review!";
 //  "VIEWCODE" = "View Code";
   "SHAREBUY" = "GROUP BUY";
 //  "GROUPSUCCESS" = "Join group successfully.Please check later.";

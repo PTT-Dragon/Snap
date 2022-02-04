@@ -112,10 +112,10 @@ static BOOL _passwordSuccess = NO;
 {
     if (textField == _accountField) {
         _label1.hidden = [textField.text isEqualToString:@""];
-        textField.layer.borderColor = RGBColorFrom16(0xf7f7f7).CGColor;
+        textField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     }else{
         _label2.hidden = [textField.text isEqualToString:@""];
-        textField.layer.borderColor = RGBColorFrom16(0xf7f7f7).CGColor;
+        textField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     }
 //    if (textField == _accountField) {
 //        if (_type == 1) {
