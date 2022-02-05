@@ -151,8 +151,8 @@
                         </constraints>
                     </view>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvw-Jn-Dk1">
-                        <rect key="frame" x="16" y="58" width="37" height="29"/>
-                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                        <rect key="frame" x="16" y="58" width="34" height="28"/>
+                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="13"/>
                         <state key="normal" title="More">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                         </state>
@@ -161,7 +161,7 @@
                         </connections>
                     </button>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVk-UH-0ht">
-                        <rect key="frame" x="16" y="87" width="60" height="20"/>
+                        <rect key="frame" x="16" y="86" width="60" height="20"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDV-Xx-FUf">
                                 <rect key="frame" x="0.0" y="0.0" width="60" height="29"/>

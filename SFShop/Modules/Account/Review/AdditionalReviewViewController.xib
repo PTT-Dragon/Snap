@@ -11,9 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdditionalReviewViewController">
             <connections>
+                <outlet property="btn" destination="9bt-o8-eM3" id="sO3-NQ-9iH"/>
                 <outlet property="collectionView" destination="k5Q-MY-sEu" id="HzV-sc-Jzj"/>
                 <outlet property="collectionViewHei" destination="fKq-PL-tqh" id="Mkc-5f-H03"/>
                 <outlet property="imgView" destination="r1j-7r-lzs" id="Uf1-Fv-fhr"/>
+                <outlet property="label1" destination="eol-Jc-NFJ" id="q65-Z5-DrE"/>
+                <outlet property="label2" destination="AlS-7o-LXd" id="7Fu-ne-zzD"/>
                 <outlet property="nameLabel" destination="bJP-e6-XnP" id="pez-S3-lpD"/>
                 <outlet property="skuLabel" destination="Qz2-at-Je5" id="c7W-lm-eHq"/>
                 <outlet property="submitBtn" destination="9bt-o8-eM3" id="TPX-gc-1dc"/>
@@ -43,7 +46,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="718"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biY-1F-XgP">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
+                            <rect key="frame" x="0.0" y="64" width="414" height="115"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r1j-7r-lzs">
                                     <rect key="frame" x="18" y="16.5" width="82" height="82"/>
@@ -82,26 +85,26 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Js-ez-w7y">
-                            <rect key="frame" x="0.0" y="115" width="414" height="10"/>
+                            <rect key="frame" x="0.0" y="179" width="414" height="10"/>
                             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10" id="Yg3-9H-P6z"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload your photos or videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eol-Jc-NFJ">
-                            <rect key="frame" x="16" y="155" width="191" height="17"/>
+                            <rect key="frame" x="16" y="219" width="191" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How would you rate this product?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlS-7o-LXd">
-                            <rect key="frame" x="16" y="284" width="216.5" height="17"/>
+                            <rect key="frame" x="16" y="348" width="216.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XD0-hH-ThN" customClass="IQTextView">
-                            <rect key="frame" x="16" y="317" width="382" height="132"/>
+                            <rect key="frame" x="16" y="381" width="382" height="132"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="132" id="bFU-nq-rfO"/>
@@ -114,7 +117,7 @@
                             </userDefinedRuntimeAttributes>
                         </textView>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="k5Q-MY-sEu">
-                            <rect key="frame" x="8" y="188" width="398" height="80"/>
+                            <rect key="frame" x="8" y="252" width="398" height="80"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="fKq-PL-tqh"/>
@@ -135,7 +138,7 @@
                         <constraint firstAttribute="trailing" secondItem="biY-1F-XgP" secondAttribute="trailing" id="P8c-lv-Gu3"/>
                         <constraint firstItem="AlS-7o-LXd" firstAttribute="top" secondItem="k5Q-MY-sEu" secondAttribute="bottom" constant="16" id="RO5-Y1-PSc"/>
                         <constraint firstItem="eol-Jc-NFJ" firstAttribute="top" secondItem="8Js-ez-w7y" secondAttribute="bottom" constant="30" id="Sby-j0-mFB"/>
-                        <constraint firstItem="biY-1F-XgP" firstAttribute="top" secondItem="bLj-Ro-TP7" secondAttribute="top" id="VUV-z9-p7J"/>
+                        <constraint firstItem="biY-1F-XgP" firstAttribute="top" secondItem="bLj-Ro-TP7" secondAttribute="top" constant="64" id="VUV-z9-p7J"/>
                         <constraint firstItem="k5Q-MY-sEu" firstAttribute="top" secondItem="eol-Jc-NFJ" secondAttribute="bottom" constant="16" id="Wf8-6w-AJn"/>
                         <constraint firstAttribute="bottom" secondItem="XD0-hH-ThN" secondAttribute="bottom" constant="44" id="Yfg-78-YgX"/>
                         <constraint firstItem="AlS-7o-LXd" firstAttribute="leading" secondItem="bLj-Ro-TP7" secondAttribute="leading" constant="16" id="adH-tU-Qn5"/>

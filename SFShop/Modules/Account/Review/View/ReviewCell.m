@@ -70,7 +70,7 @@
     
 }
 - (IBAction)btn1Action:(UIButton *)sender {
-    if ([sender.titleLabel.text isEqualToString:@"ADDITIONAL REVIEW"]) {
+    if ([sender.titleLabel.text isEqualToString:kLocalizedString(@"ADDITIONAL_REVIEW")]) {
         if (self.additionBlock) {
             self.additionBlock(_model);
         }

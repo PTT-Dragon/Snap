@@ -263,7 +263,7 @@
   "MEMBERSHIP_AGREEMENT" = "Perjanjian keanggotaan";
 //  "PLEASE_INPUT" = "Mohon masukan";
 //  "SAFETY_VERIFICATION" = "Verifikasi keamanan";
-  "LOGISTICS_DETAILS" = "Detail Logistik";
+  "LOGISTICS_DETAILS" = "Rincian pengiriman";
 //  "EVALUATION" = "Evaluasi";
   "RESET" = "ATUR ULANG";
   "AVAILABLE" = "Tersedia";
@@ -285,14 +285,13 @@
 //  "REFUND_TO" = "Kembalikan ke";
 //  "BANK_TRANSFER" = "Transfer Bank";
 //  "ORDER_DETAILS" = "Detail pesanan";
-//  "WAREHOUSE_HAS_BEEN_DELIVERED" = "Barang telah dikirim dari Gudang";
+  "WAREHOUSE_HAS_BEEN_DELIVERED" = "Telah sampai di warehouse (gudang)";
 //  "SHIP_TO" = "Dikirim ke";
 //  "HOME" = "Home";
 //  "VIEW_CODE" = "Tampilkan kode";
   "SUBTOTAL" = "Subtotal";
   "SUBTOTAL_DISCOUNT" = "Subtotal diskon";
   "PROMOTION" = "Promosi";
-  "STORE_COUPONS" = "Kupon toko";
   "POINTS_DEDUCTION" = "Pengurangan Poin";
   "SHIPPING_FEE" = "Biaya pengiriman";
   "ATTACHMENT_INFORMATION" = "Informasi Lampiran";
@@ -303,7 +302,7 @@
   "PAYMENT_TIME" = "Waktu pembayaran";
   "COMPLETION_TIME" = "Waktu penyelesaian";
 //  "RE_BUY" = "Beli lagi";
-//  "CONFIRM_RECEIPT" = "Selesai";
+  "CONFIRM_RECEIPT" = "KONFIRMASI PENERIMA";
   "CLOSE" = "TUTUP";
 "BACK_TO_HOME" = "KEMBALI KE BERANDA";
 //  "VIEW_ORDER" = "Tampilan Pemesanan";
@@ -313,6 +312,7 @@
 //  "SPECIFICATION" = "Spesifikasi";
 
   "CART" = "Keranjang";
+"STORE_COUPONS" = "Voucher toko";
   "COUPONS" = "Vouchers";
   "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";
   "PEOPLE_SHORT" = "Kurang pembeli";
@@ -360,7 +360,7 @@
 //  "REVIEWS" = "Ulasan";
 //  "JUST_FOR_YOU" = "Hanya untuk kamu";
 //  "COPY_EMAIL" = "Alamat email berhasil disalin";
-  "COPY_SUCCESS" = "URL berhasil di salin";
+  "COPY_SUCCESS" = "Berhasil menyalin URL!";
 //  "NOT_SUPPORT" = "Saat ini tidak didukung";
 //  "SUPPORT_THANK" = "Terima kasih telah menjadi pelanggan berharga Smartfren.";
 //  "SUPPORT_CONTENT" = "Sebagai bentuk komitmen kami untuk memberikan pelayanan terbaik; kami menyediakan Layanan Hotline 24 jam; Email dan Live Chat sehingga Anda dapat menghubungi kami setiap saat.";
@@ -657,7 +657,7 @@
 "TILL" = "Sampai";
 "RECEIPT" = "PENERIMA";
 "CONFIRM" = "KONFIRMASI";
-"PACKAGE_CODE" = "Nomor resi";
+"PACKAGE_CODE" = "Kode Paket";
 "I_WANT_TO_REFUND" = "Saya ingin dana dikembalikan";
 "I_WANT_TO_RETURN" = "Saya ingin mengembalikan produk";
 "I_WANT_TO_EXCHANGE" = "Saya ingin menukar produk";

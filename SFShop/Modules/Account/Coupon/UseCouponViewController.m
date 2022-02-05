@@ -47,6 +47,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *discountTitleLabel;
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @property (nonatomic, readwrite, strong) BaseMoreView *moreView;
+@property (nonatomic,copy) NSString *searchText;
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 
 @end
@@ -64,6 +65,7 @@
 }
 - (void)loadsubviews {
     [self.view addSubview:self.navSearchView];
+    _searchText = @"";
     self.discountTitleLabel.text = kLocalizedString(@"DISCOUNT");
     self.expiryTitleLabel.text = kLocalizedString(@"EXPIRY_DATE");
     self.couponView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
@@ -142,7 +144,7 @@
 
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter {
     NSMutableDictionary *parm = [NSMutableDictionary dictionaryWithDictionary:@{
-        @"q": @"",
+        @"q": _searchText,
         @"pageIndex": @(currentPage),
         @"pageSize": @(10),
         @"sortType": [NSString stringWithFormat:@"%ld",type],
@@ -423,16 +425,18 @@
         };
         __weak __typeof(self)weakSelf = self;
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
-
-        }];
-        _navSearchView.fakeTouchBock = ^{
             __weak __typeof(weakSelf)strongSelf = weakSelf;
-            //TODO: 搜索未完成
-            CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
-            vc.shouldBackToHome = YES;
-            [strongSelf.navigationController pushViewController:vc animated:YES];
-        };
-        _navSearchView.searchType = SFSearchTypeFake;
+            strongSelf.searchText = qs;
+            [strongSelf.tableView.mj_header beginRefreshing];
+        }];
+//        _navSearchView.fakeTouchBock = ^{
+//            __weak __typeof(weakSelf)strongSelf = weakSelf;
+//            //TODO: 搜索未完成
+//            CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+//            vc.shouldBackToHome = YES;
+//            [strongSelf.navigationController pushViewController:vc animated:YES];
+//        };
+//        _navSearchView.searchType = SFSearchTypeFake;
     }
     return _navSearchView;
 }

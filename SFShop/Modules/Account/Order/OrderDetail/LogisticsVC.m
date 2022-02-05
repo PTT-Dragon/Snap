@@ -9,14 +9,19 @@
 #import "ImageCollectionViewCell.h"
 #import "UIButton+SGImagePosition.h"
 #import "LogisticsCell.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
-@interface LogisticsVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
+@interface LogisticsVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic,strong) OrderDetailLogisticsModel *logisticesModel;
 @property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *moreView;
 
 @end
 
@@ -25,15 +30,37 @@
 {
     return YES;
 }
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_moreView removeFromSuperview];
+    _moreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_moreView];
+    [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"LOGISTICS_DETAILS");
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"LOGISTICS_DETAILS")];
+    self.label.text = kLocalizedString(@"ORDER_CODE");//
     self.view.backgroundColor = RGBColorFrom16(0xf6f6f6);
     [self loadDatas];
     [self updateViews];
@@ -42,7 +69,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(self.topView.mas_bottom).offset(10);
+        make.top.mas_equalTo(self.topView.mas_bottom).offset(0);
     }];
 }
 - (void)loadDatas
@@ -108,7 +135,7 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
         [_tableView registerNib:[UINib nibWithNibName:@"LogisticsCell" bundle:nil] forCellReuseIdentifier:@"LogisticsCell"];
         if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;

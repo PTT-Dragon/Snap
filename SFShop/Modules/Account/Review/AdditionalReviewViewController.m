@@ -13,8 +13,10 @@
 #import "ProductDetailModel.h"
 #import "ReviewSuccessViewController.h"
 #import "TextCountView.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
-@interface AdditionalReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource , UITextViewDelegate>
+@interface AdditionalReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource , UITextViewDelegate,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewHei;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -27,6 +29,11 @@
 @property (nonatomic,strong) NSMutableArray *imgUrlArr;//存放图片数组
 @property (nonatomic,strong) ReviewDetailModel *model;
 @property (nonatomic,strong) TextCountView *countView;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *moreView;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @end
 
@@ -35,10 +42,40 @@
 {
     return YES;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_moreView removeFromSuperview];
+    _moreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_moreView];
+    [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"Additional_review");
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"Additional_review")];
+    _label2.text = kLocalizedString(@"HOW_RATE_PRODUCT");
+    _label1.text = kLocalizedString(@"UPLOAD_PHOTO");
+    _textView.placeholder = kLocalizedString(@"TYPE_REVIEW");
+    [_btn setTitle:kLocalizedString(@"SUBMIT_REVIEW") forState:0];
     _viewWidth.constant = MainScreen_width;
     _imgArr = [NSMutableArray array];
     _imgUrlArr = [NSMutableArray array];

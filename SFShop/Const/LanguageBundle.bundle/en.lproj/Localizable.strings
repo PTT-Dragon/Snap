@@ -279,7 +279,7 @@
 //  "REFUND_TO" = "Refund to";
 //  "BANK_TRANSFER" = "Bank Transfer";
 //  "ORDER_DETAILS" = "Order Details";
-//  "WAREHOUSE_HAS_BEEN_DELIVERED" = "Warehouse has been delivered";
+  "WAREHOUSE_HAS_BEEN_DELIVERED" = "Warehouse has been delivered";
 //  "SHIP_TO" = "Ship to";
 //  "HOME" = "Home";
 //  "VIEW_CODE" = "View Code";
@@ -298,7 +298,7 @@
   "PAYMENT_TIME" = "Payment time";
   "COMPLETION_TIME" = "Completion time";
 //  "RE_BUY" = "Re-buy";
-//  "CONFIRM_RECEIPT" = "Confirm Receipt";
+  "CONFIRM_RECEIPT" = "CONFIRM RECEIPT";
   "CLOSE" = "Close";
   "BACK_TO_HOME" = "BACK TO HOME";
 //  "VIEW_ORDER" = "View Order";
@@ -429,7 +429,7 @@
   "UPLOAD_PHOTO" = "Upload your photos";
   "TYPE_REVIEW" = "Type your review…";
   "KEEP_ANONYMOUS" = "Keep my name anonymous";
-  "SUBMIT_REVIEW" = "Submit Review";
+  "SUBMIT_REVIEW" = "SUBMIT REVIEW";
   "REVIEW_PUBLISHED" = "Review Published";
   "THANK_REVIEW" = "Thank you for your review!";
 //  "VIEWCODE" = "View Code";

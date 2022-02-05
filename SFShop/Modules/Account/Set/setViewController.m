@@ -165,6 +165,7 @@
                 UserDefaultSetObjectForKey(kLanguageHindi, @"Language");
                 MJRefreshConfig.defaultConfig.languageCode = @"id";
                 [[FMDBManager sharedInstance] deleteUserData];
+                [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageHindi];
                 [baseTool removeVCFromNavigation:weakself];                
             } failed:^(NSError * _Nonnull error) {
                 

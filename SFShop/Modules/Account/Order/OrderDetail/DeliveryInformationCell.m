@@ -26,7 +26,8 @@
 {
     DeliveryInfoModel *infoModel = model.deliverys.firstObject;
     _contentLabel.text = [NSString stringWithFormat:@"    %@%@",kLocalizedString(@"PACKAGE_CODE"),infoModel.logisticsId];
-    _infoLabel.text = [NSString stringWithFormat:@"%@\n%@",infoModel.warehouseName,infoModel.deliveryDate];
+    NSString *state = [model.deliveryState isEqualToString:@"C"] ? @"WAREHOUSE_HAS_BEEN_DELIVERED": @"";
+    _infoLabel.text = [NSString stringWithFormat:@"%@\n%@",kLocalizedString(state),infoModel.deliveryDate];
     self.logisticsName.text = infoModel.logisticsName;
 }
 @end

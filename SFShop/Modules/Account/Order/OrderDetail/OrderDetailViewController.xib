@@ -14,7 +14,6 @@
                 <outlet property="bottomView" destination="lRG-ix-dAm" id="Bdw-ki-xb8"/>
                 <outlet property="btn1" destination="9wl-ga-XU2" id="fvM-jb-cuy"/>
                 <outlet property="btn2" destination="Rii-UV-BGq" id="RzI-nx-zdT"/>
-                <outlet property="btn2Left" destination="ALV-aU-10T" id="Zpc-W6-rdO"/>
                 <outlet property="moreActionBtn1" destination="ccT-9f-q3v" id="i1o-Av-HIp"/>
                 <outlet property="moreBtn" destination="ptr-xb-Dpm" id="OPz-S1-iLs"/>
                 <outlet property="moreView" destination="nQ2-XB-imn" id="4zF-Ln-pAF"/>
@@ -30,20 +29,20 @@
                     <rect key="frame" x="0.0" y="784" width="414" height="78"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wl-ga-XU2">
-                            <rect key="frame" x="210" y="16" width="188" height="46"/>
+                            <rect key="frame" x="343" y="19" width="55" height="40"/>
                             <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="46" id="wOn-EC-NNm"/>
+                                <constraint firstAttribute="height" constant="40" id="wOn-EC-NNm"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <state key="normal" title="REVIEW"/>
                             <connections>
                                 <action selector="btn1Action:" destination="-1" eventType="touchUpInside" id="x5J-77-UFW"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rii-UV-BGq">
-                            <rect key="frame" x="16" y="16" width="188" height="46"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <rect key="frame" x="258" y="19" width="79" height="40"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <state key="normal" title="BUY AGAIN">
                                 <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                             </state>
@@ -52,8 +51,8 @@
                             </connections>
                         </button>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptr-xb-Dpm">
-                            <rect key="frame" x="16" y="5" width="34" height="29"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <rect key="frame" x="16" y="24.5" width="37" height="29"/>
+                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
                             <state key="normal" title="More">
                                 <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                             </state>
@@ -62,7 +61,7 @@
                             </connections>
                         </button>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQ2-XB-imn">
-                            <rect key="frame" x="16" y="34" width="60" height="20"/>
+                            <rect key="frame" x="16" y="53.5" width="60" height="20"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccT-9f-q3v">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="29"/>
@@ -91,11 +90,9 @@
                         <constraint firstItem="9wl-ga-XU2" firstAttribute="height" secondItem="Rii-UV-BGq" secondAttribute="height" id="3xZ-5n-bCS"/>
                         <constraint firstItem="Rii-UV-BGq" firstAttribute="centerY" secondItem="lRG-ix-dAm" secondAttribute="centerY" id="6Y4-kw-Ksc"/>
                         <constraint firstAttribute="height" constant="78" id="7hZ-an-0el"/>
-                        <constraint firstItem="Rii-UV-BGq" firstAttribute="leading" secondItem="lRG-ix-dAm" secondAttribute="leading" constant="16" id="ALV-aU-10T"/>
                         <constraint firstItem="nQ2-XB-imn" firstAttribute="leading" secondItem="ptr-xb-Dpm" secondAttribute="leading" id="Dcv-7U-dh6"/>
+                        <constraint firstItem="ptr-xb-Dpm" firstAttribute="centerY" secondItem="9wl-ga-XU2" secondAttribute="centerY" id="Eta-Rt-l8y"/>
                         <constraint firstItem="9wl-ga-XU2" firstAttribute="centerY" secondItem="lRG-ix-dAm" secondAttribute="centerY" id="F3S-Gy-4Ma"/>
-                        <constraint firstItem="ptr-xb-Dpm" firstAttribute="top" secondItem="lRG-ix-dAm" secondAttribute="top" constant="5" id="ZaZ-cb-AXr"/>
-                        <constraint firstItem="9wl-ga-XU2" firstAttribute="width" secondItem="Rii-UV-BGq" secondAttribute="width" id="axb-BN-s44"/>
                         <constraint firstItem="9wl-ga-XU2" firstAttribute="leading" secondItem="Rii-UV-BGq" secondAttribute="trailing" constant="6" id="iKy-wn-HxZ"/>
                         <constraint firstAttribute="trailing" secondItem="9wl-ga-XU2" secondAttribute="trailing" constant="16" id="imZ-Bd-woi"/>
                         <constraint firstItem="ptr-xb-Dpm" firstAttribute="leading" secondItem="lRG-ix-dAm" secondAttribute="leading" constant="16" id="s6v-LD-m2c"/>

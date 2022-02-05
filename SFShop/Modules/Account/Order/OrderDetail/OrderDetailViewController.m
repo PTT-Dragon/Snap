@@ -93,6 +93,7 @@
         make.height.mas_equalTo(navBarHei);
     }];
     [_navView configDataWithTitle:kLocalizedString(@"Order_details")];
+    [_moreBtn setTitle:kLocalizedString(@"MORE") forState:0];
     [kCountDownManager start];
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _btn2.layer.borderWidth = 1;
@@ -225,7 +226,13 @@
 {
     OrderDetailPaymentsModel *paymentModel = self.model.payments.firstObject;
     [_dataSource addObjectsFromArray:@[@{kLocalizedString(@"ORDER_CODE"):self.model.orderNbr},@{kLocalizedString(@"CREATION_TIME"):self.model.createdDate},@{kLocalizedString(@"PAYER_EMAIL"):self.model.billAddress.contactEmail},@{kLocalizedString(@"PAYMENT_TIME"):paymentModel ? paymentModel.paymentDate : @"--"},@{kLocalizedString(@"COMPLETION_TIME"):self.model.completionDate ? self.model.completionDate: @"--"}]];
-    [_orderInfoDataSource addObjectsFromArray:@[@{kLocalizedString(@"SUBTOTAL"):[self.model.offerPrice currency]},@{kLocalizedString(@"PROMOTION"):[NSString stringWithFormat:@"%@",[self.model.storeCampaignPrice currency]]},@{kLocalizedString(@"SHIPPING_FEE"):[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"%@:%@ %@",kLocalizedString(@"Total"),self.model.offerCnt,kLocalizedString(@"ITEMS")]:[self.model.orderPrice currency]}]];
+    [_orderInfoDataSource addObjectsFromArray:@[@{kLocalizedString(@"SUBTOTAL"):[self.model.offerPrice currency]},@{kLocalizedString(@"SHIPPING_FEE"):[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"%@:%@ %@",kLocalizedString(@"Total"),self.model.offerCnt,kLocalizedString(@"ITEMS")]:[self.model.orderPrice currency]}]];
+    if (self.model.storeCampaignPrice && self.model.storeCampaignPrice.integerValue != 0) {
+//        [_orderInfoDataSource insertObject:@{kLocalizedString(@"PROMOTION"):[NSString stringWithFormat:@"%@",[self.model.storeCampaignPrice currency]]} atIndex:1];
+    }
+    if (self.model.storeCouponPrice && self.model.storeCouponPrice.integerValue != 0) {
+        [_orderInfoDataSource insertObject:@{kLocalizedString(@"STORE_COUPONS"):[NSString stringWithFormat:@"%@",[self.model.storeCouponPrice currency]]} atIndex:1];
+    }
     [self.tableView reloadData];
     [self layoutSubviews];
 }
@@ -234,7 +241,7 @@
     self.moreBtn.hidden = !([_model.state isEqualToString:@"D"] || [_model.state isEqualToString:@"C"]);
     [self.moreActionBtn1 setTitle:kLocalizedString(@"REBUY") forState:0];
     if ([self.model.state isEqualToString:@"B"] || [self.model.state isEqualToString:@"E"]) {
-        [self.btn1 setTitle:kLocalizedString(@"REBUY") forState:0];
+        [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REBUY")] forState:0];
         self.btn2.hidden = YES;
         [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
@@ -243,20 +250,20 @@
             make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
         }];
     }else if ([self.model.state isEqualToString:@"A"]){
-        [self.btn1 setTitle:kLocalizedString(@"PAYNOW") forState:0];
-        [self.btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
+        [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"PAYNOW")] forState:0];
+        [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CANCEL")] forState:0];
     }else if ([self.model.state isEqualToString:@"D"]){
-        [self.btn1 setTitle:kLocalizedString(@"RECEIPT") forState:0];
+        [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"RECEIPT")] forState:0];
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
-            [self.btn2 setTitle:kLocalizedString(@"REVIEW") forState:0];
+            [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REVIEW")] forState:0];
         }else{
-            [self.btn2 setTitle:@"VIEW_REVIEW" forState:0];
+            [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"VIEW_REVIEW")] forState:0];
         }
         self.moreBtn.hidden = NO;
-        self.btn2Left.constant = AdaptedWidth(150);
+        self.btn2Left.constant = AdaptedWidth(120);
     }else if ([self.model.state isEqualToString:@"C"]){
-        [self.btn1 setTitle:kLocalizedString(@"CONFIRM") forState:0];
-        [self.btn2 setTitle:kLocalizedString(@"LOGISTICS") forState:0];
+        [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CONFIRM_RECEIPT")] forState:0];
+        [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"LOGISTICS")] forState:0];
         self.moreBtn.hidden = NO;
         self.btn2Left.constant = AdaptedWidth(150);
     }
@@ -348,15 +355,14 @@
     }else if ([state isEqualToString:@"C"]){
         //确认订单收货
         MPWeakSelf(self)
-        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:@"Click Yes only if you have received the item" btnTitle:@"YES" block:^{
+        PublicAlertView *alert = [[PublicAlertView alloc]initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"CONFIRM") content:kLocalizedString(@"ARE_YOU_SURE") btnTitle:kLocalizedString(@"YES") block:^{
             [SFNetworkManager post:SFNet.order.confirmOrder parametersArr:@[weakself.model.orderId] success:^(id  _Nullable response) {
                 [weakself.delegate refreshDatas];
             } failed:^(NSError * _Nonnull error) {
                 [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
             }];
-        } btn2Title:@"Cancel" block2:^{
             
-        }];
+        } btn2Title:kLocalizedString(@"CANCEL") block2:^{}];
         [[baseTool getCurrentVC].view addSubview:alert];
     }else if ([state isEqualToString:@"D"]){
         [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {

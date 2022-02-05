@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="btn" destination="sQi-e7-KeU" id="4LC-4E-7hR"/>
                 <outlet property="collectionView" destination="nZy-Cu-mXV" id="NQq-Bo-He0"/>
+                <outlet property="label" destination="9sL-fr-LNb" id="8CC-7t-10h"/>
                 <outlet property="topView" destination="oKs-s0-zP3" id="Y3l-sK-7wh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-s0-zP3">
-                    <rect key="frame" x="16" y="64" width="382" height="138"/>
+                    <rect key="frame" x="16" y="108" width="382" height="138"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sL-fr-LNb">
                             <rect key="frame" x="20" y="16" width="66" height="14.5"/>
@@ -58,15 +59,25 @@
                                 <outlet property="delegate" destination="-1" id="QB3-BO-Brv"/>
                             </connections>
                         </collectionView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXl-Y8-IUR">
+                            <rect key="frame" x="0.0" y="40.5" width="382" height="1"/>
+                            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="aVd-Tj-fp0"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="9sL-fr-LNb" firstAttribute="leading" secondItem="oKs-s0-zP3" secondAttribute="leading" constant="20" id="Fgb-pS-MQs"/>
+                        <constraint firstAttribute="trailing" secondItem="CXl-Y8-IUR" secondAttribute="trailing" id="Kck-2e-AWj"/>
                         <constraint firstAttribute="trailing" secondItem="sQi-e7-KeU" secondAttribute="trailing" constant="16" id="MsA-vK-glQ"/>
                         <constraint firstItem="9sL-fr-LNb" firstAttribute="top" secondItem="oKs-s0-zP3" secondAttribute="top" constant="16" id="Wk0-H9-J4H"/>
                         <constraint firstItem="nZy-Cu-mXV" firstAttribute="leading" secondItem="oKs-s0-zP3" secondAttribute="leading" constant="20" id="X1G-fk-RKM"/>
+                        <constraint firstItem="CXl-Y8-IUR" firstAttribute="leading" secondItem="oKs-s0-zP3" secondAttribute="leading" id="iYv-sc-Rwg"/>
                         <constraint firstAttribute="trailing" secondItem="nZy-Cu-mXV" secondAttribute="trailing" constant="20" id="k3h-pi-i7f"/>
                         <constraint firstItem="sQi-e7-KeU" firstAttribute="centerY" secondItem="9sL-fr-LNb" secondAttribute="centerY" id="kjc-0E-J2c"/>
+                        <constraint firstItem="CXl-Y8-IUR" firstAttribute="top" secondItem="9sL-fr-LNb" secondAttribute="bottom" constant="10" id="myZ-fr-4LH"/>
                         <constraint firstAttribute="height" constant="138" id="ncX-av-5a9"/>
                         <constraint firstItem="nZy-Cu-mXV" firstAttribute="top" secondItem="sQi-e7-KeU" secondAttribute="bottom" constant="26" id="pwr-5r-xmh"/>
                     </constraints>
@@ -76,7 +87,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="oKs-s0-zP3" secondAttribute="trailing" constant="16" id="BPO-0m-aXK"/>
-                <constraint firstItem="oKs-s0-zP3" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="skO-c8-W4U"/>
+                <constraint firstItem="oKs-s0-zP3" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="64" id="skO-c8-W4U"/>
                 <constraint firstItem="oKs-s0-zP3" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="xut-DD-AhX"/>
             </constraints>
             <point key="canvasLocation" x="93" y="49"/>

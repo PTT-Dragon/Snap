@@ -283,7 +283,7 @@
 //  "REFUND_TO" = "退款到";
 //  "BANK_TRANSFER" = "银行转账";
 //  "ORDER_DETAILS" = "订单详情";
-//  "WAREHOUSE_HAS_BEEN_DELIVERED" = "仓库已发货";
+  "WAREHOUSE_HAS_BEEN_DELIVERED" = "仓库已发货";
 //  "SHIP_TO" = "配送到";
 //  "HOME" = "首页";
 //  "VIEW_CODE" = "查看单号";
@@ -301,7 +301,7 @@
   "PAYMENT_TIME" = "支付时间";
   "COMPLETION_TIME" = "订单完成时间";
 //  "RE_BUY" = "再次购买";
-//  "CONFIRM_RECEIPT" = "确认收货";
+  "CONFIRM_RECEIPT" = "确认收货";
   "CLOSE" = "关闭";
   "BACK_TO_HOME" = "返回首页";
 //  "VIEW_ORDER" = "查看订单";
@@ -505,7 +505,7 @@
 "Empty_Tip_Nofavorite" = "当前选择的产品中没有最喜欢的";
 "Empty_Tip_NoReview" = "您在过去30天内没有浏览过任何项目。";
 "Empty_Tip_NoAddress" = "看起来你还没有保存任何地址!";
-"Empty_Tip_NoPurchase" = "你没有任何购买需要审查。";
+"Empty_Tip_NoPurchase" = "你没有任何购买需要评价。";
 "Empty_Tip_NoMessage" = "您没有任何消息。";
 "Empty_Tip_NoEvent" = "事件即将开始，请稍后再来";
 "Empty_Tip_NoPrize" = "活动已经结束，期待您下次的参与";
@@ -574,7 +574,7 @@
 "Setting" = "设置";
 "Share_shop" = "共享商店";
 "Help_center" = "帮助中心";
-"Review" = "审查";
+"Review" = "评价";
 "Additional_review" = "追评";
 "ADDITIONAL_REVIEW" = "追评";
 "Review_detail" = "Review Detail";
