@@ -47,13 +47,24 @@
 #pragma mark - init
 
 - (void)initView {
+    
+    self.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 0, 150, 44)];
+    title.text = kLocalizedString(@"Recommendations");
+    title.font = [UIFont boldSystemFontOfSize:17];
+    title.textColor = [UIColor blackColor];
+    [self addSubview: title];
+    
     self.recommendCollectionView.scrollEnabled = NO;
     [self addSubview:self.recommendCollectionView];
 }
 
 - (void)initLayout {
+    
     [self.recommendCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self);
+        make.left.right.bottom.mas_equalTo(self);
+        make.top.offset(44);
     }];
 }
 
@@ -65,22 +76,23 @@
 
 #pragma mark - UICollectionView delegate & dataSource
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader" forIndexPath:indexPath];
-        UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 5, 150, 30)];
-        title.text = kLocalizedString(@"Recommendations");
-        title.font = [UIFont boldSystemFontOfSize:17];
-        title.textColor = [UIColor blackColor];
-        [view addSubview: title];
-        return view;
-    }
-    return nil;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return self.similarList.count == 0 ? CGSizeZero :CGSizeMake(MainScreen_width, 44);
-}
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+//    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+//        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader" forIndexPath:indexPath];
+//        UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 5, 150, 30)];
+//        title.text = kLocalizedString(@"Recommendations");
+//        title.font = [UIFont boldSystemFontOfSize:17];
+//        title.textColor = [UIColor blackColor];
+//        [view addSubview: title];
+//        return view;
+//    }
+//    return nil;
+//}
+//
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+//    return CGSizeMake(MainScreen_width, 44);
+//    return self.similarList.count == 0 ? CGSizeZero :CGSizeMake(MainScreen_width, 44);
+//}
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -148,7 +160,7 @@
         _waterfallLayout.delegate = self;
         _waterfallLayout.columns = 2;
         _waterfallLayout.columnSpacing = KScale(12);
-        _waterfallLayout.insets = UIEdgeInsetsMake(KScale(12), KScale(16), KScale(12), KScale(16));
+        _waterfallLayout.insets = UIEdgeInsetsMake(KScale(0), KScale(16), KScale(12), KScale(16));
         
         _recommendCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_waterfallLayout];
         _recommendCollectionView.backgroundColor = [UIColor whiteColor];
