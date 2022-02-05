@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Mmi-9g-r8B">
-                        <rect key="frame" x="0.0" y="59" width="320" height="31"/>
+                        <rect key="frame" x="15" y="59" width="290" height="31"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WFH-90-JYv">
                             <size key="itemSize" width="128" height="128"/>
@@ -52,8 +52,8 @@
                     <constraint firstAttribute="trailing" secondItem="fcP-Nt-seX" secondAttribute="trailing" constant="16" id="cnj-FP-Gdd"/>
                     <constraint firstItem="fcP-Nt-seX" firstAttribute="top" secondItem="XxE-Md-kUg" secondAttribute="bottom" constant="10" id="f9J-PR-xMK"/>
                     <constraint firstAttribute="bottom" secondItem="Mmi-9g-r8B" secondAttribute="bottom" constant="10" id="iuv-zg-PkE"/>
-                    <constraint firstItem="Mmi-9g-r8B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qIr-6J-jMv"/>
-                    <constraint firstAttribute="trailing" secondItem="Mmi-9g-r8B" secondAttribute="trailing" id="qdj-HI-pD9"/>
+                    <constraint firstItem="Mmi-9g-r8B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="qIr-6J-jMv"/>
+                    <constraint firstAttribute="trailing" secondItem="Mmi-9g-r8B" secondAttribute="trailing" constant="15" id="qdj-HI-pD9"/>
                     <constraint firstItem="XxE-Md-kUg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="x39-NP-Dou"/>
                 </constraints>
             </tableViewCellContentView>
