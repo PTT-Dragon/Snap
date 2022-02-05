@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
+@property (nonatomic, strong) UILabel *clearLabel;
+
 @property (nonatomic, strong) UIButton *searchBtn;
 
 @property (nonatomic, strong) UIButton *shareBtn;
@@ -59,7 +61,9 @@
     [self addSubview:self.backBtn];
     [self addSubview:self.titleLabel];
     [self addSubview:self.clearBtn];
+    [self addSubview:self.clearLabel];
     self.clearBtn.hidden = YES;
+    self.clearLabel.hidden = YES;
     [self addSubview:self.searchBtn];
     [self addSubview:self.shareBtn];
     [self addSubview:self.moreBtn];
@@ -80,6 +84,10 @@
         make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei/2);
         make.left.mas_equalTo(self.titleLabel.mas_right).offset(20);
         make.size.mas_equalTo(CGSizeMake(24, 24));
+    }];
+    [self.clearLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.clearBtn.mas_right).offset(10);
+        make.centerY.equalTo(self.clearBtn);
     }];
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.mas_centerY).offset(statuBarHei/2);
@@ -136,11 +144,13 @@
         self.shareBtn.hidden = YES;
         self.moreBtn.hidden = NO;
         self.clearBtn.hidden = NO;
+        self.clearLabel.hidden = NO;
     } else {
         self.searchBtn.hidden = NO;
         self.shareBtn.hidden = NO;
         self.moreBtn.hidden = NO;
         self.clearBtn.hidden = NO;
+        self.clearLabel.hidden = NO;
     }
 }
 
@@ -228,6 +238,15 @@
         _titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _titleLabel;
+}
+- (UILabel *)clearLabel {
+    if (!_clearLabel) {
+        _clearLabel = [[UILabel alloc] init];
+        _clearLabel.textColor = RGBColorFrom16(0x555555);
+        _clearLabel.font = [UIFont boldSystemFontOfSize:12];
+        _clearLabel.text = @"mark all as read";
+    }
+    return _clearLabel;
 }
 
 - (UIButton *)clearBtn {

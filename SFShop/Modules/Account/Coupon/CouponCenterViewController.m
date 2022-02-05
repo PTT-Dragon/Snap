@@ -54,7 +54,7 @@
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.sliderColor = [UIColor blackColor];
     self.magicView.sliderHeight = 1.0f;
-    self.magicView.layoutStyle = VTLayoutStyleDefault;
+    self.magicView.layoutStyle = VTLayoutStyleDivide;
     self.magicView.switchStyle = VTSwitchStyleDefault;
     self.magicView.navigationHeight = 40.f;
     self.magicView.dataSource = self;

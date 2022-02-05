@@ -301,7 +301,7 @@
   "CREATION_TIME" = "Waktu Membuat";
   "PAYER_EMAIL" = "Email pembayar";
   "PAYMENT_TIME" = "Waktu pembayaran";
-  "COMPLETION_TIME" = "Waktu penyelesaian pesanan";
+  "COMPLETION_TIME" = "Waktu penyelesaian";
 //  "RE_BUY" = "Beli lagi";
 //  "CONFIRM_RECEIPT" = "Selesai";
   "CLOSE" = "TUTUP";
