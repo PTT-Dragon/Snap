@@ -32,6 +32,10 @@
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(self.model.productImgUrl)]];
     self.nameLabel.text = self.model.productName;
     self.skuLabel.text = [NSString stringWithFormat:@"  %@  ",self.model.attrValues];
+    self.skuLabel.layer.cornerRadius = 2;
+    self.skuLabel.layer.borderColor = [UIColor jk_colorWithHexString:@"#999999"].CGColor;
+    self.skuLabel.layer.borderWidth = 1;
+    self.skuLabel.layer.masksToBounds = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toProductDetail)];
     [_imgView addGestureRecognizer:tap];
 }

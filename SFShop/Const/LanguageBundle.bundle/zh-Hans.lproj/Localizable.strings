@@ -525,7 +525,8 @@
 "Picture" = "照片";
 "Positive_review" = "Positive Review";
 "Nagative_review" = "负面评论";
-"Review_detail" = "Review Detail";
+//"Review_detail" = "Review Detail";
+"Review_detail" = "评论详情";
 "Delivery_address" = "收货地址";
 "Delivery" = "交付";
 "Not_available" = "Not Available";
@@ -577,7 +578,7 @@
 "Review" = "评价";
 "Additional_review" = "追评";
 "ADDITIONAL_REVIEW" = "追评";
-"Review_detail" = "Review Detail";
+//"Review_detail" = "Review Detail";
 "Policies" = "政策";
 "Distributor_center" = "分销商";
 "Commission" = "委员会";

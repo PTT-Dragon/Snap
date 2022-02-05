@@ -130,17 +130,42 @@
         self.anonymousLabel.hidden = NO;
         [_submitBtn setTitle:kLocalizedString(@"SUBMIT_REVIEW") forState:0];
     }
+    
+    [_countView configDataWithTotalCount:500 currentCount:_textView.text.length];
+
+    
+    [self.imgArr removeAllObjects];
+    
+   
+    dispatch_group_t group = dispatch_group_create();
+
+    @weakify(self);
     for (EvaluatesContentsModel *contentModel in evaModel.contents) {
+        dispatch_group_enter(group);
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:SFImage(contentModel.url)] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+            @strongify(self);
             if (image) {
                 [self.imgArr addObject:image];
             }
             CGFloat itemHei = (MainScreen_width-32-30)/4;
             self.photoCollectionViewHei.constant = self.imgArr.count < 4 ? itemHei+5:  self.imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
             [self.photoCollectionView reloadData];
+            dispatch_group_leave(group);
         }];
     }
     
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        @strongify(self);
+        [self.imgArr addObject:@"1"];
+        CGFloat itemHei = (MainScreen_width-32-30)/4;
+        CGFloat theHeight = ceil(self.imgArr.count/4.0)*(itemHei+10);
+        self.photoCollectionViewHei.constant = theHeight;
+        [self.photoCollectionView reloadData];
+    });
+    
+    
+   
 }
 - (void)loadDatas
 {
