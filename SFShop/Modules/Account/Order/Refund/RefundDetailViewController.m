@@ -14,6 +14,9 @@
 #import "OrderListItemCell.h"
 #import "RefundDetailImagesCell.h"
 #import "DeliveryAddressCell.h"
+#import "ReplaceDeliveryViewController.h"
+#import "PublicAlertView.h"
+#import "RefundBankViewController.h"
 
 @interface RefundDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -88,7 +91,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return self.model.contents.count > 0 ? 4: 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -102,7 +105,7 @@
         if (indexPath.row == 0) {
             hei = 40;
         }else if(indexPath.row == self.model.memos.count+1){
-            hei = [self.model.eventId isEqualToString:@"3"] && [self.model.state isEqualToString:@"D"] ? 75: 0;
+            hei = [self.model.eventId isEqualToString:@"3"] && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"F"]) ? 75: 0;
         }else{
             hei = 75;
         }
@@ -118,7 +121,7 @@
         }
     }else{
         CGFloat itemHei = (MainScreen_width-32-30)/4;
-        hei = self.model.items.count < 4 ? itemHei+68: self.model.items.count < 8 ? 2*itemHei+73: 3* itemHei + 78;
+        hei = self.model.contents.count < 4 ? itemHei+68: self.model.contents.count < 8 ? 2*itemHei+73: 3* itemHei + 78;
     }
     return hei;
 }
@@ -163,6 +166,10 @@
         self.btn.hidden = YES;
         self.btn2.hidden = YES;
         self.btnHei.constant = 0;
+    }else if ([self.model.state isEqualToString:@"F"]){
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
     }
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
@@ -184,7 +191,33 @@
         
     }];
 }
-
+- (IBAction)btnAction:(UIButton *)sender {
+    if ([_model.state isEqualToString:@"C"]) {
+        ReplaceDeliveryViewController *vc = [[ReplaceDeliveryViewController alloc] init];
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([_model.state isEqualToString:@"A"]){
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"SURE_CANCEL") btnTitle:kLocalizedString(@"CONFIRM") block:^{
+            [self cancelAction];
+        } btn2Title:kLocalizedString(@"CANCEL") block2:^{
+            
+        }];
+        [[baseTool getCurrentVC].view addSubview:alert];
+    }else if ([_model.state isEqualToString:@"I"]){
+        RefundBankViewController *vc = [[RefundBankViewController alloc] init];
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }
+}
+- (void)cancelAction
+{
+    [SFNetworkManager post:SFNet.refund.cancel parameters:@{@"orderApplyId":_model.orderApplyId} success:^(id  _Nullable response) {
+        if (self.block) {
+            self.block();
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 
 - (UITableView *)tableView
 {

@@ -32,6 +32,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                     <state key="normal" title="Login"/>
+                    <connections>
+                        <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="bZk-xI-Zru"/>
+                    </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xa7-L5-SZ8">
                     <rect key="frame" x="16" y="796" width="50" height="46"/>

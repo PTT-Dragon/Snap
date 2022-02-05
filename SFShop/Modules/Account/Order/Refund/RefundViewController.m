@@ -79,6 +79,9 @@
     refundModel *model = self.dataSource[indexPath.row];
     RefundDetailViewController *vc = [[RefundDetailViewController alloc] init];
     vc.orderApplyId = model.orderApplyId;
+    vc.block = ^{
+        [self.tableView.mj_header beginRefreshing];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)loadDatas
