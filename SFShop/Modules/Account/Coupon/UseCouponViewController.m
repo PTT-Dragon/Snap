@@ -72,9 +72,9 @@
     self.couponView.layer.borderWidth = 1;
     self.cartBtn.titleLabel.numberOfLines = 2;
     if ([self.couponModel.discountMethod isEqualToString:@"DISC"]) {
-        _couponNameLabel.text = [NSString stringWithFormat:@"Discount %@ Min.spend %@",[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency],[[NSString stringWithFormat:@"%@f",self.couponModel.thAmount] currency]];
+        _couponNameLabel.text = [NSString stringWithFormat:@"%@ %@ Min.spend %@",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency],[[NSString stringWithFormat:@"%@f",self.couponModel.thAmount] currency]];
     }else{
-        _couponNameLabel.text = [NSString stringWithFormat:@"Discount %@ Without limit",[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency]];
+        _couponNameLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency]];
     }
     
     if (self.couponModel.effDate && self.couponModel.expDate) {
@@ -208,7 +208,7 @@
     _label1.text = kLocalizedString(@"Total");
     _amountLabel.text = [self.orifeeModel.totalPrice currency];
     _explainLabel.text = [self.orifeeModel.totalPrice isEqualToString:@"0"] ? kLocalizedString(@"BUY_MORE_TO_ENJOY_DISCOUNT"): [NSString stringWithFormat:@"%@%@",kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT"),[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currency]];
-    [_cartBtn setTitle:kLocalizedString(@"SHOPPING_CART") forState:0];
+    [_cartBtn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"SHOPPING_CART")] forState:0];
 }
 - (IBAction)cartAction:(UIButton *)sender {
     CartViewController *vc = [[CartViewController alloc] init];

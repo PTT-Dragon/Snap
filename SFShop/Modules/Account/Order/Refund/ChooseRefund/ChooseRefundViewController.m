@@ -108,7 +108,16 @@
         vc.type = indexPath.row == 0 ? REFUNDTYPE: indexPath.row == 1 ? RETURNTYPE: REPLACETYPE;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 10)];
+    view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
 }
 - (UITableView *)tableView
 {

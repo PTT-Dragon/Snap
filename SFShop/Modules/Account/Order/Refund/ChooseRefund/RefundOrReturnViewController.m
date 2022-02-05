@@ -67,7 +67,7 @@
 
 - (void)layoutSubviews
 {
-    NSString *reasonTitle = _type == RETURNTYPE ? @"RETURN": _type == REFUNDTYPE ? @"REFUND":@"EXCHANGE";
+    NSString *reasonTitle = _type == RETURNTYPE ? @"Return": _type == REFUNDTYPE ? @"Refund":@"EXCHANGE";
     _navView = [[BaseNavView alloc] init];
     _navView.delegate = self;
     [_navView updateIsOnlyShowMoreBtn:YES];
@@ -130,6 +130,7 @@
     }
     
     RefundDetailImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundDetailImagesCell"];
+    cell.canSel = YES;
     cell.block = ^(NSArray * _Nonnull imgArr) {
         self.imgArr = imgArr;
     };
