@@ -9,8 +9,11 @@
 #import "FAQChildViewController.h"
 #import "FAQListModel.h"
 #import "SFSearchNav.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
+#import "NSString+Add.h"
 
-@interface FAQViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
+@interface FAQViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,BaseNavViewDelegate>
 @property(nonatomic, strong) NSArray *menuList;
 @property(nonatomic, strong) NSMutableArray *dataSource;
 @property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
@@ -19,6 +22,9 @@
 @property (nonatomic,strong) VTMagicController *magicController;
 @property (nonatomic,strong) UIView *emptyView;
 @property (nonatomic,strong) UILabel *label;
+@property (nonatomic,strong) UILabel *explainLabel;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *moreView;
 
 
 @end
@@ -30,12 +36,34 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_moreView removeFromSuperview];
+    _moreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_moreView];
+    [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"Help_center");
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"Help_center")];
     _dataSource = [NSMutableArray array];
     [self loadDatas];
 }
@@ -72,7 +100,7 @@
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor: [UIColor jk_colorWithHexString: @"#7B7B7B"] forState:UIControlStateNormal];
         [menuItem setTitleColor: [UIColor blackColor] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont fontWithName:@"Trueno" size:17.f];
+        menuItem.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:13.f];
     }
     [menuItem setSelected: (itemIndex == self.currentMenuIndex)];
     return menuItem;
@@ -87,7 +115,9 @@
     gridViewController.block = ^(BOOL show,NSString *qs) {
         if (show) {
             [self.view addSubview:self.emptyView];
-            self.label.text = [NSString stringWithFormat:@"Sorry,we were unable to find results for %@",qs];
+            self.label.text = [NSString stringWithFormat:@"%@ %@%@",kLocalizedString(@"FAQ_NO_DATA_TITLE"),qs,kLocalizedString(@"FAQ_QUESTION")];
+            self.label.height = [self.label.text calHeightWithFont:CHINESE_BOLD(15) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-32, MAXFLOAT)];
+            self.explainLabel.top = self.label.bottom+10;
         }else{
             [self.emptyView removeFromSuperview];
         }
@@ -129,8 +159,8 @@
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor whiteColor];
-        _magicController.magicView.sliderColor = [UIColor redColor];
-        _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
+        _magicController.magicView.sliderColor = [UIColor blackColor];
+        _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.navigationHeight = 40.f;
         _magicController.magicView.dataSource = self;
@@ -142,14 +172,15 @@
 - (UIView *)emptyView
 {
     if (!_emptyView) {
-        _emptyView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navSearchView.bottom+10, MainScreen_width, 150)];
+        _emptyView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navSearchView.bottom+10, MainScreen_width, MainScreen_height - navBarHei-84)];
         _emptyView.backgroundColor = [UIColor whiteColor];
         [_emptyView addSubview:self.label];
-        UILabel *explainLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, _label.bottom+10, MainScreen_width-32, 100)];
-        explainLabel.numberOfLines = 0;
-        explainLabel.textColor = RGBColorFrom16(0x999999);
-        explainLabel.text = @"Please check the spelling use more general words and try again";
-        [_emptyView addSubview:explainLabel];
+        _explainLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, _label.bottom+10, MainScreen_width-32, 44)];
+        _explainLabel.numberOfLines = 0;
+        _explainLabel.textColor = RGBColorFrom16(0x999999);
+        _explainLabel.font = CHINESE_BOLD(15);
+        _explainLabel.text = kLocalizedString(@"FAQ_NO_DATA_CONTENT");
+        [_emptyView addSubview:_explainLabel];
     }
     return _emptyView;
 }
@@ -160,6 +191,7 @@
         _label.textColor = [UIColor blackColor];
         _label.font = CHINESE_BOLD(15);
         _label.numberOfLines = 0;
+        _label.textAlignment = NSTextAlignmentLeft;
     }
     return _label;
 }

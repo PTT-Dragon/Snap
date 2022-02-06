@@ -152,7 +152,7 @@
         }];
         
     } else {
-        titleLabel.text = @"Category";
+        titleLabel.text = kLocalizedString(@"Category");
     }
     return headerView;
 }

@@ -199,7 +199,7 @@
         [_inboxBtn setImagePosition:FFImagePositionTop
                             spacing:6];
     }
-    return _inboxBtn;
+    return _inboxBtn;//MY_ACCOUNT
 }
 
 - (UIButton *)accountBtn {

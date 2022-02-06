@@ -189,7 +189,7 @@
 "hari" = "天后失效";
 //  "REVIEW_INPUT_COMMENTS" = "请输入评价信息";
 //  "REVIEW_DETAIL" = "评价详情";
-//  "RETURN_ADDRESS" = "退货地址";
+  "RETURN_ADDRESS" = "退货地址";
 //  "MY_FAVORITE" = "我的收藏";
   "CATEGORIES" = "分类";
   "BUY" = "购买";
@@ -277,7 +277,7 @@
   "CANCELLED" = "已取消";
 //  "BANK" = "银行";
 //  "ACCOUNT_NAME" = "账户名";
-//  "BANK_ACCOUNT" = "账号";
+  "BANK_ACCOUNT" = "账号";
   "LOGISTICS" = "物流";
   "REFUND_METHOD" = "退款方式";
 //  "REFUND_TO" = "退款到";
@@ -480,8 +480,9 @@
 //  "FAQ" = "提问";
 //  "JOIN_BUY" = "参团";
 //  "HELP_CENTER" = "帮助中心";
-//  "FAQ_NO_DATA_TITLE" = "抱歉，不能找到{key}相关的问题";
-//  "FAQ_NO_DATA_CONTENT" = "请检查拼写，使用更一般的单词，然后再试一次";
+  "FAQ_NO_DATA_TITLE" = "抱歉，不能找到";
+"FAQ_QUESTION" = "相关的问题";
+  "FAQ_NO_DATA_CONTENT" = "请检查拼写，使用更一般的单词，然后再试一次";
 //  "METHOD_OF_RECEIVING_GOODS" = "收货方式";
 //  "DELIVER_TO_ADDRESS" = "邮寄";
 //  "PICK_UP_AT_STORE" = "自提";
@@ -510,11 +511,11 @@
 "Empty_Tip_NoEvent" = "事件即将开始，请稍后再来";
 "Empty_Tip_NoPrize" = "活动已经结束，期待您下次的参与";
 "Error_system_loading" = "Pemeliharaan system Silahkan coba lagi nanti";
-"Account" = "帐户";
+"Account" = "个人中心";
 "Home" = "首页";
 "Cart" = "购物车";
 "Community" = "社区";
-"Category" = "类别";
+"Category" = "分类";
 "Group_buy" = "团购";
 "Loading" = "加载…";
 "Calculating" = "计算…";
@@ -609,7 +610,7 @@
 "Personal_information" = "个人信息";
 "Change_Password" = "修改密码";
 "Security_center" = "安全中心";
-"My_Favorites" = "我的收藏";
+"MY_FAVORITES" = "我的收藏";
 "Delete" = "删除";
 "Delete_success" = "删除成功";
 "My_Address" = "我的地址";

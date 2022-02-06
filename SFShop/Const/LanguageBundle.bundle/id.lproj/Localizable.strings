@@ -191,7 +191,7 @@
 "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Masukan nomor handphone dan email yang benar.";
 //  "REVIEW_INPUT_COMMENTS" = "Mohon masukan comment";
 //  "REVIEW_DETAIL" = "Review Detail";
-//  "RETURN_ADDRESS" = "Alamat pengembalian";
+  "RETURN_ADDRESS" = "Alamat pengembalian";
 //  "MY_FAVORITE" = "Favorit-ku";
   "CATEGORIES" = "Kategori";
   "BUY" = "Beli";
@@ -279,7 +279,7 @@
 "CANCELLED" = "Cancelled";
 //  "BANK" = "Bank";
 //  "ACCOUNT_NAME" = "Nama Akun";
-//  "BANK_ACCOUNT" = "Nomor akun bank";
+  "BANK_ACCOUNT" = "No. Rekening";
   "LOGISTICS" = "PENGIRIMAN";
   "REFUND_METHOD" = "Metode pengembalian dana";
 //  "REFUND_TO" = "Kembalikan ke";
@@ -485,8 +485,9 @@
 //  "FAQ" = "FAQ";
 //  "JOIN_BUY" = "Berpartisipasi dalam grup";
 //  "HELP_CENTER" = "Help Center";
-//  "FAQ_NO_DATA_TITLE" = "Tidak ada hasil pencarian {key}";
-//  "FAQ_NO_DATA_CONTENT" = "Tolong periksa ejaan menggunakan kata yang lebih umum dan coba lagi";
+  "FAQ_NO_DATA_TITLE" = "Hasil tidak ditemukan, coba kata kunci berbeda dan lebih umum";
+"FAQ_QUESTION" = "";
+  "FAQ_NO_DATA_CONTENT" = "Ganti kata kunci dengan kalimat yang lebih umum dan coba lagi";
 //  "METHOD_OF_RECEIVING_GOODS" = "Metode Penerimaan Barang";
 //  "DELIVER_TO_ADDRESS" = "Mengirim ke Alamat";
 //  "PICK_UP_AT_STORE" = "Ambil di Toko";

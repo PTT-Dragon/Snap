@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductCheckoutSeccessVc">
             <connections>
                 <outlet property="addBtn" destination="bK3-QN-Ttn" id="5MK-cS-6DJ"/>
+                <outlet property="backBtn" destination="oQx-Vl-13L" id="qbQ-kQ-S84"/>
                 <outlet property="btnWidth" destination="r9j-gA-qfF" id="AmH-p1-Flb"/>
                 <outlet property="codeLabel" destination="4lC-4h-ymk" id="Fp3-x7-5Zu"/>
                 <outlet property="detailBtn" destination="L2i-MY-RCZ" id="mnM-GR-1Q5"/>
@@ -156,10 +157,10 @@
                                     <rect key="frame" x="125" y="95" width="34" height="18"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="00005_01_users_outline" translatesAutoresizingMaskIntoConstraints="NO" id="5LM-eO-cMO">
-                                            <rect key="frame" x="2" y="3.5" width="12" height="11"/>
+                                            <rect key="frame" x="2" y="3.5" width="11" height="11"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7g-Ok-Aby">
-                                            <rect key="frame" x="19" y="0.5" width="9" height="17"/>
+                                            <rect key="frame" x="18" y="0.5" width="9" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -293,7 +294,7 @@
         </view>
     </objects>
     <resources>
-        <image name="00005_01_users_outline" width="12" height="11"/>
+        <image name="00005_01_users_outline" width="11" height="11"/>
         <image name="00165_02_add_filled" width="14" height="14"/>
         <image name="thumb-0" width="48" height="48"/>
         <systemColor name="systemBackgroundColor">

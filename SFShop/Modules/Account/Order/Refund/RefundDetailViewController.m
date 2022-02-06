@@ -112,7 +112,7 @@
             hei = 75;
         }
     }else if (indexPath.section == 1){
-        hei = 170;
+        hei = 150;
     }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
             hei = 40;

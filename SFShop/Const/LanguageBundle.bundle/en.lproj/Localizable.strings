@@ -183,7 +183,7 @@
 "hari" = "days";
 //  "REVIEW_INPUT_COMMENTS" = "Please input comments";
 //  "REVIEW_DETAIL" = "Review Detail";
-//  "RETURN_ADDRESS" = "Return Address";
+  "RETURN_ADDRESS" = "Return Address";
 //  "MY_FAVORITE" = "My Favorite";
   "CATEGORIES" = "Categories";
   "BUY" = "Buy";
@@ -273,7 +273,7 @@
   "CANCELLED" = "Cancelled";
 //  "BANK" = "Bank";
 //  "ACCOUNT_NAME" = "Account Name";
-//  "BANK_ACCOUNT" = "Bank Account";
+  "BANK_ACCOUNT" = "Bank Account";
   "LOGISTICS" = "LOGISTICS";
   "REFUND_METHOD" = "Refund Method";
 //  "REFUND_TO" = "Refund to";
@@ -480,8 +480,9 @@
 //  "FAQ" = "FAQ";
 //  "JOIN_BUY" = "Join Buy";
 //  "HELP_CENTER" = "Help Center";
-//  "FAQ_NO_DATA_TITLE" = "Sorry; we were unable to find results for {key}";
-//  "FAQ_NO_DATA_CONTENT" = "Please check the spelling use more general words and try again";
+  "FAQ_NO_DATA_TITLE" = "Sorry; we were unable to find results for";
+"FAQ_QUESTION" = "";
+  "FAQ_NO_DATA_CONTENT" = "Please check the spelling use more general words and try again";
 //  "METHOD_OF_RECEIVING_GOODS" = "Method of Receiving product(s)";
 //  "DELIVER_TO_ADDRESS" = "Deliver to address";
 //  "PICK_UP_AT_STORE" = "Pick up at Store";
