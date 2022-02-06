@@ -236,7 +236,8 @@ static BOOL _passwordSuccess = NO;
             }];
         }
     }
-    
+    [[NSUserDefaults standardUserDefaults] setObject:@{} forKey:@"arrayKey"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

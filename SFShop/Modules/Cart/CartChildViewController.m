@@ -51,10 +51,10 @@
     // Do any additional setup after loading the view.
     
     [self initUI];
-    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+//    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self loadDatas];
-    }];
-    [self.tableView.mj_header beginRefreshing];
+//    }];
+//    [self.tableView.mj_header beginRefreshing];
 }
 - (void)initUI
 {
@@ -325,7 +325,7 @@
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         [self calculateAmount];
-        [self performSelector:@selector(showEmptyView) withObject:nil afterDelay:0.5];
+        [self performSelector:@selector(showEmptyView) withObject:nil afterDelay:0.1];
         return;
     }
     
@@ -466,17 +466,44 @@
                 }
             }
             [self.tableView reloadData];
-            MPWeakSelf(self)
-            [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
-                [weakself loadDatas];
-            } failed:^(NSError * _Nonnull error) {
-                
-            }];
+            UserModel *model = [FMDBManager sharedInstance].currentUser;
+            if (!model) {
+                [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([obj.storeId isEqualToString:storeId]) {
+                        [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                            obj2.isSelected = selAll ? @"Y": @"N";
+                        }];
+                    }
+                }];
+                [self updateLocalData];
+                [self loadDatas];
+            }else{
+                MPWeakSelf(self)
+                [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
+                    [weakself loadDatas];
+                } failed:^(NSError * _Nonnull error) {
+                    
+                }];
+            }
         }
     }
 }
 - (void)modifyCartInfoWithDic:(NSDictionary *)dic
 {
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model) {
+        CartItemModel *itemModel = [[CartItemModel alloc] initWithDictionary:dic error:nil];
+        [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                if ([obj2.productId isEqualToString:itemModel.productId]) {
+                    obj2 = itemModel;
+                }
+            }];
+        }];
+        [self updateLocalData];
+        [self loadDatas];
+        return;
+    }
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":@[dic]} success:^(id  _Nullable response) {
         [weakself loadDatas];
