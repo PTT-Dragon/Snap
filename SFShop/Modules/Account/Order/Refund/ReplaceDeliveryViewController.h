@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^ReplaceDeliveryViewControllerBlock)(void);
+
 @interface ReplaceDeliveryViewController : UIViewController
+@property (nonatomic,copy) ReplaceDeliveryViewControllerBlock block;
 @property (nonatomic,strong) refundModel *model;
 @end
 

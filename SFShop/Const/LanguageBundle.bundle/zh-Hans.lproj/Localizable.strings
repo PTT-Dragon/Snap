@@ -247,7 +247,7 @@
 "choose" = "选择";
 //  "QUANTITY" = "数量";
   "UP_TO" = "最高";
-"UPLOAD_PICTURE" = "Upload gambar";
+"UPLOAD_PICTURE" = "上传图片";
 //  "OFF" = "Off";
 //  "MIN_SPEND" = "最低支付";
   "SIMILAR_PRODUCT_RECOMMENDATION" = "相似商品推荐";
@@ -279,9 +279,9 @@
 //  "ACCOUNT_NAME" = "账户名";
 //  "BANK_ACCOUNT" = "账号";
   "LOGISTICS" = "物流";
-//  "REFUND_METHOD" = "退款方式";
+  "REFUND_METHOD" = "退款方式";
 //  "REFUND_TO" = "退款到";
-//  "BANK_TRANSFER" = "银行转账";
+  "BANK_TRANSFER" = "银行转账";
 //  "ORDER_DETAILS" = "订单详情";
   "WAREHOUSE_HAS_BEEN_DELIVERED" = "仓库已发货";
 //  "SHIP_TO" = "配送到";
@@ -421,7 +421,7 @@
 //  "REFUND_SUCCESS_CONTENT" = "最终退款金额 = {amount}";
 //  "REFUND_SUCCESS_CONTENT1" = "请核实收到的退款";
 //  "REFUND_REJECTED" = "拒绝退款";
-//  "REFUND_REJECTED_CONTENT" = "售后单审核不通过";
+  "REFUND_REJECTED_CONTENT" = "售后单审核不通过";
   "IMAGES" = "图片";
   "TO_REVIEW" = "待评价";
   "EXPIRY_DATE" = "到期日";
@@ -528,7 +528,7 @@
 //"Review_detail" = "Review Detail";
 "Review_detail" = "评论详情";
 "Delivery_address" = "收货地址";
-"Delivery" = "交付";
+"Delivery" = "发货";
 "Not_available" = "Not Available";
 "Notes" = "笔记";
 "Voucher" = "凭证";
@@ -587,10 +587,10 @@
 "Income_Expense" = "收入&费用";
 "Relation_Order" = "关系顺序";
 "Order_details" = "订单详情";
-"Refund_Return" = "退款&退货";
+"Refund_Return" = "售后列表";//"退款&退货";
 "REFUND_RETURN" = "售后列表";
 "Search" = "搜索";
-"Return" = "回报";
+"Return" = "退货";
 "Refund" = "退款";
 "Exchange" = "交换";
 "Rejection" = "拒绝";

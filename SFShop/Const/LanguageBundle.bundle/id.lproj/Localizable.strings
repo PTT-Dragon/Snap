@@ -281,9 +281,9 @@
 //  "ACCOUNT_NAME" = "Nama Akun";
 //  "BANK_ACCOUNT" = "Nomor akun bank";
   "LOGISTICS" = "PENGIRIMAN";
-//  "REFUND_METHOD" = "Metode pengembalian dana";
+  "REFUND_METHOD" = "Metode pengembalian dana";
 //  "REFUND_TO" = "Kembalikan ke";
-//  "BANK_TRANSFER" = "Transfer Bank";
+  "BANK_TRANSFER" = "Transfer Bank";
 //  "ORDER_DETAILS" = "Detail pesanan";
   "WAREHOUSE_HAS_BEEN_DELIVERED" = "Telah sampai di warehouse (gudang)";
 //  "SHIP_TO" = "Dikirim ke";
@@ -423,7 +423,7 @@
 //  "REFUND_SUCCESS_CONTENT" = "Jumlah pengembalian dana akhir = {jumlah}";
 //  "REFUND_SUCCESS_CONTENT1" = "Harap verifikasi pengembalian dana yang diterima";
 //  "REFUND_REJECTED" = "Pengembalian Dana Ditolak";
-//  "REFUND_REJECTED_CONTENT" = "Pesanan layanan tidak disetujui";
+  "REFUND_REJECTED_CONTENT" = "Permintaan Anda tidak diterima";
   "IMAGES" = "Gambar";
   "TO_REVIEW" = "Belum Dinilai";
   "EXPIRY_DATE" = "Tanggal kadaluwarsa";

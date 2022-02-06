@@ -275,9 +275,9 @@
 //  "ACCOUNT_NAME" = "Account Name";
 //  "BANK_ACCOUNT" = "Bank Account";
   "LOGISTICS" = "LOGISTICS";
-//  "REFUND_METHOD" = "Refund Method";
+  "REFUND_METHOD" = "Refund Method";
 //  "REFUND_TO" = "Refund to";
-//  "BANK_TRANSFER" = "Bank Transfer";
+  "BANK_TRANSFER" = "Bank Transfer";
 //  "ORDER_DETAILS" = "Order Details";
   "WAREHOUSE_HAS_BEEN_DELIVERED" = "Warehouse has been delivered";
 //  "SHIP_TO" = "Ship to";
@@ -420,7 +420,7 @@
 //  "REFUND_SUCCESS_CONTENT" = "Final refund amount = {amount}";
 //  "REFUND_SUCCESS_CONTENT1" = "Please verify the refund received";
 //  "REFUND_REJECTED" = "Refund Rejected";
-//  "REFUND_REJECTED_CONTENT" = "Service order is not approved";
+  "REFUND_REJECTED_CONTENT" = "Service order is not approved";
   "IMAGES" = "Images";
   "TO_REVIEW" = "To Review";
   "EXPIRY_DATE" = "Expiry Date";

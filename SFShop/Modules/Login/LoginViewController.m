@@ -11,6 +11,7 @@
 #import "LoginViaOTP.h"
 #import "UITextField+expand.h"
 #import "NSString+Add.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -169,12 +170,13 @@ static BOOL _passwordSuccess = NO;
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
         [[FMDBManager sharedInstance] insertUser:model ofAccount:weakself.accountField.text];
+        MJRefreshConfig.defaultConfig.languageCode = model.userRes.defLangCode;
         if ([model.userRes.defLangCode isEqualToString:@"zh"]) {
             UserDefaultSetObjectForKey(kLanguageChinese, @"Language");
             [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageChinese];
         } else {
-            [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:model.userRes.defLangCode];
             UserDefaultSetObjectForKey(model.userRes.defLangCode, @"Language");
+            [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:model.userRes.defLangCode];
         }
         if (weakself.didLoginBlock)  {
             weakself.didLoginBlock();

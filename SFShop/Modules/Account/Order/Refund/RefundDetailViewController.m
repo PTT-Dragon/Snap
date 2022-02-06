@@ -32,7 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"Refund_Return");
+    self.title = kLocalizedString(@"Service_Detail");
+    self.btn2.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
+    self.btn2.layer.borderWidth = 1;
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"RefundProcessCell" bundle:nil] forCellReuseIdentifier:@"RefundProcessCell"];
@@ -95,7 +97,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    BOOL hasDelivery = (([self.model.eventId isEqualToString:@"4"] || [self.model.eventId isEqualToString:@"2"]) && [self.model.state isEqualToString:@"D"]) ? YES: NO;
+    BOOL hasDelivery = (([self.model.eventId isEqualToString:@"4"] || [self.model.eventId isEqualToString:@"2"]) && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"C"])) ? YES: NO;
     return section == 0 ? self.model.memos.count+2: section == 1 ? hasDelivery ? 1 : 0: section == 2 ? self.model.items.count+2:1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -149,8 +151,8 @@
         self.btn2.hidden = YES;
         self.btn.height = 46;
     }else if ([self.model.state isEqualToString:@"C"]){
-        [self.btn setTitle:kLocalizedString(@"CANCEL") forState:0];
-        [self.btn2 setTitle:kLocalizedString(@"Delivery") forState:0];
+        [self.btn setTitle:kLocalizedString(@"Delivery") forState:0];
+        [self.btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
         self.btn.hidden = NO;
         self.btnWidth.constant = (MainScreen_width-32)/2-16;
         self.btn2.hidden = NO;
@@ -170,6 +172,16 @@
         self.btn.hidden = YES;
         self.btn2.hidden = YES;
         self.btnHei.constant = 0;
+    }else if ([self.model.state isEqualToString:@"B"]){
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
+    }else if ([self.model.state isEqualToString:@"I"]) {
+        [self.btn setTitle:kLocalizedString(@"REFUND_BANK_ACCOUNT") forState:0];
+        self.btn.hidden = NO;
+        self.btnWidth.constant = MainScreen_width-32;
+        self.btn2.hidden = YES;
+        self.btn.height = 46;
     }
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
@@ -194,6 +206,13 @@
 - (IBAction)btnAction:(UIButton *)sender {
     if ([_model.state isEqualToString:@"C"]) {
         ReplaceDeliveryViewController *vc = [[ReplaceDeliveryViewController alloc] init];
+        vc.model = _model;
+        vc.block = ^{
+            [self loadDatas];
+            if (self.block) {
+                self.block();
+            }
+        };
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }else if ([_model.state isEqualToString:@"A"]){
         PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"SURE_CANCEL") btnTitle:kLocalizedString(@"CONFIRM") block:^{
@@ -205,6 +224,16 @@
     }else if ([_model.state isEqualToString:@"I"]){
         RefundBankViewController *vc = [[RefundBankViewController alloc] init];
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }
+}
+- (IBAction)btn2Action:(UIButton *)sender {
+    if ([_model.state isEqualToString:@"C"]){
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"SURE_CANCEL") btnTitle:kLocalizedString(@"CONFIRM") block:^{
+            [self cancelAction];
+        } btn2Title:kLocalizedString(@"CANCEL") block2:^{
+            
+        }];
+        [[baseTool getCurrentVC].view addSubview:alert];
     }
 }
 - (void)cancelAction

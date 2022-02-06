@@ -43,6 +43,9 @@
                     <state key="normal" title="Delivery">
                         <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                     </state>
+                    <connections>
+                        <action selector="btn2Action:" destination="-1" eventType="touchUpInside" id="10J-NO-e0L"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

@@ -34,8 +34,8 @@
 - (void)setModel:(RefundDetailModel *)model
 {
     _model = model;
-    self.label.text = [model.eventId isEqualToString:@"3"] ? kLocalizedString(@"REFUND_AMOUNT"): @"";
-    _amountLabel.text = [model.eventId isEqualToString:@"3"] ? [model.refundCharge currency] : @"";
+    self.label.text = kLocalizedString(@"REFUND_AMOUNT");//[model.eventId isEqualToString:@"3"] ? kLocalizedString(@"REFUND_AMOUNT"): @"";
+    _amountLabel.text = [model.refundCharge currency];// [model.eventId isEqualToString:@"3"] ? [model.refundCharge currency] : @"";
     _reasonLabel.text = model.orderReason;
     _typeLabel.text = [model.eventId isEqualToString:@"2"] ? kLocalizedString(@"Return"): [model.eventId isEqualToString:@"3"] ? kLocalizedString(@"Refund"): kLocalizedString(@"EXCHANGE");
     _instructionsView.text = model.questionDesc;

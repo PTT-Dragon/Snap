@@ -36,6 +36,8 @@
     // Initialization code
     _btn.layer.borderWidth = 1;
     _btn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+    _btn2.layer.borderWidth = 1;
+    _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _skuLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _skuLabel.layer.borderWidth = 1;
 }
@@ -69,12 +71,12 @@
     if ([model.state isEqualToString:@"B"]) {
         //拒绝
         _statuLabel.text = kLocalizedString(@"Rejection");
-        _contentLabel.text = kLocalizedString(@"return_tip");
+        _contentLabel.text = kLocalizedString(@"REFUND_REJECTED_CONTENT");//kLocalizedString(@"return_tip");
         _viewHei.constant = 52;
         _btn.hidden = YES;
     }else if ([model.state isEqualToString:@"A"]){
         //待审核
-        _statuLabel.text = @"Pending_Review";
+        _statuLabel.text = kLocalizedString(@"Pending_Review");
         _contentLabel.text = @"Please wait patiently for review";
         _viewHei.constant = 52;
         _btn.hidden = NO;
@@ -100,6 +102,8 @@
     }else if ([model.state isEqualToString:@"D"]){
         _statuLabel.text = @"In transit";
         _contentLabel.text = @"waiting for the merchant to receive the Package";
+        _btn.hidden = YES;
+        _btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"F"]){
         _statuLabel.text = @"Refund in progress";
         _contentLabel.text = @"About 1 to 3 working days";
@@ -134,6 +138,12 @@
 - (IBAction)btnAction:(UIButton *)sender {
     if ([_model.state isEqualToString:@"C"]) {
         ReplaceDeliveryViewController *vc = [[ReplaceDeliveryViewController alloc] init];
+        vc.model = _model;
+        vc.block = ^{
+            if (self.block) {
+                self.block();
+            }
+        };
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }else if ([_model.state isEqualToString:@"A"]){
         PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"SURE_CANCEL") btnTitle:kLocalizedString(@"CONFIRM") block:^{
@@ -148,5 +158,13 @@
     }
 }
 - (IBAction)btn2Action:(id)sender {
+    if ([_model.state isEqualToString:@"C"]) {
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"SURE_CANCEL") btnTitle:kLocalizedString(@"CONFIRM") block:^{
+            [self cancelAction];
+        } btn2Title:kLocalizedString(@"CANCEL") block2:^{
+            
+        }];
+        [[baseTool getCurrentVC].view addSubview:alert];
+    }
 }
 @end
