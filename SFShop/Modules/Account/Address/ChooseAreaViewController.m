@@ -272,23 +272,42 @@ typedef enum :NSUInteger{
 @interface ChooseAreaViewController ()<UITableViewDelegate,UITableViewDataSource,chooseAreaTopViewDelegate>
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) chooseAreaTopView *topView;
-@property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,assign) loadDataType dataType;
+@property (weak, nonatomic) IBOutlet UILabel *theTitle;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+
 
 @end
 
 @implementation ChooseAreaViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Area");
+    self.theTitle.text = kLocalizedString(@"Area");
     _dataSource = [NSMutableArray array];
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(100);
-    }];
+   
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    _tableView.backgroundColor = [UIColor whiteColor];
+    [_tableView registerNib:[UINib nibWithNibName:@"AreaCell" bundle:nil] forCellReuseIdentifier:@"AreaCell"];
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    else
+    {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    _tableView.estimatedRowHeight = 44;
+    
+    self.view.backgroundColor = [UIColor clearColor];
+
     if (self.type == 2 || self.type == 5) {
         //只展示街道
         _topView = [[chooseAreaTopView alloc] initWithSelStreeModel:_selStreetAreaMoel];
@@ -300,9 +319,11 @@ typedef enum :NSUInteger{
     _topView.delegate = self;
     [self.view addSubview:_topView];
     [_topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
+        make.left.right.equalTo(self.view);
         make.bottom.mas_equalTo(_tableView.mas_top);
+        make.height.mas_equalTo(50);
     }];
+    self.topView.backgroundColor = [UIColor whiteColor];
     [self loadDatasWithType:_dataType];
 }
 - (void)setSelProvinceAreaMoel:(AreaModel *)selProvinceAreaMoel
@@ -326,6 +347,12 @@ typedef enum :NSUInteger{
     _type = type;
     _dataType = type == 1 ? loadProvinceType: type == 2 ? loadStreeType: type == 3 ? loadProvinceType: type == 4 ? loadDistrictType: loadStreeType;
 }
+- (IBAction)closeAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+            
+    }];
+}
+
 - (void)loadDatasWithType:(loadDataType)type
 {
     MPWeakSelf(self)
@@ -486,27 +513,4 @@ typedef enum :NSUInteger{
 }
 
 
-
-- (UITableView *)tableView
-{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStylePlain];
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        _tableView.backgroundColor = [UIColor whiteColor];
-        [_tableView registerNib:[UINib nibWithNibName:@"AreaCell" bundle:nil] forCellReuseIdentifier:@"AreaCell"];
-        if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        else
-        {
-            self.automaticallyAdjustsScrollViewInsets = NO;
-        }
-        _tableView.estimatedRowHeight = 44;
-    }
-    return _tableView;
-}
 @end

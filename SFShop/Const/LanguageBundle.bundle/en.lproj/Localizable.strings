@@ -187,7 +187,7 @@
 //  "MY_FAVORITE" = "My Favorite";
   "CATEGORIES" = "Categories";
   "BUY" = "Buy";
-//  "REPLIES" = "Replies";
+  "REPLIES" = "Replies";
 //  "SAYSOMETHING" = "Say Something…";
 //  "TEXTLENGTH" = "Content exceeds limit";
 //  "PERSONAL_INFORMATION" = "Personal Information";
@@ -459,6 +459,7 @@
 //  "NOTES" = "Notes";
 //  "STORE_PROMOTION" = "Store Promo";
   "INPUT_MESSAGE" = "Input your message…";
+"None Delivery" = "No available delivery mothod";
 //  "DELIVERY_RANGE" = "Est.Arrival ={range} Days";
 //  "DELIVERY_MEHOD" = "Delivery Method";
 //  "PAYMENT_UNSUCCESSFUL" = "Payment Unsuccessful";

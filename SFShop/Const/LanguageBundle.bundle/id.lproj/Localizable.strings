@@ -195,7 +195,7 @@
 //  "MY_FAVORITE" = "Favorit-ku";
   "CATEGORIES" = "Kategori";
   "BUY" = "Beli";
-//  "REPLIES" = "Balasan";
+  "REPLIES" = "Balasan";
 //  "SAYSOMETHING" = "Katakan sesuatu";
 //  "TEXTLENGTH" = "Konten melebihi batas";
 //  "PERSONAL_INFORMATION" = "Informasi pribadi";
@@ -266,7 +266,7 @@
   "LOGISTICS_DETAILS" = "Rincian pengiriman";
 //  "EVALUATION" = "Evaluasi";
   "RESET" = "ATUR ULANG";
-  "AVAILABLE" = "Tersedia";
+  "AVAILABLE" = "tersedia";
   "EXPIRED" = "Kadaluwarsa";
   "USED" = "Telah digunakan";
 //  "ARE_YOU_SURE" = "Apakah kamu yakin";
@@ -463,7 +463,7 @@
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "Keranjang kosong";
 //  "NOTES" = "Catatan";
 //  "STORE_PROMOTION" = "Promo dari toko";
-  "INPUT_MESSAGE" = "Masukkan pesan Anda";
+  "INPUT_MESSAGE" = "Masukkan pesan";
 //  "DELIVERY_RANGE" = "Area pengiriman";
 //  "DELIVERY_MEHOD" = "Metode Pengiriman";
 //  "PAYMENT_UNSUCCESSFUL" = "Pembayaran Gagal";
@@ -471,6 +471,7 @@
 //  "PAYMENT_UNSUCCESSFUL_CONTENT2" = "Silakan coba lagi nanti. Maaf untuk ketidaknyamanan.";
   "PAYMENT_SUCCESS" = "Pembelian Berhasil";
   "SEE_DETAIL" = "Lihat Detail";
+ "None Delivery" = "Metode pengiriman tidak tersedia";
 //  "SEE_SHARE_BY" = "Lihat join group";
 //  "GROUP_FAIL" = "Grup Gagal";
   "GROUPED" = "Grouped";
@@ -537,9 +538,9 @@
 "Delivery_address" = "Alamat Pengiriman";
 "Delivery" = "Pengiriman";
 "Tidak_tersedia" = "Tidak tersedia";
-"Notes" = "Catatan";
-"Voucher" = "Voucher";
-"Store_promo" = "Store Promo";
+"Notes" = "Deskripsi";
+"Voucher" = "Voucher Penjual";
+"Store_promo" = "Promo Toko";
 "Total" = "Jumlah";
 "Available" = "Available";
 "SF_shop_Voucher" = "SF.shop.Voucher";
