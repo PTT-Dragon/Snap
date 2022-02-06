@@ -283,7 +283,7 @@
   "LOGISTICS" = "PENGIRIMAN";
   "REFUND_METHOD" = "Metode pengembalian dana";
 //  "REFUND_TO" = "Kembalikan ke";
-  "BANK_TRANSFER" = "Transfer Bank";
+  "BANK_TRANSFER" = "Bank Transfer";
 //  "ORDER_DETAILS" = "Detail pesanan";
   "WAREHOUSE_HAS_BEEN_DELIVERED" = "Telah sampai di warehouse (gudang)";
 //  "SHIP_TO" = "Dikirim ke";
