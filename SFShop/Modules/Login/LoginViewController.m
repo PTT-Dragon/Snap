@@ -213,7 +213,6 @@ static BOOL _passwordSuccess = NO;
 {
     NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
     CartModel *cartModel = [[CartModel alloc] initWithDictionary:aaaaa error:nil];
-    NSMutableArray *arr = [NSMutableArray array];
     NSDictionary *dic;
     for (CartListModel *listModel in cartModel.validCarts) {
         for (CartItemModel *itemModel in listModel.shoppingCarts) {
@@ -230,21 +229,14 @@ static BOOL _passwordSuccess = NO;
                 @"isSelected":@"N"
             };
             dic = [NSDictionary dictionaryWithDictionary:params];
-            [arr addObject:params];
+            [SFNetworkManager post:SFNet.cart.cart parameters:dic success:^(id  _Nullable response) {
+                [baseTool updateCartNum];
+            } failed:^(NSError * _Nonnull error) {
+                
+            }];
         }
     }
-    [MBProgressHUD showHudMsg:@""];
-    [SFNetworkManager post:SFNet.cart.cart parameters:dic success:^(id  _Nullable response) {
-        [baseTool updateCartNum];
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
-    } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_failed")];
-    }];
-//    [SFNetworkManager post:SFNet.cart.cart parametersArr:dic success:^(id  _Nullable response) {
-//
-//    } failed:^(NSError * _Nonnull error) {
-//
-//    }];
+    
 }
 
 

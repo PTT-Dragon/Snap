@@ -951,35 +951,124 @@
         UserModel *model = [FMDBManager sharedInstance].currentUser;
         if (!model) {
             //没登录  缓存本地
-            CartModel *modelsd = [[CartModel alloc] init];
-            CartListModel *listModel = [[CartListModel alloc] init];
-            CartItemModel *itemModel = [[CartItemModel alloc] init];
-            itemModel.addon = @"";
-            itemModel.imgUrl = _selProductModel.imgUrl;
-            itemModel.num = [NSString stringWithFormat:@"%ld",(long)_selProductModel.currentBuyCount];
-            itemModel.discountPrice = 500;
-            itemModel.productId = [NSString stringWithFormat:@"%ld",(long)_selProductModel.productId];
-            itemModel.offerId = [NSString stringWithFormat:@"%ld",(long)_model.offerId];
-            itemModel.salesPrice = _selProductModel.salesPrice;
-            itemModel.stock = itemModel.stock;
-            itemModel.maxBuyCount = itemModel.maxBuyCount;
+            MPWeakSelf(self)
+            NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
+            CartModel *modelsd = [[CartModel alloc] initWithDictionary:aaaaa error:nil];
             
-            listModel.storeId = [NSString stringWithFormat:@"%ld",self.model.storeId];
-            listModel.discountPrice = 500;
-            listModel.logoUrl = _model.storeLogoUrl;
-            listModel.offerPrice = 500;
-            listModel.orderPrice = 500;
+            //listModel 存放的数组
             NSMutableArray *arr = [NSMutableArray array];
+            //商品存放的数组
             NSMutableArray *itemArr = [NSMutableArray array];
-            [itemArr addObject:itemModel];
-            listModel.shoppingCarts = itemArr;
-            [arr addObject:listModel];
+            
+            __block CartListModel *listModel;
+            [modelsd.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                    [itemArr addObject:obj2];
+                }];
+                obj.shoppingCarts = itemArr;
+                [arr addObject:obj];
+                if ([obj.storeId isEqualToString:[NSString stringWithFormat:@"%ld",(long)self.model.storeId]]) {
+                    //说明是同一家店
+                    listModel = obj;
+                }
+            }];
             modelsd.validCarts = arr;
+            if (!listModel) {
+                //遍历没有同一家店  创建新的
+                NSMutableArray *itemArr2 = [NSMutableArray array];
+                listModel = [[CartListModel alloc] init];
+                listModel.storeId = [NSString stringWithFormat:@"%ld",(long)self.model.storeId];
+                listModel.discountPrice = 500;
+                listModel.logoUrl = _model.storeLogoUrl;
+                listModel.offerPrice = 500;
+                listModel.orderPrice = 500;
+                listModel.storeName = _model.storeName;
+                CartItemModel *itemModel = [[CartItemModel alloc] init];
+                itemModel.addon = @"";
+                itemModel.imgUrl = _selProductModel.imgUrl;
+                itemModel.num = [NSString stringWithFormat:@"%lu",(unsigned long)_attrView.count];
+                itemModel.discountPrice = 500;
+                itemModel.productId = [NSString stringWithFormat:@"%ld",(long)_selProductModel.productId];
+                itemModel.offerId = [NSString stringWithFormat:@"%ld",(long)_model.offerId];
+                itemModel.salesPrice = _selProductModel.salesPrice;
+                itemModel.maxBuyCount = _selProductModel.maxBuyCount;
+                itemModel.productName = _selProductModel.productName;
+                itemModel.prodSpcAttrs = _selProductModel.prodSpcAttrs;
+                [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+                    [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                        if (obj2.productId.integerValue == weakself.productId) {
+                            itemModel.stock = obj2.stock.integerValue;
+                            *stop1 = YES;
+                            *stop2 = YES;
+                        }
+                    }];
+                }];
+                [itemArr2 addObject:itemModel];
+                listModel.shoppingCarts = itemArr2;
+                [arr addObject:listModel];
+                modelsd.validCarts = arr;
+            }else{
+                //直接往listmodel里添加商品
+                NSMutableArray *itemArr2 = [NSMutableArray array];
+                [itemArr2 addObjectsFromArray:listModel.shoppingCarts];
+                CartItemModel *itemModel = [[CartItemModel alloc] init];
+                itemModel.addon = @"";
+                itemModel.imgUrl = _selProductModel.imgUrl;
+                itemModel.num = [NSString stringWithFormat:@"%lu",(unsigned long)_attrView.count];
+                itemModel.discountPrice = 500;
+                itemModel.productId = [NSString stringWithFormat:@"%ld",(long)_selProductModel.productId];
+                itemModel.offerId = [NSString stringWithFormat:@"%ld",(long)_model.offerId];
+                itemModel.salesPrice = _selProductModel.salesPrice;
+                itemModel.maxBuyCount = _selProductModel.maxBuyCount;
+                itemModel.productName = _selProductModel.productName;
+                itemModel.prodSpcAttrs = _selProductModel.prodSpcAttrs;
+                [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+                    [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                        if (obj2.productId.integerValue == weakself.productId) {
+                            itemModel.stock = obj2.stock.integerValue;
+                            *stop1 = YES;
+                            *stop2 = YES;
+                        }
+                    }];
+                }];
+                [itemArr2 addObject:itemModel];
+                listModel.shoppingCarts = itemArr2;
+            }
+            
+//            CartItemModel *itemModel = [[CartItemModel alloc] init];
+//            itemModel.addon = @"";
+//            itemModel.imgUrl = _selProductModel.imgUrl;
+//            itemModel.num = [NSString stringWithFormat:@"%lu",(unsigned long)_attrView.count];
+//            itemModel.discountPrice = 500;
+//            itemModel.productId = [NSString stringWithFormat:@"%ld",(long)_selProductModel.productId];
+//            itemModel.offerId = [NSString stringWithFormat:@"%ld",(long)_model.offerId];
+//            itemModel.salesPrice = _selProductModel.salesPrice;
+//            itemModel.maxBuyCount = _selProductModel.maxBuyCount;
+//            itemModel.productName = _selProductModel.productName;
+//            itemModel.prodSpcAttrs = _selProductModel.prodSpcAttrs;
+//            [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+//                [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+//                    if (obj2.productId.integerValue == weakself.productId) {
+//                        itemModel.stock = obj2.stock.integerValue;
+//                        *stop1 = YES;
+//                        *stop2 = YES;
+//                    }
+//                }];
+//            }];
+//
+//            listModel.storeId = [NSString stringWithFormat:@"%ld",(long)self.model.storeId];
+//            listModel.discountPrice = 500;
+//            listModel.logoUrl = _model.storeLogoUrl;
+//            listModel.offerPrice = 500;
+//            listModel.orderPrice = 500;
+//            [itemArr addObject:itemModel];
+//            listModel.shoppingCarts = itemArr;
+//            [arr addObject:listModel];
+//            modelsd.validCarts = arr;
             modelsd.totalDiscount = 1000;
             NSDictionary *dic = [self dicFromObject:modelsd];
             [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"arrayKey"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
             return;
         }
         MPWeakSelf(self)

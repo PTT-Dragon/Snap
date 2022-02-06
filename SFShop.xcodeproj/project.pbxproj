@@ -258,6 +258,7 @@
 		1B82AEE7277080B700D75E00 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AECE277080B700D75E00 /* YYWebImageOperation.m */; };
 		1B8483BB27AFBDDF0078B9A4 /* OfflineOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8483B927AFBDDF0078B9A4 /* OfflineOrderViewController.m */; };
 		1B8483BC27AFBDDF0078B9A4 /* OfflineOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8483BA27AFBDDF0078B9A4 /* OfflineOrderViewController.xib */; };
+		1B8483BF27B00D0E0078B9A4 /* NSDictionary+add.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8483BE27B00D0E0078B9A4 /* NSDictionary+add.m */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
@@ -1033,6 +1034,8 @@
 		1B8483B827AFBDDF0078B9A4 /* OfflineOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineOrderViewController.h; sourceTree = "<group>"; };
 		1B8483B927AFBDDF0078B9A4 /* OfflineOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineOrderViewController.m; sourceTree = "<group>"; };
 		1B8483BA27AFBDDF0078B9A4 /* OfflineOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineOrderViewController.xib; sourceTree = "<group>"; };
+		1B8483BD27B00D0E0078B9A4 /* NSDictionary+add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+add.h"; sourceTree = "<group>"; };
+		1B8483BE27B00D0E0078B9A4 /* NSDictionary+add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+add.m"; sourceTree = "<group>"; };
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
@@ -3451,6 +3454,8 @@
 				1B74D321279E7F5A00577E46 /* UIButton+time.m */,
 				AED00BFD27A27D3300DA954B /* NSObject+Runtime.h */,
 				AED00BFE27A27D3300DA954B /* NSObject+Runtime.m */,
+				1B8483BD27B00D0E0078B9A4 /* NSDictionary+add.h */,
+				1B8483BE27B00D0E0078B9A4 /* NSDictionary+add.m */,
 			);
 			path = Prompt;
 			sourceTree = "<group>";
@@ -4304,6 +4309,7 @@
 				4B43852C26FEC1CC00BA3D90 /* ArticleListCell.m in Sources */,
 				62E428D927A2292A00A02F91 /* JPVideoPlayerCompat.m in Sources */,
 				8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */,
+				1B8483BF27B00D0E0078B9A4 /* NSDictionary+add.m in Sources */,
 				AE9327F42715DB25000F543A /* CategoryRankCell.m in Sources */,
 				1BCD2E85279BF70F008A530B /* ProductReviewAddCell.m in Sources */,
 				1B6C52A0275B672200A1C617 /* ToastUtils.m in Sources */,
