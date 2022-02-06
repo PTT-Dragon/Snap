@@ -9,8 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RefundBankViewController : UIViewController
+typedef void(^RefundBankViewControllerBlock)(void);
 
+@interface RefundBankViewController : UIViewController
+@property (nonatomic,copy) RefundBankViewControllerBlock block;
+@property (nonatomic,copy) NSString *orderApplyId;
+@property (nonatomic,copy) NSString *refundOrderId;
 @end
 
 NS_ASSUME_NONNULL_END

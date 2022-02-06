@@ -271,8 +271,8 @@
   "SUCCESSFUL" = "Successful";
   "COMPLETED" = "Done";
   "CANCELLED" = "Cancelled";
-//  "BANK" = "Bank";
-//  "ACCOUNT_NAME" = "Account Name";
+  "BANK" = "Bank";
+  "ACCOUNT_NAME" = "Account Name";
   "BANK_ACCOUNT" = "Bank Account";
   "LOGISTICS" = "LOGISTICS";
   "REFUND_METHOD" = "Refund Method";

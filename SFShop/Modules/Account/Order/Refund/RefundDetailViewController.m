@@ -223,6 +223,14 @@
         [[baseTool getCurrentVC].view addSubview:alert];
     }else if ([_model.state isEqualToString:@"I"]){
         RefundBankViewController *vc = [[RefundBankViewController alloc] init];
+        vc.orderApplyId = _model.orderApplyId;
+        vc.refundOrderId = _model.orderId;
+        vc.block = ^{
+            [self loadDatas];
+            if (self.block) {
+                self.block();
+            }
+        };
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }
 }

@@ -142,6 +142,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *delivery;
 @property (nonatomic, readwrite, strong) NSString *cancel;
 @property (nonatomic, readwrite, strong) NSString *applyDelivery;
+@property (nonatomic, readwrite, strong) NSString *acct;
+
 
 
 

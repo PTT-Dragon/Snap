@@ -275,8 +275,8 @@
   "SUCCESSFUL" = "成功";
   "COMPLETED" = "完成";
   "CANCELLED" = "已取消";
-//  "BANK" = "银行";
-//  "ACCOUNT_NAME" = "账户名";
+  "BANK" = "银行";
+  "ACCOUNT_NAME" = "账户名";
   "BANK_ACCOUNT" = "账号";
   "LOGISTICS" = "物流";
   "REFUND_METHOD" = "退款方式";

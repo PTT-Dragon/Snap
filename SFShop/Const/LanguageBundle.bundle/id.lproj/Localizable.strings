@@ -277,8 +277,8 @@
   "COMPLETED" = "Selesai";
 //  "CANCELLED" = "Dibatalkan";
 "CANCELLED" = "Cancelled";
-//  "BANK" = "Bank";
-//  "ACCOUNT_NAME" = "Nama Akun";
+  "BANK" = "Bank";
+  "ACCOUNT_NAME" = "Nama Lengkap Pemilik Rekening";
   "BANK_ACCOUNT" = "No. Rekening";
   "LOGISTICS" = "PENGIRIMAN";
   "REFUND_METHOD" = "Metode pengembalian dana";
