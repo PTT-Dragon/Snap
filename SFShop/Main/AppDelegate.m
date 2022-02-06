@@ -33,13 +33,18 @@
     self.tabVC = [[MainTabViewController alloc] init];
     self.window.rootViewController = self.tabVC;
     [self.window makeKeyAndVisible];
+    [self cleanCartCache];
     MJRefreshConfig.defaultConfig.languageCode = @"id";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangeNotification:)
                                                  name:@"KLanguageChange"
                                                object:nil];
     return YES;
 }
-
+- (void)cleanCartCache
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@{} forKey:@"arrayKey"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 - (void)netDemo {
     //网络请求demo
     //ps: 新增url 参照SFNetworkH5Module (如果是新模块需要创建module 文件,并在 SFNetworkURL 中添加模块属性)

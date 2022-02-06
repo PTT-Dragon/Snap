@@ -85,7 +85,10 @@
     for (NSMutableDictionary *dic in self.dataSource) {
         [arr addObject:@{@"shippingNbr":dic[@"text1"],@"logisticsName":dic[@"text2"]}];
     }
-    [SFNetworkManager post:SFNet.refund.delivery parameters:@{@"deliverys":arr,@"orderApplyId":self.model.orderApplyId} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.refund.applyDelivery parameters:@{@"deliverys":arr,@"orderApplyId":self.model.orderApplyId} success:^(id  _Nullable response) {
+        if (self.block) {
+            self.block();
+        }
         [self.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];

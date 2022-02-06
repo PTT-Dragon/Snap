@@ -92,7 +92,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
-        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
+        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+10);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-140);
     }];
     self.reasonArr = [NSMutableArray array];
@@ -130,7 +130,7 @@
     }
     
     RefundDetailImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundDetailImagesCell"];
-    cell.canSel = YES;
+    cell.canSel = NO;
     cell.block = ^(NSArray * _Nonnull imgArr) {
         self.imgArr = imgArr;
     };
@@ -162,6 +162,16 @@
         [self.view addSubview:vc.view];
         vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
     }
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 10)];
+    view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
 }
 - (void)loadReasonDatas
 {

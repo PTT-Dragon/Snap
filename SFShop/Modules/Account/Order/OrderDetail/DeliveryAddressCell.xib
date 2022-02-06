@@ -72,7 +72,7 @@
                     <constraint firstItem="w3t-x3-i7M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="9Ss-ZJ-Q3r"/>
                     <constraint firstItem="W4s-m7-j5i" firstAttribute="leading" secondItem="tNn-qT-r1B" secondAttribute="trailing" constant="4" id="A6z-vd-QXM"/>
                     <constraint firstItem="tNn-qT-r1B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Ba2-Uf-Udh"/>
-                    <constraint firstItem="w3t-x3-i7M" firstAttribute="top" secondItem="QcL-hL-1zj" secondAttribute="bottom" constant="10" id="Fc1-WT-jqh"/>
+                    <constraint firstItem="w3t-x3-i7M" firstAttribute="top" secondItem="QcL-hL-1zj" secondAttribute="bottom" priority="750" constant="10" id="Fc1-WT-jqh"/>
                     <constraint firstItem="hmQ-eJ-L0o" firstAttribute="leading" secondItem="Lqh-wc-q9J" secondAttribute="trailing" constant="10" id="Gmt-wh-SK9"/>
                     <constraint firstItem="Lqh-wc-q9J" firstAttribute="top" secondItem="GsT-xg-iGP" secondAttribute="bottom" constant="6" id="Hxr-4i-n0J"/>
                     <constraint firstAttribute="bottom" secondItem="w3t-x3-i7M" secondAttribute="bottom" constant="16" id="R7o-ZR-FNk"/>
@@ -81,6 +81,7 @@
                     <constraint firstItem="W4s-m7-j5i" firstAttribute="centerY" secondItem="tNn-qT-r1B" secondAttribute="centerY" id="f3U-f3-eZh"/>
                     <constraint firstItem="tNn-qT-r1B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="hrT-FF-f3j"/>
                     <constraint firstItem="GsT-xg-iGP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ifv-qF-2Qb"/>
+                    <constraint firstAttribute="bottom" secondItem="QcL-hL-1zj" secondAttribute="bottom" priority="250" constant="10" id="im3-P1-Svs"/>
                     <constraint firstItem="hmQ-eJ-L0o" firstAttribute="centerY" secondItem="Lqh-wc-q9J" secondAttribute="centerY" id="in8-ux-b0h"/>
                     <constraint firstAttribute="trailing" secondItem="w3t-x3-i7M" secondAttribute="trailing" constant="19" id="jQ0-Dc-kQv"/>
                     <constraint firstAttribute="trailing" secondItem="QcL-hL-1zj" secondAttribute="trailing" constant="47" id="oAT-X3-Xp5"/>
@@ -94,6 +95,8 @@
                 <outlet property="nameLabel" destination="Lqh-wc-q9J" id="7rr-Hr-Ujp"/>
                 <outlet property="phoneLabel" destination="hmQ-eJ-L0o" id="XZS-cp-6hb"/>
                 <outlet property="titleLabel" destination="W4s-m7-j5i" id="bTk-I1-rVd"/>
+                <outlet property="toBottom" destination="im3-P1-Svs" id="D4g-zK-Uzn"/>
+                <outlet property="toEmail" destination="Fc1-WT-jqh" id="t4a-ym-MLF"/>
             </connections>
             <point key="canvasLocation" x="112" y="73"/>
         </tableViewCell>

@@ -157,7 +157,7 @@
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor: [UIColor jk_colorWithHexString: @"#7B7B7B"] forState:UIControlStateNormal];
         [menuItem setTitleColor: [UIColor blackColor] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont fontWithName:@"Trueno" size:17.f];
+        menuItem.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:13.f];
     }
     [menuItem setSelected: (itemIndex == self.currentMenuIndex)];
     return menuItem;
@@ -250,10 +250,25 @@
 - (void)calculateAmount:(CartModel *)model
 {
     self.cartModel = model;
-    self.amountLabel.text = [[NSString stringWithFormat:@"%f",model.totalPrice] currency];
-    self.totalAmountLabel.text = [[NSString stringWithFormat:@"%f",model.totalPrice] currency];
-    self.priceLabel.text = [[NSString stringWithFormat:@"%f",model.totalOfferPrice] currency];
-    self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-%@",[[NSString stringWithFormat:@"%f",model.totalDiscount] currency]];
+    UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+    if (!userModel) {
+        __block double totalAmount = 0;
+        [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                totalAmount += obj.salesPrice * obj.num.integerValue;
+            }];
+        }];
+        self.amountLabel.text = [[NSString stringWithFormat:@"%f",totalAmount] currency];
+        self.totalAmountLabel.text = [[NSString stringWithFormat:@"%f",totalAmount] currency];
+        self.priceLabel.text = [[NSString stringWithFormat:@"%f",totalAmount] currency];
+        self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-%@",[[NSString stringWithFormat:@"%f",model.totalDiscount] currency]];
+    }else{
+        self.amountLabel.text = [[NSString stringWithFormat:@"%f",model.totalPrice] currency];
+        self.totalAmountLabel.text = [[NSString stringWithFormat:@"%f",model.totalPrice] currency];
+        self.priceLabel.text = [[NSString stringWithFormat:@"%f",model.totalOfferPrice] currency];
+        self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-%@",[[NSString stringWithFormat:@"%f",model.totalDiscount] currency]];
+    }
+    
     __block NSInteger count = 0;
     [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj.campaignGroups enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

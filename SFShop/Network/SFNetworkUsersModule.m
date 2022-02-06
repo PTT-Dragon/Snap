@@ -201,11 +201,17 @@
 - (NSString *)refund {
     return K_refund_domain(@"");
 }
+- (NSString *)acct {
+    return K_refund_domain(@"acct");
+}
 - (NSString *)delivery {
     return K_refund_domain(@"delivery");
 }
 - (NSString *)cancel {
     return K_refundApply_domain(@"cancel");
+}
+- (NSString *)applyDelivery {
+    return K_refundApply_domain(@"delivery");
 }
 
 - (NSString *)getDetailOf: (NSString *)offerId {

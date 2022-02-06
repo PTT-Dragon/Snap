@@ -14,6 +14,9 @@
 #import "OrderListItemCell.h"
 #import "RefundDetailImagesCell.h"
 #import "DeliveryAddressCell.h"
+#import "ReplaceDeliveryViewController.h"
+#import "PublicAlertView.h"
+#import "RefundBankViewController.h"
 
 @interface RefundDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -29,7 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"Refund_Return");
+    self.title = kLocalizedString(@"Service_Detail");
+    self.btn2.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
+    self.btn2.layer.borderWidth = 1;
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"RefundProcessCell" bundle:nil] forCellReuseIdentifier:@"RefundProcessCell"];
@@ -88,11 +93,11 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return self.model.contents.count > 0 ? 4: 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    BOOL hasDelivery = (([self.model.eventId isEqualToString:@"4"] || [self.model.eventId isEqualToString:@"2"]) && [self.model.state isEqualToString:@"D"]) ? YES: NO;
+    BOOL hasDelivery = (([self.model.eventId isEqualToString:@"4"] || [self.model.eventId isEqualToString:@"2"]) && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"C"])) ? YES: NO;
     return section == 0 ? self.model.memos.count+2: section == 1 ? hasDelivery ? 1 : 0: section == 2 ? self.model.items.count+2:1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,12 +107,12 @@
         if (indexPath.row == 0) {
             hei = 40;
         }else if(indexPath.row == self.model.memos.count+1){
-            hei = [self.model.eventId isEqualToString:@"3"] && [self.model.state isEqualToString:@"D"] ? 75: 0;
+            hei = [self.model.eventId isEqualToString:@"3"] && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"F"]) ? 75: 0;
         }else{
             hei = 75;
         }
     }else if (indexPath.section == 1){
-        hei = 170;
+        hei = 150;
     }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
             hei = 40;
@@ -118,7 +123,7 @@
         }
     }else{
         CGFloat itemHei = (MainScreen_width-32-30)/4;
-        hei = self.model.items.count < 4 ? itemHei+68: self.model.items.count < 8 ? 2*itemHei+73: 3* itemHei + 78;
+        hei = self.model.contents.count < 4 ? itemHei+68: self.model.contents.count < 8 ? 2*itemHei+73: 3* itemHei + 78;
     }
     return hei;
 }
@@ -146,8 +151,8 @@
         self.btn2.hidden = YES;
         self.btn.height = 46;
     }else if ([self.model.state isEqualToString:@"C"]){
-        [self.btn setTitle:kLocalizedString(@"CANCEL") forState:0];
-        [self.btn2 setTitle:kLocalizedString(@"Delivery") forState:0];
+        [self.btn setTitle:kLocalizedString(@"Delivery") forState:0];
+        [self.btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
         self.btn.hidden = NO;
         self.btnWidth.constant = (MainScreen_width-32)/2-16;
         self.btn2.hidden = NO;
@@ -163,6 +168,20 @@
         self.btn.hidden = YES;
         self.btn2.hidden = YES;
         self.btnHei.constant = 0;
+    }else if ([self.model.state isEqualToString:@"F"]){
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
+    }else if ([self.model.state isEqualToString:@"B"]){
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
+    }else if ([self.model.state isEqualToString:@"I"]) {
+        [self.btn setTitle:kLocalizedString(@"REFUND_BANK_ACCOUNT") forState:0];
+        self.btn.hidden = NO;
+        self.btnWidth.constant = MainScreen_width-32;
+        self.btn2.hidden = YES;
+        self.btn.height = 46;
     }
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
@@ -184,7 +203,58 @@
         
     }];
 }
-
+- (IBAction)btnAction:(UIButton *)sender {
+    if ([_model.state isEqualToString:@"C"]) {
+        ReplaceDeliveryViewController *vc = [[ReplaceDeliveryViewController alloc] init];
+        vc.model = _model;
+        vc.block = ^{
+            [self loadDatas];
+            if (self.block) {
+                self.block();
+            }
+        };
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([_model.state isEqualToString:@"A"]){
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"SURE_CANCEL") btnTitle:kLocalizedString(@"CONFIRM") block:^{
+            [self cancelAction];
+        } btn2Title:kLocalizedString(@"CANCEL") block2:^{
+            
+        }];
+        [[baseTool getCurrentVC].view addSubview:alert];
+    }else if ([_model.state isEqualToString:@"I"]){
+        RefundBankViewController *vc = [[RefundBankViewController alloc] init];
+        vc.orderApplyId = _model.orderApplyId;
+        vc.refundOrderId = _model.orderId;
+        vc.block = ^{
+            [self loadDatas];
+            if (self.block) {
+                self.block();
+            }
+        };
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }
+}
+- (IBAction)btn2Action:(UIButton *)sender {
+    if ([_model.state isEqualToString:@"C"]){
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"SURE_CANCEL") btnTitle:kLocalizedString(@"CONFIRM") block:^{
+            [self cancelAction];
+        } btn2Title:kLocalizedString(@"CANCEL") block2:^{
+            
+        }];
+        [[baseTool getCurrentVC].view addSubview:alert];
+    }
+}
+- (void)cancelAction
+{
+    [SFNetworkManager post:SFNet.refund.cancel parameters:@{@"orderApplyId":_model.orderApplyId} success:^(id  _Nullable response) {
+        if (self.block) {
+            self.block();
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 
 - (UITableView *)tableView
 {

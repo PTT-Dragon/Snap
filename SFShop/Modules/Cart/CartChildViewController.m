@@ -22,6 +22,7 @@
 #import "ProductSpecAttrsView.h"
 #import "ProductStockModel.h"
 #import "CartChoosePromotion.h"
+#import "NSDictionary+add.h"
 
 @interface CartChildViewController ()<UITableViewDelegate,UITableViewDataSource,CartTableViewCellDelegate,CartTitleCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -50,10 +51,10 @@
     // Do any additional setup after loading the view.
     
     [self initUI];
-    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+//    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self loadDatas];
-    }];
-    [self.tableView.mj_header beginRefreshing];
+//    }];
+//    [self.tableView.mj_header beginRefreshing];
 }
 - (void)initUI
 {
@@ -85,15 +86,15 @@
         @"offerIdList": [NSNull null],
         @"catgIds": @""//默认是外部传入的分类,如果 filter.filterParam 有该字段,会被新值覆盖
     }];
-    MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
+//    MBProgressHUD *hud = [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
-        [hud hideAnimated:YES];
+//        [hud hideAnimated:YES];
         [weakself.dataArray removeAllObjects];
         weakself.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
         [weakself.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
         [weakself.emptyView configDataWithSimilarList:weakself.dataArray];
     } failed:^(NSError * _Nonnull error) {
-        [hud hideAnimated:YES];
+//        [hud hideAnimated:YES];
         [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
@@ -222,15 +223,41 @@
     }else{
         model = listModel.shoppingCarts[indexPath.row-1];
     }
+    
     MPWeakSelf(self)
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:kLocalizedString(@"Delete") handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
-        [SFNetworkManager post:SFNet.cart.del parameters:@{@"cartIds":@[model.shoppingCartId]} success:^(id  _Nullable response) {
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Delete_success")];
-            [weakself loadDatas];
-        } failed:^(NSError * _Nonnull error) {
-            
-        }];
+        UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+        if (userModel) {
+            [SFNetworkManager post:SFNet.cart.del parameters:@{@"cartIds":@[model.shoppingCartId]} success:^(id  _Nullable response) {
+                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Delete_success")];
+                [weakself loadDatas];
+            } failed:^(NSError * _Nonnull error) {
+                
+            }];
+        }else{
+            NSMutableArray *listArr = [NSMutableArray array];
+            [listArr addObjectsFromArray:self.cartModel.validCarts];
+            [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSMutableArray *arr = [NSMutableArray array];
+                [arr addObjectsFromArray:obj.shoppingCarts];
+                [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                    if ([obj2.productId isEqualToString:model.productId]) {
+                        [arr removeObject:obj2];
+                        *stop = YES;
+                        *stop2 = YES;
+                        obj.shoppingCarts = arr;
+                        if (obj.shoppingCarts.count == 0) {
+                            [listArr removeObject:obj];
+                            self.cartModel.validCarts = listArr;
+                        }
+                        [self updateLocalData];
+                        [self loadDatas];
+                    }
+                }];
+            }];
+        }
+        
     }];
     deleteRowAction.image = [UIImage imageNamed:@"trash"];
     deleteRowAction.backgroundColor = [UIColor redColor];
@@ -263,9 +290,45 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return kLocalizedString(@"Delete");
 }
+- (void)updateLocalData
+{
+    //更新本地存储的购物车信息
+    NSDictionary *dic = [NSDictionary dictionary];
+    dic = [dic dicFromObject:self.cartModel];
+    [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"arrayKey"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 - (void)loadDatas
 {
     MPWeakSelf(self)
+    UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+    if (!userModel && !_reduceFlag) {
+        NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
+        self.cartModel = [[CartModel alloc] initWithDictionary:aaaaa error:nil];
+        NSInteger i = 0;
+        [self.hasCouponArr removeAllObjects];
+        for (CartListModel *listModel in weakself.cartModel.validCarts) {
+            [self.hasCouponArr addObject:@"N"];
+            NSMutableArray *arr = [NSMutableArray array];
+            [listModel.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+                [listModel.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+                    }];
+                }];
+            }];
+            [self loadCouponsDatasWithStoreId:listModel.storeId productArr:arr row:i];
+            i++;
+        }
+        [self handleDatas];
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+        [self calculateAmount];
+        [self performSelector:@selector(showEmptyView) withObject:nil afterDelay:0.1];
+        return;
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:_reduceFlag ? @"true": @"false" forKey:@"reduceFlag"];
     [params setValue:_addModel.contactStdId forKey:@"stdAddrId"];
@@ -301,6 +364,7 @@
 }
 
 - (void)showEmptyView {
+    [self.tableView.mj_header endRefreshing];
     if ([[UIViewController currentTopViewController] isKindOfClass:[CartViewController class]]) {
         CartViewController *cartVC = (CartViewController *)[UIViewController currentTopViewController];
         CGFloat bottomH = CGFLOAT_MIN;
@@ -330,7 +394,7 @@
 }
 - (void)loadCouponsDatasWithStoreId:(NSString *)storeId productArr:(NSArray *)productArr
 {
-    [MBProgressHUD showHudMsg:@""];
+//    [MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:storeId forKey:@"storeId"];
@@ -402,17 +466,44 @@
                 }
             }
             [self.tableView reloadData];
-            MPWeakSelf(self)
-            [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
-                [weakself loadDatas];
-            } failed:^(NSError * _Nonnull error) {
-                
-            }];
+            UserModel *model = [FMDBManager sharedInstance].currentUser;
+            if (!model) {
+                [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([obj.storeId isEqualToString:storeId]) {
+                        [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                            obj2.isSelected = selAll ? @"Y": @"N";
+                        }];
+                    }
+                }];
+                [self updateLocalData];
+                [self loadDatas];
+            }else{
+                MPWeakSelf(self)
+                [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
+                    [weakself loadDatas];
+                } failed:^(NSError * _Nonnull error) {
+                    
+                }];
+            }
         }
     }
 }
 - (void)modifyCartInfoWithDic:(NSDictionary *)dic
 {
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model) {
+        CartItemModel *itemModel = [[CartItemModel alloc] initWithDictionary:dic error:nil];
+        [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                if ([obj2.productId isEqualToString:itemModel.productId]) {
+                    obj2 = itemModel;
+                }
+            }];
+        }];
+        [self updateLocalData];
+        [self loadDatas];
+        return;
+    }
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":@[dic]} success:^(id  _Nullable response) {
         [weakself loadDatas];

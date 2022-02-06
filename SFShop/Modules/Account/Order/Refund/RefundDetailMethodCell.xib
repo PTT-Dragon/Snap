@@ -18,27 +18,38 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refund Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5l-5P-eHd">
-                        <rect key="frame" x="20" y="13.5" width="109" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                        <rect key="frame" x="20" y="13.5" width="102" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refund Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giS-wC-BVJ">
-                        <rect key="frame" x="191" y="13.5" width="109" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                        <rect key="frame" x="198" y="13.5" width="102" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfE-oB-KFn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="ygF-Vs-cHk"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="kfE-oB-KFn" secondAttribute="trailing" id="E8Q-PQ-stX"/>
                     <constraint firstItem="R5l-5P-eHd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="boO-Qo-Dye"/>
                     <constraint firstItem="R5l-5P-eHd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gj8-kz-CVh"/>
                     <constraint firstItem="giS-wC-BVJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qQc-af-JBk"/>
+                    <constraint firstItem="kfE-oB-KFn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qnJ-J7-r3i"/>
+                    <constraint firstItem="kfE-oB-KFn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rFj-U8-gQP"/>
                     <constraint firstAttribute="trailing" secondItem="giS-wC-BVJ" secondAttribute="trailing" constant="20" id="s0V-ZI-d0q"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="label" destination="R5l-5P-eHd" id="Sys-WK-VLz"/>
                 <outlet property="methodLabel" destination="giS-wC-BVJ" id="Gwk-wW-BLS"/>
             </connections>
             <point key="canvasLocation" x="75" y="65"/>

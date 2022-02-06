@@ -951,21 +951,95 @@
         UserModel *model = [FMDBManager sharedInstance].currentUser;
         if (!model) {
             //没登录  缓存本地
-            CartModel *modelsd = [[CartModel alloc] init];
-            CartListModel *listModel = [[CartListModel alloc] init];
-            listModel.storeId = [NSString stringWithFormat:@"%ld",self.model.storeId];
-            NSMutableArray *arr = [NSMutableArray array];
-            [arr addObject:listModel];
-            modelsd.validCarts = arr;
-            modelsd.platformCouponPrice = 10;
-            NSString *filePath =   [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingString:@"aaa"];
-            NSError *err;
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:modelsd requiringSecureCoding:false error:&err];
-            [NSKeyedArchiver archiveRootObject:modelsd toFile:filePath];
-            NSString *file = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"aaa"];
-            CartModel *aaa  = [NSKeyedUnarchiver unarchivedObjectOfClass:[CartModel class] fromData:data error:nil];
-            aaa.totalPrice;
+            MPWeakSelf(self)
+            NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
+            CartModel *modelsd = [[CartModel alloc] initWithDictionary:aaaaa error:nil];
             
+            //listModel 存放的数组
+            NSMutableArray *arr = [NSMutableArray array];
+            //商品存放的数组
+            NSMutableArray *itemArr = [NSMutableArray array];
+            
+            __block CartListModel *listModel;
+            [modelsd.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                    [itemArr addObject:obj2];
+                }];
+                obj.shoppingCarts = itemArr;
+                [arr addObject:obj];
+                if ([obj.storeId isEqualToString:[NSString stringWithFormat:@"%ld",(long)self.model.storeId]]) {
+                    //说明是同一家店
+                    listModel = obj;
+                }
+            }];
+            modelsd.validCarts = arr;
+            if (!listModel) {
+                //遍历没有同一家店  创建新的
+                NSMutableArray *itemArr2 = [NSMutableArray array];
+                listModel = [[CartListModel alloc] init];
+                listModel.storeId = [NSString stringWithFormat:@"%ld",(long)self.model.storeId];
+                listModel.discountPrice = 500;
+                listModel.logoUrl = _model.storeLogoUrl;
+                listModel.offerPrice = 500;
+                listModel.orderPrice = 500;
+                listModel.storeName = _model.storeName;
+                CartItemModel *itemModel = [[CartItemModel alloc] init];
+                itemModel.addon = @"";
+                itemModel.imgUrl = _selProductModel.imgUrl;
+                itemModel.num = [NSString stringWithFormat:@"%lu",(unsigned long)_attrView.count];
+                itemModel.discountPrice = 500;
+                itemModel.productId = [NSString stringWithFormat:@"%ld",(long)_selProductModel.productId];
+                itemModel.offerId = [NSString stringWithFormat:@"%ld",(long)_model.offerId];
+                itemModel.salesPrice = _selProductModel.salesPrice;
+                itemModel.maxBuyCount = _selProductModel.maxBuyCount;
+                itemModel.productName = _selProductModel.productName;
+                itemModel.prodSpcAttrs = _selProductModel.prodSpcAttrs;
+                [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+                    [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                        if (obj2.productId.integerValue == weakself.selProductModel.productId) {
+                            itemModel.stock = obj2.stock.integerValue;
+                            *stop1 = YES;
+                            *stop2 = YES;
+                        }
+                    }];
+                }];
+                [itemArr2 addObject:itemModel];
+                listModel.shoppingCarts = itemArr2;
+                [arr addObject:listModel];
+                modelsd.validCarts = arr;
+            }else{
+                //直接往listmodel里添加商品
+                NSMutableArray *itemArr2 = [NSMutableArray array];
+                [itemArr2 addObjectsFromArray:listModel.shoppingCarts];
+                CartItemModel *itemModel = [[CartItemModel alloc] init];
+                itemModel.addon = @"";
+                itemModel.imgUrl = _selProductModel.imgUrl;
+                itemModel.num = [NSString stringWithFormat:@"%lu",(unsigned long)_attrView.count];
+                itemModel.discountPrice = 500;
+                itemModel.productId = [NSString stringWithFormat:@"%ld",(long)_selProductModel.productId];
+                itemModel.offerId = [NSString stringWithFormat:@"%ld",(long)_model.offerId];
+                itemModel.salesPrice = _selProductModel.salesPrice;
+                itemModel.maxBuyCount = _selProductModel.maxBuyCount;
+                itemModel.productName = _selProductModel.productName;
+                itemModel.prodSpcAttrs = _selProductModel.prodSpcAttrs;
+                [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+                    [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                        if (obj2.productId.integerValue == weakself.selProductModel.productId) {
+                            itemModel.stock = obj2.stock.integerValue;
+                            *stop1 = YES;
+                            *stop2 = YES;
+                        }
+                    }];
+                }];
+                [itemArr2 addObject:itemModel];
+                listModel.shoppingCarts = itemArr2;
+            }
+            modelsd.totalDiscount = 0;
+            modelsd.totalPrice = 0;
+            modelsd.totalOfferPrice = 0;
+            NSDictionary *dic = [self dicFromObject:modelsd];
+            [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"arrayKey"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             return;
         }
         MPWeakSelf(self)
@@ -987,16 +1061,6 @@
 }
 
 - (IBAction)buyNow:(UIButton *)sender {
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    if (!model || [model.accessToken isEqualToString:@""]) {
-        LoginViewController *vc = [[LoginViewController alloc] init];
-        MPWeakSelf(vc)
-        vc.didLoginBlock = ^{
-            [weakvc.navigationController popViewControllerAnimated:YES];
-        };
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-    }
     if (!_isCheckingSaleInfo) {
         ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
         camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
@@ -1065,6 +1129,16 @@
             case groupSingleBuyType://团购活动单人购买
             case groupBuyType://团购
             {
+                UserModel *model = [FMDBManager sharedInstance].currentUser;
+                if (!model || [model.accessToken isEqualToString:@""]) {
+                    LoginViewController *vc = [[LoginViewController alloc] init];
+                    MPWeakSelf(vc)
+                    vc.didLoginBlock = ^{
+                        [weakvc.navigationController popViewControllerAnimated:YES];
+                    };
+                    [weakself.navigationController pushViewController:vc animated:YES];
+                    return;
+                }
                 [weakself gotoCheckout:type];
             }
                 break;
@@ -1205,5 +1279,89 @@
         _recommendView = [[ProductionRecomandView alloc] init];
     }
     return _recommendView;
+}
+- (NSDictionary *)dicFromObject:(NSObject *)object {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    unsigned int count;
+    objc_property_t *propertyList = class_copyPropertyList([object class], &count);
+    
+    for (int i = 0; i < count; i++) {
+        objc_property_t property = propertyList[i];
+        const char *cName = property_getName(property);
+        NSString *name = [NSString stringWithUTF8String:cName];
+        NSObject *value = [object valueForKey:name];//valueForKey返回的数字和字符串都是对象
+        
+        if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {
+            //string , bool, int ,NSinteger
+            [dic setObject:value forKey:name];
+            
+        } else if ([value isKindOfClass:[NSArray class]]) {
+            //数组或字典
+            [dic setObject:[self arrayWithObject:value] forKey:name];
+        } else if ([value isKindOfClass:[NSDictionary class]]) {
+            //数组或字典
+            [dic setObject:[self dicWithObject:value] forKey:name];
+        } else if (value == nil) {
+            //null
+            //[dic setObject:[NSNull null] forKey:name];//这行可以注释掉?????
+        } else {
+            //model
+            [dic setObject:[self dicFromObject:value] forKey:name];
+        }
+    }
+    
+    return [dic copy];
+}
+//转数组
+- (NSArray *)arrayWithObject:(id)object {
+    //数组
+    NSMutableArray *array = [NSMutableArray array];
+    NSArray *originArr = (NSArray *)object;
+    if ([originArr isKindOfClass:[NSArray class]]) {
+        for (NSObject *object in originArr) {
+            if ([object isKindOfClass:[NSString class]]||[object isKindOfClass:[NSNumber class]]) {
+                //string , bool, int ,NSinteger
+                [array addObject:object];
+            } else if ([object isKindOfClass:[NSArray class]]) {
+                //数组或字典
+                [array addObject:[self arrayWithObject:object]];
+            } else if ([object isKindOfClass:[NSDictionary class]]) {
+                //数组或字典
+                [array addObject:[self dicWithObject:object]];
+            } else {
+                //model
+                [array addObject:[self dicFromObject:object]];
+            }
+        }
+        return [array copy];
+    }
+    return array.copy;
+}
+
+//转字典类型
+- (NSDictionary *)dicWithObject:(id)object {
+    //字典
+    NSDictionary *originDic = (NSDictionary *)object;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        for (NSString *key in originDic.allKeys) {
+            id object = [originDic objectForKey:key];
+            if ([object isKindOfClass:[NSString class]]||[object isKindOfClass:[NSNumber class]]) {
+                //string , bool, int ,NSinteger
+                [dic setObject:object forKey:key];
+            } else if ([object isKindOfClass:[NSArray class]]) {
+                //数组或字典
+                [dic setObject:[self arrayWithObject:object] forKey:key];
+            } else if ([object isKindOfClass:[NSDictionary class]]) {
+                //数组或字典
+                [dic setObject:[self dicWithObject:object] forKey:key];
+            } else {
+                //model
+                [dic setObject:[self dicFromObject:object] forKey:key];
+            }
+        }
+        return [dic copy];
+    }
+    return dic.copy;
 }
 @end

@@ -253,10 +253,10 @@
     if (!_clearBtn) {
         _clearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_clearBtn setImage:[UIImage imageNamed:@"clear"]
-                  forState:UIControlStateNormal];
+                   forState:UIControlStateNormal];
         [_clearBtn addTarget:self
-                     action:@selector(clearBtnAction)
-           forControlEvents:UIControlEventTouchUpInside];
+                      action:@selector(clearBtnAction)
+            forControlEvents:UIControlEventTouchUpInside];
     }
     return _clearBtn;
 }
@@ -278,10 +278,10 @@
     if (!_shareBtn) {
         _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_shareBtn setImage:[UIImage imageNamed:@"share"]
-                  forState:UIControlStateNormal];
+                   forState:UIControlStateNormal];
         [_shareBtn addTarget:self
-                     action:@selector(shareBtnAction)
-           forControlEvents:UIControlEventTouchUpInside];
+                      action:@selector(shareBtnAction)
+            forControlEvents:UIControlEventTouchUpInside];
     }
     return _shareBtn;
 }
@@ -289,12 +289,13 @@
     if (!_searchBtn) {
         _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_searchBtn setImage:[UIImage imageNamed:@"ic_nav_search"]
-                  forState:UIControlStateNormal];
+                    forState:UIControlStateNormal];
         [_searchBtn addTarget:self
-                     action:@selector(searchBtnAction)
-           forControlEvents:UIControlEventTouchUpInside];
+                       action:@selector(searchBtnAction)
+             forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchBtn;
 }
 
 @end
+

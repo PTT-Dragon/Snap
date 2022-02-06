@@ -9,7 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^RefundDetailViewControllerBlock)(void);
+
 @interface RefundDetailViewController : UIViewController
+@property (nonatomic,copy) RefundDetailViewControllerBlock block;
 @property (nonatomic,copy) NSString *orderApplyId;
 @end
 

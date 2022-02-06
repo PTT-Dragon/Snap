@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toEmail;
 
 @end
 
@@ -32,6 +34,9 @@
 }
 - (void)setRefundContent:(RefundDetailModel *)model
 {
+    _toBottom.priority = 750;
+    _toEmail.priority = 250;
+    _titleLabel.text = kLocalizedString(@"RETURN_ADDRESS");
     _emailLabel.hidden = YES;
     _nameLabel.text = model.returnAddress.contactName;
     _phoneLabel.text = model.returnAddress.contactNbr;

@@ -31,7 +31,12 @@
     [_collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     [_collectionView registerNib:[UINib nibWithNibName:@"ReviewAddNewPhotoCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewAddNewPhotoCell"];
     
-    self.theTitle.text = self.canSel ? [NSString stringWithFormat:@"%@ (%@3)",kLocalizedString(@"UPLOAD_PICTURE"),kLocalizedString(@"UP_TO")] : kLocalizedString(@"IMAGE");
+    self.theTitle.text = self.canSel ? [NSString stringWithFormat:@"%@ (%@3)",kLocalizedString(@"UPLOAD_PICTURE"),kLocalizedString(@"UP_TO")] : kLocalizedString(@"IMAGES");
+}
+- (void)setCanSel:(BOOL)canSel
+{
+    _canSel = canSel;
+    self.theTitle.text = !_canSel ? [NSString stringWithFormat:@"%@ (%@3)",kLocalizedString(@"UPLOAD_PICTURE"),kLocalizedString(@"UP_TO")] : kLocalizedString(@"IMAGES");
 }
 - (void)setContent:(NSArray<EvaluatesContentsModel *> *)content
 {
@@ -71,6 +76,22 @@
     }
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
     cell.imgView.image = (UIImage *)item;
+    cell.index = indexPath.row;
+    cell.canDel = YES;
+    MPWeakSelf(self)
+    cell.block = ^(NSInteger index) {
+        [weakself.imgArr removeObjectAtIndex:index];
+        __block BOOL a = NO;
+        [weakself.imgArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                a = YES;
+            }
+        }];
+        if (weakself.imgArr.count < 3 && !a) {
+            [weakself.imgArr insertObject:@"1" atIndex:weakself.imgArr.count];
+        }
+        [weakself.collectionView reloadData];
+    };
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

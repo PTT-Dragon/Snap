@@ -21,16 +21,29 @@
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @property (nonatomic, readwrite, strong) NSURLSessionDataTask *lastRequestTask;
 @property (nonatomic, readwrite, strong) BaseMoreView *moreView;
+@property (nonatomic, readwrite, strong) UILabel *titleLabel;
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @end
 
 @implementation CategoryViewController
-
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = kLocalizedString(@"Category");
     [self loadSides];
     [self loadsubviews];
+    [self addNoti];
+}
+- (void)addNoti
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideMoreView) name:@"KBaseMoreViewHidden" object:nil];;
+}
+- (void)hideMoreView
+{
+    [self.navSearchView clickRightBtn];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -172,6 +185,7 @@
         backItem.icon = @"nav_back";
         backItem.itemActionBlock = ^(SFSearchState state, SFSearchModel *model,BOOL isSelected) {
             if (state == SFSearchStateInUnActive || state == SFSearchStateInFocuActive) {
+                [self.moreView removeFromSuperview];
                 [self.tabBarController setSelectedIndex:0];
             }
         };
@@ -180,6 +194,9 @@
         rightItem.selectedIcon = @"more-vertical";
         rightItem.itemActionBlock = ^(SFSearchState state, SFSearchModel * _Nullable model,BOOL isSelected) {
             if (isSelected) {
+                self.navSearchView.textField.hidden = YES;
+                self.navSearchView.backBtn.hidden = YES;
+                self.titleLabel.hidden = NO;
                 [self.moreView removeFromSuperview];
                 self.moreView = [[BaseMoreView alloc] init];
                 [self.tabBarController.view addSubview:self.moreView];
@@ -188,6 +205,9 @@
                     make.top.mas_equalTo(self.navSearchView.mas_bottom);
                 }];
             }else{
+                self.navSearchView.backBtn.hidden = NO;
+                self.titleLabel.hidden = YES;
+                self.navSearchView.textField.hidden = NO;
                 [self.moreView removeFromSuperview];
             }
             
@@ -203,6 +223,12 @@
             [strongSelf.navigationController pushViewController:vc animated:YES];
         };
         _navSearchView.searchType = SFSearchTypeFake;
+        
+        [_navSearchView addSubview:self.titleLabel];
+        [_titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(_navSearchView.mas_centerY).offset(10);
+            make.left.mas_equalTo(_navSearchView.mas_left).offset(20);
+        }];
     }
     return _navSearchView;
 }
@@ -213,5 +239,14 @@
     }
     return _moreView;
 }
-
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.textColor = UIColor.blackColor;
+        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.text = kLocalizedString(@"DIRECT_FUNCTION");
+        _titleLabel.hidden = YES;
+    }
+    return _titleLabel;
+}
 @end

@@ -6,7 +6,6 @@
 //
 
 #import "SFSearchNav.h"
-#import "CustomTextField.h"
 #import "SFSearchView.h"
 #import "SFSearchingView.h"
 #import "SceneManager.h"
@@ -14,8 +13,6 @@
 @interface SFSearchNav ()<UITextFieldDelegate>
 @property (nonatomic, readwrite, strong) SFSearchItem *bItem;
 @property (nonatomic, readwrite, strong) SFSearchItem *rItem;
-@property (nonatomic, readwrite, strong) UIButton *backBtn;
-@property (nonatomic, readwrite, strong) CustomTextField *textField;
 @property (nonatomic, readwrite, strong) UIButton *rightBtn;
 @property (nonatomic, readwrite, strong) UIButton *searchBtn;
 @property (nonatomic, readwrite, strong) SFSearchView *searchView;
@@ -110,6 +107,11 @@
 }
 
 #pragma mark - Event
+- (void)clickRightBtn
+{
+    [self btnClick:self.rightBtn];
+}
+
 - (void)btnClick:(UIButton *)btn {
     if (btn == self.backBtn) {
         if ([self.superview.subviews containsObject:self.searchView]) {

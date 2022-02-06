@@ -40,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIView *groupView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *showViewWidth;
 @property (nonatomic, strong) dispatch_source_t timer;//倒计时
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
 @end
 
@@ -65,6 +66,7 @@
 }
 - (void)layoutGroupView
 {
+    [self.backBtn setTitle:kLocalizedString(@"BACK_TO_HOME") forState:0];
     self.groupView.hidden = NO;
     self.seeShareBuyBtn.hidden = NO;
     CGFloat viewWidth = 0 ;

@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SFSearchItem.h"
+#import "CustomTextField.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,6 +31,12 @@ typedef NS_ENUM(NSUInteger, SFSearchType) {
 
 /// 假搜索条模式, 点击搜索
 @property (nonatomic, readwrite, copy) void(^fakeTouchBock)(void);
+
+
+//外部暴露  可能需要隐藏
+@property (nonatomic,readwrite, strong) CustomTextField *textField;
+@property (nonatomic, readwrite, strong) UIButton *backBtn;
+- (void)clickRightBtn;
 
 /// 添加搜索数据组
 /// @param sectionData 搜索数据

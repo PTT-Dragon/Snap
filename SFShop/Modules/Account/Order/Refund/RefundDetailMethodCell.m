@@ -9,6 +9,7 @@
 
 @interface RefundDetailMethodCell ()
 @property (weak, nonatomic) IBOutlet UILabel *methodLabel;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
@@ -21,7 +22,8 @@
 - (void)setModel:(RefundDetailModel *)model
 {
     _model = model;
-    NSString *str = ([model.refund.paymentMode isEqualToString:@"A"] && model.refund) ? model.refund.paymentMethodName: @"Bank Transfer";
-    _methodLabel.text = [model.eventId isEqualToString:@"3"] ? @"": [NSString stringWithFormat:@"Refund to %@",str];
+    _label.text = kLocalizedString(@"REFUND_METHOD");
+    NSString *str = ([model.refund.paymentMode isEqualToString:@"A"] && model.refund) ? model.refund.paymentMethodName: kLocalizedString(@"BANK_TRANSFER");
+    _methodLabel.text = str;//[model.eventId isEqualToString:@"3"] ? @"": [NSString stringWithFormat:@"Refund to %@",str];
 }
 @end

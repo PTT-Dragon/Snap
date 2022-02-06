@@ -70,7 +70,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     refundModel *model = self.dataSource[indexPath.row];
-    CGFloat hei = [model.state isEqualToString:@"F"] ? 246: [model.state isEqualToString:@"D"] ? 246: [model.state isEqualToString:@"E"] ? 246: [model.state isEqualToString:@"G"] ? 246: [model.state isEqualToString:@"X"] ? 246: [model.state isEqualToString:@"A"] ? 286: 286;
+    CGFloat hei = [model.state isEqualToString:@"B"] ? 246: [model.state isEqualToString:@"F"] ? 246: [model.state isEqualToString:@"D"] ? 246: [model.state isEqualToString:@"E"] ? 246: [model.state isEqualToString:@"G"] ? 246: [model.state isEqualToString:@"X"] ? 246: [model.state isEqualToString:@"A"] ? 286: 286;
     return  hei;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,6 +79,9 @@
     refundModel *model = self.dataSource[indexPath.row];
     RefundDetailViewController *vc = [[RefundDetailViewController alloc] init];
     vc.orderApplyId = model.orderApplyId;
+    vc.block = ^{
+        [self.tableView.mj_header beginRefreshing];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)loadDatas
