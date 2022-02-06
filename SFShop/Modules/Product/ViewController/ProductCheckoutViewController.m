@@ -162,8 +162,16 @@
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
         make.bottom.equalTo(self.buyView.mas_top);
-        make.top.mas_equalTo(navBarHei);
+        make.top.mas_equalTo(navBarHei+15);
     }];
+    
+    UIView *whiteView = [[UIView alloc] init];
+    [self.view addSubview:whiteView];
+    [whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.left.equalTo(self.view);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    whiteView.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark - UITableViewDelegate
@@ -299,7 +307,7 @@
     } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
         NSMutableArray *logisticsModels = detailModel.logisticsModel.logistics.mutableCopy;
         if (!logisticsModels.count) {
-            [MBProgressHUD autoDismissShowHudMsg:@"None Delivery"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"None Delivery")];
             return;
         }
         DeleveryViewController *vc = [[DeleveryViewController alloc] init];

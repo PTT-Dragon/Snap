@@ -256,15 +256,27 @@
     NSArray *arr = _dataListSource[section];
     RecentlyModel *model = arr.firstObject;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 50)];
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = [UIColor jk_colorWithHexString:@"#f5f5f5"];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 50)];
     if (model) {
         BOOL isToday = [_calendarManager.dateHelper date:model.date isTheSameDayThan:[NSDate date]];
         label.text = isToday ? kLocalizedString(@"Today"): model.createdDateNoH;
     }
+    label.backgroundColor = [UIColor clearColor];
     [view addSubview:label];
     return view;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *arr = _dataListSource[indexPath.section];
@@ -524,13 +536,13 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStyleGrouped];
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.backgroundColor = [UIColor jk_colorWithHexString:@"#f5f5f5"];
         if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }

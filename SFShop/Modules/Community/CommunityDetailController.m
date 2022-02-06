@@ -37,6 +37,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *usefulCntLabel;
 @property (weak, nonatomic) IBOutlet UILabel *replyCntLabel;
 @property (weak, nonatomic) IBOutlet UIView *productContainer;
+@property (weak, nonatomic) IBOutlet UILabel *productName;
+
 @property (weak, nonatomic) IBOutlet UILabel *createDateLabel;
 @property (nonatomic, strong) WKWebView *detailWebView;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
@@ -46,6 +48,7 @@
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
 @property (strong, nonatomic) SRXGoodsImageDetailView *pictureScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *theTitle;
 
 
 @end
@@ -98,6 +101,7 @@
     [self.replyField addTarget:self
                         action:@selector(textFieldChanged:)
               forControlEvents:UIControlEventEditingChanged];
+    self.theTitle.text = kLocalizedString(@"REPLIES");
 }
 
 - (BOOL)shouldCheckLoggedIn {
@@ -193,7 +197,7 @@
     self.replyCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.replyCnt];
     self.createDateLabel.text = [[NSDate dateFromString:self.model.createdDate] dayMonthYear];
     self.likeBtn.selected = [model.isUseful isEqualToString:@"Y"];
-    
+//    self.productName.text = model.publisherName;
     if (self.model.products.count > 0) {
         [self.productContainer.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj removeFromSuperview];

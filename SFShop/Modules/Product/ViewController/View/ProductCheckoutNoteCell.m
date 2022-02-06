@@ -138,7 +138,7 @@
         self.couponPriceLabel.text = kLocalizedString(@"Not_available");
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     } else {
-        self.couponPriceLabel.text = [NSString stringWithFormat:@"%ld available",availableVouchersCount];
+        self.couponPriceLabel.text = [NSString stringWithFormat:@"%ld %@",availableVouchersCount,kLocalizedString(@"AVAILABLE")];
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     }
     self.promoPriceLabel.text = [NSString stringWithFormat:@"- %@",detailModel.feeModel.storeCampaignPrice.currency];

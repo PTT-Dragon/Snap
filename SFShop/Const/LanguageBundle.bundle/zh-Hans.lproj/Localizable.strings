@@ -112,6 +112,7 @@
 //  "SET_SUCCESSFUL" = "设置成功";
 //  "DOWNLOAD" = "下载中";
   "SUBMIT" = "提交";
+"None Delivery" = "没有可用的送货方式";
 
 "FORGOT_PWD" = "忘记密码";
 //  "SETTING" = "设置";
@@ -193,7 +194,7 @@
 //  "MY_FAVORITE" = "我的收藏";
   "CATEGORIES" = "分类";
   "BUY" = "购买";
-//  "REPLIES" = "评论";
+  "REPLIES" = "评论";
 //  "SAYSOMETHING" = "说些什么…";
 //  "TEXTLENGTH" = "内容超出限制";
 //  "PERSONAL_INFORMATION" = "个人信息";
