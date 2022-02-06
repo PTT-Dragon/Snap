@@ -266,6 +266,34 @@
 - (void)loadDatas
 {
     MPWeakSelf(self)
+    UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+    if (!userModel) {
+        NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
+        self.cartModel = [[CartModel alloc] initWithDictionary:aaaaa error:nil];
+        NSInteger i = 0;
+        [self.hasCouponArr removeAllObjects];
+        for (CartListModel *listModel in weakself.cartModel.validCarts) {
+            [self.hasCouponArr addObject:@"N"];
+            NSMutableArray *arr = [NSMutableArray array];
+            [listModel.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+                [listModel.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+                    }];
+                }];
+            }];
+            [self loadCouponsDatasWithStoreId:listModel.storeId productArr:arr row:i];
+            i++;
+        }
+        [self handleDatas];
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+        [self calculateAmount];
+        [self showEmptyView];
+        return;
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:_reduceFlag ? @"true": @"false" forKey:@"reduceFlag"];
     [params setValue:_addModel.contactStdId forKey:@"stdAddrId"];

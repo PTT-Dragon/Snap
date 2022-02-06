@@ -256,6 +256,8 @@
 		1B82AEE5277080B700D75E00 /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AECB277080B700D75E00 /* UIImage+YYWebImage.m */; };
 		1B82AEE6277080B700D75E00 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AECC277080B700D75E00 /* CALayer+YYWebImage.m */; };
 		1B82AEE7277080B700D75E00 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AECE277080B700D75E00 /* YYWebImageOperation.m */; };
+		1B8483BB27AFBDDF0078B9A4 /* OfflineOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8483B927AFBDDF0078B9A4 /* OfflineOrderViewController.m */; };
+		1B8483BC27AFBDDF0078B9A4 /* OfflineOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8483BA27AFBDDF0078B9A4 /* OfflineOrderViewController.xib */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
@@ -1028,6 +1030,9 @@
 		1B82AECC277080B700D75E00 /* CALayer+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+YYWebImage.m"; sourceTree = "<group>"; };
 		1B82AECD277080B700D75E00 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
 		1B82AECE277080B700D75E00 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
+		1B8483B827AFBDDF0078B9A4 /* OfflineOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineOrderViewController.h; sourceTree = "<group>"; };
+		1B8483B927AFBDDF0078B9A4 /* OfflineOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineOrderViewController.m; sourceTree = "<group>"; };
+		1B8483BA27AFBDDF0078B9A4 /* OfflineOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineOrderViewController.xib; sourceTree = "<group>"; };
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
@@ -1813,6 +1818,7 @@
 		1B49D147271E91D8002461ED /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				1B8483B727AFBDCE0078B9A4 /* Offline */,
 				1B478301272A77B300F2A945 /* Refund */,
 				1B74DB1E272539A000B30ECC /* OrderDetail */,
 				1B74DAE627224E4600B30ECC /* OrderModel.h */,
@@ -2324,6 +2330,16 @@
 				1B82AECC277080B700D75E00 /* CALayer+YYWebImage.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		1B8483B727AFBDCE0078B9A4 /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				1B8483B827AFBDDF0078B9A4 /* OfflineOrderViewController.h */,
+				1B8483B927AFBDDF0078B9A4 /* OfflineOrderViewController.m */,
+				1B8483BA27AFBDDF0078B9A4 /* OfflineOrderViewController.xib */,
+			);
+			path = Offline;
 			sourceTree = "<group>";
 		};
 		1B96474B273A6D2C00345DDA /* View */ = {
@@ -3841,6 +3857,7 @@
 				1B74DB4A2728EF7300B30ECC /* SimilarViewController.xib in Resources */,
 				1BD8E7C8275F532100130DCC /* RefundDetailImagesCell.xib in Resources */,
 				1B74DAFF2722A86800B30ECC /* InviteTopCell.xib in Resources */,
+				1B8483BC27AFBDDF0078B9A4 /* OfflineOrderViewController.xib in Resources */,
 				1BF00F6F272FDC5D0081C8E4 /* DistributorRankCell.xib in Resources */,
 				1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */,
 				4B818FD627239C910058038A /* ProductViewController.xib in Resources */,
@@ -4241,6 +4258,7 @@
 				1B74DACE272007D900B30ECC /* SWCenterDatePickerView.m in Sources */,
 				1B82AED9277080B700D75E00 /* YYImageCoder.m in Sources */,
 				1BF44941279B37BF003A38F8 /* ProductShowGroupCell.m in Sources */,
+				1B8483BB27AFBDDF0078B9A4 /* OfflineOrderViewController.m in Sources */,
 				AE6CFFB02721C09E008F18B5 /* CategoryRankHeadSelectorView.m in Sources */,
 				1B82AED1277080B700D75E00 /* YYKVStorage.m in Sources */,
 				1B49D13D271D477F002461ED /* userInfoGenderView.m in Sources */,
@@ -4507,7 +4525,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7.0;
+				CURRENT_PROJECT_VERSION = 7.1;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4548,7 +4566,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7.0;
+				CURRENT_PROJECT_VERSION = 7.1;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

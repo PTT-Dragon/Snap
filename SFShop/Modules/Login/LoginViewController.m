@@ -12,6 +12,7 @@
 #import "UITextField+expand.h"
 #import "NSString+Add.h"
 #import <MJRefresh/MJRefresh.h>
+#import "CartModel.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -165,7 +166,8 @@ static BOOL _passwordSuccess = NO;
         }
     }
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":_accountField.text,@"pwd":login_aes_128_cbc_encrypt(_passwordField.text)} success:^(id  _Nullable response) {
+    NSDictionary *param = @{@"account":_accountField.text,@"pwd":login_aes_128_cbc_encrypt(_passwordField.text)};
+    [SFNetworkManager post:SFNet.account.login parameters:param success:^(id  _Nullable response) {
         NSError *error = nil;
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
@@ -181,6 +183,7 @@ static BOOL _passwordSuccess = NO;
         if (weakself.didLoginBlock)  {
             weakself.didLoginBlock();
         }
+        [weakself addProductToCart];
     } failed:^(NSError * _Nonnull error) {
         weakself.loginBtn.userInteractionEnabled = NO;
         weakself.loginBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
@@ -206,7 +209,43 @@ static BOOL _passwordSuccess = NO;
     _passwordField.secureTextEntry = sender.selected;
 }
 
-
+- (void)addProductToCart
+{
+    NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
+    CartModel *cartModel = [[CartModel alloc] initWithDictionary:aaaaa error:nil];
+    NSMutableArray *arr = [NSMutableArray array];
+    NSDictionary *dic;
+    for (CartListModel *listModel in cartModel.validCarts) {
+        for (CartItemModel *itemModel in listModel.shoppingCarts) {
+            NSDictionary *params =
+            @{
+                @"campaignId":@"3",
+                @"num": itemModel.num,
+                @"offerId": itemModel.offerId,
+                @"productId": itemModel.productId,
+                @"storeId": listModel.storeId,
+                @"unitPrice": @(itemModel.salesPrice),
+                @"contactChannel":@"3",
+                @"addon":itemModel.addon,
+                @"isSelected":@"N"
+            };
+            dic = [NSDictionary dictionaryWithDictionary:params];
+            [arr addObject:params];
+        }
+    }
+    [MBProgressHUD showHudMsg:@""];
+    [SFNetworkManager post:SFNet.cart.cart parameters:dic success:^(id  _Nullable response) {
+        [baseTool updateCartNum];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_failed")];
+    }];
+//    [SFNetworkManager post:SFNet.cart.cart parametersArr:dic success:^(id  _Nullable response) {
+//
+//    } failed:^(NSError * _Nonnull error) {
+//
+//    }];
+}
 
 
 @end
