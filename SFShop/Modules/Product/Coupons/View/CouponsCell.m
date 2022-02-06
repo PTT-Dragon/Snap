@@ -6,6 +6,8 @@
 //USE_NOW
 
 #import "CouponsCell.h"
+#import "NSDate+Helper.h"
+#import "NSString+Fee.h"
 
 @interface CouponsCell ()
 @property (nonatomic, readwrite, strong) UIView *iconBg;
@@ -92,19 +94,14 @@
     } else {
         self.discountLabel.text = discount;
     }
+    if ([item.discountMethod isEqualToString:@"DISC"]) {
+        self.discountLabel.text = [NSString stringWithFormat:@"%@ %.2f%% Min.spend %.2f",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0ld",item.discountAmount] currencyFloat],[[NSString stringWithFormat:@"%ld",item.thAmount] currencyFloat]];
+    }else{
+        self.discountLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0ld",item.discountAmount] currency]];
+    }
     
     if (item.effDate.length > 0 && item.expDate.length > 0) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSDate *dateS = [formatter dateFromString:item.effDate];
-        [formatter setDateFormat:@"dd MMMM yyyy"];
-        NSString *start = [formatter stringFromDate:dateS];
-        
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSDate *dateE = [formatter dateFromString:item.expDate];
-        [formatter setDateFormat:@"dd MMMM yyyy"];
-        NSString *end = [formatter stringFromDate:dateE];
-        self.expireContentLabel.text = [NSString stringWithFormat:@"%@ - %@",start,end];
+        self.expireContentLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:item.effDate] dayMonthYear],[[NSDate dateFromString:item.expDate] dayMonthYear]];
     }
     
     if (item.isSelected) {
@@ -136,7 +133,7 @@
 - (UILabel *)iconTitlelabel {
     if (_iconTitlelabel == nil) {
         _iconTitlelabel = [[UILabel alloc] init];
-        _iconTitlelabel.text = @"Discount";
+        _iconTitlelabel.text = kLocalizedString(@"DISCOUNT");
         _iconTitlelabel.textColor = [UIColor whiteColor];
         _iconTitlelabel.font = [UIFont systemFontOfSize:12];
         _iconTitlelabel.textAlignment = NSTextAlignmentCenter;
@@ -166,7 +163,7 @@
 - (UILabel *)expireTitleLabel {
     if (_expireTitleLabel == nil) {
         _expireTitleLabel = [[UILabel alloc] init];
-        _expireTitleLabel.text = @"Expiry Date";
+        _expireTitleLabel.text = kLocalizedString(@"EXPIRY_DATE");
         _expireTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
         _expireTitleLabel.font = [UIFont systemFontOfSize:10];
         _expireTitleLabel.textAlignment = NSTextAlignmentLeft;

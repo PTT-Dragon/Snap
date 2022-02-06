@@ -199,6 +199,9 @@
                 vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
                 vc.dataArray = availableCoupons;
                 vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
+                    if (!item) {
+                        return;
+                    }
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
                     [MBProgressHUD showHudMsg:@""];
                     [CheckoutManager.shareInstance calfeeByStoreCouponItem:item storeId:detailModel.storeId complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
@@ -206,7 +209,10 @@
                         [MBProgressHUD hideFromKeyWindow];
                     }];
                 };
-                [self presentViewController:vc animated:YES completion:nil];
+                [self addChildViewController:vc];
+                [self.view addSubview:vc.view];
+                vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+//                [self presentViewController:vc animated:YES completion:nil];
             }
                 break;
             case ProductCheckoutCellEvent_GotoAddress: {

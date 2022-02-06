@@ -89,15 +89,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self dismissViewControllerAnimated:YES completion:^{
-        CouponItem *item = self.dataArray[indexPath.section];
-        BOOL isSelected = item.isSelected;
-        for (CouponItem *item in self.dataArray) {
-            item.isSelected = NO;
-        }
-        item.isSelected = !isSelected;
-        !self.selectedCouponBlock?:self.selectedCouponBlock(item.isSelected?item:nil);
-    }];
+    CouponItem *item = self.dataArray[indexPath.section];
+    BOOL isSelected = item.isSelected;
+    for (CouponItem *item in self.dataArray) {
+        item.isSelected = NO;
+    }
+    item.isSelected = !isSelected;
+    !self.selectedCouponBlock?:self.selectedCouponBlock(item.isSelected?item:nil);
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 #pragma mark - Get and Set
@@ -106,7 +106,8 @@
         _maskView = [[UIView alloc] init];
         _maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
         [_maskView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
         }];
     }
     return _maskView;
@@ -116,7 +117,7 @@
     if (_titleView == nil) {
         _titleView = [[UILabel alloc] init];
         _titleView.backgroundColor = [UIColor whiteColor];
-        _titleView.text = @"Coupons";
+        _titleView.text = kLocalizedString(@"COUPONS");
         _titleView.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _titleView.textAlignment = NSTextAlignmentCenter;
         _titleView.font = [UIFont systemFontOfSize:14];
