@@ -49,6 +49,7 @@ typedef enum :NSUInteger{
         _provinceBtn.titleLabel.font = CHINESE_SYSTEM(14);
         [_provinceBtn setTitle:streeModel.stdAddr  forState:0];
         _provinceBtn.titleLabel.numberOfLines = 0;
+        [_provinceBtn setTitle:streeModel ? streeModel.stdAddr:@"Street"  forState:0];
         [self addSubview:_provinceBtn];
         [_provinceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.bottom.top.mas_equalTo(self);
@@ -215,11 +216,9 @@ typedef enum :NSUInteger{
     }
     if (!_selCityAreaMoel) {
         [_cityBtn setTitle:@"City" forState:0];
-    }
-    if (!_selDistrictAreaMoel) {
+    }else if (!_selDistrictAreaMoel) {
         [_DistrictBtn setTitle:@"District" forState:0];
-    }
-    if (!_selStreetAreaMoel) {
+    }else if (!_selStreetAreaMoel) {
         [_streetBtn setTitle:@"Street" forState:0];
     }
 }

@@ -44,7 +44,7 @@
     [_allOrderBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
     self.toPayLabel.text = kLocalizedString(@"TO_PAY");
     self.toShipLabel.text = kLocalizedString(@"TO_SHIP");
-    self.toreceiveLabel.text = kLocalizedString(@"TORECEIVE");
+    self.toreceiveLabel.text = kLocalizedString(@"TO_RECEIVE");
     self.ratingLabel.text = kLocalizedString(@"RATING");
     self.returnLabel.text = kLocalizedString(@"RETURN");
     _toShipCountLabel.layer.borderWidth = 1;

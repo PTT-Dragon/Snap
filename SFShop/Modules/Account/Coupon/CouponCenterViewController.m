@@ -8,13 +8,18 @@
 #import "CouponCenterViewController.h"
 #import "CouponCenterChildViewController.h"
 #import "CouponModel.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
-@interface CouponCenterViewController ()<VTMagicViewDelegate, VTMagicViewDataSource>
+@interface CouponCenterViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,BaseNavViewDelegate>
 @property(nonatomic, strong) NSArray *menuList;
 @property(nonatomic, strong) NSArray<NSString *> *articleCatgIdList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) NSMutableArray *titleList;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *moreView;
+@property (nonatomic,strong) VTMagicController *magicController;
 
 @end
 
@@ -22,12 +27,34 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_moreView removeFromSuperview];
+    _moreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_moreView];
+    [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = kLocalizedString(@"Coupon_Center");
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"Coupon_Center")];
     _dataSource = [NSMutableArray array];
     _titleList = [NSMutableArray array];
     [self loadDatas];
@@ -50,16 +77,12 @@
     for (CouponCategoryModel *model in self.menuList) {
         [self.titleList addObject:model.couponCatgName];
     }
-    
-    self.magicView.navigationColor = [UIColor whiteColor];
-    self.magicView.sliderColor = [UIColor blackColor];
-    self.magicView.sliderHeight = 1.0f;
-    self.magicView.layoutStyle = VTLayoutStyleDivide;
-    self.magicView.switchStyle = VTSwitchStyleDefault;
-    self.magicView.navigationHeight = 40.f;
-    self.magicView.dataSource = self;
-    self.magicView.delegate = self;
-    [self.magicView reloadData];
+    [self addChildViewController:self.magicController];
+    [self.view addSubview:_magicController.view];
+    _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei);
+    self.currentMenuIndex = self.magicController.currentPage;
+    [self.magicController switchToPage:self.currentMenuIndex animated:0];
+    [_magicController.magicView reloadData];
 }
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
@@ -102,5 +125,21 @@
 
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex {
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
+}
+
+- (VTMagicController *)magicController
+{
+    if (!_magicController) {
+        _magicController = [[VTMagicController alloc] init];
+        _magicController.magicView.navigationColor = [UIColor whiteColor];
+        _magicController.magicView.sliderColor = [UIColor blackColor];
+        _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
+        _magicController.magicView.switchStyle = VTSwitchStyleDefault;
+        _magicController.magicView.navigationHeight = 40.f;
+        _magicController.magicView.dataSource = self;
+        _magicController.magicView.delegate = self;
+        _magicController.magicView.scrollEnabled = NO;
+    }
+    return _magicController;
 }
 @end

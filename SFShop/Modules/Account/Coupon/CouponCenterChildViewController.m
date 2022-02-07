@@ -28,7 +28,7 @@
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.bottom.equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(0);
+        make.top.mas_equalTo(self.view.mas_top).offset(10);
     }];
     [self loadDatas];
 }

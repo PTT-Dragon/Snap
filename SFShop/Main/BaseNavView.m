@@ -25,6 +25,10 @@
 
 @property (nonatomic, strong) UIView *lineView;
 
+@property (nonatomic, strong) UIImageView *anchorImgView;
+
+@property (nonatomic, strong) UILabel *anchorNameLabel;
+
 @property (nonatomic, copy) NSString *currentTitle;
 
 @end
@@ -62,8 +66,12 @@
     [self addSubview:self.titleLabel];
     [self addSubview:self.clearBtn];
     [self addSubview:self.clearLabel];
+    [self addSubview:self.anchorImgView];
+    [self addSubview:self.anchorNameLabel];
     self.clearBtn.hidden = YES;
     self.clearLabel.hidden = YES;
+    self.anchorImgView.hidden = YES;
+    self.anchorNameLabel.hidden = YES;
     [self addSubview:self.searchBtn];
     [self addSubview:self.shareBtn];
     [self addSubview:self.moreBtn];
@@ -109,6 +117,16 @@
         make.left.right.mas_equalTo(self);
         make.height.mas_equalTo(1);
     }];
+    [self.anchorImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(30);
+        make.left.mas_equalTo(self.backBtn.mas_right).offset(10);
+        make.centerY.equalTo(self.backBtn);
+    }];
+    [self.anchorNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.anchorImgView.mas_right).offset(7);
+        make.centerY.equalTo(self.anchorImgView);
+        make.width.mas_equalTo(200);
+    }];
 }
 
 - (void)initNotification {
@@ -153,7 +171,23 @@
         self.clearLabel.hidden = NO;
     }
 }
-
+- (void)updateIsShowArticleTop:(BOOL)isOnly
+{
+    if (isOnly) {
+        self.anchorImgView.hidden = NO;
+        self.anchorNameLabel.hidden = NO;
+        self.shareBtn.hidden = NO;
+    } else {
+        self.anchorImgView.hidden = NO;
+        self.anchorNameLabel.hidden = NO;
+        self.shareBtn.hidden = NO;
+    }
+}
+- (void)configDataWithAnchorName:(NSString *)title anchorImgUrl:(NSString *)imgUrl
+{
+    self.anchorNameLabel.text = title;
+    [self.anchorImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(imgUrl)]];
+}
 - (void)showMoreView {
     self.titleLabel.text = kLocalizedString(@"DIRECT_FUNCTION");
     self.backBtn.hidden = YES;
@@ -238,6 +272,24 @@
         _titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _titleLabel;
+}
+
+- (UILabel *)anchorNameLabel {
+    if (!_anchorNameLabel) {
+        _anchorNameLabel = [[UILabel alloc] init];
+        _anchorNameLabel.textColor = UIColor.blackColor;
+        _anchorNameLabel.font = [UIFont boldSystemFontOfSize:14];
+    }
+    return _anchorNameLabel;
+}
+
+- (UIImageView *)anchorImgView
+{
+    if (!_anchorImgView) {
+        _anchorImgView = [[UIImageView alloc] init];
+        _anchorImgView.contentMode = UIViewContentModeScaleToFill;
+    }
+    return _anchorImgView;
 }
 - (UILabel *)clearLabel {
     if (!_clearLabel) {

@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateIsOnlyShowMoreBtn:(BOOL)isOnly;
 - (void)updateIsShowClearBtn:(BOOL)isOnly;
+- (void)updateIsShowArticleTop:(BOOL)isOnly;
+- (void)configDataWithAnchorName:(NSString *)title anchorImgUrl:(NSString *)imgUrl;
 
 @end
 

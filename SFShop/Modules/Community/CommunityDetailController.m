@@ -82,6 +82,12 @@
         make.top.mas_equalTo(self.navView.mas_bottom);
     }];
 }
+- (void)baseNavViewDidClickShareBtn:(BaseNavView *)navView
+{
+    //http://47.243.193.90:8064/community-details/11
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/community-details/%@",Host,self.articleId];
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -89,6 +95,8 @@
     _navView = [[BaseNavView alloc] init];
     _navView.delegate = self;
     [_navView updateIsOnlyShowMoreBtn:YES];
+    [_navView updateIsShowArticleTop:YES];
+    
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
@@ -191,6 +199,7 @@
     _model = model;
     self.title = self.model.publisherName;
     [_headIV sd_setImageWithURL: [NSURL URLWithString: SFImage(self.model.profilePicture)]];
+    [_navView configDataWithAnchorName:self.model.publisherName anchorImgUrl:self.model.profilePicture];
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: self.model.articleDetail] baseURL:nil];
     self.viewCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.viewCnt];
     self.usefulCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.usefulCnt];
