@@ -43,6 +43,7 @@
     _campaignsBtn.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
     [_additonBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_subtractBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
+    [_selBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skuAction)];
     [_skuLabel addGestureRecognizer:tap];

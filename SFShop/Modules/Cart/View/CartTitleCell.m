@@ -7,6 +7,7 @@
 
 #import "CartTitleCell.h"
 #import "UIButton+time.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface CartTitleCell ()
 @property (weak, nonatomic) IBOutlet UIButton *selBtn;
@@ -27,6 +28,7 @@
     [_selBtn setImage:[UIImage imageNamed:@"Vector"] forState:0];
     [_selBtn setImage:[UIImage imageNamed:@"已选中"] forState:1];
     _selBtn.mm_acceptEventInterval = 2;
+    [_selBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
 }
 
 - (void)setModel:(CartListModel *)model
