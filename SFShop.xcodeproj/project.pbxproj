@@ -425,6 +425,7 @@
 		4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEA926FCB13300E3C832 /* FMDBManager.m */; };
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
 		4BEB1223275CB98A00D5342A /* ProductCalcFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */; };
+		6257498A27B0CD1400518950 /* UITableView+ShowFootTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6257498927B0CD1400518950 /* UITableView+ShowFootTableView.m */; };
 		62DFB59C27A276580009CCC6 /* UITabBar+CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DFB59B27A276580009CCC6 /* UITabBar+CustomBadge.m */; };
 		62E4289527A228E500A02F91 /* SRXGoodsImageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289327A228E500A02F91 /* SRXGoodsImageDetailView.m */; };
 		62E428D027A2292A00A02F91 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289927A2292900A02F91 /* SDPhotoBrowser.m */; };
@@ -1316,6 +1317,8 @@
 		4BEB1221275CB98A00D5342A /* ProductCalcFeeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCalcFeeModel.h; sourceTree = "<group>"; };
 		4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCalcFeeModel.m; sourceTree = "<group>"; };
 		50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
+		6257498827B0CD1400518950 /* UITableView+ShowFootTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+ShowFootTableView.h"; sourceTree = "<group>"; };
+		6257498927B0CD1400518950 /* UITableView+ShowFootTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+ShowFootTableView.m"; sourceTree = "<group>"; };
 		62DFB59A27A276580009CCC6 /* UITabBar+CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+CustomBadge.h"; sourceTree = "<group>"; };
 		62DFB59B27A276580009CCC6 /* UITabBar+CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+CustomBadge.m"; sourceTree = "<group>"; };
 		62E4289327A228E500A02F91 /* SRXGoodsImageDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRXGoodsImageDetailView.m; sourceTree = "<group>"; };
@@ -2784,6 +2787,8 @@
 				8E11A8CD278DD14D005D1FC3 /* UIViewController+parentViewController.m */,
 				8E11A8CF278DD1F4005D1FC3 /* UIView+Response.h */,
 				8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */,
+				6257498827B0CD1400518950 /* UITableView+ShowFootTableView.h */,
+				6257498927B0CD1400518950 /* UITableView+ShowFootTableView.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4282,6 +4287,7 @@
 				1B6C52AE275B672200A1C617 /* ZLPhotoActionSheet.m in Sources */,
 				1B6C529A275B672200A1C617 /* ZLProgressView.m in Sources */,
 				1BE94C1F274B762900B588F4 /* PublicShareView.m in Sources */,
+				6257498A27B0CD1400518950 /* UITableView+ShowFootTableView.m in Sources */,
 				1BD8E798275CF69C00130DCC /* RelationOrderDetailViewController.m in Sources */,
 				AE8F32C7272E95FA008E3DD8 /* ProductCheckoutGoodsCell.m in Sources */,
 				4BBFEEA126FCAE1400E3C832 /* Enums.m in Sources */,
