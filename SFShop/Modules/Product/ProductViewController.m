@@ -1048,7 +1048,7 @@
                 [itemArr2 addObject:itemModel];
                 listModel.shoppingCarts = itemArr2;
             }
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
             self.cartNumLabel.text = modelsd.validCarts.count == 0 ? @"": [NSString stringWithFormat:@"%ld",modelsd.validCarts.count];
             self.cartNumLabel.hidden = modelsd.validCarts.count == 0 ? YES: NO;
             modelsd.totalDiscount = 0;

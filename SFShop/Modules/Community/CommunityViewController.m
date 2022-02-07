@@ -175,7 +175,7 @@
 - (CommunitySelectView *)selectView
 {
     if (!_selectView) {
-        _selectView = [[CommunitySelectView alloc] initWithFrame:CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height)];
+        _selectView = [[CommunitySelectView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height)];
         _selectView.hidden = YES;
         _selectView.titleModel = self.dataModel;
         MPWeakSelf(self)

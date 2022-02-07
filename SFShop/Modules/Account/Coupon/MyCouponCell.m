@@ -9,6 +9,7 @@
 #import "UseCouponViewController.h"
 #import "NSString+Fee.h"
 #import "NSDate+Helper.h"
+#import "LoginViewController.h"
 
 @interface MyCouponCell ()
 @property (weak, nonatomic) IBOutlet UIView *discountView;
@@ -58,6 +59,12 @@
 - (void)useCouponAction
 {
     if ([_model.userCouponState isEqualToString:@"A"] || !_model.userCouponState) {
+        UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+        if (!userModel) {
+            LoginViewController *vc = [[LoginViewController alloc] init];
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+            return;
+        }
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
         vc.couponModel = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];

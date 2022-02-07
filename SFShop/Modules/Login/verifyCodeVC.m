@@ -87,7 +87,7 @@
             NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
             NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
             dispatch_async(dispatch_get_main_queue(), ^{
-                weakself.countdownLabel.text = [NSString stringWithFormat:@"%@ %ld:%ld:%ld",kLocalizedString(@"RESEND_CODE_IN"),hours,minute,second];
+                weakself.countdownLabel.text = [NSString stringWithFormat:@"%@ %02ld:%02ld:%02ld",kLocalizedString(@"RESEND_CODE_IN"),hours,minute,second];
             });
             timeout--;
         }
