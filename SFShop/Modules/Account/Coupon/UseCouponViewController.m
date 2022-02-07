@@ -403,7 +403,7 @@
         backItem.icon = @"nav_back";
         backItem.itemActionBlock = ^(SFSearchState state, SFSearchModel *model,BOOL isSelected) {
             if (state == SFSearchStateInUnActive || state == SFSearchStateInFocuActive) {
-                [self.tabBarController setSelectedIndex:0];
+//                [self.tabBarController setSelectedIndex:0];
             }
         };
         SFSearchItem *rightItem = [SFSearchItem new];
