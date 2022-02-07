@@ -25,8 +25,8 @@
 //  "LET_ME_START_A_GROUP" = "Buat group";
 //  "FIND_OTHER_ACTIVITIES" = "Kegiatan lainnya";
 //  "SHARE_SHOP" = "Share Shop";
-//  "NO_AVAILABLE" = "Not available";
-//  "AVAILABLE_COUPON" = "{num} kupon";
+  "NO_AVAILABLE" = "Not available";
+  "AVAILABLE_COUPON" = "kupon";
 //  "SALES" = "Sales";
 //  "VIEW_PRODUCT_LIST" = "View Product List";
 //  "MY_SALES_RANKING" = "My Sales Ranking";
@@ -401,7 +401,7 @@
   "PLEASE_FILL_IN_COMMENTS" = "Silahkan isi komentar anda";
 //  "ERROR" = "Error";
 //  "CODE_INCORRECT_REINPUT" = "Kode verifikasi salah; mohon masukan ulang.";
-//  "NOT_AVAILABLE" = "Tidak tersedia";
+  "NOT_AVAILABLE" = "Tidak tersedia";
 //  "ORDER_LIMIT" = "Batas pesanan";
 "ENTER_CODE" = "Masukkan 6 Kode angka";
 //  "PRODUCT_DETAIL" = "Rincian produk";
@@ -466,7 +466,7 @@
 //  "NOTES" = "Catatan";
 //  "STORE_PROMOTION" = "Promo dari toko";
   "INPUT_MESSAGE" = "Masukkan pesan";
-//  "DELIVERY_RANGE" = "Area pengiriman";
+  "DELIVERY_RANGE" = "Area pengiriman";
 //  "DELIVERY_MEHOD" = "Metode Pengiriman";
 //  "PAYMENT_UNSUCCESSFUL" = "Pembayaran Gagal";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "Kami tidak dapat memproses permintaan Anda kali ini.";

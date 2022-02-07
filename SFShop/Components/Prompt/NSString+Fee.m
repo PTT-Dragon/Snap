@@ -21,6 +21,7 @@
 - (NSString *)currency {
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
+    if (self.currencyFloat == 0) {precision = 0;}//当价格为0时, 不需要显示小数
     NSString *precisionStr = [NSString stringWithFormat:@"%%.%ldf", precision];//精度
     NSString *thousandthStr = [[NSString stringWithFormat:precisionStr,self.currencyFloat] thousandthFormat:precision];//千位分割显示
     NSString *fullStr = [NSString stringWithFormat:@"%@ %@",currency,thousandthStr];//添加货币符号

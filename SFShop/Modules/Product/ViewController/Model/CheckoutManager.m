@@ -231,7 +231,7 @@ static CheckoutManager *_instance = nil;
 - (void)calfeeByStoreCouponItem:(CouponItem *)storeCouponItem storeId:(NSInteger)storeId complete:(void(^)(BOOL isSuccess, ProductCheckoutModel *checkoutModel))complete {
     NSAssert(self.cacheData, @"没初始化ProductCheckoutModel,请在 loadCheckoutData 函数返回数据之后调用");
     NSAssert(storeId > 0, @"商店id不能为空");
-    NSAssert(storeCouponItem, @"选中店铺优惠券不能为空");
+//    NSAssert(storeCouponItem, @"选中店铺优惠券不能为空");
     for (ProductDetailModel *item in self.cacheData.productModels) {
         if (item.storeId == storeId) {
             item.currentStoreCoupon = storeCouponItem;
