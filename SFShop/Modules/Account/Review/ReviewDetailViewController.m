@@ -11,6 +11,8 @@
 #import "ReviewPhrchaseCell.h"
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import "ProductViewController.h"
+#import "ProductDetailModel.h"
 
 @interface ReviewDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -105,6 +107,14 @@
     return 120;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+    EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+    ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.offerId = self.offerId;
+    vc.productId = evaModel.product.productId;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (UITableView *)tableView
 {

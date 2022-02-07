@@ -64,6 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductItemModel: JSONModel
 
+@property (nonatomic,copy) NSString <Optional>*orderItemId;
 @property(nonatomic, assign) NSInteger productId;
 @property(nonatomic, strong) NSString *productName;
 @property(nonatomic, strong) NSString *productRemark;

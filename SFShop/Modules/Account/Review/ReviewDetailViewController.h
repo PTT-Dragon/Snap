@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ReviewDetailViewController : BaseViewController
 @property (nonatomic,copy) NSString *orderItemId;
+@property (nonatomic,assign) NSInteger offerId;
+
 @end
 
 NS_ASSUME_NONNULL_END

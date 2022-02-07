@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductReviewDetailViewController : UIViewController
 @property (nonatomic,strong) ProductEvalationModel *model;
+/**
+ offerId
+ */
+@property (nonatomic, assign) NSInteger offerId;
 @end
 
 NS_ASSUME_NONNULL_END

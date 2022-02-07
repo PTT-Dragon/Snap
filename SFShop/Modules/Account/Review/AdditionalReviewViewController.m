@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
+@property (nonatomic,strong) NSMutableArray *selectAssets;
 
 @end
 
@@ -162,6 +163,7 @@
     ac.configuration.maxPreviewCount = 10;
     ac.configuration.useSystemCamera = YES;
     ac.configuration.allowSelectVideo = NO;
+    ac.arrSelectedAssets = self.selectAssets;
 
     //如调用的方法无sender参数，则该参数必传
     ac.sender = [baseTool getCurrentVC];
@@ -171,6 +173,8 @@
         //your codes
         [weakself.imgArr removeAllObjects];
         [weakself.imgArr addObjectsFromArray:images];
+        [weakself.selectAssets removeAllObjects];
+        [weakself.selectAssets addObjectsFromArray:assets];
         if (images.count != 9) {
             [weakself.imgArr addObject:@"1"];
         }
@@ -276,5 +280,13 @@
     }
     return _countView;
 }
+
+-(NSMutableArray *)selectAssets {
+    if (!_selectAssets) {
+        _selectAssets = [[NSMutableArray alloc] init];
+    }
+    return _selectAssets;
+}
+
 
 @end

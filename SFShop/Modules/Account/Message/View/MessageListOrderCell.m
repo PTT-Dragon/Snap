@@ -52,7 +52,7 @@
     }];
     [_bgView addSubview:self.imgView];
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(56);
+        make.width.height.mas_equalTo(66);
         make.left.mas_equalTo(_bgView.mas_left).offset(12);
         make.top.mas_equalTo(_bgView.mas_top).offset(56);
     }];
@@ -95,7 +95,7 @@
     self.titleLabel.text = model.message.subject;
     self.storeNameLabel.text = model.store.storeName;
     [self.storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.store.logoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
-    _timeLabel.text = [[NSDate dateFromString:model.message.sendTime] dayMonthYear];
+    _timeLabel.text = [[NSDate dateFromString:model.message.sendTime] dayWeek];
     _moreItemLabel.hidden = [model.product.productNum isEqualToString:@"1"];
     _moreItemLabel.text = [NSString stringWithFormat:@"%@%@",model.product.productNum,kLocalizedString(@"ITEM")];
 }
@@ -130,6 +130,7 @@
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.numberOfLines = 1;
         _timeLabel.font = CHINESE_SYSTEM(14);
+        _timeLabel.textColor = [UIColor jk_colorWithHexString:@"#999999"];
     }
     return _timeLabel;
 }
