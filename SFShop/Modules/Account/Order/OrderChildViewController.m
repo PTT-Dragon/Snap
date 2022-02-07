@@ -53,9 +53,7 @@
     self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         self.pageIndex += 1;
         [self loadDatas];
-    }];
-    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 50, 0)];
-    
+    }];    
     [self.tableView.mj_header beginRefreshing];
     [self.view addSubview:self.emptyView];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
