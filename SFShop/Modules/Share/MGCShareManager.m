@@ -9,6 +9,7 @@
 #import <UShareUI/UShareUI.h>
 #import "UIViewController+parentViewController.h"
 #import "MGCShareView.h"
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
 @implementation MGCShareManager
 
@@ -29,9 +30,24 @@
         //创建分享消息对象
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
         if (type == UMSocialPlatformType_Facebook) {
-            UMShareWebpageObject *webObje = [UMShareWebpageObject shareObjectWithTitle:@"" descr:@"" thumImage:nil];
-            webObje.webpageUrl = message;
-            messageObject.shareObject = webObje;            
+//            UMShareWebpageObject *webObje = [UMShareWebpageObject shareObjectWithTitle:@"" descr:@"" thumImage:nil];
+//            webObje.webpageUrl = message;
+//            messageObject.shareObject = webObje;
+            
+            FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+            NSString *urlStr = [message stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            content.contentURL = [NSURL URLWithString:urlStr];
+
+            FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
+            dialog.fromViewController = [UIViewController currentTopViewController];
+            dialog.shareContent = content;
+            if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_Facebook]) {
+                dialog.mode = FBSDKShareDialogModeNative;
+            } else {
+                dialog.mode = FBSDKShareDialogModeAutomatic;
+            }
+            [dialog show];
+            return;
         } else {
             messageObject.text = message;
         }
