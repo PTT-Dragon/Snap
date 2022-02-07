@@ -366,6 +366,12 @@ static NSDateFormatter *_displayFormatter = nil;
     NSString *year = [NSString stringWithFormat:@"%ld",self.year];
     return [NSString stringWithFormat:@"%ld %@ %@",self.day,[self monthEn:self.month],year.length == 4 ? [year substringFromIndex:2]:year];
 }
+
+- (NSString *)dayWeek
+{
+    return [NSString stringWithFormat:@"%02lu %@",(unsigned long)self.day,[self monthEn:self.month]];
+}
+
 - (NSString *)dayMonthYearHHMM
 {
     NSString *year = [NSString stringWithFormat:@"%ld",self.year];

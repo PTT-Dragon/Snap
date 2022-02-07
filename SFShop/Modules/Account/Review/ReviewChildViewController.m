@@ -172,7 +172,9 @@
     OrderModel *model = self.dataSource[indexPath.section];
     if (_type == 2) {
         ReviewDetailViewController *vc = [[ReviewDetailViewController alloc] init];
+        orderItemsModel *subModel = model.orderItems[indexPath.row];
         vc.orderItemId = [model.orderItems[indexPath.row] orderItemId];
+        vc.offerId = [subModel.offerId intValue];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }

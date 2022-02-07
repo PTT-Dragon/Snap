@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *storeId;
 @property (nonatomic,copy) NSString *storeName;
 @property (nonatomic,copy) NSString *storeLogoUrl;
+//加载html片段
++ (NSAttributedString *)attrHtmlStringFrom:(NSString *)str;
 @end
 
 @interface MessageContactModel : JSONModel

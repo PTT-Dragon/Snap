@@ -104,6 +104,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
     ProductReviewDetailViewController *vc = [[ProductReviewDetailViewController alloc] init];
+    vc.offerId = self.offerId;
     vc.model = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
