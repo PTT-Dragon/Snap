@@ -74,8 +74,12 @@
             }
         }];
         [params setValue:catgId forKey:@"catgId"];
-        [params setValue:@(_rankModel.priceModel.minPrice) forKey:@"startPrice"];
-        [params setValue:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
+        if (_rankModel.priceModel.minPrice > -1) {
+            [params setObject:@(_rankModel.priceModel.minPrice) forKey:@"startPrice"];
+        }
+        if (_rankModel.priceModel.maxPrice > -1) {
+            [params setObject:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
+        }
     }
     [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
         [self.tableView.mj_header endRefreshing];
