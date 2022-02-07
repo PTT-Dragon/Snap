@@ -83,7 +83,7 @@
 //  "DISTRIBUTOR_CENTER" = "Distributor Center";
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "The following products are insufficient in stock; please adjust the purchase quantity.";
 //  "COUPON_CENTER" = "Voucher Center";
-  "SHOPPING_CART" = "Shopping Cart";
+  "SHOPPING_CART" = "SHOPPING CART";
   "ADD_TO_CART" = "ADD TO CART";
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
   "FIND_SIMILAR" = "FIND SIMILAR";

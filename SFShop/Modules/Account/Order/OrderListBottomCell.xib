@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUz-FI-VE4">
-                        <rect key="frame" x="293" y="69" width="43" height="24"/>
+                        <rect key="frame" x="293" y="61" width="43" height="24"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="UGI-Yl-mmY"/>
@@ -58,7 +58,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRi-m8-JJ8">
-                        <rect key="frame" x="238" y="69" width="43" height="24"/>
+                        <rect key="frame" x="238" y="61" width="43" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="Txj-x5-xMP"/>
                         </constraints>
@@ -215,7 +215,7 @@
                     <constraint firstItem="gos-1h-OHP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="r4w-DL-sQz"/>
                     <constraint firstAttribute="trailing" secondItem="OUz-FI-VE4" secondAttribute="trailing" constant="7" id="usZ-cW-801"/>
                     <constraint firstItem="Ldz-e4-oJh" firstAttribute="centerY" secondItem="gos-1h-OHP" secondAttribute="centerY" id="uvQ-Dg-z3I"/>
-                    <constraint firstAttribute="bottom" secondItem="OUz-FI-VE4" secondAttribute="bottom" constant="9" id="zRU-Px-BQU"/>
+                    <constraint firstAttribute="bottom" secondItem="OUz-FI-VE4" secondAttribute="bottom" constant="17" id="zRU-Px-BQU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
