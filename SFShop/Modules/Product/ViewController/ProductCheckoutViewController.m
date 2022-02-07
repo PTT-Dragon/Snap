@@ -204,7 +204,7 @@
                     [MBProgressHUD autoDismissShowHudMsg:@"None Coupons"];
                     return;
                 }
-                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+//                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
                 vc.dataArray = availableCoupons;
                 vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
                     if (!item) {
@@ -299,7 +299,7 @@
             return;
         }
         CouponsViewController *vc = [[CouponsViewController alloc] init];
-        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+//        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
         vc.dataArray = pltAvailableCoupons;
         vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
@@ -309,7 +309,10 @@
                 [MBProgressHUD hideFromKeyWindow];
             }];
         };
-        [self presentViewController:vc animated:YES completion:nil];
+        [self addChildViewController:vc];
+        [self.view addSubview:vc.view];
+        vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+//        [self presentViewController:vc animated:YES completion:nil];
     } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
         NSMutableArray *logisticsModels = detailModel.logisticsModel.logistics.mutableCopy;
         if (!logisticsModels.count) {

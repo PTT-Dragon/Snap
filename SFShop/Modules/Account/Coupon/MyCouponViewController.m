@@ -116,7 +116,7 @@
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor whiteColor];
         _magicController.magicView.sliderColor = [UIColor blackColor];
-        _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
+        _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.navigationHeight = 40.f;
         _magicController.magicView.dataSource = self;

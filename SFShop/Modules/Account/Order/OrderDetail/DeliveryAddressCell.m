@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toEmail;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameTop;
 
 @end
 
@@ -34,6 +35,9 @@
 }
 - (void)setRefundContent:(RefundDetailModel *)model
 {
+    _phoneLabel.textColor = [UIColor blackColor];
+    _contentLabel.textColor = [UIColor blackColor];
+    _nameTop.constant = 18;
     _toBottom.priority = 750;
     _toEmail.priority = 250;
     _titleLabel.text = kLocalizedString(@"RETURN_ADDRESS");

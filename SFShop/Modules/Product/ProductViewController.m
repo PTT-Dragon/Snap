@@ -177,7 +177,7 @@
         make.height.mas_equalTo(navBarHei);
     }];
     [_navView configDataWithTitle:kLocalizedString(@"Product_detail")];
-    _shareBuyLabel.text = kLocalizedString(@"SHAREBUY");
+    _shareBuyLabel.text = kLocalizedString(@"Sharebuy");
     _deliveryTitleLabel.text = kLocalizedString(@"Delivery");
     _detailTitleLabel.text = kLocalizedString(@"DETAIL");
     _variationsTitleLabel.text = kLocalizedString(@"VARIATIONS");
@@ -923,7 +923,7 @@
             [MBProgressHUD hideFromKeyWindow];
             weakself.selProductModel.isCollection = @"1";
             [weakself setSelProductModel:weakself.selProductModel];
-            [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+//            [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
         }];
@@ -1048,6 +1048,7 @@
                 [itemArr2 addObject:itemModel];
                 listModel.shoppingCarts = itemArr2;
             }
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
             self.cartNumLabel.text = modelsd.validCarts.count == 0 ? @"": [NSString stringWithFormat:@"%ld",modelsd.validCarts.count];
             self.cartNumLabel.hidden = modelsd.validCarts.count == 0 ? YES: NO;
             modelsd.totalDiscount = 0;

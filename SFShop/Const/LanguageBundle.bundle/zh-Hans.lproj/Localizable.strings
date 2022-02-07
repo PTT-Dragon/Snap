@@ -531,6 +531,7 @@
 "Review_detail" = "评论详情";
 "Delivery_address" = "收货地址";
 "Delivery" = "发货";
+"DELIVERY" = "发货";
 "Not_available" = "Not Available";
 "Notes" = "笔记";
 "Voucher" = "凭证";

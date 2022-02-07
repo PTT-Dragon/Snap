@@ -26,7 +26,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-80);
-        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei+10);
+        make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
     [self.view addSubview:self.btn];
     [self.btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -125,7 +125,7 @@
         _btn = [UIButton buttonWithType:UIButtonTypeCustom];
         _btn.backgroundColor = RGBColorFrom16(0xFF1659);
         [_btn setTitle:kLocalizedString(@"SUBMIT") forState:0];
-        _btn.titleLabel.font = CHINESE_SYSTEM(14);
+        _btn.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
         [_btn setTitleColor:[UIColor whiteColor] forState:0];
         @weakify(self)
         [[_btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
