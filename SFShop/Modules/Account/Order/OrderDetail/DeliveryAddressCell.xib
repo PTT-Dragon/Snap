@@ -40,7 +40,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcL-hL-1zj">
                         <rect key="frame" x="19" y="73" width="277" height="41"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3t-x3-i7M">
@@ -62,7 +62,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmQ-eJ-L0o">
                         <rect key="frame" x="60.5" y="48.5" width="30" height="14"/>
                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="12"/>
-                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -93,6 +93,7 @@
                 <outlet property="contentLabel" destination="QcL-hL-1zj" id="DrQ-od-4vT"/>
                 <outlet property="emailLabel" destination="w3t-x3-i7M" id="9vT-bC-BMN"/>
                 <outlet property="nameLabel" destination="Lqh-wc-q9J" id="7rr-Hr-Ujp"/>
+                <outlet property="nameTop" destination="Hxr-4i-n0J" id="sa6-nr-KUv"/>
                 <outlet property="phoneLabel" destination="hmQ-eJ-L0o" id="XZS-cp-6hb"/>
                 <outlet property="titleLabel" destination="W4s-m7-j5i" id="bTk-I1-rVd"/>
                 <outlet property="toBottom" destination="im3-P1-Svs" id="D4g-zK-Uzn"/>

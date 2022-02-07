@@ -214,7 +214,7 @@ static BOOL changePhone = NO;
     [params setValue:_emailField.text forKey:@"email"];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.address.addressList parameters:params success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+//        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
         [weakself.delegate addNewAddressSuccess];
         [weakself.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {

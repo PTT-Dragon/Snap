@@ -222,7 +222,7 @@
     [params setValue:@"Y" forKey:@"isDefault"];
     MPWeakSelf(self)
     [SFNetworkManager post:[SFNet.address setAddressModifyOfdeliveryAddressId:model.deliveryAddressId] parameters:params success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+//        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
         [weakself.tableView.mj_header beginRefreshing];
     } failed:^(NSError * _Nonnull error) {
         

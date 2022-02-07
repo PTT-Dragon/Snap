@@ -80,7 +80,7 @@
         _contentLabel.text = @"Please wait patiently for review";
         _viewHei.constant = 52;
         _btn.hidden = NO;
-        [_btn setTitle:kLocalizedString(@"CANCEL") forState:0];
+        [_btn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CANCEL")] forState:0];
     }else if ([model.state isEqualToString:@"E"]){
         //待退款
         _statuLabel.text = kLocalizedString(@"waitReturn_tip");
@@ -113,15 +113,15 @@
         _statuLabel.text = [NSString stringWithFormat:@"Wait for %@",eventType];
         _contentLabel.text = @"Please enter delivery informtion";
         _btn.hidden = NO;_btn2.hidden = NO;
-        [_btn setTitle:kLocalizedString(@"Delivery") forState:0];
-        [_btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
+        [_btn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"DELIVERY")] forState:0];
+        [_btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CANCEL")] forState:0];
         _viewHei.constant = 52;
     }else if ([model.state isEqualToString:@"I"]){
         //待填写银行卡
         _statuLabel.text = @"Provide bank account";
         _contentLabel.text = @"refund bank account to be confirmed";
         _btn.hidden = NO;_btn2.hidden = YES;
-        [_btn setTitle:kLocalizedString(@"REFUND_BANK_ACCOUNT") forState:0];
+        [_btn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REFUND_BANK_ACCOUNT")] forState:0];
         _viewHei.constant = 52;
     }
 }

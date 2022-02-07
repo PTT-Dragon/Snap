@@ -55,8 +55,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25z-pt-KoB">
-                        <rect key="frame" x="16" y="20" width="39" height="18"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <rect key="frame" x="16" y="20" width="41.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -68,8 +68,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKI-wA-QC8">
-                        <rect key="frame" x="327" y="13" width="32" height="32"/>
-                        <state key="normal" image="trash-1"/>
+                        <rect key="frame" x="343" y="18" width="16" height="22"/>
+                        <state key="normal" image="trash-2"/>
                         <connections>
                             <action selector="deleteAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4c7-A3-FvO"/>
                         </connections>
@@ -110,6 +110,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="trash-1" width="32" height="32"/>
+        <image name="trash-2" width="16" height="16"/>
     </resources>
 </document>

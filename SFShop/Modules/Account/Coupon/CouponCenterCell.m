@@ -48,7 +48,9 @@
         _timeLabel.text = [NSString stringWithFormat:@"%@-%@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogo)] placeholderImage:[UIImage imageNamed:@"toko"]];
-    if (model.userCoupons.count > 0) {
+    NSUInteger endTimeStamp = [[NSDate dateFromString:model.expDate] utcTimeStamp];
+    NSUInteger nowTimeStamp = [[NSDate date] utcTimeStamp];
+    if (model.userCoupons.count > 0 && nowTimeStamp > endTimeStamp) {
         [self.getBtn setTitle:kLocalizedString(@"USE_NOW") forState:0];
     }else{
         [self.getBtn setTitle:kLocalizedString(@"GET_NOW") forState:0];
@@ -75,7 +77,9 @@
 
 
 - (IBAction)getAction:(UIButton *)sender {
-    if (_model.userCoupons.count > 0) {
+    NSUInteger endTimeStamp = [[NSDate dateFromString:_model.expDate] utcTimeStamp];
+    NSUInteger nowTimeStamp = [[NSDate date] utcTimeStamp];
+    if (_model.userCoupons.count > 0  && nowTimeStamp > endTimeStamp) {
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
         vc.couponModel = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];

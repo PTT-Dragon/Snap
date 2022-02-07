@@ -438,6 +438,7 @@
   "THANK_REVIEW" = "Terima kasih atas ulasan Anda";
 //  "VIEWCODE" = "Lihat kode";
   "SHAREBUY" = "GROUP BUY";
+"Sharebuy" = "Group buy";
 //  "GROUPSUCCESS" = "Join group sukses";
 //  "TOSHIP" = "Dikirim";
   "TORECEIVE" = "Diterima";
@@ -538,6 +539,7 @@
 "SUPPORT_CONTENT" = "Sebagai bentuk komitmen kami untuk memberikan pelayanan terbaik, kami menyediakan Layanan Hotline 24 jam, Email dan Live Chat sehingga Anda dapat menghubungi kami setiap saat.";
 "Delivery_address" = "Alamat Pengiriman";
 "Delivery" = "Pengiriman";
+"DELIVERY" = "PENGIRIMAN";
 "Tidak_tersedia" = "Tidak tersedia";
 "Notes" = "Deskripsi";
 "Voucher" = "Voucher Penjual";

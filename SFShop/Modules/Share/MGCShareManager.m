@@ -31,7 +31,7 @@
         if (type == UMSocialPlatformType_Facebook) {
             UMShareWebpageObject *webObje = [UMShareWebpageObject shareObjectWithTitle:@"" descr:@"" thumImage:nil];
             webObje.webpageUrl = message;
-            messageObject.shareObject = webObje;
+            messageObject.shareObject = webObje;            
         } else {
             messageObject.text = message;
         }

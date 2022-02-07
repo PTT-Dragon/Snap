@@ -266,6 +266,12 @@
         [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"LOGISTICS")] forState:0];
         self.moreBtn.hidden = NO;
         self.btn2Left.constant = AdaptedWidth(150);
+    }else if ([self.model.state isEqualToString:@"G"]){
+        self.bottomView.hidden = YES;
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(self.navView.mas_bottom).offset(-10);
+        }];
     }
 }
 - (void)toCart

@@ -355,7 +355,7 @@
 - (void)addToCartWithModel:(CategoryRankPageInfoListModel *)model productModel:(ProductDetailModel *)productDetailModel
 {
     [SFNetworkManager post:SFNet.cart.cart parameters:@{@"isSelected":@"N",@"contactChannel":@"3",@"addon":@"",@"productId":_selProductModel.productId?@(_selProductModel.productId):@"",@"storeId":@(model.storeId),@"offerId":@(model.offerId),@"num":@(self.attrView.count),@"unitPrice":@(_selProductModel.salesPrice)} success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
         [self loadFeeDatas];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
@@ -403,7 +403,7 @@
         backItem.icon = @"nav_back";
         backItem.itemActionBlock = ^(SFSearchState state, SFSearchModel *model,BOOL isSelected) {
             if (state == SFSearchStateInUnActive || state == SFSearchStateInFocuActive) {
-//                [self.tabBarController setSelectedIndex:0];
+                [self.navigationController popViewControllerAnimated:YES];
             }
         };
         SFSearchItem *rightItem = [SFSearchItem new];

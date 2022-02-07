@@ -112,7 +112,7 @@
             hei = 75;
         }
     }else if (indexPath.section == 1){
-        hei = 150;
+        hei = 130;
     }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
             hei = 40;
@@ -151,7 +151,7 @@
         self.btn2.hidden = YES;
         self.btn.height = 46;
     }else if ([self.model.state isEqualToString:@"C"]){
-        [self.btn setTitle:kLocalizedString(@"Delivery") forState:0];
+        [self.btn setTitle:kLocalizedString(@"DELIVERY") forState:0];
         [self.btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
         self.btn.hidden = NO;
         self.btnWidth.constant = (MainScreen_width-32)/2-16;
