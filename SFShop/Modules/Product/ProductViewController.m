@@ -746,7 +746,7 @@
 - (void)setSelProductModel:(ProductItemModel *)selProductModel
 {
     _selProductModel = selProductModel;
-    
+    self.offerNameLabel.text = selProductModel.productName;
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     self.productDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",_selProductModel.discountPercent];
     self.salesPriceLabel.text = [[NSString stringWithFormat:@"%ld", selProductModel.salesPrice] currency];
