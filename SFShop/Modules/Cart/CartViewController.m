@@ -301,6 +301,31 @@
 }
 - (void)updateNumData
 {
+    UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+    if (!userModel) {
+        NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
+        CartModel *modelsd = [[CartModel alloc] initWithDictionary:aaaaa error:nil];
+        __block NSInteger count = 0;
+        [modelsd.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                count++;
+            }];
+        }];
+        NSString *allCount = [NSString stringWithFormat:@"%@(%ld)",kLocalizedString(@"ALL"),count];
+        NSString *dropCount = [NSString stringWithFormat:@"%@(%@)",kLocalizedString(@"DROP_IN_PRICE"),@"0"];
+        self.menuList = @[allCount,dropCount];
+        [self.magicController.magicView reloadMenuTitles];
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        UITabBar *tabbar = [(UITabBarController*)appDelegate.tabVC tabBar];
+        if (count == 0) {
+            [tabbar setBadgeStyle:kCustomBadgeStyleNone value:0 atIndex:3];
+            self.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei);
+        }else{
+            [tabbar setBadgeStyle:kCustomBadgeStyleRedDot value:count atIndex:3];
+            self.magicController.view.frame = CGRectMake(0, navBarHei+40, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-118);
+        }
+        return;
+    }
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
         CartNumModel *model = [[CartNumModel alloc] initWithDictionary:response error:nil];

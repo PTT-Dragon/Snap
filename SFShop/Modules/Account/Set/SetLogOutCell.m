@@ -12,7 +12,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    _label.text = kLocalizedString(@"LOG_OUT");
+    _label.text = kLocalizedString(@"logout");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

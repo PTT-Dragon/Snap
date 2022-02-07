@@ -78,6 +78,25 @@
 }
 + (void)updateCartNum
 {
+    UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+    if (!userModel) {
+        NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
+        CartModel *modelsd = [[CartModel alloc] initWithDictionary:aaaaa error:nil];
+        __block NSInteger count = 0;
+        [modelsd.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                count++;
+            }];
+        }];
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        UITabBar *tabbar = [(UITabBarController*)appDelegate.tabVC tabBar];
+        if (count == 0) {
+            [tabbar setBadgeStyle:kCustomBadgeStyleNone value:0 atIndex:3];
+        }else{
+            [tabbar setBadgeStyle:kCustomBadgeStyleRedDot value:count atIndex:3];
+        }
+        return;
+    }
     [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
         CartNumModel *model = [[CartNumModel alloc] initWithDictionary:response error:nil];
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;  
