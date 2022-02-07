@@ -404,6 +404,20 @@
 }
 - (void)requestCartNum
 {
+    UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+    if (!userModel) {
+        NSDictionary *aaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayKey"];
+        CartModel *modelsd = [[CartModel alloc] initWithDictionary:aaaaa error:nil];
+        __block NSInteger count = 0;
+        [modelsd.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                count++;
+            }];
+        }];
+        self.cartNumLabel.text = count == 0 ? @"": [NSString stringWithFormat:@"%ld",count];
+        self.cartNumLabel.hidden = count == 0 ? YES: NO;
+        return;
+    }
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.cart.num success:^(id  _Nullable response) {
         weakself.cartNumModel = [[CartNumModel alloc] initWithDictionary:response error:nil];
@@ -1034,6 +1048,8 @@
                 [itemArr2 addObject:itemModel];
                 listModel.shoppingCarts = itemArr2;
             }
+            self.cartNumLabel.text = modelsd.validCarts.count == 0 ? @"": [NSString stringWithFormat:@"%ld",modelsd.validCarts.count];
+            self.cartNumLabel.hidden = modelsd.validCarts.count == 0 ? YES: NO;
             modelsd.totalDiscount = 0;
             modelsd.totalPrice = 0;
             modelsd.totalOfferPrice = 0;

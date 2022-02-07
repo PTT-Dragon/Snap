@@ -159,7 +159,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 3){
         MPWeakSelf(self)
-        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"CONFIRM_LOGOUT") btnTitle:kLocalizedString(@"LOGOUT") block:^{
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"CONFIRM_LOGOUT") btnTitle:kLocalizedString(@"LOG_OUT") block:^{
             [SFNetworkManager post:SFNet.account.logout success:^(id  _Nullable response) {
                 [MBProgressHUD autoDismissShowHudMsg:@"LogOut Success"];
                 UserDefaultSetObjectForKey(kLanguageHindi, @"Language");

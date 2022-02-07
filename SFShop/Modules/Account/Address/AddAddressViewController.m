@@ -93,6 +93,13 @@ static BOOL changePhone = NO;
     _titleLabel3.text = kLocalizedString(@"ADDRESS_DEFAULT");
     _readLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"HAVE_READ_AND_AGREED"),kLocalizedString(@"SF_AGREEMENT")];
     [_saveBtn setTitle:kLocalizedString(@"SAVE") forState:0];
+    UIImage *im = [UIImage imageNamed:@"WX20220203-135232"];
+    UIImageView *iv = [[UIImageView alloc] initWithImage:im];
+    UIView *lfView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];//宽度根据需求进行设置，高度必须大于 textField 的高度
+    iv.center = lfView.center;
+    [lfView addSubview:iv];
+    _phoneField.leftViewMode = UITextFieldViewModeAlways;
+    _phoneField.leftView = lfView;
     
     if (_model) {
         //修改地址
@@ -157,7 +164,7 @@ static BOOL changePhone = NO;
 - (void)chooseStreet:(AreaModel *)streetModel
 {
     _selStreetAreaMoel = streetModel;
-    self.streetField.text = streetModel.stdAddr;
+    self.streetField.text = [NSString stringWithFormat:@"%@.%@",streetModel.stdAddr,streetModel.zipcode];
 }
 - (BOOL)checkAction
 {

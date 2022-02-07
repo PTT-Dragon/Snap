@@ -94,8 +94,8 @@
 //  "MOBILE_NUMBER" = "No. telephone";
   "NEW_MOBILE_NUMBER" = "Nomor Handphone Baru";
 //  "ADDRESS" = "Alamat";
-  "STREET" = "Nama dan nomor jalan/gedung";
-  "OTHERDETAIL" = " detail lain";
+  "STREET" = "Kelurahan dan Kode Pos";
+  "OTHERDETAIL" = "Jalan/bangunan/nama dan nomor";
 "MOBILE_NUMBER" = "Nomor Handphone";
 //  "OK" = "OK";
   "SAVE" = "SIMPAN";
@@ -214,7 +214,8 @@
 //  "SIGN_UP_GIFT" = "Daftar untuk Hadiah";
 //  "NEW_USER_TRENDS" = "Tren Pengguna Baru";
 //  "VIEW_MORE" = "More";
-"LOG_OUT" = "Keluar";
+"LOG_OUT" = "KELUAR";
+"logout" = "Keluar";
 //  "CONFIRMDELADDR" = "Anda yakin ingin menghapus alamat ini?";
   "CONFIRM_LOGOUT" = "Konfirmasi untuk keluar";
   "LOGOUT" = "KELUAR";

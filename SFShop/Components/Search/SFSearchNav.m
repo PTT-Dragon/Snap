@@ -14,6 +14,7 @@
 @property (nonatomic, readwrite, strong) SFSearchItem *bItem;
 @property (nonatomic, readwrite, strong) SFSearchItem *rItem;
 @property (nonatomic, readwrite, strong) UIButton *rightBtn;
+@property (nonatomic, readwrite, strong) UIButton *searchImgBtn;
 @property (nonatomic, readwrite, strong) UIButton *searchBtn;
 @property (nonatomic, readwrite, strong) SFSearchView *searchView;
 @property (nonatomic, readwrite, strong) SFSearchingView *searchingView;

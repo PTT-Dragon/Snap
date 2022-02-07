@@ -90,8 +90,8 @@
   "MOBILE_NUMBER" = "Mobile Number";
   "NEW_MOBILE_NUMBER" = "New Mobile Number";
 //  "ADDRESS" = "Address";
-  "STREET" = "Street/building name and number";
-  "OTHERDETAIL" = "Other Detail";
+  "STREET" = "Sub-District and Zip Code";
+  "OTHERDETAIL" = "Street/building/name and number";
 //  "OK" = "OK";
   "SAVE" = "SAVE";
   "SAVEPROFILE" = "SAVE PROFILE";
@@ -106,7 +106,7 @@
 //  "CURRENT_PWD" = "Current Password";
 //  "SET_SUCCESSFUL" = "Set Successfully!";
 //  "DOWNLOAD" = "Downloading";
-  "SUBMIT" = "Submit";
+  "SUBMIT" = "SUBMIT";
 "FORGOT_PWD" = "Forgot Password";
 //  "SETTING" = "Setting";
 //  "LOGIN" = "Login";
@@ -206,7 +206,8 @@
 //  "SIGN_UP_GIFT" = "Sign Up for Gift";
 //  "NEW_USER_TRENDS" = "New User Trends";
 //  "VIEW_MORE" = "View More";
-  "LOG_OUT" = "Log Out";
+  "LOG_OUT" = "LOG OUT";
+"logout" = "Log out";
 //  "CONFIRMDELADDR" = "Are you sure you want to delete this address?";
   "CONFIRM_LOGOUT" = "Confirm to Logout";
   "LOGOUT" = "Logout";
