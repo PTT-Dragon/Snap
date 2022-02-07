@@ -207,9 +207,9 @@
 //                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
                 vc.dataArray = availableCoupons;
                 vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
-                    if (!item) {
-                        return;
-                    }
+//                    if (!item) {
+//                        return;
+//                    }
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
                     [MBProgressHUD showHudMsg:@""];
                     [CheckoutManager.shareInstance calfeeByStoreCouponItem:item storeId:detailModel.storeId complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {

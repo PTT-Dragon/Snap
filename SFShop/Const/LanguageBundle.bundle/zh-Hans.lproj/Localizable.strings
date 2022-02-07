@@ -24,8 +24,8 @@
 //  "LET_ME_START_A_GROUP" = "让我开始一个小组";
 //  "FIND_OTHER_ACTIVITIES" = "找到其他的活动";
 //  "SHARE_SHOP" = "分享商店";
-//  "NO_AVAILABLE" = "无可用";
-//  "AVAILABLE_COUPON" = "{num} 个可用";
+  "NO_AVAILABLE" = "无可用";
+  "AVAILABLE_COUPON" = "个可用";
 //  "SALES" = "销售";
 //  "VIEW_PRODUCT_LIST" = "查看分销商品列表";
 //  "MY_SALES_RANKING" = "我的销售排名";
@@ -400,7 +400,7 @@
   "PLEASE_FILL_IN_COMMENTS" = "请输入评价描述";
 //  "ERROR" = "错误";
 //  "CODE_INCORRECT_REINPUT" = "验证码不正确，请重新输入.";
-//  "NOT_AVAILABLE" = "不可用";
+  "NOT_AVAILABLE" = "不可用";
 //  "ORDER_LIMIT" = "订单限购";
 "ENTER_CODE" = "请输入6位验证码";
 //  "PRODUCT_DETAIL" = "商品详情";
@@ -460,7 +460,7 @@
 //  "NOTES" = "备注";
 //  "STORE_PROMOTION" = "店铺优惠券";
   "INPUT_MESSAGE" = "输入备注";
-//  "DELIVERY_RANGE" = "预计到达时间 ={range}天";
+  "DELIVERY_RANGE" = "预计到达时间";
 //  "DELIVERY_MEHOD" = "邮寄方式";
 //  "PAYMENT_UNSUCCESSFUL" = "支付失败";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "我们这次无法处理你的请求。";
@@ -533,9 +533,9 @@
 "Delivery" = "发货";
 "DELIVERY" = "发货";
 "Not_available" = "Not Available";
-"Notes" = "笔记";
+"Notes" = "备注";
 "Voucher" = "凭证";
-"Store_promo" = "Store Promo";
+"Store_promo" = "店铺优惠券";
 "Total" = "总共";
 "Available" = "可用";
 "SF_shop_Voucher"=  "SF.shop.Voucher";
