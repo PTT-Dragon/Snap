@@ -67,8 +67,12 @@
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
         if (type != CategoryRankFilterRefreshCancel) {
             FavoriteChildViewController *vc = self.magicController.childViewControllers[self.magicController.currentPage];
-            model.priceModel.minPrice = model.priceModel.minPrice == -1 ? 0:[[NSString stringWithFormat:@"%.ld",model.priceModel.minPrice] multiplyCurrencyFloat];
-            model.priceModel.maxPrice = model.priceModel.maxPrice == -1 ? MAXFLOAT:[[NSString stringWithFormat:@"%.ld",model.priceModel.maxPrice] multiplyCurrencyFloat];
+            if (model.priceModel.minPrice > -1) {
+                model.priceModel.minPrice = [[NSString stringWithFormat:@"%.ld",model.priceModel.minPrice] multiplyCurrencyFloat];
+            }
+            if (model.priceModel.maxPrice > -1) {
+                model.priceModel.maxPrice = [[NSString stringWithFormat:@"%.ld",model.priceModel.maxPrice] multiplyCurrencyFloat];
+            }
             vc.rankModel = model;
             [vc reloadDatas];
         }
