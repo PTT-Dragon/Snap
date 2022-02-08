@@ -62,7 +62,7 @@
                                         <outlet property="delegate" destination="-1" id="poQ-PH-hd2"/>
                                     </connections>
                                 </view>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" translatesAutoresizingMaskIntoConstraints="NO" id="iX6-Qw-9Ui">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye_black" translatesAutoresizingMaskIntoConstraints="NO" id="iX6-Qw-9Ui">
                                     <rect key="frame" x="16" y="422" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="Qwb-Gq-dGi"/>
@@ -230,10 +230,10 @@
         </view>
     </objects>
     <resources>
-        <image name="eye" width="22" height="15"/>
+        <image name="eye_black" width="24" height="24"/>
         <image name="heart" width="24" height="24"/>
         <image name="love-1-2" width="200" height="200"/>
-        <image name="message" width="20" height="20"/>
+        <image name="message" width="24" height="24"/>
         <image name="sent-fill" width="17" height="17"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
