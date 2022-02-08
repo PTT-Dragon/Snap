@@ -76,8 +76,8 @@
     }];
     //添加外部传入参数
     if (self.initLoad) {
-        if (self.model.inner.catgRela.objValue.objId) {
-            [parm setObject:@(self.model.inner.catgRela.objValue.objId) forKey:@"catgIds"];
+        if (self.model.inner.catgRela.objValue.objId.length > 0) {
+            [parm setObject:self.model.inner.catgRela.objValue.objId forKey:@"catgIds"];
         }
         if (self.model.inner.catgRela.objValue.filteredProductsRela.count) {
             [parm addEntriesFromDictionary:self.model.inner.catgRela.objValue.filteredProductsRela];

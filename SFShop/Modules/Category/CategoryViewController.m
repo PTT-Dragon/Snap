@@ -13,6 +13,9 @@
 #import "SFSearchNav.h"
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import "ProductViewController.h"
+#import "CouponCenterViewController.h"
+#import "PublicWebViewController.h"
 
 @interface CategoryViewController ()<UITableViewDelegate,UICollectionViewDelegate>
 @property (nonatomic, readwrite, strong) CategorySideTableView *sideTableView;//侧边栏
@@ -115,9 +118,40 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSArray <CategoryModel *>*arr = [self.contentCollectionView.dataArray objectAtIndex:indexPath.section];
     CategoryModel *model = arr[indexPath.row];
-    CategoryRankViewController *rank = [[CategoryRankViewController alloc] init];
-    rank.model = model;
-    [self.navigationController pushViewController:rank animated:YES];
+    NSString *objType = model.inner.catgRela.objType;
+    NSString *objId = model.inner.catgRela.objValue.objId;
+    if ([objType isEqualToString:@"Category"]) {//分类
+        CategoryRankViewController *rank = [[CategoryRankViewController alloc] init];
+        rank.model = model;
+        [self.navigationController pushViewController:rank animated:YES];
+    } else if ([objType isEqualToString:@"FilteredProducts"]) {//分类,初始化搜索
+        CategoryRankViewController *rank = [[CategoryRankViewController alloc] init];
+        if (model.inner.catgRela.objValue.filteredProductsRela) {
+            NSMutableDictionary *filteredProductsRela = [NSMutableDictionary dictionaryWithDictionary:model.inner.catgRela.objValue.filteredProductsRela];
+            NSString *q = [filteredProductsRela objectForKey:@"productName"];
+            [filteredProductsRela setObject:q forKey:@"q"];
+            [filteredProductsRela removeObjectForKey:@"productName"];
+            model.inner.catgRela.objValue.filteredProductsRela = filteredProductsRela;
+        }
+        rank.model = model;
+        [self.navigationController pushViewController:rank animated:YES];
+    } else if ([objType isEqualToString:@"ProductDetail"]) {//详情页
+        NSString *offerId = [objId componentsSeparatedByString:@","].firstObject;
+        NSString *productId = [objId componentsSeparatedByString:@","].lastObject;
+        ProductViewController *vc = [[ProductViewController alloc] init];
+        vc.offerId = offerId.integerValue;
+        vc.productId = productId.integerValue;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([objType isEqualToString:@"CustomizedPage"]) {//自定义页面
+        PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        vc.url = [NSString stringWithFormat:@"%@/group/%@",Host,objId];
+        vc.sysAccount = model.account;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([objType isEqualToString:@"FunctionPage"]) {//领券中心
+        CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
