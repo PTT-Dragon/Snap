@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ObjValueModel : JSONModel
 @property (nonatomic,copy) NSString *maskValue;
-@property (nonatomic, readwrite, assign) NSInteger objId;
+@property (nonatomic, readwrite, strong) NSString *objId;
 @property (nonatomic, readwrite, strong, nullable) NSDictionary *filteredProductsRela;
 @end
 
