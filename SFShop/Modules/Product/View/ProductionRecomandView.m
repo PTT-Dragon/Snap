@@ -15,6 +15,7 @@
 @interface ProductionRecomandView () <UICollectionViewDelegate, UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 
 @property (strong, nonatomic) UICollectionView *recommendCollectionView;
+@property (strong, nonatomic) UILabel *titleLab;
 
 @property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
 @property (nonatomic, readwrite, strong) CommunityWaterfallLayout *waterfallLayout;
@@ -55,6 +56,7 @@
     title.font = [UIFont boldSystemFontOfSize:17];
     title.textColor = [UIColor blackColor];
     [self addSubview: title];
+    self.titleLab = title;
     
     self.recommendCollectionView.scrollEnabled = NO;
     [self addSubview:self.recommendCollectionView];
@@ -70,6 +72,7 @@
 
 - (void)configDataWithSimilarList:(NSMutableArray<ProductSimilarModel *> *)similarList {
     self.similarList = similarList;
+    self.titleLab.height = similarList.count==0 ? CGFLOAT_MIN:44;
     [self.recommendCollectionView reloadData];
 }
 
