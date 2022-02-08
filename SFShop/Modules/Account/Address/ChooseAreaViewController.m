@@ -37,6 +37,7 @@ typedef enum :NSUInteger{
 @property (nonatomic,strong) AreaModel *selCityAreaMoel;
 @property (nonatomic,strong) AreaModel *selDistrictAreaMoel;
 @property (nonatomic,strong) AreaModel *selStreetAreaMoel;
+@property (nonatomic, assign) NSInteger curIndex;
 
 @end
 
@@ -215,11 +216,11 @@ typedef enum :NSUInteger{
         self.indicationView.hidden = NO;
     }
     if (!_selCityAreaMoel) {
-        [_cityBtn setTitle:@"City" forState:0];
+        [_cityBtn setTitle:@"" forState:0];
     }else if (!_selDistrictAreaMoel) {
-        [_DistrictBtn setTitle:@"District" forState:0];
+        [_DistrictBtn setTitle:@"" forState:0];
     }else if (!_selStreetAreaMoel) {
-        [_streetBtn setTitle:@"Street" forState:0];
+        [_streetBtn setTitle:@"" forState:0];
     }
 }
 - (void)setSelCityAreaMoel:(AreaModel *)selCityAreaMoel
@@ -248,6 +249,44 @@ typedef enum :NSUInteger{
 //            make.centerX.mas_greaterThanOrEqualTo(self.DistrictBtn);
 //        }];
         self.indicationView.hidden = NO;
+    }
+}
+
+-(void)setCurIndex:(NSInteger)curIndex {
+    _curIndex = curIndex;
+    
+    if (curIndex == 1) {
+        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+            make.width.mas_equalTo(self.cityBtn);
+            make.centerX.mas_equalTo(self.cityBtn);
+        }];
+//        [self.DistrictBtn setTitle:@"" forState:0];
+    }else if (curIndex == 2) {
+        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+            make.width.mas_equalTo(self.cityBtn);
+            make.centerX.mas_equalTo(self.DistrictBtn);
+        }];
+    }else {
+        [_indicationView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.top.mas_equalTo(self.cityBtn.mas_bottom);
+            make.width.mas_equalTo(self.cityBtn);
+            make.centerX.mas_equalTo(self.provinceBtn);
+        }];
+//        [self.cityBtn setTitle:@"" forState:0];
+//        [self.DistrictBtn setTitle:@"" forState:0];
+    }
+    
+    if (!_selCityAreaMoel) {
+        [_cityBtn setTitle:@"City" forState:0];
+    }else if (!_selDistrictAreaMoel) {
+        [_DistrictBtn setTitle:@"District" forState:0];
+    }else if (!_selStreetAreaMoel) {
+        [_streetBtn setTitle:@"Street" forState:0];
     }
 }
 
@@ -340,6 +379,9 @@ typedef enum :NSUInteger{
 - (void)setSelStreetAreaMoel:(AreaModel *)selStreetAreaMoel
 {
     _selStreetAreaMoel = selStreetAreaMoel;
+}
+-(void)setCurIndex:(NSInteger)curIndex {
+    _curIndex = curIndex;
 }
 - (void)setType:(NSInteger)type
 {
@@ -447,6 +489,7 @@ typedef enum :NSUInteger{
             _selProvinceAreaMoel = model;
             _topView.selProvinceAreaMoel = _selProvinceAreaMoel;
             [self loadDatasWithType:_dataType];
+            _topView.curIndex = 1;
             break;
         case loadCityType:
             _dataType = loadDistrictType;
@@ -454,6 +497,7 @@ typedef enum :NSUInteger{
             _topView.selCityAreaMoel = _selCityAreaMoel;
             _topView.selProvinceAreaMoel = _selProvinceAreaMoel;
             [self loadDatasWithType:_dataType];
+            _topView.curIndex = 2;
             break;
         case loadDistrictType:
             _dataType = loadStreeType;
@@ -467,6 +511,7 @@ typedef enum :NSUInteger{
                 [self.delegate chooseProvince:_selProvinceAreaMoel city:_selCityAreaMoel district:_selDistrictAreaMoel];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
+            _topView.curIndex = 2;
             break;
         case loadStreeType:
             _dataType = loadStreeType;

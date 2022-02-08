@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) AreaModel * _Nullable selCityAreaMoel;
 @property (nonatomic,strong) AreaModel *_Nullable selDistrictAreaMoel;
 @property (nonatomic,strong) AreaModel *_Nullable selStreetAreaMoel;
+/**
+ 选中下标
+ */
+@property (nonatomic, assign) NSInteger curIndex;
 @end
 
 NS_ASSUME_NONNULL_END
