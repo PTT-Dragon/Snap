@@ -257,7 +257,13 @@
 {
     CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
     view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-    view.couponDataSource = self.campaignsModel.coupons;
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
+    [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.productId.integerValue != _selProductModel.productId) {
+            [arr removeObject:obj];
+        }
+    }];
+    view.couponDataSource = arr;
     [[baseTool getCurrentVC].view addSubview:view];
 }
 - (void)chooseAddress {
@@ -746,7 +752,6 @@
 - (void)setSelProductModel:(ProductItemModel *)selProductModel
 {
     _selProductModel = selProductModel;
-    self.offerNameLabel.text = selProductModel.productName;
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     self.productDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",_selProductModel.discountPercent];
     self.salesPriceLabel.text = [[NSString stringWithFormat:@"%ld", selProductModel.salesPrice] currency];

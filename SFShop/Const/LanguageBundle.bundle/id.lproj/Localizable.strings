@@ -171,7 +171,7 @@
 //  "CHECK_OUT" = "Check out";
   "USE_NOW" = "Gunakan sekarang";
 //  "HINT_SUCCESS" = "Berhasil";
-  "COLLECT_MORE_COUPON" = "Kumpulkan Lebih Banyak Kupon";
+  "COLLECT_MORE_COUPON" = "Kumpulkan lebih banyak voucher";
 //  "COUPON_NO_DATA_TXT" = "Maaf; tidak ada kupon yang ditemukan.";
 //  "LOGIN_SUCCESS" = "Login Berhasil";
 //  "REGISTRATION_COUPON_HINT" = "Paket kupon pendaftaran telah dikirim ke akun Anda.";
