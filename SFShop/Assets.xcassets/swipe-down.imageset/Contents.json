@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "swipe-down.png",
+      "filename" : "00151_01_arrowright_outline.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "00151_01_arrowright_outline@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "00151_01_arrowright_outline@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

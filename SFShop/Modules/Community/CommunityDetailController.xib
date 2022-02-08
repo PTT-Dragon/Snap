@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -37,6 +37,17 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="boY-Fj-fn6">
                     <rect key="frame" x="0.0" y="100" width="414" height="1822"/>
                     <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jfs-zv-loa">
+                            <rect key="frame" x="0.0" y="704" width="414" height="1104"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1104" id="PFV-cJ-Cq9"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="Ei6-Gh-jD4"/>
+                                <outlet property="delegate" destination="-1" id="JhO-DJ-rhO"/>
+                            </connections>
+                        </tableView>
                         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FK-SL-g3c">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="704"/>
                             <subviews>
@@ -51,7 +62,7 @@
                                         <outlet property="delegate" destination="-1" id="poQ-PH-hd2"/>
                                     </connections>
                                 </view>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" translatesAutoresizingMaskIntoConstraints="NO" id="iX6-Qw-9Ui">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye_black" translatesAutoresizingMaskIntoConstraints="NO" id="iX6-Qw-9Ui">
                                     <rect key="frame" x="16" y="422" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="Qwb-Gq-dGi"/>
@@ -70,13 +81,6 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" translatesAutoresizingMaskIntoConstraints="NO" id="U6H-cO-m8M">
-                                    <rect key="frame" x="120" y="422" width="24" height="24"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="24" id="6pp-OD-I1C"/>
-                                        <constraint firstAttribute="width" constant="24" id="NoC-K0-9xU"/>
-                                    </constraints>
-                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBF-Sj-xTu">
                                     <rect key="frame" x="154" y="434" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -102,7 +106,7 @@
                                         <constraint firstAttribute="height" constant="24" id="KLA-Yf-pdx"/>
                                         <constraint firstAttribute="width" constant="24" id="cWJ-Pt-tAt"/>
                                     </constraints>
-                                    <state key="normal" image="love-0"/>
+                                    <state key="normal" image="heart"/>
                                     <state key="selected" image="love-1-2"/>
                                     <connections>
                                         <action selector="likeAction:" destination="-1" eventType="touchUpInside" id="ZNd-36-zA3"/>
@@ -121,6 +125,13 @@
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="message" translatesAutoresizingMaskIntoConstraints="NO" id="U6H-cO-m8M">
+                                    <rect key="frame" x="130" y="422" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="6pp-OD-I1C"/>
+                                        <constraint firstAttribute="width" constant="24" id="NoC-K0-9xU"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
@@ -153,17 +164,6 @@
                                 <constraint firstItem="IKo-0n-eql" firstAttribute="top" secondItem="sIh-ts-mN6" secondAttribute="bottom" constant="20" id="wsS-43-uqr"/>
                             </constraints>
                         </view>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jfs-zv-loa">
-                            <rect key="frame" x="0.0" y="704" width="414" height="1104"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="1104" id="PFV-cJ-Cq9"/>
-                            </constraints>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="Ei6-Gh-jD4"/>
-                                <outlet property="delegate" destination="-1" id="JhO-DJ-rhO"/>
-                            </connections>
-                        </tableView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="2FK-SL-g3c" firstAttribute="top" secondItem="boY-Fj-fn6" secondAttribute="top" id="4fr-DR-8YD"/>
@@ -192,7 +192,7 @@
                             </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ8-wY-lkL">
-                            <rect key="frame" x="366" y="23" width="32" height="32"/>
+                            <rect key="frame" x="366" y="28" width="32" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="32" id="ARk-V5-pIc"/>
                             </constraints>
@@ -230,11 +230,11 @@
         </view>
     </objects>
     <resources>
-        <image name="eye" width="12" height="12"/>
-        <image name="love-0" width="200" height="200"/>
+        <image name="eye_black" width="24" height="24"/>
+        <image name="heart" width="24" height="24"/>
         <image name="love-1-2" width="200" height="200"/>
-        <image name="message" width="12" height="12"/>
-        <image name="sent-fill" width="32" height="32"/>
+        <image name="message" width="24" height="24"/>
+        <image name="sent-fill" width="17" height="17"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

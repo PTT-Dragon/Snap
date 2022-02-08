@@ -241,7 +241,7 @@
         CategoryInnerModel *innerModel = [[CategoryInnerModel alloc] init];
         CatgRelaModel *relaModel = [[CatgRelaModel alloc] init];
         ObjValueModel *objModel = [[ObjValueModel alloc] init];
-        objModel.objId = categoryId.integerValue;
+        objModel.objId = categoryId;
         relaModel.objValue = objModel;
         innerModel.catgRela = relaModel;
         model.inner = innerModel;

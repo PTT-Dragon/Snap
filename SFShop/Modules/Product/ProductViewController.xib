@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,6 +24,7 @@
                 <outlet property="deliveryTitleLabel" destination="gA8-iA-PSx" id="pEF-qP-il1"/>
                 <outlet property="detailTitleLabel" destination="FHz-XN-MUs" id="mWS-Fl-lr9"/>
                 <outlet property="detailViewHeader" destination="Sh5-6B-V3T" id="8Fb-HR-30Q"/>
+                <outlet property="detailsViewH" destination="sQO-ho-cmU" id="3jU-BB-rxa"/>
                 <outlet property="evalationTableview" destination="GgT-97-s4m" id="o2F-vV-Mnd"/>
                 <outlet property="flashSaleBeginTimeLabel" destination="9l0-zx-C0d" id="Fyi-Z9-eSo"/>
                 <outlet property="flashSaleInfoView" destination="ogx-Ed-hic" id="0lP-cq-8bD"/>
