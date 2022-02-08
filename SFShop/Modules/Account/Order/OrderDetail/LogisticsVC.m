@@ -71,6 +71,14 @@
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(self.topView.mas_bottom).offset(0);
     }];
+    
+    self.topView.layer.masksToBounds = NO;//默认值为NO。不能设置为YES，否则阴影无法出现。
+    self.topView.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.05].CGColor;
+    self.topView.layer.shadowOpacity = 1;//阴影透明度，默认0
+    self.topView.layer.shadowRadius = 3;//阴影圆角
+    self.topView.layer.shadowOffset = CGSizeMake(0, 0);    //阴影偏移量。有值是向下向右偏移。
+    self.topView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, App_Frame_Width-32, self.topView.bounds.size.height) cornerRadius:self.topView.layer.cornerRadius].CGPath;
+    
 }
 - (void)loadDatas
 {
