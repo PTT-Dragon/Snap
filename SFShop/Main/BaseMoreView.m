@@ -123,20 +123,23 @@
     [self cancel];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate.tabVC setSelectedIndex:0];
-    [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
+    UIViewController *vc = [baseTool getCurrentVC];
+    [vc.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)inboxBtnAction {
     [self cancel];
     MessageViewController *vc = [[MessageViewController alloc] init];
-    [self.parentViewController.navigationController pushViewController:vc animated:YES];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+//    [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)accountBtnAction {
     [self cancel];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate.tabVC setSelectedIndex:4];
-    [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
+    UIViewController *vc = [baseTool getCurrentVC];
+    [vc.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)mysfBtnAction {

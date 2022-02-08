@@ -10,14 +10,18 @@
 #import "refundModel.h"
 #import "RefundDetailViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
 
-@interface RefundViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface RefundViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger pageIndex;
 @property (nonatomic,strong) UIView *searchView;
 @property (nonatomic,strong) UISearchBar *searchBar;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *moreView;
 
 @end
 
@@ -26,15 +30,36 @@
 {
     return YES;
 }
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_moreView removeFromSuperview];
+    _moreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_moreView];
+    [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = kLocalizedString(@"Refund_Return");
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"Refund_Return")];
     _dataSource = [NSMutableArray array];
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.searchView];
