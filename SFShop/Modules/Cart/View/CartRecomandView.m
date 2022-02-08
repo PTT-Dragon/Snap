@@ -65,7 +65,7 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if ([kind isEqualToString:kSupplementaryViewKindHeader]) {
         UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kSupplementaryViewKindHeader withReuseIdentifier:@"ProductionRecommendHeader" forIndexPath:indexPath];
-        view.backgroundColor = [UIColor jk_colorWithHexString:@"#f5f5f5"];
+        view.backgroundColor = [UIColor jk_colorWithHexString:@"#ffffff"];
         
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, App_Frame_Width-32, 44)];
         [view addSubview:backView];

@@ -154,7 +154,7 @@
         [self.btn setTitle:kLocalizedString(@"DELIVERY") forState:0];
         [self.btn2 setTitle:kLocalizedString(@"CANCEL") forState:0];
         self.btn.hidden = NO;
-        self.btnWidth.constant = (MainScreen_width-32)/2-16;
+        self.btnWidth.constant = (MainScreen_width-32)/2-8;
         self.btn2.hidden = NO;
     }else if ([self.model.state isEqualToString:@"X"]){
         self.btn.hidden = YES;

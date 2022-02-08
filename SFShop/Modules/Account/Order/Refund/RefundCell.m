@@ -59,8 +59,8 @@
     _priceLabel.text = [itemsModel.unitPrice currency];
     NSString *eventType = @"";
     if ([model.eventId isEqualToString:@"2"]) {
-        _stateLabel.text = kLocalizedString(@"Return");
-        eventType = kLocalizedString(@"Return");
+        _stateLabel.text = kLocalizedString(@"RETURN");
+        eventType = kLocalizedString(@"RETURN");
     }else if ([model.eventId isEqualToString:@"3"]){
         _stateLabel.text = kLocalizedString(@"Refund");
         eventType = kLocalizedString(@"Refund");

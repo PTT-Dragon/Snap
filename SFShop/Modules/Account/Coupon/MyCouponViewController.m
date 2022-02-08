@@ -79,6 +79,8 @@
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor: [UIColor jk_colorWithHexString: @"#7B7B7B"] forState:UIControlStateNormal];
         [menuItem setTitleColor: [UIColor blackColor] forState:UIControlStateSelected];
+        menuItem.titleLabel.numberOfLines = 2;
+        menuItem.titleLabel.textAlignment = NSTextAlignmentCenter;
         menuItem.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:14.f];
     }
     [menuItem setSelected: (itemIndex == self.currentMenuIndex)];

@@ -22,8 +22,8 @@
 //  "LET_ME_START_A_GROUP" = "Let me start a group";
 //  "FIND_OTHER_ACTIVITIES" = "Find Other Activities";
 //  "SHARE_SHOP" = "Share Shop";
-//  "NO_AVAILABLE" = "Not available";
-//  "AVAILABLE_COUPON" = "{num} available";
+  "NO_AVAILABLE" = "Not available";
+  "AVAILABLE_COUPON" = "available";
 //  "SALES" = "Sales";
 //  "VIEW_PRODUCT_LIST" = "View Product List";
 //  "MY_SALES_RANKING" = "My Sales Ranking";
@@ -83,7 +83,7 @@
 //  "DISTRIBUTOR_CENTER" = "Distributor Center";
 //  "THE_FOLLOWING_PRODUCTS_ARE_INSUFFICIENT_IN_STOCK_PLEASE_ADJUST_THE_PURCHASE_QUANTITY" = "The following products are insufficient in stock; please adjust the purchase quantity.";
 //  "COUPON_CENTER" = "Voucher Center";
-  "SHOPPING_CART" = "Shopping Cart";
+  "SHOPPING_CART" = "SHOPPING CART";
   "ADD_TO_CART" = "ADD TO CART";
 //  "ADD_TO_CART_SUCCESS" = "Added to cart successfully！";
   "FIND_SIMILAR" = "FIND SIMILAR";
@@ -399,7 +399,7 @@
   "PLEASE_FILL_IN_COMMENTS" = "Please fill in your comments";
 //  "ERROR" = "error";
 //  "CODE_INCORRECT_REINPUT" = "The verification code is incorrect; please re-input.";
-//  "NOT_AVAILABLE" = "Not Available";
+  "NOT_AVAILABLE" = "Not Available";
 //  "ORDER_LIMIT" = "Order limit";
 "ENTER_CODE" = "Enter 6-Digit Code";
 //  "PRODUCT_DETAIL" = "Product Detail";
@@ -462,7 +462,7 @@
 //  "STORE_PROMOTION" = "Store Promo";
   "INPUT_MESSAGE" = "Input your message…";
 "None Delivery" = "No available delivery mothod";
-//  "DELIVERY_RANGE" = "Est.Arrival ={range} Days";
+  "DELIVERY_RANGE" = "Est.Arrival";
 //  "DELIVERY_MEHOD" = "Delivery Method";
 //  "PAYMENT_UNSUCCESSFUL" = "Payment Unsuccessful";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "We are not able to process your request this time.";
@@ -676,5 +676,5 @@
 "ADDRESS" = "Address";
 "SERVICE" = "Service";
 "FAQ" = "FAQ";
-"Share_to" = "Share to";
-"Share_to" = "Share to";
+"Share_to" = "Share";
+"Share_to" = "Share";

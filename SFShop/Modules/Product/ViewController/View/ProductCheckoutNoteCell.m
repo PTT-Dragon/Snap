@@ -135,10 +135,10 @@
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
         self.couponPriceLabel.text = [NSString stringWithFormat:@"- %@",detailModel.feeModel.storeCouponPrice.currency];
     } else if (!availableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
-        self.couponPriceLabel.text = kLocalizedString(@"Not_available");
+        self.couponPriceLabel.text = kLocalizedString(@"NOT_AVAILABLE");
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     } else {
-        self.couponPriceLabel.text = [NSString stringWithFormat:@"%ld %@",availableVouchersCount,kLocalizedString(@"AVAILABLE")];
+        self.couponPriceLabel.text = [NSString stringWithFormat:@"%ld %@",availableVouchersCount,kLocalizedString(@"AVAILABLE_COUPON")];
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     }
     self.promoPriceLabel.text = [NSString stringWithFormat:@"- %@",detailModel.feeModel.storeCampaignPrice.currency];

@@ -13,10 +13,10 @@
 
 - (NSDictionary *)filterParam {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
-    if (_minPrice > 0) {
+    if (_minPrice > -1) {
         [result setObject:@([[NSString stringWithFormat:@"%ld",_minPrice] multiplyCurrencyFloat]) forKey:@"startPrice"];
     }
-    if (_maxPrice > 0) {
+    if (_maxPrice > -1) {
         [result setObject:@([[NSString stringWithFormat:@"%ld",_maxPrice] multiplyCurrencyFloat]) forKey:@"endPrice"];
     }
     if (_serverId && ![_serverId isEqualToString:@""]) {

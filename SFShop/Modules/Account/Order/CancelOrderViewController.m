@@ -128,7 +128,7 @@
 
 - (IBAction)submitAction:(UIButton *)sender {
     if (!_selReasonModel) {
-        [MBProgressHUD autoDismissShowHudMsg:@"请选择取消原因"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"REASON_TITLE")];
         return;
     }
     MPWeakSelf(self)

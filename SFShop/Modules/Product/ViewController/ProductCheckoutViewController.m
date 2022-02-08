@@ -207,9 +207,9 @@
 //                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
                 vc.dataArray = availableCoupons;
                 vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
-                    if (!item) {
-                        return;
-                    }
+//                    if (!item) {
+//                        return;
+//                    }
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
                     [MBProgressHUD showHudMsg:@""];
                     [CheckoutManager.shareInstance calfeeByStoreCouponItem:item storeId:detailModel.storeId complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
@@ -225,7 +225,7 @@
                 break;
             case ProductCheckoutCellEvent_GotoAddress: {
                 AddressViewController *vc = [[AddressViewController alloc] init];
-                vc.curAddress = self.dataModel.addressModel.modifyDate;
+                vc.curAddress = self.dataModel.addressModel.modifyDate ? self.dataModel.addressModel.modifyDate: @"123";
                 vc.addressBlock = ^(addressModel * _Nonnull model) {
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
                     [MBProgressHUD showHudMsg:@""];

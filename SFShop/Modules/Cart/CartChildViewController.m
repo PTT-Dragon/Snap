@@ -371,9 +371,13 @@
         if (self.cartModel.validCarts.count > 0 || self.cartModel.invalidCarts.count > 0) {
             bottomH = 78;
             self.emptyView.hidden = YES;
+            self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+            self.tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
         } else {
             self.emptyView.hidden = NO;
             [self requestSimilar];
+            self.view.backgroundColor = [UIColor whiteColor];
+            self.tableView.backgroundColor = [UIColor whiteColor];
         }
         [cartVC.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_offset(bottomH);
@@ -673,6 +677,7 @@
     if (!_emptyView) {
         _emptyView = [[CartEmptyView alloc] init];
         _emptyView.hidden = YES;
+        _emptyView.backgroundColor = [UIColor whiteColor];
     }
     return _emptyView;
 }

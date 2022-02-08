@@ -93,6 +93,7 @@
     if (!model || [model.accessToken isEqualToString:@""]) {
         LoginViewController *vc = [[LoginViewController alloc] init];
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        [self removeFromSuperview];
         return;
     }
     if (indexPath.section == 0) {

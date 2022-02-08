@@ -6,6 +6,8 @@
 //
 
 #import "CommunityEvaluateCell.h"
+#import "NSDate+Helper.h"
+#import "NSString+Add.h"
 
 @interface CommunityEvaluateCell ()
 @property (nonatomic,strong) UIImageView *imgView;
@@ -13,6 +15,7 @@
 @property (nonatomic,strong) UIButton *likeBtn;
 @property (nonatomic,strong) UILabel *contentLabel;
 @property (nonatomic,strong) UILabel *likeLabel;
+@property (nonatomic,strong) UILabel *timeLabel;
 @end
 
 @implementation CommunityEvaluateCell
@@ -70,11 +73,16 @@
         make.right.mas_equalTo(self.contentView.mas_right).offset(-14);
         make.centerY.equalTo(_likeBtn);
     }];
+    
+    _timeLabel = [[UILabel alloc] init];
+    [self.contentView addSubview:_timeLabel];
 }
 - (void)setModel:(ArticleEvaluateChildrenModel *)model
 {
     _model = model;
-    _contentLabel.text = model.evalComments;
+    _contentLabel.text = [NSString stringWithFormat:@"%@ %@",model.evalComments,[[NSDate dateFromString:model.createdDate] stringWithFormat:@"YYYY.MM.dd"]];
+    NSAttributedString *attStr = [NSMutableString difereentAttr:@{NSFontAttributeName:CHINESE_SYSTEM(11),NSForegroundColorAttributeName:RGBColorFrom16(0x7b7b7b)} str:[NSString stringWithFormat:@"%@ %@",model.evalComments,[[NSDate dateFromString:model.createdDate] stringWithFormat:@"YYYY.MM.dd"]] changeText:[[NSDate dateFromString:model.createdDate] stringWithFormat:@"YYYY.MM.dd"]];
+    _contentLabel.attributedText = attStr;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userLogo)] placeholderImage:[UIImage imageNamed:@"account-black"]];
     _nameLabel.text = model.userName;
     _likeBtn.selected = [model.isUseful isEqualToString:@"Y"];

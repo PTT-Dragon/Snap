@@ -71,6 +71,7 @@
     self.couponView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
     self.couponView.layer.borderWidth = 1;
     self.cartBtn.titleLabel.numberOfLines = 2;
+    self.cartBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     if ([self.couponModel.discountMethod isEqualToString:@"DISC"]) {
         _couponNameLabel.text = [NSString stringWithFormat:@"%@ %@ Min.spend %@",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency],[[NSString stringWithFormat:@"%@f",self.couponModel.thAmount] currency]];
     }else{
@@ -221,8 +222,11 @@
     self.dataModel.filterCache = self.filterCacheModel;
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
+    MPWeakSelf(self)
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
         if (type != CategoryRankFilterRefreshCancel) {
+            weakself.dataModel = model;
+            weakself.filterCacheModel = weakself.dataModel.filterCache;
             [self.tableView.mj_header beginRefreshing];
         }
     };
@@ -447,4 +451,14 @@
     }
     return _moreView;
 }
+
+- (CategoryRankFilterCacheModel *)filterCacheModel {
+    if (_filterCacheModel == nil) {
+        _filterCacheModel = [[CategoryRankFilterCacheModel alloc] init];
+        _filterCacheModel.minPrice = -1;//初始化为-1,传参时,传入@""表示没有指定min价格
+        _filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
+    }
+    return _filterCacheModel;
+}
+
 @end

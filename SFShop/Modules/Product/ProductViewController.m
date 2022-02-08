@@ -746,7 +746,7 @@
 - (void)setSelProductModel:(ProductItemModel *)selProductModel
 {
     _selProductModel = selProductModel;
-    
+    self.offerNameLabel.text = selProductModel.productName;
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     self.productDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",_selProductModel.discountPercent];
     self.salesPriceLabel.text = [[NSString stringWithFormat:@"%ld", selProductModel.salesPrice] currency];
@@ -1048,7 +1048,7 @@
                 [itemArr2 addObject:itemModel];
                 listModel.shoppingCarts = itemArr2;
             }
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
             self.cartNumLabel.text = modelsd.validCarts.count == 0 ? @"": [NSString stringWithFormat:@"%ld",modelsd.validCarts.count];
             self.cartNumLabel.hidden = modelsd.validCarts.count == 0 ? YES: NO;
             modelsd.totalDiscount = 0;

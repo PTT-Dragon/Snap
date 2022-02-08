@@ -69,7 +69,7 @@
     super.dataModel = dataModel;
     NSInteger shopAvailableVouchersCount = dataModel.couponsModel.pltAvailableCoupons.count;
     if (!shopAvailableVouchersCount) {//如果没选中优惠券也没有有效优惠券,那么显示无有效优惠券
-        self.subTitleLabel.text = kLocalizedString(@"Not_available");
+        self.subTitleLabel.text = kLocalizedString(@"NOT_AVAILABLE");
         self.subTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     } else {
         if (dataModel.currentPltCoupon) {

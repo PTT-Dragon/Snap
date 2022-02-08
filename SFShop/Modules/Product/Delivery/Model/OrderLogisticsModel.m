@@ -27,7 +27,7 @@
 }
 
 - (NSString *)dateStr {
-    return [NSString stringWithFormat:@"%@ %@-%@ %@", kLocalizedString(@"Est_arrival"), self.minDeliveryDays, self.maxDeliveryDays, kLocalizedString(@"Days")];
+    return [NSString stringWithFormat:@"%@ %@-%@ %@", kLocalizedString(@"DELIVERY_RANGE"), self.minDeliveryDays, self.maxDeliveryDays, kLocalizedString(@"Days")];
 }
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
