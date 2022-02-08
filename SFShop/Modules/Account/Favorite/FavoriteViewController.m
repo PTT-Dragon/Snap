@@ -64,16 +64,19 @@
     self.dataModel.filterCache = self.filterCacheModel;
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
+    MPWeakSelf(self)
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
         if (type != CategoryRankFilterRefreshCancel) {
             FavoriteChildViewController *vc = self.magicController.childViewControllers[self.magicController.currentPage];
-            if (model.priceModel.minPrice > -1) {
+            if (model.priceModel && model.priceModel.minPrice > -1) {
                 model.priceModel.minPrice = [[NSString stringWithFormat:@"%.ld",model.priceModel.minPrice] multiplyCurrencyFloat];
             }
-            if (model.priceModel.maxPrice > -1) {
+            if (model.priceModel && model.priceModel.maxPrice > -1) {
                 model.priceModel.maxPrice = [[NSString stringWithFormat:@"%.ld",model.priceModel.maxPrice] multiplyCurrencyFloat];
             }
             vc.rankModel = model;
+            weakself.dataModel = model;
+            weakself.filterCacheModel = weakself.dataModel.filterCache;
             [vc reloadDatas];
         }
     };
@@ -158,8 +161,8 @@
 - (CategoryRankFilterCacheModel *)filterCacheModel {
     if (_filterCacheModel == nil) {
         _filterCacheModel = [[CategoryRankFilterCacheModel alloc] init];
-        self.filterCacheModel.minPrice = -1;//初始化为-1,传参时,传入@""表示没有指定min价格
-        self.filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
+        _filterCacheModel.minPrice = -1;//初始化为-1,传参时,传入@""表示没有指定min价格
+        _filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
     }
     return _filterCacheModel;
 }

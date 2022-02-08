@@ -389,8 +389,8 @@
 - (CategoryRankFilterCacheModel *)filterCacheModel {
     if (_filterCacheModel == nil) {
         _filterCacheModel = [[CategoryRankFilterCacheModel alloc] init];
-        self.filterCacheModel.minPrice = -1;//初始化为-1,传参时,传入@""表示没有指定min价格
-        self.filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
+        _filterCacheModel.minPrice = -1;//初始化为-1,传参时,传入@""表示没有指定min价格
+        _filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
     }
     return _filterCacheModel;
 }
