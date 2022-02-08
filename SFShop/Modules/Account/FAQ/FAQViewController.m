@@ -87,6 +87,16 @@
     _magicController.view.frame = CGRectMake(0, navBarHei+50, MainScreen_width, MainScreen_height-navBarHei-44);
     [_magicController.magicView reloadData];
     [self.view addSubview:self.navSearchView];
+    
+    UIImageView *imgV = [[UIImageView alloc] init];
+    [self.view addSubview:imgV];
+    [imgV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_navSearchView).offset(9.5);
+        make.right.offset(-30);
+        make.width.height.mas_equalTo(25);
+    }];
+    imgV.image = [UIImage imageNamed:@"ic_nav_search"];
+    
 }
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
