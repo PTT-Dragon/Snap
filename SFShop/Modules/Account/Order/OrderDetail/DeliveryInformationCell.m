@@ -25,9 +25,14 @@
 - (void)setContent:(OrderDetailModel *)model
 {
     DeliveryInfoModel *infoModel = model.deliverys.firstObject;
-    _contentLabel.text = [NSString stringWithFormat:@"    %@%@",kLocalizedString(@"PACKAGE_CODE"),infoModel.logisticsId];
+    _contentLabel.text = [NSString stringWithFormat:@"    %@%@",kLocalizedString(@"PACKAGE_CODE"),infoModel.shippingNbr];
     NSString *state = [model.deliveryState isEqualToString:@"C"] ? @"WAREHOUSE_HAS_BEEN_DELIVERED": @"";
-    _infoLabel.text = [NSString stringWithFormat:@"%@\n%@",kLocalizedString(state),infoModel.deliveryDate];
     self.logisticsName.text = infoModel.logisticsName;
+    
+    _infoLabel.text = [NSString stringWithFormat:@"%@\n%@",kLocalizedString(state),infoModel.deliveryDate];
+//    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",kLocalizedString(state),infoModel.deliveryDate]];
+//    [text addAttributes:@{NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#333333"]} range:NSMakeRange(0, kLocalizedString(state).length)];
+//    [text addAttributes:@{NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#333333"]} range:NSMakeRange(text.length-infoModel.deliveryDate.length, infoModel.deliveryDate.length)];
+//    _infoLabel.attributedText = text;
 }
 @end

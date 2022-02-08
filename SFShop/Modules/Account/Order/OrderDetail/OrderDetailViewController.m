@@ -169,7 +169,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == 0 ? 130: indexPath.section == 2 ? 156: indexPath.section == 1 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: (indexPath.section == 3 && indexPath.row>self.model.orderItems.count) ? 30: indexPath.section == 3 ? [self.model.state isEqualToString:@"D"] ? 170: 154:  30;
+    return indexPath.section == 0 ? 146: indexPath.section == 2 ? 156: indexPath.section == 1 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: (indexPath.section == 3 && indexPath.row>self.model.orderItems.count) ? 30: indexPath.section == 3 ? [self.model.state isEqualToString:@"D"] ? 170: 154:  30;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
