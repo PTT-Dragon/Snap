@@ -124,7 +124,8 @@
 //  "COLLECT_SUCCESS" = "Add item to wishlist Successfully！";
 //  "DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully！";
 //  "COLLECT" = "COLLECT";
-  "RATING" = "Ratings";
+//  "RATING" = "Ratings";
+"RATING" = "Ratlng";
   "STAR" = "star";
 //  "ENDS_IN" = "Ends in";
 //  "TOTAL" = "Total";

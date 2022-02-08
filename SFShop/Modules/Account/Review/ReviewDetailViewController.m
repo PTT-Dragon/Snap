@@ -98,13 +98,14 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+    CGFloat itemHei = (MainScreen_width-32-30)/4;
     if (indexPath.row == 0) {
-        EvaluatesModel *evaModel = self.model.evaluates.firstObject;
-        CGFloat itemHei = (MainScreen_width-32-30)/4;
-        CGFloat hei = evaModel.contents.count == 0 ? 0: evaModel.contents.count < 4 ? itemHei+5:  evaModel.contents.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
-        return hei+224;
+        CGFloat hei = ceil(evaModel.contents.count/4.0)*itemHei;
+        return hei+200;
     }
-    return 120;
+    CGFloat hei2 = ceil(evaModel.review.contents.count/4.0)*itemHei;
+    return hei2+78;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
