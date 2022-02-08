@@ -222,8 +222,11 @@
     self.dataModel.filterCache = self.filterCacheModel;
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
+    MPWeakSelf(self)
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
         if (type != CategoryRankFilterRefreshCancel) {
+            weakself.dataModel = model;
+            weakself.filterCacheModel = weakself.dataModel.filterCache;
             [self.tableView.mj_header beginRefreshing];
         }
     };
@@ -448,4 +451,14 @@
     }
     return _moreView;
 }
+
+- (CategoryRankFilterCacheModel *)filterCacheModel {
+    if (_filterCacheModel == nil) {
+        _filterCacheModel = [[CategoryRankFilterCacheModel alloc] init];
+        _filterCacheModel.minPrice = -1;//初始化为-1,传参时,传入@""表示没有指定min价格
+        _filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
+    }
+    return _filterCacheModel;
+}
+
 @end
