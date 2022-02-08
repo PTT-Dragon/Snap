@@ -120,7 +120,7 @@
         _titleView.text = kLocalizedString(@"COUPONS");
         _titleView.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _titleView.textAlignment = NSTextAlignmentCenter;
-        _titleView.font = [UIFont systemFontOfSize:14];
+        _titleView.font = BOLDSYSTEMFONT(16);
     }
     return _titleView;
 }

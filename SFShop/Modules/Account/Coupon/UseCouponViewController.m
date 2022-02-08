@@ -19,7 +19,7 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 #import "CategoryRankViewController.h"
-
+#import "EmptyView.h"
 
 @interface UseCouponViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
@@ -49,6 +49,7 @@
 @property (nonatomic, readwrite, strong) BaseMoreView *moreView;
 @property (nonatomic,copy) NSString *searchText;
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
+@property (nonatomic,strong) EmptyView *emptyView;
 
 @end
 
@@ -109,6 +110,13 @@
     [self loadAddressDatas];
     [self loadFeeDatas];
     [self.tableView.mj_header beginRefreshing];
+    
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.tableView.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
+    
 }
 #pragma mark - tableview
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,6 +175,13 @@
         }
         [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
         [self.tableView reloadData];
+        if (self.dataArray.count==0) {
+            self.emptyView.hidden = NO;
+            self.tableView.mj_footer.hidden = YES;
+        } else {
+            self.emptyView.hidden = YES;
+            self.tableView.mj_footer.hidden = NO;
+        }
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
         if ([self.tableView.mj_header isRefreshing]) {
@@ -459,6 +474,15 @@
         _filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
     }
     return _filterCacheModel;
+}
+
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoProductType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
 }
 
 @end

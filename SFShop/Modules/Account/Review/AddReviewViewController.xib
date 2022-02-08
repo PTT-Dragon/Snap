@@ -54,7 +54,7 @@
                         <action selector="submitAction:" destination="-1" eventType="touchUpInside" id="yow-Bc-dJc"/>
                     </connections>
                 </button>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAg-2x-pAz">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAg-2x-pAz">
                     <rect key="frame" x="0.0" y="44" width="414" height="718"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muI-ge-0Hg">
@@ -127,7 +127,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="132" id="uUe-bx-GZc"/>
                             </constraints>
-                            <color key="textColor" systemColor="labelColor"/>
+                            <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             <userDefinedRuntimeAttributes>
@@ -303,9 +303,6 @@
     <resources>
         <image name="checkbox-0" width="200" height="200"/>
         <image name="checkbox-1" width="200" height="200"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
