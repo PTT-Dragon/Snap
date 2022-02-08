@@ -29,11 +29,15 @@ static BOOL _passwordSuccess = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"SIGN_UP");
+    self.title = kLocalizedString(@"Sign_Up");
     [self layoutSubviews];
 }
 - (void)layoutSubviews
 {
+    self.PhoneField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];//设置显示模式为永远显示(默认不显示)
+    self.PhoneField.leftViewMode = UITextFieldViewModeAlways;
+    self.passwordField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];//设置显示模式为永远显示(默认不显示)
+    self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     self.passwordField.layer.borderWidth = 1;
     self.PhoneField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
@@ -42,7 +46,8 @@ static BOOL _passwordSuccess = NO;
     [self.passwordField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     self.accountQesLabel.text = kLocalizedString(@"PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL");
     _passwordField.placeholder = [NSString stringWithFormat:@"   %@",kLocalizedString(@"PASSWORD")];
-    _passwordLabel.text = [NSString stringWithFormat:@"   %@",kLocalizedString(@"PASSWORD")];
+    _PhoneField.placeholder = kLocalizedString(@"PHONE_NUMBER_EMAIL");
+    _passwordLabel.text = [NSString stringWithFormat:@"%@",kLocalizedString(@"PASSWORD")];
     [self.signUpBtn setTitle:kLocalizedString(@"SIGN_UP") forState:0];
     self.phoneLabel.text = kLocalizedString(@"PHONE_NUMBER_EMAIL");
 }

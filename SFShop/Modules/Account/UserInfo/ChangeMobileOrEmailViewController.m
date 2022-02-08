@@ -100,6 +100,10 @@ static BOOL _passwordSuccess2 = NO;
 {
     self.field.layer.borderWidth = 1;
     self.field2.layer.borderWidth = 1;
+    self.field.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];//设置显示模式为永远显示(默认不显示)
+    self.field.leftViewMode = UITextFieldViewModeAlways;
+    self.field2.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];//设置显示模式为永远显示(默认不显示)
+    self.field2.leftViewMode = UITextFieldViewModeAlways;
     _redLabel1.text = kLocalizedString(@"REQUIREDTIP");
     _redLabel2.text = kLocalizedString(@"REQUIREDTIP");
     _label2.text = kLocalizedString(@"NEW_MOBILE_NUMBER");

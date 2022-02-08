@@ -293,9 +293,9 @@
         make.centerY.equalTo(_groupView);
     }];
     _groupLabel = [[UILabel alloc] init];
-    _groupLabel.font = CHINESE_SYSTEM(10);
+    _groupLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:10];
     _groupLabel.textColor = RGBColorFrom16(0xFF1659);
-    _groupLabel.text = kLocalizedString(@"SHAREBUY");
+    _groupLabel.text = kLocalizedString(@"Sharebuy");
     [_groupView addSubview:_groupLabel];
     [_groupLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(darkView.mas_right).offset(5);
@@ -330,8 +330,8 @@
     if (self.stockModel.count == 0 || self.maxPurchaseCount == 0) {
         _btn2.hidden = YES;
         [_btn1 setTitle:kLocalizedString(@"OUT_OF_STOCK_IN_CURRENT_REGION") forState:0];
-        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFFE5EB) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xed7b9c) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -342,7 +342,7 @@
         //是团购  //先满足团购的UI
         _btn2.hidden = YES;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
         _btn1.tag = groupBuyType + 100;
         [_btn1 setTitle:kLocalizedString(@"SHARE_BUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -357,7 +357,7 @@
         _btn1.tag = buyType + 100;
         [_btn1 setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -369,7 +369,7 @@
         [_btn1 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
         _btn1.tag = cartType + 100;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(16);
             make.right.mas_equalTo(self.mas_right).offset(-16);
@@ -380,8 +380,8 @@
         //单独购买  这时两个按钮都要显示
         _btn2.hidden = NO;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
-        [_btn2 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
+        [_btn2 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
         _btn1.tag = groupSingleBuyType + 100;
         _btn2.tag = cartType + 100;
         [_btn1 setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
@@ -402,7 +402,7 @@
         //只是加入购物车  有团购的情况下需显示拼团
         _btn2.hidden = YES;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
-        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xFFE5EB) forState:UIControlStateDisabled];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
         _btn1.tag = groupBuyType + 100;
         [_btn1 setTitle:kLocalizedString(@"SHARE_BUY") forState:0];
         [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {

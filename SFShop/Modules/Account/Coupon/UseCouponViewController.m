@@ -164,8 +164,15 @@
     [parm addEntriesFromDictionary:filter.filterParam];
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
-        self.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
-        
+        CategoryRankModel *model = [CategoryRankModel yy_modelWithDictionary:response];
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:@[]];
+        [model.pageInfo.list enumerateObjectsUsingBlock:^(CategoryRankPageInfoListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (!obj.sppType && ![obj.offerType isEqualToString:@"V"] && ![obj.offerType isEqualToString:@"E"]) {
+                [arr addObject:obj];
+            }
+        }];
+        model.pageInfo.list = arr;
+        self.dataModel = model;
         if ([self.tableView.mj_header isRefreshing]) {
             [self.tableView.mj_header endRefreshing];
             [self.dataArray removeAllObjects];

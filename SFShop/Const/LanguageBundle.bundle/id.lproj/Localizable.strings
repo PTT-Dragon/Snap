@@ -107,7 +107,7 @@
 //  "VIEW_REPLIES" = "Lihat balasan";
 //  "CONTACT_US" = "Hubungi kami";
 //  "SIGN_IN" = "Sign in";
-  "OUT_OF_STOCK" = "Stok habis";
+  "OUT_OF_STOCK" = "Habis";
   "My_coupon" = "Kupon Saya";
 //  "PASSWORD" = "Password";
 //  "CURRENT_PWD" = "Password lama";
@@ -504,7 +504,7 @@
 //  "LIKE" = "Like";
 //  "AGENT_SERVICE" = "Agent Service";
 "ITEM" = "Barang";
-"OUT_OF_STOCK_IN_CURRENT_REGION" = "Tidak tersedia di negara ini";
+"OUT_OF_STOCK_IN_CURRENT_REGION" = "TIDAK TERSEDIA DI NEGARA INI";
 "Empty_Tip_NoPage" = "Oops! Halaman tidak ditemukan.";
 "Empty_Tip_NoNetWork" = "Internet error; silakan coba nanti.";
 "Empty_Tip_NoShoppingCar" = "Tidak ada barang dikeranjang ini.";
@@ -642,7 +642,7 @@
 "Reset_success" = "Ulangi Sukses!";
 "Login" = "MASUK";
 "Nomor telepon" = "Nomor telepon";
-"Sign_Up" = "daftar";
+"Sign_Up" = "Daftar";
 "PHONE_NUMBER" = "Nomor Handphone";
 "Max" = "Max";
 "ACCOUNT_DOES_NOT_EXIST" = "Akun tidak ditemukan.";
