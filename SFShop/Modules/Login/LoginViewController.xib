@@ -239,8 +239,8 @@
         </view>
     </objects>
     <resources>
-        <image name="email-1" width="24" height="24"/>
-        <image name="email-2" width="24" height="24"/>
+        <image name="email-1" width="20" height="16"/>
+        <image name="email-2" width="20" height="16"/>
         <image name="eye-open-0" width="200" height="200"/>
         <image name="hide-0" width="200" height="200"/>
         <image name="pad-1" width="24" height="24"/>

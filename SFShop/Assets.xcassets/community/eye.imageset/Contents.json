@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "00041_01_visible_outline.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "00041_01_visible_outline@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "eye@3x.png",
+      "filename" : "00041_01_visible_outline@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
