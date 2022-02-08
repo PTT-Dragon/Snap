@@ -223,7 +223,9 @@
                 <outlet property="allCountLabel" destination="4mR-mc-g2I" id="utj-RE-iWS"/>
                 <outlet property="amountLabel" destination="gos-1h-OHP" id="e2M-Iv-Yok"/>
                 <outlet property="btn1" destination="OUz-FI-VE4" id="uQ7-Io-VxL"/>
+                <outlet property="btn1Hei" destination="UGI-Yl-mmY" id="o9W-Uh-eG2"/>
                 <outlet property="btn2" destination="zRi-m8-JJ8" id="Ar6-RG-2Jc"/>
+                <outlet property="btn2Bottom" destination="zRU-Px-BQU" id="6cu-jo-R5C"/>
                 <outlet property="countLabel" destination="vO2-GD-Yge" id="iIj-5h-Hlb"/>
                 <outlet property="groupView" destination="Tu5-Gk-Uml" id="kcZ-Va-S1d"/>
                 <outlet property="hasCountLabel" destination="QlP-AP-k6D" id="bbg-Cc-kD9"/>

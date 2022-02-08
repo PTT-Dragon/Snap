@@ -121,24 +121,33 @@
 
 - (void)homeBtnAction {
     [self cancel];
+    UIViewController *vc = [baseTool getCurrentVC];
+    [vc.navigationController popToRootViewControllerAnimated:YES];
+    [self performSelector:@selector(aaa) withObject:nil afterDelay:0.1];
+}
+- (void)aaa
+{
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate.tabVC setSelectedIndex:0];
-    [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
 }
-
 - (void)inboxBtnAction {
     [self cancel];
     MessageViewController *vc = [[MessageViewController alloc] init];
-    [self.parentViewController.navigationController pushViewController:vc animated:YES];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+//    [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)accountBtnAction {
     [self cancel];
+    UIViewController *vc = [baseTool getCurrentVC];
+    [vc.navigationController popToRootViewControllerAnimated:YES];
+    [self performSelector:@selector(bbb) withObject:nil afterDelay:0.1];
+}
+- (void)bbb
+{
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate.tabVC setSelectedIndex:4];
-    [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
 }
-
 - (void)mysfBtnAction {
     [self cancel];
 

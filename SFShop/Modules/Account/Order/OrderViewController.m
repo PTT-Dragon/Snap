@@ -20,6 +20,7 @@
 @property (nonatomic,strong) VTMagicController *magicController;
 @property (nonatomic,strong) OrderNumModel *orderNumModel;
 @property (nonatomic,strong) BaseMoreView *moreView;
+@property (nonatomic, readwrite, strong) UILabel *titleLabel;
 
 @end
 
@@ -40,9 +41,18 @@
     self.title = kLocalizedString(@"My_orders");
     [self layoutSubviews];
     [self loadOrderNum];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadOrderNum) name:@"KRefreshOrderNum" object:nil];
+    [self addNoti];
+    
 }
-
+- (void)addNoti
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadOrderNum) name:@"KRefreshOrderNum" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideMoreView) name:@"KBaseMoreViewHidden" object:nil];;
+}
+- (void)hideMoreView
+{
+    [self.navSearchView clickRightBtn];
+}
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KRefreshOrderNum" object:nil];
 }
@@ -162,21 +172,45 @@
         __weak __typeof(self)weakSelf = self;
         rightItem.itemActionBlock = ^(SFSearchState state,SFSearchModel * _Nullable model,BOOL isSelected) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
-            [strongSelf.moreView removeFromSuperview];
-            strongSelf.moreView = [[BaseMoreView alloc] init];
-            [strongSelf.view addSubview:self.moreView];
-            [strongSelf.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.bottom.mas_equalTo(0);
-                make.top.mas_equalTo(strongSelf.navSearchView.mas_bottom);
-            }];
+            if (isSelected) {
+                strongSelf.navSearchView.textField.hidden = YES;
+                strongSelf.navSearchView.backBtn.hidden = YES;
+                strongSelf.titleLabel.hidden = NO;
+                [strongSelf.moreView removeFromSuperview];
+                strongSelf.moreView = [[BaseMoreView alloc] init];
+                [strongSelf.view addSubview:self.moreView];
+                [strongSelf.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.bottom.mas_equalTo(0);
+                    make.top.mas_equalTo(self.navSearchView.mas_bottom);
+                }];
+            }else{
+                strongSelf.navSearchView.backBtn.hidden = NO;
+                strongSelf.titleLabel.hidden = YES;
+                strongSelf.navSearchView.textField.hidden = NO;
+                [strongSelf.moreView removeFromSuperview];
+            }
         };
         _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, navBarHei + 10) backItme:backItem rightItem:rightItem searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
             OrderChildViewController *vc = strongSelf.magicController.currentViewController;
             vc.searchText = qs;
         }];
+        [_navSearchView addSubview:self.titleLabel];
+        [_titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(_navSearchView.mas_centerY).offset(10);
+            make.left.mas_equalTo(_navSearchView.mas_left).offset(20);
+        }];
     }
     return _navSearchView;
 }
-    
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.textColor = UIColor.blackColor;
+        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.text = kLocalizedString(@"DIRECT_FUNCTION");
+        _titleLabel.hidden = YES;
+    }
+    return _titleLabel;
+}
 @end

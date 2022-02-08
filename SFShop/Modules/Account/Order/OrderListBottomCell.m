@@ -40,6 +40,8 @@
 //@property (nonatomic, strong) static dispatch_source_t timer;//倒计时
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;
 @property (weak, nonatomic) IBOutlet UIButton *moreActionBtn1;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btn1Hei;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btn2Bottom;
 
 
 @end
@@ -86,6 +88,8 @@ static dispatch_source_t _timer;
     _amountLabel.text = [NSString stringWithFormat:@"%@",[model.orderPrice currency]];
     [_btn1 setTitle:[self getBtn1StrWithState:model.state] forState:0];
     [_btn2 setTitle:[self getBtn2StrWithState:model.state] forState:0];
+    _btn1Hei.constant = [model.state isEqualToString:@"G"] ? 40: 24;
+    _btn2Bottom.constant = [model.state isEqualToString:@"G"] ? 9: 17;
     _btn2.hidden = [model.state isEqualToString:@"B"] || [model.state isEqualToString:@"G"];
     _btn1.backgroundColor = ([model.state isEqualToString:@"A"] || [model.state isEqualToString:@"G"] || [model.state isEqualToString:@"C"] || [model.state isEqualToString:@"B"] || [model.state isEqualToString:@"E"] || [model.state isEqualToString:@"F"]) ? RGBColorFrom16(0xff1659): [UIColor whiteColor];
     [_btn1 setTitleColor:([model.state isEqualToString:@"A"] || [model.state isEqualToString:@"G"] || [model.state isEqualToString:@"C"] || [model.state isEqualToString:@"B"] || [model.state isEqualToString:@"E"] || [model.state isEqualToString:@"F"]) ? [UIColor whiteColor]: RGBColorFrom16(0xff1659) forState:0];
@@ -330,7 +334,7 @@ static dispatch_source_t _timer;
     }else if ([state isEqualToString:@"F"]){
         str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REBUY")];
     }else if ([state isEqualToString:@"G"]){
-        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"SHAREBUY")];
+        str = [NSString stringWithFormat:@"     %@     ",kLocalizedString(@"SHAREBUY")];
     }
     return str;
 }
