@@ -21,6 +21,7 @@
 #import "SRXGoodsImageDetailView.h"
 #import "JPVideoPlayerManager.h"
 #import "NSDate+Helper.h"
+#import "LoginViewController.h"
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
@@ -267,6 +268,17 @@
     }];
 }
 - (IBAction)sendAction:(UIButton *)sender {
+    if ([_replyField.text isEqualToString:@""]) {
+        [_replyField resignFirstResponder];
+        return;
+    }
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model) {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        [_replyField resignFirstResponder];
+        return;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (_selEvaluateModel) {
         [params setValue:_selEvaluateModel.model.articleEvalId forKey:@"articleEvalId"];
