@@ -146,7 +146,7 @@
         if (indexPath.row == 0) {
             hei = 40;
         }else if (indexPath.row == self.model.items.count+1){
-            return 255;
+            return 225;
         }else{
             hei = 118;
         }

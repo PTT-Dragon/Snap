@@ -29,6 +29,8 @@ static BOOL _accountSuccess = NO;
     self.titleLabel.text = kLocalizedString(@"CHANGE_PASS");
     [self.field addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     self.field.layer.borderWidth = 1;
+    self.field.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];
+    self.field.leftViewMode = UITextFieldViewModeAlways;
     if (_type == 2) {
         _label.text = kLocalizedString(@"RESET_PASSWORD_EMAIL");
         _field.placeholder = kLocalizedString(@"Email");

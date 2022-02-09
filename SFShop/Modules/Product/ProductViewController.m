@@ -1121,15 +1121,16 @@
 
 - (IBAction)buyNow:(UIButton *)sender {
     if (!_isCheckingSaleInfo) {
+        MPWeakSelf(self)
         ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
         camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
-            return object.productId.integerValue == _selProductModel.productId;
+            return object.productId.integerValue == weakself.selProductModel.productId;
         }];
-        
-        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-            return object.productId.integerValue == _selProductModel.productId;
-        }];
-        [self showAttrsViewWithAttrType:isGroupBuy ? groupBuyType: buyType];
+        [self showAttrsViewWithAttrType: buyType];
+//        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+//            return object.productId.integerValue == weakself.selProductModel.productId;
+//        }];
+//        [self showAttrsViewWithAttrType:isGroupBuy ? groupBuyType: buyType];
     }
 }
 
