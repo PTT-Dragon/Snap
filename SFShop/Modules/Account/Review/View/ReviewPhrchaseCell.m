@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIImageView *head;
 
 @end
 
@@ -28,8 +29,10 @@
 - (void)setModel:(PurchaseReviewModel *)model
 {
     _model = model;
-    _timeLabel.text = [NSString stringWithFormat:@"Additional Reviews %@ days after purchase",model.reviewTime];
-    _contentLabel.text = model.reviewComments;
+//    _timeLabel.text = [NSString stringWithFormat:@"Additional Reviews %@ days after purchase",model.reviewTime];
+    _timeLabel.text = model.storeName;
+    _contentLabel.text = model.replyComments;
+    [self.head sd_setImageWithURL:[NSURL URLWithString:model.storeLogoUrl] placeholderImage:[UIImage imageNamed:@"toko"]];
     [_collectionView reloadData];
 }
 #pragma mark - UICollectionViewDelegate

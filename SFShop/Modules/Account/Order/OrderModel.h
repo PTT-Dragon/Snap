@@ -45,7 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *id;
 @property (nonatomic,copy) NSString *bigImgUrl;
 
-
 @end
 
 
@@ -231,7 +230,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*reviewTime;
 @property (nonatomic,copy) NSString <Optional>*reviewDate;
 @property (nonatomic,copy) NSString <Optional>*reviewComments;
+
 @property (nonatomic,copy) NSString <Optional>*isUseful;
+@property (nonatomic,copy) NSString <Optional>*storeName;
+@property (nonatomic,copy) NSString <Optional>*storeLogoUrl;
+@property (nonatomic,copy) NSString <Optional>*replyComments;
+@property (nonatomic,copy) NSString <Optional>*replyDate;
+
 @end
 
 @interface ReviewUserInfoModel : JSONModel
@@ -253,6 +258,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) ProductItemModel *product;
 @property (nonatomic,strong) PurchaseReviewModel *review;
 @property (nonatomic,strong) ReviewUserInfoModel *user;
+@property (nonatomic,strong) PurchaseReviewModel *reply;
+
 @end
 
 @interface ReviewDetailModel : JSONModel
