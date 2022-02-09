@@ -33,7 +33,7 @@
     [_statuLabel addGestureRecognizer:tap];
     _label1.text = kLocalizedString(@"DISCOUNT");
     _label2.text = kLocalizedString(@"EXPIRY_DATE");
-    self.bgView.layer.borderColor = RGBColorFrom16(0xf9f9f9).CGColor;
+    self.bgView.layer.borderColor = RGBColorFrom16(0x9b9b9b).CGColor;
     self.bgView.layer.borderWidth = 1;
 }
 - (void)setContent:(CouponModel *)model
@@ -111,7 +111,7 @@
             view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
             [[baseTool getCurrentVC].view addSubview:view];
         } failed:^(NSError * _Nonnull error) {
-            
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }
 }

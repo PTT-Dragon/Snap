@@ -318,7 +318,6 @@
                     }];
                 }];
             }];
-            [self loadCouponsDatasWithStoreId:listModel.storeId productArr:arr row:i];
             i++;
         }
         [self handleDatas];
@@ -447,7 +446,7 @@
 - (void)showCouponsView
 {
     CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
-    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height-tabbarHei);
     view.couponDataSource = self.couponDataSource;
     [[baseTool getCurrentVC].view addSubview:view];
 }

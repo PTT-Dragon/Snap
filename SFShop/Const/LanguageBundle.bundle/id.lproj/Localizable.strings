@@ -267,7 +267,8 @@
   "LOGISTICS_DETAILS" = "Rincian pengiriman";
 //  "EVALUATION" = "Evaluasi";
   "RESET" = "ATUR ULANG";
-  "AVAILABLE" = "tersedia";
+  "AVAILABLE" = "Tersedia";
+"SFshop_Voucher" = "Platform Voucher";
   "EXPIRED" = "Kadaluwarsa";
   "USED" = "Telah digunakan";
 //  "ARE_YOU_SURE" = "Apakah kamu yakin";

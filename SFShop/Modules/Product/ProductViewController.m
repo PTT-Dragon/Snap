@@ -715,7 +715,13 @@
     self.couponsView.hidden = NO;
     self.couponsViewHeight.constant = 40;
     __block CGFloat lastRight = 0;
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
     [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.productId.integerValue != _selProductModel.productId) {
+            [arr removeObject:obj];
+        }
+    }];
+    [arr enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *label = [[UILabel alloc] init];
         label.text = obj.couponName;
         label.font = CHINESE_SYSTEM(12);
@@ -729,7 +735,7 @@
             make.centerY.equalTo(self.couponsView);
             make.width.mas_equalTo(width);
         }];
-        lastRight = width+5;
+        lastRight += width+5;
     }];
 }
 - (void)showGroupView
@@ -1007,16 +1013,16 @@
                 NSMutableArray *itemArr2 = [NSMutableArray array];
                 listModel = [[CartListModel alloc] init];
                 listModel.storeId = [NSString stringWithFormat:@"%ld",(long)self.model.storeId];
-                listModel.discountPrice = 500;
+//                listModel.discountPrice = 500;
                 listModel.logoUrl = _model.storeLogoUrl;
-                listModel.offerPrice = 500;
-                listModel.orderPrice = 500;
+//                listModel.offerPrice = 500;
+                listModel.orderPrice = _selProductModel.salesPrice;
                 listModel.storeName = _model.storeName;
                 CartItemModel *itemModel = [[CartItemModel alloc] init];
                 itemModel.addon = @"";
                 itemModel.imgUrl = _selProductModel.imgUrl;
                 itemModel.num = [NSString stringWithFormat:@"%lu",(unsigned long)_attrView.count];
-                itemModel.discountPrice = 500;
+//                itemModel.discountPrice = 500;
                 itemModel.productId = [NSString stringWithFormat:@"%ld",(long)_selProductModel.productId];
                 itemModel.offerId = [NSString stringWithFormat:@"%ld",(long)_model.offerId];
                 itemModel.salesPrice = _selProductModel.salesPrice;
@@ -1040,32 +1046,52 @@
                 //直接往listmodel里添加商品
                 NSMutableArray *itemArr2 = [NSMutableArray array];
                 [itemArr2 addObjectsFromArray:listModel.shoppingCarts];
-                CartItemModel *itemModel = [[CartItemModel alloc] init];
-                itemModel.addon = @"";
-                itemModel.imgUrl = _selProductModel.imgUrl;
-                itemModel.num = [NSString stringWithFormat:@"%lu",(unsigned long)_attrView.count];
-                itemModel.discountPrice = 500;
-                itemModel.productId = [NSString stringWithFormat:@"%ld",(long)_selProductModel.productId];
-                itemModel.offerId = [NSString stringWithFormat:@"%ld",(long)_model.offerId];
-                itemModel.salesPrice = _selProductModel.salesPrice;
-                itemModel.maxBuyCount = _selProductModel.maxBuyCount;
-                itemModel.productName = _selProductModel.productName;
-                itemModel.prodSpcAttrs = _selProductModel.prodSpcAttrs;
-                [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
-                    [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
-                        if (obj2.productId.integerValue == weakself.selProductModel.productId) {
-                            itemModel.stock = obj2.stock.integerValue;
-                            *stop1 = YES;
-                            *stop2 = YES;
-                        }
-                    }];
+                __block BOOL hasProduct = NO;
+                [listModel.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (obj.productId.integerValue == _selProductModel.productId) {
+                        //是同一件商品
+                        NSInteger a = obj.num.integerValue;
+                        a+= _attrView.count;
+                        obj.num = [NSString stringWithFormat:@"%ld",a];
+                        listModel.shoppingCarts = itemArr2;
+                        hasProduct = YES;
+                        *stop = YES;
+                    }
                 }];
-                [itemArr2 addObject:itemModel];
-                listModel.shoppingCarts = itemArr2;
+                if (!hasProduct) {
+                    CartItemModel *itemModel = [[CartItemModel alloc] init];
+                    itemModel.addon = @"";
+                    itemModel.imgUrl = _selProductModel.imgUrl;
+                    itemModel.num = [NSString stringWithFormat:@"%lu",(unsigned long)_attrView.count];
+    //                itemModel.discountPrice = _selProductModel.dis;
+                    itemModel.productId = [NSString stringWithFormat:@"%ld",(long)_selProductModel.productId];
+                    itemModel.offerId = [NSString stringWithFormat:@"%ld",(long)_model.offerId];
+                    itemModel.salesPrice = _selProductModel.salesPrice;
+                    itemModel.maxBuyCount = _selProductModel.maxBuyCount;
+                    itemModel.productName = _selProductModel.productName;
+                    itemModel.prodSpcAttrs = _selProductModel.prodSpcAttrs;
+                    [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+                        [obj1.products enumerateObjectsUsingBlock:^(SingleProductStockModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                            if (obj2.productId.integerValue == weakself.selProductModel.productId) {
+                                itemModel.stock = obj2.stock.integerValue;
+                                *stop1 = YES;
+                                *stop2 = YES;
+                            }
+                        }];
+                    }];
+                    [itemArr2 addObject:itemModel];
+                    listModel.shoppingCarts = itemArr2;
+                }
             }
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
-            self.cartNumLabel.text = modelsd.validCarts.count == 0 ? @"": [NSString stringWithFormat:@"%ld",modelsd.validCarts.count];
-            self.cartNumLabel.hidden = modelsd.validCarts.count == 0 ? YES: NO;
+            __block NSInteger count = 0;
+            [modelsd.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                    count++;
+                }];
+            }];
+            self.cartNumLabel.text = count == 0 ? @"": [NSString stringWithFormat:@"%ld",count];
+            self.cartNumLabel.hidden = count == 0 ? YES: NO;
             modelsd.totalDiscount = 0;
             modelsd.totalPrice = 0;
             modelsd.totalOfferPrice = 0;
@@ -1079,9 +1105,9 @@
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
             [baseTool updateCartNum];
             [weakself requestCartNum];
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_success")];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_failed")];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
         }];
     }
 }
