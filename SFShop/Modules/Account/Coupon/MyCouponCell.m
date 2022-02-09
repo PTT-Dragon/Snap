@@ -40,13 +40,21 @@
     }else{
         _nameLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
     }
-    if (model.getOffsetExp != nil) {
-//        _timeLabel.text = [NSString stringWithFormat:@"Valid within %@ days",[[NSDate dateFromString:model.getOffsetExp] dayMonthYear]];
+    if (model.isGet) {
         _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.userCouponEffDate] dayMonthYear],[[NSDate dateFromString:model.userCouponExpDate] dayMonthYear]];
     }else{
-        _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
+        if (model.getOffsetExp) {
+            _timeLabel.text = [NSString stringWithFormat:@"Valid within %@ days",model.getOffsetExp];
+        }else{
+            _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
+        }
     }
-    _statuLabel.text = !model.userCouponState ? kLocalizedString(@"USE_NOW"): [model.userCouponState isEqualToString:@"C"] ? kLocalizedString(@"EXPIRED"): [model.userCouponState isEqualToString:@"A"] ? kLocalizedString(@"USE_NOW"): kLocalizedString(@"USED");
+    if (model.isGet) {
+        _statuLabel.text = kLocalizedString(@"USE_NOW");
+    }else{
+        _statuLabel.text = !model.userCouponState ? kLocalizedString(@"USE_NOW"): [model.userCouponState isEqualToString:@"C"] ? kLocalizedString(@"EXPIRED"): [model.userCouponState isEqualToString:@"A"] ? kLocalizedString(@"USE_NOW"): kLocalizedString(@"USED");
+    }
+    
     if (model.userCouponState) {
         _statuLabel.textColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);
         _discountView.backgroundColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);

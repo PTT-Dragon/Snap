@@ -75,7 +75,6 @@
     return cell;
 }
 
-
 - (IBAction)getAction:(UIButton *)sender {
     NSUInteger endTimeStamp = [[NSDate dateFromString:_model.expDate] utcTimeStamp];
     NSUInteger nowTimeStamp = [[NSDate date] utcTimeStamp];

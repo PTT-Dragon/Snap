@@ -55,6 +55,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *offerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subheadNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *detailViewHeader;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailsViewH;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 // TODO:暂时写死，后面估计会根据deliveryMode存在映射关系？
 @property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
@@ -257,7 +258,13 @@
 {
     CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
     view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-    view.couponDataSource = self.campaignsModel.coupons;
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
+    [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.productId.integerValue != _selProductModel.productId) {
+            [arr removeObject:obj];
+        }
+    }];
+    view.couponDataSource = arr;
     [[baseTool getCurrentVC].view addSubview:view];
 }
 - (void)chooseAddress {
@@ -578,16 +585,22 @@
 
 - (void)updateConstraints {
     CGFloat height = self.detailWebView.scrollView.contentSize.height;
+    self.detailViewHeader.hidden = height<=12? :NO;
+    self.detailsViewH.constant = self.detailViewHeader.hidden? CGFLOAT_MIN:50;
+    self.detailWebView.hidden = self.detailViewHeader;
     CGFloat collectionViewHeight = ceil(self.similarList.count / 2.0) * ((MainScreen_width - 60) / 2 + 120 + 16) + 16;
-
+    if (!self.similarList.count) {
+        collectionViewHeight = CGFLOAT_MIN;
+    }
+    self.recommendView.hidden = !self.similarList.count? :NO;
     [self.detailWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.detailViewHeader.mas_bottom);
         make.left.right.equalTo(self.scrollContentView);
-        make.height.mas_equalTo(height);
+        make.height.mas_equalTo(height<=12? CGFLOAT_MIN:height);
     }];
 
     [self.recommendView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.detailWebView.mas_bottom).offset(12);
+        make.top.equalTo(self.detailWebView.mas_bottom).offset(collectionViewHeight==CGFLOAT_MIN? 0:12);
         make.left.right.equalTo(self.scrollContentView);
         make.height.mas_equalTo(collectionViewHeight);
         make.bottom.lessThanOrEqualTo(self.scrollContentView).offset(-12);
@@ -746,7 +759,6 @@
 - (void)setSelProductModel:(ProductItemModel *)selProductModel
 {
     _selProductModel = selProductModel;
-    self.offerNameLabel.text = selProductModel.productName;
     NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     self.productDiscountLabel.text = [NSString stringWithFormat:@"-%.0f%%",_selProductModel.discountPercent];
     self.salesPriceLabel.text = [[NSString stringWithFormat:@"%ld", selProductModel.salesPrice] currency];

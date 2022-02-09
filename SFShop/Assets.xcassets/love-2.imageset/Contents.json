@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "love-1.png",
+      "filename" : "00014_02_heart_filled.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "00014_02_heart_filled@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "00014_02_heart_filled@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

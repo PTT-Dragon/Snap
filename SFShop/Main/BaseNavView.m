@@ -304,7 +304,7 @@
 - (UIButton *)clearBtn {
     if (!_clearBtn) {
         _clearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_clearBtn setImage:[UIImage imageNamed:@"clear"]
+        [_clearBtn setImage:[UIImage imageNamed:@"clear-2"]
                    forState:UIControlStateNormal];
         [_clearBtn addTarget:self
                       action:@selector(clearBtnAction)

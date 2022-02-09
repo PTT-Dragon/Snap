@@ -143,6 +143,11 @@
     
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     self.detailWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+    if (@available(iOS 11.0, *)) {
+        self.detailWebView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.detailWebView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.detailWebView.scrollView.scrollIndicatorInsets = self.detailWebView.scrollView.contentInset;
+    }
     self.detailWebView.scrollView.scrollEnabled = NO;
     [self.detailWebView.scrollView addObserver:self forKeyPath:@"contentSize" options: NSKeyValueObservingOptionNew context:nil];
     [self.scrollContentView addSubview:self.detailWebView];

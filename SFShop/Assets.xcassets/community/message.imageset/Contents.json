@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "00036_01_chat_outline.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "00036_01_chat_outline@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "message@3x.png",
+      "filename" : "00036_01_chat_outline@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
