@@ -38,6 +38,7 @@
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
 @property (nonatomic,strong) RecentlyNumModel *numModel;
+@property (nonatomic,strong) NSDate *monthFirstDay;
 
 @end
 
@@ -84,6 +85,7 @@
     [_calendarManager setMenuView:_calendarMenuView];
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
+    _monthFirstDay = [_calendarManager.dateHelper firstDayOfMonth:[NSDate date]];
     
     
     _dateSelected = [NSDate date];
@@ -108,7 +110,7 @@
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(navBarHei);
     }];
-    [_navView configDataWithTitle:kLocalizedString(@"Recently_Viewed")];
+    [_navView configDataWithTitle:kLocalizedString(@"RECENTLY_VIEWED")];
     
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -134,8 +136,8 @@
     NSDateFormatter* formatter1 = [[NSDateFormatter alloc] init];
     [formatter1 setDateFormat:@"yyyy-MM-dd"];
     NSString *selDay = [formatter1 stringFromDate:_dateSelected];
-    NSDate *startDate = [_calendarManager.dateHelper addToDate:_dateSelected months:-1];
-    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":startDate,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+//    NSDate *startDate = [_calendarManager.dateHelper addToDate:_dateSelected months:-1];
+    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":_monthFirstDay,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
         [weakself.dataSource removeAllObjects];
         if (!kArrayIsEmpty(arr)) {
@@ -157,8 +159,8 @@
     NSDateFormatter* formatter1 = [[NSDateFormatter alloc] init];
     [formatter1 setDateFormat:@"yyyy-MM-dd"];
     NSString *selDay = [formatter1 stringFromDate:_dateSelected];
-    NSDate *startDate = [_calendarManager.dateHelper addToDate:_dateSelected months:-1];
-    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":startDate,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+//    NSDate *startDate = [_calendarManager.dateHelper addToDate:_dateSelected months:-1];
+    [SFNetworkManager get:SFNet.recent.list parameters:@{@"startDate":_monthFirstDay,@"endDate":selDay,@"pageIndex":@(self.pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         NSInteger pageNum = [response[@"pageNum"] integerValue];
         NSInteger pages = [response[@"pages"] integerValue];
         if (pageNum >= pages) {
@@ -182,11 +184,11 @@
 }
 - (void)loadRecordDayDatas
 {
-    NSDate *date1 = [_calendarManager.dateHelper addToDate:[NSDate date] months:-1];
+//    NSDate *date1 = [_calendarManager.dateHelper addToDate:[NSDate date] months:-1];
     NSDate *date2 = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *startDate = [dateFormatter stringFromDate:date1];
+    NSString *startDate = [dateFormatter stringFromDate:_monthFirstDay];
     NSString *endDate = [dateFormatter stringFromDate:date2];
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.recent.num parameters:@{@"pageSize":@"100",@"startDate":startDate,@"endDate":endDate} success:^(id  _Nullable response) {
@@ -321,6 +323,8 @@
 - (void)calendar:(JTCalendarManager *)calendar prepareDayView:(JTCalendarDayView *)dayView
 {
     NSDate *date1 = [_calendarManager.dateHelper addToDate:[NSDate date] months:-1];
+    
+//    _monthFirstDay = [_calendarManager.dateHelper firstDayOfMonth:dayView.date];
     // Today
     if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = YES;
@@ -417,11 +421,17 @@
 - (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar
 {
     //    NSLog(@"Next page loaded");
+    _monthFirstDay = [_calendarManager.dateHelper firstDayOfMonth:calendar.date];
+    [self loadDatas];
+    [self loadRecordDayDatas];
 }
 
 - (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar
 {
     //    NSLog(@"Previous page loaded");
+    _monthFirstDay = [_calendarManager.dateHelper firstDayOfMonth:calendar.date];
+    [self loadDatas];
+    [self loadRecordDayDatas];
 }
 - (void)createMinAndMaxDate
 {

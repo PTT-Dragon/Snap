@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^CouponCenterCellBlock)(void);
+
 @interface CouponCenterCell : UITableViewCell
+@property (nonatomic,copy) CouponCenterCellBlock block;
 - (void)setContent:(CouponModel *)model;
 @end
 

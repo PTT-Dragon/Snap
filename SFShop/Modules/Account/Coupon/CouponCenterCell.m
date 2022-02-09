@@ -48,9 +48,18 @@
         _timeLabel.text = [NSString stringWithFormat:@"%@-%@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogo)] placeholderImage:[UIImage imageNamed:@"toko"]];
-    NSUInteger endTimeStamp = [[NSDate dateFromString:model.expDate] utcTimeStamp];
-    NSUInteger nowTimeStamp = [[NSDate date] utcTimeStamp];
-    if (model.userCoupons.count > 0 && nowTimeStamp > endTimeStamp) {
+//    NSUInteger endTimeStamp = [[NSDate dateFromString:model.expDate] utcTimeStamp];
+//    NSUInteger nowTimeStamp = [[NSDate date] utcTimeStamp];
+    __block BOOL hasCoupon = NO;
+//    NSInteger a = [[NSDate dateFromString:model.getDate] utcTimeStamp];
+//    NSInteger b = [[NSDate dateFromString:model.getDate] utcTimeStamp];
+//    NSInteger a = [[NSDate dateFromString:model.getDate] utcTimeStamp];
+    [model.userCoupons enumerateObjectsUsingBlock:^(userCouponsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (!obj.transOrderId && ![obj.state isEqualToString:@"W"] && (!model.getOffsetExp || ([[NSDate dateFromString:obj.getDate] utcTimeStamp] + model.getOffsetExp.integerValue*86420 > [[NSDate date] utcTimeStamp]))) {
+            hasCoupon = YES;
+        }
+    }];
+    if (hasCoupon) {
         [self.getBtn setTitle:kLocalizedString(@"USE_NOW") forState:0];
     }else{
         [self.getBtn setTitle:kLocalizedString(@"GET_NOW") forState:0];
@@ -76,9 +85,7 @@
 }
 
 - (IBAction)getAction:(UIButton *)sender {
-    NSUInteger endTimeStamp = [[NSDate dateFromString:_model.expDate] utcTimeStamp];
-    NSUInteger nowTimeStamp = [[NSDate date] utcTimeStamp];
-    if (_model.userCoupons.count > 0  && nowTimeStamp > endTimeStamp) {
+    if ([sender.titleLabel.text isEqualToString:kLocalizedString(@"USE_NOW")]) {
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
         vc.couponModel = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
@@ -88,6 +95,9 @@
         CouponAlertView *view = [[NSBundle mainBundle] loadNibNamed:@"CouponAlertView" owner:self options:nil].firstObject;
         view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
         [[baseTool getCurrentVC].view addSubview:view];
+        if (self.block) {
+            self.block();
+        }
     } failed:^(NSError * _Nonnull error) {
         
     }];

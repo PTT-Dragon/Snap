@@ -8,10 +8,12 @@
 #import "CouponCenterChildViewController.h"
 #import "CouponCenterCell.h"
 #import "CouponModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface CouponCenterChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic,assign) NSInteger page;
 
 @end
 
@@ -31,11 +33,30 @@
         make.top.mas_equalTo(self.view.mas_top).offset(10);
     }];
     [self loadDatas];
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
 }
 - (void)loadDatas
 {
+    self.page = 1;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.coupon.center parameters:@{@"couponCateId":_couponCatgId} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.coupon.center parameters:@{@"pageSize":@(5),@"pageIndex":@"1",@"couponCateId":_couponCatgId} success:^(id  _Nullable response) {
+        [weakself.dataSource removeAllObjects];
+        NSArray *arr = response[@"list"];
+        for (NSDictionary *dic in arr) {
+            [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
+        }
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)loadMoreDatas
+{
+    self.page ++;
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.coupon.center parameters:@{@"pageSize":@(5),@"pageIndex":@(self.page),@"couponCateId":_couponCatgId} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
@@ -52,6 +73,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CouponCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CouponCenterCell"];
+    cell.block = ^{
+        [self loadDatas];
+    };
     [cell setContent:self.dataSource[indexPath.row]];
     return cell;
 }

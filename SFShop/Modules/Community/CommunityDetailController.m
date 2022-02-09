@@ -75,6 +75,7 @@
 }
 
 - (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_navView updateIsShowArticleTop:YES];
     [_moreView removeFromSuperview];
     _moreView = [[BaseMoreView alloc] init];
     [self.view addSubview:_moreView];
@@ -96,7 +97,7 @@
     _navView = [[BaseNavView alloc] init];
     _navView.delegate = self;
     [_navView updateIsOnlyShowMoreBtn:YES];
-    [_navView updateIsShowArticleTop:YES];
+    [_navView updateIsShowArticleTop:NO];
     
     [self.view addSubview:_navView];
     [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -111,8 +112,11 @@
                         action:@selector(textFieldChanged:)
               forControlEvents:UIControlEventEditingChanged];
     self.theTitle.text = kLocalizedString(@"REPLIES");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNaviBtnAction) name:@"KBaseNavViewHiddenMoreView" object:nil];
 }
-
+- (void)showNaviBtnAction {
+    [_navView updateIsShowArticleTop:NO];
+}
 - (BOOL)shouldCheckLoggedIn {
     return NO;
 }
@@ -124,7 +128,7 @@
         NSLog(@"可能多次释放，避免crash");
     }
     [[JPVideoPlayerManager sharedManager] stopPlay];
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setUpSubViews {

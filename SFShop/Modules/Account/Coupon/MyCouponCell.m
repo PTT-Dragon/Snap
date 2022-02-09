@@ -35,11 +35,12 @@
 - (void)setContent:(CouponModel *)model
 {
     _model = model;
-    if ([model.discountMethod isEqualToString:@"DISC"]) {
-        _nameLabel.text = [NSString stringWithFormat:@"%@ %.2f%% Min.spend %.2f",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],[[NSString stringWithFormat:@"%@",model.thAmount] currencyFloat]];
-    }else{
-        _nameLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
-    }
+    _nameLabel.text = model.couponName;
+//    if ([model.discountMethod isEqualToString:@"DISC"]) {
+//        _nameLabel.text = [NSString stringWithFormat:@"%@ %.2f%% Min.spend %.2f",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],[[NSString stringWithFormat:@"%@",model.thAmount] currencyFloat]];
+//    }else{
+//        _nameLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
+//    }
     if (model.isGet) {
         _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.userCouponEffDate] dayMonthYear],[[NSDate dateFromString:model.userCouponExpDate] dayMonthYear]];
     }else{
@@ -49,11 +50,32 @@
             _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
         }
     }
-    if (model.isGet) {
-        _statuLabel.text = kLocalizedString(@"USE_NOW");
-    }else{
-        _statuLabel.text = !model.userCouponState ? kLocalizedString(@"USE_NOW"): [model.userCouponState isEqualToString:@"C"] ? kLocalizedString(@"EXPIRED"): [model.userCouponState isEqualToString:@"A"] ? kLocalizedString(@"USE_NOW"): kLocalizedString(@"USED");
+    if ([model.userCouponState isEqualToString:@"C"]) {
+        _statuLabel.text = kLocalizedString(@"EXPIRED");
+    }else if ([model.userCouponState isEqualToString:@"B"]){
+        _statuLabel.text = kLocalizedString(@"USED");
+    }else if ([model.userCouponState isEqualToString:@"A"]){
+        if (model.isGet) {
+            _statuLabel.text = kLocalizedString(@"USE_NOW");
+        }else{
+            if (!model.isGet) {
+                _statuLabel.text = kLocalizedString(@"USE_NOW");
+            }else{
+                _statuLabel.text = kLocalizedString(@"GET_NOW");
+            }
+        }
+    }else if (!model.userCouponState){
+        if (model.isGet) {
+            _statuLabel.text = kLocalizedString(@"USE_NOW");
+        }else{
+            _statuLabel.text = kLocalizedString(@"GET_NOW");
+        }
     }
+//    if (model.isGet) {
+//        _statuLabel.text = kLocalizedString(@"USE_NOW");
+//    }else{
+//        _statuLabel.text = !model.userCouponState ? kLocalizedString(@"USE_NOW"): [model.userCouponState isEqualToString:@"C"] ? kLocalizedString(@"EXPIRED"): [model.userCouponState isEqualToString:@"A"] ? kLocalizedString(@"USE_NOW"): kLocalizedString(@"USED");
+//    }
     
     if (model.userCouponState) {
         _statuLabel.textColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);

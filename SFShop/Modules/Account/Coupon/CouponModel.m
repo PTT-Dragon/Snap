@@ -12,6 +12,10 @@
 
 @end
 
+@implementation userCouponsModel
+
+@end
+
 @implementation CouponModel
 
 

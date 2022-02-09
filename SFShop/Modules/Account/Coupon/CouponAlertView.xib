@@ -61,6 +61,7 @@
                 <constraint firstItem="eq3-Ev-q24" firstAttribute="centerY" secondItem="qz1-CI-ORv" secondAttribute="centerY" id="qLO-dJ-rp3"/>
             </constraints>
             <connections>
+                <outlet property="btn" destination="1mC-Ut-EvP" id="G4r-Rt-bCb"/>
                 <outlet property="contentLabel" destination="JKO-YT-ENF" id="YG9-mY-jNp"/>
                 <outlet property="imgView" destination="MKY-S0-5XX" id="3ip-fl-vJl"/>
             </connections>

@@ -174,8 +174,8 @@
 - (void)updateIsShowArticleTop:(BOOL)isOnly
 {
     if (isOnly) {
-        self.anchorImgView.hidden = NO;
-        self.anchorNameLabel.hidden = NO;
+        self.anchorImgView.hidden = YES;
+        self.anchorNameLabel.hidden = YES;
         self.shareBtn.hidden = NO;
     } else {
         self.anchorImgView.hidden = NO;

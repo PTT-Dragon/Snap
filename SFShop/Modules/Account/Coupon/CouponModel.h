@@ -8,13 +8,23 @@
 #import "JSONModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol userCouponsModel
 
+@end
 
 
 @interface CouponNumModel : JSONModel
 @property (nonatomic,copy) NSString <Optional>*availableNum;
 @property (nonatomic,copy) NSString <Optional>*usedNum;
 @property (nonatomic,copy) NSString <Optional>*expiredNum;
+@end
+
+@interface userCouponsModel : JSONModel
+@property (nonatomic,copy) NSString <Optional>*transOrderId;
+@property (nonatomic,copy) NSString <Optional>*getDate;
+@property (nonatomic,copy) NSString <Optional>*state;
+
+
 @end
 
 @interface CouponModel : JSONModel
@@ -45,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*storeLogo;
 @property (nonatomic,copy) NSString <Optional>*userCouponState;
 @property (nonatomic,strong) NSArray <Optional>*targetProduct;
-@property (nonatomic,strong) NSArray *userCoupons;
+@property (nonatomic,strong) NSArray <userCouponsModel>*userCoupons;
 @property (nonatomic,copy) NSString <Optional>*userCouponEffDate;
 @property (nonatomic,copy) NSString <Optional>*userCouponExpDate;
 
