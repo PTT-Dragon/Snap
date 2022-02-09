@@ -62,6 +62,7 @@
                 <constraint firstItem="5JI-70-nRH" firstAttribute="leading" secondItem="gWv-z7-brZ" secondAttribute="leading" id="ol7-ov-Pf7"/>
             </constraints>
             <connections>
+                <outlet property="btn" destination="gcV-XG-Kzh" id="PfU-OD-Rdq"/>
                 <outlet property="tableView" destination="kEJ-LQ-wrr" id="bxC-Xr-FIf"/>
                 <outlet property="titleLabel" destination="G0K-ZU-1vT" id="Eog-wv-fq0"/>
             </connections>

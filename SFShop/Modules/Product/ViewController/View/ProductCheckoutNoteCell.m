@@ -224,7 +224,7 @@
         _totalLabel = [[UILabel alloc] init];
         _totalLabel.text = kLocalizedString(@"Total");
         _totalLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _totalLabel.font = [UIFont boldSystemFontOfSize:14];
+        _totalLabel.font = [UIFont systemFontOfSize:14];
         _totalLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _totalLabel;
@@ -234,8 +234,8 @@
     if (_totalPriceLabel == nil) {
         _totalPriceLabel = [[UILabel alloc] init];
         _totalPriceLabel.text = @"";
-        _totalPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _totalPriceLabel.font = [UIFont boldSystemFontOfSize:14];
+        _totalPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
+        _totalPriceLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightHeavy];;
         _totalPriceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _totalPriceLabel;

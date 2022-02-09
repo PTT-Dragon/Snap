@@ -289,6 +289,7 @@
             }];
             model.sel = YES;
             weakself.selectedAddressModel = model;
+            [self requestStock];
         };
         [self.view addSubview:vc.view];
         [self addChildViewController:vc];

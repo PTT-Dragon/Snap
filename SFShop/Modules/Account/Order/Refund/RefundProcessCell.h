@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RefundProcessCell : UITableViewCell
-- (void)setContent:(RefundDetailMemosModel *)model hideView:(BOOL)hideView;
+
+- (void)setContent:(RefundDetailMemosModel *)model hideView:(BOOL)hideView isLast:(BOOL)isLast;
 @end
 
 NS_ASSUME_NONNULL_END

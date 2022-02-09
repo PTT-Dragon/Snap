@@ -96,6 +96,9 @@
         make.width.height.mas_equalTo(25);
     }];
     imgV.image = [UIImage imageNamed:@"ic_nav_search"];
+    UITapGestureRecognizer *searchTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
+    imgV.userInteractionEnabled = YES;
+    [imgV addGestureRecognizer:searchTap];
     
 }
 /// VTMagicViewDataSource
@@ -150,12 +153,16 @@
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex {
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
 }
+- (void)searchAction
+{
+    
+}
 
 #pragma mark - getter
 - (SFSearchNav *)navSearchView {
     if (_navSearchView == nil) {
         __weak __typeof(self)weakSelf = self;
-        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(-30, navBarHei, MainScreen_width+80, 44) backItme:nil rightItem:nil searchBlock:^(NSString * _Nonnull qs) {
+        _navSearchView = [[SFSearchNav alloc] initWithFrame:CGRectMake(-30, navBarHei, MainScreen_width+80, 52) backItme:nil rightItem:nil searchBlock:^(NSString * _Nonnull qs) {
             __weak __typeof(weakSelf)strongSelf = weakSelf;
             FAQChildViewController *vc = strongSelf.magicController.currentViewController;
             vc.searchText = qs;

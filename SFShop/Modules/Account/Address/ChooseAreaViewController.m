@@ -313,7 +313,7 @@ typedef enum :NSUInteger{
 @property (nonatomic,assign) loadDataType dataType;
 @property (weak, nonatomic) IBOutlet UILabel *theTitle;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic,assign) BOOL canSel;
 
 
 @end
@@ -326,6 +326,7 @@ typedef enum :NSUInteger{
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Area");
     self.theTitle.text = kLocalizedString(@"Area");
+    _canSel = YES;
     _dataSource = [NSMutableArray array];
    
     _tableView.showsVerticalScrollIndicator = NO;
@@ -396,11 +397,13 @@ typedef enum :NSUInteger{
 
 - (void)loadDatasWithType:(loadDataType)type
 {
+    _canSel = NO;
     MPWeakSelf(self)
     switch (type) {
         case loadProvinceType:
         {
             [SFNetworkManager get:SFNet.address.areaData parameters:@{@"addrLevelId":@(2)} success:^(id  _Nullable response) {
+                weakself.canSel = YES;
                 [weakself.dataSource removeAllObjects];
                 [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
                 [weakself.dataSource enumerateObjectsUsingBlock:^(AreaModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -410,12 +413,13 @@ typedef enum :NSUInteger{
                 }];
                 [weakself.tableView reloadData];
             } failed:^(NSError * _Nonnull error) {
-                
+                weakself.canSel = YES;
             }];
         }
             break;
         case loadCityType:{
             [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selProvinceAreaMoel.stdAddrId} success:^(id  _Nullable response) {
+                weakself.canSel = YES;
                 [weakself.dataSource removeAllObjects];
                 [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
                 [weakself.dataSource enumerateObjectsUsingBlock:^(AreaModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -425,12 +429,13 @@ typedef enum :NSUInteger{
                 }];
                 [weakself.tableView reloadData];
             } failed:^(NSError * _Nonnull error) {
-                
+                weakself.canSel = YES;
             }];
         }
             break;
         case loadDistrictType:{
             [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selCityAreaMoel.stdAddrId} success:^(id  _Nullable response) {
+                weakself.canSel = YES;
                 [weakself.dataSource removeAllObjects];
                 [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
                 [weakself.dataSource enumerateObjectsUsingBlock:^(AreaModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -440,7 +445,7 @@ typedef enum :NSUInteger{
                 }];
                 [weakself.tableView reloadData];
             } failed:^(NSError * _Nonnull error) {
-                
+                weakself.canSel = YES;
             }];
         }
             break;
@@ -448,6 +453,7 @@ typedef enum :NSUInteger{
         {
             //已选择地区 选择街道
             [SFNetworkManager get:SFNet.address.areaData parameters:@{@"parentId":_selDistrictAreaMoel.stdAddrId} success:^(id  _Nullable response) {
+                weakself.canSel = YES;
                 [weakself.dataSource removeAllObjects];
                 [weakself.dataSource addObjectsFromArray:[AreaModel arrayOfModelsFromDictionaries:response error:nil]];
                 [weakself.dataSource enumerateObjectsUsingBlock:^(AreaModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -457,7 +463,7 @@ typedef enum :NSUInteger{
                 }];
                 [weakself.tableView reloadData];
             } failed:^(NSError * _Nonnull error) {
-                
+                weakself.canSel = YES;
             }];
         }
             break;
@@ -482,6 +488,9 @@ typedef enum :NSUInteger{
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (!_canSel) {
+        return;
+    }
     AreaModel *model = self.dataSource[indexPath.row];
     switch (_dataType) {
         case loadProvinceType:

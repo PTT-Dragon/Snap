@@ -60,7 +60,6 @@
 
 #pragma mark - Get and Set
 - (void)setDataModel:(ProductCheckoutModel *)dataModel {
-    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     self.priceLabel.text = [NSString stringWithFormat:@"%@",dataModel.feeModel.totalPrice.currency];
 }
 
@@ -68,8 +67,8 @@
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.textAlignment = NSTextAlignmentLeft;
-        _priceLabel.textColor = [UIColor blackColor];
-        _priceLabel.font = [UIFont boldSystemFontOfSize:16];
+        _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
+        _priceLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightHeavy];
     }
     return _priceLabel;
 }

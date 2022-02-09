@@ -6,6 +6,7 @@
 //
 
 #import "CouponCenterCollectionViewCell.h"
+#import "NSString+Fee.h"
 
 @interface CouponCenterCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -22,7 +23,7 @@
 - (void)setContent:(NSDictionary *)dic
 {
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(dic[@"imgUrl"])]];
-    NSNumber *price = dic[@"salesPrice"];
-    _contentLabel.text = [NSString stringWithFormat:@"RP %@",price.stringValue];
+    NSString *price = [[dic[@"salesPrice"] stringValue] currency];
+    _contentLabel.text = [NSString stringWithFormat:@"%@",price];
 }
 @end

@@ -26,7 +26,7 @@
 //  "FIND_OTHER_ACTIVITIES" = "Kegiatan lainnya";
 //  "SHARE_SHOP" = "Share Shop";
   "NO_AVAILABLE" = "Not available";
-  "AVAILABLE_COUPON" = "kupon";
+  "AVAILABLE_COUPON" = "tersedia";
 //  "SALES" = "Sales";
 //  "VIEW_PRODUCT_LIST" = "View Product List";
 //  "MY_SALES_RANKING" = "My Sales Ranking";
@@ -126,7 +126,7 @@
   "SIGN_UP" = "DAFTAR";
 //  "SIGN_TO_LOGIN" = "Masuk";
   "CATEGORY" = "Kategori";
-  "GET_NOW" = "Get now";
+  "GET_NOW" = "Kumpulkan";
 //  "COLLECT_SUCCESS" = "Berhasil ditambahkan ke wishlist!";
 //  "DEL_COLLECT_SUCCESS" = "Berhasil dihapus dari wishlist!";
 //  "COLLECT" = "Mengumpulkan";
@@ -467,8 +467,8 @@
 //  "NOTES" = "Catatan";
 //  "STORE_PROMOTION" = "Promo dari toko";
   "INPUT_MESSAGE" = "Masukkan pesan";
-  "DELIVERY_RANGE" = "Area pengiriman";
-//  "DELIVERY_MEHOD" = "Metode Pengiriman";
+  "DELIVERY_RANGE" = "Estlmasl tlba dalam";
+  "DELIVERY_MEHOD" = "Metode Pengiriman";
 //  "PAYMENT_UNSUCCESSFUL" = "Pembayaran Gagal";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "Kami tidak dapat memproses permintaan Anda kali ini.";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT2" = "Silakan coba lagi nanti. Maaf untuk ketidaknyamanan.";
@@ -548,7 +548,7 @@
 "Total" = "Jumlah";
 "Available" = "Available";
 "SF_shop_Voucher" = "SF.shop.Voucher";
-"Place_order" = "PLACE ORDER";
+"Place_order" = "PEMESANAN";
 "Check_out" = "Check Out";
 "Rp" = "Rp";
 "Est_arrival" = "Est.Arrival";
@@ -652,7 +652,7 @@
 "CHANGE_MOBILE" = "Ganti nomor Handphone";
 "CHANGE_EMAIL" = "Ganti Email";
 "INDIVIDUAL_BUY" = "Individual buy";//pembelian individual";
-"SHARE_BUY" = "Group Buy";//"Bergabung dengan kelompok";
+"SHARE_BUY" = "GROUP BUY";//"Bergabung dengan kelompok";
 "THIS_EMAIL_ADDRESS" = "Alamat email ini";
 "THIS_PHONE_NUMBER" = "Nomor Handphone ini";
 "CANCEL" = "BATALKAN";

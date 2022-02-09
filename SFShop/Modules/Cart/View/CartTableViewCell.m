@@ -78,8 +78,8 @@
         sku = [sku stringByAppendingFormat:@"%@ ",prodModel.value];
     }
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
-    _priceDownView.hidden = !model.cutRate;
-    _priceDownLabel.text = model.cutRate;
+    _priceDownView.hidden = !model.cutRateStr;
+    _priceDownLabel.text = model.cutRateStr;
     self.campaignsBtn.hidden = !(model.campaigns && model.campaigns.count != 0);
     if (model.campaigns && model.campaigns.count != 0) {
         [self.campaignsBtn setTitle:[model.campaigns.firstObject campaignName] forState:0];

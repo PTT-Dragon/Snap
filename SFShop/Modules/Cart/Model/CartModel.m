@@ -12,7 +12,13 @@
 @end
 
 @implementation CartItemModel
-
+- (NSString *)cutRateStr
+{
+    if ([_cutRate rangeOfString:@"-"].location != NSNotFound) {
+        _cutRate = [_cutRate stringByReplacingOccurrencesOfString:@"" withString:@""];
+    }
+    return _cutRate;
+}
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
     return YES;

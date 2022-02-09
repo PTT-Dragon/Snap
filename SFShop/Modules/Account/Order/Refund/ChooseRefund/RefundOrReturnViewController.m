@@ -109,7 +109,7 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
-            [cell setOrderDetailContent:_model];
+            [cell setRelationOrderDetailContent:_model];
             return cell;
         }else if (indexPath.row == 2){
             RefundOrReturnReasonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundOrReturnReasonCell"];
@@ -125,7 +125,7 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setRefundContent:_model.orderItems[_row]];
+        [cell setRefund2Content:_model.orderItems[_row]];
         return cell;
     }
     

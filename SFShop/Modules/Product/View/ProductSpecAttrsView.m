@@ -221,7 +221,7 @@
     _btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
     _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
     [_btn1 setTitle:@"立即购买" forState:0];
-    _btn1.titleLabel.font = [UIFont fontWithName:@"semiblod" size:15];
+    _btn1.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:15.f];
     [_btn1 setTitleColor:[UIColor whiteColor] forState:0];
     _btn1.titleLabel.numberOfLines = 2;
     _btn1.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -239,7 +239,7 @@
     [_btn2 jk_setBackgroundColor: [UIColor whiteColor] forState:UIControlStateNormal];
     [_btn2 setTitle:@"加入购物车" forState:0];
     _btn2.titleLabel.textAlignment = NSTextAlignmentCenter;
-    _btn2.titleLabel.font = [UIFont fontWithName:@"semiblod" size:15];
+    _btn2.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:15.f];
     _btn2.titleLabel.numberOfLines = 2;
     [_btn2 setTitleColor:RGBColorFrom16(0xFF1659) forState:0];
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
@@ -605,7 +605,7 @@
         self.increaseBtn.enabled = (self.count < limitStock);
     }
     self.decreaseBtn.enabled = self.count > 1;
-    //如果两个都是不可点击,说明无货
+    //无货
     if (limitStock < 1) {
         self.count = 0;
     }

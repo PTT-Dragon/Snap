@@ -17,22 +17,51 @@
 #import "ReplaceDeliveryViewController.h"
 #import "PublicAlertView.h"
 #import "RefundBankViewController.h"
+#import "BaseNavView.h"
+#import "BaseMoreView.h"
 
-@interface RefundDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface RefundDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnWidth;
 @property (nonatomic,strong) RefundDetailModel *model;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnHei;
+@property (nonatomic,strong) BaseNavView *navView;
+@property (nonatomic,strong) BaseMoreView *moreView;
 @end
 
 @implementation RefundDetailViewController
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+- (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
+- (void)baseNavViewDidClickMoreBtn:(BaseNavView *)navView {
+    [_moreView removeFromSuperview];
+    _moreView = [[BaseMoreView alloc] init];
+    [self.view addSubview:_moreView];
+    [_moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.navView.mas_bottom);
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"Service_Detail");
+    _navView = [[BaseNavView alloc] init];
+    _navView.delegate = self;
+    [_navView updateIsOnlyShowMoreBtn:YES];
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(navBarHei);
+    }];
+    [_navView configDataWithTitle:kLocalizedString(@"Service_Detail")];
     self.btn2.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
     self.btn2.layer.borderWidth = 1;
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
@@ -65,7 +94,7 @@
             return cell;
         }
         RefundProcessCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundProcessCell"];
-        [cell setContent:self.model.memos[indexPath.row-1] hideView:indexPath.row != 1];
+        [cell setContent:self.model.memos[indexPath.row-1] hideView:indexPath.row != 1 isLast:indexPath.row == self.model.memos.count];
         return cell;
     }else if (indexPath.section == 1){
         DeliveryAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeliveryAddressCell"];
@@ -107,7 +136,7 @@
         if (indexPath.row == 0) {
             hei = 40;
         }else if(indexPath.row == self.model.memos.count+1){
-            hei = [self.model.eventId isEqualToString:@"3"] && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"F"]) ? 75: 0;
+            hei = [self.model.eventId isEqualToString:@"3"] && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"F"] || [self.model.state isEqualToString:@"I"]) ? 75: 0;
         }else{
             hei = 75;
         }
