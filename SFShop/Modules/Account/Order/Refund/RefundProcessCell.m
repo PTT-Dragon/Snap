@@ -6,6 +6,7 @@
 //
 
 #import "RefundProcessCell.h"
+#import "NSDate+Helper.h"
 
 @interface RefundProcessCell ()
 @property (weak, nonatomic) IBOutlet UIView *indicationView;
@@ -13,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *content2Label;
 @property (nonatomic,strong) RefundDetailMemosModel *model;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewToBottom;
 
 @end
 
@@ -21,13 +23,15 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
-- (void)setContent:(RefundDetailMemosModel *)model hideView:(BOOL)hideView
+- (void)setContent:(RefundDetailMemosModel *)model hideView:(BOOL)hideView isLast:(BOOL)isLast
 {
     _model = model;
-    _timeLabel.text = model.createdDate;
+    _timeLabel.text = [[NSDate dateFromString:model.createdDate] dayMonthYear];
     _contentLabel.text = model.memoEventName;
     _content2Label.text = model.comments;
     _indicationView.hidden = hideView;
+    _viewToBottom.constant = isLast ? 10: 0;
 }
 @end

@@ -14,7 +14,11 @@
 @end
 
 @implementation LogisticsProcessViewController
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -34,11 +38,11 @@
 {
     if (indexPath.row == 0) {
         RefundDetailTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundDetailTitleCell"];
-        [cell setContent:self.model type:10];
+        [cell setContent:self.model type:3];
         return cell;
     }
     RefundProcessCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundProcessCell"];
-    [cell setContent:self.model.memos[indexPath.row-1] hideView:indexPath.row != 1];
+    [cell setContent:self.model.memos[indexPath.row-1] hideView:indexPath.row != 1 isLast:indexPath.row == self.model.memos.count];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

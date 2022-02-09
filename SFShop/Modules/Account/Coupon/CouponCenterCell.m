@@ -12,6 +12,7 @@
 #import "UseCouponViewController.h"
 #import "NSString+Add.h"
 #import "NSDate+Helper.h"
+#import "LoginViewController.h"
 
 @interface CouponCenterCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *storeImgView;
@@ -86,6 +87,12 @@
 
 - (IBAction)getAction:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:kLocalizedString(@"USE_NOW")]) {
+        UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+        if (!userModel) {
+            LoginViewController *vc = [[LoginViewController alloc] init];
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+            return;
+        }
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
         vc.couponModel = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];

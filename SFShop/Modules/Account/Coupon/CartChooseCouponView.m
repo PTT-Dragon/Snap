@@ -7,9 +7,11 @@
 
 #import "CartChooseCouponView.h"
 #import "MyCouponCell.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface CartChooseCouponView ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
@@ -23,6 +25,8 @@
     _tableView.dataSource = self;
     [_tableView registerNib:[UINib nibWithNibName:@"MyCouponCell" bundle:nil] forCellReuseIdentifier:@"MyCouponCell"];
     _titleLabel.text = kLocalizedString(@"COUPON");
+    
+    [_btn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

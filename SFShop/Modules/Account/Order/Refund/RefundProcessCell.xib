@@ -84,6 +84,7 @@
                 <outlet property="contentLabel" destination="dvA-C5-Onc" id="uTP-cl-ELq"/>
                 <outlet property="indicationView" destination="tzN-uN-qTZ" id="Oda-6T-FRw"/>
                 <outlet property="timeLabel" destination="CKU-l3-WOm" id="QJ9-8l-MYV"/>
+                <outlet property="viewToBottom" destination="aqh-a0-MPa" id="dRA-Pc-Xdv"/>
             </connections>
             <point key="canvasLocation" x="112" y="88"/>
         </tableViewCell>

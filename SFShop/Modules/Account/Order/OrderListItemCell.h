@@ -18,6 +18,7 @@ typedef void(^afterSaleBlock)(void);
 - (void)setContent:(orderItemsModel *)model;
 - (void)setOrderContent:(orderItemsModel *)model state:(NSString *)state;
 - (void)setRefundContent:(RefundDetailItemsModel *)model;
+- (void)setRefund2Content:(orderItemsModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

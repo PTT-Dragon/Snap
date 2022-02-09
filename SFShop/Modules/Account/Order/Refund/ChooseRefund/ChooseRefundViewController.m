@@ -23,6 +23,11 @@
 {
     return YES;
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -32,6 +37,9 @@
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"ChooseRefundTitleCell" bundle:nil] forCellReuseIdentifier:@"ChooseRefundTitleCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
+    if (self.model.canReview) {
+        
+    }
     self.dataSource = @[kLocalizedString(@"I_WANT_TO_REFUND"),kLocalizedString(@"I_WANT_TO_RETURN"),kLocalizedString(@"I_WANT_TO_EXCHANGE"),kLocalizedString(@"VIEW_APPLICATION_RECORDS")];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

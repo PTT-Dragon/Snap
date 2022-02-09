@@ -373,6 +373,7 @@
         model.showAll = YES;
         [self.evaluateTableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
+    self.evaluateTableViewHei.constant = [self calculateTableViewHei];
 }
 - (CGFloat)calculateTableViewHei
 {

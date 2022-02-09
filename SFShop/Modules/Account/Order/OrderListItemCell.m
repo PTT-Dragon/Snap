@@ -67,6 +67,19 @@
     _countLabel.text = @"";//[NSString stringWithFormat:@"X%@",model.submitNum];
     _priceLabel.text = @"";//[NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
+- (void)setRefund2Content:(orderItemsModel *)model
+{
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
+    _nameLabel.text = model.productName;
+    NSDictionary *dic = [model.productRemark jk_dictionaryValue];
+    NSString *sku = @"";
+    for (NSString *key in dic.allKeys) {
+        sku = [sku stringByAppendingFormat:@"%@",dic[key]];
+    }
+    _skuLabel.text = [NSString stringWithFormat:@"   %@   ",sku];
+    _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
+    _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
+}
 - (IBAction)blockAction:(UIButton *)sender {
     if (self.block) {
         self.block();

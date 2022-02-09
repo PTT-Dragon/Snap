@@ -165,7 +165,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? self.model.deliverys.count == 0 ? 0: 1: section == 2 ? self.groupModel ? 1:0: section == 1 ? 1: section == 3 ? self.model.orderItems.count+1+self.orderInfoDataSource.count : self.dataSource.count+1;
+    return section == 0 ? self.model.deliverys.count == 0 ? 0: 1: section == 2 ? (self.groupModel && ![self.model.state isEqualToString:@"A"]) ? 1:0: section == 1 ? 1: section == 3 ? self.model.orderItems.count+1+self.orderInfoDataSource.count : self.dataSource.count+1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -372,6 +372,7 @@
         PublicAlertView *alert = [[PublicAlertView alloc]initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"CONFIRM") content:kLocalizedString(@"ARE_YOU_SURE") btnTitle:kLocalizedString(@"YES") block:^{
             [SFNetworkManager post:SFNet.order.confirmOrder parametersArr:@[weakself.model.orderId] success:^(id  _Nullable response) {
                 [weakself.delegate refreshDatas];
+                [weakself.navigationController popViewControllerAnimated:YES];
             } failed:^(NSError * _Nonnull error) {
                 [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
             }];
