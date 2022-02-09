@@ -147,9 +147,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return  indexPath.row == 0 ? 40 : indexPath.row == 2 ? 60: indexPath.row == 3 ? self.type == REPLACETYPE ? 66: 92:  118;
+        return  indexPath.row == 0 ? 40 : indexPath.row == 2 ? 60: indexPath.row == 3 ? self.type == REPLACETYPE ? 66: 126:  118;
     }
-    return 200;
+    return 63 + (MainScreen_width-32-30-20)/4;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

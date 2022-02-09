@@ -27,7 +27,10 @@
 {
     if (self.type == RETURNTYPE || self.type == REFUNDTYPE) {
         UILabel *label = [[UILabel alloc] init];
-        label.text = kLocalizedString(@"REFUND_AMOUNT");
+        label.numberOfLines = 0;
+        NSString *str = kLocalizedString(@"REFUND_AMOUNT");
+        str = [str stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
+        label.text = str;
         label.font = CHINESE_SYSTEM(13);
         [self.contentView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
