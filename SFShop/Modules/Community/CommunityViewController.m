@@ -94,7 +94,7 @@
         [self setupMagicView];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"error"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"error"]];
     }];
 }
 

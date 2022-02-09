@@ -141,7 +141,7 @@
 //        [self refreshNoItemsStatus];
         [self.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         if ([self.tableView.mj_header isRefreshing]) {
             [self.tableView.mj_header endRefreshing];
         }

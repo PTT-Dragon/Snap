@@ -128,7 +128,7 @@
 
 - (IBAction)submitAction:(UIButton *)sender {
     if (!_selReasonModel) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"REASON_TITLE")];
+        [MBProgressHUD showTopErrotMessage:kLocalizedString(@"REASON_TITLE")];
         return;
     }
     MPWeakSelf(self)
@@ -138,7 +138,7 @@
         [MBProgressHUD autoDismissShowHudMsg:@"Cancel Success"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"KRefreshOrderNum" object:nil];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 

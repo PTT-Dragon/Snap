@@ -114,7 +114,7 @@ static BOOL _accountSuccess = NO;
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ACCOUNT_DOES_NOT_EXIST")];
         }
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"error"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"error"]];
     }];
 }
 

@@ -17,4 +17,5 @@ target 'SFShop' do
   pod 'iCarousel'
   pod 'ReactiveObjC'
   pod 'SJVideoPlayer'
-end 
+  pod 'YYText'
+end

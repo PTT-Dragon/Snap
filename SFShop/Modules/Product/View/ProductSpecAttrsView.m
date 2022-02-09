@@ -314,7 +314,7 @@
     BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
         if (object.productId.integerValue == weakself.selProductModel.productId) {
             groupCount = object.shareByNum;
-            self.maxPurchaseCount = MIN(self.maxPurchaseCount, object.buyAmtLimit);
+            self.maxPurchaseCount = self.attrsType == groupBuyType ? MIN(self.maxPurchaseCount, object.buyAmtLimit) : self.maxPurchaseCount;
             self.priceLabel.text = self.attrsType == groupSingleBuyType ? [[NSString stringWithFormat:@"%ld",(long)self.selProductModel.salesPrice] currency]: [[NSString stringWithFormat:@"%f", object.shareBuyPrice] currency];
         }
         return object.productId.integerValue == weakself.selProductModel.productId;
@@ -322,7 +322,6 @@
     if (isGroupBuy) {
         _groupCountLabel.text = [NSString stringWithFormat:@"%ld",groupCount];
         _maxPurchaseLabel.text = [NSString stringWithFormat:@"%@ %ld", kLocalizedString(@"MAX_PURCHASE_QUANTITY"),self.maxPurchaseCount];
-
         self.groupView.hidden = _attrsType == groupSingleBuyType ? YES: NO;
     }else{
         self.groupView.hidden = YES;
@@ -338,7 +337,7 @@
             make.height.mas_equalTo(46);
             make.bottom.equalTo(self).offset(-44);
         }];
-    }else if (isGroupBuy && _attrsType == buyType) {
+    }else if (isGroupBuy && _attrsType == groupBuyType) {
         //是团购  //先满足团购的UI
         _btn2.hidden = YES;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
@@ -597,14 +596,17 @@
 }
 
 - (void)updateQuantityState {
+    NSInteger limitStock = 0;//限制过的库存
     if (self.maxPurchaseCount) {
-        self.increaseBtn.enabled = (self.count < MIN(self.maxPurchaseCount, self.selStockModel.stock.intValue));
+        limitStock = MIN(self.maxPurchaseCount, self.selStockModel.stock.intValue);
+        self.increaseBtn.enabled = (self.count < limitStock);
     } else {
-        self.increaseBtn.enabled = (self.count < self.selStockModel.stock.integerValue);
+        limitStock = self.selStockModel.stock.integerValue;
+        self.increaseBtn.enabled = (self.count < limitStock);
     }
     self.decreaseBtn.enabled = self.count > 1;
     //如果两个都是不可点击,说明无货
-    if (!self.increaseBtn.enabled && !self.decreaseBtn.enabled) {
+    if (limitStock < 1) {
         self.count = 0;
     }
     self.countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.count];

@@ -101,7 +101,7 @@ static BOOL _accountSuccess = NO;
 //            [self.view addSubview:alert];
         }
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 

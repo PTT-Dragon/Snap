@@ -184,7 +184,7 @@
         self.model = [[ArticleDetailModel alloc] initWithDictionary: response error: &error];
         NSLog(@"get article detail success");
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+        [MBProgressHUD showTopErrotMessage: error.localizedDescription];
         NSLog(@"get article detail failed");
     }];
 }
@@ -200,7 +200,7 @@
         [self.evaluateTableView reloadData];
         NSLog(@"get article evaluate success");
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+        [MBProgressHUD showTopErrotMessage: error.localizedDescription];
         NSLog(@"get article evaluate failed");
     }];
 }
@@ -273,7 +273,7 @@
         [weakself setModel:weakself.model];
         [MBProgressHUD hideFromKeyWindow];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (IBAction)sendAction:(UIButton *)sender {

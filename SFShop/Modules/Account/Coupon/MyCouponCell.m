@@ -111,7 +111,7 @@
             view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
             [[baseTool getCurrentVC].view addSubview:view];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }
 }

@@ -186,7 +186,7 @@ static dispatch_source_t _timer;
             [SFNetworkManager post:SFNet.order.confirmOrder parametersArr:@[weakself.model.orderId] success:^(id  _Nullable response) {
                 [weakself.delegate refreshDatas];
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+                [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
             }];
             
         } btn2Title:kLocalizedString(@"CANCEL") block2:^{}];
@@ -285,7 +285,7 @@ static dispatch_source_t _timer;
         } failed:^(NSError * _Nonnull error) {
             dispatch_group_leave(group);
             [MBProgressHUD hideFromKeyWindow];
-            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }];
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
@@ -304,7 +304,7 @@ static dispatch_source_t _timer;
         vc.model = detailModel;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 

@@ -315,7 +315,7 @@
         NSLog(@"get product detail success");
     } failed:^(NSError * _Nonnull error) {
         [hud hideAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+        [MBProgressHUD showTopErrotMessage: error.localizedDescription];
         NSLog(@"get product detail failed");
     }];
 }
@@ -341,7 +341,7 @@
         
     } failed:^(NSError * _Nonnull error) {
 //        [hud hideAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)requestGroupInfo
@@ -361,7 +361,7 @@
     [SFNetworkManager get:SFNet.groupbuy.groups parameters:@{@"offerId":@(_offerId),@"campaignId":@(subModel.campaignId),@"pageSize":@(5),@"pageIndex":@(1)} success:^(id  _Nullable response) {
         weakself.groupModel = [ProductGroupModel yy_modelWithDictionary:response];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
@@ -458,7 +458,7 @@
         NSLog(@"get similar success");
     } failed:^(NSError * _Nonnull error) {
         [hud hideAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage: [NSMutableString getErrorMessage:error][@"message"]];
         NSLog(@"get similarfailed");
     }];
 }
@@ -938,7 +938,7 @@
             weakself.selProductModel.isCollection = @"0";
             [weakself setSelProductModel:weakself.selProductModel];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }else{
         [SFNetworkManager post:SFNet.favorite.favorite parametersArr:@[@{@"offerId":@(_model.offerId),@"productId":@(_selProductModel.productId)}] success:^(id  _Nullable response) {
@@ -947,7 +947,7 @@
             [weakself setSelProductModel:weakself.selProductModel];
 //            [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }
 }
@@ -1126,7 +1126,10 @@
             return object.productId.integerValue == _selProductModel.productId;
         }];
         
-        [self showAttrsViewWithAttrType:buyType];
+        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+            return object.productId.integerValue == _selProductModel.productId;
+        }];
+        [self showAttrsViewWithAttrType:isGroupBuy ? groupBuyType: buyType];
     }
 }
 

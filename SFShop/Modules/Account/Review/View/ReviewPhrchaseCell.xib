@@ -67,9 +67,9 @@
                     <constraint firstItem="NAq-BD-Zdh" firstAttribute="top" secondItem="Lkp-26-IUN" secondAttribute="bottom" constant="10" id="PBB-vb-CGE"/>
                     <constraint firstItem="V6D-41-7Dh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="VWK-Rl-rA0"/>
                     <constraint firstItem="x45-hp-j3w" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="WMH-bO-LMq"/>
-                    <constraint firstItem="V6D-41-7Dh" firstAttribute="leading" secondItem="rPg-oS-F75" secondAttribute="trailing" constant="5" id="cD4-qp-d4s"/>
+                    <constraint firstItem="Lkp-26-IUN" firstAttribute="leading" secondItem="x45-hp-j3w" secondAttribute="trailing" constant="12" id="YyF-3J-bIs"/>
                     <constraint firstAttribute="bottom" secondItem="NAq-BD-Zdh" secondAttribute="bottom" constant="8" id="uW8-8a-TIc"/>
-                    <constraint firstItem="Lkp-26-IUN" firstAttribute="leading" secondItem="rPg-oS-F75" secondAttribute="leading" id="wV9-ew-oMH"/>
+                    <constraint firstItem="V6D-41-7Dh" firstAttribute="leading" secondItem="x45-hp-j3w" secondAttribute="trailing" constant="47" id="xRp-4W-LsI"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -77,6 +77,9 @@
                 <outlet property="collectionView" destination="NAq-BD-Zdh" id="3cm-UR-m3G"/>
                 <outlet property="contentLabel" destination="Lkp-26-IUN" id="fOk-N2-lsk"/>
                 <outlet property="head" destination="rPg-oS-F75" id="dSX-VY-7YQ"/>
+                <outlet property="leftMargin" destination="xRp-4W-LsI" id="CSv-uF-0rp"/>
+                <outlet property="leftMargin2" destination="YyF-3J-bIs" id="92Q-yY-OzA"/>
+                <outlet property="lineView" destination="x45-hp-j3w" id="HOn-uo-brX"/>
                 <outlet property="timeLabel" destination="V6D-41-7Dh" id="Bij-lK-DZ4"/>
             </connections>
             <point key="canvasLocation" x="73.913043478260875" y="47.544642857142854"/>

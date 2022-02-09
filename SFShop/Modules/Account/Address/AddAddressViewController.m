@@ -133,7 +133,7 @@ static BOOL changePhone = NO;
         return NO;
     }else if (textField == _streetField){
         if (!_selDistrictAreaMoel) {
-            [MBProgressHUD autoDismissShowHudMsg:@"Please select the province first"];
+            [MBProgressHUD showTopErrotMessage:@"Please select the province first"];
             return NO;
         }
         ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];

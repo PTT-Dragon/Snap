@@ -152,7 +152,7 @@
         }
     }
     if (!hasComment) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"PLEASE_FILL_IN_COMMENTS")];
+        [MBProgressHUD showTopErrotMessage:kLocalizedString(@"PLEASE_FILL_IN_COMMENTS")];
         return;
     }
     [self publishImage];
@@ -230,7 +230,7 @@
         [baseTool removeVCFromNavigation:self];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 

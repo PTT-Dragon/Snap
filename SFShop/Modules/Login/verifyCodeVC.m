@@ -55,7 +55,7 @@
         [weakself showCountLabel];
     } failed:^(NSError * _Nonnull error) {
         weakself.recendBtn.userInteractionEnabled = YES;
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         [weakself.navigationController popViewControllerAnimated:YES];
     }];
 }
@@ -115,7 +115,7 @@
             [weakself changeUserEmail];
         }
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)login
@@ -128,7 +128,7 @@
         [[FMDBManager sharedInstance] insertUser:model ofAccount:weakself.account];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)cashOutAction
@@ -147,7 +147,7 @@
         [MBProgressHUD autoDismissShowHudMsg:@"Sign Up Success!"];
         [weakself toLogin];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)forgetPassword
@@ -172,7 +172,7 @@
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)changeUserEmail
@@ -183,7 +183,7 @@
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (IBAction)recendAction:(UIButton *)sender {

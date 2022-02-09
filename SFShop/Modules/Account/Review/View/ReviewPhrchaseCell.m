@@ -14,6 +14,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *head;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMargin2;
+
+@property (weak, nonatomic) IBOutlet UIView *lineView;
+
 
 @end
 
@@ -28,6 +33,9 @@
 }
 - (void)setModel:(PurchaseReviewModel *)model
 {
+    self.leftMargin.constant = 47;
+    self.leftMargin2.constant = 12;
+    self.lineView.hidden = NO;
     _model = model;
 //    _timeLabel.text = [NSString stringWithFormat:@"Additional Reviews %@ days after purchase",model.reviewTime];
     _timeLabel.text = model.storeName;
@@ -35,6 +43,18 @@
     [self.head sd_setImageWithURL:[NSURL URLWithString:model.storeLogoUrl] placeholderImage:[UIImage imageNamed:@"toko"]];
     [_collectionView reloadData];
 }
+
+-(void)setReviewModel:(PurchaseReviewModel *)reviewModel {
+    self.leftMargin.constant = 0;
+    self.leftMargin2.constant = 0;
+    self.lineView.hidden = YES;
+    _reviewModel = reviewModel;
+    _timeLabel.text = [NSString stringWithFormat:@"Additional Reviews %@ days after purchase",reviewModel.reviewTime];
+    _contentLabel.text = reviewModel.reviewComments;
+    [self.head sd_setImageWithURL:[NSURL URLWithString:@""]];
+    [_collectionView reloadData];
+}
+
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -46,11 +66,11 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _model.contents.count;
+    return _reviewModel.contents.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
-    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage([_model.contents[indexPath.row] url])]];
+    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage([_reviewModel.contents[indexPath.row] url])]];
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

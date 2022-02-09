@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ReviewPhrchaseCell : UITableViewCell
 @property (nonatomic,strong) PurchaseReviewModel *model;
+@property (nonatomic,strong) PurchaseReviewModel *reviewModel;
 @end
 
 NS_ASSUME_NONNULL_END

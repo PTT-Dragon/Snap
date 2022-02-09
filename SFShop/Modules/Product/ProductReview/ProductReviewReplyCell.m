@@ -24,9 +24,10 @@
 - (void)setModel:(ProductEvalationReplayModel *)model
 {
     _model = model;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _nameLabel.text = model.storeName;
-    _timeLabel.text = model.replyDate;
+//    _timeLabel.text = model.replyDate;
+    _timeLabel.text = @"";
     _contentLabel.text = model.replyComments;
 }
 @end

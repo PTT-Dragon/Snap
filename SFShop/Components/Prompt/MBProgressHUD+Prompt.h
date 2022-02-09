@@ -71,6 +71,15 @@ typedef enum : NSUInteger {
  */
 + (void )autoDismissShowHudMsg:(NSString *)msg andDismissDuration:(NSInteger)duration completion:(void(^)())completion;
 
+/**
+ 显示在顶部的提示框
+ 
+ @param msg 提示的信息
+ 
+ */
++ (void)showTopSuccessMessage:(NSString *)msg;
++ (void)showTopErrotMessage:(NSString *)msg;
+
 @end
 
 NS_ASSUME_NONNULL_END

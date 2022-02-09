@@ -96,7 +96,15 @@
     }
     EvaluatesModel *evaModel = self.model.evaluates.firstObject;
     ReviewPhrchaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewPhrchaseCell"];
-    cell.model = evaModel.reply;
+    if (evaModel.reply) {
+        cell.model = evaModel.reply;
+    }else {
+        if (evaModel.review) {
+            cell.reviewModel = evaModel.review;
+        }else {
+            cell.model = nil;
+        }
+    }
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
