@@ -63,25 +63,25 @@
 
 - (void)layout {
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(10);
+        make.centerY.mas_equalTo(20);
         make.size.mas_equalTo(CGSizeMake(24, 24));
         make.left.mas_equalTo(10);
     }];
     
     [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(10);
+        make.centerY.mas_equalTo(20);
         make.size.mas_equalTo(CGSizeMake(24, 24));
         make.right.mas_equalTo(-27);
     }];
     
     [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(10);
+        make.centerY.mas_equalTo(20);
         make.size.mas_equalTo(CGSizeMake(24, 24));
         make.right.mas_equalTo(-27);
     }];
     
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(10);
+        make.centerY.mas_equalTo(20);
         make.right.equalTo(self.rightBtn.mas_left).offset(-18);
         make.left.equalTo(self.backBtn.mas_right).offset(12);
         make.height.mas_equalTo(35);

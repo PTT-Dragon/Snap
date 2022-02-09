@@ -10,6 +10,7 @@
 #import "NSString+Fee.h"
 #import "NSDate+Helper.h"
 #import "LoginViewController.h"
+#import "CouponAlertView.h"
 
 @interface MyCouponCell ()
 @property (weak, nonatomic) IBOutlet UIView *discountView;
@@ -19,6 +20,7 @@
 @property (nonatomic,weak) CouponModel *model;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 
@@ -31,6 +33,8 @@
     [_statuLabel addGestureRecognizer:tap];
     _label1.text = kLocalizedString(@"DISCOUNT");
     _label2.text = kLocalizedString(@"EXPIRY_DATE");
+    self.bgView.layer.borderColor = RGBColorFrom16(0xf9f9f9).CGColor;
+    self.bgView.layer.borderWidth = 1;
 }
 - (void)setContent:(CouponModel *)model
 {
@@ -88,7 +92,7 @@
 }
 - (void)useCouponAction
 {
-    if ([_model.userCouponState isEqualToString:@"A"] || !_model.userCouponState) {
+    if ([_statuLabel.text isEqualToString:kLocalizedString(@"USE_NOW")]) {
         UserModel *userModel = [FMDBManager sharedInstance].currentUser;
         if (!userModel) {
             LoginViewController *vc = [[LoginViewController alloc] init];
@@ -98,7 +102,17 @@
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
         vc.couponModel = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([_statuLabel.text isEqualToString:kLocalizedString(@"GET_NOW")]){
+        MPWeakSelf(self)
+        [SFNetworkManager post:SFNet.coupon.usercoupon parameters:@{@"couponId":_model.couponId} success:^(id  _Nullable response) {
+            self.model.isGet = YES;
+            [self setModel:weakself.model];
+            CouponAlertView *view = [[NSBundle mainBundle] loadNibNamed:@"CouponAlertView" owner:self options:nil].firstObject;
+            view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+            [[baseTool getCurrentVC].view addSubview:view];
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
     }
-    
 }
 @end

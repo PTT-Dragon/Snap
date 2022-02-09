@@ -43,6 +43,7 @@
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate,JPVideoPlayerDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topToGroupTableview;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
@@ -677,6 +678,7 @@
     self.productDiscountLabel.hidden = NO;
     self.marketPriceLabelIndicationView.hidden = NO;
     self.groupTableViewHei.constant = 0;
+    self.topToGroupTableview.constant = 0;
     [self.buyBtn setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
     [self.addCartBtn setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
 }
@@ -687,7 +689,8 @@
     self.groupTableViewHei.constant = [self calucateGroupTableviewHei];
     self.flashSaleInfoView.hidden = YES;
     self.groupInfoView.hidden = NO;
-    self.priceLabelTop.constant = 10;
+    self.topToGroupTableview.constant = [self calucateGroupTableviewHei] == 0 ? 0: 12;
+    self.priceLabelTop.constant = 14;
     self.salesPriceLabel.hidden = YES;
     self.originalPriceLabel.hidden = YES;
     self.productDiscountLabel.hidden = YES;
