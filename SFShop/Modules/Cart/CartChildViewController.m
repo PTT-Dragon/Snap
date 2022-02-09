@@ -95,7 +95,7 @@
         [weakself.emptyView configDataWithSimilarList:weakself.dataArray];
     } failed:^(NSError * _Nonnull error) {
 //        [hud hideAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg: [NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage: [NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
@@ -408,7 +408,7 @@
         [weakself showCouponsView];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)loadCouponsDatasWithStoreId:(NSString *)storeId productArr:(NSArray *)productArr row:(NSInteger)row
@@ -426,7 +426,7 @@
         [self.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)addToFavoriteWithID:(NSString *)offerId
@@ -644,7 +644,7 @@
     [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
         [weakself loadDatas];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+        [MBProgressHUD showTopErrotMessage: error.localizedDescription];
     }];
 }
 

@@ -56,7 +56,7 @@ static BOOL _passwordSuccess2 = NO;
 }
 - (IBAction)resetAction:(UIButton *)sender {
     if (![_pwdField.text isEqualToString:_confirmPwdField.text]) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Confirm_password")];
+        [MBProgressHUD showTopErrotMessage:kLocalizedString(@"Confirm_password")];
         return;
     }
     [MBProgressHUD showHudMsg:@""];
@@ -65,7 +65,7 @@ static BOOL _passwordSuccess2 = NO;
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Reset_success")];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"error"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"error"]];
     }];
 }
 

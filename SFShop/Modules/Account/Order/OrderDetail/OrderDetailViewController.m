@@ -216,7 +216,7 @@
             [weakself loadGroupDatas];
         }
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 //团购数据
@@ -313,7 +313,7 @@
         } failed:^(NSError * _Nonnull error) {
             dispatch_group_leave(group);
             [MBProgressHUD hideFromKeyWindow];
-            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }];
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
@@ -373,7 +373,7 @@
             [SFNetworkManager post:SFNet.order.confirmOrder parametersArr:@[weakself.model.orderId] success:^(id  _Nullable response) {
                 [weakself.delegate refreshDatas];
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+                [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
             }];
             
         } btn2Title:kLocalizedString(@"CANCEL") block2:^{}];

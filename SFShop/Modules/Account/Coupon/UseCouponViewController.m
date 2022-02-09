@@ -198,7 +198,7 @@
             self.tableView.mj_footer.hidden = NO;
         }
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+        [MBProgressHUD showTopErrotMessage:error.localizedDescription];
         if ([self.tableView.mj_header isRefreshing]) {
             [self.tableView.mj_header endRefreshing];
         }
@@ -392,7 +392,7 @@
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
         [self loadFeeDatas];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg: error.localizedDescription];
+        [MBProgressHUD showTopErrotMessage: error.localizedDescription];
     }];
 }
 

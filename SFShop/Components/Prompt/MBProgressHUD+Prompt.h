@@ -77,7 +77,7 @@ typedef enum : NSUInteger {
  @param msg 提示的信息
  
  */
-+ (void)showTopTipMessage:(NSString *)msg;
++ (void)showTopSuccessMessage:(NSString *)msg;
 + (void)showTopErrotMessage:(NSString *)msg;
 
 @end

@@ -151,19 +151,13 @@
     return [self showHudMsg:msg carrierView:window animation:NO userInteractionEnabled:NO];
 }
 
-
-+ (void)showTopTipMessage:(NSString *)msg {
-    [self showTopSuccessMessage:msg];
-}
-+ (void)showTopErrotMessage:(NSString *)msg {
-    [self showTopErrotMessage:msg];
-}
 + (void)showTopSuccessMessage:(NSString *)msg{
 
+    NSString *text = [NSString stringWithFormat:@"  %@",msg];
+    
     CGFloat padding = 15;
     
     YYLabel *label = [YYLabel new];
-//    label.text = msg;
     label.font = [UIFont systemFontOfSize:13];
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor blackColor];
@@ -171,13 +165,13 @@
     label.width = App_Frame_Width-30;
     label.numberOfLines = 0;
     label.textContainerInset = UIEdgeInsetsMake(0, padding, 0, padding);
-    label.height = [NSString jk_heightTextContent:msg withSizeFont:13 withMaxSize:CGSizeMake(label.width, CGFLOAT_MAX)]+30;
+    label.height = [NSString jk_heightTextContent:text withSizeFont:13 withMaxSize:CGSizeMake(label.width, CGFLOAT_MAX)]+30;
     label.bottom = navBarHei;
     label.top = navBarHei;
     label.left = 15;
     [[kAppDelegate getCurrentUIVC].view addSubview:label];
     
-    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:msg];
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:text];
     
     UIImageView *imageView1= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"00062_01_like_outline"]];
     imageView1.frame = CGRectMake(0, 0, 16, 16);

@@ -58,7 +58,7 @@ static BOOL _passwordSuccess3 = NO;
 }
 - (IBAction)changeAction:(id)sender {
     if (![_PasswordField.text isEqualToString:_confirmPassword.text]) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Confirm_password")];
+        [MBProgressHUD showTopErrotMessage:kLocalizedString(@"Confirm_password")];
         return;
     }
     [MBProgressHUD showHudMsg:@""];
@@ -66,7 +66,7 @@ static BOOL _passwordSuccess3 = NO;
     [SFNetworkManager post:SFNet.account.pwdModify parameters:@{@"accessToken":model.accessToken,@"newPwd":_PasswordField.text,@"oldPwd":_currentField.text} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"error"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"error"]];
     }];
 }
 

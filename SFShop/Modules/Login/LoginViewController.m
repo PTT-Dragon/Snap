@@ -156,12 +156,12 @@ static BOOL _passwordSuccess = NO;
     //在登录时候只校验是手机号还是邮箱
     if (_type == 1) {
         if (![self.accountField.text phoneTextCheck]) {
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"INCORRECT_PHONE")];
+            [MBProgressHUD showTopErrotMessage:kLocalizedString(@"INCORRECT_PHONE")];
             return;
         }
     }else{
         if (![self.accountField.text emailTextCheck]) {
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"INCORRECT_EMAIL")];
+            [MBProgressHUD showTopErrotMessage:kLocalizedString(@"INCORRECT_EMAIL")];
             return;
         }
     }
@@ -187,7 +187,7 @@ static BOOL _passwordSuccess = NO;
     } failed:^(NSError * _Nonnull error) {
         weakself.loginBtn.userInteractionEnabled = NO;
         weakself.loginBtn.backgroundColor = RGBColorFrom16(0xFFE5EB);
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (IBAction)signUpAction:(id)sender {

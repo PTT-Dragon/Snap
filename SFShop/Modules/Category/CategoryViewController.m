@@ -77,7 +77,7 @@
         CategoryModel *model = self.sideTableView.dataArray.firstObject;
         [self loadContentDatas:model.inner.catgId];
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+        [MBProgressHUD showTopErrotMessage:error.localizedDescription];
     }];
 }
 
@@ -110,7 +110,7 @@
         if (error.code == -999) {//取消
             [MBProgressHUD hideFromKeyWindow];
         } else {
-            [MBProgressHUD autoDismissShowHudMsg:error.localizedDescription];
+            [MBProgressHUD showTopErrotMessage:error.localizedDescription];
         }
     }];
     self.lastRequestTask = task;

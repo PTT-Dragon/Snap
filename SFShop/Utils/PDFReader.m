@@ -43,7 +43,7 @@ static PDFReader *_instance = nil;
         [MBProgressHUD hideFromKeyWindow];
     } failed:^(NSError * _Nonnull error) {
         complete(error, nil);
-        [MBProgressHUD autoDismissShowHudMsg:@"文件获取出错, 请稍后再试 ~"];
+        [MBProgressHUD showTopErrotMessage:@"文件获取出错, 请稍后再试 ~"];
     }];
 }
 

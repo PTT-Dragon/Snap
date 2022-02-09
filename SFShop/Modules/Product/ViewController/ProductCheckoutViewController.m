@@ -121,7 +121,7 @@
             [self confirmPay:orderIds];
         }
     } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
@@ -133,12 +133,12 @@
             [MBProgressHUD autoDismissShowHudMsg:@"支付成功"];
             [SceneManager transToHome];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }];
     [alert addAction:okAction];
     UIAlertAction *calcelAction = [UIAlertAction actionWithTitle:kLocalizedString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [MBProgressHUD autoDismissShowHudMsg:@"支付失败"];
+        [MBProgressHUD showTopErrotMessage:@"支付失败"];
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //            [SceneManager transToHome];
 //        });
@@ -201,7 +201,7 @@
                 CouponsViewController *vc = [[CouponsViewController alloc] init];
                 NSMutableArray *availableCoupons = self.dataModel.couponsModel.storeAvailableCoupons.firstObject.availableCoupons.mutableCopy;
                 if (!availableCoupons.count) {
-                    [MBProgressHUD autoDismissShowHudMsg:@"None Coupons"];
+                    [MBProgressHUD showTopErrotMessage:@"None Coupons"];
                     return;
                 }
 //                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
@@ -295,7 +295,7 @@
     if ([model.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
         NSMutableArray *pltAvailableCoupons = self.dataModel.couponsModel.pltAvailableCoupons.mutableCopy;
         if (!pltAvailableCoupons.count) {
-            [MBProgressHUD autoDismissShowHudMsg:@"None Vouchers"];
+            [MBProgressHUD showTopErrotMessage:@"None Vouchers"];
             return;
         }
         CouponsViewController *vc = [[CouponsViewController alloc] init];
@@ -316,7 +316,7 @@
     } else if ([model.cellId isEqualToString:@"ProductCheckoutDeliveryCell"]) {
         NSMutableArray *logisticsModels = detailModel.logisticsModel.logistics.mutableCopy;
         if (!logisticsModels.count) {
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"None Delivery")];
+            [MBProgressHUD showTopErrotMessage:kLocalizedString(@"None Delivery")];
             return;
         }
         DeleveryViewController *vc = [[DeleveryViewController alloc] init];
@@ -378,12 +378,12 @@
         _buyView.buyBlock = ^{
             
             if (!weakself.dataModel.addressModel.deliveryAddressId || [weakself.dataModel.addressModel.deliveryAddressId isEqualToString:@""]) {
-                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Please_select_your_address")];
+                [MBProgressHUD showTopErrotMessage:kLocalizedString(@"Please_select_your_address")];
                 return;
             }
             
             if (!weakself.dataModel.addressModel.email ||  [weakself.dataModel.addressModel.email isEqualToString:@""]) {
-                [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Please_enter_your_email")];
+                [MBProgressHUD showTopErrotMessage:kLocalizedString(@"Please_enter_your_email")];
                 return;
             }
             
@@ -392,7 +392,7 @@
             for (int i = 0; i < weakself.dataModel.productModels.count; i ++) {
                 if (weakself.dataModel.feeModel.stores.count != weakself.dataModel.productModels.count) {
                     //数据错误
-                    [MBProgressHUD autoDismissShowHudMsg:@"数据错误,请返回重新进入"];
+                    [MBProgressHUD showTopErrotMessage:@"数据错误,请返回重新进入"];
                     return;
                 }
                 
@@ -488,7 +488,7 @@
                     }
                 }];
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+                [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
             }];
         };
     }

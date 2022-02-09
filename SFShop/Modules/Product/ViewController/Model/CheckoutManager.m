@@ -50,7 +50,7 @@ static CheckoutManager *_instance = nil;
         }
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(SFPayResultFailed,nil,nil);
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
@@ -80,7 +80,7 @@ static CheckoutManager *_instance = nil;
         }
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(SFPayResultFailed,nil,nil);
-        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
@@ -92,7 +92,7 @@ static CheckoutManager *_instance = nil;
             [MBProgressHUD autoDismissShowHudMsg:@"支付成功"];
             !complete ?: complete(SFPayResultSuccess,nil,response);
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }];
     [alert addAction:okAction];
@@ -137,7 +137,7 @@ static CheckoutManager *_instance = nil;
                 self.cacheData.feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
                 dispatch_group_leave(group);
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+                [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
                 dispatch_group_leave(group);
             }];
         });
@@ -156,7 +156,7 @@ static CheckoutManager *_instance = nil;
                 calcfeeBlock();
                 dispatch_group_leave(group);
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+                [MBProgressHUD showTopErrotMessage: @"logistics Failed!"];
                 dispatch_group_leave(group);
             }];
         });
@@ -171,7 +171,7 @@ static CheckoutManager *_instance = nil;
             self.cacheData.couponsModel = [[CouponsAvailableModel alloc] initWithDictionary:response error:nil];
             dispatch_group_leave(group);
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg: @"coupons Failed!"];
+            [MBProgressHUD showTopErrotMessage: @"coupons Failed!"];
             dispatch_group_leave(group);
         }];
     });
@@ -201,11 +201,11 @@ static CheckoutManager *_instance = nil;
             !complete ?: complete(YES,self.cacheData);
         } failed:^(NSError * _Nonnull error) {
             !complete ?: complete(NO,self.cacheData);
-            [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+            [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
         }];
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(nil,nil);
-        [MBProgressHUD autoDismissShowHudMsg: @"logistics Failed!"];
+        [MBProgressHUD showTopErrotMessage: @"logistics Failed!"];
     }];
 }
 
@@ -224,7 +224,7 @@ static CheckoutManager *_instance = nil;
         !complete ?: complete(YES,self.cacheData);
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(NO,self.cacheData);
-        [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+        [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
     }];
 }
 
@@ -243,7 +243,7 @@ static CheckoutManager *_instance = nil;
         !complete ?: complete(YES,self.cacheData);
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(NO,self.cacheData);
-        [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+        [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
     }];
 }
 
@@ -257,7 +257,7 @@ static CheckoutManager *_instance = nil;
         !complete ?: complete(YES,self.cacheData);
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(NO,self.cacheData);
-        [MBProgressHUD autoDismissShowHudMsg: @"Calcfee Failed!"];
+        [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
     }];
 }
 

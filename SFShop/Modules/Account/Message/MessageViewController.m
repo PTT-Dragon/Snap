@@ -130,9 +130,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    [MBProgressHUD showTopErrotMessage:@"测试测试测试"];
-    return;
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
         MessageOrderListViewController *vc = [[MessageOrderListViewController alloc] init];

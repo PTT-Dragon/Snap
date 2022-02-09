@@ -8,6 +8,7 @@
 #import "ReviewDetailInfoCell.h"
 #import "ProductDetailModel.h"
 #import "ImageCollectionViewCell.h"
+#import "NSDate+Helper.h"
 
 @interface ReviewDetailInfoCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *productImgView;
@@ -44,8 +45,9 @@
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
     _userNameLabel.text = evaModel.user.nickName;
     [_userAvatarImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(evaModel.user.photo)]];
-    _scoreLabel.text = evaModel.rate;
-    _timeLabel.text = model.evaluateDate;
+    _scoreLabel.text = [NSString stringWithFormat:@"%.1f",[evaModel.rate floatValue]];;
+//    _timeLabel.text = model.evaluateDate;
+    _timeLabel.text = [[NSDate dateFromString:model.evaluateDate] dayMonthYearHHMM];
     _contentLabel.text = evaModel.evaluationComments;
     _collectionViewHei.constant = (MainScreen_width-32-24)/4;
     [_collectionView reloadData];
