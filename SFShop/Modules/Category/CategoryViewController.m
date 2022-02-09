@@ -16,6 +16,8 @@
 #import "ProductViewController.h"
 #import "CouponCenterViewController.h"
 #import "PublicWebViewController.h"
+#import "MyCouponViewController.h"
+#import "SceneManager.h"
 
 @interface CategoryViewController ()<UITableViewDelegate,UICollectionViewDelegate>
 @property (nonatomic, readwrite, strong) CategorySideTableView *sideTableView;//侧边栏
@@ -149,8 +151,28 @@
         vc.sysAccount = model.account;
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([objType isEqualToString:@"FunctionPage"]) {//领券中心
-        CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([objId containsString:@"cart"]) {
+            [SceneManager transToTab:3];
+        } else if ([objId containsString:@"account"]) {
+            [SceneManager transToTab:4];
+        } else if ([objId containsString:@"home"]) {
+            [SceneManager transToHome];
+        } else if ([objId containsString:@"community"]) {
+            [SceneManager transToTab:2];
+        } else if ([objId containsString:@"my-coupon"]) {
+            MyCouponViewController *vc = [[MyCouponViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if ([objId containsString:@"coupon-center"]) {
+            CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            NSString *url = [objId componentsSeparatedByString:@","].lastObject;
+            PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+            UserModel *model = [FMDBManager sharedInstance].currentUser;
+            vc.url = [NSString stringWithFormat:@"%@/%@",Host,url];
+            vc.sysAccount = model.account;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
