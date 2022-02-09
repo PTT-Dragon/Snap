@@ -461,7 +461,7 @@
 //  "STORE_PROMOTION" = "店铺优惠券";
   "INPUT_MESSAGE" = "输入备注";
   "DELIVERY_RANGE" = "预计到达时间";
-//  "DELIVERY_MEHOD" = "邮寄方式";
+  "DELIVERY_MEHOD" = "邮寄方式";
 //  "PAYMENT_UNSUCCESSFUL" = "支付失败";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "我们这次无法处理你的请求。";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT2" = "请稍后再试。不便之处，敬请原谅。";
@@ -539,7 +539,7 @@
 "Total" = "总共";
 "Available" = "可用";
 "SF_shop_Voucher"=  "SF.shop.Voucher";
-"Place_order" = "下订单";
+"Place_order" = "确认下单";
 "Check_out" = "Check Out";
 "Rp" = "Rp";
 "Est_arrival"=  "Est.Arrival";

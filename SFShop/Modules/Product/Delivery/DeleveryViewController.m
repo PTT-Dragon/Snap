@@ -10,12 +10,12 @@
 
 #define KDeleveryCellHeight 110
 #define KDeleveryCellFooter 13
-#define KDeleveryTitleHeight 50
+#define KDeleveryTitleHeight 95
 
 @interface DeleveryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, readwrite, strong) UIView *maskView;
 @property (nonatomic, readwrite, strong) UITableView *tableView;
-@property (nonatomic, readwrite, strong) UILabel *titleView;
+@property (nonatomic, readwrite, strong) UIView *titleView;
 @end
 
 @implementation DeleveryViewController
@@ -111,14 +111,33 @@
     return _maskView;
 }
 
-- (UILabel *)titleView {
+- (UIView *)titleView {
     if (_titleView == nil) {
-        _titleView = [[UILabel alloc] init];
+        _titleView = [[UIView alloc] init];
         _titleView.backgroundColor = [UIColor whiteColor];
-        _titleView.text = @"Delivery Method";
-        _titleView.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _titleView.textAlignment = NSTextAlignmentCenter;
-        _titleView.font = [UIFont boldSystemFontOfSize:16];
+        
+        UIImageView *iconImageView = [[UIImageView alloc] init];
+        iconImageView.backgroundColor = [UIColor jk_colorWithHexString:@"#CCCCCC"];
+        [_titleView addSubview:iconImageView];
+        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(0);
+            make.top.mas_equalTo(25);
+            make.height.mas_equalTo(4);
+            make.width.mas_equalTo(50);
+        }];
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor whiteColor];
+        label.text = kLocalizedString(@"DELIVERY_MEHOD");
+        label.textColor = [UIColor jk_colorWithHexString:@"#000000"];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.font = [UIFont boldSystemFontOfSize:18];
+        [_titleView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(15);
+            make.right.mas_equalTo(-15);
+            make.bottom.mas_equalTo(-25);
+        }];
     }
     return _titleView;
 }

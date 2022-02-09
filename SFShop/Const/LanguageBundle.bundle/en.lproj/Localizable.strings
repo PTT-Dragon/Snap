@@ -464,7 +464,7 @@
   "INPUT_MESSAGE" = "Input your message…";
 "None Delivery" = "No available delivery mothod";
   "DELIVERY_RANGE" = "Est.Arrival";
-//  "DELIVERY_MEHOD" = "Delivery Method";
+  "DELIVERY_MEHOD" = "Delivery Method";
 //  "PAYMENT_UNSUCCESSFUL" = "Payment Unsuccessful";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT1" = "We are not able to process your request this time.";
 //  "PAYMENT_UNSUCCESSFUL_CONTENT2" = "Please try again later. Sorry for any inconvenience.";

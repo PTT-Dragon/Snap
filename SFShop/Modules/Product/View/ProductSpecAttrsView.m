@@ -605,7 +605,7 @@
         self.increaseBtn.enabled = (self.count < limitStock);
     }
     self.decreaseBtn.enabled = self.count > 1;
-    //如果两个都是不可点击,说明无货
+    //无货
     if (limitStock < 1) {
         self.count = 0;
     }
