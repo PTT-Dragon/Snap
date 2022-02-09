@@ -101,10 +101,10 @@
     EvaluatesModel *evaModel = self.model.evaluates.firstObject;
     CGFloat itemHei = (MainScreen_width-32-30)/4;
     if (indexPath.row == 0) {
-        CGFloat hei = ceil(evaModel.contents.count/4.0)*itemHei;
-        return hei+200;
+        CGFloat hei = ceil(evaModel.contents.count/4.0)*(itemHei + 10);
+        return hei+224;
     }
-    CGFloat hei2 = ceil(evaModel.review.contents.count/4.0)*itemHei;
+    CGFloat hei2 = ceil(evaModel.review.contents.count/4.0)*(itemHei + 10);
     return hei2+78;
 }
 
