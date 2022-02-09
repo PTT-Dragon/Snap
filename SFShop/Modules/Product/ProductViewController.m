@@ -1102,13 +1102,13 @@
             return;
         }
         MPWeakSelf(self)
-        [MBProgressHUD showHudMsg:@""];
+//        [MBProgressHUD showHudMsg:@""];
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
             [baseTool updateCartNum];
             [weakself requestCartNum];
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_failed")];
         }];
     }
 }
