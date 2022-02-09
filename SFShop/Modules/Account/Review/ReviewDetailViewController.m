@@ -82,6 +82,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+    if (evaModel.reply) {
+        return 1+evaModel.review.contents.count+1;
+    }
     return 1+evaModel.review.contents.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,7 +96,7 @@
     }
     EvaluatesModel *evaModel = self.model.evaluates.firstObject;
     ReviewPhrchaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewPhrchaseCell"];
-    cell.model = evaModel.review;
+    cell.model = evaModel.reply;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
