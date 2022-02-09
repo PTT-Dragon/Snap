@@ -27,7 +27,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyCouponCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCouponCell"];
-    [cell setContent:_couponDataSource[indexPath.row]];
+    [cell setContent:_couponDataSource[indexPath.section]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -36,8 +36,23 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _couponDataSource.count>3?3:_couponDataSource.count;
+    return 1;
 }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return _couponDataSource.count;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 10)];
+    view.backgroundColor = [UIColor whiteColor];
+    return view;
+}
+
 
 - (IBAction)closeAction:(id)sender {
     [self removeFromSuperview];

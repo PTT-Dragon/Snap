@@ -10,6 +10,7 @@
 #import "NSString+Fee.h"
 #import "NSDate+Helper.h"
 #import "LoginViewController.h"
+#import "CouponAlertView.h"
 
 @interface MyCouponCell ()
 @property (weak, nonatomic) IBOutlet UIView *discountView;
@@ -19,6 +20,7 @@
 @property (nonatomic,weak) CouponModel *model;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 
@@ -31,15 +33,18 @@
     [_statuLabel addGestureRecognizer:tap];
     _label1.text = kLocalizedString(@"DISCOUNT");
     _label2.text = kLocalizedString(@"EXPIRY_DATE");
+    self.bgView.layer.borderColor = RGBColorFrom16(0x9b9b9b).CGColor;
+    self.bgView.layer.borderWidth = 1;
 }
 - (void)setContent:(CouponModel *)model
 {
     _model = model;
-    if ([model.discountMethod isEqualToString:@"DISC"]) {
-        _nameLabel.text = [NSString stringWithFormat:@"%@ %.2f%% Min.spend %.2f",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],[[NSString stringWithFormat:@"%@",model.thAmount] currencyFloat]];
-    }else{
-        _nameLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
-    }
+    _nameLabel.text = model.couponName;
+//    if ([model.discountMethod isEqualToString:@"DISC"]) {
+//        _nameLabel.text = [NSString stringWithFormat:@"%@ %.2f%% Min.spend %.2f",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],[[NSString stringWithFormat:@"%@",model.thAmount] currencyFloat]];
+//    }else{
+//        _nameLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
+//    }
     if (model.isGet) {
         _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.userCouponEffDate] dayMonthYear],[[NSDate dateFromString:model.userCouponExpDate] dayMonthYear]];
     }else{
@@ -49,11 +54,32 @@
             _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
         }
     }
-    if (model.isGet) {
-        _statuLabel.text = kLocalizedString(@"USE_NOW");
-    }else{
-        _statuLabel.text = !model.userCouponState ? kLocalizedString(@"USE_NOW"): [model.userCouponState isEqualToString:@"C"] ? kLocalizedString(@"EXPIRED"): [model.userCouponState isEqualToString:@"A"] ? kLocalizedString(@"USE_NOW"): kLocalizedString(@"USED");
+    if ([model.userCouponState isEqualToString:@"C"]) {
+        _statuLabel.text = kLocalizedString(@"EXPIRED");
+    }else if ([model.userCouponState isEqualToString:@"B"]){
+        _statuLabel.text = kLocalizedString(@"USED");
+    }else if ([model.userCouponState isEqualToString:@"A"]){
+        if (model.isGet) {
+            _statuLabel.text = kLocalizedString(@"USE_NOW");
+        }else{
+            if (!model.isGet) {
+                _statuLabel.text = kLocalizedString(@"USE_NOW");
+            }else{
+                _statuLabel.text = kLocalizedString(@"GET_NOW");
+            }
+        }
+    }else if (!model.userCouponState){
+        if (model.isGet) {
+            _statuLabel.text = kLocalizedString(@"USE_NOW");
+        }else{
+            _statuLabel.text = kLocalizedString(@"GET_NOW");
+        }
     }
+//    if (model.isGet) {
+//        _statuLabel.text = kLocalizedString(@"USE_NOW");
+//    }else{
+//        _statuLabel.text = !model.userCouponState ? kLocalizedString(@"USE_NOW"): [model.userCouponState isEqualToString:@"C"] ? kLocalizedString(@"EXPIRED"): [model.userCouponState isEqualToString:@"A"] ? kLocalizedString(@"USE_NOW"): kLocalizedString(@"USED");
+//    }
     
     if (model.userCouponState) {
         _statuLabel.textColor = ![model.userCouponState isEqualToString:@"A"] ? RGBColorFrom16(0xFFA6C0): RGBColorFrom16(0xFF1659);
@@ -66,7 +92,7 @@
 }
 - (void)useCouponAction
 {
-    if ([_model.userCouponState isEqualToString:@"A"] || !_model.userCouponState) {
+    if ([_statuLabel.text isEqualToString:kLocalizedString(@"USE_NOW")]) {
         UserModel *userModel = [FMDBManager sharedInstance].currentUser;
         if (!userModel) {
             LoginViewController *vc = [[LoginViewController alloc] init];
@@ -76,7 +102,17 @@
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
         vc.couponModel = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([_statuLabel.text isEqualToString:kLocalizedString(@"GET_NOW")]){
+        MPWeakSelf(self)
+        [SFNetworkManager post:SFNet.coupon.usercoupon parameters:@{@"couponId":_model.couponId} success:^(id  _Nullable response) {
+            self.model.isGet = YES;
+            [self setModel:weakself.model];
+            CouponAlertView *view = [[NSBundle mainBundle] loadNibNamed:@"CouponAlertView" owner:self options:nil].firstObject;
+            view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+            [[baseTool getCurrentVC].view addSubview:view];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
     }
-    
 }
 @end

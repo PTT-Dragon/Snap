@@ -10,6 +10,7 @@
 @interface CouponAlertView ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @end
 
@@ -18,9 +19,18 @@
 {
     [super awakeFromNib];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+    _contentLabel.text = kLocalizedString(@"COLLECT_COUPON_SUCCESS");
+    [_btn setTitle:kLocalizedString(@"Go_Shopping") forState:0];
 }
 - (IBAction)shoppingAction:(UIButton *)sender {
+    [[baseTool getCurrentVC].navigationController popToRootViewControllerAnimated:YES];
+    [self performSelector:@selector(aaa) withObject:nil afterDelay:0.1];
     [self removeFromSuperview];
+}
+- (void)aaa
+{
+AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+[appDelegate.tabVC setSelectedIndex:0];
 }
 
 /*

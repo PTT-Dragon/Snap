@@ -13,7 +13,7 @@
 "MJRefreshBackFooterIdleText" = "Untuk menarik lebih banyak";
 "MJRefreshBackFooterPullingText" = "Longgarkan segera memuat lebih banyak";
 "MJRefreshBackFooterRefreshingText" = "Memuat lebih banyak data ...";
-"MJRefreshBackFooterNoMoreDataText" = "Sudah penuh";
+"MJRefreshBackFooterNoMoreDataText" = "Tidak ada produk lainnya";
 
 "MJRefreshHeaderLastTimeText" = "Pembaruan terbaru:";
 "MJRefreshHeaderDateTodayText" = "hari ini";

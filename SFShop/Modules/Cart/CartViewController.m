@@ -255,7 +255,9 @@
         __block double totalAmount = 0;
         [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                totalAmount += obj.salesPrice * obj.num.integerValue;
+                if ([obj.isSelected isEqualToString:@"Y"]) {
+                    totalAmount += obj.salesPrice * obj.num.integerValue;
+                }
             }];
         }];
         self.amountLabel.text = [[NSString stringWithFormat:@"%f",totalAmount] currency];
@@ -291,9 +293,8 @@
         }];
     }];
     
-    
-    self.checkBtn.backgroundColor = !hasSel ? RGBColorFrom16(0xFFE5EB):RGBColorFrom16(0xFF1659);
-    self.checkBtn.userInteractionEnabled = hasSel;
+    self.checkBtn.backgroundColor = !userModel ? RGBColorFrom16(0xFFE5EB): !hasSel ? RGBColorFrom16(0xFFE5EB):RGBColorFrom16(0xFF1659);
+    self.checkBtn.userInteractionEnabled = !userModel ? NO : hasSel;
     [self updateNumData];
     if (self.block) {
         self.block();

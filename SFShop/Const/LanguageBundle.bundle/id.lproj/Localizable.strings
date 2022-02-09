@@ -51,7 +51,7 @@
 //  "SELF" = "Diri";
 //  "PM" = "PM";
 //  "AM" = "AM";
-//  "THIS_IS_THE_END" = "Sudah tidak ada lagi";
+  "THIS_IS_THE_END" = "Tidak ada produk lainnya";
 //  "LOADING" = "memuat";
 //  "RELATION_ORDER" = "Urutan Relasi";
 //  "CASH_OUT_HISTORY" = "Cash Out History";
@@ -267,7 +267,8 @@
   "LOGISTICS_DETAILS" = "Rincian pengiriman";
 //  "EVALUATION" = "Evaluasi";
   "RESET" = "ATUR ULANG";
-  "AVAILABLE" = "tersedia";
+  "AVAILABLE" = "Tersedia";
+"SFshop_Voucher" = "Platform Voucher";
   "EXPIRED" = "Kadaluwarsa";
   "USED" = "Telah digunakan";
 //  "ARE_YOU_SURE" = "Apakah kamu yakin";
@@ -334,7 +335,7 @@
 //  "NO_DATA" = "tidak ada data";
 //  "WALLET" = "Dompet";
 //  "PAY_NOW" = "Bayar sekarang";
-//  "COLLECT_COUPON_SUCCESS" = "Klaim kupon sukses!";
+  "COLLECT_COUPON_SUCCESS" = "Berhasil mendapatkan voucher!";
 //  "CASH_BACK" = "Cashback";
 //  "GIFT" = "Hadiah";
   "MY_FAVORITES" = "Favorit saya";

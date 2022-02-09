@@ -19,20 +19,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jwc-Ld-FN9">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="110"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="118"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zm7-wj-jxT">
-                                <rect key="frame" x="0.0" y="0.0" width="90" height="110"/>
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="118"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="a-00196_DiscountVoucher" translatesAutoresizingMaskIntoConstraints="NO" id="Naa-GI-7kM">
-                                        <rect key="frame" x="25" y="28" width="40" height="40"/>
+                                        <rect key="frame" x="25" y="32" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="o3b-PE-ehA"/>
                                             <constraint firstAttribute="height" constant="40" id="oEp-bk-ZLa"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEU-6h-yop">
-                                        <rect key="frame" x="19.5" y="68" width="51" height="15"/>
+                                        <rect key="frame" x="19.5" y="72" width="51" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
@@ -54,19 +54,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcq-Jy-Gnr">
-                                <rect key="frame" x="102" y="83.5" width="34" height="14.5"/>
+                                <rect key="frame" x="102" y="91.5" width="34" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upX-Dd-DWy">
-                                <rect key="frame" x="102" y="63.5" width="56" height="12"/>
+                                <rect key="frame" x="102" y="71.5" width="56" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USE NOW" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3S-ui-GDf">
-                                <rect key="frame" x="250" y="83.5" width="80" height="14.5"/>
+                                <rect key="frame" x="250" y="91.5" width="80" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="EmC-2T-MBR"/>
                                 </constraints>
@@ -94,7 +94,7 @@
                 </subviews>
                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="deviceRGB"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Jwc-Ld-FN9" secondAttribute="bottom" constant="8" id="0dn-lB-s21"/>
+                    <constraint firstAttribute="bottom" secondItem="Jwc-Ld-FN9" secondAttribute="bottom" id="0dn-lB-s21"/>
                     <constraint firstAttribute="trailing" secondItem="Jwc-Ld-FN9" secondAttribute="trailing" id="9FL-VH-Nbr"/>
                     <constraint firstItem="Jwc-Ld-FN9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cjV-kT-enp"/>
                     <constraint firstItem="Jwc-Ld-FN9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vxh-K0-B4J"/>
@@ -102,6 +102,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="bgView" destination="Jwc-Ld-FN9" id="oQK-fl-wXO"/>
                 <outlet property="discountView" destination="Zm7-wj-jxT" id="nkI-ur-nY8"/>
                 <outlet property="label1" destination="YEU-6h-yop" id="p5O-Qg-UG9"/>
                 <outlet property="label2" destination="upX-Dd-DWy" id="dfQ-j9-uYc"/>

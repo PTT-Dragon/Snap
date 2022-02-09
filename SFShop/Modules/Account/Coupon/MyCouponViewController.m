@@ -141,7 +141,7 @@
     if (!_couponCenterBtn) {
         _couponCenterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _couponCenterBtn.backgroundColor = RGBColorFrom16(0xFF1659);
-        _couponCenterBtn.titleLabel.font = CHINESE_BOLD(14);
+        _couponCenterBtn.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
         [_couponCenterBtn setTitle:kLocalizedString(@"COLLECT_MORE_COUPON") forState:0];
         _couponCenterBtn.frame = CGRectMake(16, 16, MainScreen_width-32, 46);
         @weakify(self)

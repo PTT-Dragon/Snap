@@ -47,7 +47,7 @@
 //  "SELF" = "Self";
 //  "PM" = "PM";
 //  "AM" = "AM";
-//  "THIS_IS_THE_END" = "This is the end";
+  "THIS_IS_THE_END" = "This is the end";
 //  "LOADING" = "Loading";
 //  "RELATION_ORDER" = "Relation Order";
 //  "CASH_OUT_HISTORY" = "Cash Out History";
@@ -330,7 +330,7 @@
 //  "NO_DATA" = "No Data";
 //  "WALLET" = "WALLET";
 //  "PAY_NOW" = "Pay now";
-//  "COLLECT_COUPON_SUCCESS" = "Collect coupon success!";
+  "COLLECT_COUPON_SUCCESS" = "Collect voucher success!";
 //  "CASH_BACK" = "Cash Back";
 //  "GIFT" = "Gift";
   "MY_FAVORITES" = "My Favorites";
@@ -619,7 +619,7 @@
 "Modify_Address" = "Modify Address";
 "Modify_success" = "MODIFY SUCCESS";
 "Area" = "Area";
-"SFshop_Voucher" = "SF.shop Voucher";
+"SFshop_Voucher" = "Platform Voucher";
 "Coupon_Center" = "Voucher Center";
 "Login_Or_Register" = "Login Or Register";
 "Shopping_Cart" = "SHOPPING CART";
