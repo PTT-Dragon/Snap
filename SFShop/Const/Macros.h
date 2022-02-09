@@ -89,6 +89,7 @@
 #define MainScreen_height [UIScreen mainScreen].bounds.size.height
 #define UISreenWidthScale   MainScreen_width / 320
 #define ADAPTATIONRATIO     MainScreen_width / 750.0f
+#define kAppDelegate        [AppDelegate shareAppDelegate]
 
 #pragma mark -
 #pragma mark -----视图宽高------

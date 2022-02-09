@@ -8,6 +8,9 @@
 #import "MBProgressHUD+Prompt.h"
 #import <objc/runtime.h>
 #import "BCLoadingView.h"
+#import <YYLabel.h>
+#import "NSAttributedString+YYText.h"
+
 
 @implementation MBProgressHUD (Prompt)
 /**********************************************************************
@@ -89,7 +92,8 @@
  @param msg 提示的信息
  */
 + (void )autoDismissShowHudMsg:(NSString *)msg {
-    [MBProgressHUD autoDismissShowHudMsg:msg andDismissDuration:2];
+//    [MBProgressHUD autoDismissShowHudMsg:msg andDismissDuration:2];
+    [MBProgressHUD showTopSuccessMessage:msg];
 }
 
 /**
@@ -146,5 +150,114 @@
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     return [self showHudMsg:msg carrierView:window animation:NO userInteractionEnabled:NO];
 }
+
+
++ (void)showTopTipMessage:(NSString *)msg {
+    [self showTopSuccessMessage:msg];
+}
++ (void)showTopErrotMessage:(NSString *)msg {
+    [self showTopErrotMessage:msg];
+}
++ (void)showTopSuccessMessage:(NSString *)msg{
+
+    CGFloat padding = 15;
+    
+    YYLabel *label = [YYLabel new];
+//    label.text = msg;
+    label.font = [UIFont systemFontOfSize:13];
+    label.textAlignment = NSTextAlignmentLeft;
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor jk_colorWithHexString:@"#E5F6EA"];
+    label.width = App_Frame_Width-30;
+    label.numberOfLines = 0;
+    label.textContainerInset = UIEdgeInsetsMake(0, padding, 0, padding);
+    label.height = [NSString jk_heightTextContent:msg withSizeFont:13 withMaxSize:CGSizeMake(label.width, CGFLOAT_MAX)]+30;
+    label.bottom = navBarHei;
+    label.top = navBarHei;
+    label.left = 15;
+    [[kAppDelegate getCurrentUIVC].view addSubview:label];
+    
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:msg];
+    
+    UIImageView *imageView1= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"00062_01_like_outline"]];
+    imageView1.frame = CGRectMake(0, 0, 16, 16);
+    imageView1.contentMode = UIViewContentModeScaleAspectFit;
+        
+    NSMutableAttributedString *attachText1= [NSMutableAttributedString yy_attachmentStringWithContent:imageView1 contentMode:UIViewContentModeScaleAspectFit attachmentSize:imageView1.frame.size alignToFont:[UIFont systemFontOfSize:15] alignment:YYTextVerticalAlignmentCenter];
+    [attri insertAttributedString:attachText1 atIndex:0];
+    attri.yy_lineSpacing = 5;
+    
+    label.attributedText = attri;
+    
+    UIView *leftLineView = [[UIView alloc] init];
+    [label addSubview:leftLineView];
+    leftLineView.backgroundColor = [UIColor jk_colorWithHexString:@"#00B256"];
+    [leftLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.offset(0);
+        make.width.mas_equalTo(4);
+    }];
+    
+    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [label addSubview:closeBtn];
+    [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.offset(0);
+        make.right.offset(-15);
+        make.width.height.mas_equalTo(15);
+    }];
+    [closeBtn setImage:[UIImage imageNamed:@"nav_close"] forState:0];
+    [closeBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        [label removeFromSuperview];
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [label removeFromSuperview];
+    });
+
+}
++ (void)showTopErrotMessage:(NSString *)msg {
+
+    CGFloat padding = 15;
+    
+    YYLabel *label = [YYLabel new];
+    label.text = msg;
+    label.font = [UIFont systemFontOfSize:13];
+    label.textAlignment = NSTextAlignmentLeft;
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor jk_colorWithHexString:@"#FFE5EB"];
+    label.width = App_Frame_Width-30;
+    label.numberOfLines = 0;
+    label.textContainerInset = UIEdgeInsetsMake(0, padding, 0, padding);
+    label.height = [NSString jk_heightTextContent:msg withSizeFont:13 withMaxSize:CGSizeMake(label.width, CGFLOAT_MAX)]+30;
+    label.bottom = navBarHei;
+    label.top = navBarHei;
+    label.left = 15;
+    [[kAppDelegate getCurrentUIVC].view addSubview:label];
+    
+    UIView *leftLineView = [[UIView alloc] init];
+    [label addSubview:leftLineView];
+    leftLineView.backgroundColor = [UIColor jk_colorWithHexString:@"#CE0000"];
+    [leftLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.offset(0);
+        make.width.mas_equalTo(4);
+    }];
+    
+    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [label addSubview:closeBtn];
+    [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.offset(0);
+        make.right.offset(-15);
+        make.width.height.mas_equalTo(15);
+    }];
+    [closeBtn setImage:[UIImage imageNamed:@"nav_close"] forState:0];
+    [closeBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        [label removeFromSuperview];
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [label removeFromSuperview];
+    });
+
+}
+
 
 @end

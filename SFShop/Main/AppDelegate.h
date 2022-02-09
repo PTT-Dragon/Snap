@@ -14,5 +14,17 @@
 
 @property (nonatomic, strong) MainTabViewController *tabVC;
 
+//单例
++ (AppDelegate *)shareAppDelegate;
+
+/**
+ 当前顶层控制器
+ */
+-(UIViewController*) getCurrentVC;
+
+-(UIViewController*) getCurrentUIVC;
+
+-(UIViewController *)currentPresentedVC;;
+
 @end
 
