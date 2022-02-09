@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,6 +25,7 @@
                 <outlet property="productImgView" destination="vtM-QX-toD" id="yTY-sR-hk5"/>
                 <outlet property="productNameLabel" destination="Iqo-d6-AkO" id="v4y-Us-wPw"/>
                 <outlet property="productPriceLabel" destination="JFG-WA-Un1" id="qWR-wm-LKZ"/>
+                <outlet property="scrollView" destination="Gat-MK-SWz" id="wAr-f6-L8w"/>
                 <outlet property="scrollviewWidth" destination="9iG-eq-eGP" id="O8n-Rr-7wd"/>
                 <outlet property="seeShareBuyBtn" destination="fl4-bn-POm" id="gU7-zX-Azc"/>
                 <outlet property="showImgView" destination="Q6y-1B-MqD" id="v2y-p8-hXy"/>
@@ -296,7 +297,7 @@
     <resources>
         <image name="00005_01_users_outline" width="11" height="11"/>
         <image name="00165_02_add_filled" width="14" height="14"/>
-        <image name="thumb-0" width="48" height="48"/>
+        <image name="thumb-0" width="67" height="54"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

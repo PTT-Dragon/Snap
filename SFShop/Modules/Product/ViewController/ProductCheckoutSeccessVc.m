@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *showViewWidth;
 @property (nonatomic, strong) dispatch_source_t timer;//倒计时
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -159,6 +160,11 @@
     _successLabel.text = kLocalizedString(@"PAYMENT_SUCCESS");
     _priceLabel.text = [[_infoDic[@"charge"] stringValue] currency];
     [_detailBtn setTitle:kLocalizedString(@"SEE_DETAIL") forState:0];
+    if (self.scrollView.contentSize.height > App_Frame_Height - navBarHei) {
+        self.scrollView.scrollEnabled = YES;
+    }else {
+        self.scrollView.scrollEnabled = NO;
+    }
 }
 - (IBAction)addGroupAction:(UIButton *)sender {
     NSString *shareUrl = [NSString stringWithFormat:@"%@/group-detail/%@",Host,self.groupModel.shareBuyOrderNbr];
