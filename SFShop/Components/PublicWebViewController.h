@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *sysAccount;
 @property (nonatomic,assign) BOOL isHome;
 @property (nonatomic,assign) BOOL shouldBackToHome;
+@property (nonatomic,weak) UIViewController *pushVc;//记录原始vc,点击返回直接pop 到该vc
+
 @end
 
 NS_ASSUME_NONNULL_END

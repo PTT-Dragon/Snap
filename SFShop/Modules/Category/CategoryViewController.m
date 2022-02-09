@@ -150,12 +150,12 @@
         vc.url = [NSString stringWithFormat:@"%@/group/%@",Host,objId];
         vc.sysAccount = model.account;
         [self.navigationController pushViewController:vc animated:YES];
-    } else if ([objType isEqualToString:@"FunctionPage"]) {//领券中心
+    } else if ([objType isEqualToString:@"FunctionPage"] && objId.length > 0) {//功能页面
         if ([objId containsString:@"cart"]) {
             [SceneManager transToTab:3];
         } else if ([objId containsString:@"account"]) {
             [SceneManager transToTab:4];
-        } else if ([objId containsString:@"home"]) {
+        } else if ([objId containsString:@"home"] || [[objId componentsSeparatedByString:@","].lastObject isEqual:@"/"]) {
             [SceneManager transToHome];
         } else if ([objId containsString:@"community"]) {
             [SceneManager transToTab:2];
@@ -169,6 +169,7 @@
             NSString *url = [objId componentsSeparatedByString:@","].lastObject;
             PublicWebViewController *vc = [[PublicWebViewController alloc] init];
             UserModel *model = [FMDBManager sharedInstance].currentUser;
+            vc.pushVc = self;
             vc.url = [NSString stringWithFormat:@"%@/%@",Host,url];
             vc.sysAccount = model.account;
             [self.navigationController pushViewController:vc animated:YES];

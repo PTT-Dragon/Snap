@@ -193,22 +193,26 @@
     }
     NSLog(@"%@",navigationAction.request.URL.absoluteString);
     if ([navigationAction.request.URL.absoluteString rangeOfString :@"coupon-center"].location != NSNotFound) {
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/spike"].location != NSNotFound){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         FlashSaleViewController *vc = [[FlashSaleViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }
     else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/message-center"].location != NSNotFound){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         MessageViewController *vc = [[MessageViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/product/detail/"].location != NSNotFound){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         NSString *offerId = navigationAction.request.URL.lastPathComponent;
         NSString *productId = nil;
         NSURLComponents *urlComponent = [[NSURLComponents alloc] initWithString:navigationAction.request.URL.absoluteString];
@@ -218,7 +222,6 @@
                 break;
             }
         }
-        
         ProductViewController *vc = [[ProductViewController alloc] init];
         vc.offerId = offerId.integerValue;
         vc.productId = productId.integerValue;
@@ -227,12 +230,14 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/GroupBuy"].location != NSNotFound){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         GroupListViewController *vc = [[GroupListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
 //        decisionHandler(WKNavigationActionPolicyAllow);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/list/"].location != NSNotFound){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         NSRange range1 = [navigationAction.request.URL.absoluteString rangeOfString:@"product/list/"];
         NSString *categoryId = @"";
         categoryId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.location+range1.length, navigationAction.request.URL.absoluteString.length-range1.location-range1.length)];
@@ -250,6 +255,7 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"search-page"].location != NSNotFound){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
         vc.activeSearch = YES;
         vc.shouldBackToHome = YES;
