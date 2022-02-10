@@ -270,7 +270,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"ADDRESS")]){
             AddressViewController *vc = [[AddressViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            [self.navigationController pushViewController:vc animated:YES];            
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"SERVICE")]){
             SupportViewController *vc = [[SupportViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
