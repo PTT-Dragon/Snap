@@ -706,7 +706,7 @@
             self.groupCountLabel.text = [NSString stringWithFormat:@"%ld",(long)model.shareByNum];
             self.groupSalePriceLabel.text = [[NSString stringWithFormat:@"%.0f", model.shareBuyPrice] currency];
             self.groupMarketPriceLabel.text = [[NSString stringWithFormat:@"%ld",_selProductModel.marketPrice] currency];
-            [self.buyBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)model.shareBuyPrice] currency],kLocalizedString(@"SHARE_BUY")] forState:0];
+            [self.buyBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)model.shareBuyPrice] currency],kLocalizedString(@"Sharebuy")] forState:0];
             [self.addCartBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)self.selProductModel.salesPrice] currency],kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];
         }
     }];
@@ -725,7 +725,7 @@
     [arr enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *label = [[UILabel alloc] init];
         label.text = obj.couponName;
-        label.font = CHINESE_SYSTEM(12);
+        label.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = RGBColorFrom16(0xFF1659);
         label.textColor = [UIColor whiteColor];
@@ -757,6 +757,7 @@
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
     [self.detailWebView loadHTMLString:[MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+//    [self.detailWebView loadHTMLString:_model.goodsDetails baseURL:nil];
     if (!self.productId) {
         self.productId = self.productId?self.productId:[self.model.products.firstObject productId];
     }
@@ -931,7 +932,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     if ([self.selProductModel.isCollection isEqualToString:@"1"]) {
         [SFNetworkManager post:SFNet.favorite.del parameters:@{@"productIdList":@[@(_selProductModel.productId)]} success:^(id  _Nullable response) {
             [MBProgressHUD hideFromKeyWindow];
@@ -1102,7 +1103,7 @@
             return;
         }
         MPWeakSelf(self)
-//        [MBProgressHUD showHudMsg:@""];
+//        //[MBProgressHUD showHudMsg:@""];
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
             [baseTool updateCartNum];
             [weakself requestCartNum];

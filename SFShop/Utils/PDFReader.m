@@ -35,7 +35,7 @@ static PDFReader *_instance = nil;
 }
 
 + (void)readPDF:(NSString *)url complete:(void (^)(NSError * _Nullable, NSURL * _Nullable))complete {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager downloadPDF:url success:^(NSURL *fileURL) {
         PDFReader.share.fileUrl = fileURL;
         [[baseTool getCurrentVC].navigationController pushViewController:PDFReader.share.qlVc animated:YES];

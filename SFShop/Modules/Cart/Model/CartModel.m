@@ -15,7 +15,7 @@
 - (NSString *)cutRateStr
 {
     if ([_cutRate rangeOfString:@"-"].location != NSNotFound) {
-        _cutRate = [_cutRate stringByReplacingOccurrencesOfString:@"" withString:@""];
+        _cutRate = [_cutRate stringByReplacingOccurrencesOfString:@"-" withString:@""];
     }
     return _cutRate;
 }

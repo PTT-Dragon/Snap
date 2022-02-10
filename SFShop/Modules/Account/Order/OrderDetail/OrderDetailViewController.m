@@ -289,7 +289,7 @@
 }
 - (void)rebuy
 {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     dispatch_group_t group = dispatch_group_create();
     [self.model.orderItems enumerateObjectsUsingBlock:^(orderItemsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         dispatch_group_enter(group);

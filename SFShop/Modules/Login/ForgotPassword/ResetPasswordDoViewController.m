@@ -59,7 +59,7 @@ static BOOL _passwordSuccess2 = NO;
         [MBProgressHUD showTopErrotMessage:kLocalizedString(@"Confirm_password")];
         return;
     }
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.resetPwd parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_pwdField.text),@"code":_code,@"confirmPwd":login_aes_128_cbc_encrypt(_confirmPwdField.text)} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Reset_success")];

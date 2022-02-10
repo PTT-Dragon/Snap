@@ -598,8 +598,8 @@
 "Income_Expense" = "Income & Expense";
 "Relation_Order" = "Relation Order";
 "Order_details" = "Rincian Pemesanan";
-//"Refund_Return" = "Pengembalian barang dan dana";
-"Refund_Return" = "Rincian pelayanan";
+"Refund_Return" = "Pengembalian barang dan dana";
+//"Refund_Return" = "Rincian pelayanan";
 "Search" = "Cari";
 "RETURN" = "Pengembalian barang";
 "Refund" = "Pengembalian dana";

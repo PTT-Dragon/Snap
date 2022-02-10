@@ -102,7 +102,7 @@ static BOOL _accountSuccess = NO;
 //    }
 }
 - (IBAction)sendAction:(UIButton *)sender {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.check parameters:@{@"account":_field.text} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];

@@ -72,7 +72,7 @@
 }
 
 - (void)loadOrderNum {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.order.num parameters:@{} success:^(id  _Nullable response) {
         weakself.orderNumModel = [OrderNumModel yy_modelWithDictionary:response];

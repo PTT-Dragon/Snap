@@ -107,7 +107,7 @@
 - (void)likeAction:(UIButton *)btn
 {
     MPWeakSelf(self)
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager post:[SFNet.article likeEvaluatelOf:_model.articleEvalId] parameters:@{@"action":[_model.isUseful isEqualToString:@"Y"] ? @"C": @"A"} success:^(id  _Nullable response) {
         weakself.model.isUseful = [weakself.model.isUseful isEqualToString:@"Y"] ? @"N": @"Y";
         weakself.model.usefulCnt = [weakself.model.isUseful isEqualToString:@"Y"] ? weakself.model.usefulCnt + 1 : weakself.model.usefulCnt - 1;

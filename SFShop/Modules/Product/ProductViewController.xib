@@ -439,7 +439,7 @@
                                                 <constraint firstAttribute="width" constant="35" id="ta5-Oc-r9y"/>
                                                 <constraint firstAttribute="height" constant="14" id="trK-5T-3jj"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="10"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>

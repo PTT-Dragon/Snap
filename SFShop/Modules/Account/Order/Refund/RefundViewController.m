@@ -111,7 +111,7 @@
 }
 - (void)loadDatas
 {
-    [MBProgressHUD showHudMsg:@""];
+//    [MBProgressHUD showHudMsg:@""];
     _pageIndex = 1;
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"q":_searchBar.text,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
@@ -127,7 +127,7 @@
 }
 - (void)loadMoreDatas
 {
-    [MBProgressHUD showHudMsg:@""];
+//    [MBProgressHUD showHudMsg:@""];
     _pageIndex ++;
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"q":_searchBar.text,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {

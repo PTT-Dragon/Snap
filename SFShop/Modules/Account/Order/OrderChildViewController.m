@@ -15,7 +15,7 @@
 #import "EmptyView.h"
 #import <OYCountDownManager/OYCountDownManager.h>
 
-@interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource,OrderListBottomCellDelegate>
+@interface OrderChildViewController ()<UITableViewDelegate,UITableViewDataSource,OrderListBottomCellDelegate,OrderDetailViewControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, assign) NSInteger pageIndex;
@@ -109,6 +109,7 @@
     }
     OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
     vc.orderId = model.orderId;
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

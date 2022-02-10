@@ -161,7 +161,7 @@
 - (void)publishImage
 {
     //先上传图片
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     dispatch_group_t group = dispatch_group_create();
     MPWeakSelf(self)
     __block NSInteger count = 0;

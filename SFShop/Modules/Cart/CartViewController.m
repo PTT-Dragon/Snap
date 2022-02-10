@@ -74,7 +74,7 @@
 - (void)loadAddressDatas
 {
     MPWeakSelf(self)
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager get:SFNet.address.addressList parameters:@{} success:^(id  _Nullable response) {
         NSError *error;
         [MBProgressHUD hideFromKeyWindow];
