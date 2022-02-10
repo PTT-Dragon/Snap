@@ -242,7 +242,7 @@ static NSString *const menuCellID = @"YCMenuCell";
     _dismissOnTouchOutside = YES;
     
     _textColor = [UIColor blackColor];
-    _textFont = [UIFont systemFontOfSize:15.0f];
+    _textFont = kFontRegular(15);
     _offset = 0.0f;
     _cellAlignment = NSTextAlignmentLeft;
 }

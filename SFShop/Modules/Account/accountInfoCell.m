@@ -76,7 +76,7 @@
     }else{
         self.nameLabel.userInteractionEnabled = YES;
         self.nameLabel.text = model.userRes.nickName;
-        self.nameLabel.font = [UIFont systemFontOfSize:16];
+        self.nameLabel.font = kFontRegular(16);
         [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"默认头像-黑"]];
         self.mobileLabel.text = model.userRes.mobilePhone;
         self.couponLabel.text = model.userRes.couponNum;

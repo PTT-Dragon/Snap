@@ -341,7 +341,7 @@
     SFCellCacheModel *model = self.dataArray[indexPath.section][indexPath.row];
 //    if (!model.height) {
         if ([model.cellId isEqualToString:@"ProductCheckoutAddressCell"]) {
-            UIFont *font = [UIFont boldSystemFontOfSize:12];
+            UIFont *font = kFontBlod(12);
             CGFloat mailHeight = self.dataModel.addressModel.customAddress.length > 0? (12 + 30) : 0;
             CGSize size = CGSizeMake(MainScreen_width - 66 - 16 * 2, 400);
             UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0,size.width, size.height)];

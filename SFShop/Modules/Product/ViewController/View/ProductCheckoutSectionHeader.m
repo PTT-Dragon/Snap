@@ -90,7 +90,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"";
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
-        _titleLabel.font = [UIFont systemFontOfSize:11];
+        _titleLabel.font = kFontRegular(11);
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     }

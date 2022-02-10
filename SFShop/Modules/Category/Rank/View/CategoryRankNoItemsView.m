@@ -57,7 +57,7 @@
         _titleLabel.numberOfLines = 0;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = UIColor.blackColor;
-        _titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleLabel.font = kFontRegular(14);
     }
     return _titleLabel;
 }

@@ -34,7 +34,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.font =kFontBlod(16);
         _titleLabel.numberOfLines = 1;
     }
     return _titleLabel;

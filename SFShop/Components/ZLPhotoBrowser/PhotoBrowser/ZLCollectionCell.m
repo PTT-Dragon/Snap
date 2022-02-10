@@ -65,7 +65,7 @@
     self.indexLabel.layer.cornerRadius = 23.0 / 2;
     self.indexLabel.layer.masksToBounds = YES;
     self.indexLabel.textColor = [UIColor whiteColor];
-    self.indexLabel.font = [UIFont systemFontOfSize:14];
+    self.indexLabel.font = kFontRegular(15);
     self.indexLabel.textAlignment = NSTextAlignmentCenter;
     self.indexLabel.hidden = YES;
     [self.contentView addSubview:self.indexLabel];
@@ -80,7 +80,7 @@
     
     self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 1, GetViewWidth(self)-35, 12)];
     self.timeLabel.textAlignment = NSTextAlignmentRight;
-    self.timeLabel.font = [UIFont systemFontOfSize:13];
+    self.timeLabel.font = kFontRegular(13);
     self.timeLabel.textColor = [UIColor whiteColor];
     [self.videoBottomView addSubview:self.timeLabel];
     

@@ -288,7 +288,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 14, self.width, 21)];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        _titleLabel.font = kFontBlod(15);
         _titleLabel.text = kLocalizedString(@"Share_to");
         _titleLabel.textColor = [UIColor blackColor];
 //        _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -330,7 +330,7 @@
         _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, self.bgView.height - height, self.width - 30, 40)];
         [_cancelBtn setTitle:kLocalizedString(@"CANCEL") forState:UIControlStateNormal];
         [_cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        _cancelBtn.titleLabel.font = kFontRegular(15);
         _cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_cancelBtn setBackgroundColor:[UIColor whiteColor]];
         [_cancelBtn addTarget:self action:@selector(cancelBtnAction) forControlEvents:UIControlEventTouchUpInside];

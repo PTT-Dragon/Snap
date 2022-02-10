@@ -289,7 +289,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.font = [UIFont systemFontOfSize:17];
+        _titleLabel.font = kFontRegular(17);
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#4C4948"];
         _titleLabel.text = self.title;
         _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;

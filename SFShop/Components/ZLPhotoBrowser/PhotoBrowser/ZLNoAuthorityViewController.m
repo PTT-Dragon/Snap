@@ -42,7 +42,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     CGFloat width = GetMatchValue(GetLocalLanguageTextValue(ZLPhotoBrowserCancelText), 16, YES, 44);
     btn.frame = CGRectMake(0, 0, width+20, 44);
-    btn.titleLabel.font = [UIFont systemFontOfSize:16];
+    btn.titleLabel.font = kFontRegular(16);
     [btn setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserCancelText) forState:UIControlStateNormal];
     [btn setTitleColor:nav.configuration.navTitleColor forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(navRightBtn_Click) forControlEvents:UIControlEventTouchUpInside];
@@ -52,7 +52,7 @@
     
     _labPrompt = [[UILabel alloc] init];
     _labPrompt.numberOfLines = 0;
-    _labPrompt.font = [UIFont systemFontOfSize:14];
+    _labPrompt.font = kFontRegular(14);
     _labPrompt.textColor = kRGB(170, 170, 170);
     _labPrompt.text = message;
     _labPrompt.frame = CGRectMake(50, CGRectGetMaxY(_imageView.frame), kViewWidth-100, 100);

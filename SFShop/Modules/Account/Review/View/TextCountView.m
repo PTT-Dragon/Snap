@@ -56,7 +56,7 @@
     if (!_countLabel) {
         _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
         _countLabel.textColor = UIColor.blackColor;
-        _countLabel.font = [UIFont systemFontOfSize:9];
+        _countLabel.font = kFontRegular(9);
     }
     return _countLabel;
 }

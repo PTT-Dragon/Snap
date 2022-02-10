@@ -132,7 +132,7 @@
     headerView.backgroundColor = UIColor.whiteColor;
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, tableView.frame.size.width-20, 30)];
     titleLabel.textColor = UIColor.blackColor;
-    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    titleLabel.font = kFontBlod(14);
     [headerView addSubview:titleLabel];
     if (section == 0) {
         titleLabel.text = kLocalizedString(@"MY_FAVORITES");
@@ -145,7 +145,7 @@
         }];
         [closeBtn setTitle:@"▲" forState:UIControlStateNormal];
         [closeBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-        closeBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+        closeBtn.titleLabel.font = kFontRegular(10);
         @weakify(self);
         [closeBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
             @strongify(self);

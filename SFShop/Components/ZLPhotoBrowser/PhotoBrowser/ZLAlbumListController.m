@@ -114,7 +114,7 @@
         placeholderLabel.text = GetLocalLanguageTextValue(ZLPhotoBrowserNoPhotoText);
         placeholderLabel.textAlignment = NSTextAlignmentCenter;
         placeholderLabel.textColor = [UIColor darkGrayColor];
-        placeholderLabel.font = [UIFont systemFontOfSize:15];
+        placeholderLabel.font = kFontRegular(15);
         [_placeholderView addSubview:placeholderLabel];
         
         _placeholderView.hidden = YES;
@@ -165,7 +165,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     CGFloat width = GetMatchValue(GetLocalLanguageTextValue(ZLPhotoBrowserCancelText), 16, YES, 44);
     btn.frame = CGRectMake(0, 0, width, 44);
-    btn.titleLabel.font = [UIFont systemFontOfSize:16];
+    btn.titleLabel.font = kFontRegular(16);
     [btn setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserCancelText) forState:UIControlStateNormal];
     [btn setTitleColor:configuration.navTitleColor forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(navRightBtn_Click) forControlEvents:UIControlEventTouchUpInside];

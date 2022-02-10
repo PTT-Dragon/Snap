@@ -65,7 +65,7 @@
 {
     //计算label高度
     CGFloat labelHei = 0;
-    labelHei = [self.replyComments calHeightWithFont:[UIFont systemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-48, MAXFLOAT)];
+    labelHei = [self.replyComments calHeightWithFont:kFontRegular(12) lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-48, MAXFLOAT)];
     
     return labelHei == 0 ? 0: (labelHei+56) > 84 ? labelHei+56: 84;
 }
@@ -76,7 +76,7 @@
 {
     //计算label高度
     CGFloat labelHei = 0;
-    labelHei = [self.reviewComments calHeightWithFont:[UIFont systemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-32, MAXFLOAT)];
+    labelHei = [self.reviewComments calHeightWithFont:kFontRegular(12) lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-32, MAXFLOAT)];
     //计算图片高度
     CGFloat itemHei = (MainScreen_width-34-30)/4;
     CGFloat imageHei = 0;
@@ -93,7 +93,7 @@
 {
     //计算label高度
     CGFloat labelHei = 0;
-//    labelHei = [self.evaluationComments calHeightWithFont:[UIFont systemFontOfSize:12] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-24, MAXFLOAT)];
+//    labelHei = [self.evaluationComments calHeightWithFont:kFontRegular(12) lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-24, MAXFLOAT)];
     labelHei = [NSString jk_heightTextContent:self.evaluationComments withSizeFont:12 withMaxSize:CGSizeMake(MainScreen_width-24-30, CGFLOAT_MAX)];
     //计算图片高度
     CGFloat itemHei = (MainScreen_width-34-30)/4.0;
@@ -114,7 +114,7 @@
 }
 - (float)width
 {
-    return [self.labelName calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter limitSize:CGSizeMake(MAXFLOAT, 62)]+24;
+    return [self.labelName calWidth:kFontRegular(14) lineMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter limitSize:CGSizeMake(MAXFLOAT, 62)]+24;
 }
 @end
 

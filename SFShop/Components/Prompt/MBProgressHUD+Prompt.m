@@ -158,7 +158,7 @@
     CGFloat padding = 15;
     
     YYLabel *label = [YYLabel new];
-    label.font = [UIFont systemFontOfSize:13];
+    label.font = kFontRegular(13);
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor blackColor];
     label.backgroundColor = [UIColor jk_colorWithHexString:@"#E5F6EA"];
@@ -177,7 +177,7 @@
     imageView1.frame = CGRectMake(0, 0, 16, 16);
     imageView1.contentMode = UIViewContentModeScaleAspectFit;
         
-    NSMutableAttributedString *attachText1= [NSMutableAttributedString yy_attachmentStringWithContent:imageView1 contentMode:UIViewContentModeScaleAspectFit attachmentSize:imageView1.frame.size alignToFont:[UIFont systemFontOfSize:15] alignment:YYTextVerticalAlignmentCenter];
+    NSMutableAttributedString *attachText1= [NSMutableAttributedString yy_attachmentStringWithContent:imageView1 contentMode:UIViewContentModeScaleAspectFit attachmentSize:imageView1.frame.size alignToFont:kFontRegular(15) alignment:YYTextVerticalAlignmentCenter];
     [attri insertAttributedString:attachText1 atIndex:0];
     attri.yy_lineSpacing = 5;
     
@@ -214,7 +214,7 @@
     
     YYLabel *label = [YYLabel new];
     label.text = msg;
-    label.font = [UIFont systemFontOfSize:13];
+    label.font = kFontRegular(13);
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor blackColor];
     label.backgroundColor = [UIColor jk_colorWithHexString:@"#FFE5EB"];

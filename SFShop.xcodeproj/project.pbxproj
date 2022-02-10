@@ -474,6 +474,9 @@
 		8E1EC987279D810200CE0088 /* CommunitySelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1EC986279D810200CE0088 /* CommunitySelectTableViewCell.m */; };
 		8E4821FC277A14F000857FF5 /* EmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FB277A14F000857FF5 /* EmptyModel.m */; };
 		8E4821FF277A150A00857FF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4821FE277A150A00857FF5 /* EmptyView.m */; };
+		8E6AE6B527B54DB800DE45F2 /* TruenoBd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E6AE6B227B54DB800DE45F2 /* TruenoBd.otf */; };
+		8E6AE6B627B54DB800DE45F2 /* TruenoLt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E6AE6B327B54DB800DE45F2 /* TruenoLt.otf */; };
+		8E6AE6B727B54DB800DE45F2 /* TruenoRg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E6AE6B427B54DB800DE45F2 /* TruenoRg.otf */; };
 		8E760190279F06EB006A1918 /* TextCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76018F279F06EB006A1918 /* TextCountView.m */; };
 		8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */; };
 		8EACB65D2781E7E50066BD3A /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EACB6412781E7E50066BD3A /* UShareUI.framework */; };
@@ -1417,6 +1420,9 @@
 		8E4821FB277A14F000857FF5 /* EmptyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyModel.m; sourceTree = "<group>"; };
 		8E4821FD277A150900857FF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		8E4821FE277A150A00857FF5 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
+		8E6AE6B227B54DB800DE45F2 /* TruenoBd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TruenoBd.otf; sourceTree = "<group>"; };
+		8E6AE6B327B54DB800DE45F2 /* TruenoLt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TruenoLt.otf; sourceTree = "<group>"; };
+		8E6AE6B427B54DB800DE45F2 /* TruenoRg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TruenoRg.otf; sourceTree = "<group>"; };
 		8E76018E279F06EB006A1918 /* TextCountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCountView.h; sourceTree = "<group>"; };
 		8E76018F279F06EB006A1918 /* TextCountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCountView.m; sourceTree = "<group>"; };
 		8EACB6402781E7E50066BD3A /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
@@ -2939,6 +2945,9 @@
 		4BBFEE9E26FCADDA00E3C832 /* Const */ = {
 			isa = PBXGroup;
 			children = (
+				8E6AE6B227B54DB800DE45F2 /* TruenoBd.otf */,
+				8E6AE6B327B54DB800DE45F2 /* TruenoLt.otf */,
+				8E6AE6B427B54DB800DE45F2 /* TruenoRg.otf */,
 				8E1EC534279B0C4500CE0088 /* UIButton+FFImagePosition.h */,
 				8E1EC533279B0C4500CE0088 /* UIButton+FFImagePosition.m */,
 				4BBFEE9F26FCAE1400E3C832 /* Enums.h */,
@@ -3806,6 +3815,7 @@
 				1B552EB6276C3A700086604B /* ProductGroupListCell.xib in Resources */,
 				1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */,
 				1B18E356279EF7F800A90152 /* ReplaceDeliveryCell.xib in Resources */,
+				8E6AE6B627B54DB800DE45F2 /* TruenoLt.otf in Resources */,
 				1B74DAFA2722A85600B30ECC /* InviteCell.xib in Resources */,
 				1BE28C11279B082E000683B8 /* AddressTitleCell.xib in Resources */,
 				1B74DB402726FF3600B30ECC /* RecentlyViewedCell.xib in Resources */,
@@ -3843,6 +3853,7 @@
 				1BF00F7F273131400081C8E4 /* CommissionViewController.xib in Resources */,
 				1B74DAD92721A7A400B30ECC /* PolicesDetailViewController.xib in Resources */,
 				1B33C12527AA7E5300E7EDB9 /* ProductReviewGrayCell.xib in Resources */,
+				8E6AE6B527B54DB800DE45F2 /* TruenoBd.otf in Resources */,
 				8EE292212789AA400051DF85 /* LanguageBundle.bundle in Resources */,
 				8EACB65C2781E7E50066BD3A /* UMSocialSDKResources.bundle in Resources */,
 				1BD8E7DD27605D0400130DCC /* ReviewSuccessViewController.xib in Resources */,
@@ -3875,6 +3886,7 @@
 				1B74DAFF2722A86800B30ECC /* InviteTopCell.xib in Resources */,
 				1B8483BC27AFBDDF0078B9A4 /* OfflineOrderViewController.xib in Resources */,
 				1BF00F6F272FDC5D0081C8E4 /* DistributorRankCell.xib in Resources */,
+				8E6AE6B727B54DB800DE45F2 /* TruenoRg.otf in Resources */,
 				1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */,
 				4B818FD627239C910058038A /* ProductViewController.xib in Resources */,
 				1B47832B272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib in Resources */,

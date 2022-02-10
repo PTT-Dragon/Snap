@@ -121,7 +121,7 @@
         _addressLabel = [[UILabel alloc] init];
         _addressLabel.text = @"";
         _addressLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _addressLabel.font = [UIFont boldSystemFontOfSize:12];
+        _addressLabel.font = kFontBlod(12);
         _addressLabel.textAlignment = NSTextAlignmentLeft;
         _addressLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         _addressLabel.numberOfLines = 0;
@@ -144,7 +144,7 @@
         _emailTF = [[CustomTextField alloc] init];
         _emailTF.text = self.dataModel.addressModel.email;
         _emailTF.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _emailTF.font = [UIFont systemFontOfSize:12];
+        _emailTF.font = kFontRegular(12);
         _emailTF.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
         _emailTF.delegate = self;
         _emailTF.placeholder = kLocalizedString(@"Please_enter_your_email");

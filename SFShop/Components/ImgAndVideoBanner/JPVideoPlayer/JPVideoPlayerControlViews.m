@@ -417,9 +417,9 @@ nearestViewControllerInViewTree:(UIViewController *_Nullable)nearestViewControll
     NSString *totalString = [self convertSecondsToTimeString:totalSeconds];
     self.timeLabel.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@/%@", elapsedString, totalString]
                                                                     attributes:@{
-                                                                            NSFontAttributeName : [UIFont systemFontOfSize:10],
-                                                                            NSForegroundColorAttributeName : [UIColor whiteColor]
-                                                                    }];
+        NSFontAttributeName :kFontRegular(10),
+        NSForegroundColorAttributeName : [UIColor whiteColor]
+    }];
 }
 
 - (NSString *)convertSecondsToTimeString:(NSTimeInterval)seconds {

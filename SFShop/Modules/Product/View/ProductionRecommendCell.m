@@ -138,7 +138,7 @@
 
     NSAttributedString *attrStr =
     [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld",_model.marketPrice].currency attributes:
-    @{NSFontAttributeName:[UIFont systemFontOfSize:10],
+    @{NSFontAttributeName:kFontRegular(10),
       NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
       NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
       NSStrikethroughColorAttributeName:[UIColor jk_colorWithHexString:@"#CCCCCC"]}];
@@ -157,7 +157,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"";
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.font =kFontBlod(16);
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         _titleLabel.numberOfLines = 2;
@@ -170,7 +170,7 @@
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.text = @"";
         _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _priceLabel.font = [UIFont systemFontOfSize:12];
+        _priceLabel.font = kFontRegular(12);
         _priceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _priceLabel;
@@ -181,7 +181,7 @@
         _discountLabel = [[UILabel alloc] init];
         _discountLabel.text = @"";
         _discountLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
-        _discountLabel.font = [UIFont systemFontOfSize:8];
+        _discountLabel.font = kFontRegular(8);
         _discountLabel.textAlignment = NSTextAlignmentCenter;
         _discountLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
     }
@@ -192,7 +192,7 @@
     if (_originPriceLabel == nil) {
         _originPriceLabel = [[UILabel alloc] init];
         _originPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _originPriceLabel.font = [UIFont systemFontOfSize:10];
+        _originPriceLabel.font = kFontRegular(10);
         _originPriceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _originPriceLabel;
@@ -204,7 +204,7 @@
         _promoTypeLabel = [[UILabel alloc] init];
         _promoTypeLabel.text = kLocalizedString(@"Special_promo");
         _promoTypeLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
-        _promoTypeLabel.font = [UIFont systemFontOfSize:8];
+        _promoTypeLabel.font = kFontRegular(8);
         _promoTypeLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
         _promoTypeLabel.textAlignment = NSTextAlignmentCenter;
     }

@@ -229,7 +229,7 @@
 - (void)setupUI
 {
     self.cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.cancelBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.cancelBtn.titleLabel.font = kFontRegular(15);
     [self.cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.cancelBtn setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserCancelText) forState:UIControlStateNormal];
     [self.cancelBtn addTarget:self action:@selector(cancelBtn_click) forControlEvents:UIControlEventTouchUpInside];
@@ -240,7 +240,7 @@
     [self.doneBtn setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserDoneText) forState:UIControlStateNormal];
     [self.doneBtn setTitleColor:_configuration.bottomBtnsNormalTitleColor forState:UIControlStateNormal];
     self.doneBtn.backgroundColor = _configuration.bottomBtnsNormalBgColor;
-    self.doneBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.doneBtn.titleLabel.font = kFontRegular(15);
     self.doneBtn.layer.masksToBounds = YES;
     self.doneBtn.layer.cornerRadius = 3.0f;
     [self.doneBtn addTarget:self action:@selector(btnDone_click) forControlEvents:UIControlEventTouchUpInside];

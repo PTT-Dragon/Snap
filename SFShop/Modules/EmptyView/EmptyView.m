@@ -85,7 +85,7 @@
 - (UILabel *)emptyTipLabel {
     if (!_emptyTipLabel) {
         _emptyTipLabel = [[UILabel alloc] init];
-        _emptyTipLabel.font = [UIFont systemFontOfSize:14];
+        _emptyTipLabel.font = kFontRegular(14);
         _emptyTipLabel.textColor = [UIColor jk_colorWithHexString:@"#333333"];
         _emptyTipLabel.textAlignment = NSTextAlignmentCenter;
         _emptyTipLabel.numberOfLines = 0;
