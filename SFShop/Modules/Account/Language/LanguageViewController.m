@@ -79,21 +79,21 @@
             make.size.mas_equalTo(CGSizeMake(30, 30));
             make.right.mas_equalTo(self.view.mas_right).offset(-10);
         }];
-        [self.chineseBtn setTitleColor:RGBColorFrom16(0x1296db) forState:0];
+        [self.chineseBtn setTitleColor:RGBColorFrom16(0x1890ff) forState:0];
     } else if ([language isEqualToString:kLanguageEnglish]) {
         [self.checkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.englishBtn.mas_top);
             make.size.mas_equalTo(CGSizeMake(30, 30));
             make.right.mas_equalTo(self.view.mas_right).offset(-10);
         }];
-        [self.englishBtn setTitleColor:RGBColorFrom16(0x1296db) forState:0];
+        [self.englishBtn setTitleColor:RGBColorFrom16(0x1890ff) forState:0];
     } else if ([language isEqualToString:kLanguageHindi]) {
         [self.checkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.hindiBtn.mas_top);
             make.size.mas_equalTo(CGSizeMake(30, 30));
             make.right.mas_equalTo(self.view.mas_right).offset(-10);
         }];
-        [self.hindiBtn setTitleColor:RGBColorFrom16(0x1296db) forState:0];
+        [self.hindiBtn setTitleColor:RGBColorFrom16(0x1890ff) forState:0];
     } else {
         [self.checkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.chineseBtn.mas_top);

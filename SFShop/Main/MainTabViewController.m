@@ -55,6 +55,7 @@
     [self.tabBar setTranslucent:NO];
     self.tabBar.tintColor = RGBColorFrom16(0xFF1659);
     [self setViewControllers:@[homeNav,categoryNav,communityNav,CartNav,accountNav]];
+    [[UINavigationBar appearance]setTintColor:[UIColor blackColor]];
 }
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {

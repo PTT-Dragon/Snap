@@ -146,9 +146,12 @@
 //  "BIND_MOBILE" = "Link no. telephone";
   "EXCHANGE" = "Penukaran";
 //  "DELIVERY" = "Pengiriman";
-//  "DELETE_ADDRESS_TXT" = "Hapus alamat ";
+  "DELETE_ADDRESS_TXT" = "Apakah Anda yakin ingin menghapus alamat ini?";
+"ADDRESS_ADD_SUCCESS" = "Sukses menambahkan alamat.";
+"MODIFY_ADD_SUCCESS" = "Pengubahan alamat berhasil.";
   "ADD_ADDRESS" = "TAMBAH ALAMAT";
 "Delete" = "Hapus";
+"DELETE" = "HAPUS";
 //  "MY_ADDRESS" = "Alamat Saya";
 "REQUIREDTIP" = "Silahkan masukkan";
   "INCORRECT_NAME" = "Nama penerima 4-40 huruf";
@@ -656,6 +659,7 @@
 "THIS_EMAIL_ADDRESS" = "Alamat email ini";
 "THIS_PHONE_NUMBER" = "Nomor Handphone ini";
 "CANCEL" = "BATALKAN";
+"CANCAL" = "BATAL";
 "LANGUGE" = "Bahasa";
 "Go_Shopping" = "LANJUT BELANJA";
 "PAYNOW" = "BAYAR SEKARANG";

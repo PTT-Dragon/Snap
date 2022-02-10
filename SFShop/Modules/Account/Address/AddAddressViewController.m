@@ -236,7 +236,7 @@ static BOOL changePhone = NO;
     [params setValue:_emailField.text forKey:@"email"];
     MPWeakSelf(self)
     [SFNetworkManager post:[SFNet.address setAddressModifyOfdeliveryAddressId:_model.deliveryAddressId] parameters:params success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"MODIFY_ADD_SUCCESS")];
         [weakself.delegate addNewAddressSuccess];
         [weakself.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {

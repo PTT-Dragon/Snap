@@ -13,6 +13,7 @@
 #import "AddressTitleCell.h"
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import "PublicAlertView.h"
 
 @interface AddressViewController ()<UITableViewDelegate,UITableViewDataSource,AddAddressViewControllerDelegate,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -168,7 +169,14 @@
     //删除
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
-        [self deleteCellWithRow:indexPath.row];
+        if (self.dataSource.count == 1) {
+            PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"DELETE_ADDRESS_TXT") btnTitle:kLocalizedString(@"DELETE") block:^{
+                [self deleteCellWithRow:indexPath.row];
+            } btn2Title:kLocalizedString(@"CANCAL") block2:^{
+                
+            }];
+            [self.view addSubview:alert];
+        }
     }];
     deleteRowAction.backgroundColor = [UIColor redColor];
     
@@ -212,6 +220,7 @@
         [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself showEmptyView];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)setDefaultWithRow:(NSInteger)row
@@ -222,10 +231,10 @@
     [params setValue:@"Y" forKey:@"isDefault"];
     MPWeakSelf(self)
     [SFNetworkManager post:[SFNet.address setAddressModifyOfdeliveryAddressId:model.deliveryAddressId] parameters:params success:^(id  _Nullable response) {
-//        [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"MODIFY_ADD_SUCCESS")];
         [weakself.tableView.mj_header beginRefreshing];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 
@@ -238,6 +247,7 @@
 }
 - (void)addNewAddressSuccess
 {
+    [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADDRESS_ADD_SUCCESS")];
     [self.tableView.mj_header beginRefreshing];
 }
 
