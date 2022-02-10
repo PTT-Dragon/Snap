@@ -308,7 +308,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"";
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         _titleLabel.numberOfLines = 2;
@@ -321,7 +321,7 @@
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.text = @"";
         _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _priceLabel.font = [UIFont systemFontOfSize:12];
+        _priceLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightHeavy];
         _priceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _priceLabel;
@@ -332,7 +332,7 @@
         _discountLabel = [[UILabel alloc] init];
         _discountLabel.text = @"";
         _discountLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
-        _discountLabel.font = [UIFont systemFontOfSize:8];
+        _discountLabel.font = [UIFont systemFontOfSize:9 weight:UIFontWeightHeavy];;
         _discountLabel.textAlignment = NSTextAlignmentCenter;
         _discountLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
     }
