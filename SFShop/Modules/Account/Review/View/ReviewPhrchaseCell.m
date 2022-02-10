@@ -49,10 +49,14 @@
     self.leftMargin2.constant = 0;
     self.lineView.hidden = YES;
     _reviewModel = reviewModel;
-    _timeLabel.text = [NSString stringWithFormat:@"Additional Reviews %@ days after purchase",reviewModel.reviewTime];
+    
+    NSString *reviewTime = [NSString stringWithFormat:@"%.0f",fabs([reviewModel.reviewTime doubleValue])];
+    
+    _timeLabel.text = [NSString stringWithFormat:@"%@ %@ %@",kLocalizedString(@"ADDITIONAL_DAY"),reviewTime,kLocalizedString(@"days after purchase")];
     _contentLabel.text = reviewModel.reviewComments;
     [self.head sd_setImageWithURL:[NSURL URLWithString:@""]];
     [_collectionView reloadData];
+
 }
 
 #pragma mark - UICollectionViewDelegate

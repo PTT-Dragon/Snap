@@ -79,44 +79,75 @@
         
     }];
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     EvaluatesModel *evaModel = self.model.evaluates.firstObject;
-    if (evaModel.reply) {
-        return 1+evaModel.review.contents.count+1;
+    if (section == 0) {
+        return 1;
+    }else if (section == 1) {
+        return evaModel.review.contents.count;
+    }else {
+        if (evaModel.reply) {
+            return 1;
+        }
     }
-    return 1+evaModel.review.contents.count;
+    return 0;
+//    EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+//    if (evaModel.reply) {
+//        return 1+evaModel.review.contents.count+1;
+//    }
+//    return 1+evaModel.review.contents.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         ReviewDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewDetailInfoCell"];
         cell.model = self.model;
         return cell;
-    }
-    EvaluatesModel *evaModel = self.model.evaluates.firstObject;
-    ReviewPhrchaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewPhrchaseCell"];
-    if (evaModel.reply) {
-        cell.model = evaModel.reply;
+    }else if (indexPath.section == 1) {
+        EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+        ReviewPhrchaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewPhrchaseCell"];
+        cell.reviewModel = evaModel.review;
+        return cell;
     }else {
-        if (evaModel.review) {
-            cell.reviewModel = evaModel.review;
-        }else {
-            cell.model = nil;
-        }
+        EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+        ReviewPhrchaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewPhrchaseCell"];
+        cell.model = evaModel.reply;
+        return cell;;
     }
-    return cell;
+//    EvaluatesModel *evaModel = self.model.evaluates.firstObject;
+//    ReviewPhrchaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReviewPhrchaseCell"];
+//    if (evaModel.reply) {
+//        cell.model = evaModel.reply;
+//    }else {
+//        if (evaModel.review) {
+//            cell.reviewModel = evaModel.review;
+//        }else {
+//            cell.model = nil;
+//        }
+//    }
+//    return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EvaluatesModel *evaModel = self.model.evaluates.firstObject;
     CGFloat itemHei = (MainScreen_width-32-30)/4;
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
+        CGFloat contentHeight = [NSString jk_heightTextContent:evaModel.evaluationComments withSizeFont:14 withMaxSize:CGSizeMake(App_Frame_Width-32, CGFLOAT_MAX)] + (evaModel.evaluationComments.length == 0 ? 0:12);
         CGFloat hei = ceil(evaModel.contents.count/4.0)*(itemHei + 10);
-        return hei+224;
-    }
-    CGFloat hei2 = ceil(evaModel.review.contents.count/4.0)*(itemHei + 10);
-    return hei2+78;
+        return contentHeight+hei+199;
+    }else if (indexPath.section == 1) {
+        CGFloat hei2 = ceil(evaModel.review.contents.count/4.0)*(itemHei + 10);
+        return hei2+78;
+    }else {
+        CGFloat hei2 = ceil(evaModel.review.contents.count/4.0)*(itemHei + 10);
+        return hei2+78;
+    }    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
