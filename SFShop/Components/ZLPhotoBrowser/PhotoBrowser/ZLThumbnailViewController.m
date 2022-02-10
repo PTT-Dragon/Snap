@@ -377,21 +377,21 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     
     if (configuration.allowEditImage || configuration.allowEditVideo) {
         self.btnEdit = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnEdit.titleLabel.font = [UIFont systemFontOfSize:15];
+        self.btnEdit.titleLabel.font = kFontRegular(15);
         [self.btnEdit setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserEditText) forState:UIControlStateNormal];
         [self.btnEdit addTarget:self action:@selector(btnEdit_Click:) forControlEvents:UIControlEventTouchUpInside];
         [self.bottomView addSubview:self.btnEdit];
     }
     
     self.btnPreView = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnPreView.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.btnPreView.titleLabel.font = kFontRegular(15);
     [self.btnPreView setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserPreviewText) forState:UIControlStateNormal];
     [self.btnPreView addTarget:self action:@selector(btnPreview_Click:) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView addSubview:self.btnPreView];
     
     if (configuration.allowSelectOriginal) {
         self.btnOriginalPhoto = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnOriginalPhoto.titleLabel.font = [UIFont systemFontOfSize:15];
+        self.btnOriginalPhoto.titleLabel.font = kFontRegular(15);
         [self.btnOriginalPhoto setImage:GetImageWithName(@"zl_btn_original_circle") forState:UIControlStateNormal];
         [self.btnOriginalPhoto setImage:GetImageWithName(@"zl_btn_original_selected") forState:UIControlStateSelected];
         [self.btnOriginalPhoto setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserOriginalText) forState:UIControlStateNormal];
@@ -399,13 +399,13 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         [self.bottomView addSubview:self.btnOriginalPhoto];
         
         self.labPhotosBytes = [[UILabel alloc] init];
-        self.labPhotosBytes.font = [UIFont systemFontOfSize:15];
+        self.labPhotosBytes.font = kFontRegular(15);
         self.labPhotosBytes.textColor = configuration.bottomBtnsNormalTitleColor;
         [self.bottomView addSubview:self.labPhotosBytes];
     }
     
     self.btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnDone.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.btnDone.titleLabel.font = kFontRegular(15);
     [self.btnDone setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserDoneText) forState:UIControlStateNormal];
     self.btnDone.layer.masksToBounds = YES;
     self.btnDone.layer.cornerRadius = 3.0f;
@@ -425,7 +425,7 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     CGFloat width = GetMatchValue(GetLocalLanguageTextValue(ZLPhotoBrowserCancelText), 16, YES, 44);
     btn.frame = CGRectMake(0, 0, width, 44);
-    btn.titleLabel.font = [UIFont systemFontOfSize:16];
+    btn.titleLabel.font = kFontRegular(16);
     [btn setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserCancelText) forState:UIControlStateNormal];
     [btn setTitleColor:configuration.navTitleColor forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(navRightBtn_Click) forControlEvents:UIControlEventTouchUpInside];

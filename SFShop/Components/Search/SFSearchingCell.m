@@ -48,7 +48,7 @@
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:16];
+        _titleLabel.font = kFontRegular(16);
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
     }

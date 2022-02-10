@@ -41,9 +41,9 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     self.lineView.hidden = !selected;
     if (selected) {
-        self.titlelabel.font = BOLDSYSTEMFONT(12);
+        self.titlelabel.font = kFontBlod(12);
     }else {
-        self.titlelabel.font = [UIFont systemFontOfSize:12];
+        self.titlelabel.font = kFontRegular(12);
     }
     self.contentView.backgroundColor = selected?[UIColor jk_colorWithHexString:@"#FFFFFF"]:[UIColor jk_colorWithHexString:@"#F4F4F4"];
 }
@@ -67,7 +67,7 @@
     if (_titlelabel == nil) {
         _titlelabel = [[UILabel alloc] init];
         _titlelabel.textAlignment = NSTextAlignmentLeft;
-        _titlelabel.font = [UIFont systemFontOfSize:12];
+        _titlelabel.font = kFontRegular(12);
         _titlelabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _titlelabel.numberOfLines = 0;
     }

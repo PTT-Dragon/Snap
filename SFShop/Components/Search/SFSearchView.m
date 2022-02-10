@@ -79,7 +79,7 @@
     CGFloat width = 0;
     SFSearchModel *model = self.dataArray[indexPath.section][indexPath.row];
     if (!model.width) {
-        width = [model.name calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(200, 32)] + 12 * 2;
+        width = [model.name calWidth:kFontRegular(14) lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(200, 32)] + 12 * 2;
     }
     return CGSizeMake(width , 32);
 }

@@ -110,7 +110,7 @@
     if (_popularityBtn == nil) {
         _popularityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _popularityBtn.tag = CategoryRankTypePopularity + 100;
-        _popularityBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _popularityBtn.titleLabel.font = kFontRegular(14);
         [_popularityBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
         [_popularityBtn setTitle:@"Popularity" forState:UIControlStateNormal];
         [_popularityBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];
@@ -125,7 +125,7 @@
     if (_salesBtn == nil) {
         _salesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _salesBtn.tag = CategoryRankTypeSales + 100;
-        _salesBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _salesBtn.titleLabel.font = kFontRegular(14);
         [_salesBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
         [_salesBtn setTitle:@"Sales" forState:UIControlStateNormal];
         [_salesBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];
@@ -140,7 +140,7 @@
     if (_priceBtn == nil) {
         _priceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _priceBtn.tag = CategoryRankTypePriceAscending + 100;
-        _priceBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _priceBtn.titleLabel.font = kFontRegular(14);
         [_priceBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
         [_priceBtn setTitle:@"Price" forState:UIControlStateNormal];
         [_priceBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];

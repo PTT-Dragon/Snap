@@ -233,7 +233,7 @@
     [_navView addSubview:_btnBack];
     
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.font = [UIFont systemFontOfSize:18];
+    _titleLabel.font = kFontRegular(18);
     _titleLabel.textColor = configuration.navTitleColor;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld", _currentPage, self.models.count];
@@ -256,7 +256,7 @@
     // 图片选择index角标
     _indexLabel = [[UILabel alloc] init];
     _indexLabel.backgroundColor = configuration.indexLabelBgColor;
-    _indexLabel.font = [UIFont systemFontOfSize:14];
+    _indexLabel.font = kFontRegular(14);
     _indexLabel.textColor = [UIColor whiteColor];
     _indexLabel.textAlignment = NSTextAlignmentCenter;
     _indexLabel.layer.cornerRadius = 25.0 / 2;
@@ -300,7 +300,7 @@
     if (configuration.allowSelectOriginal) {
         _btnOriginalPhoto = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btnOriginalPhoto setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserOriginalText) forState:UIControlStateNormal];
-        _btnOriginalPhoto.titleLabel.font = [UIFont systemFontOfSize:15];
+        _btnOriginalPhoto.titleLabel.font = kFontRegular(15);
         [_btnOriginalPhoto setTitleColor:configuration.bottomBtnsNormalTitleColor forState: UIControlStateNormal];
         UIImage *normalImg = GetImageWithName(@"zl_btn_original_circle");
         UIImage *selImg = GetImageWithName(@"zl_btn_original_selected");
@@ -313,7 +313,7 @@
         [_bottomView addSubview:_btnOriginalPhoto];
         
         self.labPhotosBytes = [[UILabel alloc] init];
-        self.labPhotosBytes.font = [UIFont systemFontOfSize:15];
+        self.labPhotosBytes.font = kFontRegular(15);
         self.labPhotosBytes.textColor = configuration.bottomBtnsNormalTitleColor;
         [_bottomView addSubview:self.labPhotosBytes];
     }
@@ -321,7 +321,7 @@
     //编辑
     _btnEdit = [UIButton buttonWithType:UIButtonTypeCustom];
     [_btnEdit setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserEditText) forState:UIControlStateNormal];
-    _btnEdit.titleLabel.font = [UIFont systemFontOfSize:15];
+    _btnEdit.titleLabel.font = kFontRegular(15);
     [_btnEdit setTitleColor:configuration.bottomBtnsNormalTitleColor forState:UIControlStateNormal];
     _btnEdit.frame = CGRectMake(kViewWidth/2-30, 7, 60, 30);
     [_btnEdit addTarget:self action:@selector(btnEdit_Click:) forControlEvents:UIControlEventTouchUpInside];
@@ -329,7 +329,7 @@
     
     _btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
     [_btnDone setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserDoneText) forState:UIControlStateNormal];
-    _btnDone.titleLabel.font = [UIFont systemFontOfSize:15];
+    _btnDone.titleLabel.font = kFontRegular(15);
     _btnDone.layer.masksToBounds = YES;
     _btnDone.layer.cornerRadius = 3.0f;
     [_btnDone setTitleColor:configuration.bottomBtnsNormalTitleColor forState:UIControlStateNormal];

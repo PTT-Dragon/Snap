@@ -78,7 +78,7 @@
 - (UILabel *)emptyTipLabel {
     if (!_emptyTipLabel) {
         _emptyTipLabel = [[UILabel alloc] init];
-        _emptyTipLabel.font = [UIFont systemFontOfSize:14];
+        _emptyTipLabel.font = kFontRegular(14);
         _emptyTipLabel.textColor = UIColor.blackColor;
         _emptyTipLabel.textAlignment = NSTextAlignmentCenter;
         _emptyTipLabel.numberOfLines = 0;
@@ -89,7 +89,7 @@
 - (UILabel *)sectionTitleLabel {
     if (!_sectionTitleLabel) {
         _sectionTitleLabel = [[UILabel alloc] init];
-        _sectionTitleLabel.font = [UIFont systemFontOfSize:14];
+        _sectionTitleLabel.font = kFontRegular(14);
         _sectionTitleLabel.textColor = UIColor.blackColor;
         _sectionTitleLabel.textAlignment = NSTextAlignmentLeft;
         _sectionTitleLabel.hidden = YES;

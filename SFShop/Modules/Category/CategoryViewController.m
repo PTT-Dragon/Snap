@@ -302,7 +302,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = UIColor.blackColor;
-        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.font =kFontBlod(16);
         _titleLabel.text = kLocalizedString(@"DIRECT_FUNCTION");
         _titleLabel.hidden = YES;
     }

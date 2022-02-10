@@ -190,7 +190,7 @@ static const NSTimeInterval kSpringAnimationDuration = 0.5;
     } else {
         _pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.type == 4 ? MainScreen_height - 64:20, self.view.bounds.size.width, 44)];
         _pageLabel.textColor = self.type == 4 ? [UIColor whiteColor]: PublicBlackColor;
-        _pageLabel.font = [UIFont systemFontOfSize:16];
+        _pageLabel.font = kFontRegular(16);
         _pageLabel.textAlignment = NSTextAlignmentCenter;
         [self configPageLabelWithPage:_currentPage];
         [self.bgView addSubview:_pageLabel];

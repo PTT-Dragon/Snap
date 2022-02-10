@@ -53,7 +53,7 @@
     
     UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 0, 150, 44)];
     title.text = kLocalizedString(@"Recommendations");
-    title.font = [UIFont boldSystemFontOfSize:17];
+    title.font = kFontBlod(17);
     title.textColor = [UIColor blackColor];
     [self addSubview: title];
     self.titleLab = title;
@@ -84,7 +84,7 @@
 //        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProductionRecommendHeader" forIndexPath:indexPath];
 //        UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 5, 150, 30)];
 //        title.text = kLocalizedString(@"Recommendations");
-//        title.font = [UIFont boldSystemFontOfSize:17];
+//        title.font = kFontBlod(17);
 //        title.textColor = [UIColor blackColor];
 //        [view addSubview: title];
 //        return view;

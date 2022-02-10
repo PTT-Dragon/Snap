@@ -263,7 +263,7 @@
     if (_textField == nil) {
         _textField = [[CustomTextField alloc] init];
         _textField.delegate = self;
-        _textField.font = [UIFont systemFontOfSize:16];
+        _textField.font = kFontRegular(16);
         _textField.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _textField.textAlignment = NSTextAlignmentLeft;
         _textField.borderStyle = UITextBorderStyleLine;

@@ -159,7 +159,7 @@
         _noteLabel = [[UILabel alloc] init];
         _noteLabel.text = kLocalizedString(@"Notes");
         _noteLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _noteLabel.font = [UIFont systemFontOfSize:14];
+        _noteLabel.font = kFontRegular(14);
         _noteLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _noteLabel;
@@ -170,7 +170,7 @@
         _couponLabel = [[UILabel alloc] init];
         _couponLabel.text = kLocalizedString(@"Voucher");
         _couponLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _couponLabel.font = [UIFont systemFontOfSize:14];
+        _couponLabel.font = kFontRegular(14);
         _couponLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _couponLabel;
@@ -181,7 +181,7 @@
         _couponPriceLabel = [[UILabel alloc] init];
         _couponPriceLabel.text = @"";
         _couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _couponPriceLabel.font = [UIFont systemFontOfSize:14];
+        _couponPriceLabel.font = kFontRegular(14);
         _couponPriceLabel.textAlignment = NSTextAlignmentRight;
     }
     return _couponPriceLabel;
@@ -202,7 +202,7 @@
         _promoLabel = [[UILabel alloc] init];
         _promoLabel.text = kLocalizedString(@"Store_promo");
         _promoLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _promoLabel.font = [UIFont systemFontOfSize:14];
+        _promoLabel.font = kFontRegular(14);
         _promoLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _promoLabel;
@@ -213,7 +213,7 @@
         _promoPriceLabel = [[UILabel alloc] init];
         _promoPriceLabel.text = @"";
         _promoPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _promoPriceLabel.font = [UIFont boldSystemFontOfSize:14];
+        _promoPriceLabel.font =kFontBlod(16);
         _promoPriceLabel.textAlignment = NSTextAlignmentRight;
     }
     return _promoPriceLabel;
@@ -224,7 +224,7 @@
         _totalLabel = [[UILabel alloc] init];
         _totalLabel.text = kLocalizedString(@"Total");
         _totalLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _totalLabel.font = [UIFont systemFontOfSize:14];
+        _totalLabel.font = kFontRegular(14);
         _totalLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _totalLabel;
@@ -235,7 +235,7 @@
         _totalPriceLabel = [[UILabel alloc] init];
         _totalPriceLabel.text = @"";
         _totalPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _totalPriceLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightHeavy];;
+        _totalPriceLabel.font = kFontBlod(14);
         _totalPriceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _totalPriceLabel;
@@ -245,7 +245,7 @@
     if (_noteTF == nil) {
         _noteTF = [[CustomTextField alloc] init];
         _noteTF.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _noteTF.font = [UIFont systemFontOfSize:12];
+        _noteTF.font = kFontRegular(12);
         _noteTF.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
         _noteTF.delegate = self;
         _noteTF.placeholder = kLocalizedString(@"INPUT_MESSAGE");

@@ -107,7 +107,7 @@
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor: [UIColor jk_colorWithHexString: @"#7B7B7B"] forState:UIControlStateNormal];
         [menuItem setTitleColor: [UIColor blackColor] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:14.f];
+        menuItem.titleLabel.font = kFontBlod(14);
     }
     [menuItem setSelected: (itemIndex == self.currentMenuIndex)];
     return menuItem;
@@ -211,7 +211,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = UIColor.blackColor;
-        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.font =kFontBlod(16);
         _titleLabel.text = kLocalizedString(@"DIRECT_FUNCTION");
         _titleLabel.hidden = YES;
     }

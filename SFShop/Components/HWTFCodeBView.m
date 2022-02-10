@@ -67,7 +67,7 @@
         UILabel *label = [UILabel new];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor blackColor];
-        label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:18];
+        label.font = kFontRegular(18);
         label.backgroundColor = [UIColor whiteColor];
         label.clipsToBounds = YES;
         label.layer.borderColor = RGBColorFrom16(0xc8c8c8).CGColor;

@@ -196,7 +196,7 @@
     _indexLab = [[UILabel alloc]init];
     _indexLab.textColor = [UIColor whiteColor];
     _indexLab.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3];
-    _indexLab.font = [UIFont systemFontOfSize:11];
+    _indexLab.font = kFontRegular(11);
     _indexLab.textAlignment = 1;
     _indexLab.layer.cornerRadius = 24/2;
     _indexLab.layer.masksToBounds = YES;
@@ -208,7 +208,7 @@
     [_videoBtn setTitle:@"视频" forState:UIControlStateNormal];
     [_videoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [_videoBtn setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.16]];
-    _videoBtn.titleLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightMedium];
+    _videoBtn.titleLabel.font = kFontRegular(12);
     [_videoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _videoBtn.layer.cornerRadius = 28/2;
     _videoBtn.layer.masksToBounds = YES;
@@ -220,7 +220,7 @@
     [_imgBtn setTitle:@"图片" forState:UIControlStateNormal];
     [_imgBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_imgBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    _imgBtn.titleLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightMedium];
+    _imgBtn.titleLabel.font = kFontRegular(12);
     _imgBtn.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.5];
     _imgBtn.layer.cornerRadius = 28/2;
     _imgBtn.layer.masksToBounds = YES;

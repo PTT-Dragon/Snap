@@ -115,7 +115,7 @@
 }
 
 + (CGFloat)jk_heightTextContent:(NSString *)textContent withSizeFont:(CGFloat)textfont withMaxSize:(CGSize)maxSize {
-    UIFont *font = [UIFont systemFontOfSize:textfont];
+    UIFont *font = kFontRegular(textfont);
     NSDictionary *attrs = @{NSFontAttributeName:font};
     return [textContent boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading |NSLineBreakByCharWrapping attributes:attrs context:nil].size.height;
 }

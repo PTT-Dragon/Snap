@@ -135,7 +135,7 @@
         label.text = kLocalizedString(@"DELIVERY_MEHOD");
         label.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         label.textAlignment = NSTextAlignmentLeft;
-        label.font = [UIFont boldSystemFontOfSize:18];
+        label.font = kFontBlod(18);
         [_titleView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(15);

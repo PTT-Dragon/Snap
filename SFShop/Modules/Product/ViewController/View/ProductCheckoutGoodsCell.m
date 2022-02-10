@@ -117,7 +117,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"";
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleLabel.font = kFontRegular(14);
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         _titleLabel.numberOfLines = 2;
@@ -130,7 +130,7 @@
         _typeLabel = [[UILabel alloc] init];
         _typeLabel.text = @"";
         _typeLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
-        _typeLabel.font = [UIFont systemFontOfSize:10];
+        _typeLabel.font = kFontRegular(10);
         _typeLabel.textAlignment = NSTextAlignmentCenter;
         _typeLabel.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
         _typeLabel.layer.borderWidth = 1;
@@ -143,7 +143,7 @@
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.text = @"";
         _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _priceLabel.font = [UIFont systemFontOfSize:12];
+        _priceLabel.font = kFontRegular(12);
         _priceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _priceLabel;
@@ -154,7 +154,7 @@
         _numLabel = [[UILabel alloc] init];
         _numLabel.text = @"";
         _numLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _numLabel.font = [UIFont systemFontOfSize:12];
+        _numLabel.font = kFontRegular(12);
         _numLabel.textAlignment = NSTextAlignmentRight;
     }
     return _numLabel;

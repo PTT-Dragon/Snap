@@ -46,7 +46,7 @@ static UILabel *toastView = nil;
             toastView = [[UILabel alloc] init];
             toastView.backgroundColor = [UIColor darkGrayColor];
             toastView.textColor = [UIColor whiteColor];
-            toastView.font = [UIFont systemFontOfSize:17];
+            toastView.font = kFontRegular(17);
             toastView.layer.masksToBounds = YES;
             toastView.layer.cornerRadius = 3.0f;
             toastView.textAlignment = NSTextAlignmentCenter;
@@ -94,7 +94,7 @@ static UILabel *toastView = nil;
     
     CGSize resultSize;
     //返回计算出的size
-    resultSize = [text boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:font]} context:nil].size;
+    resultSize = [text boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: kFontRegular(font)} context:nil].size;
     
     if (isHeightFixed) {
         return resultSize.width;

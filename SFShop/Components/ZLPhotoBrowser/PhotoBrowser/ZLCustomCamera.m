@@ -184,7 +184,7 @@
     self.clipsToBounds = NO;
     
     self.tipLabel = [[UILabel alloc] init];
-    self.tipLabel.font = [UIFont systemFontOfSize:14];
+    self.tipLabel.font = kFontRegular(15);
     self.tipLabel.text = GetLocalLanguageTextValue(@"ZLPhotoBrowserCustomCameraTips");
     self.tipLabel.textColor = [UIColor whiteColor];
     self.tipLabel.textAlignment = NSTextAlignmentCenter;

@@ -52,7 +52,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"";
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
-        _titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleLabel.font = kFontRegular(14);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.layer.borderWidth = 1;
         _titleLabel.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;

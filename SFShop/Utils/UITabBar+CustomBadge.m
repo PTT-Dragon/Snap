@@ -74,7 +74,7 @@ static NSString * const kBadgeTop = @"kBadgeTop";
         redDot.backgroundColor = [UIColor redColor];
         redDot.hidden = YES;
         redDot.textAlignment = NSTextAlignmentCenter;
-        redDot.font = [UIFont systemFontOfSize:9];
+        redDot.font = kFontRegular(9);
         redDot.textColor = [UIColor whiteColor];
         [self addSubview:redDot];
         [badgeDotViews addObject:redDot];
@@ -94,7 +94,7 @@ static NSString * const kBadgeTop = @"kBadgeTop";
         redNum.hidden = YES;
 
         redNum.textAlignment = NSTextAlignmentCenter;
-        redNum.font = [UIFont systemFontOfSize:12];
+        redNum.font = kFontRegular(12);
         redNum.textColor = [UIColor whiteColor];
         
         [self addSubview:redNum];
