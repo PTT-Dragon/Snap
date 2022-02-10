@@ -20,7 +20,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guV-2Y-zbm">
                         <rect key="frame" x="144.5" y="82" width="31" height="15"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -30,7 +30,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="BM3-DT-v8P"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="12"/>
                         <state key="normal" title="SHARE BUY"/>
                         <connections>
                             <action selector="shareAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xjs-Hw-Q1J"/>

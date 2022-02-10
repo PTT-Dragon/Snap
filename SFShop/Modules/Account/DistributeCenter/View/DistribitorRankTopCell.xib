@@ -23,7 +23,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="x9i-jN-qb1"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="14"/>
                         <state key="normal" title="Sales Ranking">
                             <color key="titleColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="deviceRGB"/>
                         </state>
@@ -40,7 +40,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="pMG-So-APJ"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="14"/>
                         <state key="normal" title="My Sales Ranking">
                             <color key="titleColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="deviceRGB"/>
                         </state>
@@ -63,7 +63,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="9NX-Np-akg"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
                         <state key="normal" title="View Product List">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                         </state>

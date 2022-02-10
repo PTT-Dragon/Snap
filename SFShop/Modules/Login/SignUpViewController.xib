@@ -32,7 +32,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="gR9-54-LYe"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="16"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="yB2-1W-7yl"/>
@@ -55,7 +55,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="Sol-te-20o"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="16"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="uFg-SH-Ijy"/>
@@ -67,7 +67,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="Me3-QW-I89"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
                     <state key="normal" title="SIGN UP"/>
                     <connections>
                         <action selector="signUpAction:" destination="-1" eventType="touchUpInside" id="zVx-4Q-DPX"/>
@@ -76,20 +76,20 @@
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Phone number/Email  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-I0-i1t">
                     <rect key="frame" x="32" y="102" width="129.5" height="15"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Password  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBr-4t-cJn">
                     <rect key="frame" x="32" y="185" width="68" height="15"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a27-4w-ekI">
                     <rect key="frame" x="147.5" y="529" width="119" height="27"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="12"/>
                     <state key="normal" title="Have account?Login">
                         <color key="titleColor" red="1" green="0.086274509803921567" blue="0.34901960784313724" alpha="1" colorSpace="deviceRGB"/>
                     </state>
@@ -99,13 +99,13 @@
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-50 characters.Must include 3 of the folowing:numbers.uppercase letters.lowercase letters.and special characters." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDk-OG-nhi">
                     <rect key="frame" x="30" y="245" width="354" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please input the correct phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pga-vw-wt3">
                     <rect key="frame" x="30" y="159" width="188.5" height="12"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

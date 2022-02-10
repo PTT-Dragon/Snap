@@ -19,13 +19,13 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeS-lp-lJ4">
                         <rect key="frame" x="16" y="12" width="34" height="16"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqE-gh-IVA">
                         <rect key="frame" x="16" y="36" width="31.5" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="12"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>

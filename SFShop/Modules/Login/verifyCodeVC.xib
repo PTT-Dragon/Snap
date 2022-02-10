@@ -32,7 +32,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIX-q0-mIt">
                     <rect key="frame" x="189" y="160" width="36" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -45,7 +45,7 @@
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resend code in 02:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txv-cq-KqF">
                     <rect key="frame" x="145" y="313" width="124" height="15"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -55,7 +55,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="rQn-l6-6VZ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="15"/>
                     <state key="normal" title="Recend"/>
                     <connections>
                         <action selector="recendAction:" destination="-1" eventType="touchUpInside" id="rAd-al-5Wq"/>
