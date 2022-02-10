@@ -85,6 +85,13 @@
         [self.tableView.mj_header endRefreshing];
         [weakself.dataSource removeAllObjects];
         [weakself.dataSource addObjectsFromArray:[favoriteModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
         [weakself.tableView reloadData];
         [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
