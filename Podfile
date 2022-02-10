@@ -18,5 +18,5 @@ target 'SFShop' do
   pod 'ReactiveObjC'
   pod 'SJVideoPlayer'
   pod 'YYText'
-  pod 'TagListView', '~> 1.0'
+  pod 'TagListView', :path => 'LocalRepos/TagListView'
 end
