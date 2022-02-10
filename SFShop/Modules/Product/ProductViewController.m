@@ -130,16 +130,21 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
-
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 //    [self.navigationController setNavigationBarHidden:NO animated:YES];
     if ([JPVideoPlayerManager sharedManager].videoPlayer.playerStatus==JPVideoPlayerStatusPlaying) {
         [[JPVideoPlayerManager sharedManager] pause];
     }
+    if (self.block) {
+        self.block();
+    }
 }
 
 - (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
+    if (self.block) {
+        self.block();
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 

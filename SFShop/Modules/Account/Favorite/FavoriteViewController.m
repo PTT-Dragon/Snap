@@ -140,6 +140,9 @@
     if (!gridViewController) {
         gridViewController = [[FavoriteChildViewController alloc] init];
     }
+    gridViewController.block = ^{
+        [self loadDatas];
+    };
     gridViewController.type = pageIndex == 1 ? PRICEDOWNTYPE:ALLTYPE;
     return gridViewController;
 }

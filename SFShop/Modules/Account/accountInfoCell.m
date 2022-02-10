@@ -15,6 +15,7 @@
 #import "ZLPhotoBrowser.h"
 #import "PublicWebViewController.h"
 #import "MessageViewController.h"
+#import "changeUserInfoVC.h"
 
 
 @interface accountInfoCell ()
@@ -73,7 +74,7 @@
         self.RecentlyCountLabel.text = @"--";
         self.mobileLabel.text = @"";
     }else{
-        self.nameLabel.userInteractionEnabled = NO;
+        self.nameLabel.userInteractionEnabled = YES;
         self.nameLabel.text = model.userRes.nickName;
         self.nameLabel.font = [UIFont systemFontOfSize:16];
         [self.imgVIew sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userRes.photo)] placeholderImage:[UIImage imageNamed:@"默认头像-黑"]];
@@ -131,12 +132,18 @@
 }
 - (void)nameAction
 {
-    MPWeakSelf(self)
-    LoginViewController *vc = [[LoginViewController alloc] init];
-    vc.didLoginBlock = ^{
-        [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
-        [weakself performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
-    };
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model) {
+        MPWeakSelf(self)
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        vc.didLoginBlock = ^{
+            [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
+            [weakself performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
+        };
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (void)setTabbarSel

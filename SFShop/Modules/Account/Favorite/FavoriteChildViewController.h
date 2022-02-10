@@ -11,9 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
+typedef void(^FavoriteChildViewControllerBlock)(void);
 
 @interface FavoriteChildViewController : UIViewController
+@property (nonatomic,copy) FavoriteChildViewControllerBlock block;
 @property (nonatomic,assign) FavoriteType type;
 @property (nonatomic,strong) CategoryRankModel *rankModel;
 

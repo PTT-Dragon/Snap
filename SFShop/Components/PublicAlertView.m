@@ -142,7 +142,7 @@
         _titleLabel.textColor = RGBColorFrom16(0x000000);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.numberOfLines = 0;
-        _titleLabel.font = CHINESE_SYSTEM(12);
+        _titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
         _titleLabel.text = title;
         [_bgView addSubview:_titleLabel];
         [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
