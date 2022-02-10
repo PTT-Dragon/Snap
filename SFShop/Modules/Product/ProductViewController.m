@@ -1127,10 +1127,6 @@
             return object.productId.integerValue == weakself.selProductModel.productId;
         }];
         [self showAttrsViewWithAttrType: buyType];
-//        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-//            return object.productId.integerValue == weakself.selProductModel.productId;
-//        }];
-//        [self showAttrsViewWithAttrType:isGroupBuy ? groupBuyType: buyType];
     }
 }
 
