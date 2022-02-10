@@ -154,7 +154,7 @@
         [_chineseBtn addTarget:self action:@selector(chineseBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [_chineseBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         [_chineseBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
-        _chineseBtn.titleLabel.font = kFontRegular(16);
+        _chineseBtn.titleLabel.font = kFontLight(16);
     }
     return _chineseBtn;
 }
@@ -165,7 +165,7 @@
         [_englishBtn setTitle:@"English" forState:UIControlStateNormal];
         [_englishBtn addTarget:self action:@selector(englishBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [_englishBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-        _englishBtn.titleLabel.font = kFontRegular(16);
+        _englishBtn.titleLabel.font = kFontLight(16);
         [_englishBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
     }
     return _englishBtn;
@@ -177,7 +177,7 @@
         [_hindiBtn setTitle:@"Indonesian" forState:UIControlStateNormal];
         [_hindiBtn addTarget:self action:@selector(hindiBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [_hindiBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-        _hindiBtn.titleLabel.font = kFontRegular(16);
+        _hindiBtn.titleLabel.font = kFontLight(16);
         [_hindiBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
     }
     return _hindiBtn;
