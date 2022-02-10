@@ -12,16 +12,20 @@
 #import <MJRefresh/MJRefresh.h>
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import "EmptyView.h"
+#import "CustomTextField.h"
 
 
-@interface RefundViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,BaseNavViewDelegate>
+@interface RefundViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate,UITextFieldDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger pageIndex;
 @property (nonatomic,strong) UIView *searchView;
-@property (nonatomic,strong) UISearchBar *searchBar;
+@property (nonatomic,strong) CustomTextField *textField;
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
+@property (nonatomic, strong) UIButton *gotoShopping;
+@property (nonatomic, strong) EmptyView *emptyView;
 
 @end
 
@@ -78,6 +82,29 @@
         [self loadMoreDatas];
     }];
     [self.tableView.mj_header beginRefreshing];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(250);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
+    [self.view addSubview:self.gotoShopping];
+    [self.gotoShopping mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(24);
+        make.right.bottom.mas_offset(-24);
+        make.height.mas_offset(46);
+    }];
+    
+    UIImageView *imgV = [[UIImageView alloc] init];
+    [self.view addSubview:imgV];
+    [imgV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_textField).offset(0);
+        make.right.offset(-30);
+        make.width.height.mas_equalTo(25);
+    }];
+    imgV.image = [UIImage imageNamed:@"ic_nav_search"];
+    UITapGestureRecognizer *searchTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
+    imgV.userInteractionEnabled = YES;
+    [imgV addGestureRecognizer:searchTap];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -114,13 +141,15 @@
 //    [MBProgressHUD showHudMsg:@""];
     _pageIndex = 1;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"q":_searchBar.text,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"q":_textField.text,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         [weakself.tableView.mj_header endRefreshing];
         [weakself.dataSource removeAllObjects];
         [weakself.dataSource addObjectsFromArray:[refundModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
+        [self showEmptyView];
     } failed:^(NSError * _Nonnull error) {
+        [self showEmptyView];
         [MBProgressHUD hideFromKeyWindow];
         [weakself.tableView.mj_header endRefreshing];
     }];
@@ -130,19 +159,41 @@
 //    [MBProgressHUD showHudMsg:@""];
     _pageIndex ++;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"q":_searchBar.text,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.refund.refundList parameters:@{@"q":_textField.text,@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         [weakself.tableView.mj_footer endRefreshing];
         [weakself.dataSource addObjectsFromArray:[refundModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
+        [self showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];
+        [self showEmptyView];
         [weakself.tableView.mj_footer endRefreshing];
     }];
 }
-
-#pragma mark - search.delegate
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+- (void)showEmptyView {
+    if (self.dataSource.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
+    self.gotoShopping.hidden = self.emptyView.hidden;
+}
+#pragma mark - <click event>
+- (void)gotoShoppingEvent{
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:0];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+- (void)textFieldDidChangeValue:(NSNotification *)noti {
+    
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.tableView.mj_header beginRefreshing];
+    return YES;
+}
+- (void)searchAction
 {
     [self.tableView.mj_header beginRefreshing];
 }
@@ -173,17 +224,47 @@
     if (!_searchView) {
         _searchView = [[UIView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, 70)];
         _searchView.backgroundColor = [UIColor whiteColor];
-        [_searchView addSubview:self.searchBar];
+        [_searchView addSubview:self.textField];
+        _textField.frame = CGRectMake(16, 15, MainScreen_width-32, 40);
     }
     return _searchView;
 }
-- (UISearchBar *)searchBar
-{
-    if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(16, 13, MainScreen_width-32, 46)];
-        _searchBar.placeholder = kLocalizedString(@"Search");
-        _searchBar.delegate = self;
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoOrderType];
+        _emptyView.hidden = YES;
     }
-    return _searchBar;
+    return _emptyView;
+}
+
+- (UIButton *)gotoShopping{
+    
+    if (!_gotoShopping) {
+        
+        _gotoShopping = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_gotoShopping setTitle:kLocalizedString(@"Go_Shopping") forState:UIControlStateNormal];
+        [_gotoShopping setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [_gotoShopping setBackgroundColor:[UIColor jk_colorWithHexString:@"FF1659"]];
+        [_gotoShopping addTarget:self action:@selector(gotoShoppingEvent) forControlEvents:UIControlEventTouchUpInside];
+        
+    }return _gotoShopping;
+}
+- (CustomTextField *)textField {
+    if (_textField == nil) {
+        _textField = [[CustomTextField alloc] init];
+        _textField.delegate = self;
+        _textField.font = [UIFont systemFontOfSize:16];
+        _textField.textColor = [UIColor jk_colorWithHexString:@"#000000"];
+        _textField.textAlignment = NSTextAlignmentLeft;
+        _textField.borderStyle = UITextBorderStyleLine;
+        _textField.returnKeyType = UIReturnKeySearch;
+        _textField.placeholder = kLocalizedString(@"Search");
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldDidChangeValue:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:_textField];
+    }
+    return _textField;
 }
 @end

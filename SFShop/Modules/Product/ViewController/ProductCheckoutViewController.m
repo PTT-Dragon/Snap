@@ -320,7 +320,7 @@
             return;
         }
         DeleveryViewController *vc = [[DeleveryViewController alloc] init];
-        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+//        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
         vc.dataArray = logisticsModels;
         vc.selectedDeleveryBlock = ^(OrderLogisticsItem * _Nullable item) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
@@ -330,7 +330,10 @@
                 [MBProgressHUD hideFromKeyWindow];
             }];
         };
-        [self presentViewController:vc animated:YES completion:nil];
+        [self addChildViewController:vc];
+        [self.view addSubview:vc.view];
+        vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+//        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 

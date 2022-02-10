@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLJ-Eo-ae9">
                         <rect key="frame" x="16" y="12" width="343" height="124"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fRP-V8-s11">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fRP-V8-s11">
                                 <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fRP-V8-s11" secondAttribute="height" multiplier="15:15" id="Ubp-9K-tlX"/>
@@ -34,8 +34,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GjG-JN-lhd">
-                                <rect key="frame" x="136" y="48" width="31.5" height="14.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                <rect key="frame" x="136" y="48" width="34" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -56,8 +56,8 @@
                                 <rect key="frame" x="136" y="79.5" width="42" height="14"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcT-yR-8gk">
-                                        <rect key="frame" x="21" y="3" width="20" height="8.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="7"/>
+                                        <rect key="frame" x="21" y="1" width="27.5" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -127,8 +127,9 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="bgView" destination="xLJ-Eo-ae9" id="p7l-9g-5AN"/>
+                <outlet property="btnImgView" destination="oQE-Yf-ggf" id="dM6-Le-nhN"/>
                 <outlet property="groupCountLabel" destination="kcT-yR-8gk" id="k0M-HS-Xf1"/>
-                <outlet property="imgView" destination="fRP-V8-s11" id="a71-4X-FgB"/>
+                <outlet property="imgView" destination="fRP-V8-s11" id="FP5-Ii-VBA"/>
                 <outlet property="marketPriceLabel" destination="tjt-uF-dRV" id="UXV-Cs-SoO"/>
                 <outlet property="nameLabel" destination="8jK-v5-4iR" id="Iqk-dP-k39"/>
                 <outlet property="priceLabel" destination="GjG-JN-lhd" id="xoB-6w-N30"/>
@@ -138,7 +139,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="group-1" width="16" height="16"/>
+        <image name="group-1" width="14.5" height="14"/>
         <image name="new-alternative-1" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

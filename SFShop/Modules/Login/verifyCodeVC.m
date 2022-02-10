@@ -67,7 +67,7 @@
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     MPWeakSelf(self)
 //    SysParamsItemModel *model = [SysParamsItemModel sharedSysParamsItemModel];
-    NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
+    NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CODE_TTL.intValue;
     __block NSInteger timeout = precision *60; // 倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);

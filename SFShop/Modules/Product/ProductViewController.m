@@ -1127,7 +1127,11 @@
         camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
             return object.productId.integerValue == weakself.selProductModel.productId;
         }];
-        [self showAttrsViewWithAttrType: buyType];
+        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
+            return object.productId.integerValue == weakself.selProductModel.productId;
+        }].count > 0;
+        [self showAttrsViewWithAttrType: isGroupBuy ? groupBuyType: buyType];
+//        [self showAttrsViewWithAttrType: buyType];
     }
 }
 

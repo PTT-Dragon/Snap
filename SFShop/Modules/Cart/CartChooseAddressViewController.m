@@ -78,6 +78,8 @@
     model.city = cityModel.stdAddr;
     model.district = districtModel.stdAddr;
     model.street = streetModel.stdAddr;
+    model.postCode = streetModel.zipcode;
+    model.contactStdId = streetModel.stdAddrId;
     if (self.selBlock) {
         self.selBlock(model);
         [self closeAction:nil];

@@ -89,14 +89,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self dismissViewControllerAnimated:YES completion:^{
-        OrderLogisticsItem *item = self.dataArray[indexPath.section];
-        for (OrderLogisticsItem *item in self.dataArray) {
-            item.isSelected = NO;
-        }
-        item.isSelected = YES;
-        !self.selectedDeleveryBlock?:self.selectedDeleveryBlock(item.isSelected?item:nil);
-    }];
+//    [self dismissViewControllerAnimated:YES completion:^{
+    OrderLogisticsItem *item = self.dataArray[indexPath.section];
+    for (OrderLogisticsItem *item in self.dataArray) {
+        item.isSelected = NO;
+    }
+    item.isSelected = YES;
+    !self.selectedDeleveryBlock?:self.selectedDeleveryBlock(item.isSelected?item:nil);
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+//    }];
 }
 
 #pragma mark - Get and Set
@@ -105,7 +107,9 @@
         _maskView = [[UIView alloc] init];
         _maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
         [_maskView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-            [self dismissViewControllerAnimated:YES completion:nil];
+//            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
         }];
     }
     return _maskView;

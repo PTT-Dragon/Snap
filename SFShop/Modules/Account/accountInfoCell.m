@@ -99,6 +99,17 @@
 }
 - (void)userInfoAction
 {
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model) {
+        MPWeakSelf(self)
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        vc.didLoginBlock = ^{
+            [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
+            [weakself performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
+        };
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        return;
+    }
     [self uploadAvatar];
 //    changeUserInfoVC *vc = [[changeUserInfoVC alloc] init];
 //    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
