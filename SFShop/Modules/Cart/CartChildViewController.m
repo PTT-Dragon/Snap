@@ -133,7 +133,7 @@
     }else{
         model = listModel.shoppingCarts[indexPath.row-1];
     }
-    return indexPath.row == 0 ? 45: (model.campaigns && model.campaigns.count != 0) ? 137: 117;
+    return indexPath.row == 0 ? 45: (model.campaignGroups && model.campaignGroups.count != 0) ? 157: (model.campaigns && model.campaigns.count != 0) ? 137: 117;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

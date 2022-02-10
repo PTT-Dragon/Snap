@@ -64,6 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) double platformCouponPrice;
 @property (nonatomic,strong) NSArray <ProdSpcAttrsModel> *prodSpcAttrs;
 @property (nonatomic,strong) NSArray <CampaignsModel> *campaigns;
+@property (nonatomic,strong) NSArray  *campaignGroups;
+
 @end
 
 @interface CartCampaignsModel : JSONModel

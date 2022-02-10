@@ -138,6 +138,29 @@
                                     <action selector="campaignsAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LpF-nr-utd"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMv-kL-ggm">
+                                <rect key="frame" x="55" y="10" width="35" height="16"/>
+                                <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svw-a8-d1D">
+                                <rect key="frame" x="95" y="10" width="33" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTq-9b-ZRr">
+                                <rect key="frame" x="290" y="3.5" width="49" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="offAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8dF-YK-cl4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -145,11 +168,15 @@
                             <constraint firstItem="8nW-Ol-sVX" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="21L-7M-pKT"/>
                             <constraint firstItem="Ct6-i0-Q4T" firstAttribute="trailing" secondItem="5Uk-UU-CJV" secondAttribute="trailing" id="2sy-5h-aii"/>
                             <constraint firstItem="MvD-Qt-BbY" firstAttribute="centerY" secondItem="9Dn-fL-1do" secondAttribute="centerY" id="3vK-aM-dln"/>
+                            <constraint firstItem="gTq-9b-ZRr" firstAttribute="centerY" secondItem="Svw-a8-d1D" secondAttribute="centerY" id="4bm-tv-fGa"/>
                             <constraint firstItem="p92-dv-aGh" firstAttribute="top" secondItem="5Uk-UU-CJV" secondAttribute="top" constant="30" id="5Mi-IF-A2i"/>
                             <constraint firstItem="B4C-9y-QlI" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="12" id="Cr5-yA-bCc"/>
                             <constraint firstAttribute="trailing" secondItem="xDM-D5-S5g" secondAttribute="trailing" constant="20" id="K2H-gp-cQz"/>
                             <constraint firstItem="5Uk-UU-CJV" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" constant="46" id="KI0-b6-lFD"/>
+                            <constraint firstItem="Svw-a8-d1D" firstAttribute="leading" secondItem="xMv-kL-ggm" secondAttribute="trailing" constant="5" id="Kjb-dE-dUe"/>
+                            <constraint firstItem="xMv-kL-ggm" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" constant="55" id="MtV-L3-MmS"/>
                             <constraint firstAttribute="trailing" secondItem="2OE-4E-Ucf" secondAttribute="trailing" constant="20" id="Xcd-Oq-hOH"/>
+                            <constraint firstItem="Svw-a8-d1D" firstAttribute="centerY" secondItem="xMv-kL-ggm" secondAttribute="centerY" id="YkM-mb-7aV"/>
                             <constraint firstItem="xDM-D5-S5g" firstAttribute="leading" secondItem="jWp-Ge-qwV" secondAttribute="trailing" id="ZHR-dW-vlB"/>
                             <constraint firstItem="jWp-Ge-qwV" firstAttribute="centerY" secondItem="kJB-Fa-M5g" secondAttribute="centerY" id="a7V-gb-ycf"/>
                             <constraint firstItem="kJB-Fa-M5g" firstAttribute="centerY" secondItem="xDM-D5-S5g" secondAttribute="centerY" id="b9j-8C-Dl9"/>
@@ -157,9 +184,11 @@
                             <constraint firstItem="jWp-Ge-qwV" firstAttribute="leading" secondItem="kJB-Fa-M5g" secondAttribute="trailing" id="eG1-vE-xvB"/>
                             <constraint firstItem="p92-dv-aGh" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="gQd-tV-DXm"/>
                             <constraint firstAttribute="bottom" secondItem="xDM-D5-S5g" secondAttribute="bottom" constant="14" id="kly-px-cjK"/>
+                            <constraint firstItem="xMv-kL-ggm" firstAttribute="top" secondItem="9Dn-fL-1do" secondAttribute="top" constant="10" id="knQ-bb-ej2"/>
                             <constraint firstItem="2OE-4E-Ucf" firstAttribute="top" secondItem="9Dn-fL-1do" secondAttribute="top" constant="14" id="l4A-XI-Fid"/>
                             <constraint firstItem="5Uk-UU-CJV" firstAttribute="top" secondItem="9Dn-fL-1do" secondAttribute="top" constant="20" symbolic="YES" id="nuj-8B-Yjb"/>
                             <constraint firstItem="2OE-4E-Ucf" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="qre-6d-sJR"/>
+                            <constraint firstAttribute="trailing" secondItem="gTq-9b-ZRr" secondAttribute="trailing" constant="4" id="sNW-mV-IaK"/>
                             <constraint firstAttribute="bottom" secondItem="8nW-Ol-sVX" secondAttribute="bottom" constant="20" symbolic="YES" id="saM-cx-H3T"/>
                             <constraint firstItem="B4C-9y-QlI" firstAttribute="bottom" secondItem="5Uk-UU-CJV" secondAttribute="bottom" constant="-15" id="tXg-xI-YFr"/>
                             <constraint firstItem="MvD-Qt-BbY" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" constant="20" id="tXs-SH-8LB"/>
@@ -179,9 +208,13 @@
                 <outlet property="additonBtn" destination="xDM-D5-S5g" id="dnF-2g-GqA"/>
                 <outlet property="campaignsBtn" destination="B4C-9y-QlI" id="f6u-8m-tW3"/>
                 <outlet property="countLabel" destination="jWp-Ge-qwV" id="GLs-vB-4gl"/>
+                <outlet property="imgTop" destination="nuj-8B-Yjb" id="u59-ak-9jA"/>
                 <outlet property="imgView" destination="5Uk-UU-CJV" id="LC3-sa-uCQ"/>
                 <outlet property="leftMargin" destination="EPI-1o-fUc" id="Wcg-sz-Yus"/>
                 <outlet property="nameLabel" destination="2OE-4E-Ucf" id="geg-Hm-xwy"/>
+                <outlet property="offBtn" destination="gTq-9b-ZRr" id="VdO-bC-AlU"/>
+                <outlet property="offLabel" destination="xMv-kL-ggm" id="iGG-vi-wpe"/>
+                <outlet property="offNameLabel" destination="Svw-a8-d1D" id="cmg-j4-Lnq"/>
                 <outlet property="priceDownLabel" destination="LGP-hl-2ya" id="QLT-Ot-jJe"/>
                 <outlet property="priceDownView" destination="Ct6-i0-Q4T" id="JQF-dQ-nLZ"/>
                 <outlet property="priceLabel" destination="8nW-Ol-sVX" id="EDJ-W8-Jlb"/>
@@ -198,7 +231,7 @@
         <image name="block" width="200" height="200"/>
         <image name="new-alternative" width="200" height="200"/>
         <image name="scroll-down-fill" width="32" height="32"/>
-        <image name="subtract" width="200" height="200"/>
+        <image name="subtract" width="7" height="1"/>
         <image name="subtract-2" width="32" height="32"/>
         <image name="swipe-down-red" width="32" height="32"/>
         <image name="已选中" width="52" height="52"/>
