@@ -20,7 +20,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This email address is already registered." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHh-pI-8bX">
                             <rect key="frame" x="53.5" y="40" width="259.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -30,7 +30,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="46" id="rwl-XI-We6"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
                             <state key="normal" title="Login"/>
                             <connections>
                                 <action selector="loginAction:" destination="rHv-R8-m3U" eventType="touchUpInside" id="Mf2-Ro-6oS"/>
@@ -42,7 +42,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="46" id="XzQ-uc-BJI"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
                             <state key="normal" title="CANCEL">
                                 <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                             </state>

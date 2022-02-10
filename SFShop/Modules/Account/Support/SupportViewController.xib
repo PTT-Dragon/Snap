@@ -26,14 +26,14 @@
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for being a valuable customer of Smartfren" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fC3-Fc-5eK">
                     <rect key="frame" x="16" y="63" width="382" height="43"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2It-tq-LjY">
                     <rect key="frame" x="16" y="114" width="382" height="50.5"/>
                     <string key="text">As a form of our commitment to provide thebest service, we provide a 24 hours Hotline Service. Email and Live Chat so you can contact us at any time.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -43,7 +43,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="gna-fG-PUR"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="12"/>
                     <state key="normal" title="            Email">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -57,7 +57,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="HbP-J0-AWi"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="12"/>
                     <state key="normal" title="            Live Chat">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>

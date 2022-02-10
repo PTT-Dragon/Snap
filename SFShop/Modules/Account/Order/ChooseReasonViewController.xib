@@ -41,7 +41,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="qj6-TG-d6Z"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

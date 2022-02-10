@@ -33,7 +33,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="46" id="EIY-tp-o7E"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
                             <state key="normal" title="GO SHOPPING"/>
                             <connections>
                                 <action selector="shoppingAction:" destination="BFd-Wf-o6k" eventType="touchUpInside" id="Nto-ou-8wd"/>
