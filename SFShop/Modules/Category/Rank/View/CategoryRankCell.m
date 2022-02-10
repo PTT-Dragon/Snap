@@ -6,11 +6,13 @@
 //
 
 #import "CategoryRankCell.h"
+@import TagListView;
 
 @interface CategoryRankCell ()
 
 @property (nonatomic, readwrite, strong) UIImageView *iconLabelImageView;//icon 右上角标签
 @property (nonatomic, readwrite, strong) UIImageView *iconImageView;
+@property (nonatomic, readwrite, strong) TagListView *promoTypeView;
 @property (nonatomic, readwrite, strong) UILabel *promoTypeLabel;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
 @property (nonatomic, readwrite, strong) UILabel *priceLabel;
@@ -35,7 +37,7 @@
     self.contentView.layer.borderColor = [UIColor jk_colorWithHexString:@"#CCCCCC"].CGColor;
     [self.contentView addSubview:self.iconImageView];
     [self.iconImageView addSubview:self.iconLabelImageView];
-    [self.contentView addSubview:self.promoTypeLabel];
+    [self.contentView addSubview:self.promoTypeView];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.priceLabel];
     [self.contentView addSubview:self.discountLabel];
@@ -58,27 +60,28 @@
         make.width.mas_equalTo(KScale(50));
     }];
     
-    [self.promoTypeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.promoTypeView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconImageView.mas_right).offset(KScale(16));
+        make.right.mas_equalTo(-KScale(10));
         make.top.mas_equalTo(KScale(13));
         make.height.mas_equalTo(KScale(14));//14,先注释
     }];
     
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.promoTypeLabel);
-        make.top.equalTo(self.promoTypeLabel.mas_bottom).offset(KScale(12));
+        make.left.equalTo(self.promoTypeView);
+        make.top.equalTo(self.promoTypeView.mas_bottom).offset(KScale(12));
         make.right.mas_equalTo(KScale(-12));
     }];
     
     [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.promoTypeLabel);
+        make.left.equalTo(self.promoTypeView);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(KScale(16));
         make.height.mas_equalTo(KScale(14));
         make.right.mas_equalTo(KScale(-12));
     }];
     
     [self.discountLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.promoTypeLabel);
+        make.left.equalTo(self.promoTypeView);
         make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
         make.height.mas_equalTo(KScale(14));
         make.width.mas_equalTo(KScale(30));
@@ -92,7 +95,7 @@
     }];
     
     [self.gradeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.promoTypeLabel);
+        make.left.equalTo(self.promoTypeView);
         make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
         make.width.mas_equalTo(KScale(12));
@@ -123,9 +126,11 @@
         make.width.mas_equalTo(KScale(50));
     }];
     
-    [self.promoTypeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.promoTypeView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
-        if (self.promoTypeLabel.hidden) {
+        make.right.mas_equalTo(-KScale(10));
+        if (self.promoTypeView.hidden) {
             make.top.equalTo(self.iconImageView.mas_bottom).offset(KScale(0));
             make.height.mas_equalTo(KScale(0));//14,先注释
         } else {
@@ -136,7 +141,7 @@
     
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
-        make.top.equalTo(self.promoTypeLabel.mas_bottom).offset(KScale(12));
+        make.top.equalTo(self.promoTypeView.mas_bottom).offset(KScale(12));
         make.right.mas_equalTo(KScale(-12));
     }];
     
@@ -203,17 +208,15 @@
     } else {
         self.iconLabelImageView.hidden = YES;
     }
-    
-    if ([_model.sppType isEqualToString:@"4"]) {
-        self.promoTypeLabel.text = @"GROUP";
-        self.promoTypeLabel.hidden = NO;
-    } else if ([_model.sppType isEqualToString:@"2"]) {
-        self.promoTypeLabel.hidden = NO;
-        self.promoTypeLabel.text = @"FLASH";
+    NSArray *formatterTags = [self fetchTagsWithSppType:_model.sppType promotType:_model.promotType];
+    if (formatterTags.count) {
+        [self.promoTypeView removeAllTags];
+        [self.promoTypeView addTags:formatterTags];
+        self.promoTypeView.hidden = NO;
     } else {
-        self.promoTypeLabel.hidden = YES;
+        self.promoTypeView.hidden = YES;
     }
-    
+
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.productImg.smallImgUrl)]];
     self.titleLabel.text = _model.offerName;
     
@@ -249,15 +252,13 @@
 //    } else {
         self.iconLabelImageView.hidden = YES;
 //    }
-    
-    if ([_similarModel.sppType isEqualToString:@"4"]) {
-        self.promoTypeLabel.text = @"GROUP";
-        self.promoTypeLabel.hidden = NO;
-    } else if ([_model.sppType isEqualToString:@"2"]) {
-        self.promoTypeLabel.hidden = NO;
-        self.promoTypeLabel.text = @"FLASH";
+    NSArray *formatterTags = [self fetchTagsWithSppType:similarModel.sppType promotType:@""];
+    if (formatterTags.count) {
+        [self.promoTypeView removeAllTags];
+        [self.promoTypeView addTags:formatterTags];
+        self.promoTypeView.hidden = NO;
     } else {
-        self.promoTypeLabel.hidden = YES;
+        self.promoTypeView.hidden = YES;
     }
     
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_similarModel.productImg.smallImgUrl)]];
@@ -285,6 +286,35 @@
         self.gradeNumberLabel.hidden = YES;
         self.gradeImageView.hidden = YES;
     }
+}
+
+- (NSArray *)fetchTagsWithSppType:(NSString *)sppType promotType:(NSString *)promotType {
+    NSMutableArray *formatterTags = [NSMutableArray array];
+    NSMutableArray *tags = [NSMutableArray array];
+    if (promotType.length > 2) {
+        promotType = [promotType stringByReplacingOccurrencesOfString:@"[" withString:@""];
+        promotType = [promotType stringByReplacingOccurrencesOfString:@"]" withString:@""];
+        NSArray *promotArr = [promotType componentsSeparatedByString:@","];
+        [tags addObjectsFromArray:promotArr];
+    }
+    
+    if (sppType.length > 0) {
+        [tags addObject:sppType];
+    }
+    for (NSString *tag in tags) {
+        if ([tag containsString:@"2"]) {
+            [formatterTags addObject:@"FLASH"];
+        } else if ([tag containsString:@"4"]) {
+            [formatterTags addObject:@"GROUP"];
+        } else if ([tag containsString:@"C"]) {
+            [formatterTags addObject:@"DISCOUNT"];
+        } else if ([tag containsString:@"D"]) {
+            [formatterTags addObject:@"DISCOUNT"];
+        } else if ([tag containsString:@"G"]) {
+            [formatterTags addObject:@"GIFT"];
+        }
+    }
+    return formatterTags;
 }
 
 
@@ -347,6 +377,19 @@
         _originPriceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _originPriceLabel;
+}
+
+- (TagListView *)promoTypeView {
+    if (_promoTypeView == nil) {
+        _promoTypeView = [[TagListView alloc] init];
+        _promoTypeView.textFont = [UIFont systemFontOfSize:8 weight:UIFontWeightHeavy];
+        _promoTypeView.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
+        _promoTypeView.tagBackgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
+        _promoTypeView.alignment = AlignmentLeft;
+        _promoTypeView.limitRows = 1;
+        _promoTypeView.backgroundColor = [UIColor whiteColor];
+    }
+    return _promoTypeView;
 }
 
 - (UILabel *)promoTypeLabel {

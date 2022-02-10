@@ -251,7 +251,7 @@
                         
         CGFloat imageHeight = KScale(166);
         CGFloat tagHeight = 0;
-        if (cellModel.sppType.length> 0) {
+        if (cellModel.sppType.length> 0 || cellModel.promotType.length > 2) {
             tagHeight = KScale(14) + KScale(16);
         }
         

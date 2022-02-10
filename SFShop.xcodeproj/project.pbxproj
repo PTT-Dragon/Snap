@@ -576,6 +576,7 @@
 		AEA3298F272AF2C700E7827A /* SFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3298E272AF2C700E7827A /* SFSearchModel.m */; };
 		AEB59C32278ECD13004CD19B /* NSString+Fee.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB59C31278ECD13004CD19B /* NSString+Fee.m */; };
 		AEB5AFC3278EEE90004CD19B /* UIViewController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB5AFC2278EEE8F004CD19B /* UIViewController+Top.m */; };
+		AECD632527B4B8E0007A2E62 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD632427B4B8E0007A2E62 /* File.swift */; };
 		AED00BFF27A27D3300DA954B /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = AED00BFE27A27D3300DA954B /* NSObject+Runtime.m */; };
 		AEE3FC922761D8EC00A96E2A /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE3FC912761D8EC00A96E2A /* PDFReader.m */; };
 		AEEA02BB26FD75BD002FE8C8 /* AES128Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEA02BA26FD75BD002FE8C8 /* AES128Util.m */; };
@@ -1597,6 +1598,8 @@
 		AEB59C31278ECD13004CD19B /* NSString+Fee.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Fee.m"; sourceTree = "<group>"; };
 		AEB5AFC1278EEE8F004CD19B /* UIViewController+Top.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Top.h"; sourceTree = "<group>"; };
 		AEB5AFC2278EEE8F004CD19B /* UIViewController+Top.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Top.m"; sourceTree = "<group>"; };
+		AECD632327B4B8DF007A2E62 /* SFShop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SFShop-Bridging-Header.h"; sourceTree = "<group>"; };
+		AECD632427B4B8E0007A2E62 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		AED00BFD27A27D3300DA954B /* NSObject+Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
 		AED00BFE27A27D3300DA954B /* NSObject+Runtime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
 		AEE3FC902761D8EC00A96E2A /* PDFReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFReader.h; sourceTree = "<group>"; };
@@ -3316,9 +3319,11 @@
 				4B9FB9C626FB780700C90790 /* Modules */,
 				AE81BDE226FB6E7300AB4225 /* Assets.xcassets */,
 				1B92D1592733CA9A00E73F98 /* a.m */,
+				AECD632427B4B8E0007A2E62 /* File.swift */,
 				AE81BDE426FB6E7300AB4225 /* LaunchScreen.storyboard */,
 				AE81BDE726FB6E7300AB4225 /* Info.plist */,
 				AE81BDDF26FB6E7000AB4225 /* Main.storyboard */,
+				AECD632327B4B8DF007A2E62 /* SFShop-Bridging-Header.h */,
 			);
 			path = SFShop;
 			sourceTree = "<group>";
@@ -3694,6 +3699,7 @@
 				TargetAttributes = {
 					AE81BDD226FB6E7000AB4225 = {
 						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1300;
 					};
 					AE81BDED26FB6E7300AB4225 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -4175,6 +4181,7 @@
 				AEEB51D4279B38D6001BF789 /* CollectionHeaderEmptyView.m in Sources */,
 				AEEC0BB227883D090071F059 /* DeliveryCell.m in Sources */,
 				1BD8E7B8275F130F00130DCC /* RefundDetailTitleCell.m in Sources */,
+				AECD632527B4B8E0007A2E62 /* File.swift in Sources */,
 				1B05B2A2278DD9A0000F20A9 /* SysParamsModel.m in Sources */,
 				1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */,
 				1B74DB1A2724467100B30ECC /* OrderListItemCell.m in Sources */,
@@ -4537,6 +4544,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8.0;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
@@ -4568,6 +4576,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nuri.shop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SFShop/SFShop-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -4578,6 +4589,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8.0;
@@ -4611,6 +4623,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nuri.shop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SFShop/SFShop-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -4618,6 +4632,7 @@
 		AE81BE0626FB6E7300AB4225 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
@@ -4638,6 +4653,7 @@
 		AE81BE0726FB6E7300AB4225 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
@@ -4658,6 +4674,7 @@
 		AE81BE0926FB6E7300AB4225 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				INFOPLIST_FILE = SFShopUITests/Info.plist;
@@ -4676,6 +4693,7 @@
 		AE81BE0A26FB6E7300AB4225 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				INFOPLIST_FILE = SFShopUITests/Info.plist;
