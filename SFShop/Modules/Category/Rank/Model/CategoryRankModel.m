@@ -157,7 +157,7 @@
     CGFloat imageHeight = KScale(160);
     CGFloat tagHeight = 0;
     if (self.sppType.length> 0 || self.promotType.length > 2) {
-        tagHeight = KScale(14) + KScale(16);
+        tagHeight = KScale(16) + KScale(16);
     }
     
     CGFloat gradeHeight = 0;

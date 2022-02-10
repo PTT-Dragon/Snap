@@ -13,7 +13,6 @@
 @property (nonatomic, readwrite, strong) UIImageView *iconLabelImageView;//icon 右上角标签
 @property (nonatomic, readwrite, strong) UIImageView *iconImageView;
 @property (nonatomic, readwrite, strong) TagListView *promoTypeView;
-@property (nonatomic, readwrite, strong) UILabel *promoTypeLabel;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
 @property (nonatomic, readwrite, strong) UILabel *priceLabel;
 @property (nonatomic, readwrite, strong) UILabel *discountLabel;
@@ -64,7 +63,7 @@
         make.left.equalTo(self.iconImageView.mas_right).offset(KScale(16));
         make.right.mas_equalTo(-KScale(10));
         make.top.mas_equalTo(KScale(13));
-        make.height.mas_equalTo(KScale(14));//14,先注释
+        make.height.mas_equalTo(KScale(16));
     }];
     
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -96,11 +95,10 @@
     [self.originPriceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.discountLabel.mas_right).offset(KScale(8));
         make.right.mas_equalTo(KScale(-12));
+        make.centerY.equalTo(self.discountLabel);
         if (!self.originPriceLabel.hidden) {
-            make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
             make.height.mas_equalTo(KScale(12));
         } else {
-            make.top.equalTo(self.priceLabel.mas_bottom).offset(0);
             make.height.mas_equalTo(0);
         }
     }];
@@ -143,10 +141,10 @@
         make.right.mas_equalTo(-KScale(10));
         if (self.promoTypeView.hidden) {
             make.top.equalTo(self.iconImageView.mas_bottom).offset(KScale(0));
-            make.height.mas_equalTo(KScale(0));//14,先注释
+            make.height.mas_equalTo(KScale(0));
         } else {
             make.top.equalTo(self.iconImageView.mas_bottom).offset(KScale(16));
-            make.height.mas_equalTo(KScale(14));//14,先注释
+            make.height.mas_equalTo(KScale(16));
         }
     }];
     
@@ -180,11 +178,10 @@
     [self.originPriceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.discountLabel.mas_right).offset(KScale(8));
         make.right.mas_equalTo(KScale(-12));
+        make.centerY.equalTo(self.discountLabel);
         if (!self.originPriceLabel.hidden) {
-            make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
             make.height.mas_equalTo(KScale(12));
         } else {
-            make.top.equalTo(self.priceLabel.mas_bottom).offset(0);
             make.height.mas_equalTo(0);
         }
     }];
@@ -416,7 +413,7 @@
 - (TagListView *)promoTypeView {
     if (_promoTypeView == nil) {
         _promoTypeView = [[TagListView alloc] init];
-        _promoTypeView.textFont = [UIFont systemFontOfSize:8 weight:UIFontWeightHeavy];
+        _promoTypeView.textFont = [UIFont systemFontOfSize:10 weight:UIFontWeightHeavy];
         _promoTypeView.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
         _promoTypeView.tagBackgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
         _promoTypeView.alignment = AlignmentLeft;
@@ -424,18 +421,6 @@
         _promoTypeView.backgroundColor = [UIColor whiteColor];
     }
     return _promoTypeView;
-}
-
-- (UILabel *)promoTypeLabel {
-    if (_promoTypeLabel == nil) {
-        _promoTypeLabel = [[UILabel alloc] init];
-        _promoTypeLabel.text = @"";
-        _promoTypeLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
-        _promoTypeLabel.font = [UIFont systemFontOfSize:8];
-        _promoTypeLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _promoTypeLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _promoTypeLabel;
 }
 
 - (UILabel *)gradeLevelLabel {
