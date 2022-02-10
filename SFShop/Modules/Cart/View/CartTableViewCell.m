@@ -14,6 +14,8 @@
 #import "UIButton+EnlargeTouchArea.h"
 
 @interface CartTableViewCell ()
+@property (weak, nonatomic) IBOutlet UILabel *offNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *offLabel;
 @property (weak, nonatomic) IBOutlet UIButton *additonBtn;
 @property (weak, nonatomic) IBOutlet UIButton *subtractBtn;
 @property (weak, nonatomic) IBOutlet UIButton *selBtn;
@@ -25,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIView *priceDownView;
 @property (weak, nonatomic) IBOutlet UIButton *campaignsBtn;
 @property (weak, nonatomic) IBOutlet UILabel *priceDownLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgTop;
+@property (weak, nonatomic) IBOutlet UIButton *offBtn;
 
 @end
 
@@ -84,6 +88,17 @@
     if (model.campaigns && model.campaigns.count != 0) {
         [self.campaignsBtn setTitle:[model.campaigns.firstObject campaignName] forState:0];
         [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:0];
+    }
+    if (model.campaignGroups && model.campaignGroups.count != 0) {
+        self.offBtn.hidden = NO;
+        self.offLabel.hidden = NO;
+        self.offNameLabel.hidden = NO;
+        self.imgTop.constant = 45;
+    }else{
+        self.offBtn.hidden = YES;
+        self.offLabel.hidden = YES;
+        self.offNameLabel.hidden = YES;
+        self.imgTop.constant = 15;
     }
     [self updateBtnState];
 }
@@ -153,6 +168,8 @@
     [self.delegate modifyCartInfoWithDic:dic];
 }
 
+- (IBAction)offAction:(UIButton *)sender {
+}
 
 
 @end

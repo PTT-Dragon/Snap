@@ -202,7 +202,7 @@
 {
     //先上传图片
     [self.imgUrlArr removeAllObjects];
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     dispatch_group_t group = dispatch_group_create();
     MPWeakSelf(self)
     __block NSInteger i = 0;

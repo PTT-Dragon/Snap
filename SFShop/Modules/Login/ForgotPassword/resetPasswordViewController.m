@@ -102,7 +102,7 @@ static BOOL _accountSuccess = NO;
 //    }
 }
 - (IBAction)sendAction:(UIButton *)sender {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.check parameters:@{@"account":_field.text} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
@@ -113,7 +113,7 @@ static BOOL _accountSuccess = NO;
             vc.type = Forget_Code;
             [weakself.navigationController pushViewController:vc animated:YES];
         }else{
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ACCOUNT_DOES_NOT_EXIST")];
+            [MBProgressHUD showTopErrotMessage:kLocalizedString(@"ACCOUNT_DOES_NOT_EXIST")];
         }
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"error"]];

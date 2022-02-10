@@ -410,6 +410,39 @@
             make.height.mas_equalTo(46);
             make.bottom.equalTo(self).offset(-44);
         }];
+    }else if (_attrsType == groupBuyType && !isGroupBuy){
+        _btn2.hidden = NO;
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
+        [_btn2 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
+        _btn1.tag = groupSingleBuyType + 100;
+        _btn2.tag = cartType + 100;
+        [_btn1 setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
+        [_btn2 setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.width.mas_equalTo((MainScreen_width-52)/2);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+        [_btn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.height.mas_equalTo(46);
+            make.width.mas_equalTo((MainScreen_width-52)/2);
+            make.bottom.equalTo(self).offset(-44);
+        }];
+    }else if (_attrsType == groupBuyType && isGroupBuy){
+        _btn2.hidden = YES;
+        [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];
+        [_btn1 jk_setBackgroundColor:RGBColorFrom16(0xed7b9c) forState:UIControlStateDisabled];
+        _btn1.tag = groupBuyType + 100;
+        [_btn1 setTitle:kLocalizedString(@"SHARE_BUY") forState:0];
+        [_btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.right.mas_equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.bottom.equalTo(self).offset(-44);
+        }];
     }
     
     //更新商量购买按钮状态和显示

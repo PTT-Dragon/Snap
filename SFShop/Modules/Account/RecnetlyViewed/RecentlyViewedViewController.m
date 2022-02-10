@@ -139,7 +139,7 @@
     NSDateFormatter* formatter1 = [[NSDateFormatter alloc] init];
     [formatter1 setDateFormat:@"yyyy-MM-dd"];
     NSString *selDay;
-    if ([_calendarManager.dateHelper date:_dateSelected isEqualOrAfter:_monthFirstDay] && [_calendarManager.dateHelper date:_dateSelected isEqualOrBefore:_monthFirstDay]) {
+    if ([_calendarManager.dateHelper date:_dateSelected isEqualOrAfter:_monthFirstDay] && [_calendarManager.dateHelper date:_dateSelected isEqualOrBefore:_monthLastDay]) {
         selDay = [formatter1 stringFromDate:_dateSelected];
     }else{
         selDay = [formatter1 stringFromDate:_monthLastDay];
@@ -196,10 +196,10 @@
 }
 - (void)loadRecordDayDatas
 {
-//    NSDate *date1 = [_calendarManager.dateHelper addToDate:[NSDate date] months:-1];
+    NSDate *date1 = [_calendarManager.dateHelper addToDate:[NSDate date] months:-1];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *startDate = [dateFormatter stringFromDate:_monthFirstDay];
+    NSString *startDate = [dateFormatter stringFromDate:date1];
     NSString *selDay;
     if ([_calendarManager.dateHelper date:_dateSelected isEqualOrAfter:_monthFirstDay] && [_calendarManager.dateHelper date:_dateSelected isEqualOrBefore:_monthFirstDay]) {
         selDay = [dateFormatter stringFromDate:_dateSelected];
@@ -342,7 +342,6 @@
 - (void)calendar:(JTCalendarManager *)calendar prepareDayView:(JTCalendarDayView *)dayView
 {
     NSDate *date1 = [_calendarManager.dateHelper addToDate:[NSDate date] months:-1];
-    [MBProgressHUD autoDismissShowHudMsg:dayView.date];
 //    _monthFirstDay = [_calendarManager.dateHelper firstDayOfMonth:dayView.date];
     // Today
     if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
@@ -453,7 +452,7 @@
     _monthFirstDay = firstDate;
     _monthLastDay = lastDate;
     [self loadDatas];
-    [self loadRecordDayDatas];
+//    [self loadRecordDayDatas];
 }
 
 - (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar
@@ -471,7 +470,7 @@
     _monthFirstDay = firstDate;
     _monthLastDay = lastDate;
     [self loadDatas];
-    [self loadRecordDayDatas];
+//    [self loadRecordDayDatas];
 }
 - (void)createMinAndMaxDate
 {

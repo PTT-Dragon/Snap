@@ -89,7 +89,7 @@ static BOOL _accountSuccess = NO;
         }else{
             weakself.btn.userInteractionEnabled = NO;
             weakself.btn.backgroundColor = RGBColorFrom16(0xFFE5EB);
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ACCOUNT_DOES_NOT_EXIST")];
+            [MBProgressHUD showTopErrotMessage:kLocalizedString(@"ACCOUNT_DOES_NOT_EXIST")];
 //            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"IS_ALREADY_REGISTERED")];
 //            BOOL isEmail = [self.field.text rangeOfString:@"@"].location != NSNotFound;
 //            NSString *str = isEmail ? [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_EMAIL_ADDRESS"),kLocalizedString(@"IS_ALREADY_REGISTERED")]: [NSString stringWithFormat:@"%@%@",kLocalizedString(@"THIS_PHONE_NUMBER"),kLocalizedString(@"IS_ALREADY_REGISTERED")];

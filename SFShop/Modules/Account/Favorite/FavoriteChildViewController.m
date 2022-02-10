@@ -215,6 +215,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     favoriteModel *model = self.dataSource[indexPath.section];
     ProductViewController *vc = [[ProductViewController alloc] init];
+    vc.block = ^{
+        if (self.block) {
+            self.block();
+        }
+        [self loadDatas];
+    };
     vc.offerId = model.offerId.integerValue;
     vc.productId = model.productId.integerValue;
     [self.navigationController pushViewController:vc animated:YES];

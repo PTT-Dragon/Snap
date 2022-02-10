@@ -36,7 +36,7 @@
 
 #pragma mark - Request
 - (void)requestAssociate:(NSString *)q {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager get:SFNet.offer.suggest parameters:@{@"q":q} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         [self.dataArray removeAllObjects];

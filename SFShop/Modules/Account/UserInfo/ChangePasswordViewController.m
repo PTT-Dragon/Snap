@@ -61,7 +61,7 @@ static BOOL _passwordSuccess3 = NO;
         [MBProgressHUD showTopErrotMessage:kLocalizedString(@"Confirm_password")];
         return;
     }
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     [SFNetworkManager post:SFNet.account.pwdModify parameters:@{@"accessToken":model.accessToken,@"newPwd":_PasswordField.text,@"oldPwd":_currentField.text} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];

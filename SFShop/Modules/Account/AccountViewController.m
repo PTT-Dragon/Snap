@@ -221,6 +221,17 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 2) {
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        if (!model) {
+            MPWeakSelf(self)
+            LoginViewController *vc = [[LoginViewController alloc] init];
+            vc.didLoginBlock = ^{
+                [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
+                [weakself performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
+            };
+            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+            return;
+        }
         InviteViewController *vc = [[InviteViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -230,14 +241,36 @@
             DistributeCenterViewController *vc = [[DistributeCenterViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"REFERS")]){
+            UserModel *model = [FMDBManager sharedInstance].currentUser;
+            if (!model) {
+                MPWeakSelf(self)
+                LoginViewController *vc = [[LoginViewController alloc] init];
+                vc.didLoginBlock = ^{
+                    [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
+                    [weakself performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
+                };
+                [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+                return;
+            }
             InviteViewController *vc = [[InviteViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"RATING")]){
+            UserModel *model = [FMDBManager sharedInstance].currentUser;
+            if (!model) {
+                MPWeakSelf(self)
+                LoginViewController *vc = [[LoginViewController alloc] init];
+                vc.didLoginBlock = ^{
+                    [[baseTool getCurrentVC].navigationController popViewControllerAnimated: YES];
+                    [weakself performSelector:@selector(setTabbarSel) withObject:nil afterDelay:0.5];
+                };
+                [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+                return;
+            }
             ReviewViewController *vc = [[ReviewViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"ADDRESS")]){
             AddressViewController *vc = [[AddressViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            [self.navigationController pushViewController:vc animated:YES];            
         }else if ([cell.label.text isEqualToString:kLocalizedString(@"SERVICE")]){
             SupportViewController *vc = [[SupportViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];

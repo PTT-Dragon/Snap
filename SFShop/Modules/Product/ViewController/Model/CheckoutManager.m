@@ -32,7 +32,7 @@ static CheckoutManager *_instance = nil;
     NSAssert(totalPrice.length > 0, @"订单价格不能为空");
 
     //第一步：获取支付方式
-    [MBProgressHUD showHudMsg:@""];
+//    //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager get:SFNet.order.method success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSArray *methods = (NSArray *)response;
@@ -69,7 +69,7 @@ static CheckoutManager *_instance = nil;
         @"returnUrl": returnUrl,
         @"orders": orderIds
     };
-    [MBProgressHUD showHudMsg:@""];
+//    //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager post:SFNet.h5.pay parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSString *urlOrHtml = response[@"urlOrHtml"];
@@ -87,9 +87,9 @@ static CheckoutManager *_instance = nil;
 - (void)confirmPay:(NSArray *)orderIds complete:(void(^)(SFPayResult result,NSString *urlOrHtml, NSDictionary *response))complete {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedString(@"Order_payment_processing") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:kLocalizedString(@"YES") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [MBProgressHUD showHudMsg:@""];
+//        //[MBProgressHUD showHudMsg:@""];
         [SFNetworkManager post:SFNet.order.confirm parametersArr:orderIds success:^(id  _Nullable response) {
-            [MBProgressHUD autoDismissShowHudMsg:@"支付成功"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"PAYMENT_SUCCESS")];
             !complete ?: complete(SFPayResultSuccess,nil,response);
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
@@ -126,7 +126,7 @@ static CheckoutManager *_instance = nil;
 #pragma mark - 结算
 - (void)loadCheckoutData:(ProductCheckoutModel *)model complete:(void(^)(BOOL isSuccess, ProductCheckoutModel *checkoutModel))complete {
     self.cacheData = model;
-    [MBProgressHUD showHudMsg:@""];
+//    //[MBProgressHUD showHudMsg:@""];
     dispatch_group_t group = dispatch_group_create();
 
     //请求结算数据

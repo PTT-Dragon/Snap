@@ -33,7 +33,7 @@
     [_statuLabel addGestureRecognizer:tap];
     _label1.text = kLocalizedString(@"DISCOUNT");
     _label2.text = kLocalizedString(@"EXPIRY_DATE");
-    self.bgView.layer.borderColor = RGBColorFrom16(0x9b9b9b).CGColor;
+    self.bgView.layer.borderColor = RGBColorFrom16(0xe7e7e7).CGColor;
     self.bgView.layer.borderWidth = 1;
 }
 - (void)setContent:(CouponModel *)model
@@ -92,13 +92,13 @@
 }
 - (void)useCouponAction
 {
+    UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+    if (!userModel) {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        return;
+    }
     if ([_statuLabel.text isEqualToString:kLocalizedString(@"USE_NOW")]) {
-        UserModel *userModel = [FMDBManager sharedInstance].currentUser;
-        if (!userModel) {
-            LoginViewController *vc = [[LoginViewController alloc] init];
-            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
-            return;
-        }
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
         vc.couponModel = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];

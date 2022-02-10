@@ -38,6 +38,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangeNotification:)
                                                  name:@"KLanguageChange"
                                                object:nil];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (model) {
+        MJRefreshConfig.defaultConfig.languageCode = model.userRes.defLangCode;
+    }
+    
     return YES;
 }
 - (void)cleanCartCache
@@ -93,7 +98,7 @@
             }else if ([dic[@"paramCode"] isEqualToString:@"DEF_CURRENCY_PRECISION"]){
                 model.CURRENCY_PRECISION = dic[@"paramValue"];
             }else if ([dic[@"paramCode"] isEqualToString:@"CODE_TTL"]){
-                model.CURRENCY_DISPLAY = dic[@"paramValue"];
+                model.CODE_TTL = dic[@"paramValue"];
             }else if ([dic[@"paramCode"] isEqualToString:@"PHONE_REGULAR_RULE"]){
                 model.PHONE_REGULAR_RULE = dic[@"paramValue"];
             }else if ([dic[@"paramCode"] isEqualToString:@"EMAIL_REGULAR_RULE"]){

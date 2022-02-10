@@ -152,17 +152,23 @@
 }
 
 - (CGFloat)height{
+    CGFloat titleHeight = [NSString jk_heightTextContent:self.offerName withSizeFont:14 withMaxSize:CGSizeMake((MainScreen_width - KScale(12) * 3 - KScale(16) * 2)/2, CGFLOAT_MAX)] + KScale(12);
+                    
+    CGFloat imageHeight = KScale(160);
+    CGFloat tagHeight = 0;
+    if (self.sppType.length> 0 || self.promotType.length > 2) {
+        tagHeight = KScale(16) + KScale(16);
+    }
     
-//    if (!_height) {
-        CGFloat titleHeight = [self.offerName calHeightWithFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - KScale(12) * 3 - KScale(16) * 2, 100)];
-        CGFloat imageHeight = KScale(166);
-        CGFloat tagHeight = KScale(14);
-        CGFloat priceHeight = KScale(14);
-        CGFloat discountHeight = KScale(14);
-        CGFloat levelHeight = KScale(12);
-        _height = imageHeight  + KScale(12) + titleHeight + KScale(16) + priceHeight + KScale(4) + discountHeight + KScale(12) + levelHeight + KScale(25);
-//    }
-    return _height;
+    CGFloat gradeHeight = 0;
+    if (self.evaluationAvg > 0 || self.evaluationCnt > 0) {
+        gradeHeight = KScale(12) + KScale(12);
+    }
+    CGFloat priceHeight = KScale(6) + KScale(14);
+    CGFloat discountHeight = self.discountPercent.length > 0 ? (KScale(4) + KScale(14)) : 0;
+    CGFloat bottomSpace = 10;
+    CGFloat theHeight = imageHeight + tagHeight + titleHeight + priceHeight + discountHeight + gradeHeight + bottomSpace;
+    return theHeight;
 }
 
 @end

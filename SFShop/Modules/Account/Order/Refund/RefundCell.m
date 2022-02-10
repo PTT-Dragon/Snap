@@ -74,6 +74,7 @@
         _contentLabel.text = kLocalizedString(@"REFUND_REJECTED_CONTENT");//kLocalizedString(@"return_tip");
         _viewHei.constant = 52;
         _btn.hidden = YES;
+        _btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"A"]){
         //待审核
         _statuLabel.text = kLocalizedString(@"Pending_Review");
@@ -81,24 +82,28 @@
         _viewHei.constant = 52;
         _btn.hidden = NO;
         [_btn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CANCEL")] forState:0];
+        _btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"E"]){
         //待退款
         _statuLabel.text = kLocalizedString(@"waitReturn_tip");
         _contentLabel.text = [NSString stringWithFormat:@"Wait for %@",eventType];//[NSString stringWithFormat:@"%@",model.orderApplyCode];
         _viewHei.constant = 52;
         _btn.hidden = YES;
+        _btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"X"]){
         //取消 作废
         _statuLabel.text = kLocalizedString(@"CANCELLED");
         _contentLabel.text = @"Service has been canceled";
         _viewHei.constant = 52;
         _btn.hidden = YES;
+        _btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"G"]){
         //成功
         _statuLabel.text = @"Successful";
         _contentLabel.text = [NSString stringWithFormat:@"Refund :%@",model.refundCharge];
         _viewHei.constant = 0;
         _btn.hidden = YES;
+        _btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"D"]){
         _statuLabel.text = @"In transit";
         _contentLabel.text = @"waiting for the merchant to receive the Package";
@@ -123,6 +128,7 @@
         _btn.hidden = NO;_btn2.hidden = YES;
         [_btn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REFUND_BANK_ACCOUNT")] forState:0];
         _viewHei.constant = 52;
+        _btn2.hidden = YES;
     }
 }
 - (void)cancelAction

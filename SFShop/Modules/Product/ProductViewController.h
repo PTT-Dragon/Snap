@@ -9,8 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProductViewController : UIViewController
+typedef void(^ProductViewControllerBlock)(void);
 
+@interface ProductViewController : UIViewController
+@property (nonatomic,copy) ProductViewControllerBlock block;
 @property (nonatomic, assign) NSInteger offerId;
 @property (nonatomic, assign) NSInteger productId;
 

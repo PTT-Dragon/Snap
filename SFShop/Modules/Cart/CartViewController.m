@@ -6,7 +6,6 @@
 //
 
 #import "CartViewController.h"
-#import "addressModel.h"
 #import "CartChooseAddressViewController.h"
 #import "CartChildViewController.h"
 #import "ProductCheckoutViewController.h"
@@ -24,7 +23,6 @@
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 @property (nonatomic,strong) NSMutableArray *addressArr;
 @property (nonatomic,strong) UIButton *addressBtn;
-@property (nonatomic,weak) addressModel *selAddModel;
 @property (strong, nonatomic) UIView *detailView;
 @property (strong, nonatomic) UIView *detailBgView;
 @property (strong, nonatomic) UIButton *checkBtn;
@@ -74,7 +72,7 @@
 - (void)loadAddressDatas
 {
     MPWeakSelf(self)
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager get:SFNet.address.addressList parameters:@{} success:^(id  _Nullable response) {
         NSError *error;
         [MBProgressHUD hideFromKeyWindow];

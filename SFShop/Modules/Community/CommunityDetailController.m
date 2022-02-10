@@ -260,7 +260,7 @@
     }
 }
 - (IBAction)likeAction:(UIButton *)sender {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager post:[SFNet.article likeArticlesOf:self.articleId] parameters:@{@"action":[self.model.isUseful isEqualToString:@"Y"] ? @"C": @"A"} success:^(id  _Nullable response) {
         if (sender.selected) {

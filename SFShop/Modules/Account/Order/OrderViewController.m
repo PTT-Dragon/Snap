@@ -21,6 +21,7 @@
 @property (nonatomic,strong) OrderNumModel *orderNumModel;
 @property (nonatomic,strong) BaseMoreView *moreView;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
+@property (nonatomic,copy) NSString *searchText;
 
 @end
 
@@ -59,6 +60,7 @@
 
 - (void)layoutSubviews
 {
+    _searchText = @"";
     self.menuList = @[@"All", @"ToPay", @"ToShip",@"ToReceive",@"Completed",@"Canceled"];
     self.typeList = @[@(OrderListType_All),@(OrderListType_ToPay),@(OrderListType_ToShip),@(OrderListType_ToReceive),@(OrderListType_Successful),@(OrderListType_Cancel)];
     [self addChildViewController:self.magicController];
@@ -72,9 +74,9 @@
 }
 
 - (void)loadOrderNum {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.order.num parameters:@{} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.order.num parameters:@{@"q":_searchText} success:^(id  _Nullable response) {
         weakself.orderNumModel = [OrderNumModel yy_modelWithDictionary:response];
         [weakself layoutSubview];
         [MBProgressHUD hideFromKeyWindow];
@@ -194,6 +196,8 @@
             __weak __typeof(weakSelf)strongSelf = weakSelf;
             OrderChildViewController *vc = strongSelf.magicController.currentViewController;
             vc.searchText = qs;
+            self.searchText = qs;
+            [self loadOrderNum];
         }];
         [_navSearchView addSubview:self.titleLabel];
         [_titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

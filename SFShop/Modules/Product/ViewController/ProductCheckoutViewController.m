@@ -108,7 +108,7 @@
         @"returnUrl": returnUrl,
         @"orders": orderIds
     };
-    [MBProgressHUD showHudMsg:@""];
+//    //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager post:SFNet.h5.pay parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSString *urlOrHtml = response[@"urlOrHtml"];
@@ -128,9 +128,9 @@
 - (void)confirmPay:(NSArray *)orderIds {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedString(@"Order_payment_processing") message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:kLocalizedString(@"YES") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [MBProgressHUD showHudMsg:@""];
+//        //[MBProgressHUD showHudMsg:@""];
         [SFNetworkManager post:SFNet.order.confirm parametersArr:orderIds success:^(id  _Nullable response) {
-            [MBProgressHUD autoDismissShowHudMsg:@"支付成功"];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"PAYMENT_SUCCESS")];
             [SceneManager transToHome];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
@@ -211,10 +211,10 @@
 //                        return;
 //                    }
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
-                    [MBProgressHUD showHudMsg:@""];
+//                    //[MBProgressHUD showHudMsg:@""];
                     [CheckoutManager.shareInstance calfeeByStoreCouponItem:item storeId:detailModel.storeId complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
                         [strongSelf refreshCalFee];
-                        [MBProgressHUD hideFromKeyWindow];
+//                        [MBProgressHUD hideFromKeyWindow];
                     }];
                 };
                 [self addChildViewController:vc];
@@ -228,7 +228,7 @@
                 vc.curAddress = self.dataModel.addressModel.modifyDate ? self.dataModel.addressModel.modifyDate: @"123";
                 vc.addressBlock = ^(addressModel * _Nonnull model) {
                     __strong __typeof(weakSelf)strongSelf = weakSelf;
-                    [MBProgressHUD showHudMsg:@""];
+//                    //[MBProgressHUD showHudMsg:@""];
                     [strongSelf.navigationController popViewControllerAnimated:YES];
                     [CheckoutManager.shareInstance calfeeByAddress:model complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
                         [strongSelf refreshCalFee];
@@ -303,7 +303,7 @@
         vc.dataArray = pltAvailableCoupons;
         vc.selectedCouponBlock = ^(CouponItem * _Nullable item) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
-            [MBProgressHUD showHudMsg:@""];
+//            //[MBProgressHUD showHudMsg:@""];
             [CheckoutManager.shareInstance calfeeByPltCouponItem:item complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
                 [strongSelf refreshCalFee];
                 [MBProgressHUD hideFromKeyWindow];
@@ -320,17 +320,20 @@
             return;
         }
         DeleveryViewController *vc = [[DeleveryViewController alloc] init];
-        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
+//        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
         vc.dataArray = logisticsModels;
         vc.selectedDeleveryBlock = ^(OrderLogisticsItem * _Nullable item) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
-            [MBProgressHUD showHudMsg:@""];
+//            //[MBProgressHUD showHudMsg:@""];
             [CheckoutManager.shareInstance calfeeByLogistic:item storeId:detailModel.storeId complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
                 [strongSelf refreshCalFee];
                 [MBProgressHUD hideFromKeyWindow];
             }];
         };
-        [self presentViewController:vc animated:YES completion:nil];
+        [self addChildViewController:vc];
+        [self.view addSubview:vc.view];
+        vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+//        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 
@@ -453,15 +456,15 @@
                 @"stores": stores,
             };
 
-            [MBProgressHUD showHudMsg:@""];
+//            //[MBProgressHUD showHudMsg:@""];
             [SFNetworkManager post:SFNet.order.save parameters: params success:^(NSDictionary *  _Nullable response) {
-                [MBProgressHUD hideFromKeyWindow];
+//                [MBProgressHUD hideFromKeyWindow];
                 NSArray *orders = (NSArray *)response[@"orders"];
                 NSMutableArray *orderIds = [NSMutableArray array];
                 for (NSDictionary *dic in orders) {[orderIds addObject:dic[@"orderId"]];}//订单id 数组
                 NSString *totalPrice = [NSString stringWithFormat:@"%@",[response objectForKey:@"totalPrice"]];//总价
                 NSString *shareBuyOrderNbr = [orders.firstObject objectForKey:@"shareBuyOrderNbr"];//分享号
-                [MBProgressHUD hideFromKeyWindow];
+//                [MBProgressHUD hideFromKeyWindow];
                 [CheckoutManager.shareInstance startPayWithOrderIds:orderIds shareBuyOrderNbr:shareBuyOrderNbr totalPrice:totalPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml, NSDictionary *response) {
                     switch (result) {
                         case SFPayResultSuccess:{

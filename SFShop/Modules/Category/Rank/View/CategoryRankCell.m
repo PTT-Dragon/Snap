@@ -13,7 +13,6 @@
 @property (nonatomic, readwrite, strong) UIImageView *iconLabelImageView;//icon 右上角标签
 @property (nonatomic, readwrite, strong) UIImageView *iconImageView;
 @property (nonatomic, readwrite, strong) TagListView *promoTypeView;
-@property (nonatomic, readwrite, strong) UILabel *promoTypeLabel;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
 @property (nonatomic, readwrite, strong) UILabel *priceLabel;
 @property (nonatomic, readwrite, strong) UILabel *discountLabel;
@@ -50,8 +49,8 @@
 - (void)layoutTableView {
     [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.centerY.mas_equalTo(0);
-        make.width.mas_equalTo(KScale(160));
-        make.height.mas_equalTo(KScale(160));
+        make.width.mas_equalTo(160);
+        make.height.mas_equalTo(160);
     }];
     
     [self.iconLabelImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -64,7 +63,7 @@
         make.left.equalTo(self.iconImageView.mas_right).offset(KScale(16));
         make.right.mas_equalTo(-KScale(10));
         make.top.mas_equalTo(KScale(13));
-        make.height.mas_equalTo(KScale(14));//14,先注释
+        make.height.mas_equalTo(KScale(16));
     }];
     
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -82,42 +81,53 @@
     
     [self.discountLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.promoTypeView);
-        make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
-        make.height.mas_equalTo(KScale(14));
-        make.width.mas_equalTo(KScale(30));
+        if (!self.discountLabel.hidden) {
+            make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
+            make.width.mas_equalTo(KScale(30));
+            make.height.mas_equalTo(KScale(14));
+        } else {
+            make.top.equalTo(self.priceLabel.mas_bottom).offset(0);
+            make.width.mas_equalTo(0);
+            make.height.mas_equalTo(0);
+        }
     }];
     
     [self.originPriceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.discountLabel.mas_right).offset(KScale(8));
         make.right.mas_equalTo(KScale(-12));
-        make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
-        make.height.mas_equalTo(KScale(12));
+        make.centerY.equalTo(self.discountLabel);
+        if (!self.originPriceLabel.hidden) {
+            make.height.mas_equalTo(KScale(12));
+        } else {
+            make.height.mas_equalTo(0);
+        }
     }];
     
     [self.gradeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.promoTypeView);
-        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.top.equalTo(self.discountLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
         make.width.mas_equalTo(KScale(12));
     }];
 
     [self.gradeLevelLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.gradeImageView.mas_right).offset(KScale(2));
-        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.top.equalTo(self.discountLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
     }];
 
     [self.gradeNumberLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.gradeLevelLabel.mas_right).offset(KScale(8));
-        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.top.equalTo(self.discountLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
     }];
 }
 
 - (void)layoutCollection {
     [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.mas_equalTo(0);
-        make.height.mas_equalTo(KScale(166));
+        make.left.top.mas_equalTo(0);
+        make.height.mas_equalTo(KScale(160));
+        make.width.mas_equalTo(KScale(160));
     }];
     
     [self.iconLabelImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -126,16 +136,15 @@
         make.width.mas_equalTo(KScale(50));
     }];
     
-    
     [self.promoTypeView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
         make.right.mas_equalTo(-KScale(10));
         if (self.promoTypeView.hidden) {
             make.top.equalTo(self.iconImageView.mas_bottom).offset(KScale(0));
-            make.height.mas_equalTo(KScale(0));//14,先注释
+            make.height.mas_equalTo(KScale(0));
         } else {
             make.top.equalTo(self.iconImageView.mas_bottom).offset(KScale(16));
-            make.height.mas_equalTo(KScale(14));//14,先注释
+            make.height.mas_equalTo(KScale(16));
         }
     }];
     
@@ -154,34 +163,45 @@
     
     [self.discountLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
-        make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
         make.height.mas_equalTo(KScale(14));
-        make.width.mas_equalTo(KScale(30));
+        if (!self.discountLabel.hidden) {
+            make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
+            make.width.mas_equalTo(KScale(30));
+            make.height.mas_equalTo(KScale(14));
+        } else {
+            make.top.equalTo(self.priceLabel.mas_bottom).offset(0);
+            make.width.mas_equalTo(0);
+            make.height.mas_equalTo(0);
+        }
     }];
     
     [self.originPriceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.discountLabel.mas_right).offset(KScale(8));
         make.right.mas_equalTo(KScale(-12));
-        make.top.equalTo(self.priceLabel.mas_bottom).offset(KScale(4));
-        make.height.mas_equalTo(KScale(12));
+        make.centerY.equalTo(self.discountLabel);
+        if (!self.originPriceLabel.hidden) {
+            make.height.mas_equalTo(KScale(12));
+        } else {
+            make.height.mas_equalTo(0);
+        }
     }];
     
     [self.gradeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KScale(12));
-        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.top.equalTo(self.discountLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
         make.width.mas_equalTo(KScale(12));
     }];
 
     [self.gradeLevelLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.gradeImageView.mas_right).offset(KScale(2));
-        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.top.equalTo(self.discountLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
     }];
 
     [self.gradeNumberLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.gradeLevelLabel.mas_right).offset(KScale(8));
-        make.top.equalTo(self.originPriceLabel.mas_bottom).offset(KScale(12));
+        make.top.equalTo(self.discountLabel.mas_bottom).offset(KScale(12));
         make.height.mas_equalTo(KScale(12));
     }];
 }
@@ -232,16 +252,21 @@
         self.gradeNumberLabel.hidden = YES;
         self.gradeImageView.hidden = YES;
     }
-
-    self.discountLabel.text = [NSString stringWithFormat:@"-%@%%",_model.discountPercent];
-    
-    NSAttributedString *attrStr =
-    [[NSAttributedString alloc]initWithString: [NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%ld",_model.marketPrice].currency] attributes:
-    @{NSFontAttributeName:[UIFont systemFontOfSize:10],
-      NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
-      NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
-      NSStrikethroughColorAttributeName:[UIColor jk_colorWithHexString:@"#CCCCCC"]}];
-    self.originPriceLabel.attributedText = attrStr;
+    if (_model.discountPercent.length > 0) {
+        self.originPriceLabel.hidden = NO;
+        self.discountLabel.hidden = NO;
+        self.discountLabel.text = [NSString stringWithFormat:@"-%@%%",_model.discountPercent];
+        NSAttributedString *attrStr =
+        [[NSAttributedString alloc]initWithString: [NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%ld",_model.marketPrice].currency] attributes:
+        @{NSFontAttributeName:[UIFont systemFontOfSize:10],
+          NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
+          NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
+          NSStrikethroughColorAttributeName:[UIColor jk_colorWithHexString:@"#CCCCCC"]}];
+        self.originPriceLabel.attributedText = attrStr;
+    } else {
+        self.discountLabel.hidden = YES;
+        self.originPriceLabel.hidden = YES;
+    }
 }
 
 -(void)setSimilarModel:(ProductSimilarModel *)similarModel {
@@ -265,16 +290,22 @@
     self.titleLabel.text = _similarModel.offerName;
     self.priceLabel.text = [NSString stringWithFormat:@"%ld", _similarModel.specialPrice>0?_similarModel.specialPrice: _similarModel.salesPrice].currency;
 
-    self.discountLabel.text = [NSString stringWithFormat:@"%ld%%",_similarModel.discountPercent];
+    if (_similarModel.discountPercent > 0) {
+        self.originPriceLabel.hidden = NO;
+        self.discountLabel.hidden = NO;
+        self.discountLabel.text = [NSString stringWithFormat:@"%ld%%",_similarModel.discountPercent];
+        NSAttributedString *attrStr =
+        [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld",_similarModel.marketPrice].currency attributes:
+        @{NSFontAttributeName:[UIFont systemFontOfSize:10],
+          NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
+          NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
+          NSStrikethroughColorAttributeName:[UIColor jk_colorWithHexString:@"#CCCCCC"]}];
+        self.originPriceLabel.attributedText = attrStr;
+    } else {
+        self.discountLabel.hidden = YES;
+        self.originPriceLabel.hidden = YES;
+    }
 
-    NSAttributedString *attrStr =
-    [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld",_model.marketPrice].currency attributes:
-    @{NSFontAttributeName:[UIFont systemFontOfSize:10],
-      NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
-      NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
-      NSStrikethroughColorAttributeName:[UIColor jk_colorWithHexString:@"#CCCCCC"]}];
-    self.originPriceLabel.attributedText = attrStr;
-        
     if (_similarModel.evaluationAvg > 0 || _similarModel.evaluationCnt > 0) {
         self.gradeLevelLabel.text = [NSString stringWithFormat:@"%.1f",_similarModel.evaluationAvg * 1.0];
         self.gradeNumberLabel.text = [NSString stringWithFormat:@"(%@)",_similarModel.evaluationCnt];
@@ -382,7 +413,7 @@
 - (TagListView *)promoTypeView {
     if (_promoTypeView == nil) {
         _promoTypeView = [[TagListView alloc] init];
-        _promoTypeView.textFont = [UIFont systemFontOfSize:8 weight:UIFontWeightHeavy];
+        _promoTypeView.textFont = [UIFont systemFontOfSize:10 weight:UIFontWeightHeavy];
         _promoTypeView.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
         _promoTypeView.tagBackgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
         _promoTypeView.alignment = AlignmentLeft;
@@ -390,18 +421,6 @@
         _promoTypeView.backgroundColor = [UIColor whiteColor];
     }
     return _promoTypeView;
-}
-
-- (UILabel *)promoTypeLabel {
-    if (_promoTypeLabel == nil) {
-        _promoTypeLabel = [[UILabel alloc] init];
-        _promoTypeLabel.text = @"";
-        _promoTypeLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
-        _promoTypeLabel.font = [UIFont systemFontOfSize:8];
-        _promoTypeLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _promoTypeLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _promoTypeLabel;
 }
 
 - (UILabel *)gradeLevelLabel {

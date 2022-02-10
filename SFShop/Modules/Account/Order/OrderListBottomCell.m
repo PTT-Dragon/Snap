@@ -261,7 +261,7 @@ static dispatch_source_t _timer;
 }
 - (void)rebuy
 {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     dispatch_group_t group = dispatch_group_create();
     [self.model.orderItems enumerateObjectsUsingBlock:^(orderItemsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         dispatch_group_enter(group);
@@ -295,7 +295,7 @@ static dispatch_source_t _timer;
 }
 - (void)toLogistices
 {
-    [MBProgressHUD showHudMsg:@""];
+    //[MBProgressHUD showHudMsg:@""];
     NSString *url = [NSString stringWithFormat:@"%@/%@",SFNet.order.list,_model.orderId];
     [MBProgressHUD hideFromKeyWindow];
     [SFNetworkManager get:url parameters:@{} success:^(id  _Nullable response) {

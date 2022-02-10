@@ -88,11 +88,11 @@
             for (NSDictionary *dic in arr) {
                 [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
             }
-            [weakself.tableView reloadData];
             weakself.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
                 [weakself loadMoreDatas];
             }];
         }
+        [weakself.tableView reloadData];
         [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself showEmptyView];
