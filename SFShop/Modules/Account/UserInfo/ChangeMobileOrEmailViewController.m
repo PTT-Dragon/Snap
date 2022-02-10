@@ -111,6 +111,10 @@ static BOOL _passwordSuccess2 = NO;
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     [_field addTarget:self action:@selector(changedTextField:) forControlEvents:(UIControlEventEditingChanged)];
     [_field2 addTarget:self action:@selector(changedTextField:) forControlEvents:(UIControlEventEditingChanged)];
+    self.field.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];
+    self.field.leftViewMode = UITextFieldViewModeAlways;
+    self.field2.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];
+    self.field2.leftViewMode = UITextFieldViewModeAlways;
     if (_type == 1) {
         self.title = kLocalizedString(@"MOBILE_NUMBER");
         _label.text = kLocalizedString(@"PASSWORD");

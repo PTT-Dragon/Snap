@@ -14,7 +14,7 @@
 
 @interface ChooseRefundViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSArray *dataSource;
+@property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) RefundChargeModel *chargeModel;
 @end
 
@@ -33,14 +33,22 @@
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"REFUND_SELECT_TITLE");
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    self.dataSource = [NSMutableArray array];
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"ChooseRefundTitleCell" bundle:nil] forCellReuseIdentifier:@"ChooseRefundTitleCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
-    if (self.model.canReview) {
-        
+    orderItemsModel *itemModel = self.model.orderItems[_row];
+    if ([itemModel.serviceTypes rangeOfString:@"3"].location != NSNotFound) {
+        [self.dataSource addObject:kLocalizedString(@"I_WANT_TO_REFUND")];
     }
-    self.dataSource = @[kLocalizedString(@"I_WANT_TO_REFUND"),kLocalizedString(@"I_WANT_TO_RETURN"),kLocalizedString(@"I_WANT_TO_EXCHANGE"),kLocalizedString(@"VIEW_APPLICATION_RECORDS")];
+    if ([itemModel.serviceTypes rangeOfString:@"2"].location != NSNotFound) {
+        [self.dataSource addObject:kLocalizedString(@"I_WANT_TO_RETURN")];
+    }
+    if ([itemModel.serviceTypes rangeOfString:@"4"].location != NSNotFound) {
+        [self.dataSource addObject:kLocalizedString(@"I_WANT_TO_EXCHANGE")];
+    }
+    [self.dataSource addObject:kLocalizedString(@"VIEW_APPLICATION_RECORDS")];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
@@ -91,7 +99,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 2: 4;
+    return section == 0 ? 2: self.dataSource.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -104,17 +112,19 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
-        if (indexPath.row == 3) {
+        NSString *str = self.dataSource[indexPath.row];
+        if ([str isEqualToString:kLocalizedString(@"VIEW_APPLICATION_RECORDS")]) {
             RefundViewController *vc = [[RefundViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             return;
+        }else{
+            RefundOrReturnViewController *vc = [[RefundOrReturnViewController alloc] init];
+            vc.model = self.model;
+            vc.row = _row;
+            vc.chargeModel = self.chargeModel;
+            vc.type = [str isEqualToString:kLocalizedString(@"I_WANT_TO_REFUND")] ? REFUNDTYPE: [str isEqualToString:kLocalizedString(@"I_WANT_TO_RETURN")] ? RETURNTYPE: REPLACETYPE;
+            [self.navigationController pushViewController:vc animated:YES];
         }
-        RefundOrReturnViewController *vc = [[RefundOrReturnViewController alloc] init];
-        vc.model = self.model;
-        vc.row = _row;
-        vc.chargeModel = self.chargeModel;
-        vc.type = indexPath.row == 0 ? REFUNDTYPE: indexPath.row == 1 ? RETURNTYPE: REPLACETYPE;
-        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

@@ -45,7 +45,7 @@ static BOOL _passwordSuccess = NO;
     [self.PhoneField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     [self.passwordField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
     self.accountQesLabel.text = kLocalizedString(@"PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL");
-    _passwordField.placeholder = [NSString stringWithFormat:@"   %@",kLocalizedString(@"PASSWORD")];
+    _passwordField.placeholder = [NSString stringWithFormat:@"%@",kLocalizedString(@"PASSWORD")];
     _PhoneField.placeholder = kLocalizedString(@"PHONE_NUMBER_EMAIL");
     _passwordLabel.text = [NSString stringWithFormat:@"%@",kLocalizedString(@"PASSWORD")];
     [self.signUpBtn setTitle:kLocalizedString(@"SIGN_UP") forState:0];

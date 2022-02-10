@@ -73,6 +73,8 @@ static BOOL _passwordSuccess = NO;
     [_lfView addSubview:iv];
     _accountField.leftViewMode = UITextFieldViewModeAlways;
     _accountField.leftView = _lfView;
+    self.passwordField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];//设置显示模式为永远显示(默认不显示)
+    self.passwordField.leftViewMode = UITextFieldViewModeAlways;
 }
 - (void)changedTextField:(UITextField *)textField
 {
@@ -150,6 +152,8 @@ static BOOL _passwordSuccess = NO;
     _label1.text = kLocalizedString(@"Email");
     _accountField.placeholder = kLocalizedString(@"Email");
     _accountField.leftView = nil;
+    self.accountField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];//设置显示模式为永远显示(默认不显示)
+    self.accountField.leftViewMode = UITextFieldViewModeAlways;
 }
 - (IBAction)loginAction:(id)sender {
     //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234  18861484865/Abc@1234  14700003515

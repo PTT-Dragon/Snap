@@ -131,7 +131,9 @@
         if (model.inner.catgRela.objValue.filteredProductsRela) {
             NSMutableDictionary *filteredProductsRela = [NSMutableDictionary dictionaryWithDictionary:model.inner.catgRela.objValue.filteredProductsRela];
             NSString *q = [filteredProductsRela objectForKey:@"productName"];
-            [filteredProductsRela setObject:q forKey:@"q"];
+            if (q) {
+                [filteredProductsRela setObject:q forKey:@"q"];
+            }
             [filteredProductsRela removeObjectForKey:@"productName"];
             model.inner.catgRela.objValue.filteredProductsRela = filteredProductsRela;
         }

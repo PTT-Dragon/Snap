@@ -314,7 +314,7 @@
     BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
         if (object.productId.integerValue == weakself.selProductModel.productId) {
             groupCount = object.shareByNum;
-            self.maxPurchaseCount = self.attrsType == groupBuyType ? MIN(self.maxPurchaseCount, object.buyAmtLimit) : self.maxPurchaseCount;
+            self.maxPurchaseCount = self.attrsType == groupSingleBuyType ? self.maxPurchaseCount : MIN(self.maxPurchaseCount, object.buyAmtLimit);
             self.priceLabel.text = self.attrsType == groupSingleBuyType ? [[NSString stringWithFormat:@"%ld",(long)self.selProductModel.salesPrice] currency]: [[NSString stringWithFormat:@"%f", object.shareBuyPrice] currency];
         }
         return object.productId.integerValue == weakself.selProductModel.productId;
@@ -337,7 +337,7 @@
             make.height.mas_equalTo(46);
             make.bottom.equalTo(self).offset(-44);
         }];
-    }else if (isGroupBuy && _attrsType == groupBuyType) {
+    }else if (isGroupBuy && _attrsType == buyType) {
         //是团购  //先满足团购的UI
         _btn2.hidden = YES;
         [_btn1 jk_setBackgroundColor: RGBColorFrom16(0xFF1659) forState:UIControlStateNormal];

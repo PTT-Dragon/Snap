@@ -49,6 +49,8 @@
     _explainLabel1.text = kLocalizedString(@"INCORRECT_NAME");
     _tipLabel1.text = kLocalizedString(@"NICKNAME");
     _nameField.placeholder = kLocalizedString(@"NICKNAME");
+    self.nameField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0,0,8,0)];
+    self.nameField.leftViewMode = UITextFieldViewModeAlways;
     _tipLabel2.text = kLocalizedString(@"GENDER");
     _tipLabel3.text = kLocalizedString(@"DATEOFBIRTH");
     [_saveBtn setTitle:kLocalizedString(@"SAVEPROFILE") forState:0];

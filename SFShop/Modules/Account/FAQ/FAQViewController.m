@@ -155,7 +155,7 @@
 }
 - (void)searchAction
 {
-    
+    [_navSearchView searchClick:_navSearchView.searchBtn];
 }
 
 #pragma mark - getter

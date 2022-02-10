@@ -106,7 +106,7 @@
             self.block();
         }
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 @end

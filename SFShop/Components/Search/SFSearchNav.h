@@ -36,6 +36,8 @@ typedef NS_ENUM(NSUInteger, SFSearchType) {
 //外部暴露  可能需要隐藏
 @property (nonatomic,readwrite, strong) CustomTextField *textField;
 @property (nonatomic, readwrite, strong) UIButton *backBtn;
+@property (nonatomic, readwrite, strong) UIButton *searchBtn;
+- (void)searchClick:(UIButton *)btn;
 - (void)clickRightBtn;
 
 /// 添加搜索数据组

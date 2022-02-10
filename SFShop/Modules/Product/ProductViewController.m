@@ -1102,13 +1102,13 @@
             return;
         }
         MPWeakSelf(self)
-        [MBProgressHUD showHudMsg:@""];
+//        [MBProgressHUD showHudMsg:@""];
         [SFNetworkManager post:SFNet.cart.cart parameters: params success:^(id  _Nullable response) {
             [baseTool updateCartNum];
             [weakself requestCartNum];
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_failed")];
         }];
     }
 }
@@ -1121,15 +1121,12 @@
 
 - (IBAction)buyNow:(UIButton *)sender {
     if (!_isCheckingSaleInfo) {
+        MPWeakSelf(self)
         ProductCampaignsInfoModel * camaignsInfo = [self.campaignsModel yy_modelCopy];
         camaignsInfo.cmpFlashSales = [camaignsInfo.cmpFlashSales jk_filter:^BOOL(FlashSaleDateModel *object) {
-            return object.productId.integerValue == _selProductModel.productId;
+            return object.productId.integerValue == weakself.selProductModel.productId;
         }];
-        
-        BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
-            return object.productId.integerValue == _selProductModel.productId;
-        }];
-        [self showAttrsViewWithAttrType:isGroupBuy ? groupBuyType: buyType];
+        [self showAttrsViewWithAttrType: buyType];
     }
 }
 
