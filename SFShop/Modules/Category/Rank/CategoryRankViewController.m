@@ -243,27 +243,7 @@
 - (CGFloat)collectionViewLayout:(CommunityWaterfallLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.showType) {
         CategoryRankPageInfoListModel *cellModel = self.dataArray[indexPath.row];
-//        if (!cellModel.height) {
-            
-//            CGFloat titleHeight = [cellModel.offerName calHeightWithFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width - KScale(12) * 3 - KScale(16) * 2, 100)];
-            
-        CGFloat titleHeight = [NSString jk_heightTextContent:cellModel.offerName withSizeFont:14 withMaxSize:CGSizeMake((MainScreen_width - KScale(12) * 3 - KScale(16) * 2)/2, CGFLOAT_MAX)];
-                        
-        CGFloat imageHeight = KScale(166);
-        CGFloat tagHeight = 0;
-        if (cellModel.sppType.length> 0 || cellModel.promotType.length > 2) {
-            tagHeight = KScale(14) + KScale(16);
-        }
-        
-        CGFloat gradeHeught = 0;
-        if (cellModel.evaluationAvg > 0 || cellModel.evaluationCnt > 0) {
-            gradeHeught = KScale(12) + KScale(12);
-        }
-        CGFloat priceHeight = KScale(14);
-        CGFloat discountHeight = KScale(14);
-        CGFloat theHeight = imageHeight + tagHeight + KScale(12) + titleHeight + KScale(6) + priceHeight + KScale(4) + discountHeight + KScale(12) + gradeHeught;
-//        }
-        return theHeight;
+        return cellModel.height;
     } else {
         return 160;
     }
