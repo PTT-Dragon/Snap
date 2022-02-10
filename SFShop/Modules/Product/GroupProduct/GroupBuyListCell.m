@@ -9,6 +9,7 @@
 #import "NSString+Fee.h"
 
 
+
 @interface GroupBuyListCell ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -28,8 +29,8 @@
     // Initialization code
     _bgView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
     _bgView.layer.borderWidth = 1;
-    _btnImgView.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
-    _btnImgView.layer.borderWidth = 1;
+//    _btnImgView.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
+//    _btnImgView.layer.borderWidth = 1;
 }
 - (void)setModel:(CategoryRankPageInfoListModel *)model
 {

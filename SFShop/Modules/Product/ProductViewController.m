@@ -954,6 +954,7 @@
 }
 - (IBAction)goToCart:(UIButton *)sender {
     CartViewController *cartVC = [[CartViewController alloc] init];
+    cartVC.selAddModel = self.selectedAddressModel;
     MPWeakSelf(self)
     cartVC.block = ^{
         [weakself requestCartNum];

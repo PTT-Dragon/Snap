@@ -44,7 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadDatas];
+    [self loadDatasNeedCoupon:YES];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,7 +52,7 @@
     
     [self initUI];
 //    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        [self loadDatas];
+        [self loadDatasNeedCoupon:YES];
 //    }];
 //    [self.tableView.mj_header beginRefreshing];
 }
@@ -231,7 +231,7 @@
         if (userModel) {
             [SFNetworkManager post:SFNet.cart.del parameters:@{@"cartIds":@[model.shoppingCartId]} success:^(id  _Nullable response) {
                 [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Delete_success")];
-                [weakself loadDatas];
+                [weakself loadDatasNeedCoupon:YES];
             } failed:^(NSError * _Nonnull error) {
                 
             }];
@@ -252,7 +252,7 @@
                             self.cartModel.validCarts = listArr;
                         }
                         [self updateLocalData];
-                        [self loadDatas];
+                        [self loadDatasNeedCoupon:YES];
                     }
                 }];
             }];
@@ -298,7 +298,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"arrayKey"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-- (void)loadDatas
+- (void)loadDatasNeedCoupon:(BOOL)needUpdateCoupon
 {
     MPWeakSelf(self)
     UserModel *userModel = [FMDBManager sharedInstance].currentUser;
@@ -333,21 +333,24 @@
     [params setValue:_addModel.contactStdId forKey:@"stdAddrId"];
     [SFNetworkManager get:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
         weakself.cartModel = [[CartModel alloc] initWithDictionary:response error:nil];
-        NSInteger i = 0;
-        [weakself.hasCouponArr removeAllObjects];
-        for (CartListModel *listModel in weakself.cartModel.validCarts) {
-            [weakself.hasCouponArr addObject:@"N"];
-            NSMutableArray *arr = [NSMutableArray array];
-            [listModel.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
-                [listModel.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+        
+        if (needUpdateCoupon) {
+            NSInteger i = 0;
+            [weakself.hasCouponArr removeAllObjects];
+            for (CartListModel *listModel in weakself.cartModel.validCarts) {
+                [weakself.hasCouponArr addObject:@"N"];
+                NSMutableArray *arr = [NSMutableArray array];
+                [listModel.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+                    [listModel.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [obj.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                            [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];
+                        }];
                     }];
                 }];
-            }];
-            [weakself loadCouponsDatasWithStoreId:listModel.storeId productArr:arr row:i];
-            i++;
+                [weakself loadCouponsDatasWithStoreId:listModel.storeId productArr:arr row:i];
+                i++;
+            }
         }
         [weakself handleDatas];
         [weakself.tableView reloadData];
@@ -433,7 +436,7 @@
 {
     //添加到收藏列表
     [SFNetworkManager post:SFNet.cart.collection parametersArr:@[offerId] success:^(id  _Nullable response) {
-        [self loadDatas];
+        [self loadDatasNeedCoupon:NO];
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -479,11 +482,11 @@
                     }
                 }];
                 [self updateLocalData];
-                [self loadDatas];
+                [self loadDatasNeedCoupon:NO];
             }else{
                 MPWeakSelf(self)
                 [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
-                    [weakself loadDatas];
+                    [weakself loadDatasNeedCoupon:NO];
                 } failed:^(NSError * _Nonnull error) {
                     
                 }];
@@ -504,12 +507,14 @@
             }];
         }];
         [self updateLocalData];
-        [self loadDatas];
+        [self loadDatasNeedCoupon:NO];
         return;
     }
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":@[dic]} success:^(id  _Nullable response) {
-        [weakself loadDatas];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@[dic] forKey:@"carts"];
+    [SFNetworkManager post:SFNet.cart.modify parameters:params success:^(id  _Nullable response) {
+        [weakself loadDatasNeedCoupon:NO];
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -642,7 +647,7 @@
     [self.tableView reloadData];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.cart.modify parameters:@{@"carts":modifyArr} success:^(id  _Nullable response) {
-        [weakself loadDatas];
+        [weakself loadDatasNeedCoupon:NO];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage: error.localizedDescription];
     }];

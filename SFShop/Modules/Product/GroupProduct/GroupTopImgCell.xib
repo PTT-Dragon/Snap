@@ -21,13 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TF-st-NPV">
-                        <rect key="frame" x="230" y="4" width="80" height="30"/>
+                        <rect key="frame" x="246" y="10" width="64" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="AsC-kk-ApQ"/>
-                            <constraint firstAttribute="height" constant="30" id="Qau-GN-GFc"/>
+                            <constraint firstAttribute="width" constant="64" id="AsC-kk-ApQ"/>
+                            <constraint firstAttribute="height" constant="24" id="Qau-GN-GFc"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="13"/>
-                        <state key="normal" title="Button">
+                        <state key="normal" image="Secondary">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
@@ -52,4 +52,7 @@
             <point key="canvasLocation" x="64" y="72"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Secondary" width="64" height="24"/>
+    </resources>
 </document>
