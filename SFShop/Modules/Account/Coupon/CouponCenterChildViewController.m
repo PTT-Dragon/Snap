@@ -48,6 +48,13 @@
             [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
         }
         [weakself.tableView reloadData];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
     } failed:^(NSError * _Nonnull error) {
         
     }];
