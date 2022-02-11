@@ -38,9 +38,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangeNotification:)
                                                  name:@"KLanguageChange"
                                                object:nil];
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    if (model) {
-        MJRefreshConfig.defaultConfig.languageCode = model.userRes.defLangCode;
+//    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (UserDefaultObjectForKey(@"Language")) {
+        MJRefreshConfig.defaultConfig.languageCode = UserDefaultObjectForKey(@"Language");
     }
     
     return YES;
