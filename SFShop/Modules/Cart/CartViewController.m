@@ -78,9 +78,11 @@
         [MBProgressHUD hideFromKeyWindow];
         [weakself.addressArr removeAllObjects];
         [weakself.addressArr addObjectsFromArray:[addressModel arrayOfModelsFromDictionaries:response error:&error]];
-        addressModel *model =  weakself.addressArr.firstObject;
-        weakself.selAddModel = model;
-        weakself.selAddModel.sel = YES;
+        if (!weakself.selAddModel) {
+            addressModel *model =  weakself.addressArr.firstObject;
+            weakself.selAddModel = model;
+            weakself.selAddModel.sel = YES;
+        }
         [weakself updateSubviews];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];

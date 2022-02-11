@@ -1255,6 +1255,7 @@
     _selectedAddressModel.district = _districtModel.stdAddr;
     _selectedAddressModel.contactStdId = _streetModel.stdAddrId;
     _selectedAddressModel.postCode = _streetModel.zipcode;
+    _selectedAddressModel.isNoAdd = YES;
     self.addressLabel.text = [NSString stringWithFormat:@"%@,%@,%@,%@", _selectedAddressModel.province, _selectedAddressModel.city, _selectedAddressModel.district, _selectedAddressModel.postCode];
     /**
      重新选择完地址   后续操作
