@@ -1293,12 +1293,12 @@
     
     if (index == 0) {
         UIImageView *iv = nil;
-        if (view == nil) {
+//        if (view == nil) {
             iv = [[UIImageView alloc] initWithFrame:carousel.bounds];
             iv.contentMode = UIViewContentModeScaleAspectFit;
-        } else {
-            iv = (UIImageView *)view;
-        }
+//        } else {
+//            iv = (UIImageView *)view;
+//        }
         [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: self.selProductModel])]];
         [backView addSubview:iv];
     }else {
@@ -1324,12 +1324,12 @@
             
         }else {
             UIImageView *iv = nil;
-            if (view == nil) {
+//            if (view == nil) {
                 iv = [[UIImageView alloc] initWithFrame:carousel.bounds];
                 iv.contentMode = UIViewContentModeScaleAspectFit;
-            } else {
-                iv = (UIImageView *)view;
-            }
+//            } else {
+//                iv = (UIImageView *)view;
+//            }
             [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: subModel])]];
             [backView addSubview:iv];
         }
