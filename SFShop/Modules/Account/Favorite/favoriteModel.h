@@ -34,6 +34,7 @@ typedef enum :NSUInteger{
 @property (nonatomic,copy) NSString <Optional>*productName;
 @property (nonatomic,copy) NSString <Optional>*salesCnt;
 @property (nonatomic,copy) NSString <Optional>*salesPrice;
+@property (nonatomic,copy) NSString <Optional>*specialPrice;
 @property (nonatomic,copy) NSString <Optional>*storeId;
 @property (nonatomic,copy) NSString <Optional>*storeLogoUrl;
 @property (nonatomic,copy) NSString <Optional>*subheadName;

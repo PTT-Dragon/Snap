@@ -12,6 +12,8 @@
 @interface CartChooseAddressViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseAreaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHei;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @end
 
@@ -20,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.titleLabel.text = kLocalizedString(@"SHIP_TO");
+    [self.btn setTitle:kLocalizedString(@"CHOOSE_ANOTHER_ADDRESS") forState:0];
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -65,6 +69,10 @@
     ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
     vc.delegate = self;
     vc.type = 3;
+//    vc.selProvinceAreaMoel = self.provinceModel;
+//    vc.selCityAreaMoel = self.cityModel;
+//    vc.selDistrictAreaMoel = self.districtModel;
+//    vc.selStreetAreaMoel = self.streetModel;
     [self presentViewController:vc animated:YES completion:^{
         
     }];

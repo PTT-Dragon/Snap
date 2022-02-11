@@ -257,7 +257,7 @@
         self.discountLabel.hidden = NO;
         self.discountLabel.text = [NSString stringWithFormat:@"-%@%%",_model.discountPercent];
         NSAttributedString *attrStr =
-        [[NSAttributedString alloc]initWithString: [NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%ld",_model.marketPrice].currency] attributes:
+        [[NSAttributedString alloc]initWithString: [NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",_model.productImg.marketPrice].currency] attributes:
         @{NSFontAttributeName:kFontRegular(10),
           NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
           NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
@@ -295,7 +295,7 @@
         self.discountLabel.hidden = NO;
         self.discountLabel.text = [NSString stringWithFormat:@"%ld%%",_similarModel.discountPercent];
         NSAttributedString *attrStr =
-        [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld",_similarModel.marketPrice].currency attributes:
+        [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@",_similarModel.productImg.marketPrice].currency attributes:
         @{NSFontAttributeName:kFontRegular(10),
           NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
           NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),

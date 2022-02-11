@@ -157,7 +157,7 @@
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor: [UIColor jk_colorWithHexString: @"#7B7B7B"] forState:UIControlStateNormal];
         [menuItem setTitleColor: [UIColor blackColor] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = kFontBlod(14);
+        menuItem.titleLabel.font = kFontRegular(14);
     }
     [menuItem setSelected: (itemIndex == self.currentMenuIndex)];
     return menuItem;
@@ -236,7 +236,7 @@
         }
     }
     
-    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"GWCGM" addressModel:self.selAddModel productModels:productDetailModels];
+    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"GWCGM" addressModel:self.selAddModel.isNoAdd ? nil:self.selAddModel productModels:productDetailModels];
     [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
         if (isSuccess) {
             ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];

@@ -250,7 +250,10 @@
     favoriteModel *model = self.dataSource[row];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.favorite.del parameters:@{@"productIdList":@[model.productId]} success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Delete_success")];
+        if (self.block) {
+            self.block();
+        }
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"DEL_COLLECT_SUCCESS")];
         [weakself.dataSource removeObjectAtIndex:row];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {

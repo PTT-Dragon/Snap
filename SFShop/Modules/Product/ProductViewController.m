@@ -263,7 +263,7 @@
     BOOL isGroupBuy = [camaignsInfo.cmpShareBuys jk_filter:^BOOL(cmpShareBuysModel *object) {
         return object.productId.integerValue == weakself.selProductModel.productId;
     }].count > 0;
-    [self showAttrsViewWithAttrType: isGroupBuy ? groupBuyType: buyType];
+    [self showAttrsViewWithAttrType: isGroupBuy ? groupBuyType: cartType];
 }
 - (void)chooseCoupon
 {
@@ -945,6 +945,7 @@
     //[MBProgressHUD showHudMsg:@""];
     if ([self.selProductModel.isCollection isEqualToString:@"1"]) {
         [SFNetworkManager post:SFNet.favorite.del parameters:@{@"productIdList":@[@(_selProductModel.productId)]} success:^(id  _Nullable response) {
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"DEL_COLLECT_SUCCESS")];
             [MBProgressHUD hideFromKeyWindow];
             weakself.selProductModel.isCollection = @"0";
             [weakself setSelProductModel:weakself.selProductModel];
@@ -953,7 +954,7 @@
         }];
     }else{
         [SFNetworkManager post:SFNet.favorite.favorite parametersArr:@[@{@"offerId":@(_model.offerId),@"productId":@(_selProductModel.productId)}] success:^(id  _Nullable response) {
-            [MBProgressHUD hideFromKeyWindow];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COLLECT_SUCCESS")];
             weakself.selProductModel.isCollection = @"1";
             [weakself setSelProductModel:weakself.selProductModel];
 //            [MBProgressHUD autoDismissShowHudMsg:@"ADD SUCCESS"];
@@ -1120,7 +1121,7 @@
             [weakself requestCartNum];
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
         } failed:^(NSError * _Nonnull error) {
-            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Add_to_cart_failed")];
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }
 }

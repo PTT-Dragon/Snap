@@ -8,6 +8,14 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoLt.otf">
+            <string>TruenoLt</string>
+        </array>
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -29,7 +37,7 @@
                         <rect key="frame" x="16" y="0.0" width="343" height="124"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxe-mX-Df5">
-                                <rect key="frame" x="15" y="12" width="38" height="17"/>
+                                <rect key="frame" x="15" y="12" width="40.5" height="17"/>
                                 <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -100,7 +108,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="12" id="V6A-St-ym2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="10"/>
+                                <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -110,7 +118,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Tv0-WV-NSz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="10"/>
+                                <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -120,7 +128,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="jmM-Fa-kej"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="10"/>
+                                <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -130,7 +138,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="9Cy-6i-TvG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="10"/>
+                                <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -140,37 +148,37 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Ze3-eK-0yD"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="10"/>
+                                <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Pay" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Js-Qa-xYb">
-                                <rect key="frame" x="15" y="92" width="62.5" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="9"/>
+                                <rect key="frame" x="18" y="92" width="56.5" height="11"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Ship" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2L4-uZ-p2B">
-                                <rect key="frame" x="77.5" y="92" width="62.5" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="9"/>
+                                <rect key="frame" x="80.5" y="92" width="56.5" height="11"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Receive" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZy-K6-zbr">
                                 <rect key="frame" x="140" y="92" width="63" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="9"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iE-Ms-cGF">
                                 <rect key="frame" x="203" y="92" width="62.5" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="9"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Return" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDt-nn-yoF">
                                 <rect key="frame" x="265.5" y="92" width="62.5" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="9"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -189,8 +197,8 @@
                             <constraint firstItem="qwk-jH-cb4" firstAttribute="trailing" secondItem="P2X-bT-a9a" secondAttribute="trailing" constant="-8" id="CtJ-ko-nv1"/>
                             <constraint firstAttribute="height" constant="124" id="DgW-Ig-Dt4"/>
                             <constraint firstItem="9iE-Ms-cGF" firstAttribute="trailing" secondItem="cNM-QF-3IG" secondAttribute="trailing" id="Eec-P7-jAk"/>
-                            <constraint firstItem="2L4-uZ-p2B" firstAttribute="trailing" secondItem="P2X-bT-a9a" secondAttribute="trailing" id="HFp-JN-SnR"/>
-                            <constraint firstItem="5Js-Qa-xYb" firstAttribute="trailing" secondItem="HXb-7r-1rp" secondAttribute="trailing" id="I77-eK-v6w"/>
+                            <constraint firstItem="2L4-uZ-p2B" firstAttribute="trailing" secondItem="P2X-bT-a9a" secondAttribute="trailing" constant="-3" id="HFp-JN-SnR"/>
+                            <constraint firstItem="5Js-Qa-xYb" firstAttribute="trailing" secondItem="HXb-7r-1rp" secondAttribute="trailing" constant="-3" id="I77-eK-v6w"/>
                             <constraint firstItem="Aq6-OP-JKc" firstAttribute="trailing" secondItem="IhV-xd-XOa" secondAttribute="trailing" constant="-8" id="ITA-Vl-6Aw"/>
                             <constraint firstItem="cNM-QF-3IG" firstAttribute="top" secondItem="IhV-xd-XOa" secondAttribute="top" id="KWN-HB-WDd"/>
                             <constraint firstItem="wmI-di-YuS" firstAttribute="trailing" secondItem="HXb-7r-1rp" secondAttribute="trailing" constant="-8" id="M96-NJ-b1X"/>
@@ -263,7 +271,7 @@
         <image name="00202_02_delivery_filled" width="27" height="22"/>
         <image name="00324_DebitCardFill" width="28" height="16"/>
         <image name="00341_ Return Fill" width="32" height="32"/>
-        <image name="Path 174" width="6" height="8"/>
+        <image name="Path 174" width="5.5" height="8"/>
         <image name="组 64598" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
