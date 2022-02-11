@@ -44,6 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = kLocalizedString(@"Review");
+    [self.submitBtn setTitle:kLocalizedString(@"SUBMIT_REVIEW") forState:0];
     self.score1 = @"5";
     self.score2 = @"5";
     self.score3 = @"5";
@@ -79,7 +80,11 @@
 {
     if (indexPath.row == _model.orderItems.count) {
         AddReviewStoreItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddReviewStoreItemCell"];
-        cell.model = self.model;
+        if ([self.model isKindOfClass:[OrderDetailModel class]]) {
+            cell.detailModel = self.model;
+        }else{
+            cell.model = self.model;
+        }
         cell.block = ^(NSString * _Nonnull score1, NSString * _Nonnull score2, NSString * _Nonnull score3) {
             self.score1 = score1;
             self.score2 = score1;

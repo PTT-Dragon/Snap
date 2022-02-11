@@ -8,6 +8,7 @@
 #import "CommunityEvaluateCell.h"
 #import "NSDate+Helper.h"
 #import "NSString+Add.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface CommunityEvaluateCell ()
 @property (nonatomic,strong) UIImageView *imgView;
@@ -59,6 +60,7 @@
     _likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_likeBtn addTarget:self action:@selector(likeAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_likeBtn];
+    [_likeBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_likeBtn setImage:[UIImage imageNamed:@"heart"] forState:0];
     [_likeBtn setImage:[UIImage imageNamed:@"love-2"] forState:UIControlStateSelected];
     [_likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

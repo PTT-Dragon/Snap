@@ -45,6 +45,12 @@
     [self.storeLogoImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
     self.storeNameLabel.text = model.storeName;
 }
+- (void)setDetailModel:(OrderDetailModel *)detailModel
+{
+    _detailModel = detailModel;
+    [self.storeLogoImgView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"toko"]];
+    self.storeNameLabel.text = detailModel.storeName;
+}
 - (IBAction)selAction:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (self.anonymousblock) {

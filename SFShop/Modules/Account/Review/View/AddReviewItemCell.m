@@ -27,6 +27,9 @@
 @property (weak, nonatomic) IBOutlet IQTextView *textView;
 @property (nonatomic,assign) NSInteger row;
 @property (nonatomic,strong) TextCountView *countView;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *label3;
 
 @end
 
@@ -56,6 +59,11 @@
         make.bottom.mas_equalTo(self.textView.mas_bottom).offset(-30);
         make.right.mas_equalTo(self.textView.mas_right).offset(-40);
     }];
+    _textView.placeholder = kLocalizedString(@"TYPE_REVIEW");
+    _label1.text = kLocalizedString(@"UPLOAD_PHOTO");
+    _label2.text = kLocalizedString(@"RATING");
+    _label3.text = kLocalizedString(@"HOW_RATE_PRODUCT");
+    
 }
 - (void)layoutSubviews
 {

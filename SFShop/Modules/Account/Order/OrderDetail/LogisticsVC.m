@@ -11,6 +11,7 @@
 #import "LogisticsCell.h"
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import "LogisticsMoreCell.h"
 
 @interface LogisticsVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -65,6 +66,8 @@
     [self loadDatas];
     [self updateViews];
     [self.collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"LogisticsMoreCell" bundle:nil] forCellWithReuseIdentifier:@"LogisticsMoreCell"];
+    
     [self.collectionView reloadData];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,13 +124,20 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _model.orderItems.count;
+    return _model.orderItems.count>3?4:_model.orderItems.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 3) {
+        LogisticsMoreCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LogisticsMoreCell" forIndexPath:indexPath];
+        cell.countLabel.text = [NSString stringWithFormat:@"+ %ld",_model.orderItems.count-3];
+        cell.moreLabel.text = kLocalizedString(@"MORE");
+        return cell;
+    }
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
     [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage([_model.orderItems[indexPath.row] imagUrl])]];
     return cell;
 }
+
 - (IBAction)btnAction:(UIButton *)sender {
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.string = sender.titleLabel.text;

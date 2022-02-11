@@ -126,7 +126,7 @@
   "SIGN_UP" = "DAFTAR";
 //  "SIGN_TO_LOGIN" = "Masuk";
   "CATEGORY" = "Kategori";
-  "GET_NOW" = "Kumpulkan";
+  "GET_NOW" = "Dapatkan sekarang";
 "COLLECT_SUCCESS" = "Produk berhasil ditambahkan ke wishlist";
 "DEL_COLLECT_SUCCESS" = "Produk berhasil dihapus dari wishlist";
 //  "COLLECT" = "Mengumpulkan";

@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdditionalReviewViewController">
             <connections>
@@ -36,7 +41,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="OS8-Rx-hYC"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
+                    <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="14"/>
                     <state key="normal" title="Submit review"/>
                     <connections>
                         <action selector="submitAction:" destination="-1" eventType="touchUpInside" id="bAe-yd-Q1k"/>
@@ -62,7 +67,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qz2-at-Je5">
-                                    <rect key="frame" x="116" y="55" width="26.5" height="21"/>
+                                    <rect key="frame" x="116" y="55" width="27" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="Ncy-dW-feI"/>
                                     </constraints>
@@ -92,13 +97,13 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload your photos or videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eol-Jc-NFJ">
-                            <rect key="frame" x="16" y="219" width="191" height="17"/>
+                            <rect key="frame" x="16" y="219" width="203.5" height="17"/>
                             <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How would you rate this product?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlS-7o-LXd">
-                            <rect key="frame" x="16" y="348" width="216.5" height="17"/>
+                            <rect key="frame" x="16" y="348" width="234.5" height="17"/>
                             <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

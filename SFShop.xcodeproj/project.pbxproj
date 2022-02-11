@@ -285,6 +285,8 @@
 		1BB1CB7227634DF6008D71DF /* FlashSaleProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */; };
 		1BBB594D279FDA18002ED0E8 /* RefundOrReturnReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */; };
 		1BBB594E279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */; };
+		1BBB688727B660EB00A8B83D /* LogisticsMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB688527B660EB00A8B83D /* LogisticsMoreCell.m */; };
+		1BBB688827B660EB00A8B83D /* LogisticsMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB688627B660EB00A8B83D /* LogisticsMoreCell.xib */; };
 		1BBCA963279A674800F4A4FF /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBCA962279A674800F4A4FF /* accountInfoCell.xib */; };
 		1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2B9272AF1E400755832 /* FAQViewController.m */; };
 		1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BA272AF1E400755832 /* FAQViewController.xib */; };
@@ -1081,6 +1083,9 @@
 		1BBB594A279FDA18002ED0E8 /* RefundOrReturnReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundOrReturnReasonCell.h; sourceTree = "<group>"; };
 		1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundOrReturnReasonCell.m; sourceTree = "<group>"; };
 		1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundOrReturnReasonCell.xib; sourceTree = "<group>"; };
+		1BBB688427B660EB00A8B83D /* LogisticsMoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogisticsMoreCell.h; sourceTree = "<group>"; };
+		1BBB688527B660EB00A8B83D /* LogisticsMoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogisticsMoreCell.m; sourceTree = "<group>"; };
+		1BBB688627B660EB00A8B83D /* LogisticsMoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogisticsMoreCell.xib; sourceTree = "<group>"; };
 		1BBCA961279A66F000F4A4FF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/accountOrderCell.xib; sourceTree = "<group>"; };
 		1BBCA962279A674800F4A4FF /* accountInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
 		1BC7A2B8272AF1E400755832 /* FAQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
@@ -2191,6 +2196,9 @@
 				1B57FF1C27A0CF360097B6C9 /* LogisticsCell.h */,
 				1B57FF1D27A0CF360097B6C9 /* LogisticsCell.m */,
 				1B57FF1E27A0CF360097B6C9 /* LogisticsCell.xib */,
+				1BBB688427B660EB00A8B83D /* LogisticsMoreCell.h */,
+				1BBB688527B660EB00A8B83D /* LogisticsMoreCell.m */,
+				1BBB688627B660EB00A8B83D /* LogisticsMoreCell.xib */,
 				1B595E2C27A117EA0027BCAA /* OrderDetailTitleCell.h */,
 				1B595E2D27A117EA0027BCAA /* OrderDetailTitleCell.m */,
 				1B595E2E27A117EA0027BCAA /* OrderDetailTitleCell.xib */,
@@ -3800,6 +3808,7 @@
 				1B2AE442272E8EDD00FB23D3 /* ChooseReasonViewController.xib in Resources */,
 				1B478317272A957000F2A945 /* RefundProcessCell.xib in Resources */,
 				1B57FF2027A0CF360097B6C9 /* LogisticsCell.xib in Resources */,
+				1BBB688827B660EB00A8B83D /* LogisticsMoreCell.xib in Resources */,
 				1BF44942279B37BF003A38F8 /* ProductShowGroupCell.xib in Resources */,
 				1B3C123226FC808F00235294 /* accountSubCell.xib in Resources */,
 				1BDBEB9E26FDA1870018109B /* forgotPasswordView.xib in Resources */,
@@ -4177,6 +4186,7 @@
 				1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */,
 				1BF56CD02761001000B40CAA /* CountDown.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
+				1BBB688727B660EB00A8B83D /* LogisticsMoreCell.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
 				1BD10C382761E80100BFC1AD /* ProductEvalationTitleCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,

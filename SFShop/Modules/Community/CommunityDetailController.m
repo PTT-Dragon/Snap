@@ -299,6 +299,8 @@
         [MBProgressHUD hideFromKeyWindow];
         [weakself.replyField resignFirstResponder];
         weakself.replyField.text = @"";
+        weakself.model.replyCnt ++;
+        [weakself setModel:weakself.model];
         [weakself requestArticleEvaluate];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD hideFromKeyWindow];

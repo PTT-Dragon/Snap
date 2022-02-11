@@ -256,7 +256,7 @@
         [weakself.navigationController pushViewController:vc animated:YES];
         [baseTool removeVCFromNavigation:self];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (IBAction)submitAction:(id)sender {
