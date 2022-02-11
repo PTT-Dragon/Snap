@@ -87,19 +87,7 @@
 
 #pragma mark - Get and Set
 - (void)setItem:(CouponItem *)item {
-    NSString *discount = [NSString stringWithFormat:@"Discount %.3f ",item.discountAmount * 0.001];
-    NSString *spendMin = [NSString stringWithFormat:@"Min.Spend %.3f ",item.thAmount * 0.001];
-    if (item.thAmount) {
-        self.discountLabel.text = [discount stringByAppendingString:spendMin];
-    } else {
-        self.discountLabel.text = discount;
-    }
-    if ([item.discountMethod isEqualToString:@"DISC"]) {
-        self.discountLabel.text = [NSString stringWithFormat:@"%@ %.2f%% Min.spend %.2f",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0ld",item.discountAmount] currencyFloat],[[NSString stringWithFormat:@"%ld",item.thAmount] currencyFloat]];
-    }else{
-        self.discountLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0ld",item.discountAmount] currency]];
-    }
-    
+    self.discountLabel.text = item.couponName;
     if (item.effDate.length > 0 && item.expDate.length > 0) {
         self.expireContentLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:item.effDate] dayMonthYear],[[NSDate dateFromString:item.expDate] dayMonthYear]];
     }

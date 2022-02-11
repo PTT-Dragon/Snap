@@ -90,7 +90,10 @@
     if (section == 0) {
         return 1;
     }else if (section == 1) {
-        return evaModel.review.contents.count;
+        if (evaModel.review.reviewComments) {
+            return 1;
+        }
+//        return evaModel.review.contents.count;
     }else {
         if (evaModel.reply) {
             return 1;
@@ -145,7 +148,7 @@
         CGFloat hei2 = ceil(evaModel.review.contents.count/4.0)*(itemHei + 10);
         return hei2+78;
     }else {
-        CGFloat hei2 = ceil(evaModel.review.contents.count/4.0)*(itemHei + 10);
+        CGFloat hei2 = ceil(evaModel.reply.contents.count/4.0)*(itemHei + 10);
         return hei2+78;
     }    
 }
