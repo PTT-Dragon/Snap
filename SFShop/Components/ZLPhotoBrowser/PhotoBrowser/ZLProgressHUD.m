@@ -45,7 +45,7 @@
     UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 110, 30)];
     lab.textAlignment = NSTextAlignmentCenter;
     lab.textColor = [UIColor whiteColor];
-    lab.font = [UIFont systemFontOfSize:16];
+    lab.font = kFontRegular(16);
     lab.text = GetLocalLanguageTextValue(ZLPhotoBrowserHandleText);
     
     [view addSubview:indicator];

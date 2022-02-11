@@ -22,7 +22,7 @@
 @implementation FlashSaleCtgModel
 - (float)width
 {
-    return [self.catalogName calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter limitSize:CGSizeMake(MAXFLOAT, 62)]+24;
+    return [self.catalogName calWidth:kFontRegular(14) lineMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter limitSize:CGSizeMake(MAXFLOAT, 62)]+24;
 }
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {

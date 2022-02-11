@@ -104,7 +104,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = kLocalizedString(@"SF_shop_Voucher");
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleLabel.font = kFontRegular(14);
         _titleLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _titleLabel;
@@ -114,7 +114,7 @@
     if (_subTitleLabel == nil) {
         _subTitleLabel = [[UILabel alloc] init];
         _subTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _subTitleLabel.font = [UIFont systemFontOfSize:14];
+        _subTitleLabel.font = kFontRegular(14);
         _subTitleLabel.textAlignment = NSTextAlignmentRight;
     }
     return _subTitleLabel;

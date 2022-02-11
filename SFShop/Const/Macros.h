@@ -333,3 +333,8 @@ dispatch_async(dispatch_get_main_queue(), block);\
 #else
 #define NSLog(...) {}
 #endif  
+
+
+#define kFontBlod(fontSize) [UIFont fontWithName:@"TruenoBd" size:fontSize]
+#define kFontRegular(fontSize) [UIFont fontWithName:@"TruenoRg" size:fontSize]
+#define kFontLight(fontSize) [UIFont fontWithName:@"TruenoLt" size:fontSize]

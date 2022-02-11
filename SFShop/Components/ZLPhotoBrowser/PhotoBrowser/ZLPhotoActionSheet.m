@@ -87,7 +87,7 @@ double const ScalePhotoWidth = 1000;
         _placeholderLabel.text = GetLocalLanguageTextValue(ZLPhotoBrowserNoPhotoText);
         _placeholderLabel.textAlignment = NSTextAlignmentCenter;
         _placeholderLabel.textColor = [UIColor darkGrayColor];
-        _placeholderLabel.font = [UIFont systemFontOfSize:15];
+        _placeholderLabel.font = kFontRegular(15);
         _placeholderLabel.center = self.collectionView.center;
         [self.collectionView addSubview:_placeholderLabel];
         _placeholderLabel.hidden = YES;

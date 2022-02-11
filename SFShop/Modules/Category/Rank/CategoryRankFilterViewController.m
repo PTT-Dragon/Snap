@@ -213,7 +213,7 @@
     id cellModel = self.dataArray[indexPath.section][indexPath.row];
     if ([cellModel isKindOfClass:CategoryRankFilterModel.class]) {
         CategoryRankFilterModel *model = cellModel;
-        width = [model.name calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(MainScreen_width - 16 * 2, 32)] + 12 * 2;
+        width = [model.name calWidth:kFontRegular(14) lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(MainScreen_width - 16 * 2, 32)] + 12 * 2;
     } else if ([cellModel isKindOfClass:CategoryRankPriceModel.class]) {
         return CGSizeMake(MainScreen_width - 16 * 2 , 46);
     }
@@ -361,7 +361,7 @@
         [_resetBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateNormal];
         _resetBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#FF1659"].CGColor;
         _resetBtn.layer.borderWidth = 1;
-        _resetBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _resetBtn.titleLabel.font =kFontBlod(16);
     }
     return _resetBtn;
 }
@@ -374,7 +374,7 @@
         [_confirmBtn setTitle:kLocalizedString(@"CONFIRM") forState:UIControlStateNormal];
         [_confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_confirmBtn setBackgroundColor:[UIColor jk_colorWithHexString:@"#FF1659"]];
-        _confirmBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _confirmBtn.titleLabel.font =kFontBlod(16);
     }
     return _confirmBtn;
 }

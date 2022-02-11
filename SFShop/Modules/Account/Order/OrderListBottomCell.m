@@ -246,7 +246,7 @@ static dispatch_source_t _timer;
         [self moreAction1:nil];
     }];
     YCMenuView *menu = [YCMenuView menuWithActions:@[action1] width:114 relyonView:sender];
-    menu.textFont = [UIFont systemFontOfSize:14];
+    menu.textFont = kFontRegular(14);
     menu.cellAlignment = NSTextAlignmentCenter;
     [menu show];
 }

@@ -73,7 +73,7 @@
         
         UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 7, 150, 30)];
         title.text = kLocalizedString(@"Recommendations");
-        title.font = [UIFont boldSystemFontOfSize:17];
+        title.font = kFontBlod(17);
         title.textColor = [UIColor blackColor];
         [view addSubview: title];
         return view;

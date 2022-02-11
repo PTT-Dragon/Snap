@@ -140,7 +140,9 @@
 "RESET_WITH_SMS" = "CHANGE WITH SMS";
 "RESET_WITH_EMAIL" = "CHANGE WITH EMAIL";
 //  "DELIVERY" = "Delivery";
-//  "DELETE_ADDRESS_TXT" = "Are you sure to delete this address?";
+  "DELETE_ADDRESS_TXT" = "Are you sure to delete this address?";
+"ADDRESS_ADD_SUCCESS" = "Add address successfully.";
+"MODIFY_ADD_SUCCESS" = "Modify address successfully.";
   "ADD_ADDRESS" = "ADD ADDRESS";
 //  "MY_ADDRESS" = "My Address";
 "REQUIREDTIP" = "Please Input";
@@ -148,8 +150,6 @@
   "INCORRECT_PHONE" = "Please input the correct phone number.";
   "INCORRECT_EMAIL" = "Please input the correct email.";
   "ADDRESS_DEFAULT" = "Set Default";
-//  "ADDRESS_ADD_SUCCESS" = "Add address successfully.";
-//  "MODIFY_ADD_SUCCESS" = "Modify address successfully.";
 //  "SERVICE_DETAIL" = "Service Detail";
 //  "CARGO_STATUS" = "Cargo Status";
   "SERVICE_REASON" = "Reason";
@@ -225,7 +225,7 @@
   "INBOX" = "Inbox";
   "MY_SF" = "My SF";
 //  "DELETE" = "Delete";
-//  "CANCAL" = "Cancel";
+  "CANCAL" = "CANCEL";
 //  "CHOOSE_SHIPPING_ADDRESS" = "Choose shipping address";
   "COUPON" = "Voucher";
   "ITEMS" = "item(s)";

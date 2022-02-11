@@ -68,7 +68,7 @@
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.textAlignment = NSTextAlignmentLeft;
         _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _priceLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightHeavy];
+        _priceLabel.font = kFontBlod(16);
     }
     return _priceLabel;
 }
@@ -78,7 +78,7 @@
         _desLabel = [[UILabel alloc] init];
         _desLabel.textAlignment = NSTextAlignmentLeft;
         _desLabel.textColor = [UIColor jk_colorWithHexString:@"#999999"];
-        _desLabel.font = [UIFont systemFontOfSize:10];
+        _desLabel.font = kFontRegular(10);
         _desLabel.text = kLocalizedString(@"Total");
     }
     return _desLabel;
@@ -89,7 +89,7 @@
         _buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_buyBtn setBackgroundColor:[UIColor jk_colorWithHexString:@"#FF1659"]];
         [_buyBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-        _buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _buyBtn.titleLabel.font = kFontBlod(14);
         [_buyBtn setTitle:kLocalizedString(@"Place_order") forState:UIControlStateNormal];
         [_buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }

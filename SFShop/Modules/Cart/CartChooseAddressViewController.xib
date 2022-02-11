@@ -36,7 +36,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="46" id="lJK-iL-40Q"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                             <state key="normal" title="CHOOSE ANOTHER ADDRESS"/>
                             <connections>
                                 <action selector="anotherAddressAction:" destination="-1" eventType="touchUpInside" id="TVQ-Z6-JYi"/>

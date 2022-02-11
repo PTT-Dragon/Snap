@@ -155,7 +155,7 @@
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor: [UIColor jk_colorWithHexString: @"#7B7B7B"] forState:UIControlStateNormal];
         [menuItem setTitleColor: [UIColor blackColor] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:14.f];
+        menuItem.titleLabel.font = kFontBlod(14);
     }
     [menuItem setSelected: (itemIndex == self.currentMenuIndex)];
     return menuItem;
@@ -419,7 +419,7 @@
         _checkBtn.frame = CGRectMake(MainScreen_width-176, 16, 160, 46);
         _checkBtn.backgroundColor = RGBColorFrom16(0xFF1659);
         [_checkBtn setTitle:@"CHECK OUT" forState:0];
-        _checkBtn.titleLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
+        _checkBtn.titleLabel.font = kFontBlod(14);
         [_checkBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _checkBtn;
@@ -452,7 +452,7 @@
     if (!_amountLabel) {
         NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 39, 200, 19)];
-        _amountLabel.font = [UIFont fontWithName:@"System SemiBold" size:16];
+        _amountLabel.font = kFontBlod(16);
         _amountLabel.text = currency;
         _amountLabel.textAlignment = NSTextAlignmentLeft;
         _amountLabel.textColor = RGBColorFrom16(0xFF1659);
@@ -464,7 +464,7 @@
     if (!_priceLabel) {
         NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 74, 135, 19)];
-        _priceLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
+        _priceLabel.font = kFontBlod(14);
         _priceLabel.text = currency;
         _priceLabel.textAlignment = NSTextAlignmentRight;
     }
@@ -475,7 +475,7 @@
     if (!_totalAmountLabel) {
         NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _totalAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 141, 135, 19)];
-        _totalAmountLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
+        _totalAmountLabel.font = kFontBlod(14);
         _totalAmountLabel.text = currency;
         _totalAmountLabel.textAlignment = NSTextAlignmentRight;
         _totalAmountLabel.textColor = RGBColorFrom16(0xFF1659);
@@ -487,7 +487,7 @@
     if (!_preferentialAmountLabel) {
         NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         _preferentialAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(MainScreen_width-150, 103, 135, 19)];
-        _preferentialAmountLabel.font = [UIFont fontWithName:@"System SemiBold" size:14];
+        _preferentialAmountLabel.font = kFontBlod(14);
         _preferentialAmountLabel.text = currency;
         _preferentialAmountLabel.textAlignment = NSTextAlignmentRight;
     }
@@ -521,7 +521,7 @@
             [self toAddressListVC];
         }];
         [_addressBtn setTitleColor:RGBColorFrom16(0x7b7b7b) forState:0];
-        _addressBtn.titleLabel.font = CHINESE_SYSTEM(13);
+        _addressBtn.titleLabel.font = kFontRegular(13);
     }
     return _addressBtn;
 }

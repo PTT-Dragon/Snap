@@ -135,7 +135,7 @@
         _iconTitlelabel = [[UILabel alloc] init];
         _iconTitlelabel.text = kLocalizedString(@"DISCOUNT");
         _iconTitlelabel.textColor = [UIColor whiteColor];
-        _iconTitlelabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
+        _iconTitlelabel.font = kFontRegular(14);
         _iconTitlelabel.textAlignment = NSTextAlignmentCenter;
     }
     return _iconTitlelabel;
@@ -154,7 +154,7 @@
         _discountLabel = [[UILabel alloc] init];
         _discountLabel.numberOfLines = 2;
         _discountLabel.textColor = [UIColor blackColor];
-        _discountLabel.font = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
+        _discountLabel.font = kFontRegular(15);
         _discountLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _discountLabel;
@@ -165,7 +165,7 @@
         _expireTitleLabel = [[UILabel alloc] init];
         _expireTitleLabel.text = kLocalizedString(@"EXPIRY_DATE");
         _expireTitleLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
-        _expireTitleLabel.font = [UIFont systemFontOfSize:13];
+        _expireTitleLabel.font = kFontRegular(13);
         _expireTitleLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _expireTitleLabel;
@@ -175,7 +175,7 @@
     if (_expireContentLabel == nil) {
         _expireContentLabel = [[UILabel alloc] init];
         _expireContentLabel.textColor = [UIColor blackColor];
-        _expireContentLabel.font = BOLDSYSTEMFONT(12);
+        _expireContentLabel.font = kFontBlod(12);
         _expireContentLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _expireContentLabel;

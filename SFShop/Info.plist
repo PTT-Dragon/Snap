@@ -144,6 +144,12 @@
 	<string>Select pictures from albums when uploading avatars or comment pictures</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Select pictures from albums when uploading avatars or comment pictures</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>TruenoBd.otf</string>
+		<string>TruenoLt.otf</string>
+		<string>TruenoRg.otf</string>
+	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

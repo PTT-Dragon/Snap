@@ -30,7 +30,7 @@
                         <constraint firstAttribute="width" constant="50" id="ZgT-A0-Mk7"/>
                         <constraint firstAttribute="height" constant="46" id="gIi-cX-Z7E"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
                     <state key="normal" title="Login"/>
                     <connections>
                         <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="bZk-xI-Zru"/>

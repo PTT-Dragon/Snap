@@ -258,7 +258,7 @@
         self.discountLabel.text = [NSString stringWithFormat:@"-%@%%",_model.discountPercent];
         NSAttributedString *attrStr =
         [[NSAttributedString alloc]initWithString: [NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%ld",_model.marketPrice].currency] attributes:
-        @{NSFontAttributeName:[UIFont systemFontOfSize:10],
+        @{NSFontAttributeName:kFontRegular(10),
           NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
           NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
           NSStrikethroughColorAttributeName:[UIColor jk_colorWithHexString:@"#CCCCCC"]}];
@@ -296,7 +296,7 @@
         self.discountLabel.text = [NSString stringWithFormat:@"%ld%%",_similarModel.discountPercent];
         NSAttributedString *attrStr =
         [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld",_similarModel.marketPrice].currency attributes:
-        @{NSFontAttributeName:[UIFont systemFontOfSize:10],
+        @{NSFontAttributeName:kFontRegular(10),
           NSForegroundColorAttributeName:[UIColor jk_colorWithHexString:@"#7B7B7B"],
           NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
           NSStrikethroughColorAttributeName:[UIColor jk_colorWithHexString:@"#CCCCCC"]}];
@@ -369,7 +369,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"";
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];;
+        _titleLabel.font = kFontBlod(14);
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         _titleLabel.numberOfLines = 2;
@@ -382,7 +382,7 @@
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.text = @"";
         _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _priceLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightHeavy];
+        _priceLabel.font = kFontBlod(12);
         _priceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _priceLabel;
@@ -393,7 +393,7 @@
         _discountLabel = [[UILabel alloc] init];
         _discountLabel.text = @"";
         _discountLabel.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
-        _discountLabel.font = [UIFont systemFontOfSize:9 weight:UIFontWeightHeavy];;
+        _discountLabel.font = kFontBlod(9);
         _discountLabel.textAlignment = NSTextAlignmentCenter;
         _discountLabel.backgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
     }
@@ -404,7 +404,7 @@
     if (_originPriceLabel == nil) {
         _originPriceLabel = [[UILabel alloc] init];
         _originPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _originPriceLabel.font = [UIFont systemFontOfSize:10];
+        _originPriceLabel.font = kFontRegular(10);
         _originPriceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _originPriceLabel;
@@ -413,7 +413,7 @@
 - (TagListView *)promoTypeView {
     if (_promoTypeView == nil) {
         _promoTypeView = [[TagListView alloc] init];
-        _promoTypeView.textFont = [UIFont systemFontOfSize:10 weight:UIFontWeightHeavy];
+        _promoTypeView.textFont = kFontBlod(10);
         _promoTypeView.textColor = [UIColor jk_colorWithHexString:@"#FFFFFF"];
         _promoTypeView.tagBackgroundColor = [UIColor jk_colorWithHexString:@"#FF1659"];
         _promoTypeView.alignment = AlignmentLeft;
@@ -428,7 +428,7 @@
         _gradeLevelLabel = [[UILabel alloc] init];
         _gradeLevelLabel.text = @"";
         _gradeLevelLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
-        _gradeLevelLabel.font = [UIFont systemFontOfSize:10];
+        _gradeLevelLabel.font = kFontRegular(10);
         _gradeLevelLabel.textAlignment = NSTextAlignmentCenter;
         _gradeLevelLabel.hidden = YES;
     }
@@ -440,7 +440,7 @@
         _gradeNumberLabel = [[UILabel alloc] init];
         _gradeNumberLabel.text = @"";
         _gradeNumberLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
-        _gradeNumberLabel.font = [UIFont systemFontOfSize:10];
+        _gradeNumberLabel.font = kFontRegular(10);
         _gradeNumberLabel.textAlignment = NSTextAlignmentLeft;
         _gradeNumberLabel.hidden = YES;
     }

@@ -78,7 +78,7 @@
         _titleLabel.textColor = RGBColorFrom16(0x000000);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.numberOfLines = 0;
-        _titleLabel.font = CHINESE_SYSTEM(12);
+        _titleLabel.font = CHINESE_SYSTEM(13);
         _titleLabel.text = title;
         [_bgView addSubview:_titleLabel];
         [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -142,7 +142,7 @@
         _titleLabel.textColor = RGBColorFrom16(0x000000);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.numberOfLines = 0;
-        _titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+        _titleLabel.font = kFontBlod(14);
         _titleLabel.text = title;
         [_bgView addSubview:_titleLabel];
         [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -155,7 +155,7 @@
         _contentLabel.textColor = RGBColorFrom16(0x000000);
         _contentLabel.textAlignment = NSTextAlignmentCenter;
         _contentLabel.numberOfLines = 0;
-        _contentLabel.font = CHINESE_SYSTEM(12);
+        _contentLabel.font = kFontRegular(12);
         _contentLabel.text = content;
         [_bgView addSubview:_contentLabel];
         [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -165,7 +165,7 @@
         }];
         
         _btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btn.titleLabel.font = CHINESE_BOLD(14);
+        _btn.titleLabel.font = kFontBlod(14);
         [_btn setTitleColor:[UIColor whiteColor] forState:0];
         _btn.backgroundColor = RGBColorFrom16(0xFF1659);
         [_btn setTitle:btn1Title forState:0];

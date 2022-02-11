@@ -100,7 +100,7 @@
     }];
     
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.font = [UIFont systemFontOfSize:16];
+    _titleLabel.font = kFontRegular(16);
     [_titleLabel setTextColor: [UIColor blackColor]];
     _titleLabel.numberOfLines = 2;
     [self addSubview:_titleLabel];
@@ -111,7 +111,7 @@
     }];
     
     _priceLabel = [[UILabel alloc] init];
-    _priceLabel.font = [UIFont boldSystemFontOfSize:16];
+    _priceLabel.font = kFontBlod(16);
     [_priceLabel setTextColor: [UIColor jk_colorWithHexString:@"#ff1659"]];
     _priceLabel.numberOfLines = 1;
     [self addSubview:_priceLabel];
@@ -122,7 +122,7 @@
     }];
     
     _stockLabel = [[UILabel alloc] init];
-    _stockLabel.font = [UIFont boldSystemFontOfSize:12];
+    _stockLabel.font = kFontBlod(12);
     [_stockLabel setTextColor: [UIColor jk_colorWithHexString:@"#555555"]];
     _stockLabel.numberOfLines = 1;
     [self addSubview:_stockLabel];
@@ -143,7 +143,7 @@
     }];
     
     UILabel *quantityLabel = [[UILabel alloc] init];
-    quantityLabel.font = [UIFont boldSystemFontOfSize:16];
+    quantityLabel.font = kFontBlod(16);
     [quantityLabel setTextColor: [UIColor blackColor]];
     quantityLabel.text = kLocalizedString(@"Quantity");
     [self addSubview:quantityLabel];
@@ -171,7 +171,7 @@
     }];
     
     _countLabel = [[UILabel alloc] init];
-    _countLabel.font = [UIFont boldSystemFontOfSize:20];
+    _countLabel.font = kFontBlod(20);
     _countLabel.textAlignment = NSTextAlignmentCenter;
     [_countLabel setTextColor: [UIColor blackColor]];
     _countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
@@ -221,7 +221,7 @@
     _btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
     _btn1.backgroundColor = RGBColorFrom16(0xFF1659);
     [_btn1 setTitle:@"立即购买" forState:0];
-    _btn1.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:15.f];
+    _btn1.titleLabel.font = kFontBlod(15);
     [_btn1 setTitleColor:[UIColor whiteColor] forState:0];
     _btn1.titleLabel.numberOfLines = 2;
     _btn1.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -239,7 +239,7 @@
     [_btn2 jk_setBackgroundColor: [UIColor whiteColor] forState:UIControlStateNormal];
     [_btn2 setTitle:@"加入购物车" forState:0];
     _btn2.titleLabel.textAlignment = NSTextAlignmentCenter;
-    _btn2.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:15.f];
+    _btn2.titleLabel.font = kFontBlod(15);
     _btn2.titleLabel.numberOfLines = 2;
     [_btn2 setTitleColor:RGBColorFrom16(0xFF1659) forState:0];
     _btn2.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
@@ -495,7 +495,7 @@
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.text = obj.attrName;
         titleLabel.textColor = [UIColor blackColor];
-        titleLabel.font = [UIFont systemFontOfSize:16];
+        titleLabel.font = kFontRegular(16);
         [weakself.attrsScrollContentView addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(weakself.attrsScrollContentView).offset(16);
@@ -517,7 +517,7 @@
             [item setSelected: isSelected];
             [item setTitle:obj.value forState:UIControlStateNormal];
             [weakself.attrsScrollContentView addSubview:item];
-            CGFloat itemWidth = [obj.value calWidth:[UIFont systemFontOfSize:14] lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(1000, 1000)] + 20; // 添加10的宽度做padding
+            CGFloat itemWidth = [obj.value calWidth:kFontRegular(14) lineMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter limitSize:CGSizeMake(1000, 1000)] + 20; // 添加10的宽度做padding
             if(idx2 == 0 || xOffset + itemWidth + 16 > [[UIScreen mainScreen] bounds].size.width) {
                 xOffset = 16;
                 newLine = YES;
@@ -652,7 +652,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    self.titleLabel.font = [UIFont systemFontOfSize:14];
+    self.titleLabel.font = kFontRegular(14);
     [self setTitleColor:[UIColor jk_colorWithHexString:@"#7b7b7b"] forState:UIControlStateNormal];
     [self setTitleColor:[UIColor jk_colorWithHexString:@"#ff1659"] forState:UIControlStateSelected];
     self.layer.borderColor = [UIColor jk_colorWithHexString:@"#c4c4c4"].CGColor;

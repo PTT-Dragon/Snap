@@ -98,7 +98,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"";
         _titleLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.font = kFontBlod(14);
         _titleLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _titleLabel;
@@ -109,7 +109,7 @@
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.text = @"";
         _priceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
-        _priceLabel.font = [UIFont systemFontOfSize:14];
+        _priceLabel.font = kFontRegular(14);
         _priceLabel.textAlignment = NSTextAlignmentRight;
     }
     return _priceLabel;
@@ -120,7 +120,7 @@
         _desLabel = [[UILabel alloc] init];
         _desLabel.text = @"";
         _desLabel.textColor = [UIColor jk_colorWithHexString:@"#7B7B7B"];
-        _desLabel.font = [UIFont systemFontOfSize:12];
+        _desLabel.font = kFontRegular(12);
         _desLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _desLabel;

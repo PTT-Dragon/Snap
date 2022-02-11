@@ -820,7 +820,7 @@
         NSAttributedString *lastStr = [[NSAttributedString alloc] initWithString:[NSBundle zlLocalizedStringForKey:ZLPhotoBrowseriCloudVideoText]];
         [str appendAttributedString:lastStr];
         _icloudLoadFailedLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 70, 200, 35)];
-        _icloudLoadFailedLabel.font = [UIFont systemFontOfSize:12];
+        _icloudLoadFailedLabel.font = kFontRegular(12);
         _icloudLoadFailedLabel.attributedText = str;
         _icloudLoadFailedLabel.textColor = [UIColor whiteColor];
         [self addSubview:_icloudLoadFailedLabel];

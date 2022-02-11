@@ -62,7 +62,7 @@
     indexLabel.bounds = CGRectMake(0, 0, 80, 30);
     indexLabel.textAlignment = NSTextAlignmentCenter;
     indexLabel.textColor = [UIColor whiteColor];
-    indexLabel.font = [UIFont boldSystemFontOfSize:20];
+    indexLabel.font = kFontBlod(20);
     indexLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     indexLabel.layer.cornerRadius = indexLabel.bounds.size.height * 0.5;
     indexLabel.clipsToBounds = YES;
@@ -78,7 +78,7 @@
     [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 //    saveButton.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.90f];
 //    saveButton.layer.cornerRadius = 5;
-    saveButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    saveButton.titleLabel.font = kFontRegular(16);
 //    saveButton.clipsToBounds = YES;
     [saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
     _saveButton = saveButton;
@@ -112,7 +112,7 @@
     label.bounds = CGRectMake(0, 0, 150, 30);
     label.center = self.center;
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:17];
+    label.font = kFontBlod(17);
     [[UIApplication sharedApplication].keyWindow addSubview:label];
     [[UIApplication sharedApplication].keyWindow bringSubviewToFront:label];
     if (error) {

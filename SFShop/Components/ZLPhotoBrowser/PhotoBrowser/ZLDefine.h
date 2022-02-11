@@ -257,7 +257,7 @@ static inline CGFloat GetMatchValue(NSString *text, CGFloat fontSize, BOOL isHei
     CGSize resultSize;
     if ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0) {
         //返回计算出的size
-        resultSize = [text boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:fontSize]} context:nil].size;
+        resultSize = [text boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: kFontRegular(fontSize)} context:nil].size;
     }
     if (isHeightFixed) {
         return resultSize.width;

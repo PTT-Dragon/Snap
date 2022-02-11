@@ -185,7 +185,7 @@
            forControlEvents:UIControlEventTouchUpInside];
         [_homeBtn setTitleColor:UIColor.blackColor
                        forState:UIControlStateNormal];
-        _homeBtn.titleLabel.font = [UIFont systemFontOfSize:9];
+        _homeBtn.titleLabel.font = kFontRegular(9);
         [_homeBtn setImagePosition:FFImagePositionTop
                            spacing:6];
     }
@@ -204,7 +204,7 @@
             forControlEvents:UIControlEventTouchUpInside];
         [_inboxBtn setTitleColor:UIColor.blackColor
                         forState:UIControlStateNormal];
-        _inboxBtn.titleLabel.font = [UIFont systemFontOfSize:9];
+        _inboxBtn.titleLabel.font = kFontRegular(9);
         [_inboxBtn setImagePosition:FFImagePositionTop
                             spacing:6];
     }
@@ -223,7 +223,7 @@
               forControlEvents:UIControlEventTouchUpInside];
         [_accountBtn setTitleColor:UIColor.blackColor
                           forState:UIControlStateNormal];
-        _accountBtn.titleLabel.font = [UIFont systemFontOfSize:9];
+        _accountBtn.titleLabel.font = kFontRegular(9);
         [_accountBtn setImagePosition:FFImagePositionTop
                               spacing:6];
     }
@@ -242,7 +242,7 @@
            forControlEvents:UIControlEventTouchUpInside];
         [_mysfBtn setTitleColor:UIColor.blackColor
                        forState:UIControlStateNormal];
-        _mysfBtn.titleLabel.font = [UIFont systemFontOfSize:9];
+        _mysfBtn.titleLabel.font = kFontRegular(9);
         [_mysfBtn setImagePosition:FFImagePositionTop
                            spacing:6];
         _mysfBtn.hidden = YES;
@@ -266,7 +266,7 @@
         _badgeLabel.backgroundColor = RGBColorFrom16(0xff1659);
         _badgeLabel.textColor = [UIColor whiteColor];
         _badgeLabel.textAlignment = NSTextAlignmentNatural;
-        _badgeLabel.font = CHINESE_SYSTEM(10);
+        _badgeLabel.font = kFontRegular(10);
     }
     return _badgeLabel;
 }

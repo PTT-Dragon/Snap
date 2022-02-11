@@ -269,7 +269,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = UIColor.blackColor;
-        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.font = kFontBlod(14);
     }
     return _titleLabel;
 }
@@ -278,7 +278,7 @@
     if (!_anchorNameLabel) {
         _anchorNameLabel = [[UILabel alloc] init];
         _anchorNameLabel.textColor = UIColor.blackColor;
-        _anchorNameLabel.font = [UIFont boldSystemFontOfSize:14];
+        _anchorNameLabel.font = kFontBlod(14);
     }
     return _anchorNameLabel;
 }
@@ -295,7 +295,7 @@
     if (!_clearLabel) {
         _clearLabel = [[UILabel alloc] init];
         _clearLabel.textColor = RGBColorFrom16(0x555555);
-        _clearLabel.font = [UIFont boldSystemFontOfSize:12];
+        _clearLabel.font = kFontBlod(12);
         _clearLabel.text = @"mark all as read";
     }
     return _clearLabel;
