@@ -32,7 +32,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="gR9-54-LYe"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="16"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="yB2-1W-7yl"/>
@@ -55,7 +55,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="Sol-te-20o"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="16"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="uFg-SH-Ijy"/>

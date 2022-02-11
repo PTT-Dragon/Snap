@@ -80,6 +80,7 @@
     model.street = streetModel.stdAddr;
     model.postCode = streetModel.zipcode;
     model.contactStdId = streetModel.stdAddrId;
+    model.isNoAdd = YES;
     if (self.selBlock) {
         self.selBlock(model);
         [self closeAction:nil];

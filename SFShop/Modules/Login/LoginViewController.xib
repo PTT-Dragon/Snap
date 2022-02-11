@@ -81,7 +81,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="7hO-jK-nsG"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="16"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="E7Y-ac-h7F"/>
@@ -92,7 +92,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="Qws-uj-43E"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="16"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="rD5-EE-AW3"/>
