@@ -121,8 +121,8 @@
 //  "SIGN_TO_LOGIN" = "Registration successful. Please re-login.";
   "CATEGORY" = "Category";
   "GET_NOW" = "GET NOW";
-//  "COLLECT_SUCCESS" = "Add item to wishlist Successfully！";
-//  "DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully！";
+"COLLECT_SUCCESS" = "Add item to wishlist Successfully!";
+"DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully!";
 //  "COLLECT" = "COLLECT";
 //  "RATING" = "Ratings";
 "RATING" = "Ratlng";
@@ -239,7 +239,7 @@
   "REFUND_BANK_ACCOUNT" = "REFUND BANK ACCOUNT";
 //  "FINAL_REFUND_AMOUNT" = "Final refund amount";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Please verify the refund has been received";
-//  "CHOOSE_ANOTHER_ADDRESS" = "Choose Another Address";
+  "CHOOSE_ANOTHER_ADDRESS" = "CHOOSE ANOTHER ADDRESS";
   "CHOOSE_ADDRESS" = "Choose Address";
  "Delivery Option" = "Delivery Option";
 "choose" = "Choose";
@@ -282,7 +282,7 @@
   "BANK_TRANSFER" = "Bank Transfer";
 //  "ORDER_DETAILS" = "Order Details";
   "WAREHOUSE_HAS_BEEN_DELIVERED" = "Warehouse has been delivered";
-//  "SHIP_TO" = "Ship to";
+  "SHIP_TO" = "Ship to";
 //  "HOME" = "Home";
 //  "VIEW_CODE" = "View Code";
   "SUBTOTAL" = "Subtotal";

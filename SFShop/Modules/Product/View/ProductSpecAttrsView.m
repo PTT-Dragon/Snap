@@ -285,7 +285,7 @@
         make.centerY.equalTo(_groupView);
     }];
     _groupCountLabel = [[UILabel alloc] init];
-    _groupCountLabel.font = CHINESE_SYSTEM(10);
+    _groupCountLabel.font = kFontBlod(10);
     _groupCountLabel.textColor = [UIColor whiteColor];
     [_groupView addSubview:_groupCountLabel];
     [_groupCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -293,7 +293,7 @@
         make.centerY.equalTo(_groupView);
     }];
     _groupLabel = [[UILabel alloc] init];
-    _groupLabel.font = [UIFont fontWithName:@"PingFangHK-Semibold" size:10];
+    _groupLabel.font = kFontRegular(10);
     _groupLabel.textColor = RGBColorFrom16(0xFF1659);
     _groupLabel.text = kLocalizedString(@"Sharebuy");
     [_groupView addSubview:_groupLabel];

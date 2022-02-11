@@ -93,6 +93,8 @@ static dispatch_source_t _timer;
     _btn2.hidden = [model.state isEqualToString:@"B"] || [model.state isEqualToString:@"G"];
     _btn1.backgroundColor = ([model.state isEqualToString:@"A"] || [model.state isEqualToString:@"G"] || [model.state isEqualToString:@"C"] || [model.state isEqualToString:@"B"] || [model.state isEqualToString:@"E"] || [model.state isEqualToString:@"F"]) ? RGBColorFrom16(0xff1659): [UIColor whiteColor];
     [_btn1 setTitleColor:([model.state isEqualToString:@"A"] || [model.state isEqualToString:@"G"] || [model.state isEqualToString:@"C"] || [model.state isEqualToString:@"B"] || [model.state isEqualToString:@"E"] || [model.state isEqualToString:@"F"]) ? [UIColor whiteColor]: RGBColorFrom16(0xff1659) forState:0];
+    _btn1.hidden = [model.state isEqualToString:@"E"];
+    _btn2.hidden = [model.state isEqualToString:@"E"];
     self.moreBtn.hidden = !([_model.state isEqualToString:@"D"] || [_model.state isEqualToString:@"C"]);
     [self.moreActionBtn1 setTitle:kLocalizedString(@"REBUY") forState:0];
     _groupView.hidden = [model.state isEqualToString:@"a"] || !model.shareBuyBriefInfo || [[NSDate dateFromString:model.shareBuyBriefInfo.expDate] utcTimeStamp] < [[NSDate date] utcTimeStamp];

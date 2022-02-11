@@ -90,15 +90,17 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    BOOL showBottomView;
+//    BOOL showBottomView;
     OrderModel *model = self.dataSource[section];
-    showBottomView = [model.state isEqualToString:@"E"] ? NO:YES;
-    return model.orderItems.count+(showBottomView ? 2: 1);
+//    showBottomView = [model.state isEqualToString:@"E"] ? NO:YES;
+    return model.orderItems.count+2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OrderModel *model = self.dataSource[indexPath.section];
-    return indexPath.row == 0 ? 40: indexPath.row == model.orderItems.count+1 ? 100: 118;
+    BOOL showOrderInfo;
+    showOrderInfo = [model.state isEqualToString:@"E"] ? YES:NO;
+    return indexPath.row == 0 ? 40: indexPath.row == model.orderItems.count+1 ? showOrderInfo ? 45: 100: 118;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
