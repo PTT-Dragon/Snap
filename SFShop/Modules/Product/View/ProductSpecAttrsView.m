@@ -143,7 +143,7 @@
     }];
     
     UILabel *quantityLabel = [[UILabel alloc] init];
-    quantityLabel.font = kFontBlod(16);
+    quantityLabel.font = kFontRegular(16);
     [quantityLabel setTextColor: [UIColor blackColor]];
     quantityLabel.text = kLocalizedString(@"Quantity");
     [self addSubview:quantityLabel];
@@ -173,8 +173,8 @@
     _countLabel = [[UILabel alloc] init];
     _countLabel.font = kFontBlod(20);
     _countLabel.textAlignment = NSTextAlignmentCenter;
-    [_countLabel setTextColor: [UIColor blackColor]];
     _countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
+    [_countLabel setTextColor: _count == 0 ? RGBColorFrom16(0x7b7b7b): [UIColor blackColor]];
     [self addSubview:_countLabel];
     [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.increaseBtn.mas_left).offset(-25);
@@ -253,7 +253,7 @@
     }];
     _maxPurchaseLabel = [[UILabel alloc] init];
     _maxPurchaseLabel.textColor = RGBColorFrom16(0x999999);
-    _maxPurchaseLabel.font = CHINESE_SYSTEM(12);
+    _maxPurchaseLabel.font = kFontRegular(12);
     [self addSubview:_maxPurchaseLabel];
     [_maxPurchaseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(quantityLabel);
@@ -643,6 +643,7 @@
         self.count = 0;
     }
     self.countLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.count];
+    [_countLabel setTextColor: _count == 0 ? RGBColorFrom16(0x7b7b7b): [UIColor blackColor]];
 }
 
 @end

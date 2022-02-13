@@ -82,8 +82,8 @@
 - (void)setModel:(ArticleEvaluateChildrenModel *)model
 {
     _model = model;
-    _contentLabel.text = [NSString stringWithFormat:@"%@ %@",model.evalComments,[[NSDate dateFromString:model.createdDate] stringWithFormat:@"YYYY.MM.dd"]];
-    NSAttributedString *attStr = [NSMutableString difereentAttr:@{NSFontAttributeName:CHINESE_SYSTEM(11),NSForegroundColorAttributeName:RGBColorFrom16(0x7b7b7b)} str:[NSString stringWithFormat:@"%@ %@",model.evalComments,[[NSDate dateFromString:model.createdDate] stringWithFormat:@"YYYY.MM.dd"]] changeText:[[NSDate dateFromString:model.createdDate] stringWithFormat:@"YYYY.MM.dd"]];
+    _contentLabel.text = [NSString stringWithFormat:@"%@ %@",model.evalComments,model.createdDateStr];
+    NSAttributedString *attStr = [NSMutableString difereentAttr:@{NSFontAttributeName:CHINESE_SYSTEM(11),NSForegroundColorAttributeName:RGBColorFrom16(0x7b7b7b)} str:[NSString stringWithFormat:@"%@ %@",model.evalComments,model.createdDateStr] changeText:model.createdDateStr];
     _contentLabel.attributedText = attStr;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.userLogo)] placeholderImage:[UIImage imageNamed:@"account-black"]];
     _nameLabel.text = model.userName;

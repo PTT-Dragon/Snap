@@ -27,7 +27,7 @@
     }];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     MPWeakSelf(self)
-    [manager POST:url parameters:parameters headers:@{@"ZSMART_LOCALE":model.userRes.defLangCode,@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:url parameters:parameters headers:@{@"ZSMART_LOCALE":model ? model.userRes.defLangCode : @"",@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:nil];
         !success?:success(obj);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -59,7 +59,7 @@
     manager.securityPolicy = securityPolicy;
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     MPWeakSelf(self)
-    return [manager GET:url parameters:parameters headers:@{@"ZSMART_LOCALE":model.userRes.defLangCode,@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    return [manager GET:url parameters:parameters headers:@{@"ZSMART_LOCALE":model ? model.userRes.defLangCode : @"",@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error;
         id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:&error];
         !success?:success(obj);
@@ -83,7 +83,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/pdf", nil];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
-    [manager GET:url parameters:nil headers:@{@"ZSMART_LOCALE":model.userRes.defLangCode,@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager GET:url parameters:nil headers:@{@"ZSMART_LOCALE":model ? model.userRes.defLangCode : @"",@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error = nil;
         NSString *path = [[NSTemporaryDirectory() stringByAppendingPathComponent:url.md5String] stringByAppendingString:@".pdf"];
         NSURL *pathUrl = [NSURL fileURLWithPath:path];
@@ -122,7 +122,7 @@
                                
                                                                 error:&parseError];
     MPWeakSelf(self)
-    [manager POST:url parameters:jsonDic headers:@{@"ZSMART_LOCALE":model.userRes.defLangCode,@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:url parameters:jsonDic headers:@{@"ZSMART_LOCALE":model ? model.userRes.defLangCode : @"",@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:nil];
         !success?:success(obj);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -147,7 +147,7 @@
         return [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
     }];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
-    [manager POST:url parameters:@{} headers:@{@"ZSMART_LOCALE":model.userRes.defLangCode,@"accessToken":model ? model.accessToken: @""} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:url parameters:@{} headers:@{@"ZSMART_LOCALE":model ? model.userRes.defLangCode : @"",@"accessToken":model ? model.accessToken: @""} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSData *imageData = UIImagePNGRepresentation(image);
              /**
              拼接文件参数

@@ -176,6 +176,8 @@
                 
             }];
             [self.view addSubview:alert];
+        }else{
+            [self deleteCellWithRow:indexPath.row];
         }
     }];
     deleteRowAction.backgroundColor = [UIColor redColor];

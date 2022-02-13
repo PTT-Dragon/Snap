@@ -93,7 +93,7 @@
         return cell;
     }
     AddReviewItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddReviewItemCell"];
-    [cell setContent:_model.orderItems[indexPath.row] row:indexPath.row imgArr:self.imgArr[indexPath.row]];
+    [cell setContent:_model.orderItems[indexPath.row] row:indexPath.row imgArr:self.imgArr[indexPath.row] text:self.textArr[indexPath.row] rate:self.rateArr[indexPath.row]];
     cell.block = ^(NSInteger row) {
         [self uploadAvatarWithRow:row];
     };

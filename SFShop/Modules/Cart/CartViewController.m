@@ -235,15 +235,25 @@
             [productDetailModels addObject:detailModel];
         }
     }
-    
-    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"GWCGM" addressModel:self.selAddModel.isNoAdd ? nil:self.selAddModel productModels:productDetailModels];
+    addressModel *addModel = self.selAddModel.isNoAdd ? [self defaultAddress] ? [self defaultAddress]:nil: self.selAddModel;
+    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"GWCGM" addressModel:addModel productModels:productDetailModels];
     [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
         if (isSuccess) {
             ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
             [weakself.navigationController pushViewController:vc animated:YES];
         }
     }];
-
+}
+- (addressModel *)defaultAddress
+{
+    __block addressModel *defaultAdd;
+    [self.addressArr enumerateObjectsUsingBlock:^(addressModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.isDefault isEqualToString:@"Y"]) {
+            defaultAdd = obj;
+            *stop = YES;
+        }
+    }];
+    return defaultAdd;
 }
 
 #pragma mark - 计算购物车选中总价

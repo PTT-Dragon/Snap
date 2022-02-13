@@ -18,7 +18,7 @@ typedef void(^reviewItemRateBlock)(NSString *score,NSInteger row);
 @property (nonatomic,copy) reviewItemBlock block;
 @property (nonatomic,copy) reviewItemTextBlock textBlock;
 @property (nonatomic,copy) reviewItemRateBlock rateBlock;
-- (void)setContent:(orderItemsModel *)orderModel row:(NSInteger)row imgArr:(NSMutableArray *)imgArr;
+- (void)setContent:(orderItemsModel *)orderModel row:(NSInteger)row imgArr:(NSMutableArray *)imgArr text:(NSString *)text rate:(NSString *)rate;
 @end
 
 NS_ASSUME_NONNULL_END

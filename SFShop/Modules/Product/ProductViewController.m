@@ -1174,13 +1174,25 @@
     }
     item.currentBuyCount = self.attrView.count;
     self.model.selectedProducts = @[item];
-    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:self.selectedAddressModel.isNoAdd ? nil:self.selectedAddressModel  productModels:@[self.model]];
+    addressModel *addModel = self.selectedAddressModel.isNoAdd ? [self defaultAddress] ? [self defaultAddress]:nil: self.selectedAddressModel;
+    ProductCheckoutModel *checkoutModel = [ProductCheckoutModel initWithsourceType:@"LJGM" addressModel:addModel productModels:@[self.model]];
     [CheckoutManager.shareInstance loadCheckoutData:checkoutModel complete:^(BOOL isSuccess, ProductCheckoutModel * _Nonnull checkoutModel) {
         if (isSuccess) {
             ProductCheckoutViewController *vc = [[ProductCheckoutViewController alloc] initWithCheckoutModel:checkoutModel];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }];
+}
+- (addressModel *)defaultAddress
+{
+    __block addressModel *defaultAdd;
+    [self.addressDataSource enumerateObjectsUsingBlock:^(addressModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.isDefault isEqualToString:@"Y"]) {
+            defaultAdd = obj;
+            *stop = YES;
+        }
+    }];
+    return defaultAdd;
 }
 
 

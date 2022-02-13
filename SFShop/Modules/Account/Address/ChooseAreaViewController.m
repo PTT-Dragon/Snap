@@ -47,7 +47,7 @@ typedef enum :NSUInteger{
     if (self = [super init]) {
         _provinceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_provinceBtn setTitleColor:[UIColor blackColor] forState:0];
-        _provinceBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        _provinceBtn.titleLabel.font = kFontRegular(14);
         [_provinceBtn setTitle:streeModel.stdAddr  forState:0];
         _provinceBtn.titleLabel.numberOfLines = 0;
         [_provinceBtn setTitle:streeModel ? streeModel.stdAddr:@"Street"  forState:0];
@@ -68,7 +68,7 @@ typedef enum :NSUInteger{
         _selStreetAreaMoel = streetModel;
         _provinceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_provinceBtn setTitleColor:[UIColor blackColor] forState:0];
-        _provinceBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        _provinceBtn.titleLabel.font = kFontRegular(14);
         [_provinceBtn setTitle:provinceModel ? provinceModel.stdAddr:@"Province"  forState:0];
         _provinceBtn.titleLabel.numberOfLines = 0;
         @weakify(self)
@@ -85,7 +85,7 @@ typedef enum :NSUInteger{
         }];
         _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_cityBtn setTitleColor:[UIColor blackColor] forState:0];
-        _cityBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        _cityBtn.titleLabel.font = kFontRegular(14);
         _cityBtn.titleLabel.numberOfLines = 0;
         [_cityBtn setTitle:cityModel.stdAddr forState:0];
         [self addSubview:_cityBtn];
@@ -102,7 +102,7 @@ typedef enum :NSUInteger{
         }];
         _DistrictBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_DistrictBtn setTitleColor:[UIColor blackColor] forState:0];
-        _DistrictBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        _DistrictBtn.titleLabel.font = kFontRegular(14);
         [_DistrictBtn setTitle:DistrictModel.stdAddr forState:0];
         _DistrictBtn.titleLabel.numberOfLines = 0;
         [self addSubview:_DistrictBtn];

@@ -67,10 +67,10 @@
 }
 - (void)layoutSubviews
 {
-    _starView.score = 5;
+//    _starView.score = 5;
     _starView.canSel = YES;
 }
-- (void)setContent:(orderItemsModel *)orderModel row:(NSInteger)row imgArr:(NSMutableArray *)imgArr
+- (void)setContent:(orderItemsModel *)orderModel row:(NSInteger)row imgArr:(NSMutableArray *)imgArr text:(NSString *)text rate:(NSString *)rate
 {
     _orderModel = orderModel;
     _row = row;
@@ -80,6 +80,8 @@
     _nameLabel.text = orderModel.productName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(orderModel.imagUrl)]];
     [_photoCollectionView reloadData];
+    _starView.score = rate.integerValue;
+    _textView.text = text;
     CGFloat itemHei = (MainScreen_width-32-60)/4;
     self.photoCollectionViewHei.constant = imgArr.count < 4 ? itemHei+5: imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
     [self.photoCollectionView reloadData];

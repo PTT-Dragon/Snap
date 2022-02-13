@@ -15,6 +15,7 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 #import "NSDate+Helper.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 
 @interface RecentlyViewedViewController ()<JTCalendarDelegate,UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>

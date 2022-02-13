@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdditionalReviewViewController">
             <connections>
+                <outlet property="bgScrollView" destination="bLj-Ro-TP7" id="Wdr-50-G4Q"/>
                 <outlet property="btn" destination="9bt-o8-eM3" id="sO3-NQ-9iH"/>
                 <outlet property="collectionView" destination="k5Q-MY-sEu" id="HzV-sc-Jzj"/>
                 <outlet property="collectionViewHei" destination="fKq-PL-tqh" id="Mkc-5f-H03"/>

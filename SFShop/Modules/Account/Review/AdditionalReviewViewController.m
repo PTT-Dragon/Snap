@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (nonatomic,strong) NSMutableArray *selectAssets;
+@property (weak, nonatomic) IBOutlet UIScrollView *bgScrollView;
 
 @end
 
@@ -91,7 +92,7 @@
     _textView.layer.borderWidth = 1;
     _textView.delegate = self;
     _textView.contentInset = UIEdgeInsetsMake(0, 0, 15, 0);
-    [self.view addSubview:self.countView];
+    [self.bgScrollView addSubview:self.countView];
     [self.countView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.textView.mas_bottom).offset(-30);
         make.right.mas_equalTo(self.textView.mas_right).offset(-40);

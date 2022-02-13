@@ -18,6 +18,7 @@
             <connections>
                 <outlet property="anonymousBtn" destination="fhv-hQ-2yg" id="hRj-nf-gGR"/>
                 <outlet property="anonymousLabel" destination="WVG-v8-uhd" id="fTj-on-ypB"/>
+                <outlet property="bgScrollView" destination="qAg-2x-pAz" id="OCa-c8-ftc"/>
                 <outlet property="bottomView" destination="FVp-G8-o3u" id="OVO-Nk-MMe"/>
                 <outlet property="imgView" destination="cdo-a5-ndh" id="N8R-U9-7mf"/>
                 <outlet property="label1" destination="40V-dS-tOx" id="69j-PC-akh"/>

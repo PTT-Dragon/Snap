@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString <Optional> *articleEvalId;
 @property(nonatomic, strong) NSString <Optional> *communityArticleId;
 @property(nonatomic, strong) NSString <Optional> *createdDate;
+@property(nonatomic, strong) NSString  *createdDateStr;
 @property(nonatomic, strong) NSString <Optional> *evalComments;
 @property(nonatomic, strong) NSString <Optional> *handleDate;
 @property(nonatomic, strong) NSString <Optional> *handlePartyType;
