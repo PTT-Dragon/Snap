@@ -94,6 +94,7 @@
     
     _dateSelected = [NSDate date];
     _selectionMode = NO;
+    [self.clickBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [self initUI];
     self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         [self loadMoreDatas];
