@@ -142,7 +142,8 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 4 : 1;
+    NSInteger itemCount = !_row ? self.model.orderItems.count: 1;
+    return section == 0 ? 3+itemCount : 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

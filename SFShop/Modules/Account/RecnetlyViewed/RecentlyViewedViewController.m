@@ -214,7 +214,8 @@
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.recent.num parameters:@{@"pageSize":@"100",@"startDate":startDate,@"endDate":selDay} success:^(id  _Nullable response) {
         weakself.numModel = [[RecentlyNumModel alloc] initWithDictionary:response error:nil];
-        [weakself.calendarMenuView reloadInputViews];
+//        [weakself.calendarContentView reloadInputViews];
+        [weakself.calendarManager reload];
     } failed:^(NSError * _Nonnull error) {
         
     }];

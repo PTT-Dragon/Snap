@@ -234,7 +234,7 @@
                                 <constraint firstItem="uFx-FN-dIC" firstAttribute="leading" secondItem="FVp-G8-o3u" secondAttribute="leading" constant="16" id="xes-Rt-aFV"/>
                             </constraints>
                         </view>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="c0t-3g-JAi">
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="c0t-3g-JAi">
                             <rect key="frame" x="8" y="247" width="398" height="80"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>

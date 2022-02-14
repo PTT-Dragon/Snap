@@ -22,6 +22,7 @@
 #import "AddReviewVC.h"
 #import <OYCountDownManager/OYCountDownManager.h>
 #import "YCMenuView.h"
+#import "RefundOrReturnViewController.h"
 
 @interface OrderListBottomCell ()
 @property (weak, nonatomic) IBOutlet UIView *moreView;
@@ -211,9 +212,9 @@ static dispatch_source_t _timer;
         vc.model = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }else if ([state isEqualToString:@"B"]){
-        [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
-            //返回错误和本地地址
-        }];
+        RefundOrReturnViewController *VC = [[RefundOrReturnViewController alloc] init];
+        VC.model = self.model;
+        [[baseTool getCurrentVC].navigationController pushViewController:VC animated:YES];
     }else if ([state isEqualToString:@"D"]){
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
             if (_model.orderItems.count > 1) {
@@ -295,6 +296,20 @@ static dispatch_source_t _timer;
         [self toCart];
     });
 }
+- (void)loadRefundCharge
+{
+    //TODO:这里暂时是一个商品
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.refund.charge parameters:@{@"orderId":self.model.orderId,@"orderItemId":[self.model.orderItems[0] orderItemId]} success:^(id  _Nullable response) {
+        RefundChargeModel *chargeModel = [[RefundChargeModel alloc] initWithDictionary:response error:nil];
+        RefundOrReturnViewController *VC = [[RefundOrReturnViewController alloc] init];
+        VC.model = weakself.model;
+        VC.chargeModel = chargeModel;
+        [[baseTool getCurrentVC].navigationController pushViewController:VC animated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 - (void)toLogistices
 {
     //[MBProgressHUD showHudMsg:@""];
@@ -347,7 +362,7 @@ static dispatch_source_t _timer;
         str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CANCEL")];
     }else if ([state isEqualToString:@"B"]){
 //        str = kLocalizedString(@"RECEIPT");
-        str = @"";
+        str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REFUND")];
     }else if ([state isEqualToString:@"C"]){
         str = [NSString stringWithFormat:@"   %@   ",kLocalizedString(@"LOGISTICS")];
     }else if ([state isEqualToString:@"D"]){
