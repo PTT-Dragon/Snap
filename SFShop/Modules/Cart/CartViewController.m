@@ -131,6 +131,7 @@
             model.sel = NO;
         }
     }
+    [self.magicController.magicView reloadData];
 }
 - (void)toAddressListVC
 {
@@ -168,11 +169,11 @@
     CartChildViewController *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
         gridViewController = [[CartChildViewController alloc] init];
-        gridViewController.addModel = _selAddModel;
-        gridViewController.reduceFlag = (pageIndex == 0) ? NO: YES;
         gridViewController.delegate = self;
         gridViewController.vc = self;
     }
+    gridViewController.reduceFlag = (pageIndex == 0) ? NO: YES;
+    gridViewController.addModel = _selAddModel;
     return gridViewController;
 }
 

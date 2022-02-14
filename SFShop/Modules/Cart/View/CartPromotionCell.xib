@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,14 +23,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeS-lp-lJ4">
-                        <rect key="frame" x="16" y="12" width="34" height="16"/>
-                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="13"/>
+                        <rect key="frame" x="16" y="12" width="35" height="16"/>
+                        <fontDescription key="fontDescription" weight="medium" name="TruenoRg" family="Trueno" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqE-gh-IVA">
-                        <rect key="frame" x="16" y="36" width="31.5" height="14.5"/>
-                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="12"/>
+                        <rect key="frame" x="16" y="36" width="32.5" height="14.5"/>
+                        <fontDescription key="fontDescription" weight="medium" name="TruenoRg" family="Trueno" pointSize="12"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -37,6 +42,9 @@
                         </constraints>
                         <state key="normal" image="radio-0"/>
                         <state key="selected" image="radio-1"/>
+                        <connections>
+                            <action selector="selAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="POb-gg-crI"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2F-gV-80M">
                         <rect key="frame" x="16" y="65" width="288" height="1"/>

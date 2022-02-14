@@ -12,6 +12,7 @@
 #import "ProductViewController.h"
 #import "UIButton+SGImagePosition.h"
 #import "UIButton+EnlargeTouchArea.h"
+#import "UseCouponViewController.h"
 
 @interface CartTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *offNameLabel;
@@ -29,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceDownLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgTop;
 @property (weak, nonatomic) IBOutlet UIButton *offBtn;
+@property (weak, nonatomic) IBOutlet UILabel *noStockLabel;
 
 @end
 
@@ -48,6 +50,9 @@
     [_additonBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_subtractBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_selBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
+    _offLabel.text = [NSString stringWithFormat:@" %@ ",kLocalizedString(@"DISCOUNT")];
+    [_offBtn setTitle:kLocalizedString(@"TO_SATISFY") forState:0];
+    _noStockLabel.text = kLocalizedString(@"OUT_OF_STOCK");
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skuAction)];
     [_skuLabel addGestureRecognizer:tap];
@@ -75,7 +80,6 @@
     _model = model;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.productName;
-    _countLabel.text = model.num;
     _priceLabel.text = [[NSString stringWithFormat:@"%.0f",model.salesPrice] currency];
     NSString *sku = @"";
     for (ProdSpcAttrsModel *prodModel in model.prodSpcAttrs) {
@@ -84,12 +88,13 @@
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _priceDownView.hidden = !model.cutRateStr;
     _priceDownLabel.text = model.cutRateStr;
-    self.campaignsBtn.hidden = !(model.campaigns && model.campaigns.count != 0);
-    if (model.campaigns && model.campaigns.count != 0) {
-        [self.campaignsBtn setTitle:[model.campaigns.firstObject campaignName] forState:0];
-        [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:0];
-    }
-    if (model.campaignGroups && model.campaignGroups.count != 0) {
+    [self updateBtnState];
+}
+- (void)setShowCampaignsView:(BOOL)showCampaignsView
+{
+    _showCampaignsView = showCampaignsView;
+    self.campaignsBtn.hidden = !showCampaignsView;
+    if (showCampaignsView) {
         self.offBtn.hidden = NO;
         self.offLabel.hidden = NO;
         self.offNameLabel.hidden = NO;
@@ -100,7 +105,14 @@
         self.offNameLabel.hidden = YES;
         self.imgTop.constant = 15;
     }
-    [self updateBtnState];
+}
+- (void)setCampaignsModel:(CartCampaignsModel *)campaignsModel
+{
+    _campaignsModel = campaignsModel;
+    [self.campaignsBtn setTitle:[NSString stringWithFormat:@"  %@  ",campaignsModel.campaignName] forState:0];
+    [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:-2];
+    [self.campaignsBtn setTitle:[NSString stringWithFormat:@"  %@  ",campaignsModel.campaignName] forState:0];
+    _offNameLabel.text = campaignsModel.campaignName;
 }
 - (void)setIsInvalid:(BOOL)isInvalid
 {
@@ -108,15 +120,26 @@
 }
 - (void)updateBtnState
 {
-    if (_isInvalid) {
+    if (_isInvalid || _model.stock == 0 || [_model.noStock isEqualToString:@"Y"]) {
         _selBtn.enabled = NO;
+        _noStockLabel.hidden = NO;
+        _countLabel.hidden = YES;
+        _additonBtn.hidden = YES;
+        _subtractBtn.hidden = YES;
+        _countLabel.textColor = RGBColorFrom16(0x7b7b7b);
     }else{
         _selBtn.enabled = YES;
         _selBtn.selected = [_model.isSelected isEqualToString:@"Y"];
+        _countLabel.text = _model.num;
+        _noStockLabel.hidden = YES;
+        _countLabel.textColor = [UIColor blackColor];
+        _countLabel.hidden = NO;
+        _additonBtn.hidden = NO;
+        _subtractBtn.hidden = NO;
     }
     self.subtractBtn.enabled = _isInvalid ? NO: ![_countLabel.text isEqualToString:@"1"];
     NSInteger maxBuyCount = !_model.maxBuyCount ? 100000:[_model.maxBuyCount integerValue];
-    self.additonBtn.enabled = _isInvalid ? NO: (_countLabel.text.integerValue < _model.stock && _countLabel.text.integerValue < maxBuyCount);
+    self.additonBtn.enabled = (_isInvalid || _model.stock == 0) ? NO: (_countLabel.text.integerValue < _model.stock && _countLabel.text.integerValue < maxBuyCount);
     [self.subtractBtn setImage: self.subtractBtn.enabled ? [UIImage imageNamed:@"subtract"]: [UIImage imageNamed:@"subtract-2"] forState:0];
     self.additonBtn.backgroundColor = self.additonBtn.enabled ? [UIColor whiteColor]: RGBColorFrom16(0xf9f9f9);
     self.subtractBtn.backgroundColor = self.subtractBtn.enabled ? [UIColor whiteColor]: RGBColorFrom16(0xf9f9f9);
@@ -153,7 +176,7 @@
     [self updateBtnState];
 }
 - (IBAction)campaignsAction:(UIButton *)sender {
-    [self.delegate promotionWithModel:_model];
+    [self.delegate promotionWithModel:_model CartCampaignsModel:_campaignsModel];
 }
 - (void)skuAction
 {
@@ -169,6 +192,9 @@
 }
 
 - (IBAction)offAction:(UIButton *)sender {
+    UseCouponViewController *vc = [[UseCouponViewController alloc] init];
+    vc.buygetnInfoModel = _campaignsModel.buygetnInfo;
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 
 

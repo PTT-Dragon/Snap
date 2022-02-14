@@ -68,8 +68,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface BuygetnInfoModel : JSONModel
+@property (nonatomic,copy) NSString *campaignId;
+@property (nonatomic,copy) NSString *campaignName;
+@property (nonatomic,copy) NSString *effDate;
+@property (nonatomic,copy) NSString *expDate;
+
+@end
+
 @interface CartCampaignsModel : JSONModel
 @property (nonatomic,strong) NSArray <CartItemModel> *shoppingCarts;
+@property (nonatomic,copy) NSString *campaignId;
+@property (nonatomic,copy) NSString *campaignName;
+@property (nonatomic,strong) BuygetnInfoModel *buygetnInfo;
+
 @end
 
 

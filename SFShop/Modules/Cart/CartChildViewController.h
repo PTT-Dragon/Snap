@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,weak) UIViewController *vc;
 @property (nonatomic,assign) id<CartChildViewControllerDelegate>delegate;
 @property (nonatomic,assign) BOOL reduceFlag;//是否是降价
-@property (nonatomic,weak) addressModel *addModel;//是否是降价
+@property (nonatomic,weak) addressModel *addModel;
 @property (nonatomic, assign) NSInteger offerId;
 
 @end

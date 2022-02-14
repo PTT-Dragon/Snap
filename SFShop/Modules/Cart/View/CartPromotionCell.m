@@ -28,4 +28,11 @@
     _timeLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"TILL"),[[NSDate dateFromString:model.expDate] dayMonthYearHHMM]];
     _selBtn.selected = model.sel;
 }
+- (IBAction)selAction:(UIButton *)sender {
+    _model.sel = YES;
+    sender.selected = YES;
+    if (self.block) {
+        self.block(_row);
+    }
+}
 @end

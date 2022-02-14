@@ -25,6 +25,10 @@
 }
 @end
 
+@implementation BuygetnInfoModel
+
+@end
+
 @implementation CartListModel
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {

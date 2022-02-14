@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)modifyCartInfoWithDic:(NSDictionary *)dic;
 - (void)skuActionWithModel:(CartItemModel *)model;
-- (void)promotionWithModel:(CartItemModel *)model;
+- (void)promotionWithModel:(CartItemModel *)model CartCampaignsModel:(CartCampaignsModel *)campaignsModel;
 
 @end
 
@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) id<CartTableViewCellDelegate>delegate;
 @property (nonatomic,weak) CartItemModel *model;
 @property (nonatomic,assign) BOOL isInvalid;
+@property (nonatomic,assign) BOOL showCampaignsView;
+@property (nonatomic,strong) CartCampaignsModel *campaignsModel;
 @end
 
 NS_ASSUME_NONNULL_END

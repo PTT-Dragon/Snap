@@ -7,11 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CouponModel.h"
+#import "CartModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UseCouponViewController : UIViewController
 @property (nonatomic,weak) CouponModel *couponModel;
+@property (nonatomic,weak) BuygetnInfoModel *buygetnInfoModel;
 @end
 
 NS_ASSUME_NONNULL_END

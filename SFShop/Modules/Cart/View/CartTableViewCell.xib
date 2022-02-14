@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoBd.otf">
+            <string>TruenoBd</string>
+        </array>
+        <array key="TruenoLt.otf">
+            <string>TruenoLt</string>
+        </array>
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -42,22 +53,22 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OE-4E-Ucf">
-                                <rect key="frame" x="146" y="14" width="177" height="17"/>
+                                <rect key="frame" x="146" y="20" width="177" height="17"/>
                                 <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p92-dv-aGh">
-                                <rect key="frame" x="146" y="50" width="29" height="17"/>
+                                <rect key="frame" x="146" y="55" width="27" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="fpr-Ux-v9n"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="10"/>
+                                <fontDescription key="fontDescription" weight="heavy" name="TruenoRg" family="Trueno" pointSize="10"/>
                                 <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8nW-Ol-sVX">
-                                <rect key="frame" x="146" y="95" width="33" height="15"/>
+                                <rect key="frame" x="146" y="97" width="33" height="15"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -94,7 +105,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="fHp-I4-ioH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -126,12 +137,12 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4C-9y-QlI">
-                                <rect key="frame" x="148" y="82" width="32" height="13"/>
+                                <rect key="frame" x="148" y="79" width="8" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="13" id="J9n-hq-Sqc"/>
+                                    <constraint firstAttribute="height" constant="16" id="J9n-hq-Sqc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
-                                <state key="normal" image="swipe-down-red">
+                                <state key="normal" image="00151_01_arrowright_outline-2">
                                     <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -139,21 +150,24 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMv-kL-ggm">
-                                <rect key="frame" x="55" y="10" width="35" height="16"/>
+                                <rect key="frame" x="55" y="10" width="24.5" height="14"/>
                                 <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="W07-BL-3dN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="9"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svw-a8-d1D">
-                                <rect key="frame" x="95" y="10" width="33" height="16"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="13"/>
+                                <rect key="frame" x="84.5" y="10" width="32" height="14.5"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTq-9b-ZRr">
-                                <rect key="frame" x="290" y="3.5" width="49" height="29"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="14"/>
+                                <rect key="frame" x="292" y="3.5" width="43" height="27"/>
+                                <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="12"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -161,6 +175,12 @@
                                     <action selector="offAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8dF-YK-cl4"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qa-yK-tzn">
+                                <rect key="frame" x="287" y="106" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="11"/>
+                                <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -169,8 +189,9 @@
                             <constraint firstItem="Ct6-i0-Q4T" firstAttribute="trailing" secondItem="5Uk-UU-CJV" secondAttribute="trailing" id="2sy-5h-aii"/>
                             <constraint firstItem="MvD-Qt-BbY" firstAttribute="centerY" secondItem="9Dn-fL-1do" secondAttribute="centerY" id="3vK-aM-dln"/>
                             <constraint firstItem="gTq-9b-ZRr" firstAttribute="centerY" secondItem="Svw-a8-d1D" secondAttribute="centerY" id="4bm-tv-fGa"/>
-                            <constraint firstItem="p92-dv-aGh" firstAttribute="top" secondItem="5Uk-UU-CJV" secondAttribute="top" constant="30" id="5Mi-IF-A2i"/>
+                            <constraint firstItem="p92-dv-aGh" firstAttribute="top" secondItem="5Uk-UU-CJV" secondAttribute="top" constant="35" id="5Mi-IF-A2i"/>
                             <constraint firstItem="B4C-9y-QlI" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="12" id="Cr5-yA-bCc"/>
+                            <constraint firstItem="4qa-yK-tzn" firstAttribute="centerX" secondItem="jWp-Ge-qwV" secondAttribute="centerX" id="JQz-3N-ULb"/>
                             <constraint firstAttribute="trailing" secondItem="xDM-D5-S5g" secondAttribute="trailing" constant="20" id="K2H-gp-cQz"/>
                             <constraint firstItem="5Uk-UU-CJV" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" constant="46" id="KI0-b6-lFD"/>
                             <constraint firstItem="Svw-a8-d1D" firstAttribute="leading" secondItem="xMv-kL-ggm" secondAttribute="trailing" constant="5" id="Kjb-dE-dUe"/>
@@ -185,11 +206,12 @@
                             <constraint firstItem="p92-dv-aGh" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="gQd-tV-DXm"/>
                             <constraint firstAttribute="bottom" secondItem="xDM-D5-S5g" secondAttribute="bottom" constant="14" id="kly-px-cjK"/>
                             <constraint firstItem="xMv-kL-ggm" firstAttribute="top" secondItem="9Dn-fL-1do" secondAttribute="top" constant="10" id="knQ-bb-ej2"/>
-                            <constraint firstItem="2OE-4E-Ucf" firstAttribute="top" secondItem="9Dn-fL-1do" secondAttribute="top" constant="14" id="l4A-XI-Fid"/>
+                            <constraint firstItem="4qa-yK-tzn" firstAttribute="centerY" secondItem="jWp-Ge-qwV" secondAttribute="centerY" id="kuC-Ba-jI6"/>
                             <constraint firstItem="5Uk-UU-CJV" firstAttribute="top" secondItem="9Dn-fL-1do" secondAttribute="top" constant="20" symbolic="YES" id="nuj-8B-Yjb"/>
                             <constraint firstItem="2OE-4E-Ucf" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="qre-6d-sJR"/>
-                            <constraint firstAttribute="trailing" secondItem="gTq-9b-ZRr" secondAttribute="trailing" constant="4" id="sNW-mV-IaK"/>
-                            <constraint firstAttribute="bottom" secondItem="8nW-Ol-sVX" secondAttribute="bottom" constant="20" symbolic="YES" id="saM-cx-H3T"/>
+                            <constraint firstAttribute="trailing" secondItem="gTq-9b-ZRr" secondAttribute="trailing" constant="8" id="sNW-mV-IaK"/>
+                            <constraint firstAttribute="bottom" secondItem="8nW-Ol-sVX" secondAttribute="bottom" constant="18" id="saM-cx-H3T"/>
+                            <constraint firstItem="2OE-4E-Ucf" firstAttribute="top" secondItem="5Uk-UU-CJV" secondAttribute="top" id="tGg-yX-o5m"/>
                             <constraint firstItem="B4C-9y-QlI" firstAttribute="bottom" secondItem="5Uk-UU-CJV" secondAttribute="bottom" constant="-15" id="tXg-xI-YFr"/>
                             <constraint firstItem="MvD-Qt-BbY" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" constant="20" id="tXs-SH-8LB"/>
                         </constraints>
@@ -212,6 +234,7 @@
                 <outlet property="imgView" destination="5Uk-UU-CJV" id="LC3-sa-uCQ"/>
                 <outlet property="leftMargin" destination="EPI-1o-fUc" id="Wcg-sz-Yus"/>
                 <outlet property="nameLabel" destination="2OE-4E-Ucf" id="geg-Hm-xwy"/>
+                <outlet property="noStockLabel" destination="4qa-yK-tzn" id="RXs-xU-jTP"/>
                 <outlet property="offBtn" destination="gTq-9b-ZRr" id="VdO-bC-AlU"/>
                 <outlet property="offLabel" destination="xMv-kL-ggm" id="iGG-vi-wpe"/>
                 <outlet property="offNameLabel" destination="Svw-a8-d1D" id="cmg-j4-Lnq"/>
@@ -227,13 +250,13 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="00151_01_arrowright_outline-2" width="8" height="5.5"/>
         <image name="Vector" width="16" height="16"/>
         <image name="block" width="200" height="200"/>
         <image name="new-alternative" width="200" height="200"/>
         <image name="scroll-down-fill" width="32" height="32"/>
         <image name="subtract" width="7" height="1"/>
         <image name="subtract-2" width="32" height="32"/>
-        <image name="swipe-down-red" width="32" height="32"/>
         <image name="已选中" width="52" height="52"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

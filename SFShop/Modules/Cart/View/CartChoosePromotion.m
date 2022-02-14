@@ -39,8 +39,18 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
     _nameLabel.text = model.productName;
     _priceLabel.text = [[NSString stringWithFormat:@"%f",model.salesPrice] currency];
+    [model.campaigns enumerateObjectsUsingBlock:^(CampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.campaignId isEqualToString:model.campaignId]) {
+            obj.sel = YES;
+            *stop = YES;
+        }
+    }];
     [self.tableView reloadData];
 }
+//- (void)setCampaignsModel:(CartCampaignsModel *)campaignsModel
+//{
+//    _campaignsModel = campaignsModel;
+//}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _model.campaigns.count;
@@ -49,6 +59,16 @@
 {
     CartPromotionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CartPromotionCell"];
     cell.model = _model.campaigns[indexPath.row];
+    cell.row = indexPath.row;
+    cell.block = ^(NSInteger row) {
+        [self.model.campaigns enumerateObjectsUsingBlock:^(CampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (row != idx) {
+                obj.sel = NO;
+            }
+        }];
+        self.model.campaignId = [self.model.campaigns[row] campaignId];
+        [self.tableView reloadData];
+    };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -56,7 +76,10 @@
     return 60;
 }
 - (IBAction)confirmAction:(UIButton *)sender {
-    
+    if (self.block) {
+        self.block(_model);
+    }
+    [self removeFromSuperview];
 }
 - (IBAction)closeAction:(UIButton *)sender {
     [self removeFromSuperview];

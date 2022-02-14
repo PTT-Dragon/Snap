@@ -27,7 +27,7 @@
     [_selBtn setImage:[UIImage imageNamed:@"block"] forState:UIControlStateDisabled | UIControlStateNormal];
     [_selBtn setImage:[UIImage imageNamed:@"Vector"] forState:0];
     [_selBtn setImage:[UIImage imageNamed:@"已选中"] forState:1];
-    _selBtn.mm_acceptEventInterval = 2;
+    _selBtn.mm_acceptEventInterval = 0.5;
     [_selBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
 }
 
@@ -37,7 +37,13 @@
     [_iconImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.logoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _storeNameLabel.text = model.storeName;
     _offLabel.text = [NSString stringWithFormat:@" RP %.0f OFF ",model.discountPrice];
-    if (_isInvalid) {
+    __block BOOL noStock = YES;
+    [model.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.stock != 0 || ![obj.noStock isEqualToString:@"Y"]) {
+            noStock = NO;
+        }
+    }];
+    if (_isInvalid || noStock) {
         _selBtn.enabled = NO;
         return;
     }

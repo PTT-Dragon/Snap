@@ -73,32 +73,21 @@
     self.couponView.layer.borderWidth = 1;
     self.cartBtn.titleLabel.numberOfLines = 2;
     self.cartBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-//    if ([self.couponModel.discountMethod isEqualToString:@"DISC"]) {
-//        _couponNameLabel.text = [NSString stringWithFormat:@"%@ %@ Min.spend %@",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency],[[NSString stringWithFormat:@"%@f",self.couponModel.thAmount] currency]];
-//    }else{
-//        _couponNameLabel.text = [NSString stringWithFormat:@"%@ %@ Without limit",kLocalizedString(@"DISCOUNT"),[[NSString stringWithFormat:@"%.0f",self.couponModel.discountAmount] currency]];
-//    }
-    _couponNameLabel.text = self.couponModel.couponName;
-    if (_couponModel.isGet) {
-        _expiredDataLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:_couponModel.userCouponEffDate] dayMonthYear],[[NSDate dateFromString:_couponModel.userCouponExpDate] dayMonthYear]];
-    }else{
-        if (_couponModel.getOffsetExp) {
-            _expiredDataLabel.text = [NSString stringWithFormat:@"Valid within %@ days",_couponModel.getOffsetExp];
+    if (_couponModel) {
+        _couponNameLabel.text = self.couponModel.couponName;
+        if (_couponModel.isGet) {
+            _expiredDataLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:_couponModel.userCouponEffDate] dayMonthYear],[[NSDate dateFromString:_couponModel.userCouponExpDate] dayMonthYear]];
         }else{
-            _expiredDataLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:_couponModel.effDate] dayMonthYear],[[NSDate dateFromString:_couponModel.expDate] dayMonthYear]];
+            if (_couponModel.getOffsetExp) {
+                _expiredDataLabel.text = [NSString stringWithFormat:@"Valid within %@ days",_couponModel.getOffsetExp];
+            }else{
+                _expiredDataLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:_couponModel.effDate] dayMonthYear],[[NSDate dateFromString:_couponModel.expDate] dayMonthYear]];
+            }
         }
+    }else if (_buygetnInfoModel){
+        _expiredDataLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:_buygetnInfoModel.effDate] dayMonthYear],[[NSDate dateFromString:_buygetnInfoModel.expDate] dayMonthYear]];
+        _couponNameLabel.text = @"";
     }
-//    if (self.couponModel.effDate && self.couponModel.expDate) {
-//        self.expiredDataLabel.text = [NSString stringWithFormat:@"%@~%@",[[NSDate dateFromString:self.couponModel.effDate] dayMonthYear],[[NSDate dateFromString:self.couponModel.expDate] dayMonthYear]];
-//    }else {
-//        if (self.couponModel.userCoupons.count != 0) {
-//            CouponModel *subModel = [[CouponModel alloc] initWithDictionary:self.couponModel.userCoupons.firstObject error:nil];
-//            self.expiredDataLabel.text = [NSString stringWithFormat:@"%@~%@",[[NSDate dateFromString:subModel.effDate] dayMonthYear],[[NSDate dateFromString:subModel.expDate] dayMonthYear]];
-//        }else {
-//            self.expiredDataLabel.text = @"";
-//        }
-//    }
-    
     [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -168,7 +157,8 @@
         @"sortType": [NSString stringWithFormat:@"%ld",type],
         @"offerIdList": [NSNull null],
 //        @"catgIds": @(self.model.inner.catgId),//默认是外部传入的分类,如果 filter.filterParam 有该字段,会被新值覆盖
-        @"couponId":self.couponModel.couponId
+        @"couponId": self.couponModel ? self.couponModel.couponId : [NSNull null],
+        @"campaignId":self.buygetnInfoModel ? self.buygetnInfoModel.campaignId : [NSNull null],
     }];
     [parm addEntriesFromDictionary:filter.filterParam];
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
@@ -228,7 +218,7 @@
 - (void)loadFeeDatas
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.cart.orifee parameters:@{@"couponId":_couponModel.couponId} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.cart.orifee parameters:@{@"couponId":_couponModel ? _couponModel.couponId : _buygetnInfoModel ? _buygetnInfoModel.campaignId: @""} success:^(id  _Nullable response) {
         weakself.orifeeModel = [[CouponOrifeeModel alloc] initWithDictionary:response error:nil];
         [weakself updateBottomView];
     } failed:^(NSError * _Nonnull error) {
