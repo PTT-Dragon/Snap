@@ -160,6 +160,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 手动添加属性
         @property (nonatomic, readwrite, assign) CGFloat height;
         @property (nonatomic, readonly, copy, nullable) NSString *labelPictureUrl;
+        @property (nonatomic, readwrite, strong) NSArray *allTags;
+
         @end
 
             /*------------------------------------------------------------------------------------*/

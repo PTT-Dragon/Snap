@@ -228,7 +228,7 @@
     } else {
         self.iconLabelImageView.hidden = YES;
     }
-    NSArray *formatterTags = [self fetchTagsWithSppType:_model.sppType promotType:_model.promotType];
+    NSArray *formatterTags = _model.allTags;
     if (formatterTags.count) {
         [self.promoTypeView removeAllTags];
         [self.promoTypeView addTags:formatterTags];
