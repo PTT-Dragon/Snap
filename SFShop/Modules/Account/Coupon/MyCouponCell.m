@@ -88,7 +88,6 @@
         _statuLabel.textColor = RGBColorFrom16(0xFF1659);
         _discountView.backgroundColor = RGBColorFrom16(0xFF1659);
     }
-    
 }
 - (void)useCouponAction
 {
@@ -100,7 +99,7 @@
     }
     if ([_statuLabel.text isEqualToString:kLocalizedString(@"USE_NOW")]) {
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
-        vc.couponModel = _model;
+        vc.couponId = _model.userCouponId;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }else if ([_statuLabel.text isEqualToString:kLocalizedString(@"GET_NOW")]){
         MPWeakSelf(self)

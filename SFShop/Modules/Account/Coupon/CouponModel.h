@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*transOrderId;
 @property (nonatomic,copy) NSString <Optional>*getDate;
 @property (nonatomic,copy) NSString <Optional>*state;
+@property (nonatomic,copy) NSString <Optional>*userCouponId;
 
 
 @end

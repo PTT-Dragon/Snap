@@ -96,7 +96,7 @@
             return;
         }
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
-        vc.couponModel = _model;
+        vc.couponId = [_model.userCoupons.firstObject userCouponId];
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
         return;
     }

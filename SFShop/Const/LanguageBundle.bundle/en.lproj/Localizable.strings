@@ -126,7 +126,7 @@
 "DEL_COLLECT_SUCCESS" = "Deleted item from wishlist Successfully!";
 //  "COLLECT" = "COLLECT";
 //  "RATING" = "Ratings";
-"RATING" = "Ratlng";
+"RATING" = "Rating";
   "STAR" = "star";
 //  "ENDS_IN" = "Ends in";
 //  "TOTAL" = "Total";
@@ -664,6 +664,7 @@
 "REBUY" = "RE-BUY";
 "RECEIPT" = "RECEIPT";
 "CONFIRM" = "CONFIRM";
+"confirm" = "Confirm";
 "PACKAGE_CODE" = "Package Code";
 "I_WANT_TO_REFUND" = "I want to refund";
 "I_WANT_TO_RETURN" = "I want to return";

@@ -146,6 +146,11 @@
 - (NSString *)couponCatg {
     return K_coupon_domain(@"couponCatg");
 }
+- (NSString *)getCouponInfoOf: (NSString *)couponId
+{
+    NSString *url = [NSString stringWithFormat:@"couponinfo/%@", couponId];
+    return K_coupon_domain(url);
+}
 
 @end
 

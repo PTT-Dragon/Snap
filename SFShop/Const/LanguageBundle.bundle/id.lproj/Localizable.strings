@@ -373,7 +373,7 @@
 //  "SUPPORT_CONTENT" = "Sebagai bentuk komitmen kami untuk memberikan pelayanan terbaik; kami menyediakan Layanan Hotline 24 jam; Email dan Live Chat sehingga Anda dapat menghubungi kami setiap saat.";
 //  "LIVE_CHAT" = "Live chat";
 //  "ARE_YOU_SURE_YOU_WANT_TO_PAY_AGAIN" = "Apakah Anda yakin ingin membayar lagi?";
-  "YES" = "Ya";
+  "YES" = "YA";
 //  "NO" = "Tidak";
 //  "PLEASE_CONFIRM_WHETHER_THE_PAYMENT_HAS_BEEN_COMPLETED" = "Mohon konfirmasi apakah pembayaran telah selesai";
 //  "FAILED" = "Gagal";
@@ -670,6 +670,7 @@
 "TILL" = "Sampai";
 "RECEIPT" = "PENERIMA";
 "CONFIRM" = "KONFIRMASI";
+"confirm" = "Konfirmasi";
 "PACKAGE_CODE" = "Kode Paket";
 "I_WANT_TO_REFUND" = "Saya ingin dana dikembalikan";
 "I_WANT_TO_RETURN" = "Saya ingin mengembalikan produk";
