@@ -14,7 +14,7 @@
 }
 
 - (CGFloat)height {
-    CGFloat titleHeight = [NSString jk_heightTextContent:self.offerName withSizeFont:14 withMaxSize:CGSizeMake((MainScreen_width - KScale(12) * 3 - KScale(16) * 2)/2, CGFLOAT_MAX)] + KScale(12);
+    CGFloat titleHeight = [NSString jk_heightTextContent:self.offerName withSizeFont:14 withMaxSize:CGSizeMake((MainScreen_width - KScale(12) * 3 - KScale(16) * 2)/2, 47)] + KScale(12);
                     
     CGFloat imageHeight = KScale(160);
     CGFloat tagHeight = 0;
