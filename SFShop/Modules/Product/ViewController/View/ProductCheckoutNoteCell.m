@@ -168,7 +168,7 @@
 - (UILabel *)couponLabel {
     if (_couponLabel == nil) {
         _couponLabel = [[UILabel alloc] init];
-        _couponLabel.text = kLocalizedString(@"Voucher");
+        _couponLabel.text = kLocalizedString(@"SELLER_VOUCHER");
         _couponLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
         _couponLabel.font = kFontRegular(14);
         _couponLabel.textAlignment = NSTextAlignmentLeft;

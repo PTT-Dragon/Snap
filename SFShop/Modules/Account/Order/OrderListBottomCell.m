@@ -212,9 +212,7 @@ static dispatch_source_t _timer;
         vc.model = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }else if ([state isEqualToString:@"B"]){
-        RefundOrReturnViewController *VC = [[RefundOrReturnViewController alloc] init];
-        VC.model = self.model;
-        [[baseTool getCurrentVC].navigationController pushViewController:VC animated:YES];
+        [self loadOrderDetailDatasWithId:_model.orderId];
     }else if ([state isEqualToString:@"D"]){
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
             if (_model.orderItems.count > 1) {
@@ -262,6 +260,18 @@ static dispatch_source_t _timer;
     CartViewController *vc = [[CartViewController alloc] init];
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
+- (void)loadOrderDetailDatasWithId:(NSString *)orderId
+{
+    NSString *url = [NSString stringWithFormat:@"%@/%@",SFNet.order.list,orderId];
+    [SFNetworkManager get:url parameters:@{} success:^(id  _Nullable response) {
+        OrderDetailModel *detailModel = [[OrderDetailModel alloc] initWithDictionary:response error:nil];
+        RefundOrReturnViewController *VC = [[RefundOrReturnViewController alloc] init];
+        VC.model = detailModel;
+        [[baseTool getCurrentVC].navigationController pushViewController:VC animated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
 - (void)rebuy
 {
     //[MBProgressHUD showHudMsg:@""];
@@ -295,20 +305,6 @@ static dispatch_source_t _timer;
         [MBProgressHUD hideFromKeyWindow];
         [self toCart];
     });
-}
-- (void)loadRefundCharge
-{
-    //TODO:这里暂时是一个商品
-    MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.refund.charge parameters:@{@"orderId":self.model.orderId,@"orderItemId":[self.model.orderItems[0] orderItemId]} success:^(id  _Nullable response) {
-        RefundChargeModel *chargeModel = [[RefundChargeModel alloc] initWithDictionary:response error:nil];
-        RefundOrReturnViewController *VC = [[RefundOrReturnViewController alloc] init];
-        VC.model = weakself.model;
-        VC.chargeModel = chargeModel;
-        [[baseTool getCurrentVC].navigationController pushViewController:VC animated:YES];
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
 }
 - (void)toLogistices
 {

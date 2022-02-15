@@ -106,16 +106,17 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger itemCount = !_row ? self.model.orderItems.count: 1;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
             [cell setRelationOrderDetailContent:_model];
             return cell;
-        }else if (indexPath.row == 2){
+        }else if (indexPath.row == itemCount+1){
             RefundOrReturnReasonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundOrReturnReasonCell"];
             [cell.selBtn setTitle:_selReasonModel ? _selReasonModel.orderReasonName:kLocalizedString(@"PLEASE_SELECT") forState:0];//_selReasonModel ? _selReasonModel.orderReasonName : @"Cancellation Reason";
             return cell;
-        }else if (indexPath.row == 3){
+        }else if (indexPath.row == itemCount+2){
             RefundOrReturnExplainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundOrReturnExplainCell"];
             cell.chargeModel = self.chargeModel;
             cell.type = self.type;
@@ -125,7 +126,7 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setRefund2Content:_model.orderItems[_row]];
+        [cell setRefund2Content:_row ? _model.orderItems[_row] : _model.orderItems[indexPath.row-1]];
         return cell;
     }
     
@@ -148,14 +149,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return  indexPath.row == 0 ? 40 : indexPath.row == 2 ? 60: indexPath.row == 3 ? self.type == REPLACETYPE ? 66: 126:  118;
+        NSInteger itemCount = !_row ? self.model.orderItems.count: 1;
+        return  indexPath.row == 0 ? 40 : indexPath.row == 1+itemCount ? 60: indexPath.row == 2+itemCount ? self.type == REPLACETYPE ? 66: 126:  118;
     }
     return 63 + (MainScreen_width-32-30-20)/4;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == 2) {
+    NSInteger itemCount = !_row ? self.model.orderItems.count: 1;
+    if (indexPath.row == itemCount+1) {
         ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];
         vc.dataSource = _reasonArr;
         vc.delegate = self;
@@ -229,10 +232,25 @@
 }
 - (void)publishRefund
 {
-    NSString *serviceType = _type == RETURNTYPE ? @"2": _type == REPLACETYPE ? @"4": @"3";
+    NSString *serviceType = !_row ? @"5": _type == RETURNTYPE ? @"2": _type == REPLACETYPE ? @"4": @"3";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:_model.orderId forKey:@"orderId"];
-    [params setValue:[_model.orderItems[_row] orderItemId] forKey:@"orderItemId"];
+    if (!_row) {
+        //多个商品
+        NSMutableArray *arr = [NSMutableArray array];
+        [self.model.orderItems enumerateObjectsUsingBlock:^(orderItemsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            [dic setValue:obj.orderItemId forKey:@"orderItemId"];
+            [dic setValue:obj.orderPrice forKey:@"refundCharge"];
+            [dic setValue:obj.offerCnt forKey:@"submitNum"];
+            [arr addObject:dic];
+        }];
+        [params setValue:arr forKey:@"orderApplyItemList"];
+    }else{
+        [params setValue:[_model.orderItems[_row] offerCnt] forKey:@"submitNum"];
+        [params setValue:[_model.orderItems[_row] orderItemId] forKey:@"orderItemId"];
+    }
+    
     [params setValue:@"1" forKey:@"refundMode"];
     [params setValue:serviceType forKey:@"serviceType"];
     if (_type != REPLACETYPE) {
@@ -247,7 +265,7 @@
     [params setValue:@"2" forKey:@"goodReturnType"];
     [params setValue:@"Y" forKey:@"receivedFlag"];
     [params setValue:@"3" forKey:@"contactChannel"];
-    [params setValue:[_model.orderItems[_row] offerCnt] forKey:@"submitNum"];
+    
     
     
     //{"orderId":25010,"orderItemId":24010,"refundMode":1,"serviceType":3,"refundCharge":80000,"submitNum":1,"orderReasonId":2,"orderReason":"尺码过大","questionDesc":"距离健健康康","goodReturnType":2,"contactChannel":3,"contents":[{"id":null,"catgType":"B","url":"/get/resource/ecs/20220119/picture/4CFF7CD0-1436-4963-9E93-F47AC677500C1483630588477521920.png","seq":1}],"receivedFlag":"Y"}

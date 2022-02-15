@@ -295,7 +295,7 @@
   "SHIPPING_FEE" = "Shipping Fee";
   "ATTACHMENT_INFORMATION" = "Attachment Information";
 //  "ORDER_INFORMATION" = "Order Information";
-"ORDER_INFORMATION" = "Delivery Information";
+"ORDER_INFORMATION" = "Order Information";
   "ORDER_CODE" = "Order Code";
   "CREATION_TIME" = "Creation time";
   "PAYER_EMAIL" = "Payer Email";
@@ -457,7 +457,7 @@
 //  "INVALID_PRODUCTS" = "Invalid Products";
 //  "COUPON_DETAIL" = "Voucher Detail";
 //  "GOT_IT" = "GOT IT";
-  "DROP_IN_PRICE" = "Pricedown";
+  "DROP_IN_PRICE" = "Drop in price";
 "ADD_COMMENT" = "Add comment...";
   "MOVE_TO_FAVOURITE" = "Move to favourite";
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "There are no items in this cart";
@@ -593,7 +593,7 @@
 "Income_Expense" = "Income & Expense";
 "Relation_Order" = "Relation Order";
 "Order_details" = "Order Details";
-"Refund_Return" = "REFUND & RETURN";
+"Refund_Return" = "Refund & Return";
 "Search" = "Search";
 "Return" = "Return";
 "Refund" = "Refund";
@@ -683,3 +683,4 @@
 "Share_to" = "Share";
 "Share_to" = "Share";
 "TO_SATISFY" = "TO SATISFY";
+"SELLER_VOUCHER" = "Seller Voucher";

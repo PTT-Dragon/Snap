@@ -8,6 +8,7 @@
 #import "ReviewCell.h"
 #import "StarView.h"
 #import "NSString+Fee.h"
+#import "NSDate+Helper.h"
 
 @interface ReviewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *storeImgView;
@@ -46,10 +47,11 @@
     _model = model;
     _evaluationView.hidden = type == 1;
     _priceLabel.hidden = type == 1;
-    if ([model.canEvaluate isEqualToString:@"N"]) {
-        _btn1.hidden = YES;
-        _btn2.hidden = YES;
-    }else if ([model.canReview isEqualToString:@"Y"]) {
+//    if ([model.canEvaluate isEqualToString:@"N"]) {
+//        _btn1.hidden = YES;
+//        _btn2.hidden = YES;
+//    }else
+        if ([model.canReview isEqualToString:@"Y"]) {
         _btn2.hidden = type == 1;
         [_btn1 setTitle:type == 1 ? kLocalizedString(@"REVIEW"):kLocalizedString(@"ADDITIONAL_REVIEW") forState:0];
         _btn1.hidden = NO;
@@ -67,7 +69,7 @@
     _priceLabel.text = [itemModel.unitPrice currency];
     NSDictionary *dic = [itemModel.productRemark jk_dictionaryValue];
     _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
-    _dateLabel.text = [NSString stringWithFormat:@"Review Date:%@",itemModel.evaluation[@"createdDate"]];
+    _dateLabel.text = [NSString stringWithFormat:@"Review Date:%@",[[NSDate dateFromString:itemModel.evaluation[@"createdDate"]] dayMonthYear]];
     _commentLabel.text = itemModel.evaluation[@"evaluationComments"];
     _starView.score = [itemModel.evaluation[@"rate"] integerValue];
     

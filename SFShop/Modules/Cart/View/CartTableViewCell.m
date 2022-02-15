@@ -47,6 +47,7 @@
     _skuLabel.layer.borderWidth = 1;
     _campaignsBtn.layer.borderWidth = 1;
     _campaignsBtn.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
+    _campaignsBtn.titleLabel.numberOfLines = 0;
     [_additonBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_subtractBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_selBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];

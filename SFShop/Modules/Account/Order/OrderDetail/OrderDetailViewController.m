@@ -35,6 +35,7 @@
 #import "YCMenuView.h"
 #import "AddReviewVC.h"
 #import "AddReviewViewController.h"
+#import "RefundOrReturnViewController.h"
 
 @interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -236,7 +237,7 @@
     [_dataSource addObjectsFromArray:@[@{kLocalizedString(@"ORDER_CODE"):self.model.orderNbr},@{kLocalizedString(@"CREATION_TIME"):self.model.createdDate},@{kLocalizedString(@"PAYER_EMAIL"):self.model.billAddress.contactEmail},@{kLocalizedString(@"PAYMENT_TIME"):paymentModel ? paymentModel.paymentDate : @"--"},@{kLocalizedString(@"COMPLETION_TIME"):self.model.completionDate ? self.model.completionDate: @"--"}]];
     [_orderInfoDataSource addObjectsFromArray:@[@{kLocalizedString(@"SUBTOTAL"):[self.model.offerPrice currency]},@{kLocalizedString(@"SHIPPING_FEE"):[self.model.logisticsFee currency]},@{[NSString stringWithFormat:@"%@:%@ %@",kLocalizedString(@"Total"),self.model.offerCnt,kLocalizedString(@"ITEMS")]:[self.model.orderPrice currency]}]];
     if (self.model.storeCampaignPrice && self.model.storeCampaignPrice.integerValue != 0) {
-//        [_orderInfoDataSource insertObject:@{kLocalizedString(@"PROMOTION"):[NSString stringWithFormat:@"%@",[self.model.storeCampaignPrice currency]]} atIndex:1];
+        [_orderInfoDataSource insertObject:@{kLocalizedString(@"PROMOTION"):[NSString stringWithFormat:@"%@",[self.model.storeCampaignPrice currency]]} atIndex:1];
     }
     if (self.model.storeCouponPrice && self.model.storeCouponPrice.integerValue != 0) {
         [_orderInfoDataSource insertObject:@{kLocalizedString(@"STORE_COUPONS"):[NSString stringWithFormat:@"%@",[self.model.storeCouponPrice currency]]} atIndex:1];
@@ -248,11 +249,26 @@
 {
     self.moreBtn.hidden = !([_model.state isEqualToString:@"D"] || [_model.state isEqualToString:@"C"]);
     [self.moreActionBtn1 setTitle:kLocalizedString(@"REBUY") forState:0];
-    if ([self.model.state isEqualToString:@"B"] || [self.model.state isEqualToString:@"E"]) {
+    if ([self.model.state isEqualToString:@"E"]) {
         [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REBUY")] forState:0];
         self.btn2.hidden = YES;
         [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
+            make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
+            make.height.mas_equalTo(46);
+            make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
+        }];
+    }else if([self.model.state isEqualToString:@"B"]){
+        [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REBUY")] forState:0];
+        [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REFUND")] forState:0];
+        [self.btn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
+            make.width.mas_equalTo((MainScreen_width-52)/2);
+            make.height.mas_equalTo(46);
+            make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
+        }];
+        [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.btn2.mas_right).offset(10);
             make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
             make.height.mas_equalTo(46);
             make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
@@ -393,9 +409,9 @@
         vc.model = _model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     }else if ([state isEqualToString:@"B"]){
-        [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
-            //返回错误和本地地址
-        }];
+        RefundOrReturnViewController *VC = [[RefundOrReturnViewController alloc] init];
+        VC.model = _model;
+        [[baseTool getCurrentVC].navigationController pushViewController:VC animated:YES];
     }else if ([state isEqualToString:@"D"]){
         if ([_model.canEvaluate isEqualToString:@"Y"]) {
             if (_model.orderItems.count > 1) {

@@ -137,7 +137,7 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4C-9y-QlI">
-                                <rect key="frame" x="148" y="79" width="8" height="16"/>
+                                <rect key="frame" x="148" y="79" width="135" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="J9n-hq-Sqc"/>
                                 </constraints>
@@ -159,8 +159,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svw-a8-d1D">
-                                <rect key="frame" x="84.5" y="10" width="32" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svw-a8-d1D">
+                                <rect key="frame" x="84.5" y="10" width="180" height="14.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="zwf-SC-iGL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -196,6 +199,7 @@
                             <constraint firstItem="5Uk-UU-CJV" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" constant="46" id="KI0-b6-lFD"/>
                             <constraint firstItem="Svw-a8-d1D" firstAttribute="leading" secondItem="xMv-kL-ggm" secondAttribute="trailing" constant="5" id="Kjb-dE-dUe"/>
                             <constraint firstItem="xMv-kL-ggm" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" constant="55" id="MtV-L3-MmS"/>
+                            <constraint firstAttribute="trailing" secondItem="B4C-9y-QlI" secondAttribute="trailing" constant="60" id="VAs-po-OCA"/>
                             <constraint firstAttribute="trailing" secondItem="2OE-4E-Ucf" secondAttribute="trailing" constant="20" id="Xcd-Oq-hOH"/>
                             <constraint firstItem="Svw-a8-d1D" firstAttribute="centerY" secondItem="xMv-kL-ggm" secondAttribute="centerY" id="YkM-mb-7aV"/>
                             <constraint firstItem="xDM-D5-S5g" firstAttribute="leading" secondItem="jWp-Ge-qwV" secondAttribute="trailing" id="ZHR-dW-vlB"/>

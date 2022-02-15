@@ -985,17 +985,25 @@
         }].firstObject;
         [self showAttrsViewWithAttrType:subModel ? groupSingleBuyType: cartType];
     } else {
+        NSMutableArray *aa = [NSMutableArray arrayWithArray:@[]];
+        for (ProdSpcAttrsModel *subModel in self.attrView.selProductModel.prodSpcAttrs) {
+            [aa addObject:[subModel toDictionary]];
+        }
         NSDictionary *params =
         @{
-            @"campaignId":@"3",
+//            @"campaignId":@"3",
             @"num": @(self.attrView.count),
             @"offerId": @(self.model.offerId),
             @"productId": @([self getSelectedProductItem].productId),
             @"storeId": @(self.model.storeId),
+            @"storeName": self.model.storeName,
             @"unitPrice": @(self.model.salesPrice),
+            @"salesPrice": @(self.model.salesPrice),
+            @"imgUrl": [self getSelectedProductItem].imgUrl,
             @"contactChannel":@"3",
             @"addon":@"",
-            @"isSelected":@"N"
+            @"isSelected":@"N",
+            @"prodSpcAttrs":aa,
         };
         UserModel *model = [FMDBManager sharedInstance].currentUser;
         if (!model) {

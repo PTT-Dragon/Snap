@@ -222,7 +222,6 @@ static BOOL _passwordSuccess = NO;
         for (CartItemModel *itemModel in listModel.shoppingCarts) {
             NSDictionary *params =
             @{
-                @"campaignId":@"3",
                 @"num": itemModel.num,
                 @"offerId": itemModel.offerId,
                 @"productId": itemModel.productId,

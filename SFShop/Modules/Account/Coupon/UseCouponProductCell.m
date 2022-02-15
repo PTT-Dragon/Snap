@@ -59,7 +59,7 @@
     
     [self.promoTypeView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(KScale(15));
-        make.right.mas_equalTo(-KScale(10));
+        make.right.mas_equalTo(-KScale(30));
         make.left.equalTo(self.imgView.mas_right).offset(KScale(15));
         make.height.mas_equalTo(KScale(16));
     }];

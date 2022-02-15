@@ -61,7 +61,7 @@
     if ([model.eventId isEqualToString:@"2"]) {
         _stateLabel.text = kLocalizedString(@"RETURN");
         eventType = kLocalizedString(@"RETURN");
-    }else if ([model.eventId isEqualToString:@"3"]){
+    }else if ([model.eventId isEqualToString:@"3"] || [model.eventId isEqualToString:@"5"]){
         _stateLabel.text = kLocalizedString(@"Refund");
         eventType = kLocalizedString(@"Refund");
     }else if ([model.eventId isEqualToString:@"4"]){
@@ -124,7 +124,7 @@
     }else if ([model.state isEqualToString:@"I"]){
         //待填写银行卡
         _statuLabel.text = @"Provide bank account";
-        _contentLabel.text = @"refund bank account to be confirmed";
+        _contentLabel.text = @"Refund bank account to be confirmed";
         _btn.hidden = NO;_btn2.hidden = YES;
         [_btn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REFUND_BANK_ACCOUNT")] forState:0];
         _viewHei.constant = 52;
