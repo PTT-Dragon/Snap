@@ -9,10 +9,11 @@
 
 @implementation MJRefreshBackFooter (SnapRefresh)
 
+
+
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
 {
     [super scrollViewContentSizeDidChange:change];
-    
     // 内容的高度
     CGFloat contentHeight = self.scrollView.mj_contentH + self.ignoredScrollViewContentInsetBottom;
     // 表格的高度

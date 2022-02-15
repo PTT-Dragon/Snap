@@ -103,6 +103,9 @@
         [self.dataArray addObjectsFromArray:dataModel.pageInfo.list];
         [self refreshNoItemsStatus];
         [self.collectionView reloadData];
+        if (dataModel.pageInfo.list.count < 10) {
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        }
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         if ([self.collectionView.mj_header isRefreshing]) {
@@ -146,7 +149,7 @@
         }
     }];
     
-    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.collectionView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         self.currentPage += 1;
         if (!self.showEmptyView) {
             [self loadDatas:self.currentPage sortType:self.currentType filter:self.filterCacheModel];
