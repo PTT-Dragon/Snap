@@ -46,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label5;
 @property (weak, nonatomic) IBOutlet UILabel *label6;
 @property (weak, nonatomic) IBOutlet UILabel *label7;
+@property (nonatomic,strong) NSMutableArray *selectAssets;
 
 @end
 
@@ -149,7 +150,7 @@
                 [self.imgArr addObject:image];
             }
             CGFloat itemHei = (MainScreen_width-32-30)/4;
-            self.photoCollectionViewHei.constant = self.imgArr.count < 4 ? itemHei+5:  self.imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+            self.photoCollectionViewHei.constant = ceil(self.imgArr.count/4.0)*(itemHei+10)+15;
             [self.photoCollectionView reloadData];
             dispatch_group_leave(group);
         }];
@@ -160,7 +161,7 @@
         @strongify(self);
         [self.imgArr addObject:@"1"];
         CGFloat itemHei = (MainScreen_width-32-30)/4;
-        CGFloat theHeight = ceil(self.imgArr.count/4.0)*(itemHei+10);
+        CGFloat theHeight = ceil(self.imgArr.count/4.0)*(itemHei+10)+15;
         self.photoCollectionViewHei.constant = theHeight;
         [self.photoCollectionView reloadData];
     });
@@ -211,8 +212,13 @@
             [weakself.imgArr insertObject:@"1" atIndex:weakself.imgArr.count];
         }
         CGFloat itemHei = (MainScreen_width-32-30)/4;
-        weakself.photoCollectionViewHei.constant = weakself.imgArr.count < 4 ? itemHei+5:  weakself.imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+        weakself.photoCollectionViewHei.constant = ceil(weakself.imgArr.count/4.0)*(itemHei+10)+15;
         [weakself.photoCollectionView reloadData];
+        
+        if (weakself.selectAssets.count > index) {
+            [weakself.selectAssets removeObjectAtIndex:index];
+        }
+        [collectionView reloadData];
     };
     return cell;
 }
@@ -235,7 +241,8 @@
     ac.configuration.maxPreviewCount = 10;
     ac.configuration.useSystemCamera = YES;
     ac.configuration.allowSelectVideo = NO;
-
+    ac.arrSelectedAssets = self.selectAssets;
+    
     //如调用的方法无sender参数，则该参数必传
     ac.sender = [baseTool getCurrentVC];
     MPWeakSelf(self)
@@ -244,11 +251,13 @@
         //your codes
         [weakself.imgArr removeAllObjects];
         [weakself.imgArr addObjectsFromArray:images];
+        [weakself.selectAssets removeAllObjects];
+        [weakself.selectAssets addObjectsFromArray:assets];
         if (images.count != 9) {
             [weakself.imgArr addObject:@"1"];
         }
         CGFloat itemHei = (MainScreen_width-32-30)/4;
-        weakself.photoCollectionViewHei.constant = images.count < 4 ? itemHei+5: images.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+        weakself.photoCollectionViewHei.constant = ceil(weakself.imgArr.count/4.0)*(itemHei+10)+15;
         [weakself.photoCollectionView reloadData];
     }];
     // 调用相册
@@ -368,6 +377,13 @@
         [_countView configDataWithTotalCount:500 currentCount:0];
     }
     return _countView;
+}
+
+-(NSMutableArray *)selectAssets {
+    if (!_selectAssets) {
+        _selectAssets = [[NSMutableArray alloc] init];
+    }
+    return _selectAssets;
 }
 
 @end
