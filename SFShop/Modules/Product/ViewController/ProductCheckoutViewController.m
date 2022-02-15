@@ -295,7 +295,7 @@
     if ([model.cellId isEqualToString:@"ProductCheckoutVoucherCell"]) {
         NSMutableArray *pltAvailableCoupons = self.dataModel.couponsModel.pltAvailableCoupons.mutableCopy;
         if (!pltAvailableCoupons.count) {
-            [MBProgressHUD showTopErrotMessage:@"None Vouchers"];
+            [MBProgressHUD showTopErrotMessage:kLocalizedString(@"COUPON_NO_DATA_TXT")];
             return;
         }
         CouponsViewController *vc = [[CouponsViewController alloc] init];

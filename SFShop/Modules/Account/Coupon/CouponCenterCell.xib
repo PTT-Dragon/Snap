@@ -106,9 +106,8 @@
                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BpP-Dt-tQC">
-                                <rect key="frame" x="67" y="-42" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Union 7" translatesAutoresizingMaskIntoConstraints="NO" id="BpP-Dt-tQC">
+                                <rect key="frame" x="204" y="15" width="14" height="14"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -116,6 +115,7 @@
                             <constraint firstItem="DN8-M9-xHy" firstAttribute="leading" secondItem="WXO-sE-WWQ" secondAttribute="trailing" constant="8" id="17k-MU-u6e"/>
                             <constraint firstItem="OkS-je-45e" firstAttribute="leading" secondItem="8cs-6E-PP3" secondAttribute="leading" constant="2" id="6Js-Jn-eST"/>
                             <constraint firstAttribute="bottom" secondItem="00z-ni-4Gh" secondAttribute="bottom" constant="16" id="Bhj-RS-EQK"/>
+                            <constraint firstItem="BpP-Dt-tQC" firstAttribute="centerY" secondItem="WXO-sE-WWQ" secondAttribute="centerY" id="Fqb-pB-rz2"/>
                             <constraint firstAttribute="bottom" secondItem="OkS-je-45e" secondAttribute="bottom" constant="35" id="QkB-01-TCT"/>
                             <constraint firstAttribute="trailing" secondItem="6fF-Ry-sSD" secondAttribute="trailing" id="SEM-HH-Nho"/>
                             <constraint firstAttribute="bottom" secondItem="6fF-Ry-sSD" secondAttribute="bottom" id="TqQ-Zc-0gb"/>
@@ -124,6 +124,7 @@
                             <constraint firstItem="6fF-Ry-sSD" firstAttribute="leading" secondItem="OkS-je-45e" secondAttribute="trailing" id="ctK-zL-73K"/>
                             <constraint firstItem="WXO-sE-WWQ" firstAttribute="top" secondItem="8cs-6E-PP3" secondAttribute="top" constant="12" id="ebm-vC-6fa"/>
                             <constraint firstItem="6fF-Ry-sSD" firstAttribute="top" secondItem="8cs-6E-PP3" secondAttribute="top" id="hP9-A4-GXJ"/>
+                            <constraint firstItem="6fF-Ry-sSD" firstAttribute="leading" secondItem="BpP-Dt-tQC" secondAttribute="trailing" constant="5" id="ihF-PD-R7L"/>
                             <constraint firstItem="00z-ni-4Gh" firstAttribute="leading" secondItem="8cs-6E-PP3" secondAttribute="leading" constant="16" id="nin-FV-glw"/>
                             <constraint firstItem="WXO-sE-WWQ" firstAttribute="leading" secondItem="8cs-6E-PP3" secondAttribute="leading" constant="16" id="z9e-6J-fTG"/>
                         </constraints>
@@ -152,6 +153,7 @@
     </objects>
     <resources>
         <image name="00196_01_discountcode_outline" width="14" height="10"/>
+        <image name="Union 7" width="14" height="14"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

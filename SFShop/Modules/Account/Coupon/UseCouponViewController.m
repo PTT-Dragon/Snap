@@ -229,7 +229,7 @@
 {
     _label1.text = kLocalizedString(@"Total");
     _amountLabel.text = [self.orifeeModel.totalPrice currency];
-    _explainLabel.text = [self.orifeeModel.totalPrice isEqualToString:@"0"] ? kLocalizedString(@"BUY_MORE_TO_ENJOY_DISCOUNT"): [NSString stringWithFormat:@"%@%@",kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT"),[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currency]];
+    _explainLabel.text = [self.orifeeModel.totalPrice isEqualToString:@"0"] ? kLocalizedString(@"BUY_MORE_TO_ENJOY_DISCOUNT"): [self.couponModel.discountMethod isEqualToString:@"AMT"] ? [NSString stringWithFormat:@"%@%@",[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currency],kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT")] : [NSString stringWithFormat:@"%.0f%%%@",[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currencyFloat ],kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT")];
     [_cartBtn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"SHOPPING_CART")] forState:0];
 }
 - (IBAction)cartAction:(UIButton *)sender {

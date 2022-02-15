@@ -171,7 +171,7 @@
   "COLLECT_MORE_COUPON" = "Collect More Vouchers";
 "BUY_MORE_TO_ENJOY_DISCOUNT" = "Buy more to enjoy discount";
 "N_DISCOUNT_APPLIED_AT_CHECKOUT" = " discount applied at checkout";
-//  "COUPON_NO_DATA_TXT" = "Sorry; no coupons were found.";
+  "COUPON_NO_DATA_TXT" = "Sorry, no vouchers were found.";
 //  "LOGIN_SUCCESS" = "Login Success!";
 //  "REGISTRATION_COUPON_HINT" = "The registration coupon package has been sent to your account.";
   "REVIEW" = "REVIEW";
@@ -223,6 +223,7 @@
   "SERVICE_ATTITUDE" = "Service Attitude";
   "LOGISTICS_SERVICE" = "Logistics Service";
   "DISCOUNT" = "Discount";
+"discount" = "discount";
   "INBOX" = "Inbox";
   "MY_SF" = "My SF";
 //  "DELETE" = "Delete";

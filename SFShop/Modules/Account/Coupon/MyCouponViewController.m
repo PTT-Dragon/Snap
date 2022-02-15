@@ -81,7 +81,7 @@
         [menuItem setTitleColor: [UIColor blackColor] forState:UIControlStateSelected];
         menuItem.titleLabel.numberOfLines = 2;
         menuItem.titleLabel.textAlignment = NSTextAlignmentCenter;
-        menuItem.titleLabel.font = kFontBlod(14);
+        menuItem.titleLabel.font = kFontRegular(14);
     }
     [menuItem setSelected: (itemIndex == self.currentMenuIndex)];
     return menuItem;
