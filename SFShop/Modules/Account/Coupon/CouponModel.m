@@ -43,5 +43,8 @@
 @end
 
 @implementation CouponOrifeeModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 @end

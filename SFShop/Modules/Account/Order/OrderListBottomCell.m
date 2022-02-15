@@ -184,7 +184,7 @@ static dispatch_source_t _timer;
     }else if ([state isEqualToString:@"C"]){
         //确认订单收货
         MPWeakSelf(self)
-        PublicAlertView *alert = [[PublicAlertView alloc]initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"CONFIRM") content:kLocalizedString(@"ARE_YOU_SURE") btnTitle:kLocalizedString(@"YES") block:^{
+        PublicAlertView *alert = [[PublicAlertView alloc]initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"confirm") content:kLocalizedString(@"ARE_YOU_SURE") btnTitle:kLocalizedString(@"YES") block:^{
             
             [SFNetworkManager post:SFNet.order.confirmOrder parametersArr:@[weakself.model.orderId] success:^(id  _Nullable response) {
                 [weakself.delegate refreshDatas];

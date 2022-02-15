@@ -64,6 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *num;
 @property (nonatomic, readwrite, strong) NSString *couponCatg;
 @property (nonatomic, readwrite, strong) NSString *couponBrief;
+- (NSString *)getCouponInfoOf: (NSString *)couponId;
 
 
 

@@ -129,8 +129,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 3) {
         LogisticsMoreCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LogisticsMoreCell" forIndexPath:indexPath];
-        cell.countLabel.text = [NSString stringWithFormat:@"+ %ld",_model.orderItems.count-3];
-        cell.moreLabel.text = kLocalizedString(@"MORE");
+//        cell.countLabel.text = [NSString stringWithFormat:@"+ %ld",_model.orderItems.count-3];
+//        cell.moreLabel.text = kLocalizedString(@"MORE");
         return cell;
     }
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];

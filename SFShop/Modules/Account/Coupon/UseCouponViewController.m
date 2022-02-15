@@ -50,6 +50,7 @@
 @property (nonatomic,copy) NSString *searchText;
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @property (nonatomic,strong) EmptyView *emptyView;
+@property (nonatomic,strong) CouponModel *couponModel;
 
 @end
 
@@ -62,7 +63,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self loadsubviews];
 }
 - (void)loadsubviews {
     [self.view addSubview:self.navSearchView];
@@ -76,7 +76,7 @@
     if (_couponModel) {
         _couponNameLabel.text = self.couponModel.couponName;
         if (_couponModel.isGet) {
-            _expiredDataLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:_couponModel.userCouponEffDate] dayMonthYear],[[NSDate dateFromString:_couponModel.userCouponExpDate] dayMonthYear]];
+            _expiredDataLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:_couponModel.effDate] dayMonthYear],[[NSDate dateFromString:_couponModel.expDate] dayMonthYear]];
         }else{
             if (_couponModel.getOffsetExp) {
                 _expiredDataLabel.text = [NSString stringWithFormat:@"Valid within %@ days",_couponModel.getOffsetExp];
@@ -114,7 +114,22 @@
         make.top.mas_equalTo(self.tableView.mas_top).offset(90);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
-    
+}
+- (void)setCouponId:(NSString *)couponId
+{
+    _couponId = couponId;
+    [SFNetworkManager get:[SFNet.coupon getCouponInfoOf:couponId] success:^(id  _Nullable response) {
+        self.couponModel = [[CouponModel alloc] initWithDictionary:response error:nil];
+        self.couponModel.isGet = YES;
+        [self loadsubviews];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)setBuygetnInfoModel:(BuygetnInfoModel *)buygetnInfoModel
+{
+    _buygetnInfoModel = buygetnInfoModel;
+    [self loadsubviews];
 }
 #pragma mark - tableview
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
