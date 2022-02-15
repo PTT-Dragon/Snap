@@ -85,10 +85,13 @@
         }else{
             cell.model = self.model;
         }
+        cell.score1 = self.score1;
+        cell.score2 = self.score2;
+        cell.score3 = self.score3;
         cell.block = ^(NSString * _Nonnull score1, NSString * _Nonnull score2, NSString * _Nonnull score3) {
             self.score1 = score1;
-            self.score2 = score1;
-            self.score3 = score1;
+            self.score2 = score2;
+            self.score3 = score3;
         };
                 
         return cell;

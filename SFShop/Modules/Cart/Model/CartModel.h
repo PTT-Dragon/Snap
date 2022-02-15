@@ -100,6 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) double storeCouponPrice;
 @property (nonatomic,assign) double platformCouponPrice;
 @property (nonatomic,strong) NSArray <CartItemModel> *shoppingCarts;
+@property (nonatomic,strong) NSArray <CartItemModel> *campaignGroupsShoppingCarts;
 @property (nonatomic,strong) NSArray <CartCampaignsModel> *campaignGroups;
 
 

@@ -22,8 +22,8 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyT-LK-ufp">
-                        <rect key="frame" x="18" y="7" width="14.5" height="14"/>
-                        <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="11"/>
+                        <rect key="frame" x="17" y="13" width="16" height="14"/>
+                        <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="12"/>
                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -38,7 +38,7 @@
             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="PyT-LK-ufp" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Gy4-qz-cnN"/>
-                <constraint firstAttribute="top" secondItem="PyT-LK-ufp" secondAttribute="top" constant="-7" id="Vip-At-TFk"/>
+                <constraint firstAttribute="top" secondItem="PyT-LK-ufp" secondAttribute="top" constant="-13" id="Vip-At-TFk"/>
                 <constraint firstAttribute="bottom" secondItem="eev-lb-oLs" secondAttribute="bottom" constant="10" id="gFb-eu-fyY"/>
                 <constraint firstItem="eev-lb-oLs" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="oW4-gM-gbP"/>
             </constraints>

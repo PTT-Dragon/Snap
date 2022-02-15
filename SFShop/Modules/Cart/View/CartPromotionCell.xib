@@ -22,8 +22,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeS-lp-lJ4">
-                        <rect key="frame" x="16" y="12" width="35" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeS-lp-lJ4">
+                        <rect key="frame" x="16" y="12" width="244" height="16"/>
                         <fontDescription key="fontDescription" weight="medium" name="TruenoRg" family="Trueno" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -55,10 +55,12 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="pqE-gh-IVA" secondAttribute="bottom" constant="15.5" id="0Mj-Mm-3ov"/>
                     <constraint firstAttribute="bottom" secondItem="U2F-gV-80M" secondAttribute="bottom" id="0QN-Kb-oiI"/>
                     <constraint firstAttribute="trailing" secondItem="baQ-oh-Ex6" secondAttribute="trailing" constant="16" id="Osh-5u-ET8"/>
                     <constraint firstItem="U2F-gV-80M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Oyq-Zr-Vdc"/>
                     <constraint firstItem="jeS-lp-lJ4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="QG3-Pd-5WM"/>
+                    <constraint firstAttribute="trailing" secondItem="jeS-lp-lJ4" secondAttribute="trailing" constant="60" id="Ssq-pp-aZk"/>
                     <constraint firstItem="jeS-lp-lJ4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="cm0-iU-x5q"/>
                     <constraint firstItem="baQ-oh-Ex6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sE4-xl-mAc"/>
                     <constraint firstItem="pqE-gh-IVA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="u5n-vy-WKb"/>

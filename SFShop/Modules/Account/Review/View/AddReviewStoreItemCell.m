@@ -29,14 +29,29 @@
     _starView1.score = 5;
     _starView2.score = 5;
     _starView3.score = 5;
+    _starView1.block = ^(NSInteger score) {
+        if (self.block) {
+            self.block([NSString stringWithFormat:@"%ld",self.starView1.score], [NSString stringWithFormat:@"%ld",self.starView2.score], [NSString stringWithFormat:@"%ld",self.starView3.score]);
+        }
+    };
+    _starView2.block = ^(NSInteger score) {
+        if (self.block) {
+            self.block([NSString stringWithFormat:@"%ld",self.starView1.score], [NSString stringWithFormat:@"%ld",self.starView2.score], [NSString stringWithFormat:@"%ld",self.starView3.score]);
+        }
+    };
+    _starView3.block = ^(NSInteger score) {
+        if (self.block) {
+            self.block([NSString stringWithFormat:@"%ld",self.starView1.score], [NSString stringWithFormat:@"%ld",self.starView2.score], [NSString stringWithFormat:@"%ld",self.starView3.score]);
+        }
+    };
 }
 - (void)layoutSubviews
 {
-    _starView1.score = 5;
+//    _starView1.score = 5;
     _starView1.canSel = YES;
-    _starView2.score = 5;
+//    _starView2.score = 5;
     _starView2.canSel = YES;
-    _starView3.score = 5;
+//    _starView3.score = 5;
     _starView3.canSel = YES;
 }
 - (void)setModel:(OrderModel *)model
@@ -50,6 +65,21 @@
     _detailModel = detailModel;
     [self.storeLogoImgView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"toko"]];
     self.storeNameLabel.text = detailModel.storeName;
+}
+- (void)setScore1:(NSString *)score1
+{
+    _score1 = score1;
+    self.starView1.score = score1.integerValue;
+}
+- (void)setScore2:(NSString *)score2
+{
+    _score2 = score2;
+    self.starView2.score = score2.integerValue;
+}
+- (void)setScore3:(NSString *)score3
+{
+    _score3 = score3;
+    self.starView3.score = score3.integerValue;
 }
 - (IBAction)selAction:(UIButton *)sender {
     sender.selected = !sender.selected;

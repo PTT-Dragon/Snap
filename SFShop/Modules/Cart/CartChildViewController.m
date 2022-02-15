@@ -109,13 +109,8 @@
         CartListModel *model = self.cartModel.invalidCarts[section-self.cartModel.validCarts.count];
         return model.shoppingCarts.count+1;
     }
-    CartListModel *model = self.cartModel.validCarts[section];
-    NSArray *arr = model.campaignGroups;//self.campaignsDataSource[section];
-    __block NSInteger count = 0;
-    [arr enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        count += obj.shoppingCarts.count;
-    }];
-    return model.shoppingCarts.count+1+count;
+    CartListModel *listModel = self.cartModel.validCarts[section];
+    return listModel.shoppingCarts.count+1+listModel.campaignGroupsShoppingCarts.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -129,22 +124,21 @@
     }else{
         listModel = self.cartModel.validCarts[indexPath.section];
     }
-//    CartItemModel *model;
     BOOL showView = NO;
-    __block NSInteger count = 0;
-    NSArray *arr = listModel.campaignGroups;
-    [arr enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        count += obj.shoppingCarts.count;
-    }];
-    if (indexPath.row > count) {
-//        model = listModel.shoppingCarts[indexPath.row-count-1];
+    __block CGFloat labelHei = 0;
+    if (indexPath.row > listModel.campaignGroupsShoppingCarts.count) {
         showView = NO;
     }else{
-//        CartCampaignsModel *campaignsModel = arr[indexPath.row-1];
-//        model = campaignsModel.shoppingCarts.firstObject;
         showView = YES;
+        CartItemModel * model = listModel.campaignGroupsShoppingCarts[indexPath.row-1];
+        [listModel.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.campaignId isEqualToString:model.campaignId]) {
+                labelHei = [obj.campaignName jk_heightWithFont:kFontLight(12) constrainedToWidth:150];
+                *stop = YES;
+            }
+        }];
     }
-    return indexPath.row == 0 ? 45: showView ? 160: 117;
+    return indexPath.row == 0 ? 45: showView ? 140+labelHei: 117;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -180,21 +174,22 @@
         cell.isInvalid = NO;
     }
     CartItemModel *model;
-    __block NSInteger count = 0;
-    NSArray <CartCampaignsModel *>*arr = listModel.campaignGroups;
-    [arr enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        count += obj.shoppingCarts.count;
-    }];
-    if (indexPath.row > count) {
+    if (indexPath.row > listModel.campaignGroupsShoppingCarts.count) {
         //普通商品
-        model = listModel.shoppingCarts[indexPath.row-listModel.campaignGroups.count-1];
+        model = listModel.shoppingCarts[indexPath.row-listModel.campaignGroupsShoppingCarts.count-1];
         cell.showCampaignsView = NO;
     }else{
         //参与活动的商品
-        CartCampaignsModel *campaignsModel = arr[indexPath.row-1];
-        model = campaignsModel.shoppingCarts.firstObject;
+        
+//        model = campaignsModel.shoppingCarts.firstObject;
+        model = listModel.campaignGroupsShoppingCarts[indexPath.row-1];
         cell.showCampaignsView = YES;
-        cell.campaignsModel = campaignsModel;
+        [listModel.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.campaignId isEqualToString:model.campaignId]) {
+                cell.campaignsModel = obj;
+                *stop = YES;
+            }
+        }];
     }
     cell.model = model;
     cell.delegate = self;
@@ -372,8 +367,7 @@
                 i++;
             }
         }
-//        [weakself handleDatas];
-        [weakself.tableView reloadData];
+        [weakself handleDatas];
         [weakself.tableView.mj_header endRefreshing];
         [weakself calculateAmount];
         [weakself showEmptyView];
@@ -409,14 +403,17 @@
 
 - (void)handleDatas
 {
-    self.campaignsDataSource = [NSMutableArray array];
     [self.cartModel.validCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSMutableArray <CartCampaignsModel *>*arr = [NSMutableArray array];
-        [obj.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [arr addObject:obj];
+//        NSMutableArray <CartCampaignsModel *>*arr = [NSMutableArray array];
+        NSMutableArray <CartItemModel *>*arr = [NSMutableArray array];
+        [obj.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+            [obj2.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj3, NSUInteger idx3, BOOL * _Nonnull stop3) {
+                [arr addObject:obj3];
+            }];
         }];
-        [self.campaignsDataSource addObject:arr];
+        obj.campaignGroupsShoppingCarts = arr;
     }];
+    [self.tableView reloadData];
 }
 - (void)loadCouponsDatasWithStoreId:(NSString *)storeId productArr:(NSArray *)productArr
 {

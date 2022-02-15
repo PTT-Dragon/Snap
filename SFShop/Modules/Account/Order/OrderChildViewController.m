@@ -81,7 +81,7 @@
         return cell;
     }
     OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-    [cell setContent:model.orderItems[indexPath.row-1]];
+    [cell setContent:model.orderItems[indexPath.row-1] isInAfterSale:(indexPath.row == model.orderItems.count && [model.isAfterSales isEqualToString:@"Y"])];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -100,7 +100,9 @@
     OrderModel *model = self.dataSource[indexPath.section];
     BOOL showOrderInfo;
     showOrderInfo = [model.state isEqualToString:@"E"] ? YES:NO;
-    return indexPath.row == 0 ? 40: indexPath.row == model.orderItems.count+1 ? showOrderInfo ? 42: 100: 118;
+    BOOL showInAfterSale;
+    showInAfterSale = (model.orderItems.count == indexPath.row && [model.isAfterSales isEqualToString:@"Y"]);
+    return indexPath.row == 0 ? 40: indexPath.row == model.orderItems.count+1 ? showOrderInfo ? 42: 100: showInAfterSale ? 140 : 118;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

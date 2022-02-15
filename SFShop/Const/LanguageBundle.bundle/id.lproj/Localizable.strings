@@ -255,7 +255,7 @@
 //  "QUANTITY" = "Jumlah";
   "UP_TO" = "hingga";
 "UPLOAD_PICTURE" = "Upload gambar";
-//  "OFF" = "Off";
+  "OFF" = "Diskon";
 //  "MIN_SPEND" = "Min. Spend";
   "SIMILAR_PRODUCT_RECOMMENDATION" = "Rekomendasi produk serupa";
 //  "NEW_PASSWORD" = "Kata sandi baru";
@@ -636,6 +636,7 @@
 "Coupon_Center" = "Pusat Voucher";
 "Login_Or_Register" = "Makuk atau daftar";
 "SHOPPING_CART" = "KERANJANG BELANJA";
+"Shopping_Cart" = "Keranjang Belanja";
 "Hide" = "Hide";
 "View_replies" = "View replies";
 "verification_email_code" = "Kode verifikasi akan dikirim ke alamat email Anda. Silakan masukkan email terdaftar Anda.";
@@ -687,3 +688,4 @@
 "ARE_YOU_SURE" = "Tekan YA jika Anda telah menerima barang";
 "TO_SATISFY" = "MEMUASKAN";
 "SELLER_VOUCHER" = "Voucher Penjual";
+"inAfterSale" = "In The After-Sale";

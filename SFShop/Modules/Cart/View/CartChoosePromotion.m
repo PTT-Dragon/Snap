@@ -71,10 +71,10 @@
     };
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 60;
+//}
 - (IBAction)confirmAction:(UIButton *)sender {
     if (self.block) {
         self.block(_model);

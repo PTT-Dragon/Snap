@@ -180,9 +180,10 @@
   "ADDITIONAL_DAY" = "Additional Reviews";
 "days after purchase" = " days after purchase";
 //  "GO_SHOPPING" = "Go Shopping";
-  "REVIEW_LIST" = "REVIEW_LIST";
+  "REVIEW_LIST" = "REVIEW LIST";
   "VALID_RANGE" = "Valid within";
 "hari" = "days";
+"inAfterSale" = "In The After-Sale";
 //  "REVIEW_INPUT_COMMENTS" = "Please input comments";
 //  "REVIEW_DETAIL" = "Review Detail";
   "RETURN_ADDRESS" = "Return Address";
@@ -248,7 +249,7 @@
 //  "QUANTITY" = "Quantity";
   "UP_TO" = "up to";
 "UPLOAD_PICTURE" = "Upload Picture";
-//  "OFF" = "off";
+  "OFF" = "off";
 //  "MIN_SPEND" = "Min. spending";
   "SIMILAR_PRODUCT_RECOMMENDATION" = "Similar product recommendation";
 //  "NEW_PASSWORD" = "New Password";
@@ -624,7 +625,7 @@
 "SFshop_Voucher" = "Platform Voucher";
 "Coupon_Center" = "Voucher Center";
 "Login_Or_Register" = "Login Or Register";
-"Shopping_Cart" = "SHOPPING CART";
+"Shopping_Cart" = "Shopping Cart";
 "Hide" = "Hide";
 "VIEW_REVIEW" = "VIEW REVIEW";
 "View_replies" = "View replies";

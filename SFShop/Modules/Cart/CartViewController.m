@@ -48,7 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-        self.navigationItem.title=kLocalizedString(@"SHOPPING_CART");
+        self.navigationItem.title=kLocalizedString(@"Shopping_Cart");
     self.tabBarItem.title=kLocalizedString(@"CART");
     _addressArr = [NSMutableArray array];
     [self updateDatas];NSLocalizedString(@"test", nil);
@@ -444,7 +444,7 @@
         [_totalBtn setTitle:@"Total ▴ " forState:0];//▴▾
         _totalBtn.titleLabel.font = CHINESE_SYSTEM(12);
         [_totalBtn setTitleColor:RGBColorFrom16(0x999999) forState:0];
-        _totalBtn.frame = CGRectMake(15, 15, 70, 20);
+        _totalBtn.frame = CGRectMake(5, 15, 70, 20);
         @weakify(self)
         [[_totalBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             @strongify(self)

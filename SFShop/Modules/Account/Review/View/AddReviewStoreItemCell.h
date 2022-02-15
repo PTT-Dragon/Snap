@@ -18,6 +18,9 @@ typedef void(^AddReviewStoreItemAnonymousBlock)(NSString *Anonymous);
 @property (nonatomic,strong) OrderDetailModel *detailModel;
 @property (nonatomic,copy) AddReviewStoreItemRateBlock block;
 @property (nonatomic,copy) AddReviewStoreItemAnonymousBlock anonymousblock;
+@property (nonatomic,copy) NSString *score1;
+@property (nonatomic,copy) NSString *score2;
+@property (nonatomic,copy) NSString *score3;
 
 @end
 

@@ -43,6 +43,11 @@
             noStock = NO;
         }
     }];
+    [model.campaignGroupsShoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.stock != 0 || ![obj.noStock isEqualToString:@"Y"]) {
+            noStock = NO;
+        }
+    }];
     if (_isInvalid || noStock) {
         _selBtn.enabled = NO;
         return;

@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*serviceTypes;
 @property (nonatomic,copy) NSString <Optional>*unitPrice;
 
+
+
 @end
 
 @interface EvaluatesContentsModel : JSONModel
@@ -117,6 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*storeName;
 @property (nonatomic,copy) NSString <Optional>*stateStr;
 @property (nonatomic,strong) NSArray <orderItemsModel>*orderItems;
+@property (nonatomic,copy) NSString <Optional>*isAfterSales;
 - (NSString *)getStateStr;
 
 @end
@@ -213,6 +216,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional>*receivedDate;
 @property (nonatomic,copy) NSString <Optional>*shareBuyOrderId;
 @property (nonatomic,copy) NSString <Optional>*shareBuyOrderNbr;
+@property (nonatomic,copy) NSString <Optional>*isAfterSales;
+
 @end
 
 @interface CancelOrderReasonModel : JSONModel

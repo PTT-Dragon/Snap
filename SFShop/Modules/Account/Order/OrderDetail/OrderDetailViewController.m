@@ -259,20 +259,31 @@
             make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
         }];
     }else if([self.model.state isEqualToString:@"B"]){
+        if ([self.model.isAfterSales isEqualToString:@"Y"]) {
+            self.btn2.hidden = YES;
+            [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
+                make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
+                make.height.mas_equalTo(46);
+                make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
+            }];
+        }else{
+            [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REFUND")] forState:0];
+            [self.btn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
+                make.width.mas_equalTo((MainScreen_width-52)/2);
+                make.height.mas_equalTo(46);
+                make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
+            }];
+            [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.btn2.mas_right).offset(10);
+                make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
+                make.height.mas_equalTo(46);
+                make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
+            }];
+        }
         [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REBUY")] forState:0];
-        [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REFUND")] forState:0];
-        [self.btn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
-            make.width.mas_equalTo((MainScreen_width-52)/2);
-            make.height.mas_equalTo(46);
-            make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
-        }];
-        [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.btn2.mas_right).offset(10);
-            make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
-            make.height.mas_equalTo(46);
-            make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
-        }];
+        
     }else if ([self.model.state isEqualToString:@"A"]){
         [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"PAYNOW")] forState:0];
         [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CANCEL")] forState:0];

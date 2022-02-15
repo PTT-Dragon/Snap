@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UIButton *afterSaleBtn;
+@property (weak, nonatomic) IBOutlet UILabel *inAfterSaleLabel;
 
 @end
 
@@ -26,9 +27,11 @@
     _skuLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _skuLabel.layer.borderWidth = 1;
     [_afterSaleBtn setTitle:[NSString stringWithFormat:@"  %@  ",kLocalizedString(@"REFUND_RETURN")] forState:0];
+    _inAfterSaleLabel.text = [NSString stringWithFormat:@" %@ ",kLocalizedString(@"inAfterSale")];
 }
-- (void)setContent:(orderItemsModel *)model
+- (void)setContent:(orderItemsModel *)model isInAfterSale:(BOOL)isInAfterSale
 {
+    _inAfterSaleLabel.hidden = !isInAfterSale;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
     _nameLabel.text = model.productName;
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];

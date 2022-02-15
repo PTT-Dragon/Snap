@@ -51,8 +51,9 @@
     [_additonBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_subtractBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_selBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
-    _offLabel.text = [NSString stringWithFormat:@" %@ ",kLocalizedString(@"DISCOUNT")];
+    _offLabel.text = [NSString stringWithFormat:@" %@ ",kLocalizedString(@"OFF")];
     [_offBtn setTitle:kLocalizedString(@"TO_SATISFY") forState:0];
+    _offBtn.titleLabel.numberOfLines = 0;
     _noStockLabel.text = kLocalizedString(@"OUT_OF_STOCK");
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skuAction)];
