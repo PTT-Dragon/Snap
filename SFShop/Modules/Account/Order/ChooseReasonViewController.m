@@ -11,6 +11,7 @@
 @interface ChooseReasonViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHei;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -25,6 +26,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"CancelOrderReasonCell" bundle:nil] forCellReuseIdentifier:@"CancelOrderReasonCell"];
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, iPhoneXBottomOffset)];
     self.tableViewHei.constant = self.dataSource.count * 56+100+iPhoneXBottomOffset;
+    _titleLabel.text = [NSString stringWithFormat:@"    %@",kLocalizedString(@"REASON_TITLE")];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -40,13 +40,13 @@
 {
     _model = model;
     if ([model.discountMethod isEqualToString:@"DISC"]) {
-        _discountLabel.text =[NSString stringWithFormat:@"%.0f%% %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],kLocalizedString(@"DISCOUNT")];
-        _discountLabel.attributedText = [NSMutableString difereentFontStr:_discountLabel.text font:kFontBlod(13) changeText:kLocalizedString(@"DISCOUNT")];
+        _discountLabel.text =[NSString stringWithFormat:@"%.0f%% %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],kLocalizedString(@"discount")];
+        _discountLabel.attributedText = [NSMutableString difereentFontStr:_discountLabel.text font:kFontBlod(13) changeText:kLocalizedString(@"discount")];
         _timeLabel.text = [NSString stringWithFormat:@"%@ %@ %@",kLocalizedString(@"VALID_RANGE"),_model.getOffsetExp,kLocalizedString(@"hari")];
     }else{
-        _discountLabel.text = [NSString stringWithFormat:@"%@ %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency],kLocalizedString(@"DISCOUNT")];
+        _discountLabel.text = [NSString stringWithFormat:@"%@ %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency],kLocalizedString(@"discount")];
         _discountLabel.font = CHINESE_BOLD(14);
-        _timeLabel.text = [NSString stringWithFormat:@"%@-%@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
+        _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogo)] placeholderImage:[UIImage imageNamed:@"toko"]];
 //    NSUInteger endTimeStamp = [[NSDate dateFromString:model.expDate] utcTimeStamp];
@@ -61,8 +61,10 @@
         }
     }];
     if (hasCoupon) {
+        _model.isGet = YES;
         [self.getBtn setTitle:kLocalizedString(@"USE_NOW") forState:0];
     }else{
+        _model.isGet = NO;
         [self.getBtn setTitle:kLocalizedString(@"GET_NOW") forState:0];
     }
 //    if ([model.isOrderTh isEqualToString:@"Y"]) {
@@ -71,7 +73,7 @@
 //        _contentLabel.text = [NSString stringWithFormat:@"%@ Without limit",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
 //    }
     _contentLabel.text = model.couponName;
-    _storeNameLabel.text = model.storeName;
+    _storeNameLabel.text = model.storeName ? model.storeName: @"Platform Voucher";
     
     [self.collectionView reloadData];
 }

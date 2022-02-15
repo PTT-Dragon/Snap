@@ -100,7 +100,7 @@
     OrderModel *model = self.dataSource[indexPath.section];
     BOOL showOrderInfo;
     showOrderInfo = [model.state isEqualToString:@"E"] ? YES:NO;
-    return indexPath.row == 0 ? 40: indexPath.row == model.orderItems.count+1 ? showOrderInfo ? 45: 100: 118;
+    return indexPath.row == 0 ? 40: indexPath.row == model.orderItems.count+1 ? showOrderInfo ? 42: 100: 118;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

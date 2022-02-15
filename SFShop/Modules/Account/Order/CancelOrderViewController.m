@@ -35,7 +35,7 @@
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"CancelOrderChooseReason" bundle:nil] forCellReuseIdentifier:@"CancelOrderChooseReason"];
-    [self.publishBtn setTitle:kLocalizedString(@"SUBMIT") forState:UIControlStateNormal];
+    [self.publishBtn setTitle:kLocalizedString(@"submit") forState:UIControlStateNormal];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
@@ -68,7 +68,7 @@
             [self.view addSubview:vc.view];
             vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
         };
-            cell.reasonLabel.text = _selReasonModel ? _selReasonModel.orderReasonName : kLocalizedString(@"PLEASE_SELECT");//@"Cancellation Reason";
+            cell.reasonLabel.text = _selReasonModel ? _selReasonModel.orderReasonName : @"Please Select";// kLocalizedString(@"PLEASE_SELECT");//@"Cancellation Reason";
         return cell;
     }
     OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];

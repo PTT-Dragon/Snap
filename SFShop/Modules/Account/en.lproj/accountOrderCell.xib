@@ -153,33 +153,33 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Pay" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Js-Qa-xYb">
-                                <rect key="frame" x="18" y="92" width="56.5" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="18" y="92" width="56.5" height="12"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="10"/>
+                                <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Ship" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2L4-uZ-p2B">
-                                <rect key="frame" x="80.5" y="92" width="56.5" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="80.5" y="92" width="56.5" height="12"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="10"/>
+                                <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Receive" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZy-K6-zbr">
-                                <rect key="frame" x="140" y="92" width="63" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="140" y="92" width="63" height="12"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="10"/>
+                                <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iE-Ms-cGF">
-                                <rect key="frame" x="203" y="92" width="62.5" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="203" y="92" width="62.5" height="12"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="10"/>
+                                <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Return" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDt-nn-yoF">
-                                <rect key="frame" x="265.5" y="92" width="62.5" height="11"/>
-                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="9"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="265.5" y="92" width="62.5" height="12"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="10"/>
+                                <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

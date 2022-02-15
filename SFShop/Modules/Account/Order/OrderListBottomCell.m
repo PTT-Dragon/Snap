@@ -60,7 +60,7 @@ static dispatch_source_t _timer;
     _btn1.layer.borderWidth = 1;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countDownNotification) name:OYCountDownNotification object:nil];
     [_moreBtn setTitle:kLocalizedString(@"MORE") forState:0];
-    _totalTitleLabel.text = kLocalizedString(@"Total");
+    _totalTitleLabel.text = [NSString stringWithFormat:@"%@:",kLocalizedString(@"Total")];
 
 }
 - (void)countDownNotification {

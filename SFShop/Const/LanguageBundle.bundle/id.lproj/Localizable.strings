@@ -114,6 +114,7 @@
 //  "SET_SUCCESSFUL" = "Setelan Berhasil";
 //  "DOWNLOAD" = "Downloading";
   "SUBMIT" = "KIRIM";
+"submit" = "Kirim";
 "FORGOT_PWD" = "Lupa Kata Sandi";
 //  "SETTING" = "Pengaturan";
 //  "LOGIN" = "Gabung";
@@ -170,12 +171,12 @@
   "REFUND_RETURN" = "PENGEMBALIAN BARANG DAN DANA";
   "REASON_TITLE" = "Pilih alasan";
 //  "MANY_SALES_HINT" = "Item ini tidak dapat diganti / dikembalikan lagi. Untuk bantuan lebih lanjut; silahkan hubungi costumer support.";
-  "ORDER_CANCEL_REASON" = "Alasan Pembatalan";
+  "ORDER_CANCEL_REASON" = "Alasan pembatalan";
 //  "CHECK_OUT" = "Check out";
   "USE_NOW" = "Gunakan sekarang";
 //  "HINT_SUCCESS" = "Berhasil";
   "COLLECT_MORE_COUPON" = "Kumpulkan lebih banyak voucher";
-//  "COUPON_NO_DATA_TXT" = "Maaf; tidak ada kupon yang ditemukan.";
+  "COUPON_NO_DATA_TXT" = "Maaf, voucher tidak ditemukan.";
 //  "LOGIN_SUCCESS" = "Login Berhasil";
 //  "REGISTRATION_COUPON_HINT" = "Paket kupon pendaftaran telah dikirim ke akun Anda.";
   "REVIEW" = "ULASAN";
@@ -232,6 +233,7 @@
   "SERVICE_ATTITUDE" = "Sikap pelayanan";
   "LOGISTICS_SERVICE" = "Layanan pengiriman";
   "DISCOUNT" = "Diskon";
+"discount" = "diskon";
   "INBOX" = "Pesan";
   "MY_SF" = "My SF";
 //  "CHOOSE_SHIPPING_ADDRESS" = "Pilih alamat pengiriman";
@@ -442,7 +444,7 @@
   "THANK_REVIEW" = "Terima kasih atas ulasan Anda";
 //  "VIEWCODE" = "Lihat kode";
   "SHAREBUY" = "GROUP BUY";
-"Sharebuy" = "Group buy";
+"Sharebuy" = "Group Buy";
 //  "GROUPSUCCESS" = "Join group sukses";
 //  "TOSHIP" = "Dikirim";
   "TORECEIVE" = "Diterima";
@@ -631,7 +633,7 @@
 "Modify_success" = "MODIFY SUCCESS";
 "Area" = "Wilayah";
 "SF shop_Voucher" = "SF.shop Voucher";
-"Coupon_Center" = "Pusat Coupon";
+"Coupon_Center" = "Pusat Voucher";
 "Login_Or_Register" = "Makuk atau daftar";
 "SHOPPING_CART" = "KERANJANG BELANJA";
 "Hide" = "Hide";

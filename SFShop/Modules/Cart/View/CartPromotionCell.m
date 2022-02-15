@@ -7,6 +7,7 @@
 
 #import "CartPromotionCell.h"
 #import "NSDate+Helper.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface CartPromotionCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -20,6 +21,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_selBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
 }
 - (void)setModel:(CampaignsModel *)model
 {

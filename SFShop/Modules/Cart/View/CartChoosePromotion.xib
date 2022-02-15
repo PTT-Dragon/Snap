@@ -21,22 +21,22 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekq-vH-PPW">
-                    <rect key="frame" x="0.0" y="342" width="414" height="520"/>
+                    <rect key="frame" x="0.0" y="382" width="414" height="480"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8JY-GT-DsQ">
-                            <rect key="frame" x="16" y="458" width="382" height="46"/>
+                            <rect key="frame" x="16" y="418" width="382" height="46"/>
                             <color key="backgroundColor" red="1" green="0.086274509803921567" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="46" id="xom-Sq-DiV"/>
                             </constraints>
-                            <fontDescription key="fontDescription" weight="medium" name="TruenoRg" family="Trueno" pointSize="18"/>
+                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="16"/>
                             <state key="normal" title="CONFIRM"/>
                             <connections>
                                 <action selector="confirmAction:" destination="dac-B0-svQ" eventType="touchUpInside" id="CYB-yB-obS"/>
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hZx-qD-wvP">
-                            <rect key="frame" x="0.0" y="180" width="414" height="262"/>
+                            <rect key="frame" x="0.0" y="180" width="414" height="222"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cxn-37-Vu0">
@@ -86,7 +86,7 @@
                         <constraint firstItem="hZx-qD-wvP" firstAttribute="top" secondItem="ekq-vH-PPW" secondAttribute="top" constant="180" id="EVH-wZ-lhE"/>
                         <constraint firstItem="UDc-tf-qiJ" firstAttribute="top" secondItem="ekq-vH-PPW" secondAttribute="top" constant="16" id="M0Y-bP-Gnc"/>
                         <constraint firstItem="8JY-GT-DsQ" firstAttribute="top" secondItem="hZx-qD-wvP" secondAttribute="bottom" constant="16" id="VmK-KC-vC6"/>
-                        <constraint firstAttribute="height" constant="520" id="bd6-0D-xJs"/>
+                        <constraint firstAttribute="height" constant="480" id="bd6-0D-xJs"/>
                         <constraint firstItem="8JY-GT-DsQ" firstAttribute="leading" secondItem="ekq-vH-PPW" secondAttribute="leading" constant="16" id="cIG-SD-cmO"/>
                         <constraint firstItem="cxn-37-Vu0" firstAttribute="top" secondItem="ekq-vH-PPW" secondAttribute="top" constant="60" id="d3A-Cw-Uce"/>
                         <constraint firstAttribute="trailing" secondItem="aTf-fU-Reo" secondAttribute="trailing" constant="16" id="iNN-RM-9DS"/>

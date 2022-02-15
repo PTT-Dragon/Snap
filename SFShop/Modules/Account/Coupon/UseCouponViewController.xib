@@ -123,7 +123,7 @@
                                 <constraint firstAttribute="width" constant="160" id="5bY-YX-o1B"/>
                                 <constraint firstAttribute="height" constant="46" id="9RR-Oc-m0Q"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" weight="heavy" pointSize="14"/>
                             <state key="normal" title="Login"/>
                             <connections>
                                 <action selector="cartAction:" destination="-1" eventType="touchUpInside" id="kFR-2Y-4ba"/>

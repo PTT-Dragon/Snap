@@ -14,7 +14,7 @@
     [super awakeFromNib];
     // Initialization code
     _label.text = kLocalizedString(@"ORDER_CANCEL_REASON");
-    _reasonLabel.text = kLocalizedString(@"PLEASE_SELECT");
+    _reasonLabel.text = @"Please Select";// kLocalizedString(@"PLEASE_SELECT");
     @weakify(self);
     [self.backView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
         @strongify(self);
