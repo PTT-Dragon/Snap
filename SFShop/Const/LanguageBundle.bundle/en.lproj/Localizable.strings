@@ -107,6 +107,7 @@
 //  "SET_SUCCESSFUL" = "Set Successfully!";
 //  "DOWNLOAD" = "Downloading";
   "SUBMIT" = "SUBMIT";
+"submit" = "Submit";
 "FORGOT_PWD" = "Forgot Password";
 //  "SETTING" = "Setting";
 //  "LOGIN" = "Login";
@@ -436,7 +437,7 @@
   "THANK_REVIEW" = "Thank you for your review!";
 //  "VIEWCODE" = "View Code";
   "SHAREBUY" = "GROUP BUY";
-"Sharebuy" = "Group buy";
+"Sharebuy" = "Group Buy";
 //  "GROUPSUCCESS" = "Join group successfully.Please check later.";
 //  "TOSHIP" = "To Ship";
   "TORECEIVE" = "Shipped";

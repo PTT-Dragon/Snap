@@ -46,7 +46,7 @@
     }else{
         _discountLabel.text = [NSString stringWithFormat:@"%@ %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency],kLocalizedString(@"DISCOUNT")];
         _discountLabel.font = CHINESE_BOLD(14);
-        _timeLabel.text = [NSString stringWithFormat:@"%@-%@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
+        _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogo)] placeholderImage:[UIImage imageNamed:@"toko"]];
 //    NSUInteger endTimeStamp = [[NSDate dateFromString:model.expDate] utcTimeStamp];

@@ -227,10 +227,10 @@
     }
     CartItemModel *model;
     if (indexPath.row > listModel.campaignGroups.count) {
-        model = listModel.shoppingCarts[indexPath.row-1];
+        model = listModel.shoppingCarts[indexPath.row-listModel.campaignGroups.count-1];
     }else{
         NSArray <CartCampaignsModel *>*arr = listModel.campaignGroups;//self.campaignsDataSource[indexPath.section];
-        CartCampaignsModel *campaignsModel = arr[indexPath.row-listModel.shoppingCarts.count-1];
+        CartCampaignsModel *campaignsModel = arr[indexPath.row-1];
         model = campaignsModel.shoppingCarts.firstObject;
     }
     
