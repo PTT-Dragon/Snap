@@ -41,7 +41,7 @@
         [self loadDatas:self.pageIndex sortType:self.currentType filter:self.filterCacheModel];
     }];
     
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         self.pageIndex ++;
         [self loadDatas:self.pageIndex sortType:self.currentType filter:self.filterCacheModel];
     }];

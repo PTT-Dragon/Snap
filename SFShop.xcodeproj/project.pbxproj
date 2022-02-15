@@ -428,6 +428,7 @@
 		4BBFEEB026FCB57A00E3C832 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFEEAF26FCB57A00E3C832 /* UserModel.m */; };
 		4BEB1223275CB98A00D5342A /* ProductCalcFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB1222275CB98A00D5342A /* ProductCalcFeeModel.m */; };
 		6257498D27B11E0F00518950 /* MJRefreshBackFooter+SnapRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 6257498C27B11E0F00518950 /* MJRefreshBackFooter+SnapRefresh.m */; };
+		626CC87127BB532900F3C7DF /* MJRefreshBackStateFooter+SnapRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 626CC87027BB532900F3C7DF /* MJRefreshBackStateFooter+SnapRefresh.m */; };
 		62DFB59C27A276580009CCC6 /* UITabBar+CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DFB59B27A276580009CCC6 /* UITabBar+CustomBadge.m */; };
 		62E4289527A228E500A02F91 /* SRXGoodsImageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289327A228E500A02F91 /* SRXGoodsImageDetailView.m */; };
 		62E428D027A2292A00A02F91 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E4289927A2292900A02F91 /* SDPhotoBrowser.m */; };
@@ -1328,6 +1329,8 @@
 		50C18A765FB0CB2B73BD23A2 /* Pods-SFShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SFShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SFShop/Pods-SFShop.release.xcconfig"; sourceTree = "<group>"; };
 		6257498B27B11E0F00518950 /* MJRefreshBackFooter+SnapRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefreshBackFooter+SnapRefresh.h"; sourceTree = "<group>"; };
 		6257498C27B11E0F00518950 /* MJRefreshBackFooter+SnapRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MJRefreshBackFooter+SnapRefresh.m"; sourceTree = "<group>"; };
+		626CC86F27BB532900F3C7DF /* MJRefreshBackStateFooter+SnapRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefreshBackStateFooter+SnapRefresh.h"; sourceTree = "<group>"; };
+		626CC87027BB532900F3C7DF /* MJRefreshBackStateFooter+SnapRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MJRefreshBackStateFooter+SnapRefresh.m"; sourceTree = "<group>"; };
 		62DFB59A27A276580009CCC6 /* UITabBar+CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+CustomBadge.h"; sourceTree = "<group>"; };
 		62DFB59B27A276580009CCC6 /* UITabBar+CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+CustomBadge.m"; sourceTree = "<group>"; };
 		62E4289327A228E500A02F91 /* SRXGoodsImageDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRXGoodsImageDetailView.m; sourceTree = "<group>"; };
@@ -2806,6 +2809,8 @@
 				8E11A8D0278DD1F4005D1FC3 /* UIView+Response.m */,
 				6257498B27B11E0F00518950 /* MJRefreshBackFooter+SnapRefresh.h */,
 				6257498C27B11E0F00518950 /* MJRefreshBackFooter+SnapRefresh.m */,
+				626CC86F27BB532900F3C7DF /* MJRefreshBackStateFooter+SnapRefresh.h */,
+				626CC87027BB532900F3C7DF /* MJRefreshBackStateFooter+SnapRefresh.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4187,6 +4192,7 @@
 				1BF56CD02761001000B40CAA /* CountDown.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
 				1BBB688727B660EB00A8B83D /* LogisticsMoreCell.m in Sources */,
+				626CC87127BB532900F3C7DF /* MJRefreshBackStateFooter+SnapRefresh.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
 				1BD10C382761E80100BFC1AD /* ProductEvalationTitleCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,

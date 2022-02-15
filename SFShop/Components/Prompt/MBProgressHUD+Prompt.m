@@ -172,7 +172,7 @@
     [[kAppDelegate getCurrentUIVC].view addSubview:label];
     
     NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:text];
-    
+    attri.yy_font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
     UIImageView *imageView1= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"00062_01_like_outline"]];
     imageView1.frame = CGRectMake(0, 0, 16, 16);
     imageView1.contentMode = UIViewContentModeScaleAspectFit;
