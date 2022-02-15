@@ -90,25 +90,37 @@
             self.score2 = score1;
             self.score3 = score1;
         };
+                
         return cell;
     }
     AddReviewItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddReviewItemCell"];
     [cell setContent:_model.orderItems[indexPath.row] row:indexPath.row imgArr:self.imgArr[indexPath.row] text:self.textArr[indexPath.row] rate:self.rateArr[indexPath.row]];
+    @weakify(self);
     cell.block = ^(NSInteger row) {
+        @strongify(self);
         [self uploadAvatarWithRow:row];
     };
     cell.textBlock = ^(NSString * _Nonnull text, NSInteger row) {
+        @strongify(self);
         [self.textArr replaceObjectAtIndex:row withObject:text];
     };
     cell.rateBlock = ^(NSString * _Nonnull score, NSInteger row) {
+        @strongify(self);
         [self.rateArr replaceObjectAtIndex:row withObject:score];
+    };
+    cell.deleteImageBlock = ^(NSInteger index) {
+        @strongify(self);
+        if (self.selectAssets.count > index) {
+            [self.selectAssets removeObjectAtIndex:index];
+        }
+        [tableView reloadData];
     };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat itemHei = (MainScreen_width-32-60)/4;
-    CGFloat hei = _imgArr[indexPath.row].count < 4 ? itemHei+5: _imgArr[indexPath.row].count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+    CGFloat hei = ceil(_imgArr.count/4.0)*(itemHei+10)+15;
     return indexPath.row == self.model.orderItems.count ? 300: hei+438;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

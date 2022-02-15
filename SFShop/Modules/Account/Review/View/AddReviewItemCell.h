@@ -13,12 +13,19 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^reviewItemBlock)(NSInteger row);
 typedef void(^reviewItemTextBlock)(NSString *text,NSInteger row);
 typedef void(^reviewItemRateBlock)(NSString *score,NSInteger row);
+typedef void(^DeleteImageBlock)(NSInteger index);
 
 @interface AddReviewItemCell : UITableViewCell
 @property (nonatomic,copy) reviewItemBlock block;
 @property (nonatomic,copy) reviewItemTextBlock textBlock;
 @property (nonatomic,copy) reviewItemRateBlock rateBlock;
 - (void)setContent:(orderItemsModel *)orderModel row:(NSInteger)row imgArr:(NSMutableArray *)imgArr text:(NSString *)text rate:(NSString *)rate;
+
+/**
+ 删除图片回调
+ */
+@property (nonatomic, copy) DeleteImageBlock deleteImageBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

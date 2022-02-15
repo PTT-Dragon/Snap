@@ -112,7 +112,7 @@
     cell.index = indexPath.row;
     cell.canDel = YES;
     MPWeakSelf(self)
-    cell.block = ^(NSInteger index) {
+    cell.block = ^(NSInteger index) {//删除
         [weakself.imgArr removeObjectAtIndex:index];
         __block BOOL a = NO;
         [weakself.imgArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -124,8 +124,13 @@
             [weakself.imgArr insertObject:@"1" atIndex:weakself.imgArr.count];
         }
         CGFloat itemHei = (MainScreen_width-32-60)/4;
-        weakself.photoCollectionViewHei.constant = weakself.imgArr.count < 4 ? itemHei+5:  weakself.imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
+        weakself.photoCollectionViewHei.constant = ceil(weakself.imgArr.count/4.0)*(itemHei+10)+15;
         [weakself.photoCollectionView reloadData];
+        
+        if (weakself.deleteImageBlock) {
+            weakself.deleteImageBlock(index);
+        }
+        
     };
     return cell;
 }
