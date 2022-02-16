@@ -112,7 +112,8 @@
 - (void)setCampaignsModel:(CartCampaignsModel *)campaignsModel
 {
     _campaignsModel = campaignsModel;
-    [self.campaignsBtn setTitle:[NSString stringWithFormat:@" %@ ",campaignsModel.campaignName] forState:0];
+    NSString *str = campaignsModel.campaignName.length > 10 ? [NSString stringWithFormat:@"%@..",[campaignsModel.campaignName substringToIndex:10]]: campaignsModel.campaignName;
+    [self.campaignsBtn setTitle:[NSString stringWithFormat:@" %@    ",str] forState:0];
 //    double a =
     [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:-2];
 //    [self.campaignsBtn setTitle:[NSString stringWithFormat:@" %@ ",campaignsModel.campaignName] forState:0];
