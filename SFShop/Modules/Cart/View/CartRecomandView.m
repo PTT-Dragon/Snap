@@ -71,7 +71,7 @@
         [view addSubview:backView];
         backView.backgroundColor = [UIColor jk_colorWithHexString:@"#ffffff"];
         
-        UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 7, 150, 30)];
+        UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 7, App_Frame_Width-20, 30)];
         title.text = kLocalizedString(@"Recommendations");
         title.font = kFontBlod(17);
         title.textColor = [UIColor blackColor];
