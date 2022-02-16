@@ -706,6 +706,7 @@
     if (!_emptyView) {
         _emptyView = [[CartEmptyView alloc] init];
         _emptyView.hidden = YES;
+        _emptyView.isTab = _isTab;
         _emptyView.backgroundColor = [UIColor whiteColor];
     }
     return _emptyView;

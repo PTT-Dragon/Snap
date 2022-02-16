@@ -96,6 +96,12 @@
 #pragma mark - btnAction
 
 - (void)goShoppingBtnAction {
+    if (_isTab) {
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [appDelegate.tabVC setSelectedIndex:0];
+        return;
+    }
+    [[baseTool getCurrentVC].navigationController popToRootViewControllerAnimated:YES];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate.tabVC setSelectedIndex:0];
 }

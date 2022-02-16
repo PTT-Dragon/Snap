@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) BOOL reduceFlag;//是否是降价
 @property (nonatomic,weak) addressModel *addModel;
 @property (nonatomic, assign) NSInteger offerId;
+@property (nonatomic,assign) BOOL isTab;
 
 @end
 

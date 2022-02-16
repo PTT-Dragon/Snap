@@ -16,7 +16,7 @@ typedef void(^afterSaleBlock)(void);
 @interface OrderListItemCell : UITableViewCell
 @property (nonatomic,copy) afterSaleBlock block;
 - (void)setContent:(orderItemsModel *)model isInAfterSale:(BOOL)isInAfterSale;
-- (void)setOrderContent:(orderItemsModel *)model state:(NSString *)state;
+- (void)setOrderContent:(orderItemsModel *)model state:(NSString *)state showIsAfterSale:(BOOL)isAfterSale;
 - (void)setRefundContent:(RefundDetailItemsModel *)model;
 - (void)setRefund2Content:(orderItemsModel *)model;
 @end

@@ -43,8 +43,9 @@
     _countLabel.text = [NSString stringWithFormat:@"X%@",model.offerCnt];
     _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
-- (void)setOrderContent:(orderItemsModel *)model state:(NSString *)state
+- (void)setOrderContent:(orderItemsModel *)model state:(NSString *)state showIsAfterSale:(BOOL)isAfterSale
 {
+    _inAfterSaleLabel.hidden = !isAfterSale;
     _afterSaleBtn.hidden = (![state isEqualToString:@"D"] || [model.canReturn isEqualToString:@"N"]);
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
     _nameLabel.text = model.productName;

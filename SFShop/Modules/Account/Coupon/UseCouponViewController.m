@@ -233,7 +233,13 @@
 - (void)loadFeeDatas
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.cart.orifee parameters:@{@"couponId":_couponModel ? _couponModel.couponId : _buygetnInfoModel ? _buygetnInfoModel.campaignId: @""} success:^(id  _Nullable response) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (_couponModel) {
+        [params setValue:_couponModel.couponId forKey:@"couponId"];
+    }else if(_buygetnInfoModel){
+        [params setValue:_buygetnInfoModel.campaignId forKey:@"campaignId"];
+    }
+    [SFNetworkManager get:SFNet.cart.orifee parameters:params success:^(id  _Nullable response) {
         weakself.orifeeModel = [[CouponOrifeeModel alloc] initWithDictionary:response error:nil];
         [weakself updateBottomView];
     } failed:^(NSError * _Nonnull error) {
@@ -244,8 +250,27 @@
 {
     _label1.text = kLocalizedString(@"Total");
     _amountLabel.text = [self.orifeeModel.totalPrice currency];
-    _explainLabel.text = [self.orifeeModel.totalPrice isEqualToString:@"0"] ? kLocalizedString(@"BUY_MORE_TO_ENJOY_DISCOUNT"): [self.couponModel.discountMethod isEqualToString:@"AMT"] ? [NSString stringWithFormat:@"%@%@",[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currency],kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT")] : [NSString stringWithFormat:@"%.0f%%%@",[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currencyFloat ],kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT")];
     [_cartBtn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"SHOPPING_CART")] forState:0];
+    if (_couponModel) {
+        _explainLabel.text = [self.orifeeModel.totalPrice isEqualToString:@"0"] ? kLocalizedString(@"BUY_MORE_TO_ENJOY_DISCOUNT"): [self.couponModel.discountMethod isEqualToString:@"AMT"] ? [NSString stringWithFormat:@"%@%@",[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currency],kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT")] : [NSString stringWithFormat:@"%.0f%%%@",[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currencyFloat ],kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT")];
+    }else if (_buygetnInfoModel){
+        // 满赠活动
+             if (self.orifeeModel.totalCnt.integerValue > 0) {
+               if (self.orifeeModel.cmpBuyGetnRule) {
+                 if (self.orifeeModel.nextBuyGetnRule) {
+                     _explainLabel.text = [NSString stringWithFormat:@"Discount applied. Buy %ld more to enjoy more discount",self.orifeeModel.nextBuyGetnRule.thAmount.integerValue - self.orifeeModel.totalPrice.integerValue];
+                     return;
+                 }
+                _explainLabel.text = @"Discount applied";
+                 return;
+               }
+               if (self.orifeeModel.nextBuyGetnRule) {
+                   _explainLabel.text = [NSString stringWithFormat:@"Discount applied. Buy %ld more to enjoy more discount",self.orifeeModel.nextBuyGetnRule.thAmount.integerValue - self.orifeeModel.totalPrice.integerValue];
+                   return;
+               }
+             }
+        _explainLabel.text = kLocalizedString(@"BUY_MORE_TO_ENJOY_DISCOUNT");
+    }
 }
 - (IBAction)cartAction:(UIButton *)sender {
     CartViewController *vc = [[CartViewController alloc] init];

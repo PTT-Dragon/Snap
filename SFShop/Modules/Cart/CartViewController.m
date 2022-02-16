@@ -175,6 +175,7 @@
     }
     gridViewController.reduceFlag = (pageIndex == 0) ? NO: YES;
     gridViewController.addModel = _selAddModel;
+    gridViewController.isTab = _isTab;
     return gridViewController;
 }
 

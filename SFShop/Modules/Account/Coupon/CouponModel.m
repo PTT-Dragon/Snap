@@ -48,3 +48,11 @@
     return YES;
 }
 @end
+@implementation NextBuyGetnRuleModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+
+

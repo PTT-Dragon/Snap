@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CartEmptyView : UIView
 
 - (void)configDataWithSimilarList:(NSMutableArray<favoriteModel *> *)similarList;
-
+@property (nonatomic,assign) BOOL isTab;//是否是tab页的购物车
 
 @end
 

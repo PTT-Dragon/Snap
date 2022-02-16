@@ -92,19 +92,17 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UseCouponViewController *vc = [[UseCouponViewController alloc] init];
-    vc.couponId = [_model.userCoupons.firstObject userCouponId];
-    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    [self getAction:self.getBtn];
 }
 
 - (IBAction)getAction:(UIButton *)sender {
+    UserModel *userModel = [FMDBManager sharedInstance].currentUser;
+    if (!userModel) {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        return;
+    }
     if ([sender.titleLabel.text isEqualToString:kLocalizedString(@"USE_NOW")]) {
-        UserModel *userModel = [FMDBManager sharedInstance].currentUser;
-        if (!userModel) {
-            LoginViewController *vc = [[LoginViewController alloc] init];
-            [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
-            return;
-        }
         UseCouponViewController *vc = [[UseCouponViewController alloc] init];
         vc.couponId = [_model.userCoupons.firstObject userCouponId];
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];

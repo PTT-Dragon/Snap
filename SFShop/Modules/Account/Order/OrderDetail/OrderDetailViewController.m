@@ -143,7 +143,7 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setOrderContent:self.model.orderItems[indexPath.row-1] state:self.model.state];
+        [cell setOrderContent:self.model.orderItems[indexPath.row-1] state:self.model.state showIsAfterSale:([self.model.isAfterSales isEqualToString:@"Y"] && indexPath.row == self.model.orderItems.count)];
         cell.block = ^{
             ChooseRefundViewController *vc = [[ChooseRefundViewController alloc] init];
             vc.row = indexPath.row-1;

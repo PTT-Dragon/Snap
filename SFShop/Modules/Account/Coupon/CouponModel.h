@@ -6,6 +6,7 @@
 //
 
 #import "JSONModel.h"
+#import "CartModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol userCouponsModel
@@ -106,9 +107,19 @@ willExpireShow = 0;
 @property (nonatomic,copy) NSString <Optional>*isPltOnly;
 @end
 
+@interface NextBuyGetnRuleModel : JSONModel
+@property (nonatomic,copy) NSString *thAmount;
+
+@end
+
+
 @interface CouponOrifeeModel : JSONModel
 @property (nonatomic,copy) NSString <Optional>*totalPrice;
+@property (nonatomic,copy) NSString <Optional>*cmpBuyGetnRule;
+@property (nonatomic,copy) NSString <Optional>*totalCnt;
 @property (nonatomic,strong) CouponModel *couponInfo;
+@property (nonatomic,strong) NextBuyGetnRuleModel *nextBuyGetnRule;
+@property (nonatomic,strong) BuygetnInfoModel *buygetnInfo;
 
 
 @end
