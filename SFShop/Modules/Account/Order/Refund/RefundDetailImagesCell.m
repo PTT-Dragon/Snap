@@ -31,12 +31,12 @@
     [_collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     [_collectionView registerNib:[UINib nibWithNibName:@"ReviewAddNewPhotoCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewAddNewPhotoCell"];
     
-    self.theTitle.text = self.canSel ? [NSString stringWithFormat:@"%@ (%@3)",kLocalizedString(@"UPLOAD_PICTURE"),kLocalizedString(@"UP_TO")] : kLocalizedString(@"IMAGES");
+    self.theTitle.text = self.canSel ? [NSString stringWithFormat:@"%@ (%@9)",kLocalizedString(@"UPLOAD_PICTURE"),kLocalizedString(@"UP_TO")] : kLocalizedString(@"IMAGES");
 }
 - (void)setCanSel:(BOOL)canSel
 {
     _canSel = canSel;
-    self.theTitle.text = !_canSel ? [NSString stringWithFormat:@"%@ (%@3)",kLocalizedString(@"UPLOAD_PICTURE"),kLocalizedString(@"UP_TO")] : kLocalizedString(@"IMAGES");
+    self.theTitle.text = !_canSel ? [NSString stringWithFormat:@"%@ (%@9)",kLocalizedString(@"UPLOAD_PICTURE"),kLocalizedString(@"UP_TO")] : kLocalizedString(@"IMAGES");
 }
 - (void)setContent:(NSArray<EvaluatesContentsModel *> *)content
 {
@@ -87,8 +87,11 @@
                 a = YES;
             }
         }];
-        if (weakself.imgArr.count < 3 && !a) {
+        if (weakself.imgArr.count < 9 && !a) {
             [weakself.imgArr insertObject:@"1" atIndex:weakself.imgArr.count];
+        }
+        if (weakself.block) {
+            weakself.block(weakself.imgArr);
         }
         [weakself.collectionView reloadData];
     };
@@ -104,7 +107,7 @@
     ZLPhotoActionSheet *ac = [[ZLPhotoActionSheet alloc] init];
 
     // 相册参数配置，configuration有默认值，可直接使用并对其属性进行修改
-    ac.configuration.maxSelectCount = 3;
+    ac.configuration.maxSelectCount = 9;
     ac.configuration.maxPreviewCount = 10;
     ac.configuration.useSystemCamera = YES;
     ac.configuration.allowSelectVideo = NO;
@@ -120,7 +123,7 @@
         [weakself.imgArr addObjectsFromArray:images];
         [weakself.selectAssets removeAllObjects];
         [self.selectAssets addObjectsFromArray:assets];
-        if (images.count != 3) {
+        if (images.count != 9) {
             [weakself.imgArr addObject:@"1"];
         }
         if (weakself.block) {

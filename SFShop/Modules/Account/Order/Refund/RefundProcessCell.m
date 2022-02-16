@@ -28,7 +28,7 @@
 - (void)setContent:(RefundDetailMemosModel *)model hideView:(BOOL)hideView isLast:(BOOL)isLast
 {
     _model = model;
-    _timeLabel.text = [[NSDate dateFromString:model.createdDate] dayMonthYear];
+    _timeLabel.text = [[NSDate dateFromString:model.createdDate] dayMonthYearHHMM];
     _contentLabel.text = model.memoEventName;
     _content2Label.text = model.comments;
     _indicationView.hidden = hideView;

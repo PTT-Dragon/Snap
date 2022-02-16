@@ -66,9 +66,10 @@
     for (NSString *key in dic.allKeys) {
         sku = [sku stringByAppendingFormat:@"%@",dic[key]];
     }
+    _priceLabel.textColor = [UIColor blackColor];
     _skuLabel.text = [NSString stringWithFormat:@"   %@   ",sku];
-    _countLabel.text = @"";//[NSString stringWithFormat:@"X%@",model.submitNum];
-    _priceLabel.text = @"";//[NSString stringWithFormat:@"%@",[model.unitPrice currency]];
+    _countLabel.text = [NSString stringWithFormat:@"X%@",model.submitNum];
+    _priceLabel.text = [NSString stringWithFormat:@"%@",[model.unitPrice currency]];
 }
 - (void)setRefund2Content:(orderItemsModel *)model
 {

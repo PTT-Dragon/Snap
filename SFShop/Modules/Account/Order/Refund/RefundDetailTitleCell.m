@@ -29,9 +29,9 @@
     _model = model;
     _type = type;
     _imgView.image = [UIImage imageNamed:(type == 1 || type == 3) ? @"data" : @"checkout_product"];
-    [_btn setImage:[UIImage imageNamed:type == 1 ? @"right-scroll": type == 3 ? @"": @"call-centre"] forState:0];
+    [_btn setImage:[UIImage imageNamed:type == 1 ? @"right-scroll": type == 3 ? @"": @"call-centre-1"] forState:0];
     _btn.hidden = type == 10 ? YES: NO;
-    _label.text = (type == 1 || type == 3) ? [model.eventId isEqualToString:@"2"] ? kLocalizedString(@"RETURN"):[model.eventId isEqualToString:@"3"] ? kLocalizedString(@"Refund"):kLocalizedString(@"EXCHANGE"): model.storeName;
+    _label.text = (type == 1 || type == 3) ? [model.eventId isEqualToString:@"2"] ? kLocalizedString(@"RETURN"):([model.eventId isEqualToString:@"3"] || [model.eventId isEqualToString:@"5"]) ? kLocalizedString(@"Refund"):kLocalizedString(@"EXCHANGE"): model.storeName;
 }
 - (IBAction)btnAction:(UIButton *)sender {
     if (_type == 1) {

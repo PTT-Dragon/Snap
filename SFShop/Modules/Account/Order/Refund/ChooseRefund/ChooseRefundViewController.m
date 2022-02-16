@@ -84,7 +84,7 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setRefundContent:_model.orderItems[_row]];
+        [cell setRefund2Content:_model.orderItems[_row]];
         return cell;
     }
     accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];

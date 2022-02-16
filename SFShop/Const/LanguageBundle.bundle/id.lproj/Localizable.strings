@@ -246,7 +246,7 @@
   "MODIFY_ADDRESS" = "Ubah Alamat";
   "DEFAULT" = "Utama";
   "REFUND_BANK_ACCOUNT" = "REKENING UNTUK PENGEMBALIAN DANA";
-//  "FINAL_REFUND_AMOUNT" = "Total pengembalian dana";
+  "FINAL_REFUND_AMOUNT" = "Total pengembalian";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Harap verifikasi pengembalian dana yang telah diterima";
   "CHOOSE_ANOTHER_ADDRESS" = "PILIH ALAMAT LAIN";
   "CHOOSE_ADDRESS" = "Pilih alamat";

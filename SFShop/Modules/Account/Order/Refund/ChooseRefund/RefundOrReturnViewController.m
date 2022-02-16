@@ -78,7 +78,7 @@
         make.height.mas_equalTo(navBarHei);
     }];
     [_navView configDataWithTitle:kLocalizedString(reasonTitle)];
-    [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:0];
+    [self.btn setTitle:kLocalizedString(@"submit") forState:0];
     
     //self.title = kLocalizedString(reasonTitle);
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
@@ -98,6 +98,10 @@
     self.reasonArr = [NSMutableArray array];
     self.imgArr = [NSMutableArray array];
     self.imgUrlArr = [NSMutableArray array];
+    if (!self.chargeModel) {
+        self.chargeModel = [[RefundChargeModel alloc] init];
+        self.chargeModel.refundCharge = self.model.orderPrice;
+    }
 }
 - (void)setModel:(OrderDetailModel *)model
 {
@@ -134,6 +138,7 @@
     cell.canSel = NO;
     cell.block = ^(NSArray * _Nonnull imgArr) {
         self.imgArr = imgArr;
+        [self.tableView reloadData];
     };
     return cell;
 }
@@ -152,7 +157,7 @@
         NSInteger itemCount = !_row ? self.model.orderItems.count: 1;
         return  indexPath.row == 0 ? 40 : indexPath.row == 1+itemCount ? 60: indexPath.row == 2+itemCount ? self.type == REPLACETYPE ? 66: 126:  118;
     }
-    return 63 + (MainScreen_width-32-30-20)/4;
+    return 63 + (self.imgArr.count < 5 ? (MainScreen_width-32-30-20)/4 : self.imgArr.count < 9 ? (MainScreen_width-32-30-20)/4 * 2 +10 : (MainScreen_width-32-30-20)/4 * 3 +15);
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

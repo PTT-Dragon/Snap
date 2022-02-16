@@ -112,6 +112,7 @@
         }else{
             OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
             [cell setRefundContent:self.model.items[indexPath.row-1]];
+//            cell
             return cell;
         }
     }
@@ -211,6 +212,10 @@
         self.btnWidth.constant = MainScreen_width-32;
         self.btn2.hidden = YES;
         self.btn.height = 46;
+    }else if ([self.model.state isEqualToString:@"G"]){
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
     }
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);

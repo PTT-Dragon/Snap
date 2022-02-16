@@ -93,7 +93,7 @@
         self.btn.userInteractionEnabled = YES;
         self.btn.backgroundColor = RGBColorFrom16(0xff1659);
     }else{
-        self.btn.userInteractionEnabled = NO;
+        self.btn.userInteractionEnabled = YES;
         self.btn.backgroundColor = RGBColorFrom16(0xff1659);
     }
 }
@@ -143,6 +143,21 @@
     }
 }
 - (IBAction)btnAction:(UIButton *)sender {
+    if ([_field1.text isEqualToString:@""]) {
+        _label1.hidden = YES;
+        _label2.hidden = NO;
+        _field1.layer.borderColor = [UIColor redColor].CGColor;
+    }
+    if ([_field2.text isEqualToString:@""]) {
+        _label3.hidden = YES;
+        _label4.hidden = NO;
+        _field2.layer.borderColor = [UIColor redColor].CGColor;
+    }
+    if ([_field3.text isEqualToString:@""]) {
+        _label5.hidden = YES;
+        _label6.hidden = NO;
+        _field3.layer.borderColor = [UIColor redColor].CGColor;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:_field2.text forKey:@"bankAcctName"];
     [params setValue:_field3.text forKey:@"bankAcctNbr"];

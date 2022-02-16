@@ -29,7 +29,7 @@
         UILabel *label = [[UILabel alloc] init];
         label.numberOfLines = 0;
         NSString *str = kLocalizedString(@"REFUND_AMOUNT");
-        str = [str stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
+//        str = [str stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
         label.text = str;
         label.font = CHINESE_SYSTEM(13);
         [self.contentView addSubview:label];
@@ -51,7 +51,7 @@
         make.height.mas_equalTo(30);
     }];
     UILabel *label2 = [[UILabel alloc] init];
-    label2.text = kLocalizedString(@"INSTRUCTIONS");
+    label2.text = [NSString stringWithFormat:@"%@:",kLocalizedString(@"INSTRUCTIONS")];
     label2.font = CHINESE_SYSTEM(13);
     [self.contentView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {

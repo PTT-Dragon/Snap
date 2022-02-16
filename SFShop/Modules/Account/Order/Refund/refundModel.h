@@ -185,6 +185,8 @@ userName = "hxf01@qq.com";
 @property (nonatomic,copy) NSString *uccAccount;
 @property (nonatomic,strong) deliveryAddress *returnAddress;
 @property (nonatomic,copy) NSString *submitNum;
+@property (nonatomic,copy) NSString *approvalCharge;
+
 
 /**
  {

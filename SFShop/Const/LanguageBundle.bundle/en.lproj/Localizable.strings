@@ -240,7 +240,7 @@
   "MODIFY_ADDRESS" = "Modify Address";
   "DEFAULT" = "Default";
   "REFUND_BANK_ACCOUNT" = "REFUND BANK ACCOUNT";
-//  "FINAL_REFUND_AMOUNT" = "Final refund amount";
+  "FINAL_REFUND_AMOUNT" = "Final refund amount";
 //  "PLEASE_VERIFY_THE_REFUND_RECEIVED" = "Please verify the refund has been received";
   "CHOOSE_ANOTHER_ADDRESS" = "CHOOSE ANOTHER ADDRESS";
   "CHOOSE_ADDRESS" = "Choose Address";
