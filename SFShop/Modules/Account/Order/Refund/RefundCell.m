@@ -67,6 +67,9 @@
     }else if ([model.eventId isEqualToString:@"4"]){
         _stateLabel.text = kLocalizedString(@"EXCHANGE");
         eventType = kLocalizedString(@"EXCHANGE");
+    }else if ([model.eventId isEqualToString:@"5"]){
+        _stateLabel.text = kLocalizedString(@"Refund");
+        eventType = kLocalizedString(@"Refund");
     }
     if ([model.state isEqualToString:@"B"]) {
         //拒绝
@@ -85,7 +88,8 @@
         _btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"E"]){
         //待退款
-        _statuLabel.text = kLocalizedString(@"waitReturn_tip");
+//        _statuLabel.text = kLocalizedString(@"waitReturn_tip");
+        _statuLabel.text = kLocalizedString(@"Pending_Review");
         _contentLabel.text = [NSString stringWithFormat:@"Wait for %@",eventType];//[NSString stringWithFormat:@"%@",model.orderApplyCode];
         _viewHei.constant = 52;
         _btn.hidden = YES;
