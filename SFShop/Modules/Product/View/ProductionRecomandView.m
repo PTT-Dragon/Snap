@@ -51,7 +51,7 @@
     
     self.backgroundColor = [UIColor whiteColor];
     
-    UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 0, 150, 44)];
+    UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(20, 0, App_Frame_Width-20, 44)];
     title.text = kLocalizedString(@"Recommendations");
     title.font = kFontBlod(17);
     title.textColor = [UIColor blackColor];
