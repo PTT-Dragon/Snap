@@ -10,6 +10,19 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ArticleEvaluateModel;
+@protocol ArticleEvaluateReplyModel;
+
+
+@interface ArticleEvaluateReplyModel : JSONModel
+@property(nonatomic, strong) NSString <Optional> *articleEvalId;
+@property(nonatomic, strong) NSString <Optional> *createdDate;
+@property(nonatomic, strong) NSString <Optional> *evalComments;
+@property(nonatomic, strong) NSString <Optional> *isUseful;
+@property(nonatomic, strong) NSString  *createdDateStr;
+@property(nonatomic, assign) NSInteger usefulCnt;
+@property(nonatomic, strong) NSString <Optional> *userLogo;
+@property(nonatomic, strong) NSString <Optional> *userName;
+@end
 
 @interface ArticleEvaluateChildrenModel : JSONModel
 
@@ -31,16 +44,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString <Optional> *userId;
 @property(nonatomic, strong) NSString <Optional> *userLogo;
 @property(nonatomic, strong) NSString <Optional> *userName;
-
-@end
-
-
-@interface ArticleEvaluateModel : JSONModel
-
-@property(nonatomic, strong) ArticleEvaluateChildrenModel *model;
-@property(nonatomic, strong) NSArray <ArticleEvaluateModel *> <ArticleEvaluateModel, Optional> *children;
 @property (nonatomic,assign) BOOL showAll;
-
+@property(nonatomic, strong) NSArray <ArticleEvaluateReplyModel *> <ArticleEvaluateReplyModel, Optional> *replys;
 @end
+
+
+//@interface ArticleEvaluateModel : JSONModel
+//
+//@property(nonatomic, strong) ArticleEvaluateChildrenModel *model;
+//@property(nonatomic, strong) NSArray <ArticleEvaluateModel *> <ArticleEvaluateModel, Optional> *children;
+//@property (nonatomic,assign) BOOL showAll;
+//
+//@end
 
 NS_ASSUME_NONNULL_END

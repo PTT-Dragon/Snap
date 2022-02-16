@@ -51,16 +51,16 @@
 //        _btn1.hidden = YES;
 //        _btn2.hidden = YES;
 //    }else
-        if ([model.canReview isEqualToString:@"Y"]) {
-        _btn2.hidden = type == 1;
-        [_btn1 setTitle:type == 1 ? kLocalizedString(@"REVIEW"):kLocalizedString(@"ADDITIONAL_REVIEW") forState:0];
-        _btn1.hidden = NO;
-    }else{
-        _btn1.hidden = YES;
-        _btn2.hidden = YES;
-    }
     
     orderItemsModel *itemModel = model.orderItems[row];
+    if ([itemModel.canReview isEqualToString:@"Y"]) {
+    _btn2.hidden = type == 1;
+    [_btn1 setTitle:type == 1 ? kLocalizedString(@"REVIEW"):kLocalizedString(@"ADDITIONAL_REVIEW") forState:0];
+    _btn1.hidden = NO;
+}else{
+    _btn1.hidden = YES;
+    _btn2.hidden = YES;
+}
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _storeNameLabel.text = model.storeName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];

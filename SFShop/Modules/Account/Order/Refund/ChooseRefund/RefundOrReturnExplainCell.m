@@ -28,7 +28,7 @@
     if (self.type == RETURNTYPE || self.type == REFUNDTYPE) {
         UILabel *label = [[UILabel alloc] init];
         label.numberOfLines = 0;
-        NSString *str = kLocalizedString(@"REFUND_AMOUNT");
+        NSString *str = [NSString stringWithFormat:@"%@:",kLocalizedString(@"REFUND_AMOUNT")];
 //        str = [str stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
         label.text = str;
         label.font = CHINESE_SYSTEM(13);
@@ -86,6 +86,7 @@
         _InstructionsView.backgroundColor = RGBColorFrom16(0xf5f5f5);
         _InstructionsView.font = CHINESE_SYSTEM(12);
         _InstructionsView.delegate = self;
+        _InstructionsView.showsVerticalScrollIndicator = NO;
     }
     return _InstructionsView;
 }

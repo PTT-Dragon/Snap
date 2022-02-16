@@ -90,6 +90,7 @@
     NSDictionary *dic = _dataSource[indexPath.row];
     PolicesDetailViewController *vc = [[PolicesDetailViewController alloc] init];
     vc.title = dic[@"title"];
+    vc.type = [dic[@"title"] isEqualToString:kLocalizedString(@"MEMBERSHIP_AGREEMENT")] ? @"A": @"B";
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (UITableView *)tableView

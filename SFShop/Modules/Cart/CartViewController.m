@@ -16,6 +16,7 @@
 #import "SysParamsModel.h"
 #import "NSString+Fee.h"
 #import "UITabBar+CustomBadge.h"
+#import "UIButton+SGImagePosition.h"
 
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
@@ -274,12 +275,12 @@
         self.amountLabel.text = [[NSString stringWithFormat:@"%f",totalAmount] currency];
         self.totalAmountLabel.text = [[NSString stringWithFormat:@"%f",totalAmount] currency];
         self.priceLabel.text = [[NSString stringWithFormat:@"%f",totalAmount] currency];
-        self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-%@",[[NSString stringWithFormat:@"%f",model.totalDiscount] currency]];
+        self.preferentialAmountLabel.text = [NSString stringWithFormat:@"%@",[[NSString stringWithFormat:@"%f",model.totalDiscount] currency]];
     }else{
         self.amountLabel.text = [[NSString stringWithFormat:@"%f",model.totalPrice] currency];
         self.totalAmountLabel.text = [[NSString stringWithFormat:@"%f",model.totalPrice] currency];
         self.priceLabel.text = [[NSString stringWithFormat:@"%f",model.totalOfferPrice] currency];
-        self.preferentialAmountLabel.text = [NSString stringWithFormat:@"-%@",[[NSString stringWithFormat:@"%f",model.totalDiscount] currency]];
+        self.preferentialAmountLabel.text = [NSString stringWithFormat:@"%@",[[NSString stringWithFormat:@"%f",model.totalDiscount] currency]];
     }
     
     __block NSInteger count = 0;
@@ -376,7 +377,7 @@
 - (UIView *)detailView
 {
     if (!_detailView) {
-        _detailView = [[UIView alloc] initWithFrame:CGRectMake(0, self.detailBgView.jk_height-320, MainScreen_width, 320)];
+        _detailView = [[UIView alloc] initWithFrame:CGRectMake(0, self.detailBgView.jk_height-318, MainScreen_width, 320)];
         _detailView.backgroundColor = [UIColor whiteColor];
         [_detailView addSubview:self.priceLabel];
         [_detailView addSubview:self.preferentialAmountLabel];
@@ -419,7 +420,7 @@
 - (UIView *)detailBgView
 {
     if (!_detailBgView) {
-        _detailBgView = [[UIView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei-tabbarHei-78)];
+        _detailBgView = [[UIView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei-78 - (_isTab ? tabbarHei: 0))];
         _detailBgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
         [_detailBgView addSubview:self.detailView];
     }
@@ -441,15 +442,18 @@
 {
     if (!_totalBtn) {
         _totalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_totalBtn setTitle:@"Total ▴ " forState:0];//▴▾
+        [_totalBtn setTitle:@"Total" forState:0];//▴▾
         _totalBtn.titleLabel.font = CHINESE_SYSTEM(12);
         [_totalBtn setTitleColor:RGBColorFrom16(0x999999) forState:0];
+//        [_totalBtn setImage:[UIImage imageNamed:@"00159_01_scrolldown_outline"] forState:0];
+        [_totalBtn setImage:[UIImage imageNamed:@"00159_01_scrollup_outline"] forState:0];
+        [_totalBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:2];
         _totalBtn.frame = CGRectMake(5, 15, 70, 20);
         @weakify(self)
         [[_totalBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             @strongify(self)
             self.totalBtn.selected = !self.totalBtn.selected;
-            [self.totalBtn setTitle:self.totalBtn.selected ? @"Total ▾ ": @"Total ▴ " forState:0];
+            [self.totalBtn setTitle:self.totalBtn.selected ? @"Total": @"Total" forState:0];
             if (self.totalBtn.selected) {
                 [self.view addSubview:self.detailBgView];
             }else{

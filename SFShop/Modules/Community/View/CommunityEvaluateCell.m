@@ -91,6 +91,19 @@
     _likeLabel.textColor = [model.isUseful isEqualToString:@"Y"] ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0x7b7b7b);
     _likeLabel.text = [NSString stringWithFormat:@"%ld",model.usefulCnt];
 }
+- (void)setReplyModel:(ArticleEvaluateReplyModel *)replyModel
+{
+    _replyModel = replyModel;
+    _contentLabel.text = [NSString stringWithFormat:@"%@ %@",replyModel.evalComments,replyModel.createdDateStr];
+    NSAttributedString *attStr = [NSMutableString difereentAttr:@{NSFontAttributeName:CHINESE_SYSTEM(11),NSForegroundColorAttributeName:RGBColorFrom16(0x7b7b7b)} str:[NSString stringWithFormat:@"%@ %@",replyModel.evalComments,replyModel.createdDateStr] changeText:replyModel.createdDateStr];
+    _contentLabel.attributedText = attStr;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(replyModel.userLogo)] placeholderImage:[UIImage imageNamed:@"account-black"]];
+    _nameLabel.text = replyModel.userName;
+    _likeBtn.selected = [replyModel.isUseful isEqualToString:@"Y"];
+    _likeLabel.textColor = [replyModel.isUseful isEqualToString:@"Y"] ? RGBColorFrom16(0xFF1659): RGBColorFrom16(0x7b7b7b);
+    _likeLabel.text = [NSString stringWithFormat:@"%ld",replyModel.usefulCnt];
+    
+}
 - (void)setType:(NSInteger)type
 {
     _type = type;

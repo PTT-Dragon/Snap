@@ -22,9 +22,9 @@
 
 - (void)loadDatas
 {
-    NSString *type = [self.title isEqualToString:@"Membership Agreement"] ? @"A":@"B";
+//    NSString *type = [self.title isEqualToString:kLocalizedString(@"MEMBERSHIP_AGREEMENT")] ? @"A":@"B";
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.h5.agreement parameters:@{@"agreeType":type} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.h5.agreement parameters:@{@"agreeType":_type} success:^(id  _Nullable response) {
         NSString *content = [(NSArray *)response firstObject][@"agreeContent"];
         NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
         weakself.contentLabel.attributedText = attrStr;

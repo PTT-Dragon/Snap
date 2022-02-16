@@ -157,7 +157,7 @@
         NSInteger itemCount = !_row ? self.model.orderItems.count: 1;
         return  indexPath.row == 0 ? 40 : indexPath.row == 1+itemCount ? 60: indexPath.row == 2+itemCount ? self.type == REPLACETYPE ? 66: 126:  118;
     }
-    return 63 + (self.imgArr.count < 5 ? (MainScreen_width-32-30-20)/4 : self.imgArr.count < 9 ? (MainScreen_width-32-30-20)/4 * 2 +10 : (MainScreen_width-32-30-20)/4 * 3 +15);
+    return 63 + (self.imgArr.count < 5 ? (MainScreen_width-32-30-20)/4 : self.imgArr.count < 9 ? (MainScreen_width-32-30-20)/4 * 2 +15 : (MainScreen_width-32-30-20)/4 * 3 +20);
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

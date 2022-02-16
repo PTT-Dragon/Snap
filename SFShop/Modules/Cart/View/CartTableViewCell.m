@@ -47,7 +47,8 @@
     _skuLabel.layer.borderWidth = 1;
     _campaignsBtn.layer.borderWidth = 1;
     _campaignsBtn.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
-    _campaignsBtn.titleLabel.numberOfLines = 0;
+    _campaignsBtn.titleLabel.numberOfLines = 1;
+    _campaignsBtn.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [_additonBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_subtractBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_selBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
@@ -111,9 +112,10 @@
 - (void)setCampaignsModel:(CartCampaignsModel *)campaignsModel
 {
     _campaignsModel = campaignsModel;
-    [self.campaignsBtn setTitle:[NSString stringWithFormat:@"  %@  ",campaignsModel.campaignName] forState:0];
+    [self.campaignsBtn setTitle:[NSString stringWithFormat:@" %@ ",campaignsModel.campaignName] forState:0];
+//    double a =
     [_campaignsBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:-2];
-    [self.campaignsBtn setTitle:[NSString stringWithFormat:@"  %@  ",campaignsModel.campaignName] forState:0];
+//    [self.campaignsBtn setTitle:[NSString stringWithFormat:@" %@ ",campaignsModel.campaignName] forState:0];
     _offNameLabel.text = campaignsModel.campaignName;
 }
 - (void)setIsInvalid:(BOOL)isInvalid

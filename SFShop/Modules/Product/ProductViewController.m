@@ -121,6 +121,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *vouchersTitleLabel;
 @property (strong, nonatomic) SRXGoodsImageDetailView *pictureScrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnToName;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnToPrice;
 
 @end
 
@@ -692,6 +694,8 @@
     self.topToGroupTableview.constant = 0;
     [self.buyBtn setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
     [self.addCartBtn setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
+    self.btnToName.priority = 250;
+    self.btnToPrice.priority = 750;
 }
 
 - (void)layoutGroupSubViews
@@ -706,6 +710,8 @@
     self.originalPriceLabel.hidden = YES;
     self.productDiscountLabel.hidden = YES;
     self.marketPriceLabelIndicationView.hidden = YES;
+    self.btnToName.priority = 750;
+    self.btnToPrice.priority = 250;
     
     self.viewTop.constant = 64;
     [self.addCartBtn setTitle:[NSString stringWithFormat:@"%@\n%@",[[NSString stringWithFormat:@"%ld",(long)self.model.salesPrice] currency],kLocalizedString(@"INDIVIDUAL_BUY")] forState:0];

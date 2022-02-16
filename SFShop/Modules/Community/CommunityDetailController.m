@@ -28,7 +28,7 @@
 
 @property(nonatomic, strong) ArticleDetailModel *model;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateTableViewHei;
-@property(nonatomic, strong) NSArray<ArticleEvaluateModel *> *evaluateArray;
+@property(nonatomic, strong) NSArray<ArticleEvaluateChildrenModel *> *evaluateArray;
 @property (weak, nonatomic) IBOutlet UITableView *evaluateTableView;
 @property (weak, nonatomic) IBOutlet UITextField *replyField;
 @property(nonatomic, strong) UIImageView *headIV;
@@ -44,7 +44,7 @@
 @property (nonatomic, strong) WKWebView *detailWebView;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @property (weak, nonatomic) IBOutlet UIScrollView *bgScrollview;
-@property (nonatomic,strong) ArticleEvaluateModel *selEvaluateModel;//回复
+@property (nonatomic,strong) ArticleEvaluateChildrenModel *selEvaluateModel;//回复
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
@@ -191,10 +191,9 @@
 
 /// 评论列表接口
 - (void)requestArticleEvaluate {
-    [SFNetworkManager get: [SFNet.article getEvaluateOf: _articleId] success:^(id  _Nullable response) {
-        [MBProgressHUD hideFromKeyWindow];
+    [SFNetworkManager get:[SFNet.article getEvaluateOf: _articleId] parameters:@{@"pageSize":@(100),@"pageIndex":@(1),@"replyPageSize":@(20)} success:^(id  _Nullable response) {
         NSError *error;
-        self.evaluateArray = [ArticleEvaluateModel arrayOfModelsFromDictionaries:response error:&error];
+        self.evaluateArray = [ArticleEvaluateChildrenModel arrayOfModelsFromDictionaries:response[@"list"] error:&error];
         //        self.evaluateArray = [[arr reverseObjectEnumerator] allObjects];
         self.evaluateTableViewHei.constant = [self calculateTableViewHei];
         [self.evaluateTableView reloadData];
@@ -203,6 +202,12 @@
         [MBProgressHUD showTopErrotMessage: error.localizedDescription];
         NSLog(@"get article evaluate failed");
     }];
+//    [SFNetworkManager get: [SFNet.article getEvaluateOf: _articleId] success:^(id  _Nullable response) {
+//        [MBProgressHUD hideFromKeyWindow];
+//
+//    } failed:^(NSError * _Nonnull error) {
+//
+//    }];
 }
 
 - (void)setModel:(ArticleDetailModel *)model {
@@ -290,7 +295,7 @@
     }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (_selEvaluateModel) {
-        [params setValue:_selEvaluateModel.model.articleEvalId forKey:@"articleEvalId"];
+        [params setValue:_selEvaluateModel.articleEvalId forKey:@"articleEvalId"];
     }
     [params setValue:_replyField.text forKey:@"evalComments"];
     [MBProgressHUD showHudMsg:@"Send..."];
@@ -314,44 +319,44 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    ArticleEvaluateModel *model = self.evaluateArray[section];
-    return model.showAll ? model.children.count+2: (model.children.count>0 ? 1:0) +1;
+    ArticleEvaluateChildrenModel *model = self.evaluateArray[section];
+    return model.showAll ? model.replys.count+2: (model.replys.count>0 ? 1:0) +1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ArticleEvaluateModel *model = self.evaluateArray[indexPath.section];
+    ArticleEvaluateChildrenModel *model = self.evaluateArray[indexPath.section];
     if (indexPath.row == 0) {
         CommunityEvaluateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommunityEvaluateCell"];
-        cell.model = model.model;
+        cell.model = model;
         cell.type = 1;
         return cell;
     }
     if (model.showAll) {
-        if (indexPath.row == model.children.count+1) {
+        if (indexPath.row == model.replys.count+1) {
             ArticleEvaluateBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArticleEvaluateBottomCell"];
-            [cell setContent:model.children.count showAll:model.showAll];
+            [cell setContent:model.replys.count showAll:model.showAll];
             return cell;
         }
         CommunityEvaluateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommunityEvaluateCell"];
-        cell.model = model.children[indexPath.row-1].model;
+        cell.replyModel = model.replys[indexPath.row-1];
         cell.type = 2;
         return cell;
     }
     ArticleEvaluateBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArticleEvaluateBottomCell"];
-    [cell setContent:model.children.count showAll:model.showAll];
+    [cell setContent:model.replys.count showAll:model.showAll];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ArticleEvaluateModel *model = self.evaluateArray[indexPath.section];
+    ArticleEvaluateChildrenModel *model = self.evaluateArray[indexPath.section];
     if (indexPath.row == 0) {
-        return [model.model.evalComments calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-66, MAXFLOAT)]+39;
+        return [model.evalComments calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-66, MAXFLOAT)]+39;
     }
     if (model.showAll) {
-        if (indexPath.row == model.children.count+1) {
+        if (indexPath.row == model.replys.count+1) {
             return 32;
         }
-        return [[model.children[indexPath.row-1].model evalComments] calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-94, MAXFLOAT)]+39;
+        return [[model.replys[indexPath.row-1] evalComments] calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-94, MAXFLOAT)]+39;
     }
     return 32;
 }
@@ -363,9 +368,9 @@
         [self.replyField becomeFirstResponder];
         return;
     }
-    ArticleEvaluateModel *model = self.evaluateArray[indexPath.section];
+    ArticleEvaluateChildrenModel *model = self.evaluateArray[indexPath.section];
     if (model.showAll) {
-        if (indexPath.row == model.children.count+1) {
+        if (indexPath.row == model.replys.count+1) {
             model.showAll = NO;
             [self.evaluateTableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
         }else{
@@ -380,14 +385,14 @@
 - (CGFloat)calculateTableViewHei
 {
     __block CGFloat hei = 0;
-    [self.evaluateArray enumerateObjectsUsingBlock:^(ArticleEvaluateModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        hei += ([obj.model.evalComments calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-66, MAXFLOAT)]+39);
+    [self.evaluateArray enumerateObjectsUsingBlock:^(ArticleEvaluateChildrenModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        hei += ([obj.evalComments calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-66, MAXFLOAT)]+39);
         if (obj.showAll) {
-            [obj.children enumerateObjectsUsingBlock:^(ArticleEvaluateModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                hei += ([obj.model.evalComments calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-66, MAXFLOAT)]+39);
+            [obj.replys enumerateObjectsUsingBlock:^(ArticleEvaluateReplyModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                hei += ([obj.evalComments calHeightWithFont:CHINESE_SYSTEM(12) lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentLeft limitSize:CGSizeMake(MainScreen_width-66, MAXFLOAT)]+39);
             }];
         }
-        if (obj.children.count > 0) {
+        if (obj.replys.count > 0) {
             hei += 32;
         }
     }];

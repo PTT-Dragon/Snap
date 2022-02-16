@@ -44,7 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadDatasNeedCoupon:NO];
+    [self loadDatasNeedCoupon:YES];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -444,7 +444,9 @@
         NSMutableArray *arr = [NSMutableArray array];
         arr = [CouponModel arrayOfModelsFromDictionaries:response error:nil];
         for (NSInteger i = 0; i<self.hasCouponArr.count; i++) {
-            [self.hasCouponArr replaceObjectAtIndex:row  withObject:(arr.count == 0 ? @"N":@"Y")];
+            if (self.hasCouponArr.count > row) {
+                [self.hasCouponArr replaceObjectAtIndex:row  withObject:(arr.count == 0 ? @"N":@"Y")];
+            }
         }
         [self.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {

@@ -464,8 +464,9 @@
 //  "MAX_DISCOUNT" = "Diskon maksimum";
 //  "EMPTYING" = "Kosong";
 //  "INVALID_PRODUCTS" = "Produk Tidak Valid";
-//  "COUPON_DETAIL" = "Detail kupon";
-//  "GOT_IT" = "Mengerti";
+  "COUPON_DETAIL" = "Rincian voucher";
+"NORULE" = "Tak ada peraturan yang akan dilanggar";
+  "GOT_IT" = "MENGERTI";
   "DROP_IN_PRICE" = "Diskon";
   "MOVE_TO_FAVOURITE" = "Pindah ke favorit";
 //  "THERE_ARE_NO_ITEMS_IN_THIS_CART" = "Keranjang kosong";
@@ -633,7 +634,7 @@
 "Modify_success" = "MODIFY SUCCESS";
 "Area" = "Wilayah";
 "SF shop_Voucher" = "SF.shop Voucher";
-"Coupon_Center" = "Pusat Voucher";
+"Coupon_Center" = "Pusat voucher";
 "Login_Or_Register" = "Makuk atau daftar";
 "SHOPPING_CART" = "KERANJANG BELANJA";
 "Shopping_Cart" = "Keranjang Belanja";

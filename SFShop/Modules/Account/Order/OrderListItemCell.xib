@@ -71,7 +71,7 @@
                         </connections>
                     </button>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdi-BC-yb3">
-                        <rect key="frame" x="10" y="114" width="27" height="15"/>
+                        <rect key="frame" x="306" y="114" width="27" height="15"/>
                         <color key="backgroundColor" systemColor="linkColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="BTH-E9-h6D"/>
@@ -87,9 +87,9 @@
                     <constraint firstAttribute="trailing" secondItem="QlS-Kw-BWT" secondAttribute="trailing" constant="20" id="5pw-Ei-ZSx"/>
                     <constraint firstAttribute="trailing" secondItem="Mas-4x-BK4" secondAttribute="trailing" constant="17" id="ATn-ZZ-3rA"/>
                     <constraint firstAttribute="trailing" secondItem="dyK-hn-FgU" secondAttribute="trailing" constant="16" id="CQD-Za-xrr"/>
-                    <constraint firstItem="xdi-BC-yb3" firstAttribute="leading" secondItem="GjH-tP-YkL" secondAttribute="leading" constant="10" id="O3U-c9-dRg"/>
                     <constraint firstItem="dyK-hn-FgU" firstAttribute="leading" secondItem="fB6-sB-fbF" secondAttribute="trailing" constant="10" id="Tv5-zq-2Ee"/>
                     <constraint firstItem="dyK-hn-FgU" firstAttribute="top" secondItem="fB6-sB-fbF" secondAttribute="top" id="UaR-99-D1U"/>
+                    <constraint firstAttribute="trailing" secondItem="xdi-BC-yb3" secondAttribute="trailing" constant="10" id="VEt-p8-AsB"/>
                     <constraint firstAttribute="bottom" secondItem="QlS-Kw-BWT" secondAttribute="bottom" constant="7" id="YZA-vG-7fr"/>
                     <constraint firstItem="fOo-Rf-REn" firstAttribute="leading" secondItem="fB6-sB-fbF" secondAttribute="trailing" constant="10" id="cVo-ZK-ARM"/>
                     <constraint firstItem="U8Y-zy-RGA" firstAttribute="top" secondItem="fOo-Rf-REn" secondAttribute="bottom" constant="16" id="gi4-BZ-FS1"/>

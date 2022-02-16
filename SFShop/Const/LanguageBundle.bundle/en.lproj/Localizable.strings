@@ -442,7 +442,7 @@
 "Sharebuy" = "Group Buy";
 //  "GROUPSUCCESS" = "Join group successfully.Please check later.";
 //  "TOSHIP" = "To Ship";
-  "TORECEIVE" = "Shipped";
+  "TORECEIVE" = "To Receive";
   "DELIVERY_ADDRESS" = "Delivery Address";
 //  "DELIVERY_INFORMATION" = "Delivery Information";
 //  "ORDER_RECEIPT" = "Order Receipt";
@@ -456,8 +456,9 @@
 //  "MAX_DISCOUNT" = "Discount max";
 //  "EMPTYING" = "Emptying";
 //  "INVALID_PRODUCTS" = "Invalid Products";
-//  "COUPON_DETAIL" = "Voucher Detail";
-//  "GOT_IT" = "GOT IT";
+  "COUPON_DETAIL" = "Voucher Detail";
+  "GOT_IT" = "GOT IT";
+"NORULE" = "There is no usage rule";
   "DROP_IN_PRICE" = "Drop in price";
 "ADD_COMMENT" = "Add comment...";
   "MOVE_TO_FAVOURITE" = "Move to favourite";

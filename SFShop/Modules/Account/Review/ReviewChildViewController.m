@@ -164,8 +164,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OrderModel *subModel = self.dataSource[indexPath.section];
-    return _type == 1 ? 168: 299;
-//    return _type == 1 ? 168: [subModel.canEvaluate isEqualToString:@"N"] ? 257: [subModel.canReview isEqualToString:@"Y"] ? 299 : 257;
+    orderItemsModel *itemModel = subModel.orderItems[indexPath.row];
+//    return _type == 1 ? 168: 299;
+    return _type == 1 ? 168: [itemModel.canReview isEqualToString:@"Y"] ? 299 : 257;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

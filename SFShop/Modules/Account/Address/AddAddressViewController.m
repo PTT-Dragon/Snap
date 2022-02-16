@@ -8,6 +8,7 @@
 #import "AddAddressViewController.h"
 #import "ChooseAreaViewController.h"
 #import "UITextField+expand.h"
+#import "PolicesDetailViewController.h"
 
 @interface AddAddressViewController ()<UITextFieldDelegate,ChooseAreaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidth;
@@ -93,6 +94,8 @@ static BOOL changePhone = NO;
     _titleLabel3.text = kLocalizedString(@"ADDRESS_DEFAULT");
     _readLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"HAVE_READ_AND_AGREED"),kLocalizedString(@"SF_AGREEMENT")];
     [_saveBtn setTitle:kLocalizedString(@"SAVE") forState:0];
+    UITapGestureRecognizer *agreementTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(agreementAction)];
+    [self.readLabel addGestureRecognizer:agreementTap];
     UIImage *im = [UIImage imageNamed:@"WX20220203-135232"];
     UIImageView *iv = [[UIImageView alloc] initWithImage:im];
     UIView *lfView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];//宽度根据需求进行设置，高度必须大于 textField 的高度
@@ -242,5 +245,11 @@ static BOOL changePhone = NO;
     } failed:^(NSError * _Nonnull error) {
         
     }];
+}
+- (void)agreementAction
+{
+    PolicesDetailViewController *vc = [[PolicesDetailViewController alloc] init];
+    vc.type = @"D";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

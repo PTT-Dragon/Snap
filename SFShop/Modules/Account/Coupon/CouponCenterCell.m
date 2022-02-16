@@ -13,6 +13,8 @@
 #import "NSString+Add.h"
 #import "NSDate+Helper.h"
 #import "LoginViewController.h"
+#import "UIButton+EnlargeTouchArea.h"
+#import "PublicAlertView.h"
 
 @interface CouponCenterCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *storeImgView;
@@ -22,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *discountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *getBtn;
+@property (weak, nonatomic) IBOutlet UIButton *ruleBtn;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @end
 
@@ -35,6 +38,7 @@
     _collectionView.dataSource = self;
     [_collectionView reloadData];
     _getBtn.titleLabel.numberOfLines = 0;
+    [_ruleBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
 }
 - (void)setContent:(CouponModel *)model
 {
@@ -86,6 +90,12 @@
     [cell setContent:_model.targetProduct[indexPath.row]];
     return cell;
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UseCouponViewController *vc = [[UseCouponViewController alloc] init];
+    vc.couponId = [_model.userCoupons.firstObject userCouponId];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+}
 
 - (IBAction)getAction:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:kLocalizedString(@"USE_NOW")]) {
@@ -110,5 +120,13 @@
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
+}
+- (IBAction)ruleAction:(UIButton *)sender {
+    NSString *rule = ([_model.useDesc isEqualToString:@""] || !_model.useDesc) ? kLocalizedString(@"NORULE"):_model.useDesc;
+    PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"COUPON_DETAIL") content:rule btnTitle:kLocalizedString(@"GOT_IT") block:^{
+        
+    }];
+    [[baseTool getCurrentVC].view addSubview:alert];
+    
 }
 @end

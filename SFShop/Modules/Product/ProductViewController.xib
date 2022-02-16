@@ -8,12 +8,19 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductViewController">
             <connections>
                 <outlet property="addCartBtn" destination="4Dc-YH-2NV" id="Svx-rV-jMS"/>
                 <outlet property="addLabel" destination="Rit-kN-wBG" id="ePd-gB-eAp"/>
                 <outlet property="addressLabel" destination="S5Q-39-22Q" id="u1S-Ty-i6t"/>
+                <outlet property="btnToName" destination="5Ho-G0-Yov" id="2qS-Ka-GeY"/>
+                <outlet property="btnToPrice" destination="lWx-Dh-s8B" id="7GY-V8-xOO"/>
                 <outlet property="buyBtn" destination="7Oj-2V-4K5" id="ZHZ-k6-SYc"/>
                 <outlet property="carouselImgView" destination="3B5-HJ-OKN" id="WOE-eV-rRG"/>
                 <outlet property="cartBtn" destination="Wzh-91-W1s" id="2ru-7x-ruF"/>
@@ -105,7 +112,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="46" id="3i0-w8-mzh"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
+                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="14"/>
                             <state key="normal" title="ADD TO CART">
                                 <color key="titleColor" red="1" green="0.086274509803921567" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -118,7 +125,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="46" id="dhM-yg-SNM"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
+                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="14"/>
                             <state key="normal" title="BUY NOW"/>
                             <connections>
                                 <action selector="buyNow:" destination="-1" eventType="touchUpInside" id="fiQ-IK-pxk"/>
@@ -165,10 +172,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                             <subviews>
                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ze-5y-re2">
-                                    <rect key="frame" x="0.0" y="546" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="546.5" width="414" height="0.0"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vouchers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAH-ei-aLu">
-                                            <rect key="frame" x="16" y="-7" width="53" height="14.5"/>
+                                            <rect key="frame" x="16" y="-7" width="55.5" height="14.5"/>
                                             <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -182,7 +189,7 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4rj-lN-JbL">
-                                    <rect key="frame" x="0.0" y="558" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="558.5" width="414" height="0.0"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" id="an5-2E-rZr"/>
@@ -196,20 +203,20 @@
                                     <rect key="frame" x="0.0" y="414" width="414" height="64"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGC-xg-MZ6">
-                                            <rect key="frame" x="16" y="12" width="44" height="19.5"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="16"/>
+                                            <rect key="frame" x="16" y="12" width="43" height="19.5"/>
+                                            <fontDescription key="fontDescription" weight="heavy" name="TruenoRg" family="Trueno" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AC4-G0-D3M">
-                                            <rect key="frame" x="54" y="38.5" width="37" height="17"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
+                                            <rect key="frame" x="54" y="38.5" width="38" height="17"/>
+                                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Buy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0j-l0-8rQ">
-                                            <rect key="frame" x="344.5" y="39.5" width="54.5" height="13.5"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="11"/>
+                                            <rect key="frame" x="343.5" y="39.5" width="55.5" height="13.5"/>
+                                            <fontDescription key="fontDescription" weight="medium" name="TruenoRg" family="Trueno" pointSize="11"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -220,25 +227,25 @@
                                                 <constraint firstAttribute="height" constant="14" id="Ezy-D5-95x"/>
                                                 <constraint firstAttribute="width" constant="35" id="aK6-8M-SDw"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="10"/>
+                                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="10"/>
                                             <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoM-vD-IJ1">
-                                            <rect key="frame" x="378" y="12" width="13" height="24"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="20"/>
+                                            <rect key="frame" x="377" y="12" width="14" height="24"/>
+                                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhC-ia-kwp">
-                                            <rect key="frame" x="51" y="46.5" width="43" height="1"/>
+                                            <rect key="frame" x="51" y="46.5" width="44" height="1"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="VN4-EP-XYG"/>
                                             </constraints>
                                         </view>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="00005_01_users_outline" translatesAutoresizingMaskIntoConstraints="NO" id="J5u-5B-Cbe">
-                                            <rect key="frame" x="355" y="15" width="18" height="18"/>
+                                            <rect key="frame" x="354" y="15" width="18" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="RrE-K0-Var"/>
                                                 <constraint firstAttribute="width" constant="18" id="Zeq-Qj-yU6"/>
@@ -269,19 +276,19 @@
                                     <rect key="frame" x="0.0" y="414" width="414" height="64"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym1-x4-sVS">
-                                            <rect key="frame" x="16" y="12" width="41.5" height="19.5"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="16"/>
+                                            <rect key="frame" x="16" y="12" width="43" height="19.5"/>
+                                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9l0-zx-C0d">
                                             <rect key="frame" x="16" y="31.5" width="41.5" height="19.5"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="16"/>
+                                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8Z-TM-P05">
-                                            <rect key="frame" x="327.5" y="10" width="26.5" height="12"/>
+                                            <rect key="frame" x="327" y="10" width="27" height="12"/>
                                             <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="10"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -387,11 +394,11 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ng-IR-i7y">
-                                    <rect key="frame" x="0.0" y="414" width="414" height="122"/>
+                                    <rect key="frame" x="0.0" y="414" width="414" height="122.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp 1.800.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUg-Wd-3Ad">
-                                            <rect key="frame" x="16" y="16" width="109" height="19.5"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="16"/>
+                                            <rect key="frame" x="16" y="16" width="105.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" weight="heavy" name="TruenoRg" family="Trueno" pointSize="16"/>
                                             <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -402,19 +409,19 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xH6-hl-n8N">
-                                            <rect key="frame" x="16" y="61.5" width="382" height="21.5"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="18"/>
+                                            <rect key="frame" x="16" y="61.5" width="368" height="22"/>
+                                            <fontDescription key="fontDescription" weight="medium" name="TruenoRg" family="Trueno" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4A-ep-h6d">
-                                            <rect key="frame" x="16" y="89" width="382" height="17"/>
+                                            <rect key="frame" x="16" y="89.5" width="382" height="17"/>
                                             <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61R-er-eJ3">
-                                            <rect key="frame" x="367" y="56" width="33" height="33"/>
+                                            <rect key="frame" x="367" y="19.5" width="33" height="33"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="33" id="jdb-vp-Zxu"/>
                                                 <constraint firstAttribute="height" constant="33" id="tI5-Jd-Rtc"/>
@@ -439,7 +446,7 @@
                                                 <constraint firstAttribute="width" constant="35" id="ta5-Oc-r9y"/>
                                                 <constraint firstAttribute="height" constant="14" id="trK-5T-3jj"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="10"/>
+                                            <fontDescription key="fontDescription" weight="heavy" name="TruenoRg" family="Trueno" pointSize="10"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -447,7 +454,7 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="t4A-ep-h6d" firstAttribute="top" secondItem="xH6-hl-n8N" secondAttribute="bottom" constant="6" id="4iO-24-JVy"/>
-                                        <constraint firstItem="61R-er-eJ3" firstAttribute="centerY" secondItem="xH6-hl-n8N" secondAttribute="centerY" id="5Ho-G0-Yov"/>
+                                        <constraint firstItem="61R-er-eJ3" firstAttribute="centerY" secondItem="xH6-hl-n8N" secondAttribute="centerY" priority="250" id="5Ho-G0-Yov"/>
                                         <constraint firstItem="h95-ML-yMl" firstAttribute="top" secondItem="zUg-Wd-3Ad" secondAttribute="bottom" constant="6" id="7CA-NM-EZl"/>
                                         <constraint firstItem="pFq-ea-8zd" firstAttribute="centerY" secondItem="h95-ML-yMl" secondAttribute="centerY" id="P7M-IP-ftO"/>
                                         <constraint firstItem="zUg-Wd-3Ad" firstAttribute="top" secondItem="6Ng-IR-i7y" secondAttribute="top" constant="16" id="RsN-H9-4Mn"/>
@@ -460,14 +467,15 @@
                                         <constraint firstAttribute="bottom" secondItem="t4A-ep-h6d" secondAttribute="bottom" constant="16" id="hKp-2U-aIB"/>
                                         <constraint firstItem="bZm-zm-ZU8" firstAttribute="leading" secondItem="h95-ML-yMl" secondAttribute="leading" constant="-3" id="kJT-L0-3pS"/>
                                         <constraint firstItem="bZm-zm-ZU8" firstAttribute="centerX" secondItem="h95-ML-yMl" secondAttribute="centerX" id="kQO-RM-QeZ"/>
+                                        <constraint firstItem="61R-er-eJ3" firstAttribute="centerY" secondItem="zUg-Wd-3Ad" secondAttribute="centerY" priority="750" constant="10" id="lWx-Dh-s8B"/>
                                         <constraint firstItem="pFq-ea-8zd" firstAttribute="leading" secondItem="6Ng-IR-i7y" secondAttribute="leading" constant="15" id="o56-UP-mMN"/>
                                         <constraint firstItem="xH6-hl-n8N" firstAttribute="top" secondItem="6Ng-IR-i7y" secondAttribute="top" constant="61.5" id="p9N-uy-lhJ"/>
                                         <constraint firstItem="h95-ML-yMl" firstAttribute="leading" secondItem="pFq-ea-8zd" secondAttribute="trailing" constant="5" id="pZX-by-WHz"/>
-                                        <constraint firstAttribute="trailing" secondItem="xH6-hl-n8N" secondAttribute="trailing" constant="16" id="xZf-to-HAd"/>
+                                        <constraint firstAttribute="trailing" secondItem="xH6-hl-n8N" secondAttribute="trailing" constant="30" id="xZf-to-HAd"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUg-OH-ceu">
-                                    <rect key="frame" x="0.0" y="570" width="414" height="76.5"/>
+                                    <rect key="frame" x="0.0" y="570.5" width="414" height="76.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rit-kN-wBG">
                                             <rect key="frame" x="16" y="16" width="80" height="14.5"/>
@@ -496,7 +504,7 @@
                                         </imageView>
                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5Q-39-22Q">
                                             <rect key="frame" x="132" y="15" width="266" height="17"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="14"/>
+                                            <fontDescription key="fontDescription" weight="heavy" name="TruenoRg" family="Trueno" pointSize="14"/>
                                             <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -525,7 +533,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzu-se-CrA">
-                                    <rect key="frame" x="0.0" y="658.5" width="414" height="47"/>
+                                    <rect key="frame" x="0.0" y="659" width="414" height="47"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Variations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUI-50-buy">
                                             <rect key="frame" x="16" y="16" width="80" height="15"/>
@@ -554,7 +562,7 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GgT-97-s4m">
-                                    <rect key="frame" x="0.0" y="717.5" width="414" height="128"/>
+                                    <rect key="frame" x="0.0" y="718" width="414" height="128"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="128" id="7MT-fX-Ecc"/>
@@ -565,11 +573,11 @@
                                     </connections>
                                 </tableView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sh5-6B-V3T">
-                                    <rect key="frame" x="0.0" y="857.5" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="858" width="414" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHz-XN-MUs">
-                                            <rect key="frame" x="16" y="16.5" width="40" height="17"/>
-                                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
+                                            <rect key="frame" x="16" y="16.5" width="41.5" height="17"/>
+                                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>

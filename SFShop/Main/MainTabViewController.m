@@ -37,6 +37,7 @@
     homeNav.tabBarItem.title = kLocalizedString(@"Home");
     homeNav.tabBarItem.image = [UIImage imageNamed:@"home_tab_icon"];
     CartViewController *cartVC = [[CartViewController alloc] init];
+    cartVC.isTab = YES;
     cartVC.tabBarItem.title = kLocalizedString(@"Cart");
     cartVC.tabBarItem.image = [UIImage imageNamed:@"cart_tab_icon"];
     BaseNavigationController *CartNav = [[BaseNavigationController alloc]initWithRootViewController:cartVC];

@@ -26,6 +26,11 @@
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Fdc-LY-XXO" secondAttribute="height" multiplier="15:15" id="yZf-Fh-73v"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp 18.000.000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0G-Sa-jT4">
                         <rect key="frame" x="0.0" y="88" width="73" height="12"/>

@@ -39,7 +39,7 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.productImg.url)]];
     _nameLabel.text = model.offerName;
     _priceLabel.text = [[NSString stringWithFormat:@"%ld", model.specialPrice] currency];
-    _marketPriceLabel.text = [NSString stringWithFormat:@"%@", [[NSString stringWithFormat:@"%ld",(long)model.marketPrice] currency]];
+    _marketPriceLabel.text = [NSString stringWithFormat:@"%@", [model.sppMarketPrice currency]];
     _groupCountLabel.text = [NSString stringWithFormat:@"%ld",shareModel.shareByNum];
     _soldLabel.text = [NSString stringWithFormat:@"%ld Sold",(long)model.salesCnt];
 }
