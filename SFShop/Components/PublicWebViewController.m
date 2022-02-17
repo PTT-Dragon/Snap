@@ -62,8 +62,8 @@
     NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
     [self.webView evaluateJavaScript:language completionHandler:nil];
     [self.view addSubview:webview];
-    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     [self addJsBridge];
+    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     MPWeakSelf(self)
     [self jk_backButtonTouched:^(UIViewController *vc) {
         if (weakself.shouldBackToHome) {
@@ -125,6 +125,9 @@
     }];
     [_jsBridge registerHandler:@"PROD_CLICK" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSLog(@"10");
+    }];
+    [_jsBridge callHandler:@"setAppLanguage" data:@"en" responseCallback:^(id responseData) {
+        NSLog(@"11");
     }];
 }
 - (void)setIsHome:(BOOL)isHome
