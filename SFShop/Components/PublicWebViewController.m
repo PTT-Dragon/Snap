@@ -49,11 +49,11 @@
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
-//    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//        NSString *newUserAgent = [result stringByAppendingFormat:@" %@",@"app/CYLON-APP"];
-//        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
-//        webview.customUserAgent = newUserAgent;
-//    }];
+    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSString *newUserAgent = [result stringByAppendingFormat:@" %@",@"app/CYLON-APP"];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
+        webview.customUserAgent = newUserAgent;
+    }];
     // 设置localStorage
     NSString *currentLanguage = UserDefaultObjectForKey(@"Language");
     if ([currentLanguage isEqualToString:kLanguageChinese]) {
@@ -61,6 +61,7 @@
     }
     NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
     [self.webView evaluateJavaScript:language completionHandler:nil];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"jsFunc"];
     [self.view addSubview:webview];
     [self addJsBridge];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
@@ -137,7 +138,12 @@
 #pragma mark - WKNavigationDelegate
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
-    
+    NSString *func = message.name;
+    if ([func isEqualToString:@"jsFunc"]) {
+        
+    } else if ([func isEqualToString:@""]) {
+        
+    }
 }
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
