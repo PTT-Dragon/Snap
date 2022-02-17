@@ -62,6 +62,7 @@
     NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
     [self.webView evaluateJavaScript:language completionHandler:nil];
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"jsFunc"];
+    
     [self.view addSubview:webview];
     [self addJsBridge];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
@@ -138,11 +139,18 @@
 #pragma mark - WKNavigationDelegate
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
-    NSString *func = message.name;
-    if ([func isEqualToString:@"jsFunc"]) {
-        
-    } else if ([func isEqualToString:@""]) {
-        
+    NSDictionary *func = message.body;
+    if ([func[@"type"] isEqualToString:@"SEARCH"]) {
+        CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+        vc.activeSearch = YES;
+        vc.shouldBackToHome = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([func[@"type"] isEqualToString:@"PROD_DETAIL"]) {
+        NSDictionary *dic = func[@"data"];
+        ProductViewController *vc = [[ProductViewController alloc] init];
+        vc.offerId = [dic[@"offerId"] integerValue];
+        vc.productId = [dic[@"productId"] integerValue];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 // 页面开始加载时调用
