@@ -577,6 +577,7 @@
 "Price" = "Price";
 "No_product_tip" = "Sorry; no related products were found.";
 "Order_Logistics" = "Order & Logistics";
+"CleanAllMessage" = "Mark all as read";
 "Message" = "Message";
 "Support" = "Support";
 "Similar_products" = "Similar Products";

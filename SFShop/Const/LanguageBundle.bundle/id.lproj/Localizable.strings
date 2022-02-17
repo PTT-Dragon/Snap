@@ -587,7 +587,8 @@
 "Sales" = "Penjualan";
 "Price" = "Harga";
 "No_product_tip" = "Sorry; no related products were found.";
-"Order_Logistics" = "Order & Logistics";
+"Order_Logistics" = "Pesanan & Pengiriman";
+"CleanAllMessage" = "Tandai sudah dibaca";
 "Message" = "Pesan";
 "Support" = "Layanan";
 "Similar_products" = "Produk serupa";

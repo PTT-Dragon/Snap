@@ -296,7 +296,7 @@
         _clearLabel = [[UILabel alloc] init];
         _clearLabel.textColor = RGBColorFrom16(0x555555);
         _clearLabel.font = kFontBlod(12);
-        _clearLabel.text = @"mark all as read";
+        _clearLabel.text = kLocalizedString(@"CleanAllMessage");
     }
     return _clearLabel;
 }
