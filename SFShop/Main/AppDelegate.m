@@ -11,6 +11,7 @@
 #import "SysParamsModel.h"
 #import <MJRefresh/MJRefresh.h>
 #import "NSString+Fee.h"
+#import <WebKit/WebKit.h>
 
 @interface AppDelegate ()
 
