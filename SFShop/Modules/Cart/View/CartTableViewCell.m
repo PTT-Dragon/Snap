@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UIView *priceDownView;
 @property (weak, nonatomic) IBOutlet UIButton *campaignsBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *campaignsImgView;
 @property (weak, nonatomic) IBOutlet UILabel *priceDownLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgTop;
 @property (weak, nonatomic) IBOutlet UIButton *offBtn;
@@ -97,6 +98,7 @@
 {
     _showCampaignsView = showCampaignsView;
     self.campaignsBtn.hidden = !showCampaignsView;
+    _campaignsImgView.hidden = !showCampaignsView;
     if (showCampaignsView) {
         self.offBtn.hidden = NO;
         self.offLabel.hidden = NO;

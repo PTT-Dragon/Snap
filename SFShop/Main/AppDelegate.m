@@ -46,6 +46,28 @@
     
     return YES;
 }
+- (void)initNavbar
+{
+    if(iOS13) {
+
+            UINavigationBarAppearance *appearance = [UINavigationBarAppearance new];
+
+            [appearance configureWithOpaqueBackground];
+
+            appearance.backgroundColor=[UIColor whiteColor];
+
+//            appearance.titleTextAttributes = NAVIGATIONBAR_TITLE_ATTRIBUTES_DICTIONARY;
+
+            [[UINavigationBar appearance] setStandardAppearance:appearance];
+
+            [[UINavigationBar appearance] setScrollEdgeAppearance:appearance];
+
+        }else{
+
+            // Fallback on earlier versions
+
+        }
+}
 - (void)cleanCartCache
 {
     [[NSUserDefaults standardUserDefaults] setObject:@{} forKey:@"arrayKey"];

@@ -170,16 +170,16 @@
     //删除
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
-        if (self.dataSource.count == 1) {
+//        if (self.dataSource.count == 1) {
             PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"DELETE_ADDRESS_TXT") btnTitle:kLocalizedString(@"DELETE") block:^{
                 [self deleteCellWithRow:indexPath.row];
             } btn2Title:kLocalizedString(@"CANCAL") block2:^{
                 
             }];
             [self.view addSubview:alert];
-        }else{
-            [self deleteCellWithRow:indexPath.row];
-        }
+//        }else{
+//            [self deleteCellWithRow:indexPath.row];
+//        }
     }];
     deleteRowAction.backgroundColor = [UIColor redColor];
     

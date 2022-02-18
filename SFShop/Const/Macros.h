@@ -70,6 +70,8 @@
 
 /** 是否为iOS10 */
 #define iOS10 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0) ? YES : NO)
+
+#define iOS13 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 13.0) ? YES : NO)
 /** 是否为iOS11 */
 #define iOS11 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0) ? YES : NO)
 

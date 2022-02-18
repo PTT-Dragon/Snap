@@ -249,6 +249,7 @@
             <connections>
                 <outlet property="additonBtn" destination="xDM-D5-S5g" id="dnF-2g-GqA"/>
                 <outlet property="campaignsBtn" destination="B4C-9y-QlI" id="f6u-8m-tW3"/>
+                <outlet property="campaignsImgView" destination="5ll-NF-pn9" id="zEv-m5-rYQ"/>
                 <outlet property="countLabel" destination="jWp-Ge-qwV" id="GLs-vB-4gl"/>
                 <outlet property="imgView" destination="5Uk-UU-CJV" id="LC3-sa-uCQ"/>
                 <outlet property="leftMargin" destination="EPI-1o-fUc" id="Wcg-sz-Yus"/>

@@ -43,7 +43,6 @@
 - (void)initWebview
 {
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-//    configuration.applicationNameForUserAgent = @"app/CYLON-APP";
     self.configuration = configuration;
     WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, _isHome ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? statuBarHei: navBarHei)) configuration:_configuration];
     _webView = webview;
@@ -59,10 +58,13 @@
     if ([currentLanguage isEqualToString:kLanguageChinese]) {
         currentLanguage = @"zh";
     }
-    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
+//    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
+    NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')",currentLanguage];
+    [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:language completionHandler:nil];
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"jsFunc"];
-    
     [self.view addSubview:webview];
     [self addJsBridge];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
@@ -98,6 +100,10 @@
 - (void)addJsBridge {
     _jsBridge = [WKWebViewJavascriptBridge bridgeForWebView:_webView];
     [_jsBridge setWebViewDelegate:self];
+    NSDictionary *setlanguageParam = @{@"name":@"setAppLanguage",@"url":@"", @"params":@"", @"title":@""};
+    [self.jsBridge callHandler:@"functionInJs" data:setlanguageParam.jk_JSONString responseCallback:^(id responseData) {
+            NSLog(@"");
+        }];
     [_jsBridge registerHandler:@"COUPON" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSLog(@"1");
     }];
@@ -157,6 +163,12 @@
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
 //    [webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#131313\"" completionHandler:nil];
 //    [SVProgressHUD showInfoWithStatus:@"正在加载中"];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
+    
+    NSString *sendLanguage = [NSString stringWithFormat:@"window.setAppLanguage"];
+    [self.webView evaluateJavaScript:token completionHandler:nil];
+    [self.webView evaluateJavaScript:sendLanguage completionHandler:nil];
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
@@ -171,8 +183,9 @@
     if ([currentLanguage isEqualToString:kLanguageChinese]) {
         currentLanguage = @"zh";
     }
-    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
-    NSString *token = [NSString stringWithFormat:@"localStorage.setItem('h5Token', '%@')", model.accessToken];
+//    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
+    NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')",currentLanguage];
+    NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
     NSString *isLogin = [NSString stringWithFormat:@"localStorage.setItem('isLogin', '%d')", model ? YES : NO];
     [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];
