@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "00018_02_location_filled.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "00015_01_delete_outline.png",
+      "filename" : "00018_02_location_filled@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "00018_02_location_filled@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
