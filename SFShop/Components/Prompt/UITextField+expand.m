@@ -6,7 +6,7 @@
 //
 
 #import "UITextField+expand.h"
-#import "NSString+Add.h"
+//#import "NSString+Add.h"
 #import "NSString+Fee.h"
 
 #define defaultColor RGBColorFrom16(0x7b7b7b)
@@ -57,7 +57,7 @@
 - (BOOL)textFieldState:(UITextFieldShowType)type editType:(UITextFieldEditType)editType labels:(NSArray <UILabel *>*)labels
 {
     if (type == CHECKPHONETYPE) {
-        if ([self.text phoneTextCheck]) {
+        if ([self.text validatePhoneNumber]) {
             //手机规则符合
             self.layer.borderColor = defaultColor.CGColor;
             [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -128,7 +128,7 @@
             }
         }
     }else if (type == CHECKEMAILTYPE){
-        if ([self.text emailTextCheck]) {
+        if ([self.text validateEmail]) {
             self.layer.borderColor = defaultColor.CGColor;
             [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 obj.textColor = defaultColor;
@@ -164,7 +164,7 @@
             }
         }
     }else if (type == CHECKMEAILORPHONE){
-        if ([self.text emailTextCheck] || [self.text phoneTextCheck]) {
+        if ([self.text validateEmail] || [self.text validatePhoneNumber]) {
             self.layer.borderColor = defaultColor.CGColor;
             [labels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 obj.textColor = defaultColor;
@@ -209,7 +209,7 @@
 - (UITextField *)textFieldState:(UITextFieldShowType)type label:(UILabel *)label button:(UIButton *)button
 {
     if (type == CHECKPHONETYPE) {
-        if ([self.text phoneTextCheck]) {
+        if ([self.text validatePhoneNumber]) {
             //手机规则符合
             self.layer.borderColor = defaultColor.CGColor;
             label.textColor = defaultColor;
@@ -226,7 +226,7 @@
             label.textColor = highlightColor;
         }
     }else if (type == CHECKEMAILTYPE){
-        if ([self.text emailTextCheck]) {
+        if ([self.text validateEmail]) {
             self.layer.borderColor = defaultColor.CGColor;
             label.textColor = defaultColor;
         }else{
@@ -244,7 +244,7 @@
      REQUIREDTIP
      **/
     if (type == CHECKEMAILTYPE) {
-        if ([self.text emailTextCheck]) {
+        if ([self.text validateEmail]) {
             self.layer.borderColor = defaultColor.CGColor;
             label.textColor = defaultColor;
             label.hidden = YES;
@@ -261,7 +261,7 @@
             return NO;
         }
     }else if (type == CHECKPHONETYPE){
-        if ([self.text phoneTextCheck]) {
+        if ([self.text validatePhoneNumber]) {
             label.hidden = YES;
             self.layer.borderColor = defaultColor.CGColor;
             label.textColor = defaultColor;

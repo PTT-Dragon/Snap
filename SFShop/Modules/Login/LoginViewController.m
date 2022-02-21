@@ -10,7 +10,7 @@
 #import "forgotPasswordView.h"
 #import "LoginViaOTP.h"
 #import "UITextField+expand.h"
-#import "NSString+Add.h"
+#import "NSString+Fee.h"
 #import <MJRefresh/MJRefresh.h>
 #import "CartModel.h"
 
@@ -159,12 +159,12 @@ static BOOL _passwordSuccess = NO;
     //wcttest1@qq.com/smart123  17366287044 Abc@1234  rx_dadoubi@sina.com/Abc@12345    A1customer@A1.com/Abc@1234  18861484865/Abc@1234  14700003515
     //在登录时候只校验是手机号还是邮箱
     if (_type == 1) {
-        if (![self.accountField.text phoneTextCheck]) {
+        if (![self.accountField.text validatePhoneNumber]) {
             [MBProgressHUD showTopErrotMessage:kLocalizedString(@"INCORRECT_PHONE")];
             return;
         }
     }else{
-        if (![self.accountField.text emailTextCheck]) {
+        if (![self.accountField.text validateEmail]) {
             [MBProgressHUD showTopErrotMessage:kLocalizedString(@"INCORRECT_EMAIL")];
             return;
         }

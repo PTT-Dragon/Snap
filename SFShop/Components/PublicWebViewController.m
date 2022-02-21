@@ -44,7 +44,7 @@
 {
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     self.configuration = configuration;
-    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, _isHome ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? statuBarHei: navBarHei)) configuration:_configuration];
+    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, _isHome ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei): navBarHei)) configuration:_configuration];
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
@@ -104,39 +104,39 @@
     [self.jsBridge callHandler:@"functionInJs" data:setlanguageParam.jk_JSONString responseCallback:^(id responseData) {
             NSLog(@"");
         }];
-    [_jsBridge registerHandler:@"COUPON" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"1");
-    }];
-    [_jsBridge registerHandler:@"SEARCH" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"2");
-    }];
-    [_jsBridge registerHandler:@"CATG" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"3");
-    }];
-    [_jsBridge registerHandler:@"CUST_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"4");
-    }];
-    [_jsBridge registerHandler:@"PROD_DETAIL" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"5");
-    }];
-    [_jsBridge registerHandler:@"FILTER_PRODUCT" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"6");
-    }];
-    [_jsBridge registerHandler:@"FUNCTION_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"7");
-    }];
-    [_jsBridge registerHandler:@"FLASH_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"8");
-    }];
-    [_jsBridge registerHandler:@"GROUP_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"9");
-    }];
-    [_jsBridge registerHandler:@"PROD_CLICK" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"10");
-    }];
-    [_jsBridge callHandler:@"setAppLanguage" data:@"en" responseCallback:^(id responseData) {
-        NSLog(@"11");
-    }];
+//    [_jsBridge registerHandler:@"COUPON" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"1");
+//    }];
+//    [_jsBridge registerHandler:@"SEARCH" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"2");
+//    }];
+//    [_jsBridge registerHandler:@"CATG" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"3");
+//    }];
+//    [_jsBridge registerHandler:@"CUST_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"4");
+//    }];
+//    [_jsBridge registerHandler:@"PROD_DETAIL" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"5");
+//    }];
+//    [_jsBridge registerHandler:@"FILTER_PRODUCT" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"6");
+//    }];
+//    [_jsBridge registerHandler:@"FUNCTION_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"7");
+//    }];
+//    [_jsBridge registerHandler:@"FLASH_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"8");
+//    }];
+//    [_jsBridge registerHandler:@"GROUP_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"9");
+//    }];
+//    [_jsBridge registerHandler:@"PROD_CLICK" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"10");
+//    }];
+//    [_jsBridge callHandler:@"setAppLanguage" data:@"en" responseCallback:^(id responseData) {
+//        NSLog(@"11");
+//    }];
 }
 - (void)setIsHome:(BOOL)isHome
 {
@@ -157,6 +157,10 @@
         vc.offerId = [dic[@"offerId"] integerValue];
         vc.productId = [dic[@"productId"] integerValue];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"GROUP_SHOP_MORE"]){
+//        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+//        GroupListViewController *vc = [[GroupListViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 // 页面开始加载时调用
