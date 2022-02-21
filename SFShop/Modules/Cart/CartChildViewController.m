@@ -133,7 +133,7 @@
         CartItemModel * model = listModel.campaignGroupsShoppingCarts[indexPath.row-1];
         [listModel.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj.campaignId isEqualToString:model.campaignId]) {
-                labelHei = [obj.campaignName jk_heightWithFont:kFontLight(12) constrainedToWidth:150];
+                labelHei = model.isFirst ? [obj.campaignName jk_heightWithFont:kFontLight(12) constrainedToWidth:150]: 0;
                 *stop = YES;
             }
         }];
@@ -180,16 +180,15 @@
         cell.showCampaignsView = NO;
     }else{
         //参与活动的商品
-        
-//        model = campaignsModel.shoppingCarts.firstObject;
         model = listModel.campaignGroupsShoppingCarts[indexPath.row-1];
-        cell.showCampaignsView = YES;
+        cell.showCampaignsBtn = YES;
         [listModel.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj.campaignId isEqualToString:model.campaignId]) {
                 cell.campaignsModel = obj;
                 *stop = YES;
             }
         }];
+        cell.showCampaignsView = model.isFirst;
     }
     cell.model = model;
     cell.delegate = self;
@@ -408,6 +407,7 @@
         NSMutableArray <CartItemModel *>*arr = [NSMutableArray array];
         [obj.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
             [obj2.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj3, NSUInteger idx3, BOOL * _Nonnull stop3) {
+                obj3.isFirst = idx3 == 0;
                 [arr addObject:obj3];
             }];
         }];

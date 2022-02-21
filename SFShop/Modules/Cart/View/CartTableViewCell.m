@@ -97,19 +97,24 @@
 - (void)setShowCampaignsView:(BOOL)showCampaignsView
 {
     _showCampaignsView = showCampaignsView;
-    self.campaignsBtn.hidden = !showCampaignsView;
     _campaignsImgView.hidden = !showCampaignsView;
     if (showCampaignsView) {
         self.offBtn.hidden = NO;
         self.offLabel.hidden = NO;
         self.offNameLabel.hidden = NO;
         self.imgTop.constant = 45;
+        self.offLabel.text = [_campaignsModel.buygetnInfo.promotType rangeOfString:@"C"].location != NSNotFound ? [NSString stringWithFormat:@" %@ ",kLocalizedString(@"Off")]: [NSString stringWithFormat:@" %@ ",kLocalizedString(@"Discount")];
     }else{
+        self.campaignsBtn.hidden = YES;
         self.offBtn.hidden = YES;
         self.offLabel.hidden = YES;
         self.offNameLabel.hidden = YES;
         self.imgTop.constant = 15;
     }
+}
+- (void)setShowCampaignsBtn:(BOOL)showCampaignsBtn
+{
+    self.campaignsBtn.hidden = !showCampaignsBtn;
 }
 - (void)setCampaignsModel:(CartCampaignsModel *)campaignsModel
 {

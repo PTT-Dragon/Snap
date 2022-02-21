@@ -62,6 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) double offerPrice;
 @property (nonatomic,assign) double storeCouponPrice;
 @property (nonatomic,assign) double platformCouponPrice;
+@property (nonatomic,assign) BOOL isFirst;//是否是活动的第一个展示商品
 @property (nonatomic,strong) NSArray <ProdSpcAttrsModel> *prodSpcAttrs;
 @property (nonatomic,strong) NSArray <CampaignsModel> *campaigns;
 @property (nonatomic,strong) NSArray  *campaignGroups;
@@ -73,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *campaignName;
 @property (nonatomic,copy) NSString *effDate;
 @property (nonatomic,copy) NSString *expDate;
-
+@property (nonatomic,copy) NSString *promotType;
 @end
 
 @interface CartCampaignsModel : JSONModel
