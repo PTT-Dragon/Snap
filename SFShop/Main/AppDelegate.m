@@ -29,6 +29,7 @@
     [self configUSharePlatforms];
     [self loadSysConfig];
     [self initUmeng];
+    [self initNavbar];
 //    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     self.tabVC = [[MainTabViewController alloc] init];
@@ -49,24 +50,13 @@
 - (void)initNavbar
 {
     if(iOS13) {
-
-            UINavigationBarAppearance *appearance = [UINavigationBarAppearance new];
-
-            [appearance configureWithOpaqueBackground];
-
-            appearance.backgroundColor=[UIColor whiteColor];
-
-//            appearance.titleTextAttributes = NAVIGATIONBAR_TITLE_ATTRIBUTES_DICTIONARY;
-
-            [[UINavigationBar appearance] setStandardAppearance:appearance];
-
-            [[UINavigationBar appearance] setScrollEdgeAppearance:appearance];
-
-        }else{
-
-            // Fallback on earlier versions
-
-        }
+        UINavigationBarAppearance *appearance = [UINavigationBarAppearance new];
+        [appearance configureWithOpaqueBackground];
+        appearance.backgroundColor=[UIColor whiteColor];
+        [[UINavigationBar appearance] setStandardAppearance:appearance];
+        [[UINavigationBar appearance] setScrollEdgeAppearance:appearance];
+        }else{
+        }
 }
 - (void)cleanCartCache
 {
