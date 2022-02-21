@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,weak) CartItemModel *model;
 @property (nonatomic,assign) BOOL isInvalid;
 @property (nonatomic,assign) BOOL showCampaignsView;
+@property (nonatomic,assign) BOOL showCampaignsBtn;
 @property (nonatomic,strong) CartCampaignsModel *campaignsModel;
 @end
 
