@@ -86,17 +86,45 @@
                                                  name:@"KReloadWebview"
                                                object:nil];
 }
-- (void)receiveLanguageChangeNotification:(NSNotification *)noti
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"jsFunc"];
-    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openBankCardDialog"];
-    self.webView.UIDelegate = nil;
-    self.webView.navigationDelegate = nil;
-//    [self.webView removeFromSuperview];
-    _webView = nil;
-    _jsBridge = nil;
+
+- (void)reset {
+    if (_webView) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"jsFunc"];
+        [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openBankCardDialog"];
+        self.webView.UIDelegate = nil;
+        self.webView.navigationDelegate = nil;
+        _webView = nil;
+        _jsBridge = nil;
+    }
 }
+
+- (void)receiveLanguageChangeNotification:(NSNotification *)noti {
+    // iOS调用js
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    // 设置localStorage
+    NSString *currentLanguage = UserDefaultObjectForKey(@"Language");
+    if ([currentLanguage isEqualToString:kLanguageChinese]) {
+        currentLanguage = @"zh";
+    }
+    NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
+    NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
+    NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? YES : NO];
+    [self.webView evaluateJavaScript:token completionHandler:nil];
+    [self.webView evaluateJavaScript:isLogin completionHandler:nil];
+    [self.webView evaluateJavaScript:language completionHandler:^(id _Nullable, NSError * _Nullable error) {
+        NSLog(@"");
+    }];
+
+    NSDictionary *setlanguageParam = @{@"name":@"setAppLanguage",@"url":@"", @"params":@{}, @"title":@""};
+    [self.jsBridge callHandler:@"functionInJs" data:setlanguageParam responseCallback:^(id responseData) {
+        NSLog(@"didFinishNavigation:functionInJs.setAppLanguage");
+    }];
+    
+    //清除掉，防止内存泄漏
+    [self reset];
+}
+
 - (void)receiveReloadWebviewNotification:(NSNotification *)noti
 {
 //    [self.webView reloadFromOrigin];
@@ -172,28 +200,7 @@
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    // iOS调用js
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    // 设置localStorage
-    NSString *currentLanguage = UserDefaultObjectForKey(@"Language");
-    if ([currentLanguage isEqualToString:kLanguageChinese]) {
-        currentLanguage = @"zh";
-    }
-    NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
-    NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
-    NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? YES : NO];
-    [webView evaluateJavaScript:token completionHandler:nil];
-    [webView evaluateJavaScript:isLogin completionHandler:nil];
-    [webView evaluateJavaScript:language completionHandler:^(id _Nullable, NSError * _Nullable error) {
-        NSLog(@"");
-    }];
 
-    NSDictionary *setlanguageParam = @{@"name":@"setAppLanguage",@"url":@"", @"params":@{}, @"title":@""};
-    [self.jsBridge callHandler:@"functionInJs" data:setlanguageParam responseCallback:^(id responseData) {
-        NSLog(@"didFinishNavigation:functionInJs.setAppLanguage");
-    }];
-
-    [self.jsBridge callHandler:@"reload"];
 }
 
 // 页面加载失败时调用
@@ -332,23 +339,18 @@
 }
 
 - (void)dealloc {
-    _webView.UIDelegate = nil;
-    _webView.navigationDelegate = nil;
-    [_webView.configuration.userContentController removeScriptMessageHandlerForName:@"jsFunc"];
-    [_webView.configuration.userContentController removeScriptMessageHandlerForName:@"openBankCardDialog"];
-    _webView = nil;
-    _jsBridge = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    if (iOS9) {
-        NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-        //// Date from
-        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
-        //// Execute
-        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
-            // Done
-            NSLog(@"清楚缓存完毕");
-        }];
-    }
+    [self reset];
+    //不需要清除缓存，否则会移除掉localStorge
+//    if (iOS9) {
+//        NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+//        //// Date from
+//        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+//        //// Execute
+//        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+//            // Done
+//            NSLog(@"清楚缓存完毕");
+//        }];
+//    }
 }
 
 @end
