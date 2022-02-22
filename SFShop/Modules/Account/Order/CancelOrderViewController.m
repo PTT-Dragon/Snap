@@ -72,7 +72,7 @@
         return cell;
     }
     OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-    [cell setRefundContent:_model.orderItems[indexPath.row]];
+    [cell setRefund2Content:_model.orderItems[indexPath.row]];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

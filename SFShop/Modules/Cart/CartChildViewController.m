@@ -230,12 +230,12 @@
         
     }
     CartItemModel *model;
-    if (indexPath.row > listModel.campaignGroups.count) {
-        model = listModel.shoppingCarts[indexPath.row-listModel.campaignGroups.count-1];
+    if (indexPath.row > listModel.campaignGroupsShoppingCarts.count) {
+        //普通商品
+        model = listModel.shoppingCarts[indexPath.row-listModel.campaignGroupsShoppingCarts.count-1];
     }else{
-        NSArray <CartCampaignsModel *>*arr = listModel.campaignGroups;//self.campaignsDataSource[indexPath.section];
-        CartCampaignsModel *campaignsModel = arr[indexPath.row-1];
-        model = campaignsModel.shoppingCarts.firstObject;
+        //参与活动的商品
+        model = listModel.campaignGroupsShoppingCarts[indexPath.row-1];
     }
     
     MPWeakSelf(self)

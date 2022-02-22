@@ -7,26 +7,31 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="GroupTopImgCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="166" id="KGk-i7-Jjw" customClass="GroupTopImgCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="166"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="166"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRx-ds-lBK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="166"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TF-st-NPV">
-                        <rect key="frame" x="246" y="10" width="64" height="24"/>
+                        <rect key="frame" x="246" y="132" width="64" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="AsC-kk-ApQ"/>
                             <constraint firstAttribute="height" constant="24" id="Qau-GN-GFc"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="13"/>
+                        <fontDescription key="fontDescription" weight="heavy" name="TruenoRg" family="Trueno" pointSize="13"/>
                         <state key="normal" image="Secondary">
                             <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
@@ -34,25 +39,66 @@
                             <action selector="tipAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2aU-bE-8J1"/>
                         </connections>
                     </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="00005_01_users_outline-1" translatesAutoresizingMaskIntoConstraints="NO" id="wao-kR-Rm0">
+                        <rect key="frame" x="133" y="33" width="24" height="24"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKY-lr-4tE">
+                        <rect key="frame" x="162" y="36.5" width="38" height="17"/>
+                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyH-P8-A5G">
+                        <rect key="frame" x="280" y="33" width="24" height="24"/>
+                        <state key="normal" image="share"/>
+                        <connections>
+                            <action selector="shareAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Rxa-Gd-4U8"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKf-hX-nTA">
+                        <rect key="frame" x="16" y="34" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="Pjw-4Z-qy5"/>
+                            <constraint firstAttribute="width" constant="22" id="l5e-UZ-nZk"/>
+                        </constraints>
+                        <state key="normal" image="nav_back"/>
+                        <connections>
+                            <action selector="backAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Lef-MB-IqT"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="oyH-P8-A5G" firstAttribute="centerY" secondItem="wao-kR-Rm0" secondAttribute="centerY" id="4oc-UV-k2l"/>
                     <constraint firstItem="hRx-ds-lBK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="64V-fM-VhI"/>
                     <constraint firstAttribute="trailing" secondItem="4TF-st-NPV" secondAttribute="trailing" constant="10" id="7IS-0O-Ivp"/>
+                    <constraint firstItem="wKY-lr-4tE" firstAttribute="centerY" secondItem="wao-kR-Rm0" secondAttribute="centerY" id="8VU-dy-GLj"/>
+                    <constraint firstAttribute="trailing" secondItem="oyH-P8-A5G" secondAttribute="trailing" constant="16" id="AcD-Wi-VvI"/>
                     <constraint firstAttribute="trailing" secondItem="hRx-ds-lBK" secondAttribute="trailing" id="EkY-fm-jMV"/>
+                    <constraint firstItem="XKf-hX-nTA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JSJ-Md-f9e"/>
                     <constraint firstItem="hRx-ds-lBK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MIp-F0-gvq"/>
                     <constraint firstAttribute="bottom" secondItem="hRx-ds-lBK" secondAttribute="bottom" id="QtJ-dc-c8U"/>
+                    <constraint firstItem="wao-kR-Rm0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="33" id="V9X-Jz-waI"/>
+                    <constraint firstItem="XKf-hX-nTA" firstAttribute="centerY" secondItem="oyH-P8-A5G" secondAttribute="centerY" id="gR9-On-4Wh"/>
                     <constraint firstAttribute="bottom" secondItem="4TF-st-NPV" secondAttribute="bottom" constant="10" id="ipn-4O-BHm"/>
+                    <constraint firstItem="wao-kR-Rm0" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-15" id="xPK-g6-9sm"/>
+                    <constraint firstItem="wKY-lr-4tE" firstAttribute="leading" secondItem="wao-kR-Rm0" secondAttribute="trailing" constant="5" id="y1M-A0-zaG"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="backBtn" destination="XKf-hX-nTA" id="aBE-ng-zlP"/>
                 <outlet property="imgView" destination="hRx-ds-lBK" id="MeC-4h-5Zc"/>
+                <outlet property="shareBtn" destination="oyH-P8-A5G" id="33B-WN-xaB"/>
                 <outlet property="tipBtn" destination="4TF-st-NPV" id="Gij-cO-3b0"/>
+                <outlet property="titleLabel" destination="wKY-lr-4tE" id="9xJ-1V-8so"/>
             </connections>
-            <point key="canvasLocation" x="64" y="72"/>
+            <point key="canvasLocation" x="63.768115942028992" y="112.5"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="00005_01_users_outline-1" width="24" height="24"/>
         <image name="Secondary" width="64" height="24"/>
+        <image name="nav_back" width="200" height="200"/>
+        <image name="share" width="24" height="24"/>
     </resources>
 </document>

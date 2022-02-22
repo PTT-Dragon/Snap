@@ -314,7 +314,7 @@
     //删除
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
-        [self deleteCellWithRow:indexPath.row];
+        [self deleteCellWithRow:indexPath];
     }];
     deleteRowAction.image = [UIImage imageNamed:@"删除"];
     deleteRowAction.backgroundColor = [UIColor redColor];
@@ -563,12 +563,13 @@
     self.viewHei.constant = newHeight;
     [self.view layoutIfNeeded];
 }
-- (void)deleteCellWithRow:(NSInteger)row
+- (void)deleteCellWithRow:(NSIndexPath *)indexPath
 {
-    RecentlyModel *model = self.dataSource[row];
+    NSMutableArray *arr = self.dataListSource[indexPath.section];
+    RecentlyModel *model = arr[indexPath.row];
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.recent.delete parameters:@{@"offerId":model.offerId} success:^(id  _Nullable response) {
-        [weakself.dataSource removeObjectAtIndex:row];
+    [SFNetworkManager post:SFNet.recent.delete parameters:@{@"offerViewLogId":model.offerViewLogId,@"offerId":model.offerId} success:^(id  _Nullable response) {
+        [arr removeObject:model];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         

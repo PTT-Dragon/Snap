@@ -286,6 +286,8 @@
 		1BB8DD5227C47D0300E5FBB2 /* LastSelAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8DD5127C47D0100E5FBB2 /* LastSelAddressModel.m */; };
 		1BB8DD5627C4BC8200E5FBB2 /* GroupBuyTipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8DD5427C4BC8100E5FBB2 /* GroupBuyTipViewController.m */; };
 		1BB8DD5727C4BC8200E5FBB2 /* GroupBuyTipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB8DD5527C4BC8100E5FBB2 /* GroupBuyTipViewController.xib */; };
+		1BB8DD5A27C4C3DE00E5FBB2 /* img1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BB8DD5827C4C3DD00E5FBB2 /* img1.gif */; };
+		1BB8DD5B27C4C3DE00E5FBB2 /* img2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BB8DD5927C4C3DE00E5FBB2 /* img2.gif */; };
 		1BBB594D279FDA18002ED0E8 /* RefundOrReturnReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */; };
 		1BBB594E279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */; };
 		1BBB688727B660EB00A8B83D /* LogisticsMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB688527B660EB00A8B83D /* LogisticsMoreCell.m */; };
@@ -1089,6 +1091,8 @@
 		1BB8DD5327C4BC8100E5FBB2 /* GroupBuyTipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupBuyTipViewController.h; sourceTree = "<group>"; };
 		1BB8DD5427C4BC8100E5FBB2 /* GroupBuyTipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupBuyTipViewController.m; sourceTree = "<group>"; };
 		1BB8DD5527C4BC8100E5FBB2 /* GroupBuyTipViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupBuyTipViewController.xib; sourceTree = "<group>"; };
+		1BB8DD5827C4C3DD00E5FBB2 /* img1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img1.gif; sourceTree = "<group>"; };
+		1BB8DD5927C4C3DE00E5FBB2 /* img2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img2.gif; sourceTree = "<group>"; };
 		1BBB594A279FDA18002ED0E8 /* RefundOrReturnReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundOrReturnReasonCell.h; sourceTree = "<group>"; };
 		1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundOrReturnReasonCell.m; sourceTree = "<group>"; };
 		1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundOrReturnReasonCell.xib; sourceTree = "<group>"; };
@@ -2479,6 +2483,8 @@
 				1BB8DD5327C4BC8100E5FBB2 /* GroupBuyTipViewController.h */,
 				1BB8DD5427C4BC8100E5FBB2 /* GroupBuyTipViewController.m */,
 				1BB8DD5527C4BC8100E5FBB2 /* GroupBuyTipViewController.xib */,
+				1BB8DD5827C4C3DD00E5FBB2 /* img1.gif */,
+				1BB8DD5927C4C3DE00E5FBB2 /* img2.gif */,
 			);
 			path = GroupProduct;
 			sourceTree = "<group>";
@@ -3808,6 +3814,7 @@
 				1B49D1342719809B002461ED /* FavoriteTableViewCell.xib in Resources */,
 				1B6C52D1275C896200A1C617 /* RelationOrderDetailStateCell.xib in Resources */,
 				1B478321272A9F0300F2A945 /* SetLogOutCell.xib in Resources */,
+				1BB8DD5B27C4C3DE00E5FBB2 /* img2.gif in Resources */,
 				1B82AE3827701F4F00D75E00 /* ArticleEvaluateBottomCell.xib in Resources */,
 				1BD8E7C3275F47E500130DCC /* RefundDetailProductInfoCell.xib in Resources */,
 				1BD8E7D0275FB8F900130DCC /* PublicShareView.xib in Resources */,
@@ -3852,6 +3859,7 @@
 				4B43852D26FEC1CC00BA3D90 /* ArticleListCell.xib in Resources */,
 				1B6C52CC275C894C00A1C617 /* RelationOrderDetailInfoCell.xib in Resources */,
 				1B595E3027A117EA0027BCAA /* OrderDetailTitleCell.xib in Resources */,
+				1BB8DD5A27C4C3DE00E5FBB2 /* img1.gif in Resources */,
 				1B2AE424272D274300FB23D3 /* CartChooseAddressCell.xib in Resources */,
 				1B43A40A279D91D900E7E786 /* AddReviewItemCell.xib in Resources */,
 				1BD10C3E2761F4B100BFC1AD /* ProductReviewViewController.xib in Resources */,

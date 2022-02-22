@@ -9,6 +9,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="TruenoBd.otf">
+            <string>TruenoBd</string>
+        </array>
+        <array key="TruenoLt.otf">
+            <string>TruenoLt</string>
+        </array>
         <array key="TruenoRg.otf">
             <string>TruenoRg</string>
         </array>
@@ -16,45 +22,154 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GroupBuyTipViewController">
             <connections>
+                <outlet property="button" destination="p5c-a7-dpg" id="GCn-qn-bRD"/>
+                <outlet property="imgView1" destination="2Q3-lD-bn6" id="GIg-N2-PKX"/>
+                <outlet property="imgView2" destination="rry-Vc-Uuc" id="fzJ-z2-MRf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QzX-I5-UMl">
+                    <rect key="frame" x="0.0" y="1088" width="375" height="112"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5c-a7-dpg">
-                    <rect key="frame" x="16" y="800" width="382" height="46"/>
+                    <rect key="frame" x="16" y="1104" width="343" height="46"/>
                     <color key="backgroundColor" red="1" green="0.086274509803921567" blue="0.34901960784313724" alpha="1" colorSpace="deviceRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="Kd2-Ms-uWP"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                     <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="cF5-qx-ukS"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04P-CP-u8y">
-                    <rect key="frame" x="0.0" y="784" width="414" height="1"/>
+                    <rect key="frame" x="0.0" y="1088" width="375" height="1"/>
                     <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="deviceRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="IaU-Bp-MP7"/>
                     </constraints>
                 </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-Hw-6jH">
+                    <rect key="frame" x="0.0" y="164" width="375" height="924"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GroupBuy_Tips" translatesAutoresizingMaskIntoConstraints="NO" id="D4V-mu-F2F">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="148"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="148" id="NRx-wM-yc0"/>
+                                <constraint firstAttribute="width" constant="375" id="oSg-YI-8rz"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMf-cg-HSj">
+                            <rect key="frame" x="18" y="167" width="34" height="19.5"/>
+                            <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group ‘Group Buy’ dapat dilakukan dengan cara Buat” atau “Bergabung” dengan grup yang dibuat oleh teman Anda." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thl-Lr-v6j">
+                            <rect key="frame" x="16" y="210.5" width="343" height="43.5"/>
+                            <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buat grup ‘Group Buy’ baru" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tue-6p-4Os">
+                            <rect key="frame" x="16" y="274" width="189" height="17"/>
+                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Q3-lD-bn6" customClass="YYAnimatedImageView">
+                            <rect key="frame" x="60" y="325" width="247" height="230"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="230" id="D2a-Bb-EjQ"/>
+                                <constraint firstAttribute="width" constant="247" id="zkX-cj-s6Q"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6t-Iu-oe2">
+                            <rect key="frame" x="16" y="572" width="343" height="158.5"/>
+                            <string key="text">1. Untuk membuat grup ‘Group Buy’: Pilih produk yang diinginkan di kategori ‘Group Buy’, lalu Klik “+”  2. Product detail page : Click “ Share buy” and buy the product   3. Undang teman untuk membeli produk yang sama  pada tanggal yang telah ditentukan  4. Setelah grup mencapai persyaratan minimum ukuran grup, produk akan dikirimkan.</string>
+                            <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bergabung dengan grup ‘Group Buy’ yang ada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U32-Z4-50K">
+                            <rect key="frame" x="16" y="750.5" width="322" height="17"/>
+                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rry-Vc-Uuc" customClass="YYAnimatedImageView">
+                            <rect key="frame" x="64" y="799" width="247" height="230"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="247" id="GqP-mH-Eir"/>
+                                <constraint firstAttribute="height" constant="230" id="lfA-UB-Prw"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cukup pilih dari grup ‘Group Buy’ yang telah dibuat atau yang diundang oleh temanmu" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zea-2w-VyN">
+                            <rect key="frame" x="16" y="1045" width="343" height="29"/>
+                            <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="2Q3-lD-bn6" secondAttribute="trailing" constant="68" id="019-Iq-Eoc"/>
+                        <constraint firstItem="tue-6p-4Os" firstAttribute="leading" secondItem="RYs-Hw-6jH" secondAttribute="leading" constant="16" id="1gZ-Qc-uvC"/>
+                        <constraint firstItem="U32-Z4-50K" firstAttribute="leading" secondItem="RYs-Hw-6jH" secondAttribute="leading" constant="16" id="B0C-lT-hpO"/>
+                        <constraint firstItem="Thl-Lr-v6j" firstAttribute="leading" secondItem="RYs-Hw-6jH" secondAttribute="leading" constant="16" id="GfA-ut-QoS"/>
+                        <constraint firstItem="Zea-2w-VyN" firstAttribute="leading" secondItem="RYs-Hw-6jH" secondAttribute="leading" constant="16" id="IaP-if-eMK"/>
+                        <constraint firstItem="D4V-mu-F2F" firstAttribute="leading" secondItem="RYs-Hw-6jH" secondAttribute="leading" id="IoD-7s-UZ5"/>
+                        <constraint firstItem="rry-Vc-Uuc" firstAttribute="top" secondItem="U32-Z4-50K" secondAttribute="bottom" constant="31.5" id="JOU-Ye-URX"/>
+                        <constraint firstItem="Thl-Lr-v6j" firstAttribute="top" secondItem="GMf-cg-HSj" secondAttribute="bottom" constant="24" id="Mzl-Xh-bk0"/>
+                        <constraint firstItem="c6t-Iu-oe2" firstAttribute="leading" secondItem="RYs-Hw-6jH" secondAttribute="leading" constant="16" id="Thm-fq-aNi"/>
+                        <constraint firstItem="Zea-2w-VyN" firstAttribute="top" secondItem="rry-Vc-Uuc" secondAttribute="bottom" constant="16" id="V7v-qw-N9N"/>
+                        <constraint firstItem="GMf-cg-HSj" firstAttribute="top" secondItem="D4V-mu-F2F" secondAttribute="bottom" constant="19" id="W0Q-nY-O5O"/>
+                        <constraint firstItem="U32-Z4-50K" firstAttribute="top" secondItem="c6t-Iu-oe2" secondAttribute="bottom" constant="20" id="W5R-Cg-zd5"/>
+                        <constraint firstItem="D4V-mu-F2F" firstAttribute="top" secondItem="RYs-Hw-6jH" secondAttribute="top" id="WiB-oX-L7Y"/>
+                        <constraint firstAttribute="trailing" secondItem="Zea-2w-VyN" secondAttribute="trailing" constant="16" id="atR-jF-6yq"/>
+                        <constraint firstAttribute="trailing" secondItem="D4V-mu-F2F" secondAttribute="trailing" id="g7d-Lf-784"/>
+                        <constraint firstAttribute="trailing" secondItem="c6t-Iu-oe2" secondAttribute="trailing" constant="16" id="k0r-lz-9TZ"/>
+                        <constraint firstAttribute="trailing" secondItem="Thl-Lr-v6j" secondAttribute="trailing" constant="16" id="m3j-DG-N9F"/>
+                        <constraint firstItem="tue-6p-4Os" firstAttribute="top" secondItem="Thl-Lr-v6j" secondAttribute="bottom" constant="20" id="maG-we-Ihv"/>
+                        <constraint firstItem="2Q3-lD-bn6" firstAttribute="top" secondItem="tue-6p-4Os" secondAttribute="bottom" constant="34" id="pxa-T9-e5a"/>
+                        <constraint firstItem="GMf-cg-HSj" firstAttribute="leading" secondItem="RYs-Hw-6jH" secondAttribute="leading" constant="18" id="ufx-ND-uLQ"/>
+                        <constraint firstAttribute="bottom" secondItem="Zea-2w-VyN" secondAttribute="bottom" constant="47" id="xJF-nM-Nd1"/>
+                        <constraint firstItem="c6t-Iu-oe2" firstAttribute="top" secondItem="2Q3-lD-bn6" secondAttribute="bottom" constant="17" id="ziC-Ie-Uwf"/>
+                    </constraints>
+                </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="04P-CP-u8y" secondAttribute="trailing" id="1Wb-EJ-5rx"/>
                 <constraint firstItem="p5c-a7-dpg" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="5lh-mT-7mo"/>
+                <constraint firstItem="QzX-I5-UMl" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" constant="34" id="IZ0-1v-lt6"/>
+                <constraint firstItem="QzX-I5-UMl" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="KYx-ig-zMo"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="QzX-I5-UMl" secondAttribute="trailing" id="Od8-AC-S46"/>
+                <constraint firstItem="rry-Vc-Uuc" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="PQ2-w2-ulv"/>
+                <constraint firstItem="RYs-Hw-6jH" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="aDz-Z8-bG5"/>
+                <constraint firstItem="RYs-Hw-6jH" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="120" id="jpR-2j-pRS"/>
+                <constraint firstItem="QzX-I5-UMl" firstAttribute="top" secondItem="RYs-Hw-6jH" secondAttribute="bottom" id="kap-bn-Wwf"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="RYs-Hw-6jH" secondAttribute="trailing" id="n5o-Fb-xvf"/>
                 <constraint firstItem="04P-CP-u8y" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="sy7-Cy-WVv"/>
+                <constraint firstItem="p5c-a7-dpg" firstAttribute="top" secondItem="RYs-Hw-6jH" secondAttribute="bottom" constant="16" id="ucV-QL-cg4"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="p5c-a7-dpg" secondAttribute="trailing" constant="16" id="wcG-Bu-Gsj"/>
                 <constraint firstItem="p5c-a7-dpg" firstAttribute="top" secondItem="04P-CP-u8y" secondAttribute="bottom" constant="15" id="wte-9F-e3A"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="p5c-a7-dpg" secondAttribute="bottom" constant="16" id="x6O-yX-kj8"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="94" y="72"/>
         </view>
     </objects>
     <resources>
+        <image name="GroupBuy_Tips" width="375" height="148"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
