@@ -40,6 +40,14 @@
     [self addNoTi];
     [self initWebview];
 }
+
+- (void)setUrl:(NSString *)url {
+    _url = url;
+    if ([url containsString:@"/chat/"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"KWillEnterChatNotification" object:nil];
+    }
+}
+
 - (void)initWebview
 {
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
@@ -48,22 +56,11 @@
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
-//    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//        NSString *newUserAgent = [result stringByAppendingFormat:@" %@",@"app/CYLON-APP"];
-//        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
-//        webview.customUserAgent = newUserAgent;
-//    }];
-    // 设置localStorage
-    NSString *currentLanguage = UserDefaultObjectForKey(@"Language");
-    if ([currentLanguage isEqualToString:kLanguageChinese]) {
-        currentLanguage = @"zh";
-    }
-//    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
-    NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')",currentLanguage];
-    [self.webView evaluateJavaScript:token completionHandler:nil];
-    [self.webView evaluateJavaScript:language completionHandler:nil];
+    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSString *newUserAgent = [result stringByAppendingFormat:@" %@",@"app/CYLON-APP"];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
+        webview.customUserAgent = newUserAgent;
+    }];
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"jsFunc"];
     [self.view addSubview:webview];
     [self addJsBridge];
@@ -85,17 +82,31 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveReloadWebviewNotification:)
                                                  name:@"KReloadWebview"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterChatNotification:)
+                                                 name:@"KWillEnterChatNotification"
+                                               object:nil];
 }
 
 - (void)reset {
     if (_webView) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
         [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"jsFunc"];
         [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openBankCardDialog"];
         self.webView.UIDelegate = nil;
         self.webView.navigationDelegate = nil;
         _webView = nil;
         _jsBridge = nil;
+    }
+}
+
+- (void)willEnterChatNotification:(NSNotification *)noti {
+    if (_isHome) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UserModel *model = [FMDBManager sharedInstance].currentUser;
+            NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
+            [self.webView evaluateJavaScript:isLogin completionHandler:^(id _Nullable, NSError * _Nullable error) {
+                NSLog(@"");
+            }];
+        });
     }
 }
 
@@ -109,17 +120,11 @@
     }
     NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
     NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
-    NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? YES : NO];
+    NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? 1 : 0];
     [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];
-    [self.webView evaluateJavaScript:language completionHandler:^(id _Nullable, NSError * _Nullable error) {
-        NSLog(@"");
-    }];
-
-    NSDictionary *setlanguageParam = @{@"name":@"setAppLanguage",@"url":@"", @"params":@{}, @"title":@""};
-    [self.jsBridge callHandler:@"functionInJs" data:setlanguageParam responseCallback:^(id responseData) {
-        NSLog(@"didFinishNavigation:functionInJs.setAppLanguage");
-    }];
+    [self.webView evaluateJavaScript:language completionHandler:nil];
+    [self.jsBridge callHandler:@"functionInJs" data:@{@"name":@"setAppLanguage",@"url":@"", @"params":@{}, @"title":@""}];
     
     //清除掉，防止内存泄漏
     [self reset];
@@ -340,6 +345,8 @@
 
 - (void)dealloc {
     [self reset];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     //不需要清除缓存，否则会移除掉localStorge
 //    if (iOS9) {
 //        NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
