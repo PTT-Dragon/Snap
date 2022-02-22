@@ -162,6 +162,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     NSInteger itemCount = !_row ? self.model.orderItems.count: 1;
     if (indexPath.row == itemCount+1) {
         ChooseReasonViewController *vc = [[ChooseReasonViewController alloc] init];

@@ -266,6 +266,7 @@ static dispatch_source_t _timer;
         OrderDetailModel *detailModel = [[OrderDetailModel alloc] initWithDictionary:response error:nil];
         RefundOrReturnViewController *VC = [[RefundOrReturnViewController alloc] init];
         VC.model = detailModel;
+        VC.row = 10000;
         [[baseTool getCurrentVC].navigationController pushViewController:VC animated:YES];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
