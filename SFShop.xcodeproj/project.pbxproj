@@ -284,6 +284,8 @@
 		1BB1CB7127634DF6008D71DF /* FlashSaleProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */; };
 		1BB1CB7227634DF6008D71DF /* FlashSaleProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */; };
 		1BB8DD5227C47D0300E5FBB2 /* LastSelAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8DD5127C47D0100E5FBB2 /* LastSelAddressModel.m */; };
+		1BB8DD5627C4BC8200E5FBB2 /* GroupBuyTipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8DD5427C4BC8100E5FBB2 /* GroupBuyTipViewController.m */; };
+		1BB8DD5727C4BC8200E5FBB2 /* GroupBuyTipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB8DD5527C4BC8100E5FBB2 /* GroupBuyTipViewController.xib */; };
 		1BBB594D279FDA18002ED0E8 /* RefundOrReturnReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */; };
 		1BBB594E279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */; };
 		1BBB688727B660EB00A8B83D /* LogisticsMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB688527B660EB00A8B83D /* LogisticsMoreCell.m */; };
@@ -1084,6 +1086,9 @@
 		1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleProductCell.xib; sourceTree = "<group>"; };
 		1BB8DD5027C47D0100E5FBB2 /* LastSelAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LastSelAddressModel.h; sourceTree = "<group>"; };
 		1BB8DD5127C47D0100E5FBB2 /* LastSelAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LastSelAddressModel.m; sourceTree = "<group>"; };
+		1BB8DD5327C4BC8100E5FBB2 /* GroupBuyTipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupBuyTipViewController.h; sourceTree = "<group>"; };
+		1BB8DD5427C4BC8100E5FBB2 /* GroupBuyTipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupBuyTipViewController.m; sourceTree = "<group>"; };
+		1BB8DD5527C4BC8100E5FBB2 /* GroupBuyTipViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupBuyTipViewController.xib; sourceTree = "<group>"; };
 		1BBB594A279FDA18002ED0E8 /* RefundOrReturnReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundOrReturnReasonCell.h; sourceTree = "<group>"; };
 		1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundOrReturnReasonCell.m; sourceTree = "<group>"; };
 		1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundOrReturnReasonCell.xib; sourceTree = "<group>"; };
@@ -2471,6 +2476,9 @@
 				1B552EB7276C3D470086604B /* ProductGroupTitleCell.h */,
 				1B552EB8276C3D470086604B /* ProductGroupTitleCell.m */,
 				1B552EB9276C3D470086604B /* ProductGroupTitleCell.xib */,
+				1BB8DD5327C4BC8100E5FBB2 /* GroupBuyTipViewController.h */,
+				1BB8DD5427C4BC8100E5FBB2 /* GroupBuyTipViewController.m */,
+				1BB8DD5527C4BC8100E5FBB2 /* GroupBuyTipViewController.xib */,
 			);
 			path = GroupProduct;
 			sourceTree = "<group>";
@@ -3892,6 +3900,7 @@
 				1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */,
 				1BD10C342761DE4300BFC1AD /* ProductEvalationCell.xib in Resources */,
 				1B964759273E494A00345DDA /* IncomeAndExpenseCell.xib in Resources */,
+				1BB8DD5727C4BC8200E5FBB2 /* GroupBuyTipViewController.xib in Resources */,
 				1B6C52C7275C88FE00A1C617 /* RelationOrderDetailProductCell.xib in Resources */,
 				1B38916327A4DB7700662006 /* CartPromotionCell.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
@@ -4065,6 +4074,7 @@
 				1B2AE428272D36F000FB23D3 /* CartTableViewCell.m in Sources */,
 				AE81BE3F26FF5FD500AB4225 /* CategorySideTableView.m in Sources */,
 				4BBFEEAA26FCB13300E3C832 /* FMDBManager.m in Sources */,
+				1BB8DD5627C4BC8200E5FBB2 /* GroupBuyTipViewController.m in Sources */,
 				1BE0B88D2701944300C73CEC /* CouponAlertView.m in Sources */,
 				1B62468027632AFB00009DE2 /* OrderDetailGroupBuyCell.m in Sources */,
 				1B6C5291275B672200A1C617 /* UIControl+EnlargeTouchArea.m in Sources */,
