@@ -26,14 +26,15 @@
 //    _tipBtn.layer.borderColor = RGBColorFrom16(0xff1659).CGColor;
 //    _tipBtn.layer.borderWidth = 1;
     self.titleLabel.text = kLocalizedString(@"Group_buy");
-    [self.backBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
-    [self.shareBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
+    [self.backBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    [self.shareBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
 }
 - (IBAction)backAction:(UIButton *)sender {
     [[baseTool getCurrentVC].navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)tipAction:(UIButton *)sender {
     GroupBuyTipViewController *vc = [[GroupBuyTipViewController alloc] init];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [[baseTool getCurrentVC] presentViewController:vc animated:YES completion:^{
         
     }];
