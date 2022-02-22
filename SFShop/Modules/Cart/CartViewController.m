@@ -60,6 +60,10 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+- (void)setShowAddSuccess:(BOOL)showAddSuccess
+{
+    _showAddSuccess = showAddSuccess;
+}
 - (void)updateDatas
 {
     FMDBManager *dbManager = [FMDBManager sharedInstance];
@@ -116,6 +120,10 @@
 }
 - (void)updateSubviews
 {
+    if (_showAddSuccess) {
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
+        self.showAddSuccess = NO;
+    }
     [self updateAddress];
 }
 - (void)updateAddress
@@ -123,7 +131,7 @@
     if (!_selAddModel) {
         [_addressBtn setTitle:kLocalizedString(@"CHOOSE_ADDRESS") forState:0];
     }else{
-        [_addressBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street] forState:0];
+        [_addressBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@ %@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street] forState:0];
     }
     for (addressModel *model in self.addressArr) {
         if ([model.deliveryAddressId isEqualToString:_selAddModel.deliveryAddressId]) {

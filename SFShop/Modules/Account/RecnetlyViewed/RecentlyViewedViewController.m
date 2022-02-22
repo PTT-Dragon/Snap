@@ -347,7 +347,7 @@
     NSDate *date1 = [_calendarManager.dateHelper addToDate:[NSDate date] months:-1];
 //    _monthFirstDay = [_calendarManager.dateHelper firstDayOfMonth:dayView.date];
     // Today
-    if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
+    if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date] && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:[NSDate date]]){
         dayView.circleView.hidden = YES;
         dayView.circleView.backgroundColor = [UIColor blueColor];
         dayView.dotView.backgroundColor = [UIColor redColor];

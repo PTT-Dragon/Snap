@@ -151,6 +151,7 @@
 "ADDRESS_ADD_SUCCESS" = "Sukses menambahkan alamat.";
 "MODIFY_ADD_SUCCESS" = "Pengubahan alamat berhasil.";
   "ADD_ADDRESS" = "TAMBAH ALAMAT";
+"Add_address" = "Tambah Alamat";
 "Delete" = "Hapus";
 "DELETE" = "HAPUS";
 //  "MY_ADDRESS" = "Alamat Saya";

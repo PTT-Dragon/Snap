@@ -145,6 +145,7 @@
 "ADDRESS_ADD_SUCCESS" = "Add address successfully.";
 "MODIFY_ADD_SUCCESS" = "Modify address successfully.";
   "ADD_ADDRESS" = "ADD ADDRESS";
+"Add_address" = "Add Address";
 //  "MY_ADDRESS" = "My Address";
 "REQUIREDTIP" = "Please Input";
   "INCORRECT_NAME" = "Please input 4 ~ 40 characters for recipient name.";

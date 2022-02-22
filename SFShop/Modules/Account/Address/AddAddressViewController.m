@@ -60,7 +60,7 @@ static BOOL changePhone = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = self.model ? kLocalizedString(@"Modify_Address"): kLocalizedString(@"ADD_ADDRESS");
+    self.title = self.model ? kLocalizedString(@"Modify_Address"): kLocalizedString(@"Add_address");
     _homeBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _homeBtn.layer.borderWidth = 1;
     _officeBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;

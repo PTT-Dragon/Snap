@@ -17,6 +17,7 @@ typedef void(^CartViewControllerBlock)(void);
 @property (nonatomic,copy) CartViewControllerBlock block;
 @property (strong, nonatomic) UIView *bottomView;
 @property (nonatomic,assign) BOOL isTab;
+@property (nonatomic,assign) BOOL showAddSuccess;//展示加入购物车成功提示
 @property (nonatomic,weak) addressModel *selAddModel;
 
 @end

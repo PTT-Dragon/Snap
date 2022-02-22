@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *productName;
 @property (nonatomic,copy) NSDate <Optional>*date;
 @property (nonatomic,copy) NSString <Optional>*imgUrl;
+@property (nonatomic,copy) NSString <Optional>*specialPrice;
 @property (nonatomic,assign) BOOL isCollection;
 @property (nonatomic,copy) NSString <Optional>*offerId;
 @property (nonatomic,copy) NSString <Optional>*productId;

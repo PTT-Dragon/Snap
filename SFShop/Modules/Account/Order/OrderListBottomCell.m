@@ -267,6 +267,7 @@ static dispatch_source_t _timer;
 - (void)toCart
 {
     CartViewController *vc = [[CartViewController alloc] init];
+    vc.showAddSuccess = YES;
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (void)loadOrderDetailDatasWithId:(NSString *)orderId

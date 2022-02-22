@@ -35,8 +35,8 @@
     _typeLabel.text = model.offerType;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.productImg.url)]];
     _nameLabel.text = model.offerName;
-    _priceLabel.text = [[NSString stringWithFormat:@"%ld",model.salesPrice] currency];
-    _macketPriceLabel.text = [[NSString stringWithFormat:@"%ld",model.marketPrice] currency];
+    _priceLabel.text = [[NSString stringWithFormat:@"%@",model.productImg.salesPrice] currency];
+    _macketPriceLabel.text = [[NSString stringWithFormat:@"%@",model.productImg.marketPrice] currency];
     _offLabel.text = [NSString stringWithFormat:@"%ld%%",model.discountPercent];
     NSString *score = (model.evaluationAvg == 0 || !model.evaluationAvg) ? @"": [NSString stringWithFormat:@"%.1f",model.evaluationAvg];
     NSString *evaCount = ([model.evaluationCnt isEqualToString:@"0"] || !model.evaluationCnt) ? @"": [NSString stringWithFormat:@"(%@)",model.evaluationCnt];

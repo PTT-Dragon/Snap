@@ -55,7 +55,7 @@
 {
     [self.buyBtn setTitle:[NSString stringWithFormat:@"  %@  ",kLocalizedString(@"BUY_NOW")] forState:0];
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.imgUrl)]];
-    _nameLabel.text = _model.productName;
+    _nameLabel.text = _model.productName ? _model.productName: _model.offerName;
     _priceLabel.text = [_model.salesPrice currency];
     _label = [[UILabel alloc] init];
     _label.font = CHINESE_BOLD(15);
