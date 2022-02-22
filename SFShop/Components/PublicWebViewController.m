@@ -104,6 +104,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             UserModel *model = [FMDBManager sharedInstance].currentUser;
             NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
+            NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
+            [self.webView evaluateJavaScript:token completionHandler:nil];
             [self.webView evaluateJavaScript:isLogin completionHandler:^(id _Nullable, NSError * _Nullable error) {
                 NSLog(@"");
             }];
