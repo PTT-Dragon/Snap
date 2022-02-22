@@ -121,6 +121,9 @@
     NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
     NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
     NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? 1 : 0];
+    if ([self.webView.URL.absoluteString containsString:@"/chat/"]) {
+        isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
+    }
     [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];
     [self.webView evaluateJavaScript:language completionHandler:nil];
@@ -210,7 +213,7 @@
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-
+    [self setlocalWeb];
 }
 
 // 页面加载失败时调用
