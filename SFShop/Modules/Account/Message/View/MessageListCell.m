@@ -28,7 +28,8 @@
 - (void)setUnreadModel:(MessageUnreadModel *)unreadModel
 {
     _unreadModel = unreadModel;
-    _contentLabel.attributedText = unreadModel.messageSttrStr;
+//    _contentLabel.attributedText = unreadModel.messageSttrStr;
+    _contentLabel.text = unreadModel.message;
     _timeLabel.text = [[NSDate dateFromString:unreadModel.createDate] dayMonthYear];
     _unreadLabel.text = unreadModel.unreadNum == 0 ? @"": [NSString stringWithFormat:@"  %ld  ",unreadModel.unreadNum];
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(unreadModel.storeLogoUrl)]];

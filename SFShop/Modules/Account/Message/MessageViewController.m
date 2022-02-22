@@ -140,7 +140,7 @@
     [self readChatMessage];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-    vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
+    vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1customer@A1.com"];
     vc.sysAccount = model.account;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.navigationController pushViewController:vc animated:YES];
