@@ -104,7 +104,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             UserModel *model = [FMDBManager sharedInstance].currentUser;
             NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
-            [weakself.webView evaluateJavaScript:isLogin completionHandler:^(id _Nullable, NSError * _Nullable error) {
+            NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
+            [self.webView evaluateJavaScript:token completionHandler:nil];
+            [self.webView evaluateJavaScript:isLogin completionHandler:^(id _Nullable, NSError * _Nullable error) {
                 NSLog(@"");
             }];
         });
@@ -121,6 +123,9 @@
     NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
     NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
     NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? 1 : 0];
+    if ([self.webView.URL.absoluteString containsString:@"/chat/"]) {
+        isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
+    }
     [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];
     [self.webView evaluateJavaScript:language completionHandler:nil];
@@ -210,7 +215,7 @@
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-
+    [self setlocalWeb];
 }
 
 // 页面加载失败时调用
