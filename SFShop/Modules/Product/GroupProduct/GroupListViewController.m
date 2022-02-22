@@ -15,6 +15,7 @@
 #import "CategoryRankFilterViewController.h"
 
 
+
 @interface GroupListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,assign) NSInteger pageIndex;
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;

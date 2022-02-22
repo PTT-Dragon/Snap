@@ -48,11 +48,11 @@
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
-    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        NSString *newUserAgent = [result stringByAppendingFormat:@" %@",@"app/CYLON-APP"];
-        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
-        webview.customUserAgent = newUserAgent;
-    }];
+//    [webview evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//        NSString *newUserAgent = [result stringByAppendingFormat:@" %@",@"app/CYLON-APP"];
+//        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
+//        webview.customUserAgent = newUserAgent;
+//    }];
     // 设置localStorage
     NSString *currentLanguage = UserDefaultObjectForKey(@"Language");
     if ([currentLanguage isEqualToString:kLanguageChinese]) {

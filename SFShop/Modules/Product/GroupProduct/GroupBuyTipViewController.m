@@ -6,8 +6,12 @@
 //
 
 #import "GroupBuyTipViewController.h"
+#import "YYWebImage.h"
 
 @interface GroupBuyTipViewController ()
+@property (weak, nonatomic) IBOutlet YYAnimatedImageView *imgView1;
+@property (weak, nonatomic) IBOutlet YYAnimatedImageView *imgView2;
+@property (weak, nonatomic) IBOutlet UIButton *button;
 
 @end
 
@@ -16,16 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.imgView1.yy_imageURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img1" ofType:@"gif"]];
+    self.imgView2.yy_imageURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img2" ofType:@"gif"]];
+    [self.button setTitle:kLocalizedString(@"OKAY_GOT_IT") forState:0];
+}
+- (IBAction)btnAction:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+            
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

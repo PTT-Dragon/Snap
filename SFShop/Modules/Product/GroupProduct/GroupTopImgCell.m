@@ -6,6 +6,7 @@
 //
 
 #import "GroupTopImgCell.h"
+#import "GroupBuyTipViewController.h"
 
 @interface GroupTopImgCell ()
 @property (weak, nonatomic) IBOutlet UIButton *tipBtn;
@@ -22,12 +23,12 @@
 //    _tipBtn.layer.borderWidth = 1;
 }
 - (IBAction)tipAction:(UIButton *)sender {
+    GroupBuyTipViewController *vc = [[GroupBuyTipViewController alloc] init];
+    [[baseTool getCurrentVC] presentViewController:vc animated:YES completion:^{
+            
+        }];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
 
 @end
