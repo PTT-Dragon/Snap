@@ -88,9 +88,14 @@
 }
 - (void)receiveLanguageChangeNotification:(NSNotification *)noti
 {
-    
-    [self.webView removeFromSuperview];
-    [self initWebview];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"jsFunc"];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openBankCardDialog"];
+    self.webView.UIDelegate = nil;
+    self.webView.navigationDelegate = nil;
+//    [self.webView removeFromSuperview];
+    _webView = nil;
+    _jsBridge = nil;
 }
 - (void)receiveReloadWebviewNotification:(NSNotification *)noti
 {
@@ -98,12 +103,8 @@
 }
 
 - (void)addJsBridge {
-    _jsBridge = [WKWebViewJavascriptBridge bridgeForWebView:_webView];
+    _jsBridge = [WKWebViewJavascriptBridge bridgeForWebView:self.webView];
     [_jsBridge setWebViewDelegate:self];
-    NSDictionary *setlanguageParam = @{@"name":@"setAppLanguage",@"url":@"", @"params":@"", @"title":@""};
-    [self.jsBridge callHandler:@"functionInJs" data:setlanguageParam.jk_JSONString responseCallback:^(id responseData) {
-            NSLog(@"");
-        }];
 //    [_jsBridge registerHandler:@"COUPON" handler:^(id data, WVJBResponseCallback responseCallback) {
 //        NSLog(@"1");
 //    }];
@@ -133,9 +134,6 @@
 //    }];
 //    [_jsBridge registerHandler:@"PROD_CLICK" handler:^(id data, WVJBResponseCallback responseCallback) {
 //        NSLog(@"10");
-//    }];
-//    [_jsBridge callHandler:@"setAppLanguage" data:@"en" responseCallback:^(id responseData) {
-//        NSLog(@"11");
 //    }];
 }
 - (void)setIsHome:(BOOL)isHome
@@ -167,12 +165,6 @@
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
 //    [webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#131313\"" completionHandler:nil];
 //    [SVProgressHUD showInfoWithStatus:@"正在加载中"];
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
-    
-    NSString *sendLanguage = [NSString stringWithFormat:@"window.setAppLanguage"];
-    [self.webView evaluateJavaScript:token completionHandler:nil];
-    [self.webView evaluateJavaScript:sendLanguage completionHandler:nil];
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
@@ -187,13 +179,20 @@
     if ([currentLanguage isEqualToString:kLanguageChinese]) {
         currentLanguage = @"zh";
     }
-//    NSString *language = [NSString stringWithFormat:@"localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
-    NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')",currentLanguage];
+    NSString *language = [NSString stringWithFormat:@"window.localStorage.setItem('USER_LANGUAGE', '%@')", currentLanguage];
     NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
-    NSString *isLogin = [NSString stringWithFormat:@"localStorage.setItem('isLogin', '%d')", model ? YES : NO];
-    [self.webView evaluateJavaScript:token completionHandler:nil];
-    [self.webView evaluateJavaScript:isLogin completionHandler:nil];
-    [self.webView evaluateJavaScript:language completionHandler:nil];
+    NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? YES : NO];
+    [webView evaluateJavaScript:token completionHandler:nil];
+    [webView evaluateJavaScript:isLogin completionHandler:nil];
+    [webView evaluateJavaScript:language completionHandler:^(id _Nullable, NSError * _Nullable error) {
+        NSLog(@"");
+    }];
+
+    NSDictionary *setlanguageParam = @{@"name":@"setAppLanguage",@"url":@"", @"params":@{}, @"title":@""};
+    [self.jsBridge callHandler:@"functionInJs" data:setlanguageParam responseCallback:^(id responseData) {
+        NSLog(@"didFinishNavigation:functionInJs.setAppLanguage");
+    }];
+
     [self.jsBridge callHandler:@"reload"];
 }
 
@@ -332,27 +331,24 @@
     }
 }
 
-- (void)dealloc
-{
-    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openBankCardDialog"];
+- (void)dealloc {
+    _webView.UIDelegate = nil;
+    _webView.navigationDelegate = nil;
+    [_webView.configuration.userContentController removeScriptMessageHandlerForName:@"jsFunc"];
+    [_webView.configuration.userContentController removeScriptMessageHandlerForName:@"openBankCardDialog"];
+    _webView = nil;
+    _jsBridge = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     if (iOS9) {
         NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-        
         //// Date from
-        
         NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
-        
         //// Execute
-        
         [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
-            
             // Done
             NSLog(@"清楚缓存完毕");
-            
         }];
     }
-    
 }
 
 @end
