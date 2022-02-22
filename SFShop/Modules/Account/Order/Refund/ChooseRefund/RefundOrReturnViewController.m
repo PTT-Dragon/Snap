@@ -130,7 +130,7 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setRefund2Content:_row ? _model.orderItems[_row] : _model.orderItems[indexPath.row-1]];
+        [cell setRefund2Content:_row ? _model.orderItems[_row.integerValue] : _model.orderItems[indexPath.row-1]];
         return cell;
     }
     
@@ -253,8 +253,8 @@
         }];
         [params setValue:arr forKey:@"orderApplyItemList"];
     }else{
-        [params setValue:[_model.orderItems[_row] offerCnt] forKey:@"submitNum"];
-        [params setValue:[_model.orderItems[_row] orderItemId] forKey:@"orderItemId"];
+        [params setValue:[_model.orderItems[_row.integerValue] offerCnt] forKey:@"submitNum"];
+        [params setValue:[_model.orderItems[_row.integerValue] orderItemId] forKey:@"orderItemId"];
     }
     
     [params setValue:@"1" forKey:@"refundMode"];

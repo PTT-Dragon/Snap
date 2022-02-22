@@ -204,7 +204,7 @@
         detailModel.storeName = store.storeName;
         NSMutableArray *products = [NSMutableArray array];
         for (CartItemModel *cartItem in store.shoppingCarts) {
-            if ([cartItem.isSelected isEqualToString:@"Y"]) {
+            if ([cartItem.isSelected isEqualToString:@"Y"] && (cartItem.stock != 0 || ![cartItem.noStock isEqualToString:@"Y"])) {
                 ProductItemModel *item = [[ProductItemModel alloc] init];
                 item.storeName = store.storeName;
                 item.productId = cartItem.productId.intValue;
@@ -219,7 +219,7 @@
         }
         for (CartCampaignsModel *campaigns in store.campaignGroups) {//便利团购商品
             for (CartItemModel *cartItem  in campaigns.shoppingCarts) {//便利团购商品内部分类商品，比如不同颜色
-                if ([cartItem.isSelected isEqualToString:@"Y"]) {
+                if ([cartItem.isSelected isEqualToString:@"Y"] && (cartItem.stock != 0 || ![cartItem.noStock isEqualToString:@"Y"])) {
                     ProductItemModel *item = [[ProductItemModel alloc] init];
                     item.storeName = store.storeName;
                     item.productId = cartItem.productId.intValue;

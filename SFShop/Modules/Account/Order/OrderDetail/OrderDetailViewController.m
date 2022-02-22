@@ -146,7 +146,7 @@
         [cell setOrderContent:self.model.orderItems[indexPath.row-1] state:self.model.state showIsAfterSale:([self.model.isAfterSales isEqualToString:@"Y"] && indexPath.row == self.model.orderItems.count)];
         cell.block = ^{
             ChooseRefundViewController *vc = [[ChooseRefundViewController alloc] init];
-            vc.row = indexPath.row-1;
+            vc.row = [NSString stringWithFormat:@"%ld",indexPath.row-1];
             vc.model = self.model;
             [self.navigationController pushViewController:vc animated:YES];
         };

@@ -38,7 +38,7 @@
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListItemCell" bundle:nil] forCellReuseIdentifier:@"OrderListItemCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"ChooseRefundTitleCell" bundle:nil] forCellReuseIdentifier:@"ChooseRefundTitleCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
-    orderItemsModel *itemModel = self.model.orderItems[_row];
+    orderItemsModel *itemModel = self.model.orderItems[_row.integerValue];
     if ([itemModel.serviceTypes rangeOfString:@"3"].location != NSNotFound) {
         [self.dataSource addObject:kLocalizedString(@"I_WANT_TO_REFUND")];
     }
@@ -68,7 +68,7 @@
 {
     //TODO:这里暂时是一个商品
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.refund.charge parameters:@{@"orderId":self.model.orderId,@"orderItemId":[self.model.orderItems[_row] orderItemId]} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.refund.charge parameters:@{@"orderId":self.model.orderId,@"orderItemId":[self.model.orderItems[_row.integerValue] orderItemId]} success:^(id  _Nullable response) {
         weakself.chargeModel = [[RefundChargeModel alloc] initWithDictionary:response error:nil];
     } failed:^(NSError * _Nonnull error) {
         
@@ -84,7 +84,7 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setRefund2Content:_model.orderItems[_row]];
+        [cell setRefund2Content:_model.orderItems[_row.integerValue]];
         return cell;
     }
     accountSubCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountSubCell"];
