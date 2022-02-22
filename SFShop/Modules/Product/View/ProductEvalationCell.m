@@ -103,6 +103,6 @@
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((MainScreen_width-34-30)/4 , (MainScreen_width-34-30)/4);
+    return CGSizeMake((MainScreen_width-34-30-24)/4 , (MainScreen_width-34-30-24)/4);
 }
 @end

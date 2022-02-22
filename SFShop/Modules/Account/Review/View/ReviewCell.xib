@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -29,7 +34,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQS-OK-rYI">
-                                <rect key="frame" x="40" y="17" width="29" height="14"/>
+                                <rect key="frame" x="40" y="17" width="30" height="14"/>
                                 <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="11"/>
                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -48,19 +53,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQ4-sd-Fg3">
-                                <rect key="frame" x="114" y="99" width="29" height="12"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="10"/>
+                                <rect key="frame" x="114" y="99" width="27" height="12"/>
+                                <fontDescription key="fontDescription" weight="heavy" name="TruenoRg" family="Trueno" pointSize="10"/>
                                 <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oga-dQ-0UI">
-                                <rect key="frame" x="289" y="97.5" width="31" height="15"/>
+                                <rect key="frame" x="287.5" y="97.5" width="32.5" height="15"/>
                                 <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weE-Ha-HoP">
-                                <rect key="frame" x="289" y="120" width="31" height="15"/>
+                                <rect key="frame" x="287.5" y="120" width="32.5" height="15"/>
                                 <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -90,7 +95,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXT-SI-sbV">
-                                        <rect key="frame" x="1" y="11" width="26.5" height="12"/>
+                                        <rect key="frame" x="1" y="11" width="27" height="12"/>
                                         <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="10"/>
                                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -203,6 +208,7 @@
                 <outlet property="commentLabel" destination="rZ9-BV-mlT" id="Zcv-89-ykr"/>
                 <outlet property="countLabel" destination="oga-dQ-0UI" id="gBh-IR-vR4"/>
                 <outlet property="dateLabel" destination="NXT-SI-sbV" id="jpc-vO-6rP"/>
+                <outlet property="evaHeight" destination="nst-Ud-8vI" id="79G-SK-pCF"/>
                 <outlet property="evaluationView" destination="m5L-0o-tJn" id="WIV-0F-1fM"/>
                 <outlet property="imgView" destination="vQy-W8-2ru" id="EPA-Ed-HfG"/>
                 <outlet property="nameLabel" destination="8in-Z0-wZj" id="WYI-Dx-yg9"/>

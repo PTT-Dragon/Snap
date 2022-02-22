@@ -166,7 +166,10 @@
     OrderModel *subModel = self.dataSource[indexPath.section];
     orderItemsModel *itemModel = subModel.orderItems[indexPath.row];
 //    return _type == 1 ? 168: 299;
-    return _type == 1 ? 168: [itemModel.canReview isEqualToString:@"Y"] ? 299 : 257;
+    
+    CGFloat height = [NSString jk_heightTextContent:itemModel.evaluation[@"evaluationComments"] withSizeFont:10 withMaxSize:CGSizeMake(App_Frame_Width-72, CGFLOAT_MAX)];
+    
+    return _type == 1 ? 168: [itemModel.canReview isEqualToString:@"Y"] ? 299 : 217 + height;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
