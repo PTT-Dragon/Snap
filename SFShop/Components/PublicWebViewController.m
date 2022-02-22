@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self addNoTi];
+//    [self addNoTi];
     [self initWebview];
 }
 
@@ -90,7 +90,6 @@
 - (void)reset {
     if (_webView) {
         [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"jsFunc"];
-        [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openBankCardDialog"];
         self.webView.UIDelegate = nil;
         self.webView.navigationDelegate = nil;
         _webView = nil;
@@ -100,10 +99,11 @@
 
 - (void)willEnterChatNotification:(NSNotification *)noti {
     if (_isHome) {
+        MPWeakSelf(self)
         dispatch_async(dispatch_get_main_queue(), ^{
             UserModel *model = [FMDBManager sharedInstance].currentUser;
             NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
-            [self.webView evaluateJavaScript:isLogin completionHandler:^(id _Nullable, NSError * _Nullable error) {
+            [weakself.webView evaluateJavaScript:isLogin completionHandler:^(id _Nullable, NSError * _Nullable error) {
                 NSLog(@"");
             }];
         });
