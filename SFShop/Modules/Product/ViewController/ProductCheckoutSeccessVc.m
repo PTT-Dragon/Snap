@@ -141,7 +141,11 @@
         [self.showImgView addSubview:imgView];
         i++;
     }
-    
+    if (self.scrollView.contentSize.height > App_Frame_Height - navBarHei - 150) {
+        self.scrollView.scrollEnabled = YES;
+    }else {
+        self.scrollView.scrollEnabled = NO;
+    }
 }
 - (void)layoutsubviews
 {
@@ -160,11 +164,7 @@
     _successLabel.text = kLocalizedString(@"PAYMENT_SUCCESS");
     _priceLabel.text = [[_infoDic[@"charge"] stringValue] currency];
     [_detailBtn setTitle:kLocalizedString(@"SEE_DETAIL") forState:0];
-    if (self.scrollView.contentSize.height > App_Frame_Height - navBarHei) {
-        self.scrollView.scrollEnabled = YES;
-    }else {
-        self.scrollView.scrollEnabled = NO;
-    }
+   
 }
 - (IBAction)addGroupAction:(UIButton *)sender {
     NSString *shareUrl = [NSString stringWithFormat:@"%@/group-detail/%@",Host,self.groupModel.shareBuyOrderNbr];
