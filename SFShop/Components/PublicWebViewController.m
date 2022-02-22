@@ -67,6 +67,7 @@
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     MPWeakSelf(self)
     [self jk_backButtonTouched:^(UIViewController *vc) {
+        [weakself reset];
         if (weakself.shouldBackToHome) {
             [SceneManager transToHome];
         } else {
@@ -110,8 +111,7 @@
     }
 }
 
-- (void)receiveLanguageChangeNotification:(NSNotification *)noti {
-    // iOS调用js
+- (void)setlocalWeb {
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     // 设置localStorage
     NSString *currentLanguage = UserDefaultObjectForKey(@"Language");
@@ -125,6 +125,11 @@
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];
     [self.webView evaluateJavaScript:language completionHandler:nil];
     [self.jsBridge callHandler:@"functionInJs" data:@{@"name":@"setAppLanguage",@"url":@"", @"params":@{}, @"title":@""}];
+}
+
+- (void)receiveLanguageChangeNotification:(NSNotification *)noti {
+    // iOS调用js
+    [self setlocalWeb];
     
     //清除掉，防止内存泄漏
     [self reset];
