@@ -618,7 +618,7 @@
     WKUserContentController *userController = [WKUserContentController new];
     [userController addUserScript:script];
     config.userContentController = userController;
-    self.detailWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+    self.detailWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, App_Frame_Width, 1) configuration:config];
     self.detailWebView.scrollView.scrollEnabled = NO;
     self.detailWebView.navigationDelegate = self;
     [self.detailWebView.scrollView addObserver:self forKeyPath:@"contentSize" options: NSKeyValueObservingOptionNew context:nil];
@@ -635,18 +635,18 @@
 
 - (void)updateConstraints {
     CGFloat height = self.detailWebView.scrollView.contentSize.height;
-    self.detailViewHeader.hidden = height<=12? :NO;
+    self.detailViewHeader.hidden = NO;//height<=12? :NO;
     self.detailsViewH.constant = self.detailViewHeader.hidden? CGFLOAT_MIN:50;
-    self.detailWebView.hidden = self.detailViewHeader;
+    self.detailWebView.hidden = NO;//self.detailViewHeader;
     CGFloat collectionViewHeight = ceil(self.similarList.count / 2.0) * ((MainScreen_width - 60) / 2 + 120 + 16) + 16;
     if (!self.similarList.count) {
-        collectionViewHeight = CGFLOAT_MIN;
+        collectionViewHeight = 1;
     }
     self.recommendView.hidden = !self.similarList.count? :NO;
     [self.detailWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.detailViewHeader.mas_bottom);
         make.left.right.equalTo(self.scrollContentView);
-        make.height.mas_equalTo(height<=12? CGFLOAT_MIN:height);
+        make.height.mas_equalTo(height<=12? 1:height);
     }];
 
     [self.recommendView mas_remakeConstraints:^(MASConstraintMaker *make) {
