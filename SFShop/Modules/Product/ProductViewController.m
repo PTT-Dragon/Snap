@@ -911,6 +911,7 @@
         }
         ProductEvalationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductEvalationCell"];
         cell.showLine = YES;
+        cell.contentLabel.numberOfLines = 5;
         cell.model = self.evalationArr[indexPath.row-1];
         return cell;
     }
@@ -936,7 +937,15 @@
             return 50;
         }
         ProductEvalationModel *model = self.evalationArr[indexPath.row-1];
-        return model.itemHie+15;
+        
+        //计算label高度
+        CGFloat labelHei = 0;
+        labelHei = [NSString jk_heightTextContent:model.evaluationComments withSizeFont:12 withMaxSize:CGSizeMake(MainScreen_width-24-30, 72)];
+        //计算图片高度
+        CGFloat itemHei = (MainScreen_width-34-30)/4.0;
+        CGFloat imageHei = 0;
+        imageHei = ceil(model.evaluationContents.count/4.0)*(itemHei+10) + (model.evaluationContents.count == 0 ? 0:12);
+        return labelHei + imageHei+78;
     }
     if (indexPath.row == 0) {
         return 50;
@@ -963,9 +972,18 @@
 {
     CGFloat hei = 0;
     for (ProductEvalationModel *itemModel in self.evalationArr) {
-        hei += itemModel.itemHie;
+                
+        //计算label高度
+        CGFloat labelHei = 0;
+        labelHei = [NSString jk_heightTextContent:itemModel.evaluationComments withSizeFont:12 withMaxSize:CGSizeMake(MainScreen_width-24-30, 72)];
+        //计算图片高度
+        CGFloat itemHei = (MainScreen_width-34-30)/4.0;
+        CGFloat imageHei = 0;
+        imageHei = ceil(itemModel.evaluationContents.count/4.0)*(itemHei+10) + (itemModel.evaluationContents.count == 0 ? 0:12);
+        
+        hei += labelHei + imageHei+78;
     }
-    return hei+50+25;
+    return hei+50;
 }
 - (CGFloat)calucateGroupTableviewHei
 {
