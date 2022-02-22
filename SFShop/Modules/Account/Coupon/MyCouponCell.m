@@ -11,6 +11,8 @@
 #import "NSDate+Helper.h"
 #import "LoginViewController.h"
 #import "CouponAlertView.h"
+#import "PublicAlertView.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface MyCouponCell ()
 @property (weak, nonatomic) IBOutlet UIView *discountView;
@@ -21,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIButton *ruleBtn;
 
 @end
 
@@ -35,6 +38,7 @@
     _label2.text = kLocalizedString(@"EXPIRY_DATE");
     self.bgView.layer.borderColor = RGBColorFrom16(0xe7e7e7).CGColor;
     self.bgView.layer.borderWidth = 1;
+    [self.ruleBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
 }
 - (void)setContent:(CouponModel *)model
 {
@@ -106,12 +110,20 @@
         [SFNetworkManager post:SFNet.coupon.usercoupon parameters:@{@"couponId":_model.couponId} success:^(id  _Nullable response) {
             self.model.isGet = YES;
             [self setModel:weakself.model];
-            CouponAlertView *view = [[NSBundle mainBundle] loadNibNamed:@"CouponAlertView" owner:self options:nil].firstObject;
-            view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-            [[baseTool getCurrentVC].view addSubview:view];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COLLECT_COUPON_SUCCESS")];
+//            CouponAlertView *view = [[NSBundle mainBundle] loadNibNamed:@"CouponAlertView" owner:self options:nil].firstObject;
+//            view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+//            [[baseTool getCurrentVC].view addSubview:view];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }
+}
+- (IBAction)ruleAction:(UIButton *)sender {
+    NSString *rule = ([_model.useDesc isEqualToString:@""] || !_model.useDesc) ? kLocalizedString(@"NORULE"):_model.useDesc;
+    PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"COUPON_DETAIL") content:rule btnTitle:kLocalizedString(@"GOT_IT") block:^{
+        
+    }];
+    [[baseTool getCurrentVC].view addSubview:alert];
 }
 @end

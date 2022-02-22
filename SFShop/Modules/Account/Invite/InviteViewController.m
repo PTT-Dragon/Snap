@@ -28,10 +28,10 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//}
 
 - (void)baseNavViewDidClickBackBtn:(BaseNavView *)navView {
     [self.navigationController popViewControllerAnimated:YES];

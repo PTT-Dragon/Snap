@@ -1,15 +1,16 @@
 //
-//  addressModel.h
+//  LastSelAddressModel.h
 //  SFShop
 //
-//  Created by 游挺 on 2021/10/19.
+//  Created by 游挺 on 2022/2/22.
 //
 
-#import <Foundation/Foundation.h>
+#import "JSONModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface addressModel : JSONModel
+@interface LastSelAddressModel : JSONModel
+singleton_interface(LastSelAddressModel);
 
 @property(nonatomic,copy) NSString <Optional>*contactAddress;
 @property(nonatomic,assign) BOOL sel;
@@ -39,26 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 自定义拼接字符串
 @property(nonatomic, readwrite, strong) NSString *customAddress;
-
-@end
-
-@interface AreaModel : JSONModel
-@property(nonatomic,copy) NSString <Optional>*stdAddrId;
-@property(nonatomic,copy) NSString <Optional>*stdAddr;
-@property(nonatomic,copy) NSString <Optional>*addrLevelId;
-@property(nonatomic,copy) NSString <Optional>*parentId;
-@property(nonatomic,copy) NSString <Optional>*isLeaf;
-@property(nonatomic,copy) NSString <Optional>*zipcode;
-@property(nonatomic,assign) BOOL sel;
-@property(nonatomic,assign) BOOL hasSel;//目前的选中状态 
-/**
- "stdAddrId": 1,
-     "stdAddr": "Bali",
-     "addrLevelId": 2,
-     "parentId": 0,
-     "isLeaf": false,
-     "zipcode": null
- **/
 
 @end
 

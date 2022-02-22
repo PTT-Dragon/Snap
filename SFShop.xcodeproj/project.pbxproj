@@ -283,6 +283,7 @@
 		1BB1CB6D276344DF008D71DF /* FlashSaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6C276344DF008D71DF /* FlashSaleModel.m */; };
 		1BB1CB7127634DF6008D71DF /* FlashSaleProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */; };
 		1BB1CB7227634DF6008D71DF /* FlashSaleProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */; };
+		1BB8DD5227C47D0300E5FBB2 /* LastSelAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8DD5127C47D0100E5FBB2 /* LastSelAddressModel.m */; };
 		1BBB594D279FDA18002ED0E8 /* RefundOrReturnReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */; };
 		1BBB594E279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */; };
 		1BBB688727B660EB00A8B83D /* LogisticsMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB688527B660EB00A8B83D /* LogisticsMoreCell.m */; };
@@ -1081,6 +1082,8 @@
 		1BB1CB6E27634DF6008D71DF /* FlashSaleProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleProductCell.h; sourceTree = "<group>"; };
 		1BB1CB6F27634DF6008D71DF /* FlashSaleProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleProductCell.m; sourceTree = "<group>"; };
 		1BB1CB7027634DF6008D71DF /* FlashSaleProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleProductCell.xib; sourceTree = "<group>"; };
+		1BB8DD5027C47D0100E5FBB2 /* LastSelAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LastSelAddressModel.h; sourceTree = "<group>"; };
+		1BB8DD5127C47D0100E5FBB2 /* LastSelAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LastSelAddressModel.m; sourceTree = "<group>"; };
 		1BBB594A279FDA18002ED0E8 /* RefundOrReturnReasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundOrReturnReasonCell.h; sourceTree = "<group>"; };
 		1BBB594B279FDA18002ED0E8 /* RefundOrReturnReasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundOrReturnReasonCell.m; sourceTree = "<group>"; };
 		1BBB594C279FDA18002ED0E8 /* RefundOrReturnReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundOrReturnReasonCell.xib; sourceTree = "<group>"; };
@@ -1880,6 +1883,8 @@
 			children = (
 				1B49D148271EAA03002461ED /* addressModel.h */,
 				1B49D149271EAA03002461ED /* addressModel.m */,
+				1BB8DD5027C47D0100E5FBB2 /* LastSelAddressModel.h */,
+				1BB8DD5127C47D0100E5FBB2 /* LastSelAddressModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4290,6 +4295,7 @@
 				AEA3296B27240E6800E7827A /* YHRegularLayout.m in Sources */,
 				1BD8E7D3275FC0CA00130DCC /* SFNetworkGroupBuyModule.m in Sources */,
 				1B82AEE2277080B700D75E00 /* UIButton+YYWebImage.m in Sources */,
+				1BB8DD5227C47D0300E5FBB2 /* LastSelAddressModel.m in Sources */,
 				1B6C5295275B672200A1C617 /* ZLForceTouchPreviewController.m in Sources */,
 				AE81BE3C26FF449700AB4225 /* HomePageModel.m in Sources */,
 				1B2AE441272E8EDD00FB23D3 /* ChooseReasonViewController.m in Sources */,

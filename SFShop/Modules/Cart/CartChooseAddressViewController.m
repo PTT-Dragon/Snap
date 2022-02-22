@@ -8,6 +8,7 @@
 #import "CartChooseAddressViewController.h"
 #import "CartChooseAddressCell.h"
 #import "ChooseAreaViewController.h"
+#import "LastSelAddressModel.h"
 
 @interface CartChooseAddressViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseAreaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -66,13 +67,58 @@
     [self removeFromParentViewController];
 }
 - (IBAction)anotherAddressAction:(UIButton *)sender {
+    
     ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
     vc.delegate = self;
-    vc.type = 3;
-//    vc.selProvinceAreaMoel = self.provinceModel;
-//    vc.selCityAreaMoel = self.cityModel;
-//    vc.selDistrictAreaMoel = self.districtModel;
-//    vc.selStreetAreaMoel = self.streetModel;
+    LastSelAddressModel *lastModel = [LastSelAddressModel sharedLastSelAddressModel];
+    if (lastModel.addrPath && ![lastModel.addrPath isEqualToString:@""]) {
+        //先看是否有缓存的上一次选择地址单例
+        AreaModel *provinceModel = [[AreaModel alloc] init];
+        provinceModel.stdAddrId = lastModel.provinceId;
+        provinceModel.stdAddr = lastModel.province;
+        AreaModel *cityModel = [[AreaModel alloc] init];
+        cityModel.stdAddrId = lastModel.cityId;
+        cityModel.stdAddr = lastModel.city;
+        AreaModel *districtModel = [[AreaModel alloc] init];
+        districtModel.stdAddrId = lastModel.districtId;
+        districtModel.stdAddr = lastModel.district;
+        AreaModel *streetModel = [[AreaModel alloc] init];
+        streetModel.stdAddrId = lastModel.streetId;
+        streetModel.stdAddr = lastModel.street;
+        vc.selProvinceAreaMoel = provinceModel;
+        vc.selCityAreaMoel = cityModel;
+        vc.selDistrictAreaMoel = districtModel;
+        vc.selStreetAreaMoel = streetModel;
+        vc.type = 6;
+    }else{
+        __block addressModel *selAddModel;
+        [self.addressListArr enumerateObjectsUsingBlock:^(addressModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.sel == YES) {
+                selAddModel = obj;
+            }
+        }];
+        if (selAddModel) {
+            AreaModel *provinceModel = [[AreaModel alloc] init];
+            provinceModel.stdAddrId = selAddModel.provinceId;
+            provinceModel.stdAddr = selAddModel.province;
+            AreaModel *cityModel = [[AreaModel alloc] init];
+            cityModel.stdAddrId = selAddModel.cityId;
+            cityModel.stdAddr = selAddModel.city;
+            AreaModel *districtModel = [[AreaModel alloc] init];
+            districtModel.stdAddrId = selAddModel.districtId;
+            districtModel.stdAddr = selAddModel.district;
+            AreaModel *streetModel = [[AreaModel alloc] init];
+            streetModel.stdAddrId = selAddModel.streetId;
+            streetModel.stdAddr = selAddModel.street;
+            vc.selProvinceAreaMoel = provinceModel;
+            vc.selCityAreaMoel = cityModel;
+            vc.selDistrictAreaMoel = districtModel;
+            vc.selStreetAreaMoel = streetModel;
+            vc.type = 6;
+        }else{
+            vc.type =  3;
+        }
+    }
     [self presentViewController:vc animated:YES completion:^{
         
     }];

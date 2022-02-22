@@ -168,6 +168,7 @@
             vc.searchText = qs;
         }];
         _navSearchView.searchType = SFSearchTypeNoneInterface;
+        _navSearchView.backgroundColor = [UIColor clearColor];
     }
     return _navSearchView;
 }

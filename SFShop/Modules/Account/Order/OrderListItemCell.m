@@ -46,7 +46,7 @@
 - (void)setOrderContent:(orderItemsModel *)model state:(NSString *)state showIsAfterSale:(BOOL)isAfterSale
 {
     _inAfterSaleLabel.hidden = !isAfterSale;
-    _afterSaleBtn.hidden = (![state isEqualToString:@"D"] || [model.canReturn isEqualToString:@"N"]);
+    _afterSaleBtn.hidden = ![model.canReturn isEqualToString:@"Y"];//(![state isEqualToString:@"D"] || [model.canReturn isEqualToString:@"N"]);
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imagUrl)]];
     _nameLabel.text = model.productName;
     NSDictionary *dic = [model.productRemark jk_dictionaryValue];

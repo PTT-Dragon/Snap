@@ -1,21 +1,16 @@
 //
-//  addressModel.m
+//  LastSelAddressModel.m
 //  SFShop
 //
-//  Created by 游挺 on 2021/10/19.
+//  Created by 游挺 on 2022/2/22.
 //
 
-#import "addressModel.h"
+#import "LastSelAddressModel.h"
 
-@implementation addressModel
-+ (BOOL)propertyIsOptional:(NSString *)propertyName
-{
-    return YES;
-}
+@implementation LastSelAddressModel
 
-- (NSString *)customAddress {
-    return  [NSString stringWithFormat:@"%@  %@\n%@ %@ %@ %@ %@ %@ %@", self.contactName, self.contactNbr, self.postCode, self.contactAddress, self.street, self.district, self.city, self.province, self.country];
-}
+singleton_implementation(LastSelAddressModel)
+
 - (NSString *)provinceId
 {
     NSArray *arr = [_addrPath componentsSeparatedByString:@"|"];
@@ -35,13 +30,5 @@
 {
     NSArray *arr = [_addrPath componentsSeparatedByString:@"|"];
     return arr.count > 3 ? arr[3] : @"";
-}
-
-@end
-
-@implementation AreaModel
-+ (BOOL)propertyIsOptional:(NSString *)propertyName
-{
-    return YES;
 }
 @end

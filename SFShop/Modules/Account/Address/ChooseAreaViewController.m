@@ -8,6 +8,7 @@
 #import "ChooseAreaViewController.h"
 #import "AreaCell.h"
 #import "UIButton+SGImagePosition.h"
+#import "LastSelAddressModel.h"
 
 typedef enum :NSUInteger{
     selProvinceType,
@@ -248,6 +249,14 @@ typedef enum :NSUInteger{
 //            make.width.mas_equalTo(self.DistrictBtn);
 //            make.centerX.mas_greaterThanOrEqualTo(self.DistrictBtn);
 //        }];
+        self.indicationView.hidden = NO;
+    }
+}
+- (void)setSelStreetAreaMoel:(AreaModel *)selStreetAreaMoel
+{
+    _selStreetAreaMoel = selStreetAreaMoel;
+    [_streetBtn setTitle:selStreetAreaMoel.stdAddr forState:0];
+    if (selStreetAreaMoel) {
         self.indicationView.hidden = NO;
     }
 }
@@ -517,6 +526,7 @@ typedef enum :NSUInteger{
                 //还需要选择街道
                 [self loadDatasWithType:_dataType];
             }else{
+                [self saveLastAddressModel];
                 [self.delegate chooseProvince:_selProvinceAreaMoel city:_selCityAreaMoel district:_selDistrictAreaMoel];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
@@ -528,8 +538,10 @@ typedef enum :NSUInteger{
             _topView.selProvinceAreaMoel = _selProvinceAreaMoel;
             if (self.type == 3 || self.type == 6) {
                 //把所有的数据都回调回去
+                [self saveLastAddressModel];
                 [self.delegate chooseProvince:_selProvinceAreaMoel city:_selCityAreaMoel district:_selDistrictAreaMoel street:_selStreetAreaMoel];
             }else{
+                [self saveLastAddressModel];
                 [self.delegate chooseStreet:_selStreetAreaMoel];
             }
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -539,6 +551,20 @@ typedef enum :NSUInteger{
             break;
     }
 }
+- (void)saveLastAddressModel
+{
+    LastSelAddressModel *lastModel = [LastSelAddressModel sharedLastSelAddressModel];
+    lastModel.province = _selProvinceAreaMoel.stdAddr;
+    lastModel.city = _selCityAreaMoel.stdAddr;
+    lastModel.district = _selDistrictAreaMoel.stdAddr;
+    lastModel.street = _selStreetAreaMoel.stdAddr;
+    lastModel.postCode = _selStreetAreaMoel.zipcode;
+    lastModel.contactStdId = _selStreetAreaMoel.stdAddrId;
+    lastModel.isNoAdd = YES;
+    NSString *addrPath = [NSString stringWithFormat:@"%@|%@|%@|%@",@"",_selProvinceAreaMoel.stdAddrId,_selCityAreaMoel.stdAddrId,_selDistrictAreaMoel.stdAddrId];
+    lastModel.addrPath = addrPath;
+}
+
 #pragma mark - delegate
 - (void)updateDataWithSelType:(selType)type
 {

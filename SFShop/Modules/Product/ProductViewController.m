@@ -40,6 +40,7 @@
 #import "CategoryRankViewController.h"
 #import "CartModel.h"
 #import "JPVideoPlayerKit.h"
+#import "LastSelAddressModel.h"
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate,JPVideoPlayerDelegate>
@@ -196,7 +197,6 @@
     [self.addCartBtn setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setDefaultAddress];
     [self request];
     [self requestSimilar];
     [self setupSubViews];
@@ -242,11 +242,16 @@
     defalutModel.city = @"Kota Jakarta Barat";
     defalutModel.province = @"DKI Jakarta";
     defalutModel.district = @"Kalideres";
-    defalutModel.street = @"countryId|6|153";
+//    defalutModel.street = @"countryId|6|153";
     defalutModel.country = @"Indonesia";
     defalutModel.contactStdId = @"1488";
     defalutModel.isNoAdd = YES;
+    defalutModel.addrPath = @"0|6|153|1488";
     self.selectedAddressModel = defalutModel;
+    //没有地址数据  保存默认地址为上一次选择
+    LastSelAddressModel *lastModel = [LastSelAddressModel sharedLastSelAddressModel];
+    lastModel = [LastSelAddressModel yy_modelWithDictionary:[defalutModel toDictionary]];
+    
 }
 - (void)addActions {
     UITapGestureRecognizer *addressTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAddress)];
@@ -284,12 +289,40 @@
     if (self.addressDataSource.count == 0) {
         ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
         vc.delegate = self;
-        vc.type = _streetModel ? 6 : 3;
-        vc.selProvinceAreaMoel = self.provinceModel;
-        vc.selCityAreaMoel = self.cityModel;
-        vc.selDistrictAreaMoel = self.districtModel;
-        vc.selStreetAreaMoel = self.streetModel;
-        [self presentViewController:vc animated:YES completion: nil];
+        LastSelAddressModel *lastModel = [LastSelAddressModel sharedLastSelAddressModel];
+        if (lastModel.addrPath && ![lastModel.addrPath isEqualToString:@""]) {
+            //先看是否有缓存的上一次选择地址单例
+            AreaModel *provinceModel = [[AreaModel alloc] init];
+            provinceModel.stdAddrId = lastModel.provinceId;
+            provinceModel.stdAddr = lastModel.province;
+            AreaModel *cityModel = [[AreaModel alloc] init];
+            cityModel.stdAddrId = lastModel.cityId;
+            cityModel.stdAddr = lastModel.city;
+            AreaModel *districtModel = [[AreaModel alloc] init];
+            districtModel.stdAddrId = lastModel.districtId;
+            districtModel.stdAddr = lastModel.district;
+            AreaModel *streetModel = [[AreaModel alloc] init];
+            streetModel.stdAddrId = lastModel.streetId;
+            streetModel.stdAddr = lastModel.street;
+            vc.selProvinceAreaMoel = provinceModel;
+            vc.selCityAreaMoel = cityModel;
+            vc.selDistrictAreaMoel = districtModel;
+            vc.selStreetAreaMoel = streetModel;
+            vc.type = 6;
+        }else{
+            vc.type =  3;
+        }
+        [self presentViewController:vc animated:YES completion:^{
+            
+        }];
+//        ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
+//        vc.delegate = self;
+//        vc.type = _streetModel ? 6 : 3;
+//        vc.selProvinceAreaMoel = self.provinceModel;
+//        vc.selCityAreaMoel = self.cityModel;
+//        vc.selDistrictAreaMoel = self.districtModel;
+//        vc.selStreetAreaMoel = self.streetModel;
+//        [self presentViewController:vc animated:YES completion: nil];
     }else{
         CartChooseAddressViewController *vc = [[CartChooseAddressViewController alloc] init];
         vc.addressListArr = self.addressDataSource;
@@ -378,10 +411,13 @@
 }
 
 - (void)requestAddressInfo {
-
     self.addressDataSource = [NSMutableArray array];
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.address.addressList parameters:@{} success:^(id  _Nullable response) {
+        NSArray *arr = response;
+        if (arr.count == 0) {
+            [self setDefaultAddress];
+        }
         for (NSDictionary *dic in response) {
             addressModel *model = [[addressModel alloc] initWithDictionary:dic error:nil];
             if ([model.isDefault isEqualToString:@"Y"]) {
