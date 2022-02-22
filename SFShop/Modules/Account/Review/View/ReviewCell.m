@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (nonatomic,weak) OrderModel *model;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaHeight;
+
 
 @end
 
@@ -50,17 +52,19 @@
 //    if ([model.canEvaluate isEqualToString:@"N"]) {
 //        _btn1.hidden = YES;
 //        _btn2.hidden = YES;
-//    }else
+    //    }else
     
     orderItemsModel *itemModel = model.orderItems[row];
     if ([itemModel.canReview isEqualToString:@"Y"]) {
-    _btn2.hidden = type == 1;
-    [_btn1 setTitle:type == 1 ? kLocalizedString(@"REVIEW"):kLocalizedString(@"ADDITIONAL_REVIEW") forState:0];
-    _btn1.hidden = NO;
-}else{
-    _btn1.hidden = YES;
-    _btn2.hidden = YES;
-}
+        _btn2.hidden = type == 1;
+        [_btn1 setTitle:type == 1 ? kLocalizedString(@"REVIEW"):kLocalizedString(@"ADDITIONAL_REVIEW") forState:0];
+        _btn1.hidden = NO;
+        self.evaHeight.constant = 94;
+    }else{
+        _btn1.hidden = YES;
+        _btn2.hidden = YES;
+        self.evaHeight.constant = [NSString jk_heightTextContent:itemModel.evaluation[@"evaluationComments"] withSizeFont:10 withMaxSize:CGSizeMake(App_Frame_Width-72, CGFLOAT_MAX)] + 50;
+    }
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _storeNameLabel.text = model.storeName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(itemModel.imagUrl)]];
