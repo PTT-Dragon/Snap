@@ -23,6 +23,8 @@
 #import <OYCountDownManager/OYCountDownManager.h>
 #import "YCMenuView.h"
 #import "RefundOrReturnViewController.h"
+#import "ProductCheckoutSeccessVc.h"
+
 
 @interface OrderListBottomCell ()
 @property (weak, nonatomic) IBOutlet UIView *moreView;
@@ -160,10 +162,18 @@ static dispatch_source_t _timer;
         }
         //付款
         NSString *shareBuyOrderNbr = self.model.shareBuyBriefInfo.shareBuyOrderNbr;
+        NSMutableArray *orderIds = [NSMutableArray array];
+        for (orderItemsModel *itemsModel in _model.orderItems) {[orderIds addObject:itemsModel.orderItemId];}//订单id 数组
         [CheckoutManager.shareInstance startPayWithOrderIds:@[self.model.orderId] shareBuyOrderNbr:shareBuyOrderNbr totalPrice:self.model.orderPrice complete:^(SFPayResult result, NSString * _Nonnull urlOrHtml, NSDictionary *response) {
             switch (result) {
-                case SFPayResultSuccess:
-                    [SceneManager transToHome];
+                case SFPayResultSuccess:{
+                    ProductCheckoutSeccessVc *vc = [[ProductCheckoutSeccessVc alloc] init];
+                    vc.infoDic = response;
+                    vc.orderArr = orderIds;
+                    vc.GroupBuyGroupNbr = shareBuyOrderNbr;
+                    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+                }
+                    
                     break;
                 case SFPayResultFailed:
                     break;

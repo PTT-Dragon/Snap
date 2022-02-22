@@ -180,9 +180,9 @@
 }
 
 - (IBAction)detailAction:(UIButton *)sender {
-    NSNumber *orderId = _orderArr.firstObject;
+    id orderId = _orderArr.firstObject;
     OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
-    vc.orderId = orderId.stringValue;
+    vc.orderId = [orderId isKindOfClass:[NSString class]] ? orderId: [orderId stringValue];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)backAction:(UIButton *)sender {

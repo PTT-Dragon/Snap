@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="TruenoBd.otf">
+            <string>TruenoBd</string>
+        </array>
         <array key="TruenoLt.otf">
             <string>TruenoLt</string>
         </array>
@@ -30,6 +33,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QzX-I5-UMl">
+                    <rect key="frame" x="0.0" y="1088" width="375" height="112"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5c-a7-dpg">
                     <rect key="frame" x="16" y="1104" width="343" height="46"/>
                     <color key="backgroundColor" red="1" green="0.086274509803921567" blue="0.34901960784313724" alpha="1" colorSpace="deviceRGB"/>
@@ -50,7 +57,7 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-Hw-6jH">
-                    <rect key="frame" x="0.0" y="88" width="375" height="1000"/>
+                    <rect key="frame" x="0.0" y="164" width="375" height="924"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GroupBuy_Tips" translatesAutoresizingMaskIntoConstraints="NO" id="D4V-mu-F2F">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="148"/>
@@ -60,7 +67,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMf-cg-HSj">
-                            <rect key="frame" x="18" y="167" width="32.5" height="19.5"/>
+                            <rect key="frame" x="18" y="167" width="34" height="19.5"/>
                             <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -111,6 +118,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="2Q3-lD-bn6" secondAttribute="trailing" constant="68" id="019-Iq-Eoc"/>
                         <constraint firstItem="tue-6p-4Os" firstAttribute="leading" secondItem="RYs-Hw-6jH" secondAttribute="leading" constant="16" id="1gZ-Qc-uvC"/>
@@ -142,9 +150,13 @@
             <constraints>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="04P-CP-u8y" secondAttribute="trailing" id="1Wb-EJ-5rx"/>
                 <constraint firstItem="p5c-a7-dpg" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="5lh-mT-7mo"/>
+                <constraint firstItem="QzX-I5-UMl" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" constant="34" id="IZ0-1v-lt6"/>
+                <constraint firstItem="QzX-I5-UMl" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="KYx-ig-zMo"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="QzX-I5-UMl" secondAttribute="trailing" id="Od8-AC-S46"/>
                 <constraint firstItem="rry-Vc-Uuc" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="PQ2-w2-ulv"/>
                 <constraint firstItem="RYs-Hw-6jH" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="aDz-Z8-bG5"/>
-                <constraint firstItem="RYs-Hw-6jH" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="44" id="jpR-2j-pRS"/>
+                <constraint firstItem="RYs-Hw-6jH" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="120" id="jpR-2j-pRS"/>
+                <constraint firstItem="QzX-I5-UMl" firstAttribute="top" secondItem="RYs-Hw-6jH" secondAttribute="bottom" id="kap-bn-Wwf"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="RYs-Hw-6jH" secondAttribute="trailing" id="n5o-Fb-xvf"/>
                 <constraint firstItem="04P-CP-u8y" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="sy7-Cy-WVv"/>
                 <constraint firstItem="p5c-a7-dpg" firstAttribute="top" secondItem="RYs-Hw-6jH" secondAttribute="bottom" constant="16" id="ucV-QL-cg4"/>
