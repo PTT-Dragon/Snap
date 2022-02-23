@@ -74,9 +74,9 @@
             [weakself.navigationController popViewControllerAnimated:YES];
         }
     }];
-    if ([_url containsString:@"/chat/"]) {
+//    if ([_url containsString:@"/chat/"]) {
         [self performSelector:@selector(reload) withObject:nil afterDelay:1];
-    }
+//    }
 }
 - (void)reload
 {
@@ -205,10 +205,21 @@
         vc.offerId = [dic[@"offerId"] integerValue];
         vc.productId = [dic[@"productId"] integerValue];
         [self.navigationController pushViewController:vc animated:YES];
-    }else if ([func[@"type"] isEqualToString:@"GROUP_SHOP_MORE"]){
-//        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
-//        GroupListViewController *vc = [[GroupListViewController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"PROD_LIST"]){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+        NSString *categoryId = @"";
+        categoryId = func[@"data"][@"offerId"];
+        CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+        CategoryModel *model = [[CategoryModel alloc] init];
+        CategoryInnerModel *innerModel = [[CategoryInnerModel alloc] init];
+        CatgRelaModel *relaModel = [[CatgRelaModel alloc] init];
+        ObjValueModel *objModel = [[ObjValueModel alloc] init];
+        objModel.objId = categoryId;
+        relaModel.objValue = objModel;
+        innerModel.catgRela = relaModel;
+        model.inner = innerModel;
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 // 页面开始加载时调用

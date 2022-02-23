@@ -71,7 +71,7 @@
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(navBarHei);
     }];
-    [_navView configDataWithTitle:kLocalizedString(@"Invite_friends")];
+    [_navView configDataWithTitle:kLocalizedString(@"INVITE_FRIEND")];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
