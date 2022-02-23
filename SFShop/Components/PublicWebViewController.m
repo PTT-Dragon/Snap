@@ -74,6 +74,13 @@
             [weakself.navigationController popViewControllerAnimated:YES];
         }
     }];
+    if ([_url containsString:@"/chat/"]) {
+        [self performSelector:@selector(reload) withObject:nil afterDelay:1];
+    }
+}
+- (void)reload
+{
+    [self.webView reload];
 }
 - (void)addNoTi
 {
