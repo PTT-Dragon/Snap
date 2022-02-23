@@ -11,6 +11,7 @@
 #import "InviteModel.h"
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface InviteViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -18,6 +19,7 @@
 @property (nonatomic,copy) NSString *imgUrl;
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
+@property (nonatomic,assign) NSInteger pageIndex;
 
 @end
 
@@ -74,9 +76,14 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
+    
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
 }
 - (void)loadDatas
 {
+    _pageIndex = 1;
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.invite.activityInfo parameters:@{} success:^(id  _Nullable response) {
         NSArray *arr = response;
@@ -91,7 +98,7 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
-    [SFNetworkManager get:SFNet.invite.activityInvRecord parameters:@{} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.invite.activityInvRecord parameters:@{@"pageIndex":@(_pageIndex)} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
         if (!kArrayIsEmpty(arr)) {
             for (NSDictionary *dic in arr) {
@@ -102,14 +109,29 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
-//    [SFNetworkManager get:SFNet.invite.activityInvShare parameters:@{} success:^(id  _Nullable response) {
-//        NSArray *arr = response[@"content"];
-//        NSString *url = [arr.firstObject[@"ctnAttachment"]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        weakself.imgUrl = url;
-//        [weakself.tableView reloadData];
-//    } failed:^(NSError * _Nonnull error) {
-//
-//    }];
+}
+- (void)loadMoreDatas
+{
+    MPWeakSelf(self)
+    _pageIndex ++;
+    [SFNetworkManager get:SFNet.invite.activityInvRecord parameters:@{@"pageIndex":@(_pageIndex)} success:^(id  _Nullable response) {
+        NSArray *arr = response[@"list"];
+        if (!kArrayIsEmpty(arr)) {
+            for (NSDictionary *dic in arr) {
+                [weakself.dataSource addObject:[[InviteModel alloc] initWithDictionary:dic error:nil]];
+            }
+            [weakself.tableView reloadData];
+        }
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        [weakself.tableView.mj_footer endRefreshing];
+    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

@@ -808,7 +808,9 @@
     _model = model;
     self.offerNameLabel.text = model.offerName;
     self.subheadNameLabel.text = model.subheadName;
-    [self.detailWebView loadHTMLString:[MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+    if (model.goodsDetails) {
+        [self.detailWebView loadHTMLString:[MakeH5Happy replaceHtmlSourceOfRelativeImageSource: model.goodsDetails] baseURL:nil];
+    }
 //    [self.detailWebView loadHTMLString:_model.goodsDetails baseURL:nil];
     if (!self.productId) {
         self.productId = self.productId?self.productId:[self.model.products.firstObject productId];
