@@ -29,6 +29,7 @@
                 <outlet property="expiryTitleLabel" destination="2RI-YF-mv4" id="G0h-oc-Cev"/>
                 <outlet property="explainLabel" destination="Zsv-Ep-zqe" id="Lw0-eA-xex"/>
                 <outlet property="label1" destination="98S-Gg-69e" id="TYc-Bm-W9a"/>
+                <outlet property="tipBtn" destination="nn2-1V-yog" id="9tU-9X-Y5f"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -84,9 +85,17 @@
                             <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nn2-1V-yog">
+                            <rect key="frame" x="352" y="10" width="14" height="22"/>
+                            <state key="normal" image="Union 7"/>
+                            <connections>
+                                <action selector="tipAction:" destination="-1" eventType="touchUpInside" id="S9G-qo-20E"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="nn2-1V-yog" secondAttribute="trailing" constant="16" id="2yM-5G-Dw6"/>
                         <constraint firstItem="65G-6A-PYd" firstAttribute="top" secondItem="RY7-gh-hx9" secondAttribute="top" constant="12" id="3SJ-92-lns"/>
                         <constraint firstAttribute="bottom" secondItem="2RI-YF-mv4" secondAttribute="bottom" constant="30" id="ES5-Io-DhB"/>
                         <constraint firstAttribute="height" constant="110" id="ExK-e3-HHM"/>
@@ -98,6 +107,7 @@
                         <constraint firstItem="2RI-YF-mv4" firstAttribute="leading" secondItem="65G-6A-PYd" secondAttribute="leading" id="Xww-up-iPu"/>
                         <constraint firstAttribute="bottom" secondItem="Fbp-07-jOy" secondAttribute="bottom" constant="12" id="bB4-fI-kJZ"/>
                         <constraint firstItem="Fbp-07-jOy" firstAttribute="leading" secondItem="65G-6A-PYd" secondAttribute="leading" id="lzp-Gk-iTm"/>
+                        <constraint firstItem="nn2-1V-yog" firstAttribute="top" secondItem="RY7-gh-hx9" secondAttribute="top" constant="10" id="rZW-YS-q2A"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHS-wU-IBy">
@@ -166,6 +176,7 @@
         </view>
     </objects>
     <resources>
+        <image name="Union 7" width="14" height="14"/>
         <image name="a-00196_DiscountVoucher" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
