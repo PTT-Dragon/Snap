@@ -275,6 +275,24 @@
         [self.tabBarController setSelectedIndex:4];
     }else if ([func[@"type"] isEqualToString:@"/main/community"]){
         [self.tabBarController setSelectedIndex:2];
+    }else if ([func[@"type"] isEqualToString:@"/"]){
+        [self.webView reload];
+    }else if ([func[@"type"] rangeOfString:@"/product/detail"].location != NSNotFound){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+        NSURL *url = [NSURL URLWithString:func[@"type"]];
+        NSString *offerId = url.lastPathComponent;
+        NSString *productId = nil;
+        NSURLComponents *urlComponent = [[NSURLComponents alloc] initWithString:url.absoluteString];
+        for (NSURLQueryItem *item in urlComponent.queryItems) {
+            if ([item.name isEqualToString:@"productId"]) {
+                productId = item.value;
+                break;
+            }
+        }
+        ProductViewController *vc = [[ProductViewController alloc] init];
+        vc.offerId = offerId.integerValue;
+        vc.productId = productId.integerValue;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 // 页面开始加载时调用
