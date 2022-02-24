@@ -353,6 +353,12 @@
         dayView.dotView.backgroundColor = [UIColor redColor];
         dayView.textLabel.textColor = [UIColor redColor];
         dayView.textLabel.text = kLocalizedString(@"Today");
+    }else if ([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
+        dayView.circleView.hidden = YES;
+        dayView.circleView.backgroundColor = [UIColor blueColor];
+        dayView.dotView.backgroundColor = [UIColor redColor];
+        dayView.textLabel.textColor = [UIColor redColor];
+        dayView.textLabel.text = kLocalizedString(@"Today");
     }
     // Selected date
     else if(_dateSelected && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
@@ -398,7 +404,7 @@
         return;
     }
     NSTimeInterval timeInterval = [_todayDate timeIntervalSinceDate:dayView.date];
-    if (timeInterval/86400 > 30) {
+    if (timeInterval/86400 > 32) {
         return;
     }
     _dateSelected = dayView.date;

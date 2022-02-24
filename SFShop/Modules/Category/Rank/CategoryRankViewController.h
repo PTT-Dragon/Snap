@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 点击返回是否需要返回到主页
 @property (nonatomic, readwrite, assign, getter=isShouldBackToHome) BOOL shouldBackToHome;
 
+//  可能会从外部直接传进来参数
+@property (nonatomic,copy) NSDictionary *params;
+
 @end
 
 NS_ASSUME_NONNULL_END
