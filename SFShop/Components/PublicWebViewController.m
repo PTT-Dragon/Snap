@@ -201,7 +201,7 @@
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
     NSDictionary *func = message.body;
-    if ([func[@"type"] isEqualToString:@"SEARCH"]) {
+    if ([func[@"type"] isEqualToString:@"/search-page"]) {
         CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
         vc.activeSearch = YES;
         vc.shouldBackToHome = YES;

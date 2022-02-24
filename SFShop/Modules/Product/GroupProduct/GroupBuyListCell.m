@@ -38,7 +38,7 @@
     cmpShareBuysModel *shareModel = model.campaigns.cmpShareBuys.firstObject;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.productImg.url)]];
     _nameLabel.text = model.offerName;
-    _priceLabel.text = [[NSString stringWithFormat:@"%ld", model.specialPrice] currency];
+    _priceLabel.text = [[NSString stringWithFormat:@"%ld", model.specialPrice ? model.specialPrice:model.salesPrice] currency];
     _marketPriceLabel.text = [NSString stringWithFormat:@"%@", [model.sppMarketPrice currency]];
     _groupCountLabel.text = [NSString stringWithFormat:@"%ld",shareModel.shareByNum];
     _soldLabel.text = [NSString stringWithFormat:@"%ld Sold",(long)model.salesCnt];
