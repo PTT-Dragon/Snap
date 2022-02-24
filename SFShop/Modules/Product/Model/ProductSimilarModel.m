@@ -32,4 +32,33 @@
     CGFloat theHeight = imageHeight + tagHeight + titleHeight + priceHeight + discountHeight + gradeHeight + bottomSpace;
     return theHeight;
 }
+- (NSArray *)allTags {
+    NSString *formatterPromotType = self.promotType;
+    NSMutableArray *formatterTags = [NSMutableArray array];
+    NSMutableArray *tags = [NSMutableArray array];
+    if (formatterPromotType.length > 2) {
+        formatterPromotType = [formatterPromotType stringByReplacingOccurrencesOfString:@"[" withString:@""];
+        formatterPromotType = [formatterPromotType stringByReplacingOccurrencesOfString:@"]" withString:@""];
+        NSArray *promotArr = [formatterPromotType componentsSeparatedByString:@","];
+        [tags addObjectsFromArray:promotArr];
+    }
+    
+    if (self.sppType.length > 0) {
+        [tags addObject:self.sppType];
+    }
+    for (NSString *tag in tags) {
+        if ([tag containsString:@"2"]) {
+            [formatterTags addObject:@"FLASH"];
+        } else if ([tag containsString:@"4"]) {
+            [formatterTags addObject:@"GROUP"];
+        } else if ([tag containsString:@"C"]) {
+            [formatterTags addObject:@"DISCOUNT"];
+        } else if ([tag containsString:@"D"]) {
+            [formatterTags addObject:@"DISCOUNT"];
+        } else if ([tag containsString:@"G"]) {
+            [formatterTags addObject:@"GIFT"];
+        }
+    }
+    return formatterTags;
+}
 @end

@@ -434,6 +434,7 @@
         }
         [weakself requestStock];
     } failed:^(NSError * _Nonnull error) {
+        [weakself setDefaultAddress];
         [weakself requestStock];
     }];
 }
@@ -527,15 +528,23 @@
             @"inCmpIdList": inCmpIdList
         };
     }];
-    NSDictionary *param = @{
-                       @"stdAddrId": self.selectedAddressModel.contactStdId,
-                       @"stores": @[
-                           @{
-                               @"storeId": @(self.model.storeId),
-                               @"products": arr
-                           }
-                       ]
-    };
+//    NSDictionary *param = @{
+//                       @"stdAddrId": self.selectedAddressModel.contactStdId,
+//                       @"stores": @[
+//                           @{
+//                               @"storeId": @(self.model.storeId),
+//                               @"products": arr
+//                           }
+//                       ]
+//    };
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setValue:self.selectedAddressModel.contactStdId forKey:@"stdAddrId"];
+    [param setValue:@[
+        @{
+            @"storeId": @(self.model.storeId),
+            @"products": arr
+        }
+    ] forKey:@"stores"];
     [SFNetworkManager post:SFNet.offer.stock parameters: param success:^(id  _Nullable response) {
         self.stockModel = [ProductStockModel arrayOfModelsFromDictionaries:response error:nil];
         [self.stockModel  enumerateObjectsUsingBlock:^(ProductStockModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {

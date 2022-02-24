@@ -22,7 +22,7 @@
 @implementation PolicesViewController
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 //- (void)viewWillDisappear:(BOOL)animated {
@@ -90,7 +90,7 @@
     NSDictionary *dic = _dataSource[indexPath.row];
     PolicesDetailViewController *vc = [[PolicesDetailViewController alloc] init];
     vc.title = dic[@"title"];
-    vc.type = [dic[@"title"] isEqualToString:kLocalizedString(@"MEMBERSHIP_AGREEMENT")] ? @"A": @"B";
+    vc.type = [dic[@"title"] isEqualToString:kLocalizedString(@"MEMBERSHIP_AGREEMENT")] ? @"A": @"D";
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (UITableView *)tableView

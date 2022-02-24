@@ -120,7 +120,7 @@ typedef enum :NSUInteger{
         }];
         _streetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_streetBtn setTitleColor:[UIColor blackColor] forState:0];
-        _streetBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        _streetBtn.titleLabel.font = kFontRegular(14);
         [_streetBtn setTitle:streetModel.stdAddr forState:0];
         _streetBtn.titleLabel.numberOfLines = 0;
         [self addSubview:_streetBtn];

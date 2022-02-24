@@ -141,7 +141,7 @@
 //  "PRICE" = "Harga";
 //  "REFUND" = "Refund";
 //  "RETURN" = "Return";
-//  "CHANGE" = "Penukaran";
+  "CHANGE" = "UBAH";
   "BIND" = "DAFTARKAN";
 //  "BIND_EMAIL" = "Link e-mail";
 //  "BIND_MOBILE" = "Link no. telephone";

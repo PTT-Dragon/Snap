@@ -38,7 +38,7 @@
     }
 //    NSString *aa = self.webView.title;
 //    if (self.webView.title == nil || [self.webView.title isEqualToString:@""]) {
-//            [self.webView reload];
+            [self.webView reload];
 //        }
 }
 - (void)viewDidLoad {
