@@ -116,7 +116,8 @@
     [self.view addSubview:self.emptyView];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.tableView.mas_top).offset(90);
-        make.left.right.bottom.mas_equalTo(self.view);
+        make.left.right.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-80);
     }];
 }
 - (void)setCouponId:(NSString *)couponId
@@ -309,7 +310,7 @@
                 case CategoryRankTypeSales:
                 case CategoryRankTypePriceDescending:
                 case CategoryRankTypePriceAscending: {
-                    [MBProgressHUD showHudMsg:@"加载中"];
+                    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
                     strongSelf.currentType = type;
                     [strongSelf.tableView.mj_header beginRefreshing];
                 }

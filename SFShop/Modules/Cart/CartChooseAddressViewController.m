@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHei;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 
@@ -30,6 +31,11 @@
     _tableView.dataSource = self;
     [_tableView registerNib:[UINib nibWithNibName:@"CartChooseAddressCell" bundle:nil] forCellReuseIdentifier:@"CartChooseAddressCell"];
     self.tableViewHei.constant = self.addressListArr.count * 66;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeSelf)];
+    [self.view addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nothing)];
+    [self.bgView addGestureRecognizer:tap2];
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -60,6 +66,15 @@
         }
     };
     return cell;
+}
+- (void)removeSelf
+{
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+}
+- (void)nothing
+{
+    
 }
 
 - (IBAction)closeAction:(id)sender {

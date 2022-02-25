@@ -58,7 +58,7 @@
     _nameLabel.text = _model.productName ? _model.productName: _model.offerName;
     _priceLabel.text = [_model.salesPrice currency];
     _label = [[UILabel alloc] init];
-    _label.font = CHINESE_BOLD(15);
+    _label.font = kFontRegular(16);
     _label.backgroundColor = [UIColor whiteColor];
     _label.hidden = YES;
     _label.text = [NSString stringWithFormat:@"   %@",kLocalizedString(@"SIMILAR_PRODUCT_RECOMMENDATION")];
@@ -66,7 +66,7 @@
     [_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.top.mas_equalTo(self.topView.mas_bottom).offset(10);
-        make.height.mas_equalTo(25);
+        make.height.mas_equalTo(50);
     }];
 }
 - (void)loadDatas

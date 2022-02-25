@@ -86,7 +86,24 @@
         [weakself.dataSource removeAllObjects];
         if (!kArrayIsEmpty(arr)) {
             for (NSDictionary *dic in arr) {
-                [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
+                NSMutableArray <orderItemsModel *>*itemArr = [NSMutableArray array];
+                for (NSDictionary *itemDic in dic[@"orderItems"]) {
+                    if (self.type == 1) {
+                        if ([itemDic[@"canReview"] isEqualToString:@"Y"]) {
+                            orderItemsModel *itemModel = [[orderItemsModel alloc] initWithDictionary:itemDic error:nil];
+                            [itemArr addObject:itemModel];
+                        }
+                    }else{
+                        if ([itemDic[@"canReview"] isEqualToString:@"N"]) {
+                            orderItemsModel *itemModel = [[orderItemsModel alloc] initWithDictionary:itemDic error:nil];
+                            [itemArr addObject:itemModel];
+                        }
+                    }
+                }
+                OrderModel *orderModel = [[OrderModel alloc] initWithDictionary:dic error:nil];
+                orderModel.orderItems = itemArr;
+                [weakself.dataSource addObject:orderModel];
+//                    [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
             }
             weakself.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
                 [weakself loadMoreDatas];
@@ -126,7 +143,23 @@
             return;
         }
         for (NSDictionary *dic in arr) {
-            [weakself.dataSource addObject:[[OrderModel alloc] initWithDictionary:dic error:nil]];
+            NSMutableArray <orderItemsModel *>*itemArr = [NSMutableArray array];
+            for (NSDictionary *itemDic in dic[@"orderItems"]) {
+                if (self.type == 1) {
+                    if ([itemDic[@"canReview"] isEqualToString:@"Y"]) {
+                        orderItemsModel *itemModel = [[orderItemsModel alloc] initWithDictionary:itemDic error:nil];
+                        [itemArr addObject:itemModel];
+                    }
+                }else{
+                    if ([itemDic[@"canReview"] isEqualToString:@"N"]) {
+                        orderItemsModel *itemModel = [[orderItemsModel alloc] initWithDictionary:itemDic error:nil];
+                        [itemArr addObject:itemModel];
+                    }
+                }
+            }
+            OrderModel *orderModel = [[OrderModel alloc] initWithDictionary:dic error:nil];
+            orderModel.orderItems = itemArr;
+            [weakself.dataSource addObject:orderModel];
         }
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {

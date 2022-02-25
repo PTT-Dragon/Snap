@@ -517,7 +517,7 @@
 "Empty_Tip_NoPage" = "Oops! Halaman tidak ditemukan.";
 "Empty_Tip_NoNetWork" = "Internet error; silakan coba nanti.";
 "Empty_Tip_NoShoppingCar" = "Tidak ada barang dikeranjang ini.";
-"Empty_Tip_NoProduct" = "Maaf; tidak ada produk yang berhubungan ditemukan.";
+"Empty_Tip_NoProduct" = "Maaf, tidak ada produk yang berhubungan ditemukan.";
 "Empty_Tip_NoDiscount" = "Anda belum mendapatkan kupon apapun.";
 "Empty_Tip_NoOrder" = "Tidak ada pesanan";
 "Empty_Tip_No favorite" = "Tidak ada produk favorit yang dipilih saat ini.";

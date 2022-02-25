@@ -14,6 +14,16 @@
 #import <MJRefresh/MJRefresh.h>
 #import "CategoryRankFilterViewController.h"
 #import "UIButton+EnlargeTouchArea.h"
+#import "GroupBuyTipViewController.h"
+
+typedef NS_ENUM(NSUInteger, CategoryRankType) {
+    CategoryRankTypeSales = 1,          //销售维度
+    CategoryRankTypePopularity = 2,     //欢迎维度
+    CategoryRankTypePriceAscending = 3, //价格升序纬度
+    CategoryRankTypePriceDescending = 4,//价格降序维度
+    CategoryRankTypeDetail = 9,         //排序详情
+};
+
 
 
 
@@ -28,6 +38,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
+@property (nonatomic, readwrite, strong) UIButton *popularityBtn;
+@property (nonatomic, readwrite, strong) UIButton *salesBtn;
+@property (nonatomic, readwrite, strong) UIButton *priceBtn;
+@property (nonatomic, readwrite, strong) UIButton *filterBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *topImgView;
+@property (nonatomic, readwrite, strong) UIButton *lastBtn;
 @end
 
 @implementation GroupListViewController
@@ -40,8 +56,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Group_buy");
-    [self initUI];
     self.currentType = 2;
+    [self loadSubviewsWithType:self.currentType];
+    [self layout];
+    [self initUI];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.pageIndex = 1;
         [self loadDatas:self.pageIndex sortType:self.currentType filter:self.filterCacheModel];
@@ -54,6 +72,52 @@
     
     [self.tableView.mj_header beginRefreshing];
 }
+- (void)layout {
+    [self.popularityBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(KScale(16));
+        make.top.mas_equalTo(self.topImgView.mas_bottom).offset(10);
+        make.height.mas_equalTo(KScale(32));
+        make.width.mas_equalTo(KScale(96));
+    }];
+    
+    [self.salesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.popularityBtn.mas_right).offset(KScale(8));
+        make.top.mas_equalTo(self.topImgView.mas_bottom).offset(10);
+        make.height.mas_equalTo(KScale(32));
+        make.width.mas_equalTo(KScale(60));
+    }];
+    
+    [self.priceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.salesBtn.mas_right).offset(KScale(8));
+        make.top.mas_equalTo(self.topImgView.mas_bottom).offset(10);
+        make.height.mas_equalTo(KScale(32));
+        make.width.mas_equalTo(KScale(78));
+    }];
+    
+    [self.filterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(KScale(-25));
+        make.top.mas_equalTo(self.topImgView.mas_bottom).offset(14);
+        make.height.mas_equalTo(KScale(18));
+        make.width.mas_equalTo(KScale(18));
+    }];
+}
+- (void)loadSubviewsWithType:(CategoryRankType)type {
+    for (UIButton *btn in @[self.popularityBtn,self.salesBtn,self.priceBtn,self.filterBtn]) {
+        if (btn.tag - 100 == type) {
+            [self sortUpdateBtnUI:btn];
+        }
+        [self.view addSubview:btn];
+    }
+}
+- (void)sortUpdateBtnUI:(UIButton *)btn {
+    btn.selected = YES;
+    btn.layer.borderColor = [UIColor jk_colorWithHexString:@"#FF1659"].CGColor;
+    if (self.lastBtn && self.lastBtn != btn ) {
+        self.lastBtn.selected = NO;
+        self.lastBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
+    }
+    self.lastBtn = btn;
+}
 - (void)initUI
 {
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupBuyListCell" bundle:nil] forCellReuseIdentifier:@"GroupBuyListCell"];
@@ -61,8 +125,9 @@
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(0);
+        make.top.mas_equalTo(self.topImgView.mas_bottom).offset(KScale(64));
     }];
+    [self.topImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/static/GroupBy.95d35058.png",Host]]];
     self.backBtn.layer.zPosition = 1;
     self.shareBtn.layer.zPosition = 1;
     self.titleLabel.layer.zPosition = 1;
@@ -71,63 +136,60 @@
     [self.shareBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
     [self.view bringSubviewToFront:self.backBtn];
     [self.view bringSubviewToFront:self.shareBtn];
-    self.titleLabel.text = @"Group buy";
+    self.titleLabel.text = @"Group Buy";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count+2;
+    return self.dataArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? 280: indexPath.row == 1 ? KScale(64): 136;
+    return 136;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        GroupTopImgCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupTopImgCell"];
-        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/static/GroupBy.95d35058.png",Host]]];
-        return cell;
-    }else if (indexPath.row == 1){
-        GroupFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupFilterCell"];
-        if (!cell) {
-            cell = [[GroupFilterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupFilterCell" type:self.currentType];
-            __weak __typeof(self)weakSelf = self;
-            cell.clickFilterBlock = ^(CategoryRankType type) {
-                __strong __typeof(weakSelf)strongSelf = weakSelf;
-                switch (type) {
-                    case CategoryRankTypePopularity:
-                    case CategoryRankTypeSales:
-                    case CategoryRankTypePriceDescending:
-                    case CategoryRankTypePriceAscending: {
-                        [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
-                        strongSelf.currentType = type;
-                        [strongSelf.tableView.mj_header beginRefreshing];
-                    }
-                        break;
-                    case CategoryRankTypeDetail:
-                        [strongSelf jumpToFilterDetail];
-                        break;
-                    default:
-                        break;
-                }
-            };
-        }
-        return cell;
-    }
+//        return cell;
+//    }else if (indexPath.row == 1){
+//        GroupFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupFilterCell"];
+//        if (!cell) {
+//            cell = [[GroupFilterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupFilterCell" type:self.currentType];
+//            __weak __typeof(self)weakSelf = self;
+//            cell.clickFilterBlock = ^(CategoryRankType type) {
+//                __strong __typeof(weakSelf)strongSelf = weakSelf;
+//                switch (type) {
+//                    case CategoryRankTypePopularity:
+//                    case CategoryRankTypeSales:
+//                    case CategoryRankTypePriceDescending:
+//                    case CategoryRankTypePriceAscending: {
+//                        [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
+//                        strongSelf.currentType = type;
+//                        [strongSelf.tableView.mj_header beginRefreshing];
+//                    }
+//                        break;
+//                    case CategoryRankTypeDetail:
+//                        [strongSelf jumpToFilterDetail];
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            };
+//        }
+//        return cell;
+//    }
     GroupBuyListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupBuyListCell"];
-    cell.model = self.dataArray[indexPath.row-2];
+    cell.model = self.dataArray[indexPath.row];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row > 1) {
+//    if (indexPath.row > 1) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        CategoryRankPageInfoListModel *model = self.dataArray[indexPath.row-2];
+        CategoryRankPageInfoListModel *model = self.dataArray[indexPath.row];
         ProductViewController *vc = [[ProductViewController alloc] init];
         vc.offerId = model.offerId;
         vc.productId = model.productId.integerValue;
         [self.navigationController pushViewController:vc animated:YES];
-    }
+//    }
 }
 - (void)loadDatas:(NSInteger)currentPage sortType:(CategoryRankType)type filter:(CategoryRankFilterCacheModel *)filter
 {
@@ -180,12 +242,52 @@
     };
     [self presentViewController:filterVc animated:YES completion:nil];
 }
+- (void)sort:(UIButton *)btn {
+    //改变状态之前的逻辑处理
+    CategoryRankType type = btn.tag - 100;
+    if (btn == self.priceBtn) {
+        BOOL isSeleted = btn.selected;
+        if (isSeleted) {
+            if (type == CategoryRankTypePriceDescending) {
+                btn.tag = CategoryRankTypePriceAscending + 100;
+            } else {
+                btn.tag = CategoryRankTypePriceDescending + 100;
+            }
+        } else {//从未选中到选中状态默认未降序
+            btn.tag = CategoryRankTypePriceDescending + 100;
+        }
+    }
+    if (type == CategoryRankTypeDetail) {
+        [self jumpToFilterDetail];
+    }else{
+        self.currentType = type;
+        [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
+        [self.tableView.mj_header beginRefreshing];
+    }
+
+    //回调给外部
+//    !self.clickFilterBlock?:self.clickFilterBlock(btn.tag - 100);
+    
+
+    //UI 处理
+    [self sortUpdateBtnUI:btn];
+}
+- (void)detailFilter:(UIButton *)btn {
+        [self jumpToFilterDetail];
+}
 - (IBAction)backAction:(UIButton *)sender {
     [[baseTool getCurrentVC].navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)shareAction:(UIButton *)sender {
     NSString *shareUrl = [NSString stringWithFormat:@"%@/product/GroupBuy",Host];
     [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
+}
+- (IBAction)tipAction:(UIButton *)sender {
+    GroupBuyTipViewController *vc = [[GroupBuyTipViewController alloc] init];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [[baseTool getCurrentVC] presentViewController:vc animated:YES completion:^{
+        
+    }];
 }
 
 
@@ -225,5 +327,60 @@
     }
     return _tableView;
 }
+#pragma mark - Getter
+- (UIButton *)popularityBtn {
+    if (_popularityBtn == nil) {
+        _popularityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _popularityBtn.tag = CategoryRankTypePopularity + 100;
+        _popularityBtn.titleLabel.font = kFontRegular(14);
+        [_popularityBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
+        [_popularityBtn setTitle:@"Popularity" forState:UIControlStateNormal];
+        [_popularityBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];
+        [_popularityBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateSelected];
+        _popularityBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
+        _popularityBtn.layer.borderWidth = 1;
+    }
+    return _popularityBtn;
+}
 
+- (UIButton *)salesBtn {
+    if (_salesBtn == nil) {
+        _salesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _salesBtn.tag = CategoryRankTypeSales + 100;
+        _salesBtn.titleLabel.font = kFontRegular(14);
+        [_salesBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
+        [_salesBtn setTitle:@"Sales" forState:UIControlStateNormal];
+        [_salesBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];
+        [_salesBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateSelected];
+        _salesBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
+        _salesBtn.layer.borderWidth = 1;
+    }
+    return _salesBtn;
+}
+
+- (UIButton *)priceBtn {
+    if (_priceBtn == nil) {
+        _priceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _priceBtn.tag = CategoryRankTypePriceAscending + 100;
+        _priceBtn.titleLabel.font = kFontRegular(14);
+        [_priceBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
+        [_priceBtn setTitle:@"Price" forState:UIControlStateNormal];
+        [_priceBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];
+        [_priceBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateSelected];
+        _priceBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
+        _priceBtn.layer.borderWidth = 1;
+    }
+    return _priceBtn;
+}
+
+- (UIButton *)filterBtn {
+    if (_filterBtn == nil) {
+        _filterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_filterBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
+        _filterBtn.tag = CategoryRankTypeDetail + 100;
+        [_filterBtn addTarget:self action:@selector(detailFilter:) forControlEvents:UIControlEventTouchUpInside];
+        [_filterBtn setImage:[UIImage imageNamed:@"rank_filters"] forState:UIControlStateNormal];
+    }
+    return _filterBtn;
+}
 @end
