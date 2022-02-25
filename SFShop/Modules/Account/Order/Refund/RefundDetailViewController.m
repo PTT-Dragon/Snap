@@ -307,6 +307,9 @@
         {
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
+        if (@available(iOS 15.0, *)) {
+            _tableView.sectionHeaderTopPadding = 0;
+        }
         _tableView.estimatedRowHeight = 44;
     }
     return _tableView;
