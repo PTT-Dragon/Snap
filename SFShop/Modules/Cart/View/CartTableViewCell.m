@@ -103,7 +103,7 @@
         self.offLabel.hidden = NO;
         self.offNameLabel.hidden = NO;
         self.imgTop.constant = 45;
-        self.offLabel.text = [_campaignsModel.buygetnInfo.promotType rangeOfString:@"C"].location != NSNotFound ? [NSString stringWithFormat:@" %@ ",kLocalizedString(@"Off")]: [NSString stringWithFormat:@" %@ ",kLocalizedString(@"Discount")];
+        self.offLabel.text = [_campaignsModel.buygetnInfo.promotType rangeOfString:@"C"].location != NSNotFound ? [NSString stringWithFormat:@" %@ ",kLocalizedString(@"OFF")]: [NSString stringWithFormat:@" %@ ",kLocalizedString(@"Discount")];
     }else{
         self.campaignsBtn.hidden = YES;
         self.offBtn.hidden = YES;

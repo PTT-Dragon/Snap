@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIView *topView;
 
 @end
 
@@ -27,6 +28,12 @@
     _titleLabel.text = kLocalizedString(@"COUPON");
     
     [_btn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeSelf)];
+    [_topView addGestureRecognizer:tap];
+}
+- (void)removeSelf
+{
+    [self removeFromSuperview];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -20,6 +20,7 @@
                 <outlet property="shareBtn" destination="d22-JK-QfU" id="5V0-wL-OZ0"/>
                 <outlet property="titleImgView" destination="kEb-ey-EnM" id="kqS-KE-UPM"/>
                 <outlet property="titleLabel" destination="YFZ-Uj-Jb2" id="Eyk-XZ-O2H"/>
+                <outlet property="topImgView" destination="Y13-0V-A3P" id="ZXu-qb-OYz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -55,24 +56,50 @@
                         <action selector="backAction:" destination="-1" eventType="touchUpInside" id="xpR-BB-36R"/>
                     </connections>
                 </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y13-0V-A3P">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="280"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="280" id="TvW-0h-JKB"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvy-ae-UY3">
+                    <rect key="frame" x="334" y="246" width="64" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="FJV-uF-uki"/>
+                        <constraint firstAttribute="height" constant="24" id="tfN-jR-hPG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="13"/>
+                    <state key="normal" image="Secondary">
+                        <color key="titleColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="tipAction:" destination="-1" eventType="touchUpInside" id="ES4-Iy-col"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Y13-0V-A3P" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="76e-83-izE"/>
                 <constraint firstItem="YFZ-Uj-Jb2" firstAttribute="leading" secondItem="kEb-ey-EnM" secondAttribute="trailing" constant="5" id="7PC-y7-HWk"/>
                 <constraint firstItem="YFZ-Uj-Jb2" firstAttribute="centerY" secondItem="kEb-ey-EnM" secondAttribute="centerY" id="9Ae-bw-GYK"/>
                 <constraint firstItem="2bk-aM-nza" firstAttribute="centerY" secondItem="d22-JK-QfU" secondAttribute="centerY" id="DMK-rD-TXh"/>
                 <constraint firstItem="d22-JK-QfU" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" constant="-16" id="MDp-BB-7Ko"/>
                 <constraint firstItem="kEb-ey-EnM" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" constant="-40" id="Mam-dN-sop"/>
+                <constraint firstItem="hvy-ae-UY3" firstAttribute="bottom" secondItem="Y13-0V-A3P" secondAttribute="bottom" constant="-10" id="Oe3-rO-ufz"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="hvy-ae-UY3" secondAttribute="trailing" constant="16" id="PGB-At-jQK"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Y13-0V-A3P" secondAttribute="trailing" id="UJ8-6o-bdx"/>
                 <constraint firstItem="d22-JK-QfU" firstAttribute="centerY" secondItem="kEb-ey-EnM" secondAttribute="centerY" id="ZsP-iD-uTC"/>
                 <constraint firstItem="kEb-ey-EnM" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="10" id="cRp-n7-s5F"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="top" secondItem="Y13-0V-A3P" secondAttribute="top" constant="44" id="nst-kk-dmB"/>
                 <constraint firstItem="2bk-aM-nza" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="zLL-DP-aG0"/>
             </constraints>
-            <point key="canvasLocation" x="83" y="72"/>
+            <point key="canvasLocation" x="82.608695652173921" y="71.651785714285708"/>
         </view>
     </objects>
     <resources>
         <image name="00005_01_users_outline-1" width="24" height="24"/>
+        <image name="Secondary" width="64" height="24"/>
         <image name="nav_back" width="200" height="200"/>
         <image name="share" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">

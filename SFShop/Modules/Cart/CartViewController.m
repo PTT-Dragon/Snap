@@ -372,6 +372,15 @@
 }
 
 
+- (void)removeSelf
+{
+    [_detailBgView removeFromSuperview];
+}
+- (void)nothing
+{
+    
+}
+
 - (UIView *)bottomView
 {
     if (!_bottomView) {
@@ -423,6 +432,9 @@
         label4.textColor = RGBColorFrom16(0x555555);
         label4.font = CHINESE_MEDIUM(12);
         [_detailView addSubview:label4];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nothing)];
+        [_detailView addGestureRecognizer:tap];
     }
     return _detailView;
 }
@@ -432,6 +444,8 @@
         _detailBgView = [[UIView alloc] initWithFrame:CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei-78 - (_isTab ? tabbarHei: 0))];
         _detailBgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
         [_detailBgView addSubview:self.detailView];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeSelf)];
+        [_detailBgView addGestureRecognizer:tap];
     }
     return _detailBgView;
 }

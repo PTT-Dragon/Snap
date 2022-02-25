@@ -785,7 +785,7 @@
     }];
     [arr enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *label = [[UILabel alloc] init];
-        label.text = obj.couponName;
+        label.text = [NSString stringWithFormat:@" %@ ",obj.couponName];
         label.font = kFontBlod(10);
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = RGBColorFrom16(0xFF1659);
