@@ -277,7 +277,7 @@
 //    } else {
         self.iconLabelImageView.hidden = YES;
 //    }
-    NSArray *formatterTags = [self fetchTagsWithSppType:similarModel.sppType promotType:@""];
+    NSArray *formatterTags = similarModel.allTags;//[self fetchTagsWithSppType:similarModel.sppType promotType:@""];
     if (formatterTags.count) {
         [self.promoTypeView removeAllTags];
         [self.promoTypeView addTags:formatterTags];

@@ -71,6 +71,12 @@
     };
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    CartPromotionCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell selAction:cell.selBtn];
+}
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    return 60;

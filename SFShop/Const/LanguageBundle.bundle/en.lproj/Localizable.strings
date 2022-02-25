@@ -678,7 +678,8 @@
 "REFUND_SELECT_TITLE" = "Select Service";
 "REFUND" = "REFUND";
 "RETURN" = "Return";
-"CHANGE" = "Change";
+"CHANGE" = "CHANGE";
+"Change" = "Change";
 "REFERS" = "Refers";
 "FORUM" = "Forum";
 "REVIEWS" = "Reviews";

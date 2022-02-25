@@ -35,7 +35,7 @@
     _model = model;
     _nameLabel.text = model.offerName;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
-    _priceLabel.text = [model.specialPrice currency];
+    _priceLabel.text = [model.specialPrice?model.specialPrice:model.salesPrice currency];
     _favoriteBtn.selected = model.isCollection;
 }
 - (IBAction)cartAction:(UIButton *)sender {

@@ -20,6 +20,8 @@
 #import "BaseMoreView.h"
 #import "CategoryRankViewController.h"
 #import "EmptyView.h"
+#import "UIButton+EnlargeTouchArea.h"
+#import "PublicAlertView.h"
 
 @interface UseCouponViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
@@ -46,6 +48,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *expiryTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *discountTitleLabel;
 @property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
+@property (weak, nonatomic) IBOutlet UIButton *tipBtn;
 @property (nonatomic, readwrite, strong) BaseMoreView *moreView;
 @property (nonatomic,copy) NSString *searchText;
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
@@ -73,6 +76,7 @@
     self.couponView.layer.borderWidth = 1;
     self.cartBtn.titleLabel.numberOfLines = 2;
     self.cartBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.tipBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
     if (_couponModel) {
         _couponNameLabel.text = self.couponModel.couponName;
         if (_couponModel.isGet) {
@@ -425,6 +429,13 @@
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage: error.localizedDescription];
     }];
+}
+- (IBAction)tipAction:(UIButton *)sender {
+    NSString *rule = ([_couponModel.useDesc isEqualToString:@""] || !_couponModel.useDesc) ? kLocalizedString(@"NORULE"):_couponModel.useDesc;
+    PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"COUPON_DETAIL") content:rule btnTitle:kLocalizedString(@"GOT_IT") block:^{
+        
+    }];
+    [[baseTool getCurrentVC].view addSubview:alert];
 }
 
 

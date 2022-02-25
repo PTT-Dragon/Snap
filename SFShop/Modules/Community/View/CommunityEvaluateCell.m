@@ -9,6 +9,7 @@
 #import "NSDate+Helper.h"
 #import "NSString+Add.h"
 #import "UIButton+EnlargeTouchArea.h"
+#import "LoginViewController.h"
 
 @interface CommunityEvaluateCell ()
 @property (nonatomic,strong) UIImageView *imgView;
@@ -121,6 +122,12 @@
 }
 - (void)likeAction:(UIButton *)btn
 {
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    if (!model || [model.accessToken isEqualToString:@""]) {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+        return;
+    }
     MPWeakSelf(self)
     //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager post:[SFNet.article likeEvaluatelOf:_model.articleEvalId] parameters:@{@"action":[_model.isUseful isEqualToString:@"Y"] ? @"C": @"A"} success:^(id  _Nullable response) {

@@ -18,6 +18,9 @@
 #import "ProductDetailModel.h"
 #import "CategoryRankViewController.h"
 #import "SceneManager.h"
+#import "CouponAlertView.h"
+#import "MessageViewController.h"
+#import "MyCouponViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -33,6 +36,10 @@
     }else{
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
+//    NSString *aa = self.webView.title;
+//    if (self.webView.title == nil || [self.webView.title isEqualToString:@""]) {
+            [self.webView reload];
+//        }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,6 +81,13 @@
             [weakself.navigationController popViewControllerAnimated:YES];
         }
     }];
+    if ([_url containsString:@"/chat/"]) {
+        [self performSelector:@selector(reload) withObject:nil afterDelay:1];
+    }
+}
+- (void)reload
+{
+    [self.webView reload];
 }
 - (void)addNoTi
 {
@@ -187,7 +201,7 @@
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
     NSDictionary *func = message.body;
-    if ([func[@"type"] isEqualToString:@"SEARCH"]) {
+    if ([func[@"type"] isEqualToString:@"/search-page"]) {
         CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
         vc.activeSearch = YES;
         vc.shouldBackToHome = YES;
@@ -198,10 +212,87 @@
         vc.offerId = [dic[@"offerId"] integerValue];
         vc.productId = [dic[@"productId"] integerValue];
         [self.navigationController pushViewController:vc animated:YES];
-    }else if ([func[@"type"] isEqualToString:@"GROUP_SHOP_MORE"]){
-//        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
-//        GroupListViewController *vc = [[GroupListViewController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"PROD_LIST"]){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+        NSString *categoryId = @"";
+        categoryId = func[@"data"][@"offerId"];
+        CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+        CategoryModel *model = [[CategoryModel alloc] init];
+        CategoryInnerModel *innerModel = [[CategoryInnerModel alloc] init];
+        CatgRelaModel *relaModel = [[CatgRelaModel alloc] init];
+        ObjValueModel *objModel = [[ObjValueModel alloc] init];
+        objModel.objId = categoryId;
+        relaModel.objValue = objModel;
+        innerModel.catgRela = relaModel;
+        model.inner = innerModel;
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"/product/GroupBuy"]){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+        GroupListViewController *vc = [[GroupListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"/coupon-center"]){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+        CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] rangeOfString:@"coupons-"].location != NSNotFound){
+        NSArray *arr = [func[@"type"] componentsSeparatedByString:@"-"];
+        [SFNetworkManager post:SFNet.coupon.usercoupon parameters:@{@"couponId":arr.lastObject} success:^(id  _Nullable response) {
+//            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COLLECT_COUPON_SUCCESS")];
+            CouponAlertView *view = [[NSBundle mainBundle] loadNibNamed:@"CouponAlertView" owner:self options:nil].firstObject;
+            view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+            [[baseTool getCurrentVC].view addSubview:view];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+    }else if ([func[@"type"] isEqualToString:@"PROD_FILTER"]){
+        NSArray *arr = [func[@"data"][@"params"] componentsSeparatedByString:@"&"];
+        NSMutableDictionary *filteredProductsRela = [NSMutableDictionary dictionary];
+        for (NSString *str in arr) {
+            NSArray *subArr = [str componentsSeparatedByString:@"="];
+            [filteredProductsRela setValue:subArr.lastObject forKey:subArr.firstObject];
+        }
+        CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
+        CategoryModel *model = [[CategoryModel alloc] init];
+        CategoryInnerModel *innerModel = [[CategoryInnerModel alloc] init];
+        CatgRelaModel *relaModel = [[CatgRelaModel alloc] init];
+        ObjValueModel *objModel = [[ObjValueModel alloc] init];
+        objModel.filteredProductsRela = filteredProductsRela;
+        relaModel.objValue = objModel;
+        innerModel.catgRela = relaModel;
+        model.inner = innerModel;
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"/message-center"]){
+        MessageViewController *vc = [[MessageViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"/main/cart"]){
+        [self.tabBarController setSelectedIndex:3];
+    }else if ([func[@"type"] isEqualToString:@"/my-coupon"]){
+        MyCouponViewController *vc = [[MyCouponViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"/main/account"]){
+        [self.tabBarController setSelectedIndex:4];
+    }else if ([func[@"type"] isEqualToString:@"/main/community"]){
+        [self.tabBarController setSelectedIndex:2];
+    }else if ([func[@"type"] isEqualToString:@"/"]){
+        [self.webView reload];
+    }else if ([func[@"type"] rangeOfString:@"/product/detail"].location != NSNotFound){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+        NSURL *url = [NSURL URLWithString:func[@"type"]];
+        NSString *offerId = url.lastPathComponent;
+        NSString *productId = nil;
+        NSURLComponents *urlComponent = [[NSURLComponents alloc] initWithString:url.absoluteString];
+        for (NSURLQueryItem *item in urlComponent.queryItems) {
+            if ([item.name isEqualToString:@"productId"]) {
+                productId = item.value;
+                break;
+            }
+        }
+        ProductViewController *vc = [[ProductViewController alloc] init];
+        vc.offerId = offerId.integerValue;
+        vc.productId = productId.integerValue;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 // 页面开始加载时调用
@@ -221,13 +312,16 @@
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
-    
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+}
+- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView NS_AVAILABLE(10_11, 9_0){
+    [webView reload];
 }
 // 接收到服务器跳转请求之后调用
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{

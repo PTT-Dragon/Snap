@@ -44,11 +44,11 @@
 {
     _model = model;
     if ([model.discountMethod isEqualToString:@"DISC"]) {
-        _discountLabel.text =[NSString stringWithFormat:@"%.0f%% %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],kLocalizedString(@"discount")];
-        _discountLabel.attributedText = [NSMutableString difereentFontStr:_discountLabel.text font:kFontBlod(13) changeText:kLocalizedString(@"discount")];
+        _discountLabel.text =[NSString stringWithFormat:@"%.0f%% %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currencyFloat],kLocalizedString(@"OFF")];
+        _discountLabel.attributedText = [NSMutableString difereentFontStr:_discountLabel.text font:kFontBlod(13) changeText:kLocalizedString(@"OFF")];
         _timeLabel.text = [NSString stringWithFormat:@"%@ %@ %@",kLocalizedString(@"VALID_RANGE"),_model.getOffsetExp,kLocalizedString(@"hari")];
     }else{
-        _discountLabel.text = [NSString stringWithFormat:@"%@ %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency],kLocalizedString(@"discount")];
+        _discountLabel.text = [NSString stringWithFormat:@"%@ \n %@",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency],kLocalizedString(@"OFF")];
         _discountLabel.font = CHINESE_BOLD(14);
         _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }

@@ -43,6 +43,7 @@
 @property (nonatomic,strong) RecentlyNumModel *numModel;
 @property (nonatomic,strong) NSDate *monthFirstDay;
 @property (nonatomic,strong) NSDate *monthLastDay;
+@property (nonatomic, strong) UIButton *gotoShopping;
 
 @end
 
@@ -132,7 +133,12 @@
         make.left.right.bottom.mas_equalTo(self.view);
     }];
     self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
-
+    [self.view addSubview:self.gotoShopping];
+    [self.gotoShopping mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(24);
+        make.right.bottom.mas_offset(-24);
+        make.height.mas_offset(46);
+    }];
 }
 - (void)loadDatas
 {
@@ -248,6 +254,7 @@
     } else {
         self.emptyView.hidden = NO;
     }
+    self.gotoShopping.hidden = self.emptyView.hidden;
 }
 
 #pragma mark - tableView.delegate
@@ -353,6 +360,12 @@
         dayView.dotView.backgroundColor = [UIColor redColor];
         dayView.textLabel.textColor = [UIColor redColor];
         dayView.textLabel.text = kLocalizedString(@"Today");
+    }else if ([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
+        dayView.circleView.hidden = YES;
+        dayView.circleView.backgroundColor = [UIColor blueColor];
+        dayView.dotView.backgroundColor = [UIColor redColor];
+        dayView.textLabel.textColor = [UIColor redColor];
+        dayView.textLabel.text = kLocalizedString(@"Today");
     }
     // Selected date
     else if(_dateSelected && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
@@ -398,7 +411,7 @@
         return;
     }
     NSTimeInterval timeInterval = [_todayDate timeIntervalSinceDate:dayView.date];
-    if (timeInterval/86400 > 30) {
+    if (timeInterval/86400 > 32) {
         return;
     }
     _dateSelected = dayView.date;
@@ -583,6 +596,13 @@
 //
 //    }];
 }
+#pragma mark - <click event>
+- (void)gotoShoppingEvent{
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.tabVC setSelectedIndex:0];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 
 
@@ -616,5 +636,16 @@
     }
     return _emptyView;
 }
-
+- (UIButton *)gotoShopping{
+    
+    if (!_gotoShopping) {
+        
+        _gotoShopping = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_gotoShopping setTitle:kLocalizedString(@"BACK_TO_HOME") forState:UIControlStateNormal];
+        [_gotoShopping setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [_gotoShopping setBackgroundColor:[UIColor jk_colorWithHexString:@"FF1659"]];
+        [_gotoShopping addTarget:self action:@selector(gotoShoppingEvent) forControlEvents:UIControlEventTouchUpInside];
+        
+    }return _gotoShopping;
+}
 @end

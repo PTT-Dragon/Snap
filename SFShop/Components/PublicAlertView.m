@@ -175,7 +175,7 @@
             make.centerX.equalTo(_bgView);
             make.height.mas_equalTo(46);
             make.top.mas_equalTo(_contentLabel.mas_bottom).offset(24);
-            make.bottom.mas_equalTo(_bgView.mas_bottom).offset(-10);
+            make.bottom.mas_equalTo(_bgView.mas_bottom).offset(-20);
         }];
         [[_btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             block1();

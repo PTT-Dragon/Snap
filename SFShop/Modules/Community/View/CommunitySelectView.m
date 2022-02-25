@@ -59,6 +59,18 @@
         make.left.right.bottom.mas_equalTo(self);
     }];
 }
+- (void)calculateTableViewHei
+{
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(self);
+        make.height.mas_equalTo((self.titleModel.recCatgs.count+self.titleModel.collectCatgs.count+self.titleModel.unCollectCatgs.count) * 50 + (self.titleModel.unCollectCatgs.count == 0 ? 40: 80));
+    }];
+}
+- (void)setTitleModel:(ArticleTitleModel *)titleModel
+{
+    _titleModel = titleModel;
+    [self calculateTableViewHei];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.titleModel.unCollectCatgs.count == 0 ? 1: 2;
@@ -124,6 +136,7 @@
             self.block(self.titleModel);
         }
     }
+    [self calculateTableViewHei];
     [self.tableView reloadData];
 }
 

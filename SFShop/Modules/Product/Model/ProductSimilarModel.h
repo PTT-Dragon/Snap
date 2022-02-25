@@ -28,7 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) float  evaluationAvg;
 //评分次数
 @property(nonatomic, copy) NSString <Optional> * evaluationCnt;
-
+@property(nonatomic, copy) NSString <Optional> * promotType;
+@property (nonatomic, readwrite, strong) NSArray *allTags;
 @property(nonatomic, assign) NSInteger offerId;
 
 @property(nonatomic, assign) NSInteger productId;

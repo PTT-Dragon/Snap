@@ -38,12 +38,17 @@
 - (void)getCode
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    if (_account) {
+    if (_type == ChangeEmail_Code) {
+        [params setValue:@"true" forKey:@"isEmail"];
+        [params setValue:@"" forKey:@"account"];
+    }else if (_type == SignUp_Code){
+        [params setValue:_account forKey:@"account"];
+    }else if (_account) {
         [params setValue:_account forKey:@"account"];
     }else{
         [params setValue:@"false" forKey:@"isEmail"];
     }
-    if (_password) {
+    if (_password && _type != SignUp_Code) {
         //需加入密码验证.
         [params setValue:login_aes_128_cbc_encrypt(_password) forKey:@"pwd"];
     }
@@ -99,7 +104,16 @@
 {
     //验证验证码
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.account.codeCheck parameters:@{@"account":_account,@"userType":@"Terminal",@"code":_codeView.code} success:^(id  _Nullable response) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (_type == ChangeEmail_Code) {
+        [params setValue:@"true" forKey:@"isEmail"];
+        [params setValue:_codeView.code forKey:@"code"];
+    }else{
+        [params setValue:_codeView.code forKey:@"code"];
+        [params setValue:@"Terminal" forKey:@"userType"];
+        [params setValue:_account forKey:@"account"];
+    }
+    [SFNetworkManager post:SFNet.account.codeCheck parameters:params success:^(id  _Nullable response) {
         if (weakself.type == LoginType_Code) {
             [weakself login];
         }else if (weakself.type == CashOut_Code){
@@ -144,7 +158,7 @@
     //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.userInfo parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_password),@"code":_codeView.code,@"captcha":@""} success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:@"Sign Up Success!"];
+//        [MBProgressHUD autoDismissShowHudMsg:@"Sign Up Success!"];
         [weakself toLogin];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];

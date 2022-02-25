@@ -6,6 +6,7 @@
 //
 
 #import "InviteCell.h"
+#import "NSDate+Helper.h"
 
 @interface InviteCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -26,7 +27,7 @@
 {
     [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.url)] placeholderImage:[UIImage imageNamed:@"Unknown"]];
     _nameLabel.text = model.beInvdUserName;
-    _timeLabel.text = model.regTime;
+    _timeLabel.text = [[NSDate dateFromString:model.regTime] dayMonthYear];
     _couponLabel.text = @"";
     _label.text = model.gift.firstObject;
 }

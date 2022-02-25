@@ -25,7 +25,9 @@
                 <outlet property="button" destination="p5c-a7-dpg" id="GCn-qn-bRD"/>
                 <outlet property="imgView1" destination="2Q3-lD-bn6" id="GIg-N2-PKX"/>
                 <outlet property="imgView2" destination="rry-Vc-Uuc" id="fzJ-z2-MRf"/>
+                <outlet property="maskView" destination="c0i-08-3yJ" id="2XI-8a-H3E"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewWidth" destination="oSg-YI-8rz" id="yeK-Sj-hQc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -144,6 +146,10 @@
                         <constraint firstItem="c6t-Iu-oe2" firstAttribute="top" secondItem="2Q3-lD-bn6" secondAttribute="bottom" constant="17" id="ziC-Ie-Uwf"/>
                     </constraints>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0i-08-3yJ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -155,17 +161,21 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="QzX-I5-UMl" secondAttribute="trailing" id="Od8-AC-S46"/>
                 <constraint firstItem="rry-Vc-Uuc" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="PQ2-w2-ulv"/>
                 <constraint firstItem="RYs-Hw-6jH" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="aDz-Z8-bG5"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="c0i-08-3yJ" secondAttribute="trailing" id="bEq-iZ-qK6"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="top" secondItem="c0i-08-3yJ" secondAttribute="top" constant="44" id="ipJ-oU-GPB"/>
                 <constraint firstItem="RYs-Hw-6jH" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="120" id="jpR-2j-pRS"/>
                 <constraint firstItem="QzX-I5-UMl" firstAttribute="top" secondItem="RYs-Hw-6jH" secondAttribute="bottom" id="kap-bn-Wwf"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="RYs-Hw-6jH" secondAttribute="trailing" id="n5o-Fb-xvf"/>
+                <constraint firstItem="RYs-Hw-6jH" firstAttribute="top" secondItem="c0i-08-3yJ" secondAttribute="bottom" id="qMy-DM-RyZ"/>
                 <constraint firstItem="04P-CP-u8y" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="sy7-Cy-WVv"/>
                 <constraint firstItem="p5c-a7-dpg" firstAttribute="top" secondItem="RYs-Hw-6jH" secondAttribute="bottom" constant="16" id="ucV-QL-cg4"/>
+                <constraint firstItem="c0i-08-3yJ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="wKA-Xw-vsh"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="p5c-a7-dpg" secondAttribute="trailing" constant="16" id="wcG-Bu-Gsj"/>
                 <constraint firstItem="p5c-a7-dpg" firstAttribute="top" secondItem="04P-CP-u8y" secondAttribute="bottom" constant="15" id="wte-9F-e3A"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="p5c-a7-dpg" secondAttribute="bottom" constant="16" id="x6O-yX-kj8"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="94" y="72"/>
+            <point key="canvasLocation" x="93.478260869565219" y="71.651785714285708"/>
         </view>
     </objects>
     <resources>

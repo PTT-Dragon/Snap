@@ -176,7 +176,7 @@ static BOOL _passwordSuccess2 = NO;
         self.topMargin.constant = 10;
         if (model.userRes.email && ![model.userRes.email isEqualToString:@""]) {
             _field.placeholder = model.userRes.email;
-            [self.btn setTitle:kLocalizedString(@"EDIT") forState:UIControlStateNormal];
+            [self.btn setTitle:kLocalizedString(@"CHANGE") forState:UIControlStateNormal];
             _field.userInteractionEnabled = NO;
             _btn.userInteractionEnabled = YES;
             self.btn.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -189,8 +189,8 @@ static BOOL _passwordSuccess2 = NO;
     
 - (IBAction)submitAction:(UIButton *)sender {
     verifyCodeVC *vc = [[verifyCodeVC alloc] init];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (_type == 1) {
-        UserModel *model = [FMDBManager sharedInstance].currentUser;
         if (!model.userRes.mobilePhone || [model.userRes.mobilePhone isEqualToString:@""]) {
             
         }else{
@@ -199,8 +199,12 @@ static BOOL _passwordSuccess2 = NO;
         vc.type = ChangeMobileNumber_Code;
         vc.account = _field2.text;
     }else{
+        if (model.userRes.email && ![model.userRes.email isEqualToString:@""]) {
+            vc.account = model.userRes.email;
+        }else{
+            vc.account = _field.text;
+        }
         vc.type = ChangeEmail_Code;
-        vc.account = _field.text;
     }
     [self.navigationController pushViewController:vc animated:YES];
 }

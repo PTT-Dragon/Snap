@@ -256,6 +256,7 @@ static BOOL changePhone = NO;
 - (void)agreementAction
 {
     PolicesDetailViewController *vc = [[PolicesDetailViewController alloc] init];
+    vc.title = kLocalizedString(@"SF_AGREEMENT");
     vc.type = @"D";
     [self.navigationController pushViewController:vc animated:YES];
 }
