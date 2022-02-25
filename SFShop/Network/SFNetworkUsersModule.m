@@ -299,7 +299,13 @@
     return K_order_domain(@"logistics");
 }
 - (NSString *)logisticsDetailWithId:(NSString *)logiticsId shippingNbr:(NSString *)nbr deliveryId:(NSString *)deliveryId{
-    NSString *url = [NSString stringWithFormat:@"%@logisticsId=%@&shippingNbr=%@&deliveryOrderId=%@",K_order_domain(@"logisticsDetail?"),logiticsId,nbr,deliveryId];
+    NSString *url;
+    if (![logiticsId isEqualToString:@""] && ![nbr isEqualToString:@""] && ![deliveryId isEqualToString:@""] && logiticsId && nbr && deliveryId) {
+        url = [NSString stringWithFormat:@"%@logisticsId=%@&shippingNbr=%@&deliveryOrderId=%@",K_order_domain(@"logisticsDetail?"),logiticsId,nbr,deliveryId];
+    }else if(![deliveryId isEqualToString:@""] && deliveryId){
+        url = [NSString stringWithFormat:@"%@deliveryOrderId=%@",K_order_domain(@"logisticsDetail?"),deliveryId];
+    }
+//    NSString *url = [NSString stringWithFormat:@"%@deliveryOrderId=%@",K_order_domain(@"logisticsDetail?"),deliveryId];//[NSString stringWithFormat:@"%@logisticsId=%@&shippingNbr=%@&deliveryOrderId=%@",K_order_domain(@"logisticsDetail?"),logiticsId,nbr,deliveryId];
     return url;
 }
 

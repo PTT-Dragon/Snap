@@ -10,6 +10,7 @@
 #import "MGCShareManager.h"
 #import "UIView+YYAdd.h"
 #import "UIViewController+parentViewController.h"
+#import "UIWindow+FFWindow.h"
 
 @interface MGCShareView () <UICollectionViewDelegate,UICollectionViewDataSource>
 //分享按钮
@@ -65,7 +66,7 @@
     if (completed) {
         completed(YES);
     }
-    [shareView showWithView:[UIViewController currentTopViewController].view];
+    [shareView showWithView:[UIWindow ffGetKeyWindow]];
     return shareView;
 }
 

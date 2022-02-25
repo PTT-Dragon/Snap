@@ -170,7 +170,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == 0 ? 146: indexPath.section == 2 ? 156: indexPath.section == 1 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: (indexPath.section == 3 && indexPath.row>self.model.orderItems.count) ? 30: indexPath.section == 3 ? [self.model.state isEqualToString:@"D"] ? 170: 154:  30;
+    return indexPath.section == 0 ? 138: indexPath.section == 2 ? 156: indexPath.section == 1 ? 170: (indexPath.section == 3 && indexPath.row == 0) ? 40: (indexPath.section == 3 && indexPath.row>self.model.orderItems.count) ? 30: indexPath.section == 3 ? [self.model.state isEqualToString:@"D"] ? 170: 154:  30;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -255,7 +255,7 @@
         [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
             make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
-            make.height.mas_equalTo(46);
+            make.height.mas_equalTo(38);
             make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
         }];
     }else if([self.model.state isEqualToString:@"B"]){
@@ -264,7 +264,7 @@
             [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
                 make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
-                make.height.mas_equalTo(46);
+                make.height.mas_equalTo(38);
                 make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
             }];
         }else{
@@ -272,13 +272,13 @@
             [self.btn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
                 make.width.mas_equalTo((MainScreen_width-52)/2);
-                make.height.mas_equalTo(46);
+                make.height.mas_equalTo(38);
                 make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
             }];
             [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(self.btn2.mas_right).offset(10);
                 make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
-                make.height.mas_equalTo(46);
+                make.height.mas_equalTo(38);
                 make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
             }];
         }
@@ -287,6 +287,18 @@
     }else if ([self.model.state isEqualToString:@"A"]){
         [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"PAYNOW")] forState:0];
         [self.btn2 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"CANCEL")] forState:0];
+        [self.btn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.bottomView.mas_left).offset(16);
+            make.width.mas_equalTo((MainScreen_width-52)/2);
+            make.height.mas_equalTo(38);
+            make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
+        }];
+        [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.btn2.mas_right).offset(10);
+            make.right.mas_equalTo(self.bottomView.mas_right).offset(-16);
+            make.height.mas_equalTo(38);
+            make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
+        }];
     }else if ([self.model.state isEqualToString:@"D"]){
         [self.btn1 setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"RECEIPT")] forState:0];
         if ([_model.canEvaluate isEqualToString:@"Y"]) {

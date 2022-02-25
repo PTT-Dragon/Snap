@@ -293,6 +293,7 @@
 		1BBB688727B660EB00A8B83D /* LogisticsMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB688527B660EB00A8B83D /* LogisticsMoreCell.m */; };
 		1BBB688827B660EB00A8B83D /* LogisticsMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB688627B660EB00A8B83D /* LogisticsMoreCell.xib */; };
 		1BBCA963279A674800F4A4FF /* accountInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBCA962279A674800F4A4FF /* accountInfoCell.xib */; };
+		1BBD8BD127C8C3F60042E8E7 /* UIWindow+FFWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD8BD027C8C3F60042E8E7 /* UIWindow+FFWindow.m */; };
 		1BC7A2BB272AF1E400755832 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2B9272AF1E400755832 /* FAQViewController.m */; };
 		1BC7A2BC272AF1E400755832 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BA272AF1E400755832 /* FAQViewController.xib */; };
 		1BC7A2BF272AF27C00755832 /* FAQChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC7A2BE272AF27C00755832 /* FAQChildViewController.m */; };
@@ -1101,6 +1102,8 @@
 		1BBB688627B660EB00A8B83D /* LogisticsMoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogisticsMoreCell.xib; sourceTree = "<group>"; };
 		1BBCA961279A66F000F4A4FF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/accountOrderCell.xib; sourceTree = "<group>"; };
 		1BBCA962279A674800F4A4FF /* accountInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = accountInfoCell.xib; sourceTree = "<group>"; };
+		1BBD8BCF27C8C3F60042E8E7 /* UIWindow+FFWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+FFWindow.h"; sourceTree = "<group>"; };
+		1BBD8BD027C8C3F60042E8E7 /* UIWindow+FFWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+FFWindow.m"; sourceTree = "<group>"; };
 		1BC7A2B8272AF1E400755832 /* FAQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
 		1BC7A2B9272AF1E400755832 /* FAQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
 		1BC7A2BA272AF1E400755832 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
@@ -3507,6 +3510,8 @@
 				AED00BFE27A27D3300DA954B /* NSObject+Runtime.m */,
 				1B8483BD27B00D0E0078B9A4 /* NSDictionary+add.h */,
 				1B8483BE27B00D0E0078B9A4 /* NSDictionary+add.m */,
+				1BBD8BCF27C8C3F60042E8E7 /* UIWindow+FFWindow.h */,
+				1BBD8BD027C8C3F60042E8E7 /* UIWindow+FFWindow.m */,
 			);
 			path = Prompt;
 			sourceTree = "<group>";
@@ -4242,6 +4247,7 @@
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
 				1B53A2B527785D2700FB00C7 /* CartChooseCouponView.m in Sources */,
 				1B6C52A2275B672200A1C617 /* ZLCollectionCell.m in Sources */,
+				1BBD8BD127C8C3F60042E8E7 /* UIWindow+FFWindow.m in Sources */,
 				1B49D14A271EAA05002461ED /* addressModel.m in Sources */,
 				1B593E5E2799437100D8CDF3 /* NSDate+Helper.m in Sources */,
 				1B6246612761FCAE00009DE2 /* ProductReviewChildViewController.m in Sources */,

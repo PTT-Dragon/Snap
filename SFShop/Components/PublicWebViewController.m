@@ -38,7 +38,15 @@
     }
 //    NSString *aa = self.webView.title;
 //    if (self.webView.title == nil || [self.webView.title isEqualToString:@""]) {
+    if (self.isHome) {
+        if ([self.url isEqualToString:self.webView.URL.absoluteString]) {
             [self.webView reload];
+        }else{
+            [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+        }
+    }else{
+        [self.webView reload];
+    }
 //        }
 }
 - (void)viewDidLoad {
@@ -46,8 +54,12 @@
     // Do any additional setup after loading the view.
     [self addNoTi];
     [self initWebview];
+    
 }
-
+- (void)removeHud
+{
+    [MBProgressHUD hideFromKeyWindow];
+}
 - (void)setUrl:(NSString *)url {
     _url = url;
     if ([url containsString:@"/chat/"]) {
@@ -303,19 +315,23 @@
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
 //    [webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#131313\"" completionHandler:nil];
 //    [SVProgressHUD showInfoWithStatus:@"正在加载中"];
+    [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
+    [self performSelector:@selector(removeHud) withObject:nil afterDelay:2];
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
-    
+    [MBProgressHUD hideFromKeyWindow];
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    [MBProgressHUD hideFromKeyWindow];
     [self setlocalWeb];
 }
 
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
+    [MBProgressHUD hideFromKeyWindow];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
