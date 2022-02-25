@@ -13,6 +13,7 @@
 #import "GroupTopImgCell.h"
 #import <MJRefresh/MJRefresh.h>
 #import "CategoryRankFilterViewController.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 
 
@@ -22,6 +23,10 @@
 @property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic, readwrite, assign) CategoryRankType currentType;
 @property (nonatomic,strong) UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *titleImgView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *shareBtn;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
 @end
 
@@ -58,6 +63,15 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(0);
     }];
+    self.backBtn.layer.zPosition = 1;
+    self.shareBtn.layer.zPosition = 1;
+    self.titleLabel.layer.zPosition = 1;
+    self.titleImgView.layer.zPosition = 1;
+    [self.backBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    [self.shareBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    [self.view bringSubviewToFront:self.backBtn];
+    [self.view bringSubviewToFront:self.shareBtn];
+    self.titleLabel.text = @"Group buy";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -165,6 +179,13 @@
         }
     };
     [self presentViewController:filterVc animated:YES completion:nil];
+}
+- (IBAction)backAction:(UIButton *)sender {
+    [[baseTool getCurrentVC].navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)shareAction:(UIButton *)sender {
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/product/GroupBuy",Host];
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }
 
 

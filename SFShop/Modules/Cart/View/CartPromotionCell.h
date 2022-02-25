@@ -16,6 +16,8 @@ typedef void(^CartPromotionCellBlock)(NSInteger row);
 @property (nonatomic,copy) CartPromotionCellBlock block;
 @property (nonatomic,strong) CampaignsModel *model;
 @property (nonatomic,assign) NSInteger row;
+@property (weak, nonatomic) IBOutlet UIButton *selBtn;
+- (IBAction)selAction:(UIButton *)sender;
 @end
 
 NS_ASSUME_NONNULL_END
