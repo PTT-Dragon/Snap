@@ -293,6 +293,10 @@
         vc.offerId = offerId.integerValue;
         vc.productId = productId.integerValue;
         [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"SHARE"]){
+        NSURL *url = self.webView.URL;
+        NSString *shareUrl = url.absoluteString;
+        [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
     }
 }
 // 页面开始加载时调用
