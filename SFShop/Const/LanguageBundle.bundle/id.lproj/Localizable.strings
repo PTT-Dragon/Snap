@@ -451,7 +451,7 @@
 //  "TOSHIP" = "Dikirim";
   "TORECEIVE" = "Diterima";
   "DELIVERY_ADDRESS" = "Alamat pengiriman";
-//  "DELIVERY_INFORMATION" = "informasi pengiriman";
+  "DELIVERY_INFORMATION" = "Alamat pengiriman";
 //  "ORDER_RECEIPT" = "Resi pesanan";
   "PACKAGE" = "Paket";
   "ADD_PACKAGE" = "Tambahkan Paket";

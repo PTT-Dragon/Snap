@@ -103,7 +103,7 @@
     PackageListModel *model = self.logisticesModel.packageDetailList[indexPath.row];
     LogisticsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LogisticsCell"];
     cell.label.text = [NSString stringWithFormat:@"%@%ld",kLocalizedString(@"PACKAGE"),indexPath.row+1];
-    [cell.btn setTitle:[NSString stringWithFormat:@"%@ %@",model.subPkgLogisticsNbr,model.subPkgLogisticsName] forState:0];
+    [cell.btn setTitle:[NSString stringWithFormat:@"%@ %@",model.subPkgLogisticsNbr?model.subPkgLogisticsNbr:@"",model.subPkgLogisticsName] forState:0];
     [cell layoutIfNeeded];
     [cell layoutSubviews];
     [cell.btn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];

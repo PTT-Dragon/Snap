@@ -20,13 +20,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    _titleLabel.text = kLocalizedString(@"ORDER_INFORMATION");
+    _titleLabel.text = kLocalizedString(@"DELIVERY_INFORMATION");
 }
 - (void)setContent:(OrderDetailModel *)model
 {
     DeliveryInfoModel *infoModel = model.deliverys.firstObject;
-    _contentLabel.text = [NSString stringWithFormat:@"    %@%@",kLocalizedString(@"PACKAGE_CODE"),infoModel.shippingNbr];
-    NSString *state = [model.deliveryState isEqualToString:@"C"] ? @"WAREHOUSE_HAS_BEEN_DELIVERED": @"";
+    _contentLabel.text = [NSString stringWithFormat:@"    %@%@",kLocalizedString(@"PACKAGE_CODE"),infoModel.shippingNbr?infoModel.shippingNbr:@""];
+    NSString *state = ([model.deliveryState isEqualToString:@"C"] || [model.deliveryState isEqualToString:@"A"]) ? @"WAREHOUSE_HAS_BEEN_DELIVERED": @"";
     self.logisticsName.text = infoModel.logisticsName;
     
     _infoLabel.text = [NSString stringWithFormat:@"%@\n%@",kLocalizedString(state),infoModel.deliveryDate];

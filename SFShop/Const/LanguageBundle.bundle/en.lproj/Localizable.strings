@@ -446,7 +446,7 @@
 //  "TOSHIP" = "To Ship";
   "TORECEIVE" = "To Receive";
   "DELIVERY_ADDRESS" = "Delivery Address";
-//  "DELIVERY_INFORMATION" = "Delivery Information";
+  "DELIVERY_INFORMATION" = "Delivery Information";
 //  "ORDER_RECEIPT" = "Order Receipt";
   "PACKAGE" = "Package";
   "ADD_PACKAGE" = "Add Package";

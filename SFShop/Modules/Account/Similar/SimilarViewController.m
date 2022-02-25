@@ -61,7 +61,7 @@
     _label.font = kFontRegular(16);
     _label.backgroundColor = [UIColor whiteColor];
     _label.hidden = YES;
-    _label.text = [NSString stringWithFormat:@"   %@",kLocalizedString(@"SIMILAR_PRODUCT_RECOMMENDATION")];
+    _label.text = [NSString stringWithFormat:@"    %@",kLocalizedString(@"SIMILAR_PRODUCT_RECOMMENDATION")];
     [self.view addSubview:_label];
     [_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
