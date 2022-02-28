@@ -44,6 +44,8 @@
     if (UserDefaultObjectForKey(@"Language")) {
         MJRefreshConfig.defaultConfig.languageCode = UserDefaultObjectForKey(@"Language");
     }
+    //设置第一次打开app
+    UserDefaultSetBOOLForKey(YES, @"FirstOpenApp");
     
     return YES;
 }

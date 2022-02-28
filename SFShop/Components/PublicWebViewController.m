@@ -94,6 +94,7 @@
         }
     }];
     if ([_url containsString:@"/chat/"]) {
+        [self setlocalWeb];
         [self performSelector:@selector(reload) withObject:nil afterDelay:1];
     }
 }
@@ -151,6 +152,13 @@
     NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? 1 : 0];
     if ([self.webView.URL.absoluteString containsString:@"/chat/"]) {
         isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
+        if (_productDic) {
+            NSError *parseError = nil;
+                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:NSJSONWritingPrettyPrinted error:&parseError];
+                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", _productDic];
+            [self.webView evaluateJavaScript:product completionHandler:nil];
+        }
     }
     [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];

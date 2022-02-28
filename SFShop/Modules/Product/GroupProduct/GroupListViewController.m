@@ -71,6 +71,22 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
     }];
     
     [self.tableView.mj_header beginRefreshing];
+    [self showTipView];
+}
+- (void)showTipView
+{
+    BOOL first = UserDefaultBOOLForKey(@"FirstOpenApp");
+    if (first) {
+        UserDefaultSetBOOLForKey(NO, @"FirstOpenApp")
+        [self performSelector:@selector(aaa) withObject:nil afterDelay:0.5];
+    }
+}
+- (void)aaa
+{
+    GroupBuyTipViewController *vc = [[GroupBuyTipViewController alloc] init];
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+    vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
 }
 - (void)layout {
     [self.popularityBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -284,10 +300,9 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
 }
 - (IBAction)tipAction:(UIButton *)sender {
     GroupBuyTipViewController *vc = [[GroupBuyTipViewController alloc] init];
-    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    [[baseTool getCurrentVC] presentViewController:vc animated:YES completion:^{
-        
-    }];
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+    vc.view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
 }
 
 

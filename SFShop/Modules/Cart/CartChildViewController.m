@@ -545,7 +545,7 @@
 - (void)promotionWithModel:(CartItemModel *)model CartCampaignsModel:(CartCampaignsModel *)campaignsModel
 {
     CartChoosePromotion *view = [[NSBundle mainBundle] loadNibNamed:@"CartChoosePromotion" owner:self options:nil].firstObject;
-    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height-tabbarHei);
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height-((_isTab ? tabbarHei:0)));
     view.model = model;
     view.block = ^(CartItemModel * _Nonnull itemModel) {
         [self modifyCartInfoWithDic:[itemModel toDictionary]];

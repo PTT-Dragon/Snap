@@ -398,7 +398,7 @@
   "Today" = "Today";
 //  "POLICIES" = "Policies";
   "TERMS_CON" = "Terms Conditions & Privacy Policy";
-  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "People joined the group; click to join";
+  "PEOPLE_SHARE_BUY_CLICK_TO_JOIN" = "People joined the group, click to join";
 //  "GROUPING_HAS_FINISHED_PLEASE_JOIN_OTHER_GROUPS" = "Grouping has ended. Please join other groups";
   "STOCK" = "stock";
 //  "WHATS_APP" = "WhatsApp";
@@ -490,7 +490,7 @@
 //  "FAQ" = "FAQ";
 //  "JOIN_BUY" = "Join Buy";
 //  "HELP_CENTER" = "Help Center";
-  "FAQ_NO_DATA_TITLE" = "Sorry; we were unable to find results for";
+  "FAQ_NO_DATA_TITLE" = "Sorry, we were unable to find results for";
 "FAQ_QUESTION" = "";
   "FAQ_NO_DATA_CONTENT" = "Please check the spelling use more general words and try again";
 //  "METHOD_OF_RECEIVING_GOODS" = "Method of Receiving product(s)";
@@ -507,9 +507,9 @@
 //  "AGENT_SERVICE" = "Agent Service";
 //  "ITEM" = "Item"
 "Empty_Tip_NoPage" = "Oops! Page does not found.";
-"Empty_Tip_NoNetWork" = "Internet error; please try later.";
+"Empty_Tip_NoNetWork" = "Internet error, please try later.";
 "Empty_Tip_NoShoppingCar" = "There are no items in this cart.";
-"Empty_Tip_NoProduct" = "Sorry; no related products were found.";
+"Empty_Tip_NoProduct" = "Sorry, no related products were found.";
 "Empty_Tip_NoDiscount" = "You haven’t earned any coupons.";
 "Empty_Tip_NoOrder" = "No Orders.";
 "Empty_Tip_Nofavorite" = "No favorite products currently selected.";

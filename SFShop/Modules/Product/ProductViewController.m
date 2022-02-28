@@ -785,7 +785,7 @@
     }];
     [arr enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *label = [[UILabel alloc] init];
-        label.text = [NSString stringWithFormat:@" %@ ",obj.couponName];
+        label.text = [NSString stringWithFormat:@"  %@   ",obj.couponName];
         label.font = kFontBlod(10);
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = RGBColorFrom16(0xFF1659);
@@ -1207,6 +1207,13 @@
 - (IBAction)messageAction:(UIButton *)sender {
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
     vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:@(self.selProductModel.salesPrice) forKey:@"salesPrice"];
+    [dic setValue:@(self.selProductModel.marketPrice) forKey:@"marketPrice"];
+    [dic setValue:@"100" forKey:@"cardType"];
+    [dic setValue:[self.selProductModel toDictionary] forKey:@"productDetail"];
+    [dic setValue:[self.model toDictionary] forKey:@"offerDetail"];
+    vc.productDic = dic;
     vc.sysAccount = _model.uccAccount;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.navigationController pushViewController:vc animated:YES];

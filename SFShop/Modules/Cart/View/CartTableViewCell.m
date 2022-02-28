@@ -132,6 +132,7 @@
 - (void)updateBtnState
 {
     if (_isInvalid || _model.stock == 0 || [_model.noStock isEqualToString:@"Y"]) {
+        _selBtn.selected = NO;
         _selBtn.enabled = NO;
         _noStockLabel.hidden = NO;
         _countLabel.hidden = YES;

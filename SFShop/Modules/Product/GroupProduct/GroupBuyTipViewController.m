@@ -32,14 +32,12 @@
 }
 - (void)removeSelf
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-            
-    }];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 - (IBAction)btnAction:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-            
-    }];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 

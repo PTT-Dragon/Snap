@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 
@@ -32,7 +33,21 @@
     self.titleLabel.text = kLocalizedString(@"CHANGE_PROMOTION");
     [self.confirmBtn setTitle:kLocalizedString(@"CONFIRM") forState:0];
     [_closeBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeSelf)];
+    [self addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nothing)];
+    [self.bgView addGestureRecognizer:tap2];
 }
+- (void)removeSelf
+{
+    [self removeFromSuperview];
+}
+- (void)nothing
+{
+    
+}
+
 - (void)setModel:(CartItemModel *)model
 {
     _model = model;
