@@ -27,7 +27,7 @@
     _model = model;
     _phoneLabel.text = model.contactNbr;
     _nameLabel.text = model.contactName;
-    _contentLabel.text = [NSString stringWithFormat:@"%@%@%@%@%@",model.province,model.city,model.district,model.street,model.contactAddress];
+    _contentLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@ %@",model.province,model.city,model.district,model.street,model.contactAddress];
     _selBtn.selected = model.sel;
 }
 - (IBAction)selAction:(UIButton *)sender {

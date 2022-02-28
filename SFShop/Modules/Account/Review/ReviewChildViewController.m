@@ -94,10 +94,10 @@
                             [itemArr addObject:itemModel];
                         }
                     }else{
-//                        if ([itemDic[@"canReview"] isEqualToString:@"N"]) {
+                        if ([itemDic[@"canEvaluate"] isEqualToString:@"N"]) {
                             orderItemsModel *itemModel = [[orderItemsModel alloc] initWithDictionary:itemDic error:nil];
                             [itemArr addObject:itemModel];
-//                        }
+                        }
                     }
                 }
                 OrderModel *orderModel = [[OrderModel alloc] initWithDictionary:dic error:nil];
