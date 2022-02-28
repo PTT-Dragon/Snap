@@ -522,7 +522,7 @@
 "Empty_Tip_NoOrder" = "Tidak ada pesanan";
 "Empty_Tip_No favorite" = "Tidak ada produk favorit yang dipilih saat ini.";
 "Empty_Tip_NoReview" = "Anda belum melihat barang apapun dalam 30 hari terakhir.";
-"Empty_Tip_NoAddress" = "Sepertinya Anda belum menyimpan alamat apapun lagi!";
+"Empty_Tip_NoAddress" = "Sepertinya Anda belum menyimpan alamat apapun!";
 "Empty_Tip_NoPurchase" = "Anda tidak memiliki pembelian untuk di review";
 "Empty_Tip_NoMessage" = "Anda tidak memiliki pesan apapun.";
 "Empty_Tip_NoEvent" = "Peristiwa akan segera dimulai; silakan kembali nanti.";

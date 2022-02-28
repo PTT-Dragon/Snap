@@ -201,7 +201,7 @@
                 CouponsViewController *vc = [[CouponsViewController alloc] init];
                 NSMutableArray *availableCoupons = self.dataModel.couponsModel.storeAvailableCoupons.firstObject.availableCoupons.mutableCopy;
                 if (!availableCoupons.count) {
-                    [MBProgressHUD showTopErrotMessage:@"None Coupons"];
+//                    [MBProgressHUD showTopErrotMessage:@"None Coupons"];
                     return;
                 }
 //                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext|UIModalPresentationFullScreen;
