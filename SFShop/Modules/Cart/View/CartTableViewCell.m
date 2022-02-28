@@ -67,7 +67,7 @@
     self.subtractBtn.mm_acceptEventInterval = 0.5;
     self.additonBtn.mm_acceptEventInterval = 0.5;
     self.selBtn.mm_acceptEventInterval = 0.5;
-    [self updateBtnState];
+//    [self updateBtnState];
     UITapGestureRecognizer *productTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toProduct)];
     [self.contentView addGestureRecognizer:productTap];
 }

@@ -238,7 +238,7 @@
 //  "PLATFORM_VOUCHER" = "SF.shop Voucher";
 //  "PLACE_ORDER" = "Place Order";
   "RECIPIENT_NAME" = "Recipient Name";
-  "PROVINCE_CITY_DISTRICT" = "Province; City; District";
+  "PROVINCE_CITY_DISTRICT" = "Province, City, District";
   "MODIFY_ADDRESS" = "Modify Address";
   "DEFAULT" = "Default";
   "REFUND_BANK_ACCOUNT" = "REFUND BANK ACCOUNT";
