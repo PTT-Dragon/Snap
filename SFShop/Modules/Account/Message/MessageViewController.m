@@ -140,6 +140,7 @@
     [self readChatMessage];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+    vc.model = self.model;
     vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
     vc.sysAccount = model.account;
     MPWeakSelf(self)

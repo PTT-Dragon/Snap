@@ -230,6 +230,9 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
         if ([self.tableView.mj_footer isRefreshing]) {
             [self.tableView.mj_footer endRefreshing];
         }
+        if ([response[@"pageInfo"][@"isLastPage"] integerValue] == 1) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
         [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
 //        [self refreshNoItemsStatus];
         [self.tableView reloadData];

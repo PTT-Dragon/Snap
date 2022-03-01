@@ -75,6 +75,8 @@
 /** 是否为iOS11 */
 #define iOS11 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0) ? YES : NO)
 
+#define iOS15 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 15.0) ? YES : NO)
+
 #pragma mark -
 #pragma mark -屏幕宽高、视图坐标点宽高、设备大小比例、语言、字体、颜色、-------
 

@@ -79,6 +79,11 @@
             tip = kLocalizedString(@"Empty_Tip_NoPrize");
             break;
         }
+        case EmptyViewNoCouponType: {
+            imageName = @"ic_empty_discount";
+            tip = kLocalizedString(@"Empty_Tip_NoCoupon");
+            break;
+        }
         default:
             break;
     }

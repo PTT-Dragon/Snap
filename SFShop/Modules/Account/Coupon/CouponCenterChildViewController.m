@@ -9,11 +9,13 @@
 #import "CouponCenterCell.h"
 #import "CouponModel.h"
 #import <MJRefresh/MJRefresh.h>
+#import "EmptyView.h"
 
 @interface CouponCenterChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger page;
+@property (nonatomic,strong) EmptyView *emptyView;
 
 @end
 
@@ -36,6 +38,11 @@
     self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         [self loadMoreDatas];
     }];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
 }
 - (void)loadDatas
 {
@@ -55,8 +62,9 @@
         }else{
             [weakself.tableView.mj_footer endRefreshing];
         }
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself showEmptyView];
     }];
 }
 - (void)loadMoreDatas
@@ -68,10 +76,18 @@
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
         }
+        [weakself showEmptyView];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        
+        [weakself showEmptyView];
     }];
+}
+- (void)showEmptyView {
+    if (self.dataSource.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -111,5 +127,13 @@
         _tableView.estimatedRowHeight = 44;
     }
     return _tableView;
+}
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoCouponType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
 }
 @end

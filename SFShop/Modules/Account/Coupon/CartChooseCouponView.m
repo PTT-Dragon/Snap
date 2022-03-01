@@ -30,6 +30,11 @@
     [_btn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeSelf)];
     [_topView addGestureRecognizer:tap];
+    if (@available(iOS 15.0, *)) {
+        _tableView.sectionHeaderTopPadding = 0;
+    } else {
+        // Fallback on earlier versions
+    }
 }
 - (void)removeSelf
 {

@@ -10,11 +10,13 @@
 #import "MyCouponStoreCell.h"
 #import "CouponModel.h"
 #import "EmptyView.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface MyCouponChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) EmptyView *emptyView;
+@property (nonatomic,assign) NSInteger page;
 
 @end
 
@@ -23,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _page = 1;
     _dataSource = [NSMutableArray array];
     self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
     [self.view addSubview:self.tableView];
@@ -39,20 +42,49 @@
         make.left.right.bottom.mas_equalTo(self.view);
     }];
     [self loadDatas];
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        [self loadMoreDatas];
+    }];
 }
 - (void)loadDatas
 {
+    _page = 1;
     MPWeakSelf(self)
     NSString *state = _type == CouponType_Available ? @"A": _type == CouponType_Expired ? @"C": @"B";
-    [SFNetworkManager get:SFNet.coupon.usercoupons parameters:@{@"couponState":state} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.coupon.usercoupons parameters:@{@"pageIndex":@(self.page),@"pageSize":@(15),@"couponState":state} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
         for (NSDictionary *dic in arr) {
             [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
+        }
+        if ([response[@"isLastPage"] integerValue] == 1) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         [weakself.tableView reloadData];
         [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself showEmptyView];
+    }];
+}
+- (void)loadMoreDatas
+{
+    _page++;
+    MPWeakSelf(self)
+    NSString *state = _type == CouponType_Available ? @"A": _type == CouponType_Expired ? @"C": @"B";
+    [SFNetworkManager get:SFNet.coupon.usercoupons parameters:@{@"pageIndex":@(self.page),@"pageSize":@(15),@"couponState":state} success:^(id  _Nullable response) {
+        NSArray *arr = response[@"list"];
+        for (NSDictionary *dic in arr) {
+            [weakself.dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
+        }
+        if ([response[@"isLastPage"] integerValue] == 1) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
+        }
+        [weakself.tableView reloadData];
+        [weakself showEmptyView];
+    } failed:^(NSError * _Nonnull error) {
+        [weakself showEmptyView];
+        [weakself.tableView.mj_footer endRefreshing];
     }];
 }
 

@@ -796,6 +796,7 @@
             make.left.mas_equalTo(self.couponsView.mas_left).offset(100+lastRight);
             make.centerY.equalTo(self.couponsView);
             make.width.mas_equalTo(width);
+            make.height.mas_equalTo(16);
         }];
         lastRight += width+5;
     }];

@@ -31,7 +31,7 @@
 @implementation PublicWebViewController
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (_isHome) {
+    if (_isHome || [self.url containsString:@"/chat/"] || self.isCategory) {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }else{
         [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -49,10 +49,23 @@
     }
 //        }
 }
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    if (_isChat) {
+        MessageUnreadModel *model = self.model.unreadMessages.firstObject;
+        [SFNetworkManager post:[SFNet.account readChatMessage:model.flowNo] parameters:@{} success:^(id  _Nullable response) {
+            
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addNoTi];
+    self.isChat = [self.url containsString:@"/chat/"];
     [self initWebview];
     
 }
@@ -69,9 +82,10 @@
 
 - (void)initWebview
 {
+    self.view.backgroundColor = [UIColor whiteColor];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     self.configuration = configuration;
-    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, _isHome ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei-3): navBarHei)) configuration:_configuration];
+    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, (_isHome || _isChat || _isCategory) ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei-3): navBarHei)) configuration:_configuration];
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
@@ -317,6 +331,12 @@
         NSURL *url = self.webView.URL;
         NSString *shareUrl = url.absoluteString;
         [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
+    }else if ([func[@"type"] isEqualToString:@"BACK"]){
+        if (_isHome) {
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/main/home",Host]]]];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 // 页面开始加载时调用

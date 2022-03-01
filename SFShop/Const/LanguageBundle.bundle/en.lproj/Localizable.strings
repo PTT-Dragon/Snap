@@ -519,6 +519,7 @@
 "Empty_Tip_NoMessage" = "You don’t have any messages.";
 "Empty_Tip_NoEvent" = "The event will start soon; please come back later.";
 "Empty_Tip_NoPrize" = "The event has ended; looking forward to your next participation.";
+"Empty_Tip_NoCoupon" = "Oops! it's empty here.";
 "Error_system_loading" = "Pemeliharaan system Silahkan coba lagi nanti";
 "ACCOUNT" = "Account";
 "HOME" = "Home";

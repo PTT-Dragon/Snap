@@ -527,6 +527,7 @@
 "Empty_Tip_NoMessage" = "Anda tidak memiliki pesan apapun.";
 "Empty_Tip_NoEvent" = "Peristiwa akan segera dimulai; silakan kembali nanti.";
 "Empty_Tip_NoPrize" = "Kejadian ini berakhir; menunggu kedatangan Anda berikutnya.";
+"Empty_Tip_NoCoupon" = "Oops! Disini kosong.";
 "Error_system_loading" = "Pemeliharaan system Silahkan coba lagi nanti";
 "Account" = "Akaun";
 "Home" = "Beranda";

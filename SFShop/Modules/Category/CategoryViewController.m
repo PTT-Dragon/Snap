@@ -151,6 +151,7 @@
         UserModel *model = [FMDBManager sharedInstance].currentUser;
         vc.url = [NSString stringWithFormat:@"%@/group/%@",Host,objId];
         vc.sysAccount = model.account;
+        vc.isCategory = YES;
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([objType isEqualToString:@"FunctionPage"] && objId.length > 0) {//功能页面
         if ([objId containsString:@"cart"]) {

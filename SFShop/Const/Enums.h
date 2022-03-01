@@ -41,7 +41,8 @@ typedef NS_ENUM(NSInteger, EmptyViewType) {
     EmptyViewNoPurchaseType = 10, // 无订单？
     EmptyViewNoMessageType = 11, // 无信息
     EmptyViewNoEventType = 12, // 无活动
-    EmptyViewNoPrizeType = 13 // 无奖品
+    EmptyViewNoPrizeType = 13, // 无奖品
+    EmptyViewNoCouponType = 14 // 无优惠券
 };
 
 static NSString * kLanguageChinese = @"zh-Hans";
