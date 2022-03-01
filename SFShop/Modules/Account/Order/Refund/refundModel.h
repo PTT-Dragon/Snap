@@ -164,6 +164,7 @@ userName = "hxf01@qq.com";
 @property (nonatomic,strong) NSArray <EvaluatesContentsModel>*contents;
 @property (nonatomic,strong) NSArray <RefundDetailItemsModel>*items;
 @property (nonatomic,strong) NSArray <RefundDetailMemosModel>*memos;
+@property (nonatomic,strong) NSArray <RefundDetailMemosModel>*showMemos;
 @property (nonatomic,strong) RefundInfoModel *refund;
 @property (nonatomic,copy) NSString *auditStateDate;
 @property (nonatomic,copy) NSString *createdDate;

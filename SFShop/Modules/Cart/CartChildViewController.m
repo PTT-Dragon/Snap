@@ -78,7 +78,7 @@
 - (void)setAddModel:(addressModel *)addModel
 {
     _addModel = addModel;
-    [self loadDatasNeedCoupon:YES];
+//    [self loadDatasNeedCoupon:YES];
 }
 - (void)requestSimilar {
     MPWeakSelf(self)
@@ -347,7 +347,9 @@
     [params setValue:_addModel.contactStdId forKey:@"stdAddrId"];
     [SFNetworkManager get:SFNet.cart.cart parameters:params success:^(id  _Nullable response) {
         weakself.cartModel = [[CartModel alloc] initWithDictionary:response error:nil];
-        
+        [weakself handleDatas];
+        [weakself calculateAmount];
+        [weakself showEmptyView];
         if (needUpdateCoupon) {
             NSInteger i = 0;
             [weakself.hasCouponArr removeAllObjects];
@@ -366,10 +368,7 @@
                 i++;
             }
         }
-        [weakself handleDatas];
         [weakself.tableView.mj_header endRefreshing];
-        [weakself calculateAmount];
-        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
         [weakself showEmptyView];

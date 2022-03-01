@@ -88,13 +88,13 @@
             RefundDetailTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundDetailTitleCell"];
             [cell setContent:self.model type:1];
             return cell;
-        }else if (indexPath.row == self.model.memos.count+1){
+        }else if (indexPath.row == self.model.showMemos.count+1){
             RefundDetailMethodCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundDetailMethodCell"];
             cell.model = self.model;
             return cell;
         }
         RefundProcessCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RefundProcessCell"];
-        [cell setContent:self.model.memos[indexPath.row-1] hideView:indexPath.row != 1 isLast:indexPath.row == self.model.memos.count];
+        [cell setContent:self.model.showMemos[indexPath.row-1] hideView:indexPath.row != 1 isLast:indexPath.row == self.model.showMemos.count];
         return cell;
     }else if (indexPath.section == 1){
         DeliveryAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeliveryAddressCell"];
@@ -127,8 +127,8 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    BOOL hasDelivery = (([self.model.eventId isEqualToString:@"4"] || [self.model.eventId isEqualToString:@"2"]) && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"C"])) ? YES: NO;
-    return section == 0 ? self.model.memos.count+2: section == 1 ? hasDelivery ? 1 : 0: section == 2 ? self.model.items.count+2:1;
+    BOOL hasDelivery = (([self.model.eventId isEqualToString:@"4"] || [self.model.eventId isEqualToString:@"2"]) && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"C"] || [self.model.state isEqualToString:@"F"])) ? YES: NO;
+    return section == 0 ? self.model.showMemos.count+2: section == 1 ? hasDelivery ? 1 : 0: section == 2 ? self.model.items.count+2:1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -136,8 +136,8 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             hei = 40;
-        }else if(indexPath.row == self.model.memos.count+1){
-            hei = [self.model.eventId isEqualToString:@"3"] && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"F"] || [self.model.state isEqualToString:@"I"]) ? 75: 0;
+        }else if(indexPath.row == self.model.showMemos.count+1){
+            hei = ([self.model.eventId isEqualToString:@"3"] || [self.model.eventId isEqualToString:@"2"]) && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"F"] || [self.model.state isEqualToString:@"I"]) ? 75: 0;
         }else{
             hei = 75;
         }

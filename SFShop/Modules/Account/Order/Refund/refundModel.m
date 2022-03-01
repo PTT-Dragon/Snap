@@ -45,6 +45,10 @@
 }
 @end
 @implementation RefundDetailModel
+- (NSArray <RefundDetailMemosModel>*)showMemos
+{
+    return (_memos.count > 3 ? [_memos subarrayWithRange:NSMakeRange(0, 3)]: _memos);
+}
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
     return YES;
