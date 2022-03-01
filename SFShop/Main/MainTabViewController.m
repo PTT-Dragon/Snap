@@ -23,6 +23,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if(@available(iOS 15.0,*)){
+            self.tabBar.scrollEdgeAppearance = self.tabBar.standardAppearance;
+        }
+        if(@available(iOS 15.0,*)){
+            UITabBarAppearance *appearance = [[UITabBarAppearance alloc] init];
+            appearance.backgroundImage = [UIImage imageNamed:@"tab-bar-background"];
+            self.tabBar.scrollEdgeAppearance = appearance;
+        }
     AccountViewController *accountVC = [[AccountViewController alloc] init];
     BaseNavigationController *accountNav = [[BaseNavigationController alloc]initWithRootViewController:accountVC];
     accountNav.tabBarItem.title = kLocalizedString(@"Account");
@@ -57,7 +65,12 @@
     self.tabBar.tintColor = RGBColorFrom16(0xFF1659);
     [self setViewControllers:@[homeNav,categoryNav,communityNav,CartNav,accountNav]];
     [[UINavigationBar appearance]setTintColor:[UIColor blackColor]];
+    [baseTool updateCartNum];
+//    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 1)];
+//    line.backgroundColor = [UIColor blackColor];
+//    [self.tabBar addSubview:line];
 }
+
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
     if ([item.title isEqualToString:kLocalizedString(@"Cart")]) {

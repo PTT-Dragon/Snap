@@ -352,9 +352,14 @@
         [weakself showEmptyView];
         if (needUpdateCoupon) {
             NSInteger i = 0;
-            [weakself.hasCouponArr removeAllObjects];
+            BOOL sameCount = weakself.hasCouponArr.count != weakself.cartModel.validCarts.count;
+            if (sameCount) {
+                [weakself.hasCouponArr removeAllObjects];
+            }
             for (CartListModel *listModel in weakself.cartModel.validCarts) {
-                [weakself.hasCouponArr addObject:@"N"];
+                if (sameCount) {
+                    [weakself.hasCouponArr addObject:@"N"];
+                }
                 NSMutableArray *arr = [NSMutableArray array];
                 [listModel.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     [arr addObject:@{@"productId":obj.productId,@"offerCnt":obj.num}];

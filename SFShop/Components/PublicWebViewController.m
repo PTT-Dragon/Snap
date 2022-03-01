@@ -71,7 +71,7 @@
 {
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     self.configuration = configuration;
-    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, _isHome ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei): navBarHei)) configuration:_configuration];
+    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, _isHome ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei-3): navBarHei)) configuration:_configuration];
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
