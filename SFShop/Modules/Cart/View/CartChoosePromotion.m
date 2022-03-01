@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
@@ -35,9 +36,9 @@
     [_closeBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeSelf)];
-    [self addGestureRecognizer:tap];
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nothing)];
-    [self.bgView addGestureRecognizer:tap2];
+    [self.topView addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nothing)];
+//    [self.bgView addGestureRecognizer:tap2];
 }
 - (void)removeSelf
 {

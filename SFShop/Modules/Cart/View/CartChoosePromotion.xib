@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20019"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -99,13 +99,21 @@
                         <constraint firstItem="cxn-37-Vu0" firstAttribute="leading" secondItem="ekq-vH-PPW" secondAttribute="leading" constant="16" id="xOZ-lG-1LE"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lL-Gn-EUO">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="416"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="brG-pj-lFe"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="ekq-vH-PPW" firstAttribute="leading" secondItem="brG-pj-lFe" secondAttribute="leading" id="9Pd-DK-bWx"/>
                 <constraint firstItem="brG-pj-lFe" firstAttribute="bottom" secondItem="ekq-vH-PPW" secondAttribute="bottom" constant="-34" id="ElF-om-kOC"/>
+                <constraint firstItem="brG-pj-lFe" firstAttribute="trailing" secondItem="6lL-Gn-EUO" secondAttribute="trailing" id="Mv5-2q-wXL"/>
+                <constraint firstItem="ekq-vH-PPW" firstAttribute="top" secondItem="6lL-Gn-EUO" secondAttribute="bottom" id="PiC-e4-WZD"/>
+                <constraint firstItem="brG-pj-lFe" firstAttribute="top" secondItem="6lL-Gn-EUO" secondAttribute="top" constant="44" id="Qml-fp-Sv9"/>
                 <constraint firstItem="brG-pj-lFe" firstAttribute="trailing" secondItem="ekq-vH-PPW" secondAttribute="trailing" id="aOa-6V-2Vu"/>
+                <constraint firstItem="6lL-Gn-EUO" firstAttribute="leading" secondItem="brG-pj-lFe" secondAttribute="leading" id="qKr-zJ-Jfe"/>
             </constraints>
             <connections>
                 <outlet property="bgView" destination="ekq-vH-PPW" id="sRa-4S-TeI"/>
@@ -116,8 +124,9 @@
                 <outlet property="priceLabel" destination="QST-CN-zAf" id="Nac-Zj-FH0"/>
                 <outlet property="tableView" destination="hZx-qD-wvP" id="0Oj-dE-s1n"/>
                 <outlet property="titleLabel" destination="UDc-tf-qiJ" id="bzI-ox-Qk3"/>
+                <outlet property="topView" destination="6lL-Gn-EUO" id="r5K-cA-yOc"/>
             </connections>
-            <point key="canvasLocation" x="291" y="54"/>
+            <point key="canvasLocation" x="289.85507246376812" y="53.571428571428569"/>
         </view>
     </objects>
     <resources>

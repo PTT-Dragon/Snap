@@ -75,11 +75,13 @@
         //已成团
         self.addBtn.hidden = YES;
         self.needTimeLabel.text = kLocalizedString(@"GROUPED");
+        self.needTimeLabel.textColor = RGBColorFrom16(0x7b7b7b);
         viewWidth = _groupModel.groupMembers.count * 53;
     }else{
         self.inviteBtn.hidden = NO;
         self.addBtn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
         self.addBtn.layer.borderWidth = 1;
+        self.needTimeLabel.textColor = [UIColor blackColor];
         //倒计时
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -137,7 +139,7 @@
 //    CGFloat right = _model.groupMembers.count>3 ? 24: 50;
     for (ReviewUserInfoModel *memberModel in _groupModel.groupMembers) {
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*53, 0, width, width)];
-        [imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(memberModel.photo)]];
+        [imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(memberModel.photo)] placeholderImage:[UIImage imageNamed:@"Unknown"]];
         [self.showImgView addSubview:imgView];
         i++;
     }

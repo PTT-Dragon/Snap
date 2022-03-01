@@ -178,6 +178,7 @@
         //普通商品
         model = listModel.shoppingCarts[indexPath.row-listModel.campaignGroupsShoppingCarts.count-1];
         cell.showCampaignsView = NO;
+        cell.showCampaignsBtn = NO;
     }else{
         //参与活动的商品
         model = listModel.campaignGroupsShoppingCarts[indexPath.row-1];
@@ -475,9 +476,13 @@
 - (void)showCouponsView
 {
     CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
-    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height-tabbarHei);
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height-(_isTab ? 0: 0));
     view.couponDataSource = self.couponDataSource;
-    [[baseTool getCurrentVC].view addSubview:view];
+    if (_isTab) {
+        [self.tabBarController.view addSubview:view];
+    }else{
+        [_vc.view addSubview:view];
+    }
 }
 #pragma mark - delegate
 - (void)selAll:(BOOL)selAll storeId:(nonnull NSString *)storeId
@@ -549,12 +554,17 @@
 - (void)promotionWithModel:(CartItemModel *)model CartCampaignsModel:(CartCampaignsModel *)campaignsModel
 {
     CartChoosePromotion *view = [[NSBundle mainBundle] loadNibNamed:@"CartChoosePromotion" owner:self options:nil].firstObject;
-    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height-((_isTab ? tabbarHei:0)));
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height-((_isTab ? 0:0)));
     view.model = model;
     view.block = ^(CartItemModel * _Nonnull itemModel) {
         [self modifyCartInfoWithDic:[itemModel toDictionary]];
     };
-    [_vc.view addSubview:view];
+    if (_isTab) {
+        [self.tabBarController.view addSubview:view];
+    }else{
+        [_vc.view addSubview:view];
+    }
+    
 }
 - (void)skuActionWithModel:(CartItemModel *)model
 {

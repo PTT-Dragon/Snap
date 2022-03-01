@@ -199,6 +199,7 @@
         _tableView.dataSource = self;
         _tableView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
 }

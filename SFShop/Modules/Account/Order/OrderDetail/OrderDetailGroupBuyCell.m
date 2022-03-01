@@ -57,11 +57,13 @@
     if ([model.state isEqualToString:@"C"]) {
         [_shareBtn setTitle:kLocalizedString(@"view_more_group") forState:0];
         _stateLabel.text = kLocalizedString(@"Grouped");
+        _stateLabel.textColor = RGBColorFrom16(0x7b7b7b);
         _inviteBtn.hidden = YES;
         viewWidth = _model.groupMembers.count * 53;
     }else if ([model.state isEqualToString:@"B"]){
         [_shareBtn setTitle:kLocalizedString(@"Invite_friends") forState:0];
         _stateLabel.text = [NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%ld",model.shareByNum-model.memberQty],kLocalizedString(@"expire_one_tip")];
+        _stateLabel.textColor = [UIColor blackColor];
         viewWidth = (_model.groupMembers.count+1) * 53;
         _inviteBtn.frame = CGRectMake(_model.groupMembers.count * 53, 0, 48, 48);
     }else if ([model.state isEqualToString:@"D"]){

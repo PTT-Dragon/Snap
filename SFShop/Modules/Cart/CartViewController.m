@@ -17,6 +17,7 @@
 #import "NSString+Fee.h"
 #import "UITabBar+CustomBadge.h"
 #import "UIButton+SGImagePosition.h"
+#import "UIButton+time.h"
 
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
@@ -131,7 +132,7 @@
     if (!_selAddModel) {
         [_addressBtn setTitle:kLocalizedString(@"CHOOSE_ADDRESS") forState:0];
     }else{
-        [_addressBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@ %@ %@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street,_selAddModel.postCode] forState:0];
+        [_addressBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@ %@ %@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street ? _selAddModel.street:@"" ,_selAddModel.postCode ? _selAddModel.postCode: @""] forState:0];
     }
     for (addressModel *model in self.addressArr) {
         if ([model.deliveryAddressId isEqualToString:_selAddModel.deliveryAddressId]) {
@@ -457,6 +458,7 @@
         _checkBtn.backgroundColor = RGBColorFrom16(0xFF1659);
         [_checkBtn setTitle:@"CHECK OUT" forState:0];
         _checkBtn.titleLabel.font = kFontBlod(14);
+        _checkBtn.mm_acceptEventInterval = 2;
         [_checkBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _checkBtn;

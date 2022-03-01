@@ -143,7 +143,7 @@
             return cell;
         }
         OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListItemCell"];
-        [cell setOrderContent:self.model.orderItems[indexPath.row-1] state:self.model.state showIsAfterSale:([self.model.isAfterSales isEqualToString:@"Y"] && indexPath.row == self.model.orderItems.count)];
+        [cell setOrderContent:self.model.orderItems[indexPath.row-1] state:self.model.state showIsAfterSale:([self.model.isAfterSales isEqualToString:@"Y"] && indexPath.row == self.model.orderItems.count) && [self.model.state isEqualToString:@"B"]];
         cell.block = ^{
             ChooseRefundViewController *vc = [[ChooseRefundViewController alloc] init];
             vc.row = [NSString stringWithFormat:@"%ld",indexPath.row-1];
@@ -259,7 +259,7 @@
             make.top.mas_equalTo(self.bottomView.mas_top).offset(11);
         }];
     }else if([self.model.state isEqualToString:@"B"]){
-        if ([self.model.isAfterSales isEqualToString:@"Y"]) {
+        if ([self.model.isAfterSales isEqualToString:@"Y"] && [self.model.state isEqualToString:@"B"]) {
             self.btn2.hidden = YES;
             [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(self.bottomView.mas_left).offset(16);

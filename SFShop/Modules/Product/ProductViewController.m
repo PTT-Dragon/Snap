@@ -1206,6 +1206,12 @@
     }
 }
 - (IBAction)messageAction:(UIButton *)sender {
+    UserModel *model = [FMDBManager sharedInstance];
+    if (!model.accessToken) {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
     vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];

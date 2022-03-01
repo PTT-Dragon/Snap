@@ -53,7 +53,7 @@
     [_additonBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_subtractBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     [_selBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
-    _offLabel.text = [NSString stringWithFormat:@" %@ ",kLocalizedString(@"OFF")];
+//    _offLabel.text = [NSString stringWithFormat:@" %@ ",kLocalizedString(@"OFF")];
     [_offBtn setTitle:kLocalizedString(@"TO_SATISFY") forState:0];
     _offBtn.titleLabel.numberOfLines = 0;
     _noStockLabel.text = kLocalizedString(@"OUT_OF_STOCK");
@@ -103,7 +103,7 @@
         self.offLabel.hidden = NO;
         self.offNameLabel.hidden = NO;
         self.imgTop.constant = 45;
-        self.offLabel.text = [_campaignsModel.buygetnInfo.promotType rangeOfString:@"C"].location != NSNotFound ? [NSString stringWithFormat:@" %@ ",kLocalizedString(@"OFF")]: [NSString stringWithFormat:@" %@ ",kLocalizedString(@"Discount")];
+        self.offLabel.text = [_campaignsModel.buygetnInfo.promotType rangeOfString:@"C"].location != NSNotFound ? [NSString stringWithFormat:@" %@ ",kLocalizedString(@"OFF")]: [NSString stringWithFormat:@" %@ ",kLocalizedString(@"DISCOUNT")];
     }else{
         self.offBtn.hidden = YES;
         self.offLabel.hidden = YES;
