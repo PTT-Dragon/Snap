@@ -85,7 +85,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     self.configuration = configuration;
-    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, (_isHome || _isChat || _isCategory) ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei-3): navBarHei)) configuration:_configuration];
+    float hei = iOS15 ? 3: 0;
+    WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, (_isHome || _isChat || _isCategory) ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei-hei): navBarHei)) configuration:_configuration];
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
