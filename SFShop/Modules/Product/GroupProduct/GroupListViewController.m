@@ -239,7 +239,10 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
     [parm addEntriesFromDictionary:filter.filterParam];
     [SFNetworkManager post:SFNet.offer.offers parameters:parm success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
-        weakself.dataModel = [CategoryRankModel yy_modelWithDictionary:response];
+        CategoryRankModel *dataModel = [CategoryRankModel yy_modelWithDictionary:response];
+        if (!self.dataModel) {
+            self.dataModel = dataModel;
+        }
         if ([self.tableView.mj_header isRefreshing]) {
             [self.tableView.mj_header endRefreshing];
             [self.dataArray removeAllObjects];
@@ -250,7 +253,7 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
         if ([response[@"pageInfo"][@"isLastPage"] integerValue] == 1) {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
-        [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
+        [self.dataArray addObjectsFromArray:dataModel.pageInfo.list];
 //        [self refreshNoItemsStatus];
         [self.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {

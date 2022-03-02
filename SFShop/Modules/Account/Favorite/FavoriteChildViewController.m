@@ -101,7 +101,7 @@
 }
 - (void)reloadDatas
 {
-    [self.tableView.mj_header beginRefreshing];
+    [self loadDatas];
 }
 - (void)showEmptyView {
     if (self.dataSource.count > 0) {
