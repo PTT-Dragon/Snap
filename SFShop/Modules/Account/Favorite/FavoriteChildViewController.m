@@ -177,7 +177,7 @@
     //删除
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:[NSString stringWithFormat:@"%@",kLocalizedString(@"Delete")] handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
-        [self deleteCellWithRow:indexPath.row];
+        [self deleteCellWithRow:indexPath.section];
     }];
     deleteRowAction.image = [UIImage imageNamed:@"trash"];
     deleteRowAction.backgroundColor = [UIColor redColor];
@@ -185,7 +185,7 @@
     //置顶
     UIContextualAction *topRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:[NSString stringWithFormat:@"%@",kLocalizedString(@"PIN_TO_TOP")] handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         completionHandler (YES);
-        [self pinToTopWithRow:indexPath.row];
+        [self pinToTopWithRow:indexPath.section];
     }];
     topRowAction.image = [UIImage imageNamed:@"top"];
     topRowAction.backgroundColor = RGBColorFrom16(0xFF1659);

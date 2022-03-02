@@ -581,8 +581,9 @@
     NSMutableArray *arr = self.dataListSource[indexPath.section];
     RecentlyModel *model = arr[indexPath.row];
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.recent.delete parameters:@{@"offerViewLogId":model.offerViewLogId,@"offerId":model.offerId} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.recent.delete parameters:@{@"offerViewLogId":model.offerViewLogId?model.offerViewLogId:@"",@"offerId":model.offerId?model.offerId:@""} success:^(id  _Nullable response) {
         [arr removeObject:model];
+//        self.dataListSource = arr;
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         

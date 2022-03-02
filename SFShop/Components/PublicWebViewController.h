@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PublicWebViewController : UIViewController
 @property (nonatomic,copy) NSString *url;
 @property (nonatomic,copy) NSString *sysAccount;
-@property (nonatomic,copy) NSDictionary *productDic;
+@property (nonatomic,strong) NSMutableDictionary *productDic;
 @property (nonatomic,assign) BOOL isHome;
 @property (nonatomic,assign) BOOL isChat;
 @property (nonatomic,assign) BOOL isCategory;

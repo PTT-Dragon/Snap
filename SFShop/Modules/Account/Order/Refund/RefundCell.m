@@ -103,9 +103,14 @@
         _btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"G"]){
         //成功
-        _statuLabel.text = @"Successful";
-        _contentLabel.text = [NSString stringWithFormat:@"Refund :%@",model.refundCharge];
-        _viewHei.constant = 0;
+        if ([self.model.eventId isEqualToString:@"4"]) {
+            _statuLabel.text = @"Finished";
+            _contentLabel.text = [NSString stringWithFormat:@"Relation Order :%@",model.relaOrderNbr];
+        }else{
+            _statuLabel.text = @"Successful";
+            _contentLabel.text = [NSString stringWithFormat:@"Refund :%@",model.refundCharge];
+        }
+        _viewHei.constant = 52;
         _btn.hidden = YES;
         _btn2.hidden = YES;
     }else if ([model.state isEqualToString:@"D"]){

@@ -173,92 +173,116 @@
 {
     if (_isChat){
         if (_productDic) {
-            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{
-                @"billAddress": @{
-                  @"contactAddress": @"",
-                  @"contactEmail": @"11******@qq.com"
-                },
-                @"canEvaluate": @"Y",
-                @"canReturn": @"N",
-                @"canReview": @"Y",
-                @"cardType": @"101",
-                @"createdDate": @"2022-03-02 09:50:57",
-                @"completionDate" : @"2022-03-02 14:22:36",
-                @"deductionPrice": @"0",
-                @"deliveryAddress": @{
-                  @"contactAddress": @"666, 33252, Bukit Layang, Bakam, Kab.Bangka, Bangka Belitung",
-                  @"contactEmail": @"11******@qq.com",
-                  @"contactName": @"南京",
-                  @"contactNbr": @"13404106104",
-                  @"contactStdId": @"10749",
-                  @"postCode": @"33252"
-                },
-                @"deliveryMode": @"A",
-                @"deliverys": @[],
-                @"deliveryState": @"A",
-                @"discountPrice": @"0",
-                @"getStateStr": @"To Ship",
-                @"imagUrl": @"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg",
-                @"isAfterSales": @"N",
-                @"isNeedDelivery": @"Y",
-                @"leaveMsg": @"",
-                @"logisticsDeductFee": @"0",
-                @"logisticsFee": @"12000",
-                @"logisticsModeId": @"1",
-                @"logisticsOriFee": @"12000",
-                @"offerCnt": @"1",
-                @"offerId": @"28",
-                @"offerName": @"杯子团购",
-                @"offerPrice": @"500",
-                @"offerType": @"P",
-                @"orderId": @"39011",
-                @"orderItemId": @"38011",
-                @"orderItems": @[
-                  @{
-                    @"canEvaluate": @"N",
+            if ([_productDic[@"isService"] isEqualToString:@"1"]) {
+                //是否是从订单里进入
+                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{
+                    @"billAddress": _productDic[@"billAddress"],
+                    @"canEvaluate": @"Y",
                     @"canReturn": @"N",
-                    @"canReview": @"N",
-                    @"imagUrl": @"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg",
-                    @"offerCnt": @"1",
-                    @"offerId": @"28",
-                    @"offerName": @"杯子团购",
-                    @"offerType": @"P",
-                    @"orderItemId": @"38011",
-                    @"orderPrice": @"500",
-                    @"productId": @"69",
-                    @"productName": @"杯子团购 黄色",
-                    @"serviceTypes": @"2,4",
-                    @"unitPrice": @"500"
-                  }
-                ],
-                @"orderNbr": @"O202203020950572525",
-                @"orderPrice": @"500",
-                @"paymentMode": @"A",
-                @"payments": @[
-                  @{
-                    @"charge": @"12500",
-                    @"orderPaymentId": @"37008",
-                    @"paymentDate": @"2022-03-02 09:51:15",
-                    @"paymentId": @"39008",
-                    @"paymentMethodName": @"Mock",
-                    @"paymentSn": @"ECA202203020951150000003",
-                    @"paymentState": @"S"
-                  }
-                ],
-                @"paymentState": @"S",
-                @"pointPrice": @"0",
-                @"productId": @"69",
-                @"productName": @"杯子团购 黄色",
-                @"serviceTypes": @"2,4",
-                @"state": @"B",
-                @"stateDate": @"2022-03-02 09:51:15",
-                @"storeCampaignPrice": @"0",
-                @"storeCouponPrice": @"0",
-                @"storeId": @"5",
-                @"storeName": @"WCT Store",
-                @"uccAccount": @"A1test@A1.com",
-                @"unitPrice": @"500"
-              }];
+                    @"canReview": @"Y",
+                    @"cardType": @"101",
+                    @"createdDate": @"2022-03-02 09:50:57",
+                    @"completionDate" : @"2022-03-02 14:22:36",
+                    @"deductionPrice": @"0",
+                    @"deliveryAddress": _productDic[@"deliveryAddress"],
+                    @"deliveryMode": @"A",
+                    @"deliverys": @[],
+                    @"deliveryState": @"A",
+                    @"discountPrice": @"0",
+                    @"getStateStr": _productDic[@"getStateStr"],// @"To Ship",
+                    @"imagUrl":_productDic[@"imagUrl"], //@"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg",
+                    @"isAfterSales": @"N",
+                    @"isNeedDelivery": @"Y",
+                    @"leaveMsg": @"",
+                    @"logisticsDeductFee": @"0",
+                    @"logisticsFee": @"12000",
+                    @"logisticsModeId": _productDic[@"logisticsModeId"],// @"1",
+                    @"logisticsOriFee": _productDic[@"logisticsOriFee"],// @"12000",
+                    @"offerCnt": _productDic[@"offerCnt"],// @"1",
+                    @"offerId": _productDic[@"offerId"],
+                    @"offerName": _productDic[@"offerName"],
+                    @"offerPrice": _productDic[@"offerPrice"],// @"500",
+                    @"offerType": _productDic[@"offerType"],// @"P",
+                    @"orderId": _productDic[@"orderId"],
+                    @"orderItemId": _productDic[@"orderItemId"],
+                    @"orderItems": @[
+    //                  @{
+    //                    @"canEvaluate": @"N",
+    //                    @"canReturn": @"N",
+    //                    @"canReview": @"N",
+    //                    @"imagUrl": @"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg",
+    //                    @"offerCnt": @"1",
+    //                    @"offerId": @"28",
+    //                    @"offerName": @"杯子团购",
+    //                    @"offerType": @"P",
+    //                    @"orderItemId": @"38011",
+    //                    @"orderPrice": @"500",
+    //                    @"productId": @"69",
+    //                    @"productName": @"杯子团购 黄色",
+    //                    @"serviceTypes": @"2,4",
+    //                    @"unitPrice": @"500"
+    //                  }
+                    ],
+                    @"orderNbr": _productDic[@"orderNbr"],//@"O202203020950572525",
+                    @"orderPrice": _productDic[@"orderPrice"],// @"500",
+                    @"paymentMode": _productDic[@"paymentMode"],// @"A",
+                    @"payments": _productDic[@"payments"],//@[
+    //                  @{
+    //                    @"charge": @"12500",
+    //                    @"orderPaymentId": @"37008",
+    //                    @"paymentDate": @"2022-03-02 09:51:15",
+    //                    @"paymentId": @"39008",
+    //                    @"paymentMethodName": @"Mock",
+    //                    @"paymentSn": @"ECA202203020951150000003",
+    //                    @"paymentState": @"S"
+    //                  }
+    //                ],
+                    @"paymentState": _productDic[@"paymentState"],//@"S",
+                    @"pointPrice": _productDic[@"pointPrice"],// @"0",
+                    @"productId": _productDic[@"productId"],// @"69",
+                    @"productName": _productDic[@"productName"],// @"杯子团购 黄色",
+                    @"serviceTypes": _productDic[@"serviceTypes"],// @"2,4",
+                    @"state": _productDic[@"state"],// @"B",
+                    @"stateDate": _productDic[@"stateDate"],// @"2022-03-02 09:51:15",
+                    @"storeCampaignPrice": _productDic[@"storeCampaignPrice"],// @"0",
+                    @"storeCouponPrice": _productDic[@"storeCouponPrice"],// @"0",
+                    @"storeId": _productDic[@"storeId"],// @"5",
+                    @"storeName": _productDic[@"storeName"],// @"WCT Store",
+                    @"uccAccount": _productDic[@"uccAccount"],// @"A1test@A1.com",
+                    @"unitPrice": _productDic[@"unitPrice"],// @"500"
+                  }];
+    //            [_productDic setValue:@[
+    //                            @{
+    //                              @"canEvaluate": @"N",
+    //                              @"canReturn": @"N",
+    //                              @"canReview": @"N",
+    //                              @"imagUrl": @"/get/resource/ecs/20220122/picture/11484802171951558656.jpg",
+    //                              @"offerCnt": @"1",
+    //                              @"offerId": @"30",
+    //                              @"offerName": @"杯子团购",
+    //                              @"offerType": @"P",
+    //                              @"orderItemId": @"38019",
+    //                              @"orderPrice": @"62910",
+    //                              @"productId": @"74",
+    //                              @"productName": @"杯子团购 黄色",
+    //                              @"serviceTypes": @"2,4",
+    //                              @"unitPrice": @"69900"
+    //                            }
+    //            ] forKey:@"orderItems"];
+    //            [_productDic setValue:@[
+    //                            @{
+    //                              @"charge": @"63910",
+    //                              @"orderPaymentId": @"37016",
+    //                              @"paymentDate": @"2022-03-02 14:22:13",
+    //                              @"paymentId": @"39016",
+    //                              @"paymentMethodName": @"Mock",
+    //                              @"paymentSn": @"ECA202203021422120000012",
+    //                              @"paymentState": @"S"
+    //                            }
+    //            ] forKey:@"payments"];
+                _productDic = dic;
+            }
+            
             
             NSError *parseError = nil;
                 NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:NSJSONWritingSortedKeys error:&parseError];

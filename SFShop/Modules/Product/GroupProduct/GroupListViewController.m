@@ -95,7 +95,7 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
         make.left.mas_equalTo(KScale(16));
         make.top.mas_equalTo(self.topImgView.mas_bottom).offset(10);
         make.height.mas_equalTo(KScale(32));
-        CGFloat width = [self.popularityBtn.titleLabel.text calWidthWithLabel:self.salesBtn.titleLabel] + 30;
+        CGFloat width = [self.popularityBtn.titleLabel.text calWidthWithLabel:self.popularityBtn.titleLabel] + 30;
         make.width.mas_equalTo(width);
     }];
     
