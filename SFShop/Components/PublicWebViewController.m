@@ -57,14 +57,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    if (_isChat) {
-        MessageUnreadModel *model = self.model.unreadMessages.firstObject;
-        [SFNetworkManager post:[SFNet.account readChatMessage:model.flowNo] parameters:@{} success:^(id  _Nullable response) {
-            
-        } failed:^(NSError * _Nonnull error) {
-            
-        }];
-    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -116,13 +108,14 @@
         }
     }];
     if ([_url containsString:@"/chat/"]) {
-        [self setlocalWeb];
+//        [self setlocalWeb];
         [self performSelector:@selector(reload) withObject:nil afterDelay:0.5];
     }
 }
 - (void)reload
 {
     [self.webView reload];
+    [self addProduct];
 }
 - (void)addNoTi
 {
@@ -162,15 +155,30 @@
                 NSLog(@"");
             }];
         });
-    }else if (_isChat){
+    }
+//    else if (_isChat){
+//        if (_productDic) {
+//            NSError *parseError = nil;
+//                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:kNilOptions error:&parseError];
+//                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
+//            [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//                [self performSelector:@selector(aaa) withObject:nil afterDelay:0.5];
+//
+//            }];
+//        }
+//    }
+}
+- (void)addProduct
+{
+    if (_isChat){
         if (_productDic) {
             NSError *parseError = nil;
                 NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:kNilOptions error:&parseError];
                 NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
             NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
-//            [self.webView evaluateJavaScript:product completionHandler:nil];
             [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//                self.webView
+                
             }];
         }
     }
@@ -366,6 +374,7 @@
         if (_isHome) {
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/main/home",Host]]]];
         }else{
+            [self reset];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
@@ -384,7 +393,7 @@
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     [MBProgressHUD hideFromKeyWindow];
-    [self setlocalWeb];
+//    [self setlocalWeb];
 }
 
 // 页面加载失败时调用

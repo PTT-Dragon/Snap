@@ -75,6 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *maxBuyCount;
 @property(nonatomic, strong) NSString *isCollection;
 @property(nonatomic, strong) NSString *imgUrl;
+@property(nonatomic, strong) ProductCarouselImgModel *imgUrlContent;
 @property (nonatomic,strong) NSArray <ProdSpcAttrsModel *> <ProdSpcAttrsModel> *prodSpcAttrs;
 
 #pragma mark - 自定义字段，需要外部赋值

@@ -1222,21 +1222,10 @@
     [dic setValue:@(self.selProductModel.salesPrice) forKey:@"salesPrice"];
     [dic setValue:@(self.selProductModel.marketPrice) forKey:@"marketPrice"];
     [dic setValue:@"100" forKey:@"cardType"];
+    [dic setValue:[self.selProductModel.imgUrlContent toDictionary] forKey:@"imgUrlContent"];
 //    [dic setValue:[self.selProductModel toDictionary] forKey:@"productDetail"];
-    [dic setValue:[self.model toDictionary] forKey:@"offerDetail"];
+//    [dic setValue:[self.model toDictionary] forKey:@"offerDetail"];
     vc.productDic = dic;
-    if (dic) {
-        WKWebView *webView = [[WKWebView alloc] init];
-        NSError *parseError = nil;
-            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:kNilOptions error:&parseError];
-            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
-//            [self.webView evaluateJavaScript:product completionHandler:nil];
-    
-        [webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//                self.webView
-        }];
-    }
     vc.sysAccount = _model.uccAccount;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.navigationController pushViewController:vc animated:YES];

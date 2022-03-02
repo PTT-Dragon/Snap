@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) BOOL isChat;
 @property (nonatomic,assign) BOOL isCategory;
 @property (nonatomic,assign) BOOL shouldBackToHome;
-@property (nonatomic,strong) MessageModel *model;//消息model
 @property (nonatomic,weak) UIViewController *pushVc;//记录原始vc,点击返回直接pop 到该vc
 
 @end

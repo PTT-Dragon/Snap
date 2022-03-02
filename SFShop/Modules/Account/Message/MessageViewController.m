@@ -20,7 +20,7 @@
 @property (nonatomic,strong) EmptyView *emptyView;
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *navMoreView;
-
+@property (nonatomic,assign) BOOL selChat;
 @end
 
 @implementation MessageViewController
@@ -32,7 +32,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self loadDatas];
+    if (_selChat) {
+        [self readChatMessage];
+    }else{
+        [self loadDatas];
+    }
 }
 
 //- (void)viewWillDisappear:(BOOL)animated {
@@ -132,15 +136,16 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
+        _selChat = NO;
         MessageOrderListViewController *vc = [[MessageOrderListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         [self readMessage];
         return;
     }
+    _selChat = YES;
     [self readChatMessage];
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-    vc.model = self.model;
     vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
     vc.sysAccount = model.account;
     MPWeakSelf(self)
@@ -158,9 +163,11 @@
 }
 - (void)readChatMessage
 {
+    ((MessageUnreadModel *)[self.model.unreadMessages firstObject]).unreadNum = 0;
+    [self.tableView reloadData];
     MessageUnreadModel *model = self.model.unreadMessages.firstObject;
     [SFNetworkManager post:[SFNet.account readChatMessage:model.flowNo] parameters:@{} success:^(id  _Nullable response) {
-        
+        [self performSelector:@selector(loadDatas) withObject:nil afterDelay:2];
     } failed:^(NSError * _Nonnull error) {
         
     }];
