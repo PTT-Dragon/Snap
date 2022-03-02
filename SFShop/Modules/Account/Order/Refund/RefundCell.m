@@ -133,6 +133,11 @@
         [_btn setTitle:[NSString stringWithFormat:@"   %@   ",kLocalizedString(@"REFUND_BANK_ACCOUNT")] forState:0];
         _viewHei.constant = 52;
         _btn2.hidden = YES;
+    }else if ([model.state isEqualToString:@"H"]){
+        _statuLabel.text = @"Replace in progress";
+        _contentLabel.text = @"Waiting for the merchant to deliver the order";
+        _btn.hidden = YES;_btn2.hidden = YES;
+        _viewHei.constant = 52;
     }
 }
 - (void)cancelAction

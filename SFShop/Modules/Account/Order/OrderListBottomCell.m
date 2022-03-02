@@ -63,7 +63,7 @@ static dispatch_source_t _timer;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countDownNotification) name:OYCountDownNotification object:nil];
     [_moreBtn setTitle:kLocalizedString(@"MORE") forState:0];
     _totalTitleLabel.text = [NSString stringWithFormat:@"%@:",kLocalizedString(@"Total")];
-
+    [kCountDownManager reload];
 }
 - (void)countDownNotification {
     /// 计算倒计时
@@ -87,6 +87,7 @@ static dispatch_source_t _timer;
 - (void)setContent:(OrderModel *)model
 {
     _model = model;
+    [kCountDownManager reload];
     _countLabel.text = [NSString stringWithFormat:@"%ld %@",model.orderItems.count,kLocalizedString(@"ITEMS")];
     _amountLabel.text = [NSString stringWithFormat:@"%@",[model.orderPrice currency]];
     [_btn1 setTitle:[self getBtn1StrWithState:model.state] forState:0];

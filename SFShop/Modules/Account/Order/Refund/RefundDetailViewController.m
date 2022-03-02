@@ -127,7 +127,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    BOOL hasDelivery = (([self.model.eventId isEqualToString:@"4"] || [self.model.eventId isEqualToString:@"2"]) && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"C"] || [self.model.state isEqualToString:@"F"] || [self.model.state isEqualToString:@"E"])) ? YES: NO;
+    BOOL hasDelivery = (([self.model.eventId isEqualToString:@"4"] || [self.model.eventId isEqualToString:@"2"]) && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"C"] || [self.model.state isEqualToString:@"F"] || [self.model.state isEqualToString:@"E"] || [self.model.state isEqualToString:@"H"])) ? YES: NO;
     return section == 0 ? self.model.showMemos.count+2: section == 1 ? hasDelivery ? 1 : 0: section == 2 ? self.model.items.count+2:1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -137,7 +137,7 @@
         if (indexPath.row == 0) {
             hei = 40;
         }else if(indexPath.row == self.model.showMemos.count+1){
-            hei = ([self.model.eventId isEqualToString:@"3"] || [self.model.eventId isEqualToString:@"2"]) && ([self.model.state isEqualToString:@"D"] || [self.model.state isEqualToString:@"F"] || [self.model.state isEqualToString:@"I"]) ? 75: 0;
+            hei = ([self.model.eventId isEqualToString:@"3"] || [self.model.eventId isEqualToString:@"2"]) && ([self.model.state isEqualToString:@"F"] || [self.model.state isEqualToString:@"I"]) ? 75: 0;
         }else{
             hei = 75;
         }
@@ -220,6 +220,10 @@
         self.btn2.hidden = YES;
         self.btn.height = 46;
     }else if ([self.model.state isEqualToString:@"G"]){
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
+    }else if ([self.model.state isEqualToString:@"H"]){
         self.btn.hidden = YES;
         self.btn2.hidden = YES;
         self.btnHei.constant = 0;

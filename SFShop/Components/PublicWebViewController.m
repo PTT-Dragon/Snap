@@ -174,13 +174,14 @@
     if (_isChat){
         if (_productDic) {
             NSError *parseError = nil;
-                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:kNilOptions error:&parseError];
+                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:NSJSONWritingSortedKeys error:&parseError];
                 NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
+//            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')",jsonString];
+            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", @"{\"billAddress\":{\"contactAddress\":\"\",\"contactEmail\":\"11******@qq.com\"},\"canEvaluate\":\"N\",\"canReturn\":\"N\",\"canReview\":\"N\",\"cardType\":\"101\",\"createdDate\":\"2022-03-02 09:50:57\",\"deductionPrice\":\"0\",\"deliveryAddress\":{\"contactAddress\":\"666, 33252, Bukit Layang, Bakam, Kab.Bangka, Bangka Belitung\",\"contactEmail\":\"11******@qq.com\",\"contactName\":\"南京\",\"contactNbr\":\"13404106104\",\"contactStdId\":\"10749\",\"postCode\":\"33252\"},\"deliveryMode\":\"A\",\"deliverys\":[],\"deliveryState\":\"A\",\"discountPrice\":\"0\",\"getStateStr\":\"To Ship\",\"imagUrl\":\"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg\",\"isAfterSales\":\"N\",\"isNeedDelivery\":\"Y\",\"leaveMsg\":\"\",\"logisticsDeductFee\":\"0\",\"logisticsFee\":\"12000\",\"logisticsModeId\":\"1\",\"logisticsOriFee\":\"12000\",\"offerCnt\":\"1\",\"offerId\":\"28\",\"offerName\":\"杯子团购\",\"offerPrice\":\"500\",\"offerType\":\"P\",\"orderId\":\"39011\",\"orderItemId\":\"38011\",\"orderItems\":[{\"canEvaluate\":\"N\",\"canReturn\":\"N\",\"canReview\":\"N\",\"imagUrl\":\"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg\",\"offerCnt\":\"1\",\"offerId\":\"28\",\"offerName\":\"杯子团购\",\"offerType\":\"P\",\"orderItemId\":\"38011\",\"orderPrice\":\"500\",\"productId\":\"69\",\"productName\":\"杯子团购 黄色\",\"serviceTypes\":\"2,4\",\"unitPrice\":\"500\"}\],\"orderNbr\":\"O202203020950572525\",\"orderPrice\":\"500\",\"paymentMode\":\"A\",\"payments\":[{\"charge\":\"12500\",\"orderPaymentId\":\"37008\",\"paymentDate\":\"2022-03-02 09:51:15\",\"paymentId\":\"39008\",\"paymentMethodName\":\"Mock\",\"paymentSn\":\"ECA202203020951150000003\",\"paymentState\":\"S\"}],\"paymentState\":\"S\",\"pointPrice\":\"0\",\"productId\":\"69\",\"productName\":\"杯子团购 黄色\",\"serviceTypes\":\"2,4\",\"state\":\"B\",\"stateDate\":\"2022-03-02 09:51:15\",\"storeCampaignPrice\":\"0\",\"storeCouponPrice\":\"0\",\"storeId\":\"5\",\"storeName\":\"WCT Store\",\"uccAccount\":\"A1test@A1.com\",\"unitPrice\":\"500\"}"];
             [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                 
             }];
-        }
+        }//{"Color\":\"黄色\"}\",\"serviceTypes\":\"2,4\",\"unitPrice\":\"500\"} ,\"productRemark\":\"{\\\"Color\\\":\\\"黄色\\\"}\" ,\"productRemark\":\"{\\\"Color\\\":\\\"黄色\\\"}\",
     }
 }
 
@@ -393,6 +394,7 @@
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     [MBProgressHUD hideFromKeyWindow];
+    [self addProduct];
 //    [self setlocalWeb];
 }
 
