@@ -44,6 +44,8 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
 @property (nonatomic, readwrite, strong) UIButton *filterBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *topImgView;
 @property (nonatomic, readwrite, strong) UIButton *lastBtn;
+@property (nonatomic, readwrite, strong) UIImageView *priceSortUpImg;
+@property (nonatomic, readwrite, strong) UIImageView *priceSortDownImg;
 @end
 
 @implementation GroupListViewController
@@ -93,21 +95,36 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
         make.left.mas_equalTo(KScale(16));
         make.top.mas_equalTo(self.topImgView.mas_bottom).offset(10);
         make.height.mas_equalTo(KScale(32));
-        make.width.mas_equalTo(KScale(96));
+        CGFloat width = [self.popularityBtn.titleLabel.text calWidthWithLabel:self.salesBtn.titleLabel] + 30;
+        make.width.mas_equalTo(width);
     }];
     
     [self.salesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.popularityBtn.mas_right).offset(KScale(8));
         make.top.mas_equalTo(self.topImgView.mas_bottom).offset(10);
         make.height.mas_equalTo(KScale(32));
-        make.width.mas_equalTo(KScale(60));
+        CGFloat width = [self.salesBtn.titleLabel.text calWidthWithLabel:self.salesBtn.titleLabel] + 30;
+        make.width.mas_equalTo(width);
     }];
     
     [self.priceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.salesBtn.mas_right).offset(KScale(8));
         make.top.mas_equalTo(self.topImgView.mas_bottom).offset(10);
         make.height.mas_equalTo(KScale(32));
-        make.width.mas_equalTo(KScale(78));
+        CGFloat width = [self.priceBtn.titleLabel.text calWidthWithLabel:self.priceBtn.titleLabel] + 30;
+        make.width.mas_equalTo(width);
+    }];
+    [self.priceBtn addSubview:self.priceSortUpImg];
+    [self.priceBtn addSubview:self.priceSortDownImg];
+    [self.priceSortUpImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(10);
+        make.bottom.equalTo(self.priceBtn.mas_centerY).offset(0);
+        make.right.offset(-10);
+    }];
+    [self.priceSortDownImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(10);
+        make.top.equalTo(self.priceBtn.mas_centerY).offset(0);
+        make.right.offset(-10);
     }];
     
     [self.filterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -263,6 +280,7 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
 }
 - (void)sort:(UIButton *)btn {
     //改变状态之前的逻辑处理
+    [self dealPrice:btn];
     CategoryRankType type = btn.tag - 100;
     if (btn == self.priceBtn) {
         BOOL isSeleted = btn.selected;
@@ -290,6 +308,31 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
 
     //UI 处理
     [self sortUpdateBtnUI:btn];
+}
+//改变状态之前 处理升序、降序价格逻辑
+- (void)dealPrice:(UIButton *)btn {
+    if (btn == self.priceBtn) {
+        CategoryRankType type = btn.tag - 100;
+        BOOL isSeleted = btn.selected;
+        if (isSeleted) {
+            if (type == CategoryRankTypePriceDescending) {
+                btn.tag = CategoryRankTypePriceAscending + 100;
+                self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up-red"];
+                self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down"];
+            } else {
+                btn.tag = CategoryRankTypePriceDescending + 100;
+                self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
+                self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down-red"];
+            }
+        } else {//从未选中到选中状态默认未降序
+            btn.tag = CategoryRankTypePriceDescending + 100;
+            self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
+            self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down-red"];
+        }
+    } else {
+        self.priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
+        self.priceSortDownImg.image = [UIImage imageNamed:@"swipe-down"];
+    }
 }
 - (void)detailFilter:(UIButton *)btn {
         [self jumpToFilterDetail];
@@ -352,7 +395,7 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
         _popularityBtn.tag = CategoryRankTypePopularity + 100;
         _popularityBtn.titleLabel.font = kFontRegular(14);
         [_popularityBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
-        [_popularityBtn setTitle:@"Popularity" forState:UIControlStateNormal];
+        [_popularityBtn setTitle:kLocalizedString(@"Popularity") forState:UIControlStateNormal];
         [_popularityBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];
         [_popularityBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateSelected];
         _popularityBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
@@ -367,7 +410,7 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
         _salesBtn.tag = CategoryRankTypeSales + 100;
         _salesBtn.titleLabel.font = kFontRegular(14);
         [_salesBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
-        [_salesBtn setTitle:@"Sales" forState:UIControlStateNormal];
+        [_salesBtn setTitle:kLocalizedString(@"Sales") forState:UIControlStateNormal];
         [_salesBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];
         [_salesBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateSelected];
         _salesBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
@@ -382,11 +425,12 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
         _priceBtn.tag = CategoryRankTypePriceAscending + 100;
         _priceBtn.titleLabel.font = kFontRegular(14);
         [_priceBtn addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
-        [_priceBtn setTitle:@"Price" forState:UIControlStateNormal];
+        [_priceBtn setTitle:kLocalizedString(@"Price") forState:UIControlStateNormal];
         [_priceBtn setTitleColor:[UIColor jk_colorWithHexString:@"#7B7B7B"] forState:UIControlStateNormal];
         [_priceBtn setTitleColor:[UIColor jk_colorWithHexString:@"#FF1659"] forState:UIControlStateSelected];
         _priceBtn.layer.borderColor = [UIColor jk_colorWithHexString:@"#C4C4C4"].CGColor;
         _priceBtn.layer.borderWidth = 1;
+        [_priceBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 5)];
     }
     return _priceBtn;
 }
@@ -400,5 +444,20 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
         [_filterBtn setImage:[UIImage imageNamed:@"rank_filters"] forState:UIControlStateNormal];
     }
     return _filterBtn;
+}
+-(UIImageView *)priceSortUpImg {
+    if (!_priceSortUpImg) {
+        _priceSortUpImg = [[UIImageView alloc] init];
+        _priceSortUpImg.image = [UIImage imageNamed:@"swipe-up"];
+    }
+    return _priceSortUpImg;
+}
+
+-(UIImageView *)priceSortDownImg {
+    if (!_priceSortDownImg) {
+        _priceSortDownImg = [[UIImageView alloc] init];
+        _priceSortDownImg.image = [UIImage imageNamed:@"swipe-down"];
+    }
+    return _priceSortDownImg;
 }
 @end

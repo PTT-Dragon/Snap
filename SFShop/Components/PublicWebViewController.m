@@ -40,12 +40,17 @@
 //    if (self.webView.title == nil || [self.webView.title isEqualToString:@""]) {
     if (self.isHome) {
         if ([self.url isEqualToString:self.webView.URL.absoluteString]) {
-            [self.webView reload];
+//            [self.webView reload];
+            [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+
+            }];
         }else{
             [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
         }
     }else{
-        [self.webView reload];
+        [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+
+        }];
     }
 //        }
 }
@@ -87,6 +92,8 @@
     self.configuration = configuration;
     float hei = iOS15 ? 3: 0;
     WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, (_isHome || _isChat || _isCategory) ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei-hei): navBarHei)) configuration:_configuration];
+    webview.backgroundColor = [UIColor whiteColor];
+//    self.webView.allowsBackForwardNavigationGestures = NO;
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
@@ -110,7 +117,7 @@
     }];
     if ([_url containsString:@"/chat/"]) {
         [self setlocalWeb];
-        [self performSelector:@selector(reload) withObject:nil afterDelay:1];
+        [self performSelector:@selector(reload) withObject:nil afterDelay:0.5];
     }
 }
 - (void)reload
@@ -147,11 +154,25 @@
             UserModel *model = [FMDBManager sharedInstance].currentUser;
             NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
             NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
-            [self.webView evaluateJavaScript:token completionHandler:nil];
-            [self.webView evaluateJavaScript:isLogin completionHandler:^(id _Nullable, NSError * _Nullable error) {
+            [weakself.webView evaluateJavaScript:token completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                
+
+            }];
+            [weakself.webView evaluateJavaScript:isLogin completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                 NSLog(@"");
             }];
         });
+    }else if (_isChat){
+        if (_productDic) {
+            NSError *parseError = nil;
+                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:kNilOptions error:&parseError];
+                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
+//            [self.webView evaluateJavaScript:product completionHandler:nil];
+            [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//                self.webView
+            }];
+        }
     }
 }
 
@@ -167,13 +188,16 @@
     NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? 1 : 0];
     if ([self.webView.URL.absoluteString containsString:@"/chat/"]) {
         isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
-        if (_productDic) {
-            NSError *parseError = nil;
-                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:NSJSONWritingPrettyPrinted error:&parseError];
-                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", _productDic];
-            [self.webView evaluateJavaScript:product completionHandler:nil];
-        }
+//        if (_productDic) {
+//            NSError *parseError = nil;
+//                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:kNilOptions error:&parseError];
+//                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
+            [self.webView evaluateJavaScript:isLogin completionHandler:nil];
+//            [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//
+//            }];
+//        }
     }
     [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];
@@ -237,11 +261,13 @@
 {
     NSDictionary *func = message.body;
     if ([func[@"type"] isEqualToString:@"/search-page"]) {
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
         vc.activeSearch = YES;
         vc.shouldBackToHome = YES;
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([func[@"type"] isEqualToString:@"PROD_DETAIL"]) {
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         NSDictionary *dic = func[@"data"];
         ProductViewController *vc = [[ProductViewController alloc] init];
         vc.offerId = [dic[@"offerId"] integerValue];
@@ -271,6 +297,7 @@
         CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([func[@"type"] rangeOfString:@"coupons-"].location != NSNotFound){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         NSArray *arr = [func[@"type"] componentsSeparatedByString:@"-"];
         [SFNetworkManager post:SFNet.coupon.usercoupon parameters:@{@"couponId":arr.lastObject} success:^(id  _Nullable response) {
 //            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COLLECT_COUPON_SUCCESS")];
@@ -281,6 +308,7 @@
             [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }else if ([func[@"type"] isEqualToString:@"PROD_FILTER"]){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         NSArray *arr = [func[@"data"][@"params"] componentsSeparatedByString:@"&"];
         NSMutableDictionary *filteredProductsRela = [NSMutableDictionary dictionary];
         for (NSString *str in arr) {
@@ -299,11 +327,13 @@
         vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([func[@"type"] isEqualToString:@"/message-center"]){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         MessageViewController *vc = [[MessageViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([func[@"type"] isEqualToString:@"/main/cart"]){
         [self.tabBarController setSelectedIndex:3];
     }else if ([func[@"type"] isEqualToString:@"/my-coupon"]){
+        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         MyCouponViewController *vc = [[MyCouponViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([func[@"type"] isEqualToString:@"/main/account"]){
@@ -367,7 +397,7 @@
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+//    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView NS_AVAILABLE(10_11, 9_0){
     [webView reload];

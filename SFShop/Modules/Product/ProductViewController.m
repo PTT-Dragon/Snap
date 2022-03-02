@@ -232,6 +232,7 @@
     } @catch (NSException *exception) {
         NSLog(@"可能多次释放，避免crash");
     }
+    [MBProgressHUD hideFromKeyWindow];
     [[JPVideoPlayerManager sharedManager] stopPlay];
 }
 - (void)setDefaultAddress
@@ -355,7 +356,7 @@
         [hud hideAnimated:YES];
         NSError *error;
         self.model = [[ProductDetailModel alloc] initWithDictionary: response error: &error];
-      
+        self.messageBtn.hidden = !self.model.uccAccount;
         [self requestAddressInfo];
         NSLog(@"get product detail success");
     } failed:^(NSError * _Nonnull error) {
@@ -1206,7 +1207,7 @@
     }
 }
 - (IBAction)messageAction:(UIButton *)sender {
-    UserModel *model = [FMDBManager sharedInstance];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
     if (!model.accessToken) {
         LoginViewController *vc = [[LoginViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -1214,11 +1215,12 @@
     }
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
     vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[self.selProductModel toDictionary]];
+    [dic addEntriesFromDictionary:[self.model toDictionary]];
     [dic setValue:@(self.selProductModel.salesPrice) forKey:@"salesPrice"];
     [dic setValue:@(self.selProductModel.marketPrice) forKey:@"marketPrice"];
     [dic setValue:@"100" forKey:@"cardType"];
-    [dic setValue:[self.selProductModel toDictionary] forKey:@"productDetail"];
+//    [dic setValue:[self.selProductModel toDictionary] forKey:@"productDetail"];
     [dic setValue:[self.model toDictionary] forKey:@"offerDetail"];
     vc.productDic = dic;
     vc.sysAccount = _model.uccAccount;
@@ -1404,7 +1406,7 @@
         UIImageView *iv = nil;
 //        if (view == nil) {
             iv = [[UIImageView alloc] initWithFrame:carousel.bounds];
-            iv.contentMode = UIViewContentModeScaleAspectFit;
+            iv.contentMode = UIViewContentModeScaleAspectFill;
 //        } else {
 //            iv = (UIImageView *)view;
 //        }
@@ -1435,7 +1437,7 @@
             UIImageView *iv = nil;
 //            if (view == nil) {
                 iv = [[UIImageView alloc] initWithFrame:carousel.bounds];
-                iv.contentMode = UIViewContentModeScaleAspectFit;
+                iv.contentMode = UIViewContentModeScaleAspectFill;
 //            } else {
 //                iv = (UIImageView *)view;
 //            }

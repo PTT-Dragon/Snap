@@ -59,13 +59,13 @@
         _stateLabel.text = kLocalizedString(@"Grouped");
         _stateLabel.textColor = RGBColorFrom16(0x7b7b7b);
         _inviteBtn.hidden = YES;
-        viewWidth = _model.groupMembers.count * 53;
+        viewWidth = _model.showGroupMembers.count * 53;
     }else if ([model.state isEqualToString:@"B"]){
         [_shareBtn setTitle:kLocalizedString(@"Invite_friends") forState:0];
         _stateLabel.text = [NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%ld",model.shareByNum-model.memberQty],kLocalizedString(@"expire_one_tip")];
         _stateLabel.textColor = [UIColor blackColor];
-        viewWidth = (_model.groupMembers.count+1) * 53;
-        _inviteBtn.frame = CGRectMake(_model.groupMembers.count * 53, 0, 48, 48);
+        viewWidth = (_model.showGroupMembers.count+1) * 53;
+        _inviteBtn.frame = CGRectMake(_model.showGroupMembers.count * 53, 0, 48, 48);
     }else if ([model.state isEqualToString:@"D"]){
         
     }
@@ -73,9 +73,9 @@
     CGFloat width = 48;
     NSInteger i = 0;
 //    CGFloat right = _model.groupMembers.count>3 ? 24: 50;
-    for (ReviewUserInfoModel *memberModel in _model.groupMembers) {
+    for (ReviewUserInfoModel *memberModel in _model.showGroupMembers) {
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*53, 0, width, width)];
-        [imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(memberModel.photo)]];
+        [imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(memberModel.photo)] placeholderImage:[UIImage imageNamed:@"Unknown"]];
         imgView.clipsToBounds = YES;
         [self.showImgView addSubview:imgView];
         i++;

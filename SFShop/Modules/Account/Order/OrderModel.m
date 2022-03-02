@@ -52,7 +52,25 @@
 
 @end
 @implementation OrderGroupModel
-
+- (NSArray <ReviewUserInfoModel>*)showGroupMembers
+{
+    if ([_state isEqualToString:@"C"]) {
+        //已完成
+        if (_shareByNum > _groupMembers.count) {
+            //已完成  添加假数据
+            NSMutableArray *array = [NSMutableArray arrayWithArray:_groupMembers];
+            for (NSInteger i = 0; i < _shareByNum - _groupMembers.count; i++) {
+                ReviewUserInfoModel *model = [[ReviewUserInfoModel alloc] init];
+                model.photo = @"Unknown";
+                [array addObject:model];
+            }
+            return array;
+        }
+        return _groupMembers;
+    }else{
+        return _groupMembers;
+    }
+}
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
     return YES;

@@ -70,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *shareBuyOrderId;
 @property (nonatomic,strong) NSArray <EvaluatesContentsModel>*imgs;
 @property (nonatomic,strong) NSArray <ReviewUserInfoModel>*groupMembers;
+@property (nonatomic,strong) NSArray <ReviewUserInfoModel>*showGroupMembers;
 
 /**
  {
