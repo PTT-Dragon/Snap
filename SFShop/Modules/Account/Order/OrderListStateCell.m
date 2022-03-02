@@ -45,7 +45,7 @@
 - (IBAction)chatAction:(UIButton *)sender {
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
     vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[self.orderDetailModel toDictionary]];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[self.orderDetailModel yy_modelToJSONObject]];
     [dic setValue:@"101" forKey:@"cardType"];
     [dic addEntriesFromDictionary:[self.orderDetailModel.orderItems.firstObject toDictionary]];
     NSMutableArray *arr = [NSMutableArray array];
