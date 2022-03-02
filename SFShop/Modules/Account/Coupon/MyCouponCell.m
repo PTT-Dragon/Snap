@@ -33,7 +33,7 @@
     [super awakeFromNib];
     // Initialization code
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(useCouponAction)];
-    [_statuLabel addGestureRecognizer:tap];
+    [self.contentView addGestureRecognizer:tap];
     _label1.text = kLocalizedString(@"DISCOUNT");
     _label2.text = kLocalizedString(@"EXPIRY_DATE");
     self.bgView.layer.borderColor = RGBColorFrom16(0xe7e7e7).CGColor;

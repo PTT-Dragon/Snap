@@ -139,7 +139,7 @@
         self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
     } else {
         self.couponPriceLabel.text = [NSString stringWithFormat:@"%ld %@",availableVouchersCount,kLocalizedString(@"AVAILABLE_COUPON")];
-        self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#000000"];
+        self.couponPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
     }
     self.promoPriceLabel.text = [NSString stringWithFormat:@"- %@",detailModel.feeModel.storeCampaignPrice.currency];
     self.totalPriceLabel.text = [NSString stringWithFormat:@"%@",detailModel.feeModel.storeOrderPrice.currency];
@@ -212,8 +212,8 @@
     if (_promoPriceLabel == nil) {
         _promoPriceLabel = [[UILabel alloc] init];
         _promoPriceLabel.text = @"";
-        _promoPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _promoPriceLabel.font =kFontBlod(16);
+        _promoPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#333333"];
+        _promoPriceLabel.font = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
         _promoPriceLabel.textAlignment = NSTextAlignmentRight;
     }
     return _promoPriceLabel;
@@ -235,7 +235,7 @@
         _totalPriceLabel = [[UILabel alloc] init];
         _totalPriceLabel.text = @"";
         _totalPriceLabel.textColor = [UIColor jk_colorWithHexString:@"#FF1659"];
-        _totalPriceLabel.font = kFontBlod(14);
+        _totalPriceLabel.font = kFontBlod(15);
         _totalPriceLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _totalPriceLabel;

@@ -351,6 +351,7 @@
             if (weakself.block) {
                 weakself.block();
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"KOrderEvaluateRefresh" object:nil];
             ReviewSuccessViewController *vc = [[ReviewSuccessViewController alloc] init];
             [weakself.navigationController pushViewController:vc animated:YES];
             [baseTool removeVCFromNavigation:self];
