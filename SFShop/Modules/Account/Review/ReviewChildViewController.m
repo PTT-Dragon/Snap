@@ -57,7 +57,19 @@
         make.top.mas_equalTo(self.view.mas_top).offset(90);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadAction) name:@"KOrderEvaluateRefresh" object:nil];
 }
+
+- (void)reloadAction {
+    if (self.type == 2) {
+        [self.tableView.mj_header beginRefreshing];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KOrderEvaluateRefresh" object:nil];
+}
+
 - (void)loadItemDatas
 {
     MPWeakSelf(self)
