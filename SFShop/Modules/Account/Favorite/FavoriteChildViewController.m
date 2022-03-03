@@ -81,14 +81,16 @@
 //            [params setObject:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
 //        }
     
-    if (self.rankModel.filterCache.minPrice > -1) {
-        [params setObject:@([[NSString stringWithFormat:@"%ld",self.rankModel.filterCache.minPrice] multiplyCurrencyFloat]) forKey:@"startPrice"];
-    }
-    if (self.rankModel.filterCache.maxPrice > -1) {
-        [params setObject:@([[NSString stringWithFormat:@"%ld",self.rankModel.filterCache.maxPrice] multiplyCurrencyFloat]) forKey:@"endPrice"];
-    }
-    if (self.rankModel.filterCache.categoryId.length > 0) {
-        [params setObject:self.rankModel.filterCache.categoryId forKey:@"catgId"];
+    if (_rankModel && _rankModel.filterCache) {
+        if (self.rankModel.filterCache.minPrice > -1 && self.rankModel.filterCache.minPrice) {
+            [params setObject:@([[NSString stringWithFormat:@"%ld",self.rankModel.filterCache.minPrice] multiplyCurrencyFloat]) forKey:@"startPrice"];
+        }
+        if (self.rankModel.filterCache.maxPrice > -1 && self.rankModel.filterCache.maxPrice) {
+            [params setObject:@([[NSString stringWithFormat:@"%ld",self.rankModel.filterCache.maxPrice] multiplyCurrencyFloat]) forKey:@"endPrice"];
+        }
+        if (self.rankModel.filterCache.categoryId.length > 0) {
+            [params setObject:self.rankModel.filterCache.categoryId forKey:@"catgId"];
+        }
     }
     
     [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
