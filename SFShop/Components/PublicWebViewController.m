@@ -22,6 +22,7 @@
 #import "MessageViewController.h"
 #import "MyCouponViewController.h"
 #import "LoginViewController.h"
+#import "OrderDetailViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -185,7 +186,7 @@
 //                    @"canReturn": _productDic[@"canReturn"],// @"N",
 //                    @"canReview": _productDic[@"canReview"],// @"Y",
                     @"cardType": @"101",
-//                    @"createdDate": _productDic[@"createdDate"],// @"2022-03-02 09:50:57",
+                    @"createdDate": _productDic[@"createdDate"] ? _productDic[@"createdDate"]: @"",// @"2022-03-02 09:50:57",
                     @"completionDate" : [_productDic valueForKey:@"completionDate"] ? [_productDic valueForKey:@"completionDate"]: @"",// @"2022-03-02 14:22:36",
 //                    @"deductionPrice": @"0",
                     @"deliveryAddress": _productDic[@"deliveryAddress"] ? _productDic[@"deliveryAddress"]: @"",
@@ -209,6 +210,7 @@
                     @"offerType": _productDic[@"offerType"] ? _productDic[@"offerType"]:@"",// @"P",
                     @"orderId": _productDic[@"orderId"] ? _productDic[@"orderId"]: @"",
                     @"orderItemId": _productDic[@"orderItemId"] ? _productDic[@"orderItemId"]: @"",
+//                    @"productRemark": @"\"{\\\"Color\\\":\\\"黄色\\\"}",//_productDic[@"productRemark"] ? _productDic[@"productRemark"]: @"",
                     @"orderItems": @[
     //                  @{
     //                    @"canEvaluate": @"N",
@@ -500,7 +502,15 @@
             [self reset];
             [self.navigationController popViewControllerAnimated:YES];
         }
+    }else if ([func[@"type"] isEqualToString:@"ORDER_DETAIL"]){
+        OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
+        vc.orderId = func[@"data"][@"orderId"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([func[@"type"] isEqualToString:@"URL"]){
+        NSString *url = [NSString stringWithFormat:@"%@/%@",Host,func[@"data"][@"url"]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     }
+    
 }
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
