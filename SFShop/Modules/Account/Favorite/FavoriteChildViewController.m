@@ -66,21 +66,18 @@
     }else if (_type == PROMOTIONTYPE){
         [params setValue:@"Y" forKey:@"promotionFlag"];
     }
-    if (_rankModel) {
-        __block NSString *catgId = @"";
-        [_rankModel.catgIds enumerateObjectsUsingBlock:^(CategoryRankCategoryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.isSelected) {
-                catgId = obj.idStr;
-            }
-        }];
-        [params setValue:catgId forKey:@"catgId"];
-        if (_rankModel.priceModel && _rankModel.priceModel.minPrice > -1) {
-            [params setObject:@(_rankModel.priceModel.minPrice) forKey:@"startPrice"];
-        }
-        if (_rankModel.priceModel && _rankModel.priceModel.maxPrice > -1) {
-            [params setObject:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
-        }
+    
+    if (self.filterCacheModel.minPrice > -1) {
+        [params setObject:@([[NSString stringWithFormat:@"%ld",self.filterCacheModel.minPrice] multiplyCurrencyFloat]) forKey:@"startPrice"];
     }
+    if (self.filterCacheModel.maxPrice > -1) {
+        [params setObject:@([[NSString stringWithFormat:@"%ld",self.filterCacheModel.maxPrice] multiplyCurrencyFloat]) forKey:@"endPrice"];
+    }
+    
+    if (self.filterCacheModel.categoryId.length > 0) {
+        [params setObject:self.filterCacheModel.categoryId forKey:@"catgId"];
+    }
+    
     [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
         [self.tableView.mj_header endRefreshing];
         [weakself.dataSource removeAllObjects];
@@ -318,5 +315,13 @@
     }return _gotoShopping;
 }
 
+- (CategoryRankFilterCacheModel *)filterCacheModel {
+    if (_filterCacheModel == nil) {
+        _filterCacheModel = [[CategoryRankFilterCacheModel alloc] init];
+        _filterCacheModel.minPrice = -1;//初始化为-1,传参时,传入@""表示没有指定min价格
+        _filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
+    }
+    return _filterCacheModel;
+}
 
 @end
