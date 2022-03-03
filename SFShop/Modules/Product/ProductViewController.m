@@ -654,8 +654,7 @@
     [[self.recommendView.recommendCollectionView rac_valuesForKeyPath:@"contentSize" observer:self] subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         [self.recommendView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            CGFloat a = (CGFloat)x;
-            make.height.mas_equalTo(x);
+            make.height.mas_equalTo([x CGSizeValue].height+30);
         }];
     }];
     
