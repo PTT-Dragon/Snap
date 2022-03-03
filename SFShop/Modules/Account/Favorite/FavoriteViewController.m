@@ -18,10 +18,9 @@
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataSource;
-@property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic,strong) VTMagicController *magicController;
 @property (nonatomic,strong) FavoriteNumModel *numModel;
-
+@property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @end
 
 @implementation FavoriteViewController
@@ -74,9 +73,9 @@
             if (model.priceModel && model.priceModel.maxPrice > -1) {
                 model.priceModel.maxPrice = [[NSString stringWithFormat:@"%.ld",model.priceModel.maxPrice] multiplyCurrencyFloat];
             }
-            vc.rankModel = model;
             weakself.dataModel = model;
-            weakself.filterCacheModel = weakself.dataModel.filterCache;
+            vc.rankModel = model;
+            weakself.filterCacheModel = model.filterCache;
             [vc reloadDatas];
         }
     };

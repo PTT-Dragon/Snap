@@ -137,7 +137,7 @@
         if (indexPath.row == 0) {
             hei = 40;
         }else if(indexPath.row == self.model.showMemos.count+1){
-            hei = ([self.model.state isEqualToString:@"F"] || [self.model.state isEqualToString:@"I"]  || [self.model.state isEqualToString:@"G"]) ? 75: 0;
+            hei = (![self.model.eventId isEqualToString:@"4"] && self.model.refund) ? 75 : 0;
         }else{
             hei = 75;
         }

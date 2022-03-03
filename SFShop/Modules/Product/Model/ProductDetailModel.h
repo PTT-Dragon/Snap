@@ -251,6 +251,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) double shareBuyPrice;
 @property (nonatomic,assign) double discountPercent;
 @property (nonatomic,assign) NSInteger buyAmtLimit;
+@property (nonatomic,strong) NSArray <ProductGroupListModel>*groups;
 @end
 
 @interface ProductCampaignsInfoModel : JSONModel

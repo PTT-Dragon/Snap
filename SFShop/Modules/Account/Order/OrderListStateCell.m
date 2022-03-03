@@ -48,19 +48,19 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[self.orderDetailModel yy_modelToJSONObject]];
     [dic setValue:@"101" forKey:@"cardType"];
     [dic addEntriesFromDictionary:[self.orderDetailModel.orderItems.firstObject toDictionary]];
-//    NSMutableArray *arr = [NSMutableArray array];
-//    for (orderItemsModel *itemModEl in self.orderDetailModel.orderItems) {
-//        NSDictionary *dic = [itemModEl toDictionary];
-//        [arr addObject:dic];
-//    }
-//    [dic setValue:@[] forKey:@"orderItems"];
-//    NSMutableArray *arr2 = [NSMutableArray array];
-//    for (OrderDetailPaymentsModel *itemModel in self.orderDetailModel.payments) {
-//        NSDictionary *dic = [itemModel toDictionary];
-//        [arr2 addObject:dic];
-//    }
-//    [dic setValue:arr2 forKey:@"payments"];
-//    [dic setValue:@"1" forKey:@"isService"];
+    NSMutableArray *arr = [NSMutableArray array];
+    for (orderItemsModel *itemModEl in self.orderDetailModel.orderItems) {
+        NSDictionary *dic = [itemModEl toDictionary];
+        [arr addObject:dic];
+    }
+    [dic setValue:@[] forKey:@"orderItems"];
+    NSMutableArray *arr2 = [NSMutableArray array];
+    for (OrderDetailPaymentsModel *itemModel in self.orderDetailModel.payments) {
+        NSDictionary *dic = [itemModel toDictionary];
+        [arr2 addObject:dic];
+    }
+    [dic setValue:arr2 forKey:@"payments"];
+    [dic setValue:@"1" forKey:@"isService"];
     vc.productDic = dic;
     vc.sysAccount = _orderDetailModel.uccAccount;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

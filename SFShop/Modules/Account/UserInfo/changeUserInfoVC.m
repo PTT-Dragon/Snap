@@ -121,7 +121,7 @@
 - (void)chooseGender:(NSString *)gender
 {
     _gender = gender;
-    [_genderBtn setTitle:[gender isEqualToString:@"M"] ? @"  Pria":[gender isEqualToString:@"F"] ? @"  Wanita":@"  Memilih untuk tidak menjawab" forState:0];
+    [_genderBtn setTitle:[gender isEqualToString:@"M"] ? [NSString stringWithFormat:@"  %@",kLocalizedString(@"MALE")]:[gender isEqualToString:@"F"] ? [NSString stringWithFormat:@"  %@",kLocalizedString(@"FEMALE")]:[NSString stringWithFormat:@"  %@",kLocalizedString(@"PREFER_NOT_TO_RESPOND")] forState:0];
 }
 
 @end

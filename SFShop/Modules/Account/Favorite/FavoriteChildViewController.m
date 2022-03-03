@@ -66,21 +66,33 @@
     }else if (_type == PROMOTIONTYPE){
         [params setValue:@"Y" forKey:@"promotionFlag"];
     }
-    if (_rankModel) {
-        __block NSString *catgId = @"";
-        [_rankModel.catgIds enumerateObjectsUsingBlock:^(CategoryRankCategoryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.isSelected) {
-                catgId = obj.idStr;
-            }
-        }];
-        [params setValue:catgId forKey:@"catgId"];
-        if (_rankModel.priceModel && _rankModel.priceModel.minPrice > -1) {
-            [params setObject:@(_rankModel.priceModel.minPrice) forKey:@"startPrice"];
+//    if (_rankModel) {
+////        __block NSString *catgId = @"";
+////        [_rankModel.catgIds enumerateObjectsUsingBlock:^(CategoryRankCategoryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+////            if (obj.isSelected) {
+////                catgId = obj.idStr;
+////            }
+////        }];
+//        [params setValue:_rankModel.filterCache.categoryId forKey:@"catgId"];
+//        if (_rankModel.priceModel && _rankModel.priceModel.minPrice > -1) {
+//            [params setObject:@(_rankModel.priceModel.minPrice) forKey:@"startPrice"];
+//        }
+//        if (_rankModel.priceModel && _rankModel.priceModel.maxPrice > -1) {
+//            [params setObject:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
+//        }
+    
+    if (_rankModel && _rankModel.filterCache) {
+        if (self.rankModel.filterCache.minPrice > -1 && self.rankModel.filterCache.minPrice) {
+            [params setObject:@([[NSString stringWithFormat:@"%ld",self.rankModel.filterCache.minPrice] multiplyCurrencyFloat]) forKey:@"startPrice"];
         }
-        if (_rankModel.priceModel && _rankModel.priceModel.maxPrice > -1) {
-            [params setObject:@(_rankModel.priceModel.maxPrice) forKey:@"endPrice"];
+        if (self.rankModel.filterCache.maxPrice > -1 && self.rankModel.filterCache.maxPrice) {
+            [params setObject:@([[NSString stringWithFormat:@"%ld",self.rankModel.filterCache.maxPrice] multiplyCurrencyFloat]) forKey:@"endPrice"];
+        }
+        if (self.rankModel.filterCache.categoryId.length > 0) {
+            [params setObject:self.rankModel.filterCache.categoryId forKey:@"catgId"];
         }
     }
+    
     [SFNetworkManager get:SFNet.favorite.favorite parameters:params success:^(id  _Nullable response) {
         [self.tableView.mj_header endRefreshing];
         [weakself.dataSource removeAllObjects];
