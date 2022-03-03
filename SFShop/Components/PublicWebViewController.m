@@ -85,6 +85,9 @@
     self.configuration = configuration;
     float hei = iOS15 ? 3: 0;
     WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, (_isHome || _isChat || _isCategory) ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei-hei): navBarHei)) configuration:_configuration];
+    [webview.scrollView setShowsVerticalScrollIndicator:NO];
+
+    [webview.scrollView setShowsHorizontalScrollIndicator:NO];
     webview.backgroundColor = [UIColor whiteColor];
 //    self.webView.allowsBackForwardNavigationGestures = NO;
     _webView = webview;

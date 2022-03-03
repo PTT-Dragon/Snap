@@ -145,6 +145,7 @@
                 <outlet property="btnImgView" destination="oQE-Yf-ggf" id="dM6-Le-nhN"/>
                 <outlet property="groupCountLabel" destination="kcT-yR-8gk" id="k0M-HS-Xf1"/>
                 <outlet property="groupInfoBgView" destination="R4D-pu-BqG" id="ggG-0v-Cty"/>
+                <outlet property="groupInfoViewWidth" destination="wJC-dj-VG4" id="pD8-lV-e10"/>
                 <outlet property="imgView" destination="fRP-V8-s11" id="FP5-Ii-VBA"/>
                 <outlet property="marketPriceLabel" destination="tjt-uF-dRV" id="UXV-Cs-SoO"/>
                 <outlet property="nameLabel" destination="8jK-v5-4iR" id="Iqk-dP-k39"/>

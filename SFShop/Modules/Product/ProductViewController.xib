@@ -19,6 +19,7 @@
                 <outlet property="addCartBtn" destination="4Dc-YH-2NV" id="Svx-rV-jMS"/>
                 <outlet property="addLabel" destination="Rit-kN-wBG" id="ePd-gB-eAp"/>
                 <outlet property="addressLabel" destination="S5Q-39-22Q" id="u1S-Ty-i6t"/>
+                <outlet property="addressViewTop" destination="sqX-hc-S2h" id="ZnA-qL-JPe"/>
                 <outlet property="btnToName" destination="5Ho-G0-Yov" id="2qS-Ka-GeY"/>
                 <outlet property="btnToPrice" destination="lWx-Dh-s8B" id="7GY-V8-xOO"/>
                 <outlet property="buyBtn" destination="7Oj-2V-4K5" id="ZHZ-k6-SYc"/>
@@ -26,6 +27,7 @@
                 <outlet property="cartBtn" destination="Wzh-91-W1s" id="2ru-7x-ruF"/>
                 <outlet property="cartNumLabel" destination="ysm-hw-4n3" id="RY4-6V-pM0"/>
                 <outlet property="chatBtnWidth" destination="2Uo-Q7-c3h" id="0vN-Dc-bTH"/>
+                <outlet property="couponViewTop" destination="InE-92-Jck" id="pDQ-d0-0BB"/>
                 <outlet property="couponsView" destination="1ze-5y-re2" id="cNs-fH-cdW"/>
                 <outlet property="couponsViewHeight" destination="Sss-pG-inW" id="rCI-VT-10S"/>
                 <outlet property="deliveryLabel" destination="4Me-5e-Gsz" id="anj-nw-b8k"/>
@@ -45,6 +47,7 @@
                 <outlet property="groupSalePriceLabel" destination="eGC-xg-MZ6" id="8Qp-bq-X4b"/>
                 <outlet property="groupTableView" destination="4rj-lN-JbL" id="5Fv-Ob-lZS"/>
                 <outlet property="groupTableViewHei" destination="an5-2E-rZr" id="VtU-uc-AKE"/>
+                <outlet property="groupTableViewTop" destination="vkE-zn-TTl" id="NMn-tb-flM"/>
                 <outlet property="hourLabel" destination="D0E-iP-t9L" id="U6w-vP-ErA"/>
                 <outlet property="infoCellTop" destination="rbz-dD-88Y" id="91J-g2-Ggs"/>
                 <outlet property="infoView" destination="6Ng-IR-i7y" id="Git-HN-Fua"/>
@@ -171,7 +174,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                             <subviews>
                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ze-5y-re2">
-                                    <rect key="frame" x="0.0" y="560.5" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="536.5" width="414" height="0.0"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vouchers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAH-ei-aLu">
                                             <rect key="frame" x="16" y="-7.5" width="55.5" height="15"/>
@@ -188,7 +191,7 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4rj-lN-JbL">
-                                    <rect key="frame" x="0.0" y="548.5" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="536.5" width="414" height="0.0"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" id="an5-2E-rZr"/>
@@ -474,7 +477,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUg-OH-ceu">
-                                    <rect key="frame" x="0.0" y="572.5" width="414" height="76.5"/>
+                                    <rect key="frame" x="0.0" y="548.5" width="414" height="76.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rit-kN-wBG">
                                             <rect key="frame" x="16" y="16" width="80" height="14.5"/>
@@ -532,7 +535,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzu-se-CrA">
-                                    <rect key="frame" x="0.0" y="661" width="414" height="47"/>
+                                    <rect key="frame" x="0.0" y="637" width="414" height="47"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Variations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUI-50-buy">
                                             <rect key="frame" x="16" y="16" width="80" height="15"/>
@@ -561,7 +564,7 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GgT-97-s4m">
-                                    <rect key="frame" x="0.0" y="720" width="414" height="128"/>
+                                    <rect key="frame" x="0.0" y="696" width="414" height="128"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="128" id="7MT-fX-Ecc"/>
@@ -572,7 +575,7 @@
                                     </connections>
                                 </tableView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sh5-6B-V3T">
-                                    <rect key="frame" x="0.0" y="860" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="836" width="414" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHz-XN-MUs">
                                             <rect key="frame" x="16" y="16.5" width="41.5" height="17"/>
@@ -610,7 +613,7 @@
                                 <constraint firstItem="3B5-HJ-OKN" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="FdW-tA-qlE"/>
                                 <constraint firstItem="GgT-97-s4m" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="FiM-Su-mc5"/>
                                 <constraint firstItem="6Ng-IR-i7y" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="HaW-qM-4tt"/>
-                                <constraint firstItem="1ze-5y-re2" firstAttribute="top" secondItem="4rj-lN-JbL" secondAttribute="bottom" constant="12" id="InE-92-Jck"/>
+                                <constraint firstItem="1ze-5y-re2" firstAttribute="top" secondItem="4rj-lN-JbL" secondAttribute="bottom" id="InE-92-Jck"/>
                                 <constraint firstAttribute="trailing" secondItem="6Ng-IR-i7y" secondAttribute="trailing" id="Kyo-LH-DMR"/>
                                 <constraint firstItem="ogx-Ed-hic" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="M5s-PY-Cdb"/>
                                 <constraint firstItem="Jzu-se-CrA" firstAttribute="top" secondItem="LUg-OH-ceu" secondAttribute="bottom" constant="12" id="MdL-Ai-Omc"/>
@@ -630,7 +633,7 @@
                                 <constraint firstItem="LUg-OH-ceu" firstAttribute="top" secondItem="1ze-5y-re2" secondAttribute="bottom" constant="12" id="sqX-hc-S2h"/>
                                 <constraint firstItem="LUg-OH-ceu" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="uOU-wC-GFr"/>
                                 <constraint firstItem="cAq-mm-615" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="vPe-1s-8J2"/>
-                                <constraint firstItem="4rj-lN-JbL" firstAttribute="top" secondItem="6Ng-IR-i7y" secondAttribute="bottom" constant="12" id="vkE-zn-TTl"/>
+                                <constraint firstItem="4rj-lN-JbL" firstAttribute="top" secondItem="6Ng-IR-i7y" secondAttribute="bottom" id="vkE-zn-TTl"/>
                                 <constraint firstAttribute="trailing" secondItem="Jzu-se-CrA" secondAttribute="trailing" id="ymx-N1-sxf"/>
                             </constraints>
                         </view>

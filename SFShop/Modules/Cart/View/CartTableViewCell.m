@@ -97,7 +97,6 @@
 - (void)setShowCampaignsView:(BOOL)showCampaignsView
 {
     _showCampaignsView = showCampaignsView;
-    _campaignsImgView.hidden = !showCampaignsView;
     if (showCampaignsView) {
         self.offBtn.hidden = NO;
         self.offLabel.hidden = NO;
@@ -114,6 +113,7 @@
 - (void)setShowCampaignsBtn:(BOOL)showCampaignsBtn
 {
     self.campaignsBtn.hidden = !showCampaignsBtn;
+    _campaignsImgView.hidden = !showCampaignsBtn;
 }
 - (void)setCampaignsModel:(CartCampaignsModel *)campaignsModel
 {

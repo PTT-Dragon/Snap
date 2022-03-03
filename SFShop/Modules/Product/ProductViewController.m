@@ -70,6 +70,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoCellTop;
 @property (weak, nonatomic) IBOutlet UIButton *usefulBtn;
 @property (weak, nonatomic) IBOutlet UIView *couponsView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *addressViewTop;
 
 @property(nonatomic, strong) NSMutableArray<ProductEvalationModel *> *evalationArr;
 @property (nonatomic, strong) WKWebView *detailWebView;
@@ -124,6 +125,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *variationsTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *vouchersTitleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *couponViewTop;
 @property (strong, nonatomic) SRXGoodsImageDetailView *pictureScrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnToName;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnToPrice;
@@ -741,6 +743,8 @@
 }
 
 - (void)hideGroupSubViews {
+    self.groupTableViewTop.constant = 0;
+    self.addressViewTop.constant = 12;
     self.groupInfoView.hidden = YES;
     self.flashSaleInfoView.hidden = YES;
     self.viewTop.constant = 0;
@@ -759,6 +763,8 @@
 
 - (void)layoutGroupSubViews
 {
+    self.groupTableViewTop.constant = 12;
+    self.addressViewTop.constant = 12;
     [self.groupTableView reloadData];
     self.groupTableViewHei.constant = [self calucateGroupTableviewHei];
     self.flashSaleInfoView.hidden = YES;
@@ -790,6 +796,7 @@
 {
     self.couponsView.hidden = NO;
     self.couponsViewHeight.constant = 40;
+    self.couponViewTop.constant = 12;
     __block CGFloat lastRight = 0;
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
     [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

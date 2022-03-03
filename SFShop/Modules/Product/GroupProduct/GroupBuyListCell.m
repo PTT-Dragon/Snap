@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *soldLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *btnImgView;
 @property (weak, nonatomic) IBOutlet UIView *groupInfoBgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupInfoViewWidth;
 
 @end
 
@@ -58,5 +59,6 @@
             }
         }
     }
+    _groupInfoViewWidth.constant = i*20;
 }
 @end

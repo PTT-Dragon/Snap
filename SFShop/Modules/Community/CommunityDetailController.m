@@ -50,6 +50,7 @@
 @property (nonatomic,strong) BaseMoreView *moreView;
 @property (strong, nonatomic) SRXGoodsImageDetailView *pictureScrollView;
 @property (weak, nonatomic) IBOutlet UILabel *theTitle;
+@property (weak, nonatomic) IBOutlet UILabel *articleTitleLabel;
 
 
 @end
@@ -159,7 +160,7 @@
         make.top.equalTo(self.viewCntLabel.mas_bottom).offset(28);
         make.left.equalTo(self.scrollContentView).offset(16);
         make.right.equalTo(self.scrollContentView).offset(-16);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(0);
     }];
     self.evaluateTableView.scrollEnabled = NO;
     [self.evaluateTableView registerClass:[CommunityEvaluateCell class] forCellReuseIdentifier:@"CommunityEvaluateCell"];
@@ -214,6 +215,7 @@
     _model = model;
     self.title = self.model.publisherName;
     [_headIV sd_setImageWithURL: [NSURL URLWithString: SFImage(self.model.profilePicture)]];
+    self.articleTitleLabel.text = model.contentTitle;
     [_navView configDataWithAnchorName:self.model.publisherName anchorImgUrl:self.model.profilePicture];
     [self.detailWebView loadHTMLString: [MakeH5Happy replaceHtmlSourceOfRelativeImageSource: self.model.articleDetail] baseURL:nil];
     self.viewCntLabel.text = [NSString stringWithFormat:@"%ld", self.model.viewCnt];
@@ -256,7 +258,7 @@
     if (object == self.detailWebView.scrollView && [keyPath isEqualToString:@"contentSize"]) {
         CGFloat height = self.detailWebView.scrollView.contentSize.height;
         [self.detailWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.viewCntLabel.mas_bottom).offset(28);
+            make.top.equalTo(self.viewCntLabel.mas_bottom).offset((self.model.contentTitle && ![self.model.contentTitle isEqualToString:@""]) ? 55: 28);
             make.left.equalTo(self.scrollContentView).offset(16);
             make.right.equalTo(self.scrollContentView).offset(-16);
             make.height.mas_equalTo(height);
