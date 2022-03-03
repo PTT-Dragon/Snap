@@ -18,8 +18,10 @@
 @property(nonatomic, assign) NSInteger currentMenuIndex;
 @property (nonatomic, readwrite, strong) CategoryRankModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataSource;
+@property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @property (nonatomic,strong) VTMagicController *magicController;
 @property (nonatomic,strong) FavoriteNumModel *numModel;
+
 @end
 
 @implementation FavoriteViewController
@@ -74,7 +76,7 @@
             }
             weakself.dataModel = model;
             vc.rankModel = model;
-            vc.filterCacheModel = model.filterCache;
+            weakself.filterCacheModel = model.filterCache;
             [vc reloadDatas];
         }
     };
@@ -159,7 +161,14 @@
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex {
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
 }
-
+- (CategoryRankFilterCacheModel *)filterCacheModel {
+    if (_filterCacheModel == nil) {
+        _filterCacheModel = [[CategoryRankFilterCacheModel alloc] init];
+        _filterCacheModel.minPrice = -1;//初始化为-1,传参时,传入@""表示没有指定min价格
+        _filterCacheModel.maxPrice = -1;//初始化为-1,传参时,传入@""表示没有指定max价格
+    }
+    return _filterCacheModel;
+}
 - (NSMutableArray *)dataSource
 {
     if (!_dataSource) {

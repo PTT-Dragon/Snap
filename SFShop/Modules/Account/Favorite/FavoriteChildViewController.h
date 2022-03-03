@@ -17,7 +17,6 @@ typedef void(^FavoriteChildViewControllerBlock)(void);
 @property (nonatomic,copy) FavoriteChildViewControllerBlock block;
 @property (nonatomic,assign) FavoriteType type;
 @property (nonatomic,strong) CategoryRankModel *rankModel;
-@property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 
 - (void)reloadDatas;
 @end
