@@ -99,7 +99,7 @@ static BOOL changePhone = NO;
     _label6.text = kLocalizedString(@"OTHERDETAIL");
     _detailField.placeholder = kLocalizedString(@"OTHERDETAIL");
     _titleLabel3.text = kLocalizedString(@"ADDRESS_DEFAULT");
-    _readLabel.text = [NSString stringWithFormat:@"%@%@",kLocalizedString(@"HAVE_READ_AND_AGREED"),kLocalizedString(@"SF_AGREEMENT")];
+    _readLabel.text = [NSString stringWithFormat:@"%@ %@",kLocalizedString(@"HAVE_READ_AND_AGREED"),kLocalizedString(@"SF_AGREEMENT")];
     [_saveBtn setTitle:kLocalizedString(@"SAVE") forState:0];
     UITapGestureRecognizer *agreementTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(agreementAction)];
     [self.readLabel addGestureRecognizer:agreementTap];

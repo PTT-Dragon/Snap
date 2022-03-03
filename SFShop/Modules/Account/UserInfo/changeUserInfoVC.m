@@ -41,7 +41,8 @@
     _genderBtn.layer.borderWidth = 1;
     _birthBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     _birthBtn.layer.borderWidth = 1;
-    [_birthBtn setTitle:[NSString stringWithFormat:@"  %@",_selectDateStr?_selectDateStr:@""] forState:0];
+    [_birthBtn setTitle:[NSString stringWithFormat:@"  %@",_selectDateStr?_selectDateStr:kLocalizedString(@"DATEOFBIRTH")] forState:0];
+    [_birthBtn setTitleColor:_selectDateStr ? RGBColorFrom16(0x7b7b7b):RGBColorFrom16(0xbbbbbb)  forState:0];
 //    [_genderBtn setTitle:[NSString stringWithFormat:@"  %@",model.userRes.genderStr] forState:0];
     [self chooseGender:_gender];
     _nameField.text = model.userRes.nickName;
@@ -59,6 +60,7 @@
 }
 - (void)selectWithSelectTime:(NSString *)selectTime withYear:(NSString *)year withMonth:(NSString *)month{
     self.selectDateStr = selectTime;
+    [_birthBtn setTitleColor:_selectDateStr ? RGBColorFrom16(0x7b7b7b):RGBColorFrom16(0xbbbbbb)  forState:0];
 }
 
 - (void)selectWithSelectTime:(NSString *)selectTime withYear:(NSString *)year withMonth:(NSString *)month withDay:(NSString *)day{
