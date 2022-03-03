@@ -41,7 +41,7 @@
         return;
     }
     PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-    vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
+    vc.url = [NSString stringWithFormat:@"%@/chat/%@",Host,self.model.uccAccount];
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[self.model yy_modelToJSONObject]];
     [dic setValue:@"102" forKey:@"cardType"];
     [dic addEntriesFromDictionary:[self.model.items.firstObject toDictionary]];
