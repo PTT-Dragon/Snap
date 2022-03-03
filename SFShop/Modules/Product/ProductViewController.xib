@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20019"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,7 +44,6 @@
                 <outlet property="groupSalePriceLabel" destination="eGC-xg-MZ6" id="8Qp-bq-X4b"/>
                 <outlet property="groupTableView" destination="4rj-lN-JbL" id="5Fv-Ob-lZS"/>
                 <outlet property="groupTableViewHei" destination="an5-2E-rZr" id="VtU-uc-AKE"/>
-                <outlet property="groupTableViewTop" destination="fka-hM-AGE" id="GQR-GF-6Hx"/>
                 <outlet property="hourLabel" destination="D0E-iP-t9L" id="U6w-vP-ErA"/>
                 <outlet property="infoCellTop" destination="rbz-dD-88Y" id="91J-g2-Ggs"/>
                 <outlet property="infoView" destination="6Ng-IR-i7y" id="Git-HN-Fua"/>
@@ -189,7 +188,7 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4rj-lN-JbL">
-                                    <rect key="frame" x="0.0" y="558.5" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="548.5" width="414" height="0.0"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" id="an5-2E-rZr"/>
@@ -475,7 +474,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUg-OH-ceu">
-                                    <rect key="frame" x="0.0" y="570.5" width="414" height="76.5"/>
+                                    <rect key="frame" x="0.0" y="560.5" width="414" height="76.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rit-kN-wBG">
                                             <rect key="frame" x="16" y="16" width="80" height="14.5"/>
@@ -533,7 +532,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzu-se-CrA">
-                                    <rect key="frame" x="0.0" y="659" width="414" height="47"/>
+                                    <rect key="frame" x="0.0" y="649" width="414" height="47"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Variations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUI-50-buy">
                                             <rect key="frame" x="16" y="16" width="80" height="15"/>
@@ -562,7 +561,7 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GgT-97-s4m">
-                                    <rect key="frame" x="0.0" y="718" width="414" height="128"/>
+                                    <rect key="frame" x="0.0" y="708" width="414" height="128"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="128" id="7MT-fX-Ecc"/>
@@ -573,7 +572,7 @@
                                     </connections>
                                 </tableView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sh5-6B-V3T">
-                                    <rect key="frame" x="0.0" y="858" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="848" width="414" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHz-XN-MUs">
                                             <rect key="frame" x="16" y="16.5" width="41.5" height="17"/>
@@ -616,6 +615,7 @@
                                 <constraint firstItem="Jzu-se-CrA" firstAttribute="top" secondItem="LUg-OH-ceu" secondAttribute="bottom" constant="12" id="MdL-Ai-Omc"/>
                                 <constraint firstAttribute="trailing" secondItem="ogx-Ed-hic" secondAttribute="trailing" id="QmD-kp-4aL"/>
                                 <constraint firstItem="6Ng-IR-i7y" firstAttribute="top" secondItem="3B5-HJ-OKN" secondAttribute="bottom" id="ScG-dH-a35"/>
+                                <constraint firstItem="4rj-lN-JbL" firstAttribute="top" secondItem="6Ng-IR-i7y" secondAttribute="bottom" constant="12" id="TQg-GF-lcV"/>
                                 <constraint firstItem="Jzu-se-CrA" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="VCA-cO-k1q"/>
                                 <constraint firstItem="GgT-97-s4m" firstAttribute="top" secondItem="Jzu-se-CrA" secondAttribute="bottom" constant="12" id="Vne-yY-lhE"/>
                                 <constraint firstItem="3B5-HJ-OKN" firstAttribute="top" secondItem="TNw-J5-BPH" secondAttribute="top" id="aqA-h6-5qc"/>
@@ -624,7 +624,6 @@
                                 <constraint firstItem="Sh5-6B-V3T" firstAttribute="top" secondItem="GgT-97-s4m" secondAttribute="bottom" constant="12" id="e3q-e2-B4P"/>
                                 <constraint firstItem="4rj-lN-JbL" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="eos-h1-sA8"/>
                                 <constraint firstAttribute="trailing" secondItem="4rj-lN-JbL" secondAttribute="trailing" id="fSK-sc-avX"/>
-                                <constraint firstItem="4rj-lN-JbL" firstAttribute="top" secondItem="1ze-5y-re2" secondAttribute="bottom" constant="12" id="fka-hM-AGE"/>
                                 <constraint firstItem="1ze-5y-re2" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="gHO-1S-nYM"/>
                                 <constraint firstItem="Sh5-6B-V3T" firstAttribute="leading" secondItem="TNw-J5-BPH" secondAttribute="leading" id="gxB-ih-MOb"/>
                                 <constraint firstAttribute="trailing" secondItem="3B5-HJ-OKN" secondAttribute="trailing" id="k3u-dA-aG7"/>

@@ -67,13 +67,13 @@
         [params setValue:@"Y" forKey:@"promotionFlag"];
     }
     if (_rankModel) {
-        __block NSString *catgId = @"";
-        [_rankModel.catgIds enumerateObjectsUsingBlock:^(CategoryRankCategoryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.isSelected) {
-                catgId = obj.idStr;
-            }
-        }];
-        [params setValue:catgId forKey:@"catgId"];
+//        __block NSString *catgId = @"";
+//        [_rankModel.catgIds enumerateObjectsUsingBlock:^(CategoryRankCategoryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            if (obj.isSelected) {
+//                catgId = obj.idStr;
+//            }
+//        }];
+        [params setValue:_rankModel.filterCache.categoryId forKey:@"catgId"];
         if (_rankModel.priceModel && _rankModel.priceModel.minPrice > -1) {
             [params setObject:@(_rankModel.priceModel.minPrice) forKey:@"startPrice"];
         }

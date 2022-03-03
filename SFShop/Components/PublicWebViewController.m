@@ -326,11 +326,12 @@
 }
 
 - (void)receiveLanguageChangeNotification:(NSNotification *)noti {
-    // iOS调用js
-    [self setlocalWeb];
+    
     
     //清除掉，防止内存泄漏
     [self reset];
+    // iOS调用js
+    [self setlocalWeb];
 }
 
 - (void)receiveReloadWebviewNotification:(NSNotification *)noti
@@ -396,7 +397,7 @@
     }else if ([func[@"type"] isEqualToString:@"PROD_LIST"]){
         if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         NSString *categoryId = @"";
-        categoryId = func[@"data"][@"offerId"];
+        categoryId = func[@"data"][@"catgId"];
         CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
         CategoryModel *model = [[CategoryModel alloc] init];
         CategoryInnerModel *innerModel = [[CategoryInnerModel alloc] init];
