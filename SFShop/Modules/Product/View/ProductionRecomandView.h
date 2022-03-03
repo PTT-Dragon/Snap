@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ProductionRecomandView : UIView
 
 - (void)configDataWithSimilarList:(NSMutableArray<ProductSimilarModel *> *)similarList;
+@property (strong, nonatomic) UICollectionView *recommendCollectionView;
 
 @end
 

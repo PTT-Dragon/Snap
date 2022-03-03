@@ -14,7 +14,6 @@
 
 @interface ProductionRecomandView () <UICollectionViewDelegate, UICollectionViewDataSource,CommunityWaterfallLayoutProtocol>
 
-@property (strong, nonatomic) UICollectionView *recommendCollectionView;
 @property (strong, nonatomic) UILabel *titleLab;
 
 @property(nonatomic, strong) NSMutableArray<ProductSimilarModel *> *similarList;
@@ -103,12 +102,10 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//<<<<<<< HEAD
     CategoryRankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryRankCell" forIndexPath:indexPath];
 //    CategoryRankPageInfoListModel *cellModel = self.similarList[indexPath.row];
     cell.similarModel = self.similarList[indexPath.row];
     cell.showType = 0;
-//=======
 //    ProductionRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProductionRecommendCell" forIndexPath:indexPath];
 //    cell.model = self.similarList[indexPath.row];
 //>>>>>>> 4d144dfc40f7593807ac273d9cc974cd537821c0
