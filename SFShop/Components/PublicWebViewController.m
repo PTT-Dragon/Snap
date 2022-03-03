@@ -507,7 +507,7 @@
 //    [webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#131313\"" completionHandler:nil];
 //    [SVProgressHUD showInfoWithStatus:@"正在加载中"];
     [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
-    [self performSelector:@selector(removeHud) withObject:nil afterDelay:2];
+    [self performSelector:@selector(removeHud) withObject:nil afterDelay:1];
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{

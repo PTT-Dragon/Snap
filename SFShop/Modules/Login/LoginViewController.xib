@@ -8,6 +8,14 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoLt.otf">
+            <string>TruenoLt</string>
+        </array>
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
@@ -35,7 +43,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGN-iU-kgh">
-                    <rect key="frame" x="0.0" y="108" width="207" height="24"/>
+                    <rect key="frame" x="0.0" y="68" width="207" height="24"/>
                     <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="-3" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="Phone" image="pad-2">
@@ -49,7 +57,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThS-DP-mIk">
-                    <rect key="frame" x="207" y="108" width="207" height="24"/>
+                    <rect key="frame" x="207" y="75" width="207" height="17"/>
                     <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="-3" minY="0.0" maxX="3" maxY="0.0"/>
                     <state key="normal" title="Email" image="email-2">
@@ -63,21 +71,21 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYJ-Me-RM6">
-                    <rect key="frame" x="207" y="132" width="207" height="1"/>
+                    <rect key="frame" x="207" y="97" width="207" height="1"/>
                     <color key="backgroundColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="deviceRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="dCd-e3-4hX"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hr-nO-DjP">
-                    <rect key="frame" x="0.0" y="132" width="207" height="1"/>
+                    <rect key="frame" x="0.0" y="97" width="207" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="thp-nf-gQx"/>
                     </constraints>
                 </view>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imm-98-TnR">
-                    <rect key="frame" x="16" y="168" width="382" height="46"/>
+                    <rect key="frame" x="16" y="128" width="382" height="46"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="7hO-jK-nsG"/>
                     </constraints>
@@ -88,7 +96,7 @@
                     </connections>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CPB-84-N7c">
-                    <rect key="frame" x="16" y="258" width="382" height="46"/>
+                    <rect key="frame" x="16" y="218" width="382" height="46"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="Qws-uj-43E"/>
                     </constraints>
@@ -99,21 +107,21 @@
                     </connections>
                 </textField>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Phone number  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpW-bW-dO8">
-                    <rect key="frame" x="32" y="161" width="96" height="15"/>
+                    <rect key="frame" x="32" y="121" width="102.5" height="15"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                     <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Password  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6I6-Aq-Xhn">
-                    <rect key="frame" x="32" y="250" width="68" height="15"/>
+                    <rect key="frame" x="32" y="210" width="70" height="15"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTg-PS-qni">
-                    <rect key="frame" x="132" y="334" width="150" height="27"/>
+                    <rect key="frame" x="132" y="294" width="150" height="27"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="XqH-01-Cmd"/>
                         <constraint firstAttribute="height" constant="27" id="cet-ID-d1s"/>
@@ -127,19 +135,19 @@
                     </connections>
                 </button>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdG-AI-YDO">
-                    <rect key="frame" x="16" y="391" width="382" height="46"/>
+                    <rect key="frame" x="16" y="351" width="382" height="46"/>
                     <color key="backgroundColor" red="1" green="0.89803921568627454" blue="0.92156862745098034" alpha="1" colorSpace="deviceRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="9XT-As-pxt"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="14"/>
+                    <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="14"/>
                     <state key="normal" title="Login"/>
                     <connections>
                         <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="Kdq-bQ-jfh"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI4-Cb-XjV">
-                    <rect key="frame" x="110.5" y="467" width="193" height="27"/>
+                    <rect key="frame" x="110.5" y="427" width="193" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="laA-s6-RP3"/>
                     </constraints>
@@ -152,7 +160,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNg-2V-2oq">
-                    <rect key="frame" x="362" y="269" width="24" height="24"/>
+                    <rect key="frame" x="362" y="229" width="24" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="KU3-v5-wIj"/>
                         <constraint firstAttribute="width" constant="24" id="j3z-Kn-Qb8"/>
@@ -164,7 +172,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdd-wW-aLM">
-                    <rect key="frame" x="166" y="514" width="82" height="27"/>
+                    <rect key="frame" x="166" y="474" width="82" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="3ui-cP-CEn"/>
                     </constraints>
@@ -177,14 +185,14 @@
                     </connections>
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please input the correct phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiM-MC-dCS">
-                    <rect key="frame" x="30" y="219" width="354" height="15"/>
+                    <rect key="frame" x="30" y="179" width="354" height="15"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum 8 characters with numeric, upper case and lower case" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4S-aa-gDY">
-                    <rect key="frame" x="30" y="309" width="354" height="29"/>
+                    <rect key="frame" x="30" y="269" width="354" height="29"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
@@ -217,19 +225,18 @@
                 <constraint firstItem="oac-3T-U0G" firstAttribute="trailing" secondItem="imm-98-TnR" secondAttribute="trailing" constant="16" id="UcP-5n-dQZ"/>
                 <constraint firstItem="4hr-nO-DjP" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" id="VDR-X3-6g9"/>
                 <constraint firstItem="CPB-84-N7c" firstAttribute="top" secondItem="imm-98-TnR" secondAttribute="bottom" constant="44" id="WQe-wn-clc"/>
-                <constraint firstItem="pYJ-Me-RM6" firstAttribute="top" secondItem="ThS-DP-mIk" secondAttribute="bottom" id="aH8-vM-qIX"/>
+                <constraint firstItem="pYJ-Me-RM6" firstAttribute="top" secondItem="ThS-DP-mIk" secondAttribute="bottom" constant="5" id="aH8-vM-qIX"/>
                 <constraint firstItem="s4S-aa-gDY" firstAttribute="top" secondItem="CPB-84-N7c" secondAttribute="bottom" constant="5" id="eaf-9N-zrN"/>
                 <constraint firstItem="LpW-bW-dO8" firstAttribute="top" secondItem="tGN-iU-kgh" secondAttribute="bottom" constant="29" id="fD3-Vf-5GF"/>
-                <constraint firstItem="4hr-nO-DjP" firstAttribute="top" secondItem="tGN-iU-kgh" secondAttribute="bottom" id="ggp-2z-sYt"/>
-                <constraint firstItem="ThS-DP-mIk" firstAttribute="top" secondItem="oac-3T-U0G" secondAttribute="top" constant="64" id="hS6-U8-NiT"/>
+                <constraint firstItem="4hr-nO-DjP" firstAttribute="top" secondItem="tGN-iU-kgh" secondAttribute="bottom" constant="5" id="ggp-2z-sYt"/>
                 <constraint firstItem="tGN-iU-kgh" firstAttribute="width" secondItem="ThS-DP-mIk" secondAttribute="width" id="kBe-oA-req"/>
-                <constraint firstItem="tGN-iU-kgh" firstAttribute="top" secondItem="oac-3T-U0G" secondAttribute="top" constant="64" id="laN-AI-Vcb"/>
+                <constraint firstItem="tGN-iU-kgh" firstAttribute="top" secondItem="oac-3T-U0G" secondAttribute="top" constant="24" id="laN-AI-Vcb"/>
                 <constraint firstItem="LpW-bW-dO8" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" constant="32" id="nDP-9q-grh"/>
                 <constraint firstItem="sNg-2V-2oq" firstAttribute="centerY" secondItem="CPB-84-N7c" secondAttribute="centerY" id="oXW-q7-v2F"/>
                 <constraint firstItem="oac-3T-U0G" firstAttribute="trailing" secondItem="ThS-DP-mIk" secondAttribute="trailing" id="pSf-RY-G09"/>
                 <constraint firstItem="oac-3T-U0G" firstAttribute="trailing" secondItem="CPB-84-N7c" secondAttribute="trailing" constant="16" id="rBc-NW-A0O"/>
                 <constraint firstItem="oac-3T-U0G" firstAttribute="trailing" secondItem="MdG-AI-YDO" secondAttribute="trailing" constant="16" id="sS4-5b-kPC"/>
-                <constraint firstItem="4hr-nO-DjP" firstAttribute="top" secondItem="ThS-DP-mIk" secondAttribute="bottom" id="spO-NP-Sn5"/>
+                <constraint firstItem="4hr-nO-DjP" firstAttribute="top" secondItem="ThS-DP-mIk" secondAttribute="bottom" constant="5" id="spO-NP-Sn5"/>
                 <constraint firstItem="TiM-MC-dCS" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" constant="30" id="tGW-c5-1AQ"/>
                 <constraint firstItem="6I6-Aq-Xhn" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" constant="32" id="vMR-42-bz0"/>
                 <constraint firstItem="imm-98-TnR" firstAttribute="top" secondItem="tGN-iU-kgh" secondAttribute="bottom" constant="36" id="y6o-ch-pNg"/>

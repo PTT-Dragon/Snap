@@ -322,8 +322,8 @@
   "CART" = "Keranjang";
 "STORE_COUPONS" = "Voucher toko";
   "COUPONS" = "Vouchers";
-  "ONLY_SHOW_5_SHARE" = "Hanya tampilkan 5 aktivitas grup terbaru";
-  "PEOPLE_SHORT" = "Kurang pembeli";
+  "ONLY_SHOW_5_SHARE" = "Menampilkan 5 pembeli Group Buy";
+  "PEOPLE_SHORT" = "Orang lagi";
   "JOIN" = "Gabung";
   "RECOMMENDATIONS" = "Rekomendasi";
 //  "FACEBOOK" = "Facebook";

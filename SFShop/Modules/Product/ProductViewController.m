@@ -341,6 +341,8 @@
             model.sel = YES;
             weakself.selectedAddressModel = model;
             [self requestStock];
+            LastSelAddressModel *lastModel = [LastSelAddressModel sharedLastSelAddressModel];
+            lastModel = [LastSelAddressModel yy_modelWithDictionary:[model toDictionary]];
         };
         [self.view addSubview:vc.view];
         [self addChildViewController:vc];
@@ -763,7 +765,7 @@
 
 - (void)layoutGroupSubViews
 {
-    self.groupTableViewTop.constant = 12;
+    self.groupTableViewTop.constant = self.groupModel.list.count > 0 ? 12 : 0;
     self.addressViewTop.constant = 12;
     [self.groupTableView reloadData];
     self.groupTableViewHei.constant = [self calucateGroupTableviewHei];

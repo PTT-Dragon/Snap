@@ -72,7 +72,7 @@
     }];
     
     UILabel *label = [[UILabel alloc] init];
-    label.text = kLocalizedString(@"SHAREBUY");
+    label.text = kLocalizedString(@"Sharebuy");
     label.textColor = RGBColorFrom16(0x999999);
     label.font = CHINESE_SYSTEM(14);
     [self.bgView addSubview:label];

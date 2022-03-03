@@ -18,6 +18,7 @@
 #import "UITabBar+CustomBadge.h"
 #import "UIButton+SGImagePosition.h"
 #import "UIButton+time.h"
+#import "LastSelAddressModel.h"
 
 
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
@@ -151,6 +152,8 @@
     MPWeakSelf(self)
     vc.selBlock = ^(addressModel * model) {
         weakself.selAddModel = model;
+        LastSelAddressModel *lastModel = [LastSelAddressModel sharedLastSelAddressModel];
+        lastModel = [LastSelAddressModel yy_modelWithDictionary:[model toDictionary]];
         [weakself updateAddress];
     };
     [self.view addSubview:vc.view];
