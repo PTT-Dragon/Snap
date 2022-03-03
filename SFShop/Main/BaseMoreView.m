@@ -161,8 +161,6 @@
     self.hidden = YES;
     [NSNotificationCenter.defaultCenter postNotificationName:@"KBaseMoreViewHidden"
                                                       object:self];
-    [NSNotificationCenter.defaultCenter postNotificationName:@"KBaseNavViewHiddenMoreView"
-                                                      object:self];
 }
 
 #pragma mark - setter

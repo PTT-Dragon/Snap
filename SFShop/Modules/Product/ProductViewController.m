@@ -213,6 +213,7 @@
     [self requestEvaluationsInfo];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNaviBtnAction) name:@"KBaseNavViewHiddenMoreView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNaviBtnAction) name:@"KBaseMoreViewHidden" object:nil];
 }
 
 - (void)showNaviBtnAction {
