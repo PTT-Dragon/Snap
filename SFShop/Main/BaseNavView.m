@@ -136,6 +136,7 @@
                                              object:nil];
 }
 
+
 #pragma mark - config
 
 - (void)configDataWithTitle:(NSString *)title {
@@ -183,11 +184,13 @@
         self.shareBtn.hidden = NO;
     }
 }
-- (void)configDataWithAnchorName:(NSString *)title anchorImgUrl:(NSString *)imgUrl
-{
+
+- (void)configDataWithAnchorName:(NSString *)title
+                    anchorImgUrl:(NSString *)imgUrl {
     self.anchorNameLabel.text = title;
     [self.anchorImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(imgUrl)]];
 }
+
 - (void)showMoreView {
     self.titleLabel.text = kLocalizedString(@"DIRECT_FUNCTION");
     self.backBtn.hidden = YES;
@@ -212,6 +215,7 @@
         make.left.mas_equalTo(self.backBtn.mas_right).offset(20);
     }];
 }
+
 
 #pragma mark - btnAction
 
@@ -246,13 +250,14 @@
 }
 
 - (void)clearBtnAction {
-    
     if ([self.delegate respondsToSelector:@selector(baseNavViewDidClickClearBtn:)]) {
         [self.delegate baseNavViewDidClickClearBtn:self];
     }
 }
 
+
 #pragma mark - setter
+
 - (UIButton *)backBtn {
     if (!_backBtn) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -283,14 +288,14 @@
     return _anchorNameLabel;
 }
 
-- (UIImageView *)anchorImgView
-{
+- (UIImageView *)anchorImgView {
     if (!_anchorImgView) {
         _anchorImgView = [[UIImageView alloc] init];
         _anchorImgView.contentMode = UIViewContentModeScaleToFill;
     }
     return _anchorImgView;
 }
+
 - (UILabel *)clearLabel {
     if (!_clearLabel) {
         _clearLabel = [[UILabel alloc] init];
@@ -326,6 +331,7 @@
     }
     return _moreBtn;
 }
+
 - (UIButton *)shareBtn {
     if (!_shareBtn) {
         _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -337,6 +343,7 @@
     }
     return _shareBtn;
 }
+
 - (UIButton *)searchBtn {
     if (!_searchBtn) {
         _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
