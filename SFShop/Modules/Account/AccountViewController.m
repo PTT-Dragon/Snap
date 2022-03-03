@@ -214,7 +214,7 @@
     }else if (indexPath.row == 1){
         return 134;
     }else if (indexPath.row == 2){
-        return self.showInviteImg ? 140: 0.01;
+        return (self.showInviteImg && ![self.inviteImgUrl isKindOfClass:[NSNull class]]) ? 140: 0.01;
     }
     return 56;
 }
