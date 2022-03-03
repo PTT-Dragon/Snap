@@ -7,6 +7,7 @@
 
 #import "OrderListStateCell.h"
 #import "PublicWebViewController.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface OrderListStateCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *storeIconImgview;
@@ -21,6 +22,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_chatBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
 }
 - (void)setContent:(OrderModel *)model
 {

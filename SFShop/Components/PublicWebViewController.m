@@ -210,7 +210,7 @@
                     @"offerType": _productDic[@"offerType"] ? _productDic[@"offerType"]:@"",// @"P",
                     @"orderId": _productDic[@"orderId"] ? _productDic[@"orderId"]: @"",
                     @"orderItemId": _productDic[@"orderItemId"] ? _productDic[@"orderItemId"]: @"",
-                    @"productRemark": _productDic[@"productRemark"] ? _productDic[@"productRemark"]:@"",// @"{\\\"Color\\\":\\\"黄色\\\"}",// @"\{\"Color\":\"黄色\"}\",//_productDic[@"productRemark"] ? _productDic[@"productRemark"]: @"",
+                    @"productRemark": @"{\\\"Color\\\":\\\"黄色\\\"}",// @"\{\"Color\":\"黄色\"}\",//_productDic[@"productRemark"] ? _productDic[@"productRemark"]: @"",
                     @"orderItems": @[
     //                  @{
     //                    @"canEvaluate": @"N",
