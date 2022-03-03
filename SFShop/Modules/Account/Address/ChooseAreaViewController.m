@@ -135,7 +135,7 @@ typedef enum :NSUInteger{
             make.height.mas_equalTo(1);
             make.top.mas_equalTo(self.cityBtn.mas_bottom);
             make.width.mas_equalTo(self.provinceBtn);
-            make.centerX.mas_equalTo(self.selStreetAreaMoel ? self.streetBtn: self.selDistrictAreaMoel ? self.DistrictBtn: self.selCityAreaMoel ? self.cityBtn: self.provinceBtn);
+            make.centerX.mas_equalTo((self.selStreetAreaMoel && self.selStreetAreaMoel.stdAddr) ? self.streetBtn: self.selDistrictAreaMoel ? self.DistrictBtn: self.selCityAreaMoel ? self.cityBtn: self.provinceBtn);
         }];
     }
     return self;

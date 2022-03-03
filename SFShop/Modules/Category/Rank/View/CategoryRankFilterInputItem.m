@@ -55,14 +55,20 @@
 
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
-    if (textField.text && ![textField.text isEqualToString:@""]) {
-        if (textField == self.minField) {
-            !self.priceIntervalBlock ?: self.priceIntervalBlock(textField.text.intValue,YES);
+    if (textField == self.minField) {
+            if (textField.text.length > 0) {
+                !self.priceIntervalBlock ?: self.priceIntervalBlock(textField.text.intValue,YES);
+            } else {
+                !self.priceIntervalBlock ?: self.priceIntervalBlock(-1,YES);
+            }
         } else if (textField == self.maxField) {
-            !self.priceIntervalBlock ?: self.priceIntervalBlock(textField.text.intValue,NO);
+            if (textField.text.length > 0) {
+                !self.priceIntervalBlock ?: self.priceIntervalBlock(textField.text.intValue,NO);
+            } else {
+                !self.priceIntervalBlock ?: self.priceIntervalBlock(-1,NO);
+            }
         }
     }
-}
 
 #pragma mark - Getter
 - (void)setModel:(CategoryRankPriceModel *)model {

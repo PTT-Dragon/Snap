@@ -21,6 +21,7 @@
 #import "CouponAlertView.h"
 #import "MessageViewController.h"
 #import "MyCouponViewController.h"
+#import "LoginViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (weak,nonatomic) WKWebView *webView;
@@ -375,6 +376,7 @@
 - (void)setIsHome:(BOOL)isHome
 {
     _isHome = isHome;
+    [self setlocalWeb];
 }
 #pragma mark - WKNavigationDelegate
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
@@ -418,6 +420,12 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([func[@"type"] rangeOfString:@"coupons-"].location != NSNotFound){
         if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        if (!model) {
+            LoginViewController *vc = [[LoginViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+        }
         NSArray *arr = [func[@"type"] componentsSeparatedByString:@"-"];
         [SFNetworkManager post:SFNet.coupon.usercoupon parameters:@{@"couponId":arr.lastObject} success:^(id  _Nullable response) {
 //            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COLLECT_COUPON_SUCCESS")];
