@@ -645,6 +645,15 @@
     [_groupTableView registerNib:[UINib nibWithNibName:@"ProductGroupTitleCell" bundle:nil] forCellReuseIdentifier:@"ProductGroupTitleCell"];
     
     [self.scrollContentView addSubview:self.recommendView];
+    
+    @weakify(self);
+    [[self.recommendView.recommendCollectionView rac_valuesForKeyPath:@"contentSize" observer:self] subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        [self.recommendView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(x);
+        }];
+    }];
+    
 }
 
 - (void)updateConstraints {
