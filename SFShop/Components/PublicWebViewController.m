@@ -326,12 +326,11 @@
 }
 
 - (void)receiveLanguageChangeNotification:(NSNotification *)noti {
-    
-    
-    //清除掉，防止内存泄漏
-    [self reset];
     // iOS调用js
     [self setlocalWeb];
+    //清除掉，防止内存泄漏
+    [self reset];
+    
 }
 
 - (void)receiveReloadWebviewNotification:(NSNotification *)noti

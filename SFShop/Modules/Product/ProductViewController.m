@@ -52,6 +52,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *addCartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *chatBtnWidth;
 @property(nonatomic, strong) ProductDetailModel *model;
 @property (weak, nonatomic) IBOutlet iCarousel *carouselImgView;
 @property (weak, nonatomic) IBOutlet UILabel *salesPriceLabel;
@@ -359,6 +360,7 @@
         NSError *error;
         self.model = [[ProductDetailModel alloc] initWithDictionary: response error: &error];
         self.messageBtn.hidden = !self.model.uccAccount;
+        self.chatBtnWidth.constant = self.model.uccAccount ? 46: 0;
         [self requestAddressInfo];
         NSLog(@"get product detail success");
     } failed:^(NSError * _Nonnull error) {

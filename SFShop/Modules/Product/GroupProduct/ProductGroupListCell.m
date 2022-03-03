@@ -10,6 +10,7 @@
 @interface ProductGroupListCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *joinBtn;
 
 @end
 
@@ -18,6 +19,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_joinBtn setTitle:kLocalizedString(@"JOIN") forState:0];
 }
 - (void)setModel:(ProductGroupListModel *)model
 {

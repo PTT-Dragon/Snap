@@ -20,6 +20,7 @@
 @property (nonatomic, readwrite, strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) VTMagicController *magicController;
 @property (nonatomic,strong) FavoriteNumModel *numModel;
+@property (nonatomic, readwrite, strong) CategoryRankFilterCacheModel *filterCacheModel;
 @end
 
 @implementation FavoriteViewController
