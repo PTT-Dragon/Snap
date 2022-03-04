@@ -53,7 +53,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" weight="light" name="TruenoRg" family="Trueno" pointSize="16"/>
                     <state key="normal" title="   Gender">
-                        <color key="titleColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="genderAction:" destination="-1" eventType="touchUpInside" id="7g7-Jn-zvO"/>
@@ -80,7 +80,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" weight="light" name="TruenoRg" family="Trueno" pointSize="16"/>
                     <state key="normal" title="  Date of Birth">
-                        <color key="titleColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="birthAction:" destination="-1" eventType="touchUpInside" id="eBp-ir-Vdk"/>

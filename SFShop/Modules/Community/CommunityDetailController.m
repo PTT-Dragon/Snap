@@ -87,7 +87,6 @@
 }
 - (void)baseNavViewDidClickShareBtn:(BaseNavView *)navView
 {
-    //http://47.243.193.90:8064/community-details/11
     NSString *shareUrl = [NSString stringWithFormat:@"%@/community-details/%@",Host,self.articleId];
     [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }

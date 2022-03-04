@@ -159,6 +159,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *publishImg;
 @property (nonatomic, readwrite, strong) NSString *pay;
 @property (nonatomic, readwrite, strong) NSString *sysparam;
+@property (nonatomic, readwrite, strong) NSString *uccAccount;
 
 
 - (NSString *)getReceiptOf: (NSString *)orderId;
