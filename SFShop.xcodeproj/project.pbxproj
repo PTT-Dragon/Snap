@@ -315,6 +315,8 @@
 		1BD2A61E276B0A0A00F994C5 /* FlashSaleProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD2A61C276B0A0900F994C5 /* FlashSaleProductViewController.xib */; };
 		1BD2A622276B0CF200F994C5 /* GroupListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD2A620276B0CF200F994C5 /* GroupListViewController.m */; };
 		1BD2A623276B0CF200F994C5 /* GroupListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD2A621276B0CF200F994C5 /* GroupListViewController.xib */; };
+		1BD7F69D27D111B30010C8C3 /* EmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD7F69B27D111B20010C8C3 /* EmptyViewController.m */; };
+		1BD7F69E27D111B30010C8C3 /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD7F69C27D111B20010C8C3 /* EmptyViewController.xib */; };
 		1BD8E78E275CAF7500130DCC /* ReviewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */; };
 		1BD8E78F275CAF7500130DCC /* ReviewDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */; };
 		1BD8E798275CF69C00130DCC /* RelationOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD8E795275CF69C00130DCC /* RelationOrderDetailViewController.m */; };
@@ -1142,6 +1144,9 @@
 		1BD2A61F276B0CF100F994C5 /* GroupListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupListViewController.h; sourceTree = "<group>"; };
 		1BD2A620276B0CF200F994C5 /* GroupListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupListViewController.m; sourceTree = "<group>"; };
 		1BD2A621276B0CF200F994C5 /* GroupListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupListViewController.xib; sourceTree = "<group>"; };
+		1BD7F69A27D111B20010C8C3 /* EmptyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyViewController.h; sourceTree = "<group>"; };
+		1BD7F69B27D111B20010C8C3 /* EmptyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyViewController.m; sourceTree = "<group>"; };
+		1BD7F69C27D111B20010C8C3 /* EmptyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
 		1BD8E78B275CAF7500130DCC /* ReviewDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewDetailViewController.h; sourceTree = "<group>"; };
 		1BD8E78C275CAF7500130DCC /* ReviewDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewDetailViewController.m; sourceTree = "<group>"; };
 		1BD8E78D275CAF7500130DCC /* ReviewDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailViewController.xib; sourceTree = "<group>"; };
@@ -2532,6 +2537,9 @@
 				1BD8E7CA275FA58300130DCC /* SupportViewController.h */,
 				1BD8E7CB275FA58300130DCC /* SupportViewController.m */,
 				1BD8E7CC275FA58300130DCC /* SupportViewController.xib */,
+				1BD7F69A27D111B20010C8C3 /* EmptyViewController.h */,
+				1BD7F69B27D111B20010C8C3 /* EmptyViewController.m */,
+				1BD7F69C27D111B20010C8C3 /* EmptyViewController.xib */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -3904,6 +3912,7 @@
 				1B787B5727299E5F00E6A983 /* OrderDetailViewController.xib in Resources */,
 				1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */,
 				1B552EBB276C3D470086604B /* ProductGroupTitleCell.xib in Resources */,
+				1BD7F69E27D111B30010C8C3 /* EmptyViewController.xib in Resources */,
 				1BD8E799275CF69C00130DCC /* RelationOrderDetailViewController.xib in Resources */,
 				1B478311272A8CA900F2A945 /* RefundDetailViewController.xib in Resources */,
 				1BB1CB6A27634477008D71DF /* FlashSaleChildViewController.xib in Resources */,
@@ -4024,6 +4033,7 @@
 				1B787B60272A354C00E6A983 /* AddReviewViewController.m in Sources */,
 				AE8F32D6272EA117008E3DD8 /* ProductCheckoutBaseCell.m in Sources */,
 				1B33C12427AA7E5300E7EDB9 /* ProductReviewGrayCell.m in Sources */,
+				1BD7F69D27D111B30010C8C3 /* EmptyViewController.m in Sources */,
 				1B82AE4D27707CB500D75E00 /* KSPhotoBrowser.m in Sources */,
 				1BC7A2C2272AF48600755832 /* FAQTableCell.m in Sources */,
 				1B18E355279EF7F800A90152 /* ReplaceDeliveryCell.m in Sources */,

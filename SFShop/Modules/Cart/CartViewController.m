@@ -133,7 +133,7 @@
     if (!_selAddModel) {
         [_addressBtn setTitle:kLocalizedString(@"CHOOSE_ADDRESS") forState:0];
     }else{
-        [_addressBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@ %@ %@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street ? _selAddModel.street:@"" ,_selAddModel.postCode ? _selAddModel.postCode: @""] forState:0];
+        [_addressBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@ %@ %@",_selAddModel.province,_selAddModel.city,_selAddModel.district,_selAddModel.street ? _selAddModel.street:@"" ,_selAddModel.contactAddress ? _selAddModel.contactAddress: @""] forState:0];
     }
     for (addressModel *model in self.addressArr) {
         if ([model.deliveryAddressId isEqualToString:_selAddModel.deliveryAddressId]) {

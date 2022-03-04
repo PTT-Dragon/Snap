@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -110,10 +110,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ct6-i0-Q4T">
-                                <rect key="frame" x="86" y="95" width="50" height="15"/>
+                                <rect key="frame" x="98" y="95" width="38" height="15"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGP-hl-2ya">
-                                        <rect key="frame" x="20" y="1.5" width="27" height="12"/>
+                                        <rect key="frame" x="8" y="1.5" width="27" height="12"/>
                                         <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="10"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -128,7 +128,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="0Cy-hR-irN"/>
+                                    <constraint firstAttribute="width" constant="38" id="0Cy-hR-irN"/>
                                     <constraint firstAttribute="trailing" secondItem="LGP-hl-2ya" secondAttribute="trailing" constant="3" id="4GH-Si-iIb"/>
                                     <constraint firstItem="gwP-Jn-BYz" firstAttribute="leading" secondItem="Ct6-i0-Q4T" secondAttribute="leading" constant="3" id="6hA-rb-bGC"/>
                                     <constraint firstAttribute="height" constant="15" id="Gtd-04-0aC"/>

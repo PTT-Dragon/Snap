@@ -200,6 +200,13 @@
         _tableView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
+        
+        if (@available(iOS 15.0, *)) {
+            _tableView.sectionHeaderTopPadding = 0;
+        } else {
+            // Fallback on earlier versions
+        }
+        
     }
     return _tableView;
 }
