@@ -132,7 +132,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="message" translatesAutoresizingMaskIntoConstraints="NO" id="U6H-cO-m8M">
-                                    <rect key="frame" x="130" y="422" width="24" height="24"/>
+                                    <rect key="frame" x="128" y="422" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="6pp-OD-I1C"/>
                                         <constraint firstAttribute="width" constant="24" id="NoC-K0-9xU"/>
