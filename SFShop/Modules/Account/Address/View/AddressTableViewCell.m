@@ -49,7 +49,7 @@
         self.leftMargin.constant = 60;
         self.selectBtn.hidden = NO;
         
-        if ([self.model.modifyDate isEqualToString:curAddress]) {
+        if ([self.model.contactAddress isEqualToString:curAddress]) {
             self.selectBtn.selected = YES;
         }else {
             self.selectBtn.selected = NO;

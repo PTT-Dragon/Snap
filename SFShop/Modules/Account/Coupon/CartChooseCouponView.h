@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^CartChooseCouponViewBlock)(void);
+
 @interface CartChooseCouponView : UIView
+@property (nonatomic,copy) CartChooseCouponViewBlock block;
 @property (nonatomic,strong) NSMutableArray <CouponModel *>*couponDataSource;
 @end
 

@@ -113,7 +113,7 @@
                                         <constraint firstAttribute="width" constant="24" id="cWJ-Pt-tAt"/>
                                     </constraints>
                                     <state key="normal" image="heart"/>
-                                    <state key="selected" image="love-1-2"/>
+                                    <state key="selected" image="00014_01_heart_black"/>
                                     <connections>
                                         <action selector="likeAction:" destination="-1" eventType="touchUpInside" id="ZNd-36-zA3"/>
                                     </connections>
@@ -244,10 +244,10 @@
         </view>
     </objects>
     <resources>
+        <image name="00014_01_heart_black" width="24" height="24"/>
         <image name="eye_black" width="24" height="24"/>
         <image name="heart" width="24" height="24"/>
-        <image name="love-1-2" width="200" height="200"/>
-        <image name="message" width="20" height="20"/>
+        <image name="message" width="24" height="24"/>
         <image name="sent-fill" width="17" height="17"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

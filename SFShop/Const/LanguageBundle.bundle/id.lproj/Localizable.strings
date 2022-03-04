@@ -556,7 +556,7 @@
 "Store_promo" = "Promo Toko";
 "Total" = "Jumlah";
 "Available" = "Available";
-"SF_shop_Voucher" = "SF.shop.Voucher";
+"SF_shop_Voucher" = "Platform.Voucher";
 "Place_order" = "PEMESANAN";
 "Check_out" = "Check Out";
 "Rp" = "Rp";
@@ -637,7 +637,7 @@
 "Modify_Address" = "Ubah Alamat";
 "Modify_success" = "MODIFY SUCCESS";
 "Area" = "Wilayah";
-"SF shop_Voucher" = "SF.shop Voucher";
+"SF shop_Voucher" = "Platform Voucher";
 "Coupon_Center" = "Pusat voucher";
 "Login_Or_Register" = "Makuk atau daftar";
 "SHOPPING_CART" = "KERANJANG BELANJA";

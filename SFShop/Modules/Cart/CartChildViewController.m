@@ -476,6 +476,9 @@
 - (void)showCouponsView
 {
     CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
+    view.block = ^{
+        [self loadDatasNeedCoupon:YES];
+    };
     view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height-(_isTab ? 0: 0));
     view.couponDataSource = self.couponDataSource;
     if (_isTab) {

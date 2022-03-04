@@ -538,7 +538,7 @@
 "Store_promo" = "店铺优惠券";
 "Total" = "总共";
 "Available" = "可用";
-"SF_shop_Voucher"=  "SF.shop.Voucher";
+"SF_shop_Voucher"=  "Platform.Voucher";
 "Place_order" = "确认下单";
 "Check_out" = "Check Out";
 "Rp" = "Rp";

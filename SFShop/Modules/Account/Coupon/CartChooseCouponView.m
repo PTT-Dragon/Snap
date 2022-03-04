@@ -38,12 +38,21 @@
 }
 - (void)removeSelf
 {
+    if (self.block) {
+        self.block();
+    }
     [self removeFromSuperview];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyCouponCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCouponCell"];
     [cell setContent:_couponDataSource[indexPath.section]];
+    cell.block = ^{
+        if (self.block) {
+            self.block();
+        }
+        [self removeFromSuperview];
+    };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,6 +80,9 @@
 
 
 - (IBAction)closeAction:(id)sender {
+    if (self.block) {
+        self.block();
+    }
     [self removeFromSuperview];
 }
 

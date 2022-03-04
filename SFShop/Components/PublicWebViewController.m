@@ -180,6 +180,24 @@
         if (_productDic) {
             if ([_productDic[@"isService"] isEqualToString:@"1"]) {
                 //是否是从订单里进入
+                NSMutableString *str = [NSMutableString string];
+                if (_productDic[@"productRemark"]) {
+                    NSString *productRemark = _productDic[@"productRemark"];
+                    NSString * jsonString = productRemark;
+
+                    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+
+                    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                        options:NSJSONReadingMutableContainers
+                                                                          error:nil];
+                    
+                    str.string = @"{";
+                    for (NSString *key in dic.allKeys) {
+                        [str appendFormat:@"\\%@\\:\\%@\\",key,dic[key]];
+                    }
+                    [str appendString:@"}"];
+                    NSLog(@"");
+                }
                 NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{
                     @"billAddress": _productDic[@"billAddress"] ? _productDic[@"billAddress"]: @"",
 //                    @"canEvaluate": _productDic[@"canEvaluate"],// @"Y",
@@ -210,7 +228,7 @@
                     @"offerType": _productDic[@"offerType"] ? _productDic[@"offerType"]:@"",// @"P",
                     @"orderId": _productDic[@"orderId"] ? _productDic[@"orderId"]: @"",
                     @"orderItemId": _productDic[@"orderItemId"] ? _productDic[@"orderItemId"]: @"",
-                    @"productRemark": @"{\\\"Color\\\":\\\"黄色\\\"}",// @"\{\"Color\":\"黄色\"}\",//_productDic[@"productRemark"] ? _productDic[@"productRemark"]: @"",
+                    @"productRemark": @"{\\\"Color\\\":\\\"黄色\\\"}",//[str isEqualToString:@""] ? @"": str,// ,//{\Color\:\幻夜黑\} @"\{\"Color\":\"黄色\"}\",//_productDic[@"productRemark"] ? _productDic[@"productRemark"]: @"",
                     @"orderItems": @[
     //                  @{
     //                    @"canEvaluate": @"N",
@@ -285,7 +303,7 @@
 //    //                              @"paymentSn": @"ECA202203021422120000012",
 //    //                              @"paymentState": @"S"
 //    //                            }
-//    //            ] forKey:@"payments"];
+//    //            ] forKey:@"payments"];{\Color\:\幻夜黑\} {\"Color\":\"黄色\"}
                 _productDic = dic;
             }
             

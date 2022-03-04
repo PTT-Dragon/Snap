@@ -95,6 +95,9 @@
 }
 - (void)useCouponAction
 {
+    if (self.block) {
+        self.block();
+    }
     UserModel *userModel = [FMDBManager sharedInstance].currentUser;
     if (!userModel) {
         LoginViewController *vc = [[LoginViewController alloc] init];
@@ -124,6 +127,9 @@
     PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"COUPON_DETAIL") content:rule btnTitle:kLocalizedString(@"GOT_IT") block:^{
         
     }];
-    [[baseTool getCurrentVC].view addSubview:alert];
+//    [[baseTool getCurrentVC].view addSubview:alert];
+//    alert.layer.zPosition = 1;
+    [[baseTool getCurrentVC].tabBarController.view addSubview:alert];
+//    [[baseTool getCurrentVC].view insertSubview:alert aboveSubview:self];
 }
 @end
