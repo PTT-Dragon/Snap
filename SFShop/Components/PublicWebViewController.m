@@ -25,53 +25,52 @@
 #import "OrderDetailViewController.h"
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
+
 @property (weak,nonatomic) WKWebView *webView;
+
 @property (nonatomic,weak) WKWebViewConfiguration *configuration;
+
 @property (nonatomic,strong) WKWebViewJavascriptBridge *jsBridge;
+
 @end
 
 @implementation PublicWebViewController
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (_isHome || [self.url containsString:@"/chat/"] || self.isCategory) {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
-    }else{
+    } else {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
-//    NSString *aa = self.webView.title;
-//    if (self.webView.title == nil || [self.webView.title isEqualToString:@""]) {
-    if (self.isHome) {
-        if ([self.url isEqualToString:self.webView.URL.absoluteString]) {
-//            [self.webView reload];
-            [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
-
-            }];
-        }else{
-            [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
-        }
-    }else{
-        [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
-
-        }];
-    }
+    
+//    if (self.isHome) {
+//        if ([self.url isEqualToString:self.webView.URL.absoluteString]) {
+//            [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.parent.location.reload()"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+//
+//            }];
+//        } else {
+//            [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 //        }
+//    } else {
+//        [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+//
+//        }];
+//    }
 }
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     [self addNoTi];
     self.isChat = [self.url containsString:@"/chat/"];
     [self initWebview];
-    
 }
-- (void)removeHud
-{
+
+- (void)removeHud {
     [MBProgressHUD hideFromKeyWindow];
 }
+
 - (void)setUrl:(NSString *)url {
     _url = url;
     if ([url containsString:@"/chat/"]) {
@@ -79,18 +78,16 @@
     }
 }
 
-- (void)initWebview
-{
+- (void)initWebview {
     self.view.backgroundColor = [UIColor whiteColor];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     self.configuration = configuration;
     float hei = iOS15 ? 3: 0;
     WKWebView *webview = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, (_isHome || _isChat || _isCategory) ? statuBarHei: navBarHei, MainScreen_width, MainScreen_height-(_isHome ? (tabbarHei+statuBarHei-hei): navBarHei)) configuration:_configuration];
     [webview.scrollView setShowsVerticalScrollIndicator:NO];
-
+    
     [webview.scrollView setShowsHorizontalScrollIndicator:NO];
     webview.backgroundColor = [UIColor whiteColor];
-//    self.webView.allowsBackForwardNavigationGestures = NO;
     _webView = webview;
     webview.navigationDelegate = self;
     webview.UIDelegate = self;
@@ -99,6 +96,12 @@
         [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUserAgent}];
         webview.customUserAgent = newUserAgent;
     }];
+    
+    WKUserScript *reloadScript = [[WKUserScript alloc] initWithSource:@"window.addEventListener('pageshow', function(event){if(event.persisted){location.reload();}});"
+                                                                        injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+                                                                     forMainFrameOnly:YES];
+    
+    [self.webView.configuration.userContentController addUserScript:reloadScript];
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"jsFunc"];
     [self.view addSubview:webview];
     [self addJsBridge];
@@ -113,17 +116,16 @@
         }
     }];
     if ([_url containsString:@"/chat/"]) {
-//        [self setlocalWeb];
         [self performSelector:@selector(reload) withObject:nil afterDelay:0.5];
     }
 }
-- (void)reload
-{
+
+- (void)reload {
     [self.webView reload];
     [self addProduct];
 }
-- (void)addNoTi
-{
+
+- (void)addNoTi {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangeNotification:)
                                                  name:@"KLanguageChange"
                                                object:nil];
@@ -154,28 +156,28 @@
             NSString *token = [NSString stringWithFormat:@"window.localStorage.setItem('h5Token', '%@')", model.accessToken];
             [weakself.webView evaluateJavaScript:token completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                 
-
+                
             }];
             [weakself.webView evaluateJavaScript:isLogin completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                 NSLog(@"");
             }];
         });
     }
-//    else if (_isChat){
-//        if (_productDic) {
-//            NSError *parseError = nil;
-//                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:kNilOptions error:&parseError];
-//                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
-//            [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//                [self performSelector:@selector(aaa) withObject:nil afterDelay:0.5];
-//
-//            }];
-//        }
-//    }
+    //    else if (_isChat){
+    //        if (_productDic) {
+    //            NSError *parseError = nil;
+    //                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:kNilOptions error:&parseError];
+    //                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    //            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
+    //            [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+    //                [self performSelector:@selector(aaa) withObject:nil afterDelay:0.5];
+    //
+    //            }];
+    //        }
+    //    }
 }
-- (void)addProduct
-{
+
+- (void)addProduct {
     if (_isChat){
         if (_productDic) {
             if ([_productDic[@"isService"] isEqualToString:@"1"]) {
@@ -184,9 +186,9 @@
                 if (_productDic[@"productRemark"]) {
                     NSString *productRemark = _productDic[@"productRemark"];
                     NSString * jsonString = productRemark;
-
+                    
                     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-
+                    
                     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                                         options:NSJSONReadingMutableContainers
                                                                           error:nil];
@@ -200,25 +202,25 @@
                 }
                 NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{
                     @"billAddress": _productDic[@"billAddress"] ? _productDic[@"billAddress"]: @"",
-//                    @"canEvaluate": _productDic[@"canEvaluate"],// @"Y",
-//                    @"canReturn": _productDic[@"canReturn"],// @"N",
-//                    @"canReview": _productDic[@"canReview"],// @"Y",
+                    //                    @"canEvaluate": _productDic[@"canEvaluate"],// @"Y",
+                    //                    @"canReturn": _productDic[@"canReturn"],// @"N",
+                    //                    @"canReview": _productDic[@"canReview"],// @"Y",
                     @"cardType": @"101",
                     @"createdDate": _productDic[@"createdDate"] ? _productDic[@"createdDate"]: @"",// @"2022-03-02 09:50:57",
                     @"completionDate" : [_productDic valueForKey:@"completionDate"] ? [_productDic valueForKey:@"completionDate"]: @"",// @"2022-03-02 14:22:36",
-//                    @"deductionPrice": @"0",
+                    //                    @"deductionPrice": @"0",
                     @"deliveryAddress": _productDic[@"deliveryAddress"] ? _productDic[@"deliveryAddress"]: @"",
-//                    @"deliveryMode": @"A",
-//                    @"deliverys": @[],
-//                    @"deliveryState": @"A",
+                    //                    @"deliveryMode": @"A",
+                    //                    @"deliverys": @[],
+                    //                    @"deliveryState": @"A",
                     @"discountPrice": _productDic[@"discountPrice"] ? _productDic[@"discountPrice"]: @"",
-//                    @"getStateStr": _productDic[@"getStateStr"],// @"To Ship",
+                    //                    @"getStateStr": _productDic[@"getStateStr"],// @"To Ship",
                     @"imagUrl":_productDic[@"imagUrl"] ? _productDic[@"imagUrl"]: @"", //@"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg",
-//                    @"isAfterSales": @"N",
-//                    @"isNeedDelivery": @"Y",
-//                    @"leaveMsg": @"",
-//                    @"logisticsDeductFee": @"0",
-//                    @"logisticsFee": @"12000",
+                    //                    @"isAfterSales": @"N",
+                    //                    @"isNeedDelivery": @"Y",
+                    //                    @"leaveMsg": @"",
+                    //                    @"logisticsDeductFee": @"0",
+                    //                    @"logisticsFee": @"12000",
                     @"logisticsModeId": _productDic[@"logisticsModeId"] ? _productDic[@"logisticsModeId"]: @"",// @"1",
                     @"logisticsOriFee": _productDic[@"logisticsOriFee"] ? _productDic[@"logisticsOriFee"]: @"",// @"12000",
                     @"offerCnt": _productDic[@"offerCnt"] ? _productDic[@"offerCnt"]: @"",// @"1",
@@ -230,89 +232,89 @@
                     @"orderItemId": _productDic[@"orderItemId"] ? _productDic[@"orderItemId"]: @"",
                     @"productRemark": @"{\\\"Color\\\":\\\"黄色\\\"}",//[str isEqualToString:@""] ? @"": str,// ,//{\Color\:\幻夜黑\} @"\{\"Color\":\"黄色\"}\",//_productDic[@"productRemark"] ? _productDic[@"productRemark"]: @"",
                     @"orderItems": @[
-    //                  @{
-    //                    @"canEvaluate": @"N",
-    //                    @"canReturn": @"N",
-    //                    @"canReview": @"N",
-    //                    @"imagUrl": @"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg",
-    //                    @"offerCnt": @"1",
-    //                    @"offerId": @"28",
-    //                    @"offerName": @"杯子团购",
-    //                    @"offerType": @"P",
-    //                    @"orderItemId": @"38011",
-    //                    @"orderPrice": @"500",
-    //                    @"productId": @"69",
-    //                    @"productName": @"杯子团购 黄色",
-    //                    @"serviceTypes": @"2,4",
-    //                    @"unitPrice": @"500"
-    //                  }
+                        //                  @{
+                        //                    @"canEvaluate": @"N",
+                        //                    @"canReturn": @"N",
+                        //                    @"canReview": @"N",
+                        //                    @"imagUrl": @"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg",
+                        //                    @"offerCnt": @"1",
+                        //                    @"offerId": @"28",
+                        //                    @"offerName": @"杯子团购",
+                        //                    @"offerType": @"P",
+                        //                    @"orderItemId": @"38011",
+                        //                    @"orderPrice": @"500",
+                        //                    @"productId": @"69",
+                        //                    @"productName": @"杯子团购 黄色",
+                        //                    @"serviceTypes": @"2,4",
+                        //                    @"unitPrice": @"500"
+                        //                  }
                     ],
                     @"orderNbr": _productDic[@"orderNbr"] ? _productDic[@"orderNbr"]: @"",//@"O202203020950572525",
                     @"orderPrice": _productDic[@"orderPrice"] ? _productDic[@"orderPrice"]: @"",// @"500",
                     @"paymentMode": _productDic[@"paymentMode"] ? _productDic[@"paymentMode"]: @"",// @"A",
                     @"payments": _productDic[@"payments"] ? _productDic[@"payments"]: @"",//@[
-    //                  @{
-    //                    @"charge": @"12500",
-    //                    @"orderPaymentId": @"37008",
-    //                    @"paymentDate": @"2022-03-02 09:51:15",
-    //                    @"paymentId": @"39008",
-    //                    @"paymentMethodName": @"Mock",
-    //                    @"paymentSn": @"ECA202203020951150000003",
-    //                    @"paymentState": @"S"
-    //                  }
-    //                ],
-//                    @"paymentState": _productDic[@"paymentState"],//@"S",
+                    //                  @{
+                    //                    @"charge": @"12500",
+                    //                    @"orderPaymentId": @"37008",
+                    //                    @"paymentDate": @"2022-03-02 09:51:15",
+                    //                    @"paymentId": @"39008",
+                    //                    @"paymentMethodName": @"Mock",
+                    //                    @"paymentSn": @"ECA202203020951150000003",
+                    //                    @"paymentState": @"S"
+                    //                  }
+                    //                ],
+                    //                    @"paymentState": _productDic[@"paymentState"],//@"S",
                     @"pointPrice": _productDic[@"pointPrice"] ? _productDic[@"pointPrice"]: @"",// @"0",
                     @"productId": _productDic[@"productId"] ? _productDic[@"productId"]: @"",// @"69",
                     @"productName": _productDic[@"productName"] ? _productDic[@"productName"]: @"",// @"杯子团购 黄色",
-//                    @"serviceTypes": _productDic[@"serviceTypes"],// @"2,4",
+                    //                    @"serviceTypes": _productDic[@"serviceTypes"],// @"2,4",
                     @"state": _productDic[@"state"] ? _productDic[@"state"]: @"",// @"B",
-//                    @"stateDate": _productDic[@"stateDate"],// @"2022-03-02 09:51:15",
-//                    @"storeCampaignPrice": _productDic[@"storeCampaignPrice"],// @"0",
-//                    @"storeCouponPrice": _productDic[@"storeCouponPrice"],// @"0",
+                    //                    @"stateDate": _productDic[@"stateDate"],// @"2022-03-02 09:51:15",
+                    //                    @"storeCampaignPrice": _productDic[@"storeCampaignPrice"],// @"0",
+                    //                    @"storeCouponPrice": _productDic[@"storeCouponPrice"],// @"0",
                     @"storeId": _productDic[@"storeId"] ? _productDic[@"storeId"]: @"",// @"5",
                     @"storeName": _productDic[@"storeName"] ? _productDic[@"storeName"]: @"",// @"WCT Store",
                     @"uccAccount": _productDic[@"uccAccount"] ? _productDic[@"uccAccount"]: @"",// @"A1test@A1.com",
                     @"unitPrice": _productDic[@"unitPrice"] ? _productDic[@"unitPrice"]: @"",// @"500"
-                  }];
-//    //            [_productDic setValue:@[
-//    //                            @{
-//    //                              @"canEvaluate": @"N",
-//    //                              @"canReturn": @"N",
-//    //                              @"canReview": @"N",
-//    //                              @"imagUrl": @"/get/resource/ecs/20220122/picture/11484802171951558656.jpg",
-//    //                              @"offerCnt": @"1",
-//    //                              @"offerId": @"30",
-//    //                              @"offerName": @"杯子团购",
-//    //                              @"offerType": @"P",
-//    //                              @"orderItemId": @"38019",
-//    //                              @"orderPrice": @"62910",
-//    //                              @"productId": @"74",
-//    //                              @"productName": @"杯子团购 黄色",
-//    //                              @"serviceTypes": @"2,4",
-//    //                              @"unitPrice": @"69900"
-//    //                            }
-//    //            ] forKey:@"orderItems"];
-//    //            [_productDic setValue:@[
-//    //                            @{
-//    //                              @"charge": @"63910",
-//    //                              @"orderPaymentId": @"37016",
-//    //                              @"paymentDate": @"2022-03-02 14:22:13",
-//    //                              @"paymentId": @"39016",
-//    //                              @"paymentMethodName": @"Mock",
-//    //                              @"paymentSn": @"ECA202203021422120000012",
-//    //                              @"paymentState": @"S"
-//    //                            }
-//    //            ] forKey:@"payments"];{\Color\:\幻夜黑\} {\"Color\":\"黄色\"}
+                }];
+                //    //            [_productDic setValue:@[
+                //    //                            @{
+                //    //                              @"canEvaluate": @"N",
+                //    //                              @"canReturn": @"N",
+                //    //                              @"canReview": @"N",
+                //    //                              @"imagUrl": @"/get/resource/ecs/20220122/picture/11484802171951558656.jpg",
+                //    //                              @"offerCnt": @"1",
+                //    //                              @"offerId": @"30",
+                //    //                              @"offerName": @"杯子团购",
+                //    //                              @"offerType": @"P",
+                //    //                              @"orderItemId": @"38019",
+                //    //                              @"orderPrice": @"62910",
+                //    //                              @"productId": @"74",
+                //    //                              @"productName": @"杯子团购 黄色",
+                //    //                              @"serviceTypes": @"2,4",
+                //    //                              @"unitPrice": @"69900"
+                //    //                            }
+                //    //            ] forKey:@"orderItems"];
+                //    //            [_productDic setValue:@[
+                //    //                            @{
+                //    //                              @"charge": @"63910",
+                //    //                              @"orderPaymentId": @"37016",
+                //    //                              @"paymentDate": @"2022-03-02 14:22:13",
+                //    //                              @"paymentId": @"39016",
+                //    //                              @"paymentMethodName": @"Mock",
+                //    //                              @"paymentSn": @"ECA202203021422120000012",
+                //    //                              @"paymentState": @"S"
+                //    //                            }
+                //    //            ] forKey:@"payments"];{\Color\:\幻夜黑\} {\"Color\":\"黄色\"}
                 _productDic = dic;
             }
             
             
             NSError *parseError = nil;
-                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:NSJSONWritingSortedKeys error:&parseError];
-                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:NSJSONWritingSortedKeys error:&parseError];
+            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
             NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')",jsonString];
-//            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", @"{\"billAddress\":{\"contactAddress\":\"\",\"contactEmail\":\"11******@qq.com\"},\"canEvaluate\":\"N\",\"canReturn\":\"N\",\"canReview\":\"N\",\"cardType\":\"101\",\"createdDate\":\"2022-03-02 09:50:57\",\"deductionPrice\":\"0\",\"deliveryAddress\":{\"contactAddress\":\"666, 33252, Bukit Layang, Bakam, Kab.Bangka, Bangka Belitung\",\"contactEmail\":\"11******@qq.com\",\"contactName\":\"南京\",\"contactNbr\":\"13404106104\",\"contactStdId\":\"10749\",\"postCode\":\"33252\"},\"deliveryMode\":\"A\",\"deliverys\":[],\"deliveryState\":\"A\",\"discountPrice\":\"0\",\"getStateStr\":\"To Ship\",\"imagUrl\":\"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg\",\"isAfterSales\":\"N\",\"isNeedDelivery\":\"Y\",\"leaveMsg\":\"\",\"logisticsDeductFee\":\"0\",\"logisticsFee\":\"12000\",\"logisticsModeId\":\"1\",\"logisticsOriFee\":\"12000\",\"offerCnt\":\"1\",\"offerId\":\"28\",\"offerName\":\"杯子团购\",\"offerPrice\":\"500\",\"offerType\":\"P\",\"orderId\":\"39011\",\"orderItemId\":\"38011\",\"orderItems\":[{\"canEvaluate\":\"N\",\"canReturn\":\"N\",\"canReview\":\"N\",\"imagUrl\":\"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg\",\"offerCnt\":\"1\",\"offerId\":\"28\",\"offerName\":\"杯子团购\",\"offerType\":\"P\",\"orderItemId\":\"38011\",\"orderPrice\":\"500\",\"productId\":\"69\",\"productName\":\"杯子团购 黄色\",\"serviceTypes\":\"2,4\",\"unitPrice\":\"500\"}\],\"orderNbr\":\"O202203020950572525\",\"orderPrice\":\"500\",\"paymentMode\":\"A\",\"payments\":[{\"charge\":\"12500\",\"orderPaymentId\":\"37008\",\"paymentDate\":\"2022-03-02 09:51:15\",\"paymentId\":\"39008\",\"paymentMethodName\":\"Mock\",\"paymentSn\":\"ECA202203020951150000003\",\"paymentState\":\"S\"}],\"paymentState\":\"S\",\"pointPrice\":\"0\",\"productId\":\"69\",\"productName\":\"杯子团购 黄色\",\"serviceTypes\":\"2,4\",\"state\":\"B\",\"stateDate\":\"2022-03-02 09:51:15\",\"storeCampaignPrice\":\"0\",\"storeCouponPrice\":\"0\",\"storeId\":\"5\",\"storeName\":\"WCT Store\",\"uccAccount\":\"A1test@A1.com\",\"unitPrice\":\"500\"}"];
+            //            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", @"{\"billAddress\":{\"contactAddress\":\"\",\"contactEmail\":\"11******@qq.com\"},\"canEvaluate\":\"N\",\"canReturn\":\"N\",\"canReview\":\"N\",\"cardType\":\"101\",\"createdDate\":\"2022-03-02 09:50:57\",\"deductionPrice\":\"0\",\"deliveryAddress\":{\"contactAddress\":\"666, 33252, Bukit Layang, Bakam, Kab.Bangka, Bangka Belitung\",\"contactEmail\":\"11******@qq.com\",\"contactName\":\"南京\",\"contactNbr\":\"13404106104\",\"contactStdId\":\"10749\",\"postCode\":\"33252\"},\"deliveryMode\":\"A\",\"deliverys\":[],\"deliveryState\":\"A\",\"discountPrice\":\"0\",\"getStateStr\":\"To Ship\",\"imagUrl\":\"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg\",\"isAfterSales\":\"N\",\"isNeedDelivery\":\"Y\",\"leaveMsg\":\"\",\"logisticsDeductFee\":\"0\",\"logisticsFee\":\"12000\",\"logisticsModeId\":\"1\",\"logisticsOriFee\":\"12000\",\"offerCnt\":\"1\",\"offerId\":\"28\",\"offerName\":\"杯子团购\",\"offerPrice\":\"500\",\"offerType\":\"P\",\"orderId\":\"39011\",\"orderItemId\":\"38011\",\"orderItems\":[{\"canEvaluate\":\"N\",\"canReturn\":\"N\",\"canReview\":\"N\",\"imagUrl\":\"/get/resource/ecs/20220106/picture/bb9507a20cc0ab3888fa3544ac939d091478915560012591104.jpeg\",\"offerCnt\":\"1\",\"offerId\":\"28\",\"offerName\":\"杯子团购\",\"offerType\":\"P\",\"orderItemId\":\"38011\",\"orderPrice\":\"500\",\"productId\":\"69\",\"productName\":\"杯子团购 黄色\",\"serviceTypes\":\"2,4\",\"unitPrice\":\"500\"}\],\"orderNbr\":\"O202203020950572525\",\"orderPrice\":\"500\",\"paymentMode\":\"A\",\"payments\":[{\"charge\":\"12500\",\"orderPaymentId\":\"37008\",\"paymentDate\":\"2022-03-02 09:51:15\",\"paymentId\":\"39008\",\"paymentMethodName\":\"Mock\",\"paymentSn\":\"ECA202203020951150000003\",\"paymentState\":\"S\"}],\"paymentState\":\"S\",\"pointPrice\":\"0\",\"productId\":\"69\",\"productName\":\"杯子团购 黄色\",\"serviceTypes\":\"2,4\",\"state\":\"B\",\"stateDate\":\"2022-03-02 09:51:15\",\"storeCampaignPrice\":\"0\",\"storeCouponPrice\":\"0\",\"storeId\":\"5\",\"storeName\":\"WCT Store\",\"uccAccount\":\"A1test@A1.com\",\"unitPrice\":\"500\"}"];
             [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                 
             }];
@@ -332,16 +334,16 @@
     NSString *isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%d')", model ? 1 : 0];
     if ([self.webView.URL.absoluteString containsString:@"/chat/"]) {
         isLogin = [NSString stringWithFormat:@"window.localStorage.setItem('isLogin', '%@')", model ? @"Y" : @"N"];
-//        if (_productDic) {
-//            NSError *parseError = nil;
-//                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:kNilOptions error:&parseError];
-//                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
-            [self.webView evaluateJavaScript:isLogin completionHandler:nil];
-//            [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//
-//            }];
-//        }
+        //        if (_productDic) {
+        //            NSError *parseError = nil;
+        //                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_productDic options:kNilOptions error:&parseError];
+        //                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        //            NSString *product = [NSString stringWithFormat:@"window.localStorage.setItem('currentProduct_chat', '%@')", jsonString];
+        [self.webView evaluateJavaScript:isLogin completionHandler:nil];
+        //            [self.webView evaluateJavaScript:product completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        //
+        //            }];
+        //        }
     }
     [self.webView evaluateJavaScript:token completionHandler:nil];
     [self.webView evaluateJavaScript:isLogin completionHandler:nil];
@@ -357,53 +359,24 @@
     
 }
 
-- (void)receiveReloadWebviewNotification:(NSNotification *)noti
-{
-//    [self.webView reloadFromOrigin];
+- (void)receiveReloadWebviewNotification:(NSNotification *)noti {
+    //    [self.webView reloadFromOrigin];
 }
 
 - (void)addJsBridge {
     _jsBridge = [WKWebViewJavascriptBridge bridgeForWebView:self.webView];
     [_jsBridge setWebViewDelegate:self];
-//    [_jsBridge registerHandler:@"COUPON" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"1");
-//    }];
-//    [_jsBridge registerHandler:@"SEARCH" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"2");
-//    }];
-//    [_jsBridge registerHandler:@"CATG" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"3");
-//    }];
-//    [_jsBridge registerHandler:@"CUST_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"4");
-//    }];
-//    [_jsBridge registerHandler:@"PROD_DETAIL" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"5");
-//    }];
-//    [_jsBridge registerHandler:@"FILTER_PRODUCT" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"6");
-//    }];
-//    [_jsBridge registerHandler:@"FUNCTION_PAGE" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"7");
-//    }];
-//    [_jsBridge registerHandler:@"FLASH_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"8");
-//    }];
-//    [_jsBridge registerHandler:@"GROUP_SHOP_MORE" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"9");
-//    }];
-//    [_jsBridge registerHandler:@"PROD_CLICK" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        NSLog(@"10");
-//    }];
 }
-- (void)setIsHome:(BOOL)isHome
-{
+
+- (void)setIsHome:(BOOL)isHome {
     _isHome = isHome;
     [self setlocalWeb];
 }
+
+
 #pragma mark - WKNavigationDelegate
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
-{
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     NSDictionary *func = message.body;
     if ([func[@"type"] isEqualToString:@"/search-page"]) {
         if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
@@ -530,17 +503,20 @@
     }
     
 }
+
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-//    [webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#131313\"" completionHandler:nil];
-//    [SVProgressHUD showInfoWithStatus:@"正在加载中"];
+    //    [webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#131313\"" completionHandler:nil];
+    //    [SVProgressHUD showInfoWithStatus:@"正在加载中"];
     [MBProgressHUD showHudMsg:kLocalizedString(@"Loading")];
     [self performSelector:@selector(removeHud) withObject:nil afterDelay:1];
 }
+
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
     [MBProgressHUD hideFromKeyWindow];
 }
+
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     [MBProgressHUD hideFromKeyWindow];
@@ -549,34 +525,39 @@
 }
 
 // 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
-{
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [MBProgressHUD hideFromKeyWindow];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
+
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-//    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+    //    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
-- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView NS_AVAILABLE(10_11, 9_0){
+
+- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView NS_AVAILABLE(10_11, 9_0) {
     [webView reload];
 }
+
 // 接收到服务器跳转请求之后调用
-- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{
+- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation {
     
 }
+
 // 在收到响应后，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
     NSLog(@"%@",navigationResponse.response.URL.absoluteString);
     //允许跳转
     decisionHandler(WKNavigationResponsePolicyAllow);
     //不允许跳转
     //decisionHandler(WKNavigationResponsePolicyCancel);
 }
+
 // 在发送请求之前，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     if (navigationAction.targetFrame == nil) {
         [webView loadRequest:navigationAction.request];
     }
@@ -587,21 +568,24 @@
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/spike"].location != NSNotFound){
+    } else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/spike"].location != NSNotFound){
         if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         FlashSaleViewController *vc = [[FlashSaleViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    }
-    else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/message-center"].location != NSNotFound){
-        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+    } else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/message-center"].location != NSNotFound){
+        if (self.pushVc) {
+            [self.navigationController popToViewController:self.pushVc animated:NO];
+        }
         MessageViewController *vc = [[MessageViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/product/detail/"].location != NSNotFound){
-        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+    } else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/product/detail/"].location != NSNotFound){
+        if (self.pushVc) {
+            [self.navigationController popToViewController:self.pushVc animated:NO];
+        }
         NSString *offerId = navigationAction.request.URL.lastPathComponent;
         NSString *productId = nil;
         NSURLComponents *urlComponent = [[NSURLComponents alloc] initWithString:navigationAction.request.URL.absoluteString];
@@ -615,18 +599,22 @@
         vc.offerId = offerId.integerValue;
         vc.productId = productId.integerValue;
         [self.navigationController pushViewController:vc animated:YES];
-//        [self requestProductInfoWithOfferId:offerId];
+        //        [self requestProductInfoWithOfferId:offerId];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/GroupBuy"].location != NSNotFound){
-        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+    } else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/GroupBuy"].location != NSNotFound){
+        if (self.pushVc) {
+            [self.navigationController popToViewController:self.pushVc animated:NO];
+        }
         GroupListViewController *vc = [[GroupListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
-//        decisionHandler(WKNavigationActionPolicyAllow);
+        //        decisionHandler(WKNavigationActionPolicyAllow);
         return;
-    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/list/"].location != NSNotFound){
-        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+    } else if ([navigationAction.request.URL.absoluteString rangeOfString :@"product/list/"].location != NSNotFound){
+        if (self.pushVc) {
+            [self.navigationController popToViewController:self.pushVc animated:NO];
+        }
         NSRange range1 = [navigationAction.request.URL.absoluteString rangeOfString:@"product/list/"];
         NSString *categoryId = @"";
         categoryId = [navigationAction.request.URL.absoluteString substringWithRange:NSMakeRange(range1.location+range1.length, navigationAction.request.URL.absoluteString.length-range1.location-range1.length)];
@@ -643,8 +631,10 @@
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    }else if ([navigationAction.request.URL.absoluteString rangeOfString :@"search-page"].location != NSNotFound){
-        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+    } else if ([navigationAction.request.URL.absoluteString rangeOfString :@"search-page"].location != NSNotFound){
+        if (self.pushVc) {
+            [self.navigationController popToViewController:self.pushVc animated:NO];
+        }
         CategoryRankViewController *vc = [[CategoryRankViewController alloc] init];
         vc.activeSearch = YES;
         vc.shouldBackToHome = YES;
@@ -652,16 +642,18 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }
-
+    
     decisionHandler(WKNavigationActionPolicyAllow);
 }
+
+
 #pragma mark - WKUIDelegate
 // 创建一个新的WebView
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{
     if (!navigationAction.targetFrame.isMainFrame) {
-      [webView loadRequest:navigationAction.request];
+        [webView loadRequest:navigationAction.request];
     }
-
+    
     return [[WKWebView alloc]init];
 }
 // 输入框
@@ -682,7 +674,7 @@
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
         NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
-
+        
         completionHandler(NSURLSessionAuthChallengeUseCredential,card);
     }
 }
@@ -690,18 +682,6 @@
 - (void)dealloc {
     [self reset];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    //不需要清除缓存，否则会移除掉localStorge
-//    if (iOS9) {
-//        NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-//        //// Date from
-//        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
-//        //// Execute
-//        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
-//            // Done
-//            NSLog(@"清楚缓存完毕");
-//        }];
-//    }
 }
 
 @end
