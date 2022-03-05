@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UShareUI/UShareUI.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 /* 图片 */
 #define SHARE_IMG_COMPRESSION_QUALITY 0.5
 
+/// 空页面type
+typedef NS_ENUM(NSInteger, MGCShareType) {
+    MGCShareTwitterType = 0, // 推特
+    MGCShareFacebookType = 1, // facebook
+    MGCShareWhatsAppType = 3, // WhatsApp
+    MGCShareCopyLinkType = 4, // 拷贝
+};
+
 @interface MGCShareItemModel : NSObject
 
 //名称
@@ -25,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 //图标imageName
 @property (nonatomic, copy) NSString *itemImage;
 //分享Item类型
-@property (nonatomic, assign) UMSocialPlatformType itemType;
+@property (nonatomic, assign) MGCShareType itemType;
 //按钮是否置灰
 @property(nonatomic,assign) BOOL isEnable;
 

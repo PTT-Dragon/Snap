@@ -54,8 +54,8 @@
 @implementation MGCShareView
 
 + (MGCShareView *)showShareViewWithShareInfoModel:(MGCShareInfoModel *)shareInfoModel
-                                     successBlock:(void (^)(NSDictionary *info, UMSocialPlatformType type))successBlock
-                                        failBlock:(void (^)(NSDictionary *info, UMSocialPlatformType type))failBlock
+                                     successBlock:(void (^)(NSDictionary *info, MGCShareType type))successBlock
+                                        failBlock:(void (^)(NSDictionary *info, MGCShareType type))failBlock
                                         completed:(void (^)(BOOL isShow))completed {
     MGCShareView *shareView = [[MGCShareView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     shareView.shareInfoModel = shareInfoModel;
@@ -103,23 +103,23 @@
     [self.shareItemsArr removeAllObjects];
     MGCShareItemModel *faceBookModel = [[MGCShareItemModel alloc] init];
     faceBookModel.itemName = @"FaceBook";
-    faceBookModel.itemType = UMSocialPlatformType_Facebook;
+    faceBookModel.itemType = MGCShareFacebookType;
     faceBookModel.itemImage = @"00262_ Facebook Fill";
     
     MGCShareItemModel *whatsAppModel = [[MGCShareItemModel alloc] init];
     whatsAppModel.itemName = @"WhatsApp";
-    whatsAppModel.itemType = UMSocialPlatformType_Whatsapp;
+    whatsAppModel.itemType = MGCShareWhatsAppType;
     whatsAppModel.itemImage = @"00266_ Wx Fill";
     
     MGCShareItemModel *twitterModel = [[MGCShareItemModel alloc] init];
     twitterModel.itemName = @"Twitter";
-    twitterModel.itemType = UMSocialPlatformType_Twitter;
+    twitterModel.itemType = MGCShareTwitterType;
     twitterModel.itemImage = @"00263_ Twitter Fill";
     
     
     MGCShareItemModel *copyModel = [[MGCShareItemModel alloc] init];
     copyModel.itemName = @"URL";
-    copyModel.itemType = UMSocialPlatformType_UserDefine_Begin;
+    copyModel.itemType = MGCShareCopyLinkType;
     copyModel.itemImage = @"00103_ Connect Fill";
     
     [self.shareItemsArr addObject:faceBookModel];
