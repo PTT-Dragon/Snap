@@ -46,7 +46,7 @@ static BOOL _passwordSuccess = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = kLocalizedString(@"Login");
+    self.title = kLocalizedString(@"LOGIN");
     [self layoutSubviews];
 }
 - (void)layoutSubviews
@@ -61,7 +61,7 @@ static BOOL _passwordSuccess = NO;
     self.passwordField.placeholder = kLocalizedString(@"PASSWORD");
     [self.forgetBtn setTitle:kLocalizedString(@"FORGOT_PWD") forState:0];
     [self.loginBtn setTitle:kLocalizedString(@"Login") forState:0];
-    [self.signUpBtn setTitle:[NSString stringWithFormat:@"%@%@",kLocalizedString(@"DONT_HAVE_ACCOUNT"),kLocalizedString(@"SIGN_UP")] forState:0];
+    [self.signUpBtn setTitle:[NSString stringWithFormat:@"%@%@",kLocalizedString(@"DONT_HAVE_ACCOUNT"),kLocalizedString(@"Sign_Up")] forState:0];
     [self.OTPButton setTitle:kLocalizedString(@"LOGIN_VIA_OPT") forState:0];
     [self.phoneBtn setTitle:kLocalizedString(@"PHONE") forState:0];
     _label1.text = kLocalizedString(@"PHONE_NUMBER");
@@ -79,12 +79,14 @@ static BOOL _passwordSuccess = NO;
 - (void)changedTextField:(UITextField *)textField
 {
     if (textField == _accountField) {
+        _label1.hidden = [textField.text isEqualToString:@""];
         if (_type == 1) {
             _accountSuccess = ![textField.text isEqualToString:@""];//[textField textFieldState:CHECKPHONETYPE editType:EIDTTYPE labels:@[_label1]];
         }else{
             _accountSuccess = ![textField.text isEqualToString:@""];//[textField textFieldState:CHECKEMAILTYPE editType:EIDTTYPE labels:@[_label1]];
         }
     }else{
+        _label2.hidden = [textField.text isEqualToString:@""];
         _passwordSuccess = ![textField.text isEqualToString:@""];//[textField textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label2]];
     }
     if (_accountSuccess && _passwordSuccess) {
@@ -98,9 +100,9 @@ static BOOL _passwordSuccess = NO;
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == _accountField) {
-        _label1.hidden = NO;
+        _label1.hidden = [textField.text isEqualToString:@""];
     }else{
-        _label2.hidden = NO;
+        _label2.hidden = [textField.text isEqualToString:@""];
     }
 //    if (textField == _accountField) {
 //        if (_type == 1) {
@@ -135,6 +137,8 @@ static BOOL _passwordSuccess = NO;
     _type = 1;
     sender.selected = YES;
     _tipLabel1.text = kLocalizedString(@"INCORRECT_PHONE");
+    _accountField.text = @"";
+    _passwordField.text = @"";
     _emailBtn.selected = NO;
     _phoneIndicationView.backgroundColor = [UIColor blackColor];
     _emailIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);
@@ -145,6 +149,8 @@ static BOOL _passwordSuccess = NO;
 - (IBAction)emailAction:(UIButton *)sender {
     _type = 2;
     _tipLabel1.text = kLocalizedString(@"PLEASE_INPUT_THE_CORRECT_EMAIL");
+    _accountField.text = @"";
+    _passwordField.text = @"";
     sender.selected = YES;
     _phoneBtn.selected = NO;
     _phoneIndicationView.backgroundColor = RGBColorFrom16(0xc4c4c4);

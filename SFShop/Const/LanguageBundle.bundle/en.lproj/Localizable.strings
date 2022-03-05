@@ -110,7 +110,7 @@
 "submit" = "Submit";
 "FORGOT_PWD" = "Forgot Password";
 //  "SETTING" = "Setting";
-//  "LOGIN" = "Login";
+  "LOGIN" = "Login";
 //  "LOGIN_BY_SOCIAL_ACCOUNT" = "Or sign in with";
 //  "LOGIN_FACEBOOK" = "Facebook";
 //  "LOGIN_GOOGLE" = "Google";

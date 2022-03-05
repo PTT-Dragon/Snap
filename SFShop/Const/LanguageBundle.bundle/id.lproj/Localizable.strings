@@ -117,7 +117,7 @@
 "submit" = "Kirim";
 "FORGOT_PWD" = "Lupa Kata Sandi";
 //  "SETTING" = "Pengaturan";
-//  "LOGIN" = "Gabung";
+  "LOGIN" = "Masuk";
 //  "LOGIN_BY_SOCIAL_ACCOUNT" = "Sign in dengan akun lain";
 //  "LOGIN_FACEBOOK" = "Facebook";
 //  "LOGIN_GOOGLE" = "Google";
@@ -321,7 +321,7 @@
 
   "CART" = "Keranjang";
 "STORE_COUPONS" = "Voucher toko";
-  "COUPONS" = "Vouchers";
+  "COUPONS" = "Voucher";
   "ONLY_SHOW_5_SHARE" = "Menampilkan 5 pembeli Group Buy";
   "PEOPLE_SHORT" = "Orang lagi";
   "JOIN" = "Gabung";
@@ -421,7 +421,7 @@
 "ADD_COMMENT" = "Tambah komentar";
   "YOUR_CODE_WAS_SENT_TO" = "Kode Anda sudah dikirim ke";
   "RESEND_CODE_IN" = "Kirim ulang kode dalam";
-"RESEND" = "KIRIM ULAND";
+"RESEND" = "KIRIM ULANG";
 //  "FORGOT_PWD_SELECT_MODAL_TITLE" = "Anda dapat mengatur ulang kata sandi Anda dengan SMS atau Email";
 //  "RESET_WITH_SMS" = "SETEL ULANG DENGAN SMS";
 //  "RESET_WITH_EMAIL" = "SETEL ULANG DENGAN EMAIL";
@@ -639,7 +639,7 @@
 "Area" = "Wilayah";
 "SF shop_Voucher" = "Platform Voucher";
 "Coupon_Center" = "Pusat voucher";
-"Login_Or_Register" = "Makuk atau daftar";
+"Login_Or_Register" = "Masuk atau daftar";
 "SHOPPING_CART" = "KERANJANG BELANJA";
 "Shopping_Cart" = "Keranjang Belanja";
 "Hide" = "Hide";

@@ -227,6 +227,10 @@
         self.btn.hidden = YES;
         self.btn2.hidden = YES;
         self.btnHei.constant = 0;
+    }else{
+        self.btn.hidden = YES;
+        self.btn2.hidden = YES;
+        self.btnHei.constant = 0;
     }
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);

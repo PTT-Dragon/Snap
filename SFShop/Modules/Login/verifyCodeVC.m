@@ -12,6 +12,7 @@
 #import "ResetPasswordDoViewController.h"
 #import "LoginViewController.h"
 #import "SysParamsModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface verifyCodeVC ()<HWTFCodeBViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
@@ -135,7 +136,7 @@
 - (void)login
 {
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":_account,@"code":login_aes_128_cbc_encrypt(_codeView.code)} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.account.login parameters:@{@"account":_account,@"code":_codeView.code} success:^(id  _Nullable response) {
         NSError *error = nil;
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
@@ -159,7 +160,37 @@
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.userInfo parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_password),@"code":_codeView.code,@"captcha":@""} success:^(id  _Nullable response) {
 //        [MBProgressHUD autoDismissShowHudMsg:@"Sign Up Success!"];
-        [weakself toLogin];
+        [weakself loginBySign];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
+- (void)loginBySign
+{
+    MPWeakSelf(self)
+    NSDictionary *param = @{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_password)};
+    [SFNetworkManager post:SFNet.account.login parameters:param success:^(id  _Nullable response) {
+        NSError *error = nil;
+        UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
+        // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
+        [[FMDBManager sharedInstance] insertUser:model ofAccount:weakself.account];
+        if (model.userRes.defLangCode) {
+            MJRefreshConfig.defaultConfig.languageCode = model.userRes.defLangCode ? model.userRes.defLangCode: @"id";
+            if ([model.userRes.defLangCode isEqualToString:@"zh"]) {
+                UserDefaultSetObjectForKey(kLanguageChinese, @"Language");
+                [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageChinese];
+            } else {
+                UserDefaultSetObjectForKey(model.userRes.defLangCode, @"Language");
+                [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:model.userRes.defLangCode];
+            }
+        }else{
+            MJRefreshConfig.defaultConfig.languageCode = @"id";
+            UserDefaultSetObjectForKey(@"id", @"Language");
+            [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:@"id"];
+        }
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [appDelegate.tabVC setSelectedIndex:0];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
