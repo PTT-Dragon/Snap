@@ -46,18 +46,16 @@
     
     if (self.isHome) {
         if ([self.url isEqualToString:self.webView.URL.absoluteString]) {
-//            [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.parent.location.reload()"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
-//
-//            }];
-            [self.jsBridge callHandler:@"reload"];
+            [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+                
+            }];
         } else {
             [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
         }
     } else {
-//        [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
-//
-//        }];
-        [self.jsBridge callHandler:@"reload"];
+        [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+            
+        }];
     }
 }
 
