@@ -44,19 +44,21 @@
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
     
-//    if (self.isHome) {
-//        if ([self.url isEqualToString:self.webView.URL.absoluteString]) {
+    if (self.isHome) {
+        if ([self.url isEqualToString:self.webView.URL.absoluteString]) {
 //            [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.parent.location.reload()"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
 //
 //            }];
-//        } else {
-//            [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
-//        }
-//    } else {
+            [self.jsBridge callHandler:@"reload"];
+        } else {
+            [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+        }
+    } else {
 //        [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
 //
 //        }];
-//    }
+        [self.jsBridge callHandler:@"reload"];
+    }
 }
 
 - (void)viewDidLoad {
@@ -97,11 +99,6 @@
         webview.customUserAgent = newUserAgent;
     }];
     
-    WKUserScript *reloadScript = [[WKUserScript alloc] initWithSource:@"window.addEventListener('pageshow', function(event){if(event.persisted){location.reload();}});"
-                                                                        injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
-                                                                     forMainFrameOnly:YES];
-    
-    [self.webView.configuration.userContentController addUserScript:reloadScript];
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"jsFunc"];
     [self.view addSubview:webview];
     [self addJsBridge];
@@ -457,16 +454,18 @@
     }else if ([func[@"type"] isEqualToString:@"/main/cart"]){
         [self.tabBarController setSelectedIndex:3];
     }else if ([func[@"type"] isEqualToString:@"/my-coupon"]){
-        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+        if (self.pushVc) {
+            [self.navigationController popToViewController:self.pushVc animated:NO];
+        }
         MyCouponViewController *vc = [[MyCouponViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-    }else if ([func[@"type"] isEqualToString:@"/main/account"]){
+    } else if ([func[@"type"] isEqualToString:@"/main/account"]){
         [self.tabBarController setSelectedIndex:4];
-    }else if ([func[@"type"] isEqualToString:@"/main/community"]){
+    } else if ([func[@"type"] isEqualToString:@"/main/community"]){
         [self.tabBarController setSelectedIndex:2];
-    }else if ([func[@"type"] isEqualToString:@"/"]){
+    } else if ([func[@"type"] isEqualToString:@"/"]){
         [self.webView reload];
-    }else if ([func[@"type"] rangeOfString:@"/product/detail"].location != NSNotFound){
+    } else if ([func[@"type"] rangeOfString:@"/product/detail"].location != NSNotFound){
         if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
         NSURL *url = [NSURL URLWithString:func[@"type"]];
         NSString *offerId = url.lastPathComponent;
@@ -482,11 +481,11 @@
         vc.offerId = offerId.integerValue;
         vc.productId = productId.integerValue;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if ([func[@"type"] isEqualToString:@"SHARE"]){
+    } else if ([func[@"type"] isEqualToString:@"SHARE"]){
         NSURL *url = self.webView.URL;
         NSString *shareUrl = url.absoluteString;
         [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
-    }else if ([func[@"type"] isEqualToString:@"BACK"]){
+    } else if ([func[@"type"] isEqualToString:@"BACK"]){
         if (_isHome) {
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/main/home",Host]]]];
         }else{
