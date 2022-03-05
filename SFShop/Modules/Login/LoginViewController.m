@@ -13,6 +13,8 @@
 #import "NSString+Fee.h"
 #import <MJRefresh/MJRefresh.h>
 #import "CartModel.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -49,6 +51,49 @@ static BOOL _passwordSuccess = NO;
     self.title = kLocalizedString(@"Login");
     [self layoutSubviews];
 }
+
+- (IBAction)facebookLogin:(id)sender {
+    FBSDKAccessToken *cur_asscessToken = [FBSDKAccessToken currentAccessToken];
+    if(cur_asscessToken){//已经登录了
+        NSLog(@"facebookLogin cur_asscessToken=%@",cur_asscessToken.userID);
+        [self getUserInfoWithResult:cur_asscessToken.userID];
+    }else{//拉起facebook 授权
+        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+        NSArray<NSString*> *permissions = @[@"public_profile"];
+        [loginManager logInWithReadPermissions:permissions
+                            fromViewController:self
+                                       handler:^(FBSDKLoginManagerLoginResult *result,
+                                                 NSError *error) {
+            if (error) {
+                NSLog(@"loginManager error=%@",error);
+            } else if (result.isCancelled) {
+                NSLog(@"loginManager 1 result=%@",result);
+            } else {
+                NSLog(@"loginManager 2 result=%@",result.token.userID);
+                //result.token.userID
+                [self getUserInfoWithResult:result.token.userID];
+            }
+        }];
+    }
+}
+- (void)getUserInfoWithResult:(NSString *)userId {
+    NSDictionary*params= @{@"fields":@"id,name,picture"};
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:userId
+                                  parameters:params
+                                  HTTPMethod:@"GET"];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        NSLog(@"FBSDKGraphRequest = %@",result);
+        NSDictionary *resultDict = (NSDictionary *)result;
+        NSString *userName = resultDict[@"name"];
+        NSString *url = resultDict[@"picture"][@"data"][@"url"];
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+        [dictionary setValue:userId forKey:@"facebook_id"];
+        [dictionary setValue:userName forKey:@"facebook_name"];
+        [dictionary setValue:url forKey:@"facebook_photo"];
+    }];
+}
+
 - (void)layoutSubviews
 {
     _type = 1;
