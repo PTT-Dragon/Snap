@@ -43,11 +43,13 @@
 #import "LastSelAddressModel.h"
 #import <WebKit/WebKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "ProductChoosePromotionView.h"
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate,JPVideoPlayerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topToGroupTableview;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
+@property (weak, nonatomic) IBOutlet UIView *promotionView;
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *addCartBtn;
@@ -71,6 +73,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *usefulBtn;
 @property (weak, nonatomic) IBOutlet UIView *couponsView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *addressViewTop;
+@property (weak, nonatomic) IBOutlet UILabel *promotionTitleLabel;
 
 @property(nonatomic, strong) NSMutableArray<ProductEvalationModel *> *evalationArr;
 @property (nonatomic, strong) WKWebView *detailWebView;
@@ -129,6 +132,7 @@
 @property (strong, nonatomic) SRXGoodsImageDetailView *pictureScrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnToName;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnToPrice;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *promotionViewHei;
 
 @end
 
@@ -198,6 +202,7 @@
     _variationsTitleLabel.text = kLocalizedString(@"VARIATIONS");
     _vouchersTitleLabel.text = kLocalizedString(@"COUPONS");
     _addLabel.text = kLocalizedString(@"ADDRESS");
+    _promotionTitleLabel.text = kLocalizedString(@"PROMOTIONS");
     [self.buyBtn setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
     [self.addCartBtn setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
     
@@ -269,6 +274,9 @@
     
     UITapGestureRecognizer *couponTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseCoupon)];
     [self.couponsView addGestureRecognizer:couponTap];
+    
+    UITapGestureRecognizer *promotionTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePromotion)];
+    [self.promotionView addGestureRecognizer:promotionTap];
 }
 
 - (void)showAttrsView {
@@ -290,6 +298,16 @@
         }
     }];
     view.couponDataSource = arr;
+    [[baseTool getCurrentVC].view addSubview:view];
+}
+- (void)choosePromotion
+{
+    ProductChoosePromotionView *view = [[NSBundle mainBundle] loadNibNamed:@"ProductChoosePromotionView" owner:self options:nil].firstObject;
+    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    [self.campaignsModel.cmpBuygetns enumerateObjectsUsingBlock:^(cmpBuygetnsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.sel = NO;
+    }];
+    view.cmpBuygetns = self.campaignsModel.cmpBuygetns;
     [[baseTool getCurrentVC].view addSubview:view];
 }
 - (void)chooseAddress {
@@ -389,9 +407,13 @@
             //拼团活动
             [weakself requestGroupInfo];
         }
-        if (weakself.campaignsModel.coupons > 0){
+        if (weakself.campaignsModel.coupons.count > 0){
             //有可使用红包
             [weakself layoutCouponSubviews];
+        }
+        if (weakself.campaignsModel.cmpBuygetns.count > 0) {
+            //有可使用活动
+            [weakself layoutPromotionSubviews];
         }
         
     } failed:^(NSError * _Nonnull error) {
@@ -819,6 +841,36 @@
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.couponsView.mas_left).offset(100+lastRight);
             make.centerY.equalTo(self.couponsView);
+            make.width.mas_equalTo(width+15);
+            make.height.mas_equalTo(18);
+        }];
+        lastRight += width+20;
+    }];
+}
+- (void)layoutPromotionSubviews
+{
+    self.promotionView.hidden = NO;
+    self.promotionViewHei.constant = 40;
+    __block CGFloat lastRight = 0;
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.cmpBuygetns];
+    [self.campaignsModel.cmpBuygetns enumerateObjectsUsingBlock:^(cmpBuygetnsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.productId.integerValue != _selProductModel.productId) {
+            [arr removeObject:obj];
+        }
+    }];
+    [arr enumerateObjectsUsingBlock:^(cmpBuygetnsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UILabel *label = [[UILabel alloc] init];
+        label.text = [obj.promotType rangeOfString:@"C"].location != NSNotFound ? [NSString stringWithFormat:@" %@ ",kLocalizedString(@"OFF")]: [NSString stringWithFormat:@" %@ ",kLocalizedString(@"DISCOUNT")];
+        label.font = kFontBlod(10);
+        label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = RGBColorFrom16(0xFF1659);
+        label.alpha = 0.4;
+        label.textColor = [UIColor whiteColor];
+        CGFloat width = [label.text calWidthWithLabel:label];
+        [self.promotionView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.promotionView.mas_left).offset(100+lastRight);
+            make.centerY.equalTo(self.promotionView);
             make.width.mas_equalTo(width+15);
             make.height.mas_equalTo(18);
         }];

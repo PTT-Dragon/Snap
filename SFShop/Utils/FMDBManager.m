@@ -81,6 +81,7 @@ static FMDBManager *_onetimeClass;
         }
         [self.userDb close];
     }
+    UserDefaultSetObjectForKey(kLanguageHindi, @"Language");
 }
 
 - (void)insertUser: (UserModel *)user ofAccount: (NSString *)account {

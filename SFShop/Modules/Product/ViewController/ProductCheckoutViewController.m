@@ -24,6 +24,7 @@
 #import "CheckoutManager.h"
 #import "SceneManager.h"
 #import "ProductCheckoutSeccessVc.h"
+#import "KJMarqueeLabel.h"
 
 @interface ProductCheckoutViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -31,6 +32,7 @@
 @property (nonatomic, readwrite, strong) UITableView *tableView;
 @property (nonatomic, readwrite, strong) ProductCheckoutModel *dataModel;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSMutableArray<SFCellCacheModel *> *> *dataArray;
+@property (nonatomic,strong) KJMarqueeLabel *scrollLabel;
 @end
 
 @implementation ProductCheckoutViewController
@@ -51,6 +53,7 @@
     self.view.backgroundColor = [UIColor jk_colorWithHexString:@"#F5F5F5"];
     [self loadsubviews];
     [self layout];
+    [self loadSysParams];
     //刷新价格
     [self refreshCalFee];
     // Do any additional setup after loading the view.
@@ -60,7 +63,45 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
-
+//是否需要展示滚动文字
+- (void)loadSysParams
+{
+    [SFNetworkManager get:SFNet.h5.sysparam parameters:@{@"paramCodes":@"LIMIT_PAY_DISCOUNT,LIMIT_PAY_OFFSET_MINS,LIMIT_PAY_DIS_AMOUNT"} success:^(id  _Nullable response) {
+        [self.scrollLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+        for (NSDictionary *dic in response){
+            if ([dic[@"paramCode"] isEqualToString:@"LIMIT_PAY_DISCOUNT"]) {
+                if ([dic[@"paramValue"] isEqualToString:@"on"]) {
+                    self.scrollLabel.hidden = NO;
+                    [self.scrollLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.height.mas_equalTo(32);
+                    }];
+                    __block NSString *str1 = @"";
+                    __block NSString *str2 = @"";
+                    [response enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ([obj[@"paramCode"] isEqualToString:@"LIMIT_PAY_OFFSET_MINS"]) {
+                            str1 = obj[@"paramValue"];
+                        }
+                        if ([obj[@"paramCode"] isEqualToString:@"LIMIT_PAY_DIS_AMOUNT"]) {
+                            str2 = obj[@"paramValue"];
+                        }
+                    }];
+                    NSString *lauange = UserDefaultObjectForKey(@"Language");
+                    if ([lauange isEqualToString:@"id"]) {
+                        self.scrollLabel.text = [NSString stringWithFormat:@"Waktu Terbatas! Check Out max %@ menit, dapat potongan %@!",str1,[str2 currency]];
+                    }else{
+                        self.scrollLabel.text = [NSString stringWithFormat:@"Limited offer! Complete payment within %@ mins to get %@ off!",str1,[str2 currency]];
+                    }
+                }
+            }
+        }
+    } failed:^(NSError * _Nonnull error) {
+        [self.scrollLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+    }];
+}
 //刷新价格
 - (void)refreshCalFee {
     self.buyView.dataModel = self.dataModel;
@@ -150,6 +191,7 @@
 - (void)loadsubviews {
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.buyView];
+    [self.view addSubview:self.scrollLabel];
 }
 
 - (void)layout {
@@ -157,11 +199,16 @@
         make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(78);
     }];
+    [self.scrollLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.buyView.mas_top);
+        make.height.mas_equalTo(32);
+    }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.bottom.equalTo(self.buyView.mas_top);
+        make.bottom.equalTo(self.scrollLabel.mas_top);
         make.top.mas_equalTo(navBarHei+15);
     }];
     
@@ -563,6 +610,17 @@
         }
     }
     return _dataArray;
+}
+- (KJMarqueeLabel *)scrollLabel
+{
+    if (!_scrollLabel) {
+        _scrollLabel = [[KJMarqueeLabel alloc] init];
+        _scrollLabel.backgroundColor = RGBColorFrom16(0xE2F2FF);
+        _scrollLabel.textColor = [UIColor blackColor];
+        _scrollLabel.font = kFontRegular(14);
+        _scrollLabel.marqueeLabelType = KJMarqueeLabelTypeLeft;
+    }
+    return _scrollLabel;
 }
 
 @end

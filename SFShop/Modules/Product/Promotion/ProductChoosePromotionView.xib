@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="SVi-bJ-n21" customClass="ProductChoosePromotionView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdA-w8-G9L">
+                    <rect key="frame" x="0.0" y="377" width="414" height="519"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ehA-xV-Csf">
+                            <rect key="frame" x="0.0" y="69" width="414" height="450"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="450" id="4Rb-Cf-maw"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="spM-qv-SyA"/>
+                                <outlet property="delegate" destination="-1" id="ljM-Qv-9y5"/>
+                            </connections>
+                        </tableView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdd-S8-HAb">
+                            <rect key="frame" x="16" y="32" width="38" height="17"/>
+                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="ehA-xV-Csf" firstAttribute="leading" secondItem="wdA-w8-G9L" secondAttribute="leading" id="8LL-G4-4nQ"/>
+                        <constraint firstItem="Zdd-S8-HAb" firstAttribute="top" secondItem="wdA-w8-G9L" secondAttribute="top" constant="32" id="GF6-Ca-3jn"/>
+                        <constraint firstItem="Zdd-S8-HAb" firstAttribute="leading" secondItem="wdA-w8-G9L" secondAttribute="leading" constant="16" id="Xzr-5b-vWU"/>
+                        <constraint firstAttribute="trailing" secondItem="ehA-xV-Csf" secondAttribute="trailing" id="kRZ-4D-DaS"/>
+                        <constraint firstAttribute="height" constant="519" id="oxR-Bk-s1a"/>
+                        <constraint firstAttribute="bottom" secondItem="ehA-xV-Csf" secondAttribute="bottom" id="xLb-uu-Rby"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QrT-3A-D1K">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="377"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="jgO-O0-3Cm"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="wdA-w8-G9L" firstAttribute="leading" secondItem="jgO-O0-3Cm" secondAttribute="leading" id="0fp-GU-0J8"/>
+                <constraint firstItem="jgO-O0-3Cm" firstAttribute="top" secondItem="QrT-3A-D1K" secondAttribute="top" constant="44" id="2jU-93-uOC"/>
+                <constraint firstItem="wdA-w8-G9L" firstAttribute="top" secondItem="QrT-3A-D1K" secondAttribute="bottom" id="CeT-13-T7s"/>
+                <constraint firstItem="wdA-w8-G9L" firstAttribute="bottom" secondItem="jgO-O0-3Cm" secondAttribute="bottom" constant="34" id="bWC-sZ-JDk"/>
+                <constraint firstItem="jgO-O0-3Cm" firstAttribute="trailing" secondItem="QrT-3A-D1K" secondAttribute="trailing" id="bpf-1a-FC6"/>
+                <constraint firstItem="jgO-O0-3Cm" firstAttribute="trailing" secondItem="wdA-w8-G9L" secondAttribute="trailing" id="ccM-AD-Elw"/>
+                <constraint firstItem="QrT-3A-D1K" firstAttribute="leading" secondItem="jgO-O0-3Cm" secondAttribute="leading" id="qU9-IS-b7M"/>
+            </constraints>
+            <connections>
+                <outlet property="tableView" destination="ehA-xV-Csf" id="FHp-z6-YoC"/>
+                <outlet property="titleLabel" destination="Zdd-S8-HAb" id="yAB-4Q-zWe"/>
+                <outlet property="topView" destination="QrT-3A-D1K" id="kSn-RG-lFQ"/>
+            </connections>
+            <point key="canvasLocation" x="144.92753623188406" y="4.6875"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

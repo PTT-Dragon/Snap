@@ -402,6 +402,9 @@
         [cartVC.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_offset(bottomH);
         }];
+        [cartVC.scrollLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(bottomH==78 ? 32: 0);
+        }];
     }
 }
 

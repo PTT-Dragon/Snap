@@ -300,6 +300,7 @@
   "SUBTOTAL" = "Subtotal";
   "SUBTOTAL_DISCOUNT" = "Subtotal diskon";
   "PROMOTION" = "Promosi";
+"PROMOTIONS" = "Promosi";
   "POINTS_DEDUCTION" = "Pengurangan Poin";
   "SHIPPING_FEE" = "Biaya pengiriman";
   "ATTACHMENT_INFORMATION" = "Informasi Lampiran";

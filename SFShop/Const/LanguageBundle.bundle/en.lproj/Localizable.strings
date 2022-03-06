@@ -293,6 +293,7 @@
   "SUBTOTAL" = "Subtotal";
   "SUBTOTAL_DISCOUNT" = "Subtotal discount";
   "PROMOTION" = "Promotion";
+"PROMOTIONS" = "Promotions";
   "STORE_COUPONS" = "Store Vouchers";
   "POINTS_DEDUCTION" = "Points Deduction";
   "SHIPPING_FEE" = "Shipping Fee";

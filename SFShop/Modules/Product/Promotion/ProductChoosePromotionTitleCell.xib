@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoLt.otf">
+            <string>TruenoLt</string>
+        </array>
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ProductChoosePromotionTitleCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6K5-Qs-lnM">
+                        <rect key="frame" x="45.5" y="15" width="150" height="14.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="OF4-1G-4q3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzh-tK-At9">
+                        <rect key="frame" x="16" y="15" width="24.5" height="14"/>
+                        <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="0kO-Np-gHB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="9"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgf-sl-6ev">
+                        <rect key="frame" x="282" y="11" width="10" height="22"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="00159_01_scrollup_outline"/>
+                        <state key="selected" image="00159_01_scrolldown_outline"/>
+                        <connections>
+                            <action selector="selAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0eI-6X-WpI"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6K5-Qs-lnM" firstAttribute="centerY" secondItem="hzh-tK-At9" secondAttribute="centerY" id="2Pb-Ka-Qrp"/>
+                    <constraint firstItem="mgf-sl-6ev" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HVa-QI-Z33"/>
+                    <constraint firstItem="hzh-tK-At9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="NIc-iu-M1x"/>
+                    <constraint firstItem="hzh-tK-At9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="YdH-X3-FUe"/>
+                    <constraint firstItem="6K5-Qs-lnM" firstAttribute="leading" secondItem="hzh-tK-At9" secondAttribute="trailing" constant="5" id="csB-aR-Pbs"/>
+                    <constraint firstAttribute="trailing" secondItem="mgf-sl-6ev" secondAttribute="trailing" constant="28" id="ecd-Hl-4wF"/>
+                    <constraint firstItem="hzh-tK-At9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jvb-mK-8sb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="contentLabel" destination="6K5-Qs-lnM" id="M6v-ls-ADT"/>
+                <outlet property="offLabel" destination="hzh-tK-At9" id="eG7-pc-kQY"/>
+                <outlet property="selBtn" destination="mgf-sl-6ev" id="Jro-hh-xsn"/>
+            </connections>
+            <point key="canvasLocation" x="133" y="98"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="00159_01_scrolldown_outline" width="9.5" height="6"/>
+        <image name="00159_01_scrollup_outline" width="9.5" height="6"/>
+    </resources>
+</document>

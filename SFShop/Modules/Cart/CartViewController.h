@@ -8,6 +8,7 @@
 #import "BaseViewController.h"
 #import <VTMagic/VTMagic.h>
 #import "addressModel.h"
+#import "KJMarqueeLabel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,7 @@ typedef void(^CartViewControllerBlock)(void);
 @interface CartViewController : BaseViewController
 @property (nonatomic,copy) CartViewControllerBlock block;
 @property (strong, nonatomic) UIView *bottomView;
+@property (nonatomic,strong) KJMarqueeLabel *scrollLabel;
 @property (nonatomic,assign) BOOL isTab;
 @property (nonatomic,assign) BOOL showAddSuccess;//展示加入购物车成功提示
 @property (nonatomic,weak) addressModel *selAddModel;

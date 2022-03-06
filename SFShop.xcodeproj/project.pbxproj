@@ -275,6 +275,13 @@
 		1B964763273E4F2F00345DDA /* RelationOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B964761273E4F2F00345DDA /* RelationOrderCell.m */; };
 		1B964764273E4F2F00345DDA /* RelationOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B964762273E4F2F00345DDA /* RelationOrderCell.xib */; };
 		1B996BFA279A60420094EAFE /* accountOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B996BFC279A60420094EAFE /* accountOrderCell.xib */; };
+		1BB145DA27D478F00010C0DC /* ProductChoosePromotionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145D927D478F00010C0DC /* ProductChoosePromotionView.m */; };
+		1BB145DC27D47C260010C0DC /* ProductChoosePromotionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB145DB27D47C260010C0DC /* ProductChoosePromotionView.xib */; };
+		1BB145E027D4809D0010C0DC /* ProductChoosePromotionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145DE27D4809D0010C0DC /* ProductChoosePromotionCell.m */; };
+		1BB145E127D4809D0010C0DC /* ProductChoosePromotionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB145DF27D4809D0010C0DC /* ProductChoosePromotionCell.xib */; };
+		1BB145E527D486740010C0DC /* ProductChoosePromotionTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145E327D486740010C0DC /* ProductChoosePromotionTitleCell.m */; };
+		1BB145E627D486740010C0DC /* ProductChoosePromotionTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB145E427D486740010C0DC /* ProductChoosePromotionTitleCell.xib */; };
+		1BB145EA27D4A7450010C0DC /* KJMarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145E927D4A7450010C0DC /* KJMarqueeLabel.m */; };
 		1BB1CB5F2763415C008D71DF /* FlashSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */; };
 		1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */; };
 		1BB1CB63276341B6008D71DF /* SFNetworkFlashSaleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB62276341B6008D71DF /* SFNetworkFlashSaleModule.m */; };
@@ -1062,6 +1069,17 @@
 		1B964760273E4F2F00345DDA /* RelationOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RelationOrderCell.h; sourceTree = "<group>"; };
 		1B964761273E4F2F00345DDA /* RelationOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RelationOrderCell.m; sourceTree = "<group>"; };
 		1B964762273E4F2F00345DDA /* RelationOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelationOrderCell.xib; sourceTree = "<group>"; };
+		1BB145D827D478F00010C0DC /* ProductChoosePromotionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductChoosePromotionView.h; sourceTree = "<group>"; };
+		1BB145D927D478F00010C0DC /* ProductChoosePromotionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductChoosePromotionView.m; sourceTree = "<group>"; };
+		1BB145DB27D47C260010C0DC /* ProductChoosePromotionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductChoosePromotionView.xib; sourceTree = "<group>"; };
+		1BB145DD27D4809D0010C0DC /* ProductChoosePromotionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductChoosePromotionCell.h; sourceTree = "<group>"; };
+		1BB145DE27D4809D0010C0DC /* ProductChoosePromotionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductChoosePromotionCell.m; sourceTree = "<group>"; };
+		1BB145DF27D4809D0010C0DC /* ProductChoosePromotionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductChoosePromotionCell.xib; sourceTree = "<group>"; };
+		1BB145E227D486740010C0DC /* ProductChoosePromotionTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductChoosePromotionTitleCell.h; sourceTree = "<group>"; };
+		1BB145E327D486740010C0DC /* ProductChoosePromotionTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductChoosePromotionTitleCell.m; sourceTree = "<group>"; };
+		1BB145E427D486740010C0DC /* ProductChoosePromotionTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductChoosePromotionTitleCell.xib; sourceTree = "<group>"; };
+		1BB145E827D4A7450010C0DC /* KJMarqueeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJMarqueeLabel.h; sourceTree = "<group>"; };
+		1BB145E927D4A7450010C0DC /* KJMarqueeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJMarqueeLabel.m; sourceTree = "<group>"; };
 		1BB1CB5C2763415C008D71DF /* FlashSaleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleViewController.h; sourceTree = "<group>"; };
 		1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleViewController.m; sourceTree = "<group>"; };
 		1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleViewController.xib; sourceTree = "<group>"; };
@@ -2362,6 +2380,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1BB145D727D478D10010C0DC /* Promotion */ = {
+			isa = PBXGroup;
+			children = (
+				1BB145D827D478F00010C0DC /* ProductChoosePromotionView.h */,
+				1BB145D927D478F00010C0DC /* ProductChoosePromotionView.m */,
+				1BB145DB27D47C260010C0DC /* ProductChoosePromotionView.xib */,
+				1BB145DD27D4809D0010C0DC /* ProductChoosePromotionCell.h */,
+				1BB145DE27D4809D0010C0DC /* ProductChoosePromotionCell.m */,
+				1BB145DF27D4809D0010C0DC /* ProductChoosePromotionCell.xib */,
+				1BB145E227D486740010C0DC /* ProductChoosePromotionTitleCell.h */,
+				1BB145E327D486740010C0DC /* ProductChoosePromotionTitleCell.m */,
+				1BB145E427D486740010C0DC /* ProductChoosePromotionTitleCell.xib */,
+			);
+			path = Promotion;
+			sourceTree = "<group>";
+		};
+		1BB145E727D4A7210010C0DC /* ScrollLabel */ = {
+			isa = PBXGroup;
+			children = (
+				1BB145E827D4A7450010C0DC /* KJMarqueeLabel.h */,
+				1BB145E927D4A7450010C0DC /* KJMarqueeLabel.m */,
+			);
+			path = ScrollLabel;
+			sourceTree = "<group>";
+		};
 		1BB1CB5B276340FE008D71DF /* FlashSale */ = {
 			isa = PBXGroup;
 			children = (
@@ -2698,6 +2741,7 @@
 		4B818FC8272394D90058038A /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				1BB145D727D478D10010C0DC /* Promotion */,
 				AEEC0BAA27883BD30071F059 /* Delivery */,
 				AE43BF602782DBE5006D7135 /* Coupons */,
 				1BD2A619276B099500F994C5 /* FlashSaleProduct */,
@@ -2804,6 +2848,7 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1BB145E727D4A7210010C0DC /* ScrollLabel */,
 				8EB27B2527D3995D004F4A9C /* SocialLibraries */,
 				8494185727A2E0BE007D6D4F /* YCMenuView */,
 				62E4289627A2292900A02F91 /* ImgAndVideoBanner */,
@@ -3661,6 +3706,7 @@
 				1B6C52D1275C896200A1C617 /* RelationOrderDetailStateCell.xib in Resources */,
 				1B478321272A9F0300F2A945 /* SetLogOutCell.xib in Resources */,
 				1BB8DD5B27C4C3DE00E5FBB2 /* img2.gif in Resources */,
+				1BB145E127D4809D0010C0DC /* ProductChoosePromotionCell.xib in Resources */,
 				1B82AE3827701F4F00D75E00 /* ArticleEvaluateBottomCell.xib in Resources */,
 				8EB27B3227D3995D004F4A9C /* TwitterShareExtensionUIResources.bundle in Resources */,
 				1BD8E7C3275F47E500130DCC /* RefundDetailProductInfoCell.xib in Resources */,
@@ -3744,6 +3790,7 @@
 				1B996BFA279A60420094EAFE /* accountOrderCell.xib in Resources */,
 				1B787B5727299E5F00E6A983 /* OrderDetailViewController.xib in Resources */,
 				1BE0B88F2701944B00C73CEC /* CouponAlertView.xib in Resources */,
+				1BB145E627D486740010C0DC /* ProductChoosePromotionTitleCell.xib in Resources */,
 				1B552EBB276C3D470086604B /* ProductGroupTitleCell.xib in Resources */,
 				1BD7F69E27D111B30010C8C3 /* EmptyViewController.xib in Resources */,
 				1BD8E799275CF69C00130DCC /* RelationOrderDetailViewController.xib in Resources */,
@@ -3757,6 +3804,7 @@
 				1B964759273E494A00345DDA /* IncomeAndExpenseCell.xib in Resources */,
 				1BB8DD5727C4BC8200E5FBB2 /* GroupBuyTipViewController.xib in Resources */,
 				1B6C52C7275C88FE00A1C617 /* RelationOrderDetailProductCell.xib in Resources */,
+				1BB145DC27D47C260010C0DC /* ProductChoosePromotionView.xib in Resources */,
 				1B38916327A4DB7700662006 /* CartPromotionCell.xib in Resources */,
 				1BDBEB9726FD6A1A0018109B /* SignUpViewController.xib in Resources */,
 				1B552EAA276B358A0086604B /* GroupTopImgCell.xib in Resources */,
@@ -4013,6 +4061,7 @@
 				1B552E9F276B14F10086604B /* GroupBuyListCell.m in Sources */,
 				8E1EC400279AFD5900CE0088 /* BaseMoreView.m in Sources */,
 				AEA329712724134800E7827A /* CategoryRankFilterInputItem.m in Sources */,
+				1BB145E027D4809D0010C0DC /* ProductChoosePromotionCell.m in Sources */,
 				AEA329772725307300E7827A /* CustomTextField.m in Sources */,
 				1BEB17EE27AD697C005236EF /* RefundBankViewController.m in Sources */,
 				1B82AED0277080B700D75E00 /* YYCache.m in Sources */,
@@ -4061,11 +4110,13 @@
 				1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */,
 				1BF56CD02761001000B40CAA /* CountDown.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
+				1BB145E527D486740010C0DC /* ProductChoosePromotionTitleCell.m in Sources */,
 				1BBB688727B660EB00A8B83D /* LogisticsMoreCell.m in Sources */,
 				626CC87127BB532900F3C7DF /* MJRefreshBackStateFooter+SnapRefresh.m in Sources */,
 				AE81BE4D26FF623100AB4225 /* CategorySideCell.m in Sources */,
 				1BD10C382761E80100BFC1AD /* ProductEvalationTitleCell.m in Sources */,
 				AEA329872729A0F700E7827A /* SFSearchItem.m in Sources */,
+				1BB145EA27D4A7450010C0DC /* KJMarqueeLabel.m in Sources */,
 				8E11A8CE278DD14D005D1FC3 /* UIViewController+parentViewController.m in Sources */,
 				62DFB59C27A276580009CCC6 /* UITabBar+CustomBadge.m in Sources */,
 				1BD8E7B3275DFDAD00130DCC /* ReviewAddNewPhotoCell.m in Sources */,
@@ -4086,6 +4137,7 @@
 				1B47832A272AA15700F2A945 /* ChangeMobileOrEmailViewController.m in Sources */,
 				1BF4DD4D2774644600972265 /* NSArray+SortedString.m in Sources */,
 				1B78865D276C7E74009A080A /* ProductReviewReplyCell.m in Sources */,
+				1BB145DA27D478F00010C0DC /* ProductChoosePromotionView.m in Sources */,
 				1B49D12F27197E1F002461ED /* FavoriteChildViewController.m in Sources */,
 				1B53A2B527785D2700FB00C7 /* CartChooseCouponView.m in Sources */,
 				1B6C52A2275B672200A1C617 /* ZLCollectionCell.m in Sources */,

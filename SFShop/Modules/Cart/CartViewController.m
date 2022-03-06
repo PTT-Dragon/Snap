@@ -21,6 +21,7 @@
 #import "LastSelAddressModel.h"
 
 
+
 @interface CartViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,CartChildViewControllerDelegate>
 @property(nonatomic, strong) NSArray *menuList;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
@@ -36,6 +37,7 @@
 @property (nonatomic,strong) UILabel *totalAmountLabel;
 @property (nonatomic,strong) VTMagicController *magicController;
 @property (nonatomic,strong) CartModel *cartModel;
+
 @end
 
 @implementation CartViewController
@@ -61,6 +63,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self loadSysParams];
 }
 - (void)setShowAddSuccess:(BOOL)showAddSuccess
 {
@@ -96,6 +99,36 @@
 //        [MBProgressHUD autoDismissShowHudMsg:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
+- (void)loadSysParams
+{
+    [SFNetworkManager get:SFNet.h5.sysparam parameters:@{@"paramCodes":@"LIMIT_PAY_DISCOUNT,LIMIT_PAY_OFFSET_MINS,LIMIT_PAY_DIS_AMOUNT"} success:^(id  _Nullable response) {
+        for (NSDictionary *dic in response){
+            if ([dic[@"paramCode"] isEqualToString:@"LIMIT_PAY_DISCOUNT"]) {
+                if ([dic[@"paramValue"] isEqualToString:@"on"]) {
+                    self.scrollLabel.hidden = NO;
+                    __block NSString *str1 = @"";
+                    __block NSString *str2 = @"";
+                    [response enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ([obj[@"paramCode"] isEqualToString:@"LIMIT_PAY_OFFSET_MINS"]) {
+                            str1 = obj[@"paramValue"];
+                        }
+                        if ([obj[@"paramCode"] isEqualToString:@"LIMIT_PAY_DIS_AMOUNT"]) {
+                            str2 = obj[@"paramValue"];
+                        }
+                    }];
+                    NSString *lauange = UserDefaultObjectForKey(@"Language");
+                    if ([lauange isEqualToString:@"id"]) {
+                        self.scrollLabel.text = [NSString stringWithFormat:@"Waktu Terbatas! Check Out max %@ menit, dapat potongan %@!",str1,[str2 currency]];
+                    }else{
+                        self.scrollLabel.text = [NSString stringWithFormat:@"Limited offer! Complete payment within %@ mins to get %@ off!",str1,[str2 currency]];
+                    }
+                }
+            }
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 - (void)initUI
 {
     [self.view addSubview:self.addressBtn];
@@ -104,6 +137,12 @@
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self.view);
         make.height.mas_equalTo(78);
+    }];
+    [self.view addSubview:self.scrollLabel];
+    [self.scrollLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.bottom.mas_equalTo(self.bottomView.mas_top);
+        make.height.mas_equalTo(32);
     }];
     
     NSString *allCount = [NSString stringWithFormat:@"All(%ld)",self.cartModel.validCarts.count];
@@ -116,7 +155,7 @@
         make.left.mas_offset(0);
         make.right.mas_offset(0);
         make.top.equalTo(self.addressBtn.mas_bottom);
-        make.bottom.equalTo(self.bottomView.mas_top);
+        make.bottom.equalTo(self.scrollLabel.mas_top);
     }];
     [self.magicController.magicView reloadData];
 }
@@ -569,5 +608,16 @@
         _addressBtn.titleLabel.font = kFontRegular(13);
     }
     return _addressBtn;
+}
+- (KJMarqueeLabel *)scrollLabel
+{
+    if (!_scrollLabel) {
+        _scrollLabel = [[KJMarqueeLabel alloc] init];
+        _scrollLabel.backgroundColor = RGBColorFrom16(0xE2F2FF);
+        _scrollLabel.textColor = [UIColor blackColor];
+        _scrollLabel.font = kFontRegular(14);
+        _scrollLabel.marqueeLabelType = KJMarqueeLabelTypeLeft;
+    }
+    return _scrollLabel;
 }
 @end

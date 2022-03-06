@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ProductGroupListModel;
 @protocol FlashSaleDateModel;
 @protocol CouponModel;
+@protocol cmpBuygetnsModel;
+@protocol PromotionRuleModel;
 
 
 
@@ -254,8 +256,34 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray <ProductGroupListModel>*groups;
 @end
 
+@interface PromotionRuleModel : JSONModel
+@property (nonatomic,copy) NSString *buygetnRuleId;
+@property (nonatomic,copy) NSString *couponGifts;
+@property (nonatomic,copy) NSString *isOrderDisc;
+@property (nonatomic,copy) NSString *offerGetMethod;
+@property (nonatomic,copy) NSString *promotAmount;
+@property (nonatomic,copy) NSString *promotMethod;
+@property (nonatomic,copy) NSString *thAmount;
+
+@end
+
+@interface cmpBuygetnsModel : JSONModel
+@property (nonatomic,assign) NSInteger campaignId;
+@property (nonatomic,assign) BOOL sel;
+@property (nonatomic,copy) NSString *campaignName;
+@property (nonatomic,copy) NSString *orderThType;
+@property (nonatomic,copy) NSString *discountPercent;
+@property (nonatomic,copy) NSString *discountSetup;
+@property (nonatomic,copy) NSString *productId;
+@property (nonatomic,copy) NSString *expDate;
+@property (nonatomic,copy) NSString *promotType;
+@property (nonatomic,strong) NSArray <PromotionRuleModel>*rules;
+@end
+
+
+
 @interface ProductCampaignsInfoModel : JSONModel
-@property (nonatomic,strong) NSArray *cmpBuygetns;
+@property (nonatomic,strong) NSArray <cmpBuygetnsModel>*cmpBuygetns;
 @property (nonatomic,strong) NSArray <cmpShareBuysModel>*cmpShareBuys;
 @property (nonatomic,strong) NSArray <FlashSaleDateModel>*cmpFlashSales;
 @property (nonatomic,strong) NSMutableArray <CouponModel>*coupons;

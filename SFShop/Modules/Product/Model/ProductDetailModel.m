@@ -15,6 +15,19 @@
 
 @end
 
+@implementation cmpBuygetnsModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+@implementation PromotionRuleModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+
+@end
+
 @implementation ProductAttrValueModel
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
