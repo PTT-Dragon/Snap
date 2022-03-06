@@ -19,7 +19,6 @@
 #import "CategoryRankViewController.h"
 #import "SceneManager.h"
 #import "CouponAlertView.h"
-#import "MessageViewController.h"
 #import "MyCouponViewController.h"
 #import "LoginViewController.h"
 #import "OrderDetailViewController.h"
@@ -50,7 +49,7 @@
 
             }];
 //            [self.webView evaluateJavaScript:@"window.reload" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//                
+//
 //            }];
 //            [self.webView evaluateJavaScript:[NSString stringWithFormat:@"javascript:window.location.reload(true);"] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
 //

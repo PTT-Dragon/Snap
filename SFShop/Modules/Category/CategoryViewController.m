@@ -18,6 +18,8 @@
 #import "PublicWebViewController.h"
 #import "MyCouponViewController.h"
 #import "SceneManager.h"
+#import "MessageViewController.h"
+#import "GroupListViewController.h"
 
 @interface CategoryViewController ()<UITableViewDelegate,UICollectionViewDelegate>
 @property (nonatomic, readwrite, strong) CategorySideTableView *sideTableView;//侧边栏
@@ -168,7 +170,13 @@
         } else if ([objId containsString:@"coupon-center"]) {
             CouponCenterViewController *vc = [[CouponCenterViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        } else {
+        } else if ([objId containsString:@"message-center"]){
+            MessageViewController *vc = [[MessageViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([objId containsString:@"product/GroupBuy"]){
+            GroupListViewController *vc = [[GroupListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
             NSString *url = [objId componentsSeparatedByString:@","].lastObject;
             PublicWebViewController *vc = [[PublicWebViewController alloc] init];
             UserModel *model = [FMDBManager sharedInstance].currentUser;

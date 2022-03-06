@@ -307,7 +307,7 @@ static dispatch_source_t _timer;
             }
             dispatch_group_leave(group);
         } failed:^(NSError * _Nonnull error) {
-            dispatch_group_leave(group);
+//            dispatch_group_leave(group);
             [MBProgressHUD hideFromKeyWindow];
             [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
