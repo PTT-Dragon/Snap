@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 邮箱是否通过校验
 - (BOOL)validateEmail;
 
+//密码是否
+- (BOOL)validatePassword;
+
 @end
 
 NS_ASSUME_NONNULL_END

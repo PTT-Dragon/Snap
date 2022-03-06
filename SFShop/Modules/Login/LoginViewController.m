@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel2;
 @property (weak, nonatomic) IBOutlet UIButton *OTPButton;
 @property (nonatomic,strong) UIView *lfView;
+@property (weak, nonatomic) IBOutlet UIButton *facebookBtn;
 
 @end
 
@@ -108,6 +109,8 @@ static BOOL _passwordSuccess = NO;
 - (void)layoutSubviews
 {
     _type = 1;
+    self.facebookBtn.layer.borderWidth = 1;
+    self.facebookBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     self.loginBtn.userInteractionEnabled = NO;
     self.passwordField.layer.borderWidth = 1;
     self.accountField.layer.borderWidth = 1;

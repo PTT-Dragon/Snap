@@ -17,6 +17,7 @@ singleton_interface(SysParamsItemModel)
 
 @property (nonatomic,copy) NSString <Optional>*PHONE_REGULAR_RULE;
 @property (nonatomic,copy) NSString <Optional>*EMAIL_REGULAR_RULE;
+@property (nonatomic,copy) NSString <Optional>*PASSWORD_REGULAR_RULE;
 @property (nonatomic,copy) NSString <Optional>*CURRENCY_DISPLAY;
 @property (nonatomic,copy) NSString <Optional>*CURRENCY_PRECISION;
 @property (nonatomic,copy) NSString <Optional>*CODE_TTL;

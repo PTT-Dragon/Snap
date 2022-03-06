@@ -9,6 +9,9 @@
 #import "verifyCodeVC.h"
 #import "UITextField+expand.h"
 #import "PublicAlertView.h"
+#import "SysParamsModel.h"
+#import "NSString+Fee.h"
+
 
 @interface SignUpViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *PhoneField;
@@ -31,6 +34,17 @@ static BOOL _passwordSuccess = NO;
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Sign_Up");
     [self layoutSubviews];
+    [self loadDatas];
+}
+- (void)loadDatas
+{
+    [SFNetworkManager get:SFNet.account.pwdpolicy parameters:@{} success:^(id  _Nullable response) {
+        SysParamsItemModel *model = [SysParamsItemModel sharedSysParamsItemModel];
+        model.PASSWORD_REGULAR_RULE = response[@"pwdComplexRegRule"];
+        self.passwordQesLabel.text = [NSString stringWithFormat:@"%@-%@,%@",response[@"minPwdLen"],response[@"maxPwdLen"],response[@"pwdComplexMark"]];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (void)layoutSubviews
 {
@@ -71,7 +85,7 @@ static BOOL _passwordSuccess = NO;
             _accountQesLabel.textColor = RGBColorFrom16(0xff1659);
         }
     }else if (textField == _passwordField){
-        _passwordSuccess = [textField systemPhoneCheck:CHECKPASSWORDTYPE editType:EIDTTYPE];
+        _passwordSuccess = [textField.text validatePassword]; //[textField systemPhoneCheck:CHECKPASSWORDTYPE editType:EIDTTYPE];
         if ([textField.text isEqualToString:@""]) {
             _passwordLabel.hidden = YES;
             _passwordQesLabel.hidden = NO;
