@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel2;
 @property (weak, nonatomic) IBOutlet UIButton *OTPButton;
 @property (nonatomic,strong) UIView *lfView;
+@property (weak, nonatomic) IBOutlet UIButton *facebookBtn;
 
 @end
 
@@ -64,12 +65,14 @@ static BOOL _passwordSuccess = NO;
         auth.presentationContextProvider = self;
         [auth performRequests];
     }
-    
-    
-    
 //    FBSDKAccessToken *cur_asscessToken = [FBSDKAccessToken currentAccessToken];
 //    if(cur_asscessToken){//已经登录了
 //        NSLog(@"facebookLogin cur_asscessToken=%@",cur_asscessToken.userID);
+//        [SFNetworkManager post:SFNet.account.faceBookLogin parameters:@{@"accessToken":cur_asscessToken.tokenString} success:^(id  _Nullable response) {
+//
+//        } failed:^(NSError * _Nonnull error) {
+//
+//        }];
 //        [self getUserInfoWithResult:cur_asscessToken.userID];
 //    }else{//拉起facebook 授权
 //        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
@@ -85,10 +88,14 @@ static BOOL _passwordSuccess = NO;
 //            } else {
 //                NSLog(@"loginManager 2 result=%@",result.token.userID);
 //                //result.token.userID
+//                [SFNetworkManager post:SFNet.account.faceBookLogin parameters:@{@"accessToken":result.token} success:^(id  _Nullable response) {
+//
+//                } failed:^(NSError * _Nonnull error) {
+//
+//                }];
 //                [self getUserInfoWithResult:result.token.userID];
 //            }
 //        }];
-//    }
 }
 
 ///代理主要用于展示在哪里
@@ -141,12 +148,15 @@ static BOOL _passwordSuccess = NO;
         [dictionary setValue:userId forKey:@"facebook_id"];
         [dictionary setValue:userName forKey:@"facebook_name"];
         [dictionary setValue:url forKey:@"facebook_photo"];
+        
     }];
 }
 
 - (void)layoutSubviews
 {
     _type = 1;
+    self.facebookBtn.layer.borderWidth = 1;
+    self.facebookBtn.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     self.loginBtn.userInteractionEnabled = NO;
     self.passwordField.layer.borderWidth = 1;
     self.accountField.layer.borderWidth = 1;

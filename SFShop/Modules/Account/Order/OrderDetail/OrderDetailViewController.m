@@ -419,7 +419,8 @@
         } btn2Title:kLocalizedString(@"CANCEL") block2:^{}];
         [[baseTool getCurrentVC].view addSubview:alert];
     }else if ([state isEqualToString:@"D"]){
-        [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
+        NSMutableArray *arr = [NSMutableArray array];
+        [PDFReader readPDF:[SFNet.h5 getReceiptOf:_model.orderId] orderId:_orderId complete:^(NSError * _Nullable error, NSURL * _Nullable fileUrl) {
             //返回错误和本地地址
         }];
     }

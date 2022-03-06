@@ -35,6 +35,7 @@
         } else if (type == MGCShareCopyLinkType) {
             UIPasteboard *pab = [UIPasteboard generalPasteboard];
             pab.string = message;
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COPY_SUCCESS")];
         }
     }
                                         failBlock:nil

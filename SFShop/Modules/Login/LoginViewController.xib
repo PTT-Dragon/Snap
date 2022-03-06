@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,6 +23,7 @@
                 <outlet property="accountField" destination="imm-98-TnR" id="gO2-ak-9jh"/>
                 <outlet property="emailBtn" destination="ThS-DP-mIk" id="d4k-iM-Y3a"/>
                 <outlet property="emailIndicationView" destination="pYJ-Me-RM6" id="U6e-G0-Rig"/>
+                <outlet property="facebookBtn" destination="VMN-7b-1jX" id="9NP-YT-pwO"/>
                 <outlet property="forgetBtn" destination="KTg-PS-qni" id="WLo-9u-c3T"/>
                 <outlet property="label1" destination="LpW-bW-dO8" id="Jva-Jg-UrT"/>
                 <outlet property="label2" destination="6I6-Aq-Xhn" id="hhN-54-8f1"/>
@@ -198,15 +199,23 @@
                     <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMN-7b-1jX">
-                    <rect key="frame" x="166" y="745" width="67" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMN-7b-1jX">
+                    <rect key="frame" x="44" y="770" width="326" height="48"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Facebook" image="facebook">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                    </state>
                     <connections>
                         <action selector="facebookLogin:" destination="-1" eventType="touchUpInside" id="AtL-LT-riN"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or login in with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-3h-Q58">
+                    <rect key="frame" x="160.5" y="724" width="93" height="15"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
+                    <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="oac-3T-U0G"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -219,6 +228,7 @@
                 <constraint firstItem="MdG-AI-YDO" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" constant="16" id="9B4-w7-QKx"/>
                 <constraint firstItem="tGN-iU-kgh" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" id="9CH-bA-mt0"/>
                 <constraint firstItem="KTg-PS-qni" firstAttribute="top" secondItem="CPB-84-N7c" secondAttribute="bottom" constant="30" id="9Cu-kP-tuU"/>
+                <constraint firstItem="BkZ-3h-Q58" firstAttribute="centerX" secondItem="oac-3T-U0G" secondAttribute="centerX" id="9VH-Nu-IIx"/>
                 <constraint firstItem="oac-3T-U0G" firstAttribute="trailing" secondItem="TiM-MC-dCS" secondAttribute="trailing" constant="30" id="9vJ-cF-P9Z"/>
                 <constraint firstItem="ZI4-Cb-XjV" firstAttribute="centerX" secondItem="oac-3T-U0G" secondAttribute="centerX" id="Apg-xq-YKt"/>
                 <constraint firstItem="oac-3T-U0G" firstAttribute="trailing" secondItem="s4S-aa-gDY" secondAttribute="trailing" constant="30" id="C3u-89-gV8"/>
@@ -227,11 +237,14 @@
                 <constraint firstItem="KTg-PS-qni" firstAttribute="centerX" secondItem="oac-3T-U0G" secondAttribute="centerX" id="IEG-b6-9TS"/>
                 <constraint firstItem="sNg-2V-2oq" firstAttribute="trailing" secondItem="oac-3T-U0G" secondAttribute="trailing" constant="-28" id="JQj-hJ-TSo"/>
                 <constraint firstItem="cdd-wW-aLM" firstAttribute="centerX" secondItem="oac-3T-U0G" secondAttribute="centerX" id="Jfm-Cn-HXj"/>
+                <constraint firstItem="oac-3T-U0G" firstAttribute="bottom" secondItem="VMN-7b-1jX" secondAttribute="bottom" constant="44" id="L7h-Ud-440"/>
                 <constraint firstItem="s4S-aa-gDY" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" constant="30" id="PIK-dM-EAg"/>
                 <constraint firstItem="MdG-AI-YDO" firstAttribute="top" secondItem="KTg-PS-qni" secondAttribute="bottom" constant="30" id="Qau-HZ-dBL"/>
                 <constraint firstItem="ThS-DP-mIk" firstAttribute="leading" secondItem="tGN-iU-kgh" secondAttribute="trailing" id="Rzi-jP-X5i"/>
+                <constraint firstItem="VMN-7b-1jX" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" constant="44" id="SJZ-wX-MjP"/>
                 <constraint firstItem="imm-98-TnR" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" constant="16" id="UQK-qU-Dqc"/>
                 <constraint firstItem="oac-3T-U0G" firstAttribute="trailing" secondItem="imm-98-TnR" secondAttribute="trailing" constant="16" id="UcP-5n-dQZ"/>
+                <constraint firstItem="oac-3T-U0G" firstAttribute="trailing" secondItem="VMN-7b-1jX" secondAttribute="trailing" constant="44" id="Uqj-Oc-sa7"/>
                 <constraint firstItem="4hr-nO-DjP" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" id="VDR-X3-6g9"/>
                 <constraint firstItem="CPB-84-N7c" firstAttribute="top" secondItem="imm-98-TnR" secondAttribute="bottom" constant="44" id="WQe-wn-clc"/>
                 <constraint firstItem="pYJ-Me-RM6" firstAttribute="top" secondItem="ThS-DP-mIk" secondAttribute="bottom" constant="5" id="aH8-vM-qIX"/>
@@ -239,6 +252,7 @@
                 <constraint firstItem="LpW-bW-dO8" firstAttribute="top" secondItem="tGN-iU-kgh" secondAttribute="bottom" constant="29" id="fD3-Vf-5GF"/>
                 <constraint firstItem="4hr-nO-DjP" firstAttribute="top" secondItem="tGN-iU-kgh" secondAttribute="bottom" constant="5" id="ggp-2z-sYt"/>
                 <constraint firstItem="tGN-iU-kgh" firstAttribute="width" secondItem="ThS-DP-mIk" secondAttribute="width" id="kBe-oA-req"/>
+                <constraint firstItem="VMN-7b-1jX" firstAttribute="top" secondItem="BkZ-3h-Q58" secondAttribute="bottom" constant="31" id="kKd-o2-eZM"/>
                 <constraint firstItem="tGN-iU-kgh" firstAttribute="top" secondItem="oac-3T-U0G" secondAttribute="top" constant="24" id="laN-AI-Vcb"/>
                 <constraint firstItem="LpW-bW-dO8" firstAttribute="leading" secondItem="oac-3T-U0G" secondAttribute="leading" constant="32" id="nDP-9q-grh"/>
                 <constraint firstItem="sNg-2V-2oq" firstAttribute="centerY" secondItem="CPB-84-N7c" secondAttribute="centerY" id="oXW-q7-v2F"/>
@@ -258,6 +272,7 @@
         <image name="email-1" width="20" height="16"/>
         <image name="email-2" width="20" height="16"/>
         <image name="eye-open-0" width="200" height="200"/>
+        <image name="facebook" width="48" height="48"/>
         <image name="hide-0" width="200" height="200"/>
         <image name="pad-1" width="24" height="24"/>
         <image name="pad-2" width="24" height="24"/>

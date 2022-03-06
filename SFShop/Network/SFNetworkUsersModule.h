@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *message;
 @property (nonatomic, readwrite, strong) NSString *readMessage;
 @property (nonatomic, readwrite, strong) NSString *messageNum;
+@property (nonatomic, readwrite, strong) NSString *faceBookLogin;
+
 
 - (NSString *)setLanguageWithId:(NSString *)languageId;
 - (NSString *)readChatMessage:(NSString *)chatId;
@@ -160,6 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSString *pay;
 @property (nonatomic, readwrite, strong) NSString *sysparam;
 @property (nonatomic, readwrite, strong) NSString *uccAccount;
+@property (nonatomic, readwrite, strong) NSString *sendEmail;
 
 
 - (NSString *)getReceiptOf: (NSString *)orderId;

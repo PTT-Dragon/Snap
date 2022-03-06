@@ -141,7 +141,23 @@
         UserModel *model = [[UserModel alloc] initWithDictionary:response error:&error];
         // TODO: 此处注意跟上边接口请求参数的account保持一致，不能直接使用userModel中的account字段（脱敏）
         [[FMDBManager sharedInstance] insertUser:model ofAccount:weakself.account];
-        [weakself.navigationController popToRootViewControllerAnimated:YES];
+        if (model.userRes.defLangCode) {
+            MJRefreshConfig.defaultConfig.languageCode = model.userRes.defLangCode ? model.userRes.defLangCode: @"id";
+            if ([model.userRes.defLangCode isEqualToString:@"zh"]) {
+                UserDefaultSetObjectForKey(kLanguageChinese, @"Language");
+                [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageChinese];
+            } else {
+                UserDefaultSetObjectForKey(model.userRes.defLangCode, @"Language");
+                [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:model.userRes.defLangCode];
+            }
+        }else{
+            MJRefreshConfig.defaultConfig.languageCode = @"id";
+            UserDefaultSetObjectForKey(@"id", @"Language");
+            [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:@"id"];
+        }
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [appDelegate.tabVC setSelectedIndex:0];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];

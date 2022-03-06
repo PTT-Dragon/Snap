@@ -44,4 +44,10 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",rule];
     return [predicate evaluateWithObject:self];
 }
+- (BOOL)validatePassword {
+    NSString *rule = SysParamsItemModel.sharedSysParamsItemModel.PASSWORD_REGULAR_RULE;
+    if (!rule.length) {return YES;}//没获取到,统一返回YES
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",rule];
+    return [predicate evaluateWithObject:self];
+}
 @end

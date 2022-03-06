@@ -200,7 +200,10 @@
 //  "MY_FAVORITE" = "Favorit-ku";
   "CATEGORIES" = "Kategori";
   "BUY" = "Beli";
+"FILL_EMAIL" = "Isi alamat emel";
+"SEND_TO_EMAIL_SUCCESSFULLY" = "Sukses kirim ke e-mail";
   "REPLIES" = "Balasan";
+"SEND_TO_EMAIL" = "Kirim ke e-mail";
 //  "SAYSOMETHING" = "Katakan sesuatu";
 //  "TEXTLENGTH" = "Konten melebihi batas";
 //  "PERSONAL_INFORMATION" = "Informasi pribadi";

@@ -42,6 +42,9 @@
 - (NSString *)phoneModify {
     return K_users_domain(@"phone/modify");
 }
+- (NSString *)faceBookLogin {
+    return K_users_domain(@"facebook/login");
+}
 - (NSString *)logout {
     return K_users_domain(@"logout");
 }
@@ -348,6 +351,9 @@
 }
 - (NSString *)faqList {
     return K_h5_domain(@"faq/catalog/list");
+}
+- (NSString *)sendEmail {
+    return K_h5_domain(@"receipt/email");
 }
 - (NSString *)faqQuestion {
     return K_h5_domain(@"/faq/question/page");

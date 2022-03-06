@@ -32,7 +32,7 @@ static BOOL _passwordSuccess2 = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = kLocalizedString(@"Reset_password");
+    self.title = kLocalizedString(@"CHANGE_PASS");
     _pwdField.layer.borderWidth = 1;
     _confirmPwdField.layer.borderWidth = 1;
     [_pwdField addTarget:self action:@selector(tfEditingChanged:) forControlEvents:(UIControlEventEditingChanged)];
@@ -41,9 +41,9 @@ static BOOL _passwordSuccess2 = NO;
 - (void)tfEditingChanged:(UITextField *)field
 {
     if (field == _pwdField) {
-        _passwordSuccess1 = [field textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label1,_label2]];
+        _passwordSuccess1 = [field textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label1,_label2]] && [field.text isEqualToString:_confirmPwdField.text];
     }else{
-        _passwordSuccess2 = [field textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label3,_label4]];
+        _passwordSuccess2 = [field textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label3,_label4]]  && [field.text isEqualToString:_pwdField.text];
     }
     if (_passwordSuccess2 && _passwordSuccess1) {
         self.resetBtn.backgroundColor = RGBColorFrom16(0xFF1659);
