@@ -304,6 +304,7 @@
         RefundViewController *vc = [[RefundViewController alloc] init];
         [weakself.navigationController pushViewController:vc animated:YES];
         [baseTool removeVCFromNavigation:self];
+        [baseTool removeVCFromNavigationWithVCNameArr:@[@"OrderViewController",@"RefundOrReturnViewController"] currentVC:self];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
