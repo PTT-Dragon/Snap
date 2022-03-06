@@ -303,6 +303,7 @@
     [SFNetworkManager post:SFNet.refund.refund parameters:params success:^(id  _Nullable response) {
         RefundViewController *vc = [[RefundViewController alloc] init];
         [weakself.navigationController pushViewController:vc animated:YES];
+        [baseTool removeVCFromNavigation:self];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];

@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 下载并展示pdf
 /// @param url pdf 链接
 /// @param complete 完成block
-+ (void)readPDF:(NSString *)url complete:(void(^)(NSError *_Nullable error, NSURL *_Nullable fileUrl))complete;
+/// 可能需要订单Id
++ (void)readPDF:(NSString *)url orderId:(NSString *)orderId complete:(void(^)(NSError *_Nullable error, NSURL *_Nullable fileUrl))complete;
 
 @end
 

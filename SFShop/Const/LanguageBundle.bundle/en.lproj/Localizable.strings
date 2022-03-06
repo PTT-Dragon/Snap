@@ -294,6 +294,7 @@
   "SUBTOTAL_DISCOUNT" = "Subtotal discount";
   "PROMOTION" = "Promotion";
 "PROMOTIONS" = "Promotions";
+"SEND_TO_EMAIL" = "Send to Email";
   "STORE_COUPONS" = "Store Vouchers";
   "POINTS_DEDUCTION" = "Points Deduction";
   "SHIPPING_FEE" = "Shipping Fee";
@@ -404,6 +405,8 @@
   "STOCK" = "stock";
 //  "WHATS_APP" = "WhatsApp";
   "PLEASE_FILL_IN_COMMENTS" = "Please fill in your comments";
+"FILL_EMAIL" = "Fill in the email address";
+"SEND_TO_EMAIL_SUCCESSFULLY" = "Send To Email Successfully";
 //  "ERROR" = "error";
 //  "CODE_INCORRECT_REINPUT" = "The verification code is incorrect; please re-input.";
   "NOT_AVAILABLE" = "Not Available";

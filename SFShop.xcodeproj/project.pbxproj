@@ -282,6 +282,8 @@
 		1BB145E527D486740010C0DC /* ProductChoosePromotionTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145E327D486740010C0DC /* ProductChoosePromotionTitleCell.m */; };
 		1BB145E627D486740010C0DC /* ProductChoosePromotionTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB145E427D486740010C0DC /* ProductChoosePromotionTitleCell.xib */; };
 		1BB145EA27D4A7450010C0DC /* KJMarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145E927D4A7450010C0DC /* KJMarqueeLabel.m */; };
+		1BB145EE27D4DE270010C0DC /* sendToEmailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145ED27D4DE270010C0DC /* sendToEmailView.m */; };
+		1BB145F027D4DE3D0010C0DC /* sendToEmailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB145EF27D4DE3D0010C0DC /* sendToEmailView.xib */; };
 		1BB1CB5F2763415C008D71DF /* FlashSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */; };
 		1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */; };
 		1BB1CB63276341B6008D71DF /* SFNetworkFlashSaleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB62276341B6008D71DF /* SFNetworkFlashSaleModule.m */; };
@@ -1080,6 +1082,10 @@
 		1BB145E427D486740010C0DC /* ProductChoosePromotionTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductChoosePromotionTitleCell.xib; sourceTree = "<group>"; };
 		1BB145E827D4A7450010C0DC /* KJMarqueeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJMarqueeLabel.h; sourceTree = "<group>"; };
 		1BB145E927D4A7450010C0DC /* KJMarqueeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJMarqueeLabel.m; sourceTree = "<group>"; };
+		1BB145EB27D4BA760010C0DC /* SFShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SFShop.entitlements; sourceTree = "<group>"; };
+		1BB145EC27D4DE270010C0DC /* sendToEmailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sendToEmailView.h; sourceTree = "<group>"; };
+		1BB145ED27D4DE270010C0DC /* sendToEmailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sendToEmailView.m; sourceTree = "<group>"; };
+		1BB145EF27D4DE3D0010C0DC /* sendToEmailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = sendToEmailView.xib; sourceTree = "<group>"; };
 		1BB1CB5C2763415C008D71DF /* FlashSaleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleViewController.h; sourceTree = "<group>"; };
 		1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleViewController.m; sourceTree = "<group>"; };
 		1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleViewController.xib; sourceTree = "<group>"; };
@@ -1865,6 +1871,9 @@
 				1BDB5DB8272E92C10016C2F3 /* CancelOrderReasonCell.h */,
 				1BDB5DB9272E92C10016C2F3 /* CancelOrderReasonCell.m */,
 				1BDB5DBA272E92C10016C2F3 /* CancelOrderReasonCell.xib */,
+				1BB145EC27D4DE270010C0DC /* sendToEmailView.h */,
+				1BB145ED27D4DE270010C0DC /* sendToEmailView.m */,
+				1BB145EF27D4DE3D0010C0DC /* sendToEmailView.xib */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -3242,6 +3251,7 @@
 		AE81BDD526FB6E7000AB4225 /* SFShop */ = {
 			isa = PBXGroup;
 			children = (
+				1BB145EB27D4BA760010C0DC /* SFShop.entitlements */,
 				4BBFEE9E26FCADDA00E3C832 /* Const */,
 				4B9FB9C926FB782900C90790 /* Components */,
 				4B9FB9C826FB781F00C90790 /* Utils */,
@@ -3820,6 +3830,7 @@
 				8E6AE6B727B54DB800DE45F2 /* TruenoRg.otf in Resources */,
 				1BF00F55272FC13D0081C8E4 /* DistributeCenterViewController.xib in Resources */,
 				4B818FD627239C910058038A /* ProductViewController.xib in Resources */,
+				1BB145F027D4DE3D0010C0DC /* sendToEmailView.xib in Resources */,
 				1B47832B272AA15700F2A945 /* ChangeMobileOrEmailViewController.xib in Resources */,
 				1B43A414279E372700E7E786 /* AddReviewVC.xib in Resources */,
 				1BDBEBCD2700BA470018109B /* MyCouponCell.xib in Resources */,
@@ -4293,6 +4304,7 @@
 				1BF4DD4C2774644600972265 /* NSMutableArray+ErrorHandle.m in Sources */,
 				AE5C9A6C275B5D7700F34481 /* SFSearchingCell.m in Sources */,
 				1B552EBA276C3D470086604B /* ProductGroupTitleCell.m in Sources */,
+				1BB145EE27D4DE270010C0DC /* sendToEmailView.m in Sources */,
 				AE5C9A66275B502C00F34481 /* CategoryRankNoItemsView.m in Sources */,
 				1BDBEBD12700C7B10018109B /* MyCouponStoreCell.m in Sources */,
 				1B6C52C6275C88FE00A1C617 /* RelationOrderDetailProductCell.m in Sources */,
@@ -4497,6 +4509,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9.9.9.11;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
@@ -4544,6 +4557,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9.9.9.11;

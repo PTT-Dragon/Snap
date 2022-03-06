@@ -56,6 +56,11 @@ static BOOL _passwordSuccess = NO;
     FBSDKAccessToken *cur_asscessToken = [FBSDKAccessToken currentAccessToken];
     if(cur_asscessToken){//已经登录了
         NSLog(@"facebookLogin cur_asscessToken=%@",cur_asscessToken.userID);
+        [SFNetworkManager post:SFNet.account.faceBookLogin parameters:@{@"accessToken":cur_asscessToken.tokenString} success:^(id  _Nullable response) {
+            
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
         [self getUserInfoWithResult:cur_asscessToken.userID];
     }else{//拉起facebook 授权
         FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
@@ -71,6 +76,11 @@ static BOOL _passwordSuccess = NO;
             } else {
                 NSLog(@"loginManager 2 result=%@",result.token.userID);
                 //result.token.userID
+                [SFNetworkManager post:SFNet.account.faceBookLogin parameters:@{@"accessToken":result.token} success:^(id  _Nullable response) {
+                    
+                } failed:^(NSError * _Nonnull error) {
+                    
+                }];
                 [self getUserInfoWithResult:result.token.userID];
             }
         }];
@@ -91,6 +101,7 @@ static BOOL _passwordSuccess = NO;
         [dictionary setValue:userId forKey:@"facebook_id"];
         [dictionary setValue:userName forKey:@"facebook_name"];
         [dictionary setValue:url forKey:@"facebook_photo"];
+        
     }];
 }
 
