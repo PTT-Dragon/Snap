@@ -15,8 +15,9 @@
 #import "CartModel.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <AuthenticationServices/AuthenticationServices.h>
 
-@interface LoginViewController ()<UITextFieldDelegate>
+@interface LoginViewController ()<UITextFieldDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailBtn;
 @property (weak, nonatomic) IBOutlet UIView *emailIndicationView;
@@ -53,29 +54,78 @@ static BOOL _passwordSuccess = NO;
 }
 
 - (IBAction)facebookLogin:(id)sender {
-    FBSDKAccessToken *cur_asscessToken = [FBSDKAccessToken currentAccessToken];
-    if(cur_asscessToken){//已经登录了
-        NSLog(@"facebookLogin cur_asscessToken=%@",cur_asscessToken.userID);
-        [self getUserInfoWithResult:cur_asscessToken.userID];
-    }else{//拉起facebook 授权
-        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-        NSArray<NSString*> *permissions = @[@"public_profile"];
-        [loginManager logInWithReadPermissions:permissions
-                            fromViewController:self
-                                       handler:^(FBSDKLoginManagerLoginResult *result,
-                                                 NSError *error) {
-            if (error) {
-                NSLog(@"loginManager error=%@",error);
-            } else if (result.isCancelled) {
-                NSLog(@"loginManager 1 result=%@",result);
-            } else {
-                NSLog(@"loginManager 2 result=%@",result.token.userID);
-                //result.token.userID
-                [self getUserInfoWithResult:result.token.userID];
-            }
-        }];
+    
+    if (@available(iOS 13.0, *)) {
+        ASAuthorizationAppleIDProvider *appleIDProvider = [[ASAuthorizationAppleIDProvider alloc] init];
+        ASAuthorizationAppleIDRequest *request = [appleIDProvider createRequest];
+        request.requestedScopes = @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+        ASAuthorizationController *auth = [[ASAuthorizationController alloc]initWithAuthorizationRequests:@[request]];
+        auth.delegate = self;
+        auth.presentationContextProvider = self;
+        [auth performRequests];
     }
+    
+    
+    
+//    FBSDKAccessToken *cur_asscessToken = [FBSDKAccessToken currentAccessToken];
+//    if(cur_asscessToken){//已经登录了
+//        NSLog(@"facebookLogin cur_asscessToken=%@",cur_asscessToken.userID);
+//        [self getUserInfoWithResult:cur_asscessToken.userID];
+//    }else{//拉起facebook 授权
+//        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+//        NSArray<NSString*> *permissions = @[@"public_profile"];
+//        [loginManager logInWithReadPermissions:permissions
+//                            fromViewController:self
+//                                       handler:^(FBSDKLoginManagerLoginResult *result,
+//                                                 NSError *error) {
+//            if (error) {
+//                NSLog(@"loginManager error=%@",error);
+//            } else if (result.isCancelled) {
+//                NSLog(@"loginManager 1 result=%@",result);
+//            } else {
+//                NSLog(@"loginManager 2 result=%@",result.token.userID);
+//                //result.token.userID
+//                [self getUserInfoWithResult:result.token.userID];
+//            }
+//        }];
+//    }
 }
+
+///代理主要用于展示在哪里
+-(ASPresentationAnchor)presentationAnchorForAuthorizationController:(ASAuthorizationController *)controller API_AVAILABLE(ios(13.0)){
+    return self.view;
+}
+
+
+-(void)authorizationController:(ASAuthorizationController *)controller didCompleteWithAuthorization:(ASAuthorization *)authorization API_AVAILABLE(ios(13.0)){
+    if([authorization.credential isKindOfClass:[ASAuthorizationAppleIDCredential class]]){
+        ASAuthorizationAppleIDCredential *apple = authorization.credential;
+        ///将返回得到的user 存储起来
+        NSString *userIdentifier = apple.user;
+        NSPersonNameComponents *fullName = apple.fullName;
+        NSString *email = apple.email;
+        //用于后台像苹果服务器验证身份信息
+        NSData *identityToken = apple.identityToken;
+        
+        
+        NSLog(@"%@%@%@%@",userIdentifier,fullName,email,identityToken);
+    }else if ([authorization.credential isKindOfClass:[ASPasswordCredential class]]){
+        
+        //// Sign in using an existing iCloud Keychain credential.
+        ASPasswordCredential *pass = authorization.credential;
+        NSString *username = pass.user;
+        NSString *passw = pass.password;
+        
+    }
+    
+}
+
+///回调失败
+-(void)authorizationController:(ASAuthorizationController *)controller didCompleteWithError:(NSError *)error API_AVAILABLE(ios(13.0)){
+    NSLog(@"%@",error);
+}
+
+
 - (void)getUserInfoWithResult:(NSString *)userId {
     NSDictionary*params= @{@"fields":@"id,name,picture"};
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]

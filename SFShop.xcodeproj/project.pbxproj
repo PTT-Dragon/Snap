@@ -1463,6 +1463,7 @@
 		8EACB6852781E92D0066BD3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		8EACB6872781E9350066BD3A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		8EACB6892781E93C0066BD3A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8EAE5F6F27D503AE00A5758C /* SFShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SFShop.entitlements; sourceTree = "<group>"; };
 		8EB27B2727D3995D004F4A9C /* TwitterShareExtensionUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterShareExtensionUIResources.bundle; sourceTree = "<group>"; };
 		8EB27B2827D3995D004F4A9C /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
 		8EB27B2927D3995D004F4A9C /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
@@ -3242,6 +3243,7 @@
 		AE81BDD526FB6E7000AB4225 /* SFShop */ = {
 			isa = PBXGroup;
 			children = (
+				8EAE5F6F27D503AE00A5758C /* SFShop.entitlements */,
 				4BBFEE9E26FCADDA00E3C832 /* Const */,
 				4B9FB9C926FB782900C90790 /* Components */,
 				4B9FB9C826FB781F00C90790 /* Utils */,
@@ -4497,6 +4499,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9.9.9.11;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
@@ -4544,6 +4547,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9.9.9.11;
