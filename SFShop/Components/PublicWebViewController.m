@@ -194,8 +194,10 @@
                                                                           error:nil];
                     
                     str.string = @"{";
+                    NSInteger i = 1;
                     for (NSString *key in dic.allKeys) {
-                        [str appendFormat:@"\\%@\\:\\%@\\",key,dic[key]];
+                        [str appendFormat:@"\\\"\%@\\\":\\\"\%@\\\"%@",key,dic[key],i==dic.allKeys.count ? @"": @","];//{\"Color"\:\"蓝色"\}
+                        i++;
                     }
                     [str appendString:@"}"];
                     NSLog(@"");
@@ -230,7 +232,7 @@
                     @"offerType": _productDic[@"offerType"] ? _productDic[@"offerType"]:@"",// @"P",
                     @"orderId": _productDic[@"orderId"] ? _productDic[@"orderId"]: @"",
                     @"orderItemId": _productDic[@"orderItemId"] ? _productDic[@"orderItemId"]: @"",
-                    @"productRemark": @"{\\\"Color\\\":\\\"黄色\\\"}",//[str isEqualToString:@""] ? @"": str,// ,//{\Color\:\幻夜黑\} @"\{\"Color\":\"黄色\"}\",//_productDic[@"productRemark"] ? _productDic[@"productRemark"]: @"",
+                    @"productRemark": str,//@"{\\\"Color\\\":\\\"黄色\\\"}",//[str isEqualToString:@""] ? @"": str,// ,//{\Color\:\幻夜黑\} @"\{\"Color\":\"黄色\"}\",//_productDic[@"productRemark"] ? _productDic[@"productRemark"]: @"",
                     @"orderItems": @[
                         //                  @{
                         //                    @"canEvaluate": @"N",
@@ -305,7 +307,7 @@
                 //    //                              @"paymentSn": @"ECA202203021422120000012",
                 //    //                              @"paymentState": @"S"
                 //    //                            }
-                //    //            ] forKey:@"payments"];{\Color\:\幻夜黑\} {\"Color\":\"黄色\"}
+                //    //            ] forKey:@"payments"];{\Color\:\幻夜黑\} {\"Color\":\"黄色\"}{\"Color"\:\"蓝色"\}
                 _productDic = dic;
             }
             

@@ -36,7 +36,7 @@
     _storeNameLabel.text = model.storeName;
     _storeIconImgview.image = [UIImage imageNamed:@"toko"];
     _statuLabel.text = @"";
-    _chatBtn.hidden = NO;
+    _chatBtn.hidden = !model.uccAccount;
 }
 - (void)setRelationOrderDetailContent:(OrderDetailModel *)model
 {
