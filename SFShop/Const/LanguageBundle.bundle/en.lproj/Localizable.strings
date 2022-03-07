@@ -119,7 +119,7 @@
   "DONT_HAVE_ACCOUNT" = "Don’t have an account yet?";
 "MAX_PURCHASE_QUANTITY" = "Max purchase quantity";
   "SIGN_UP" = "SIGN UP";
-//  "SIGN_TO_LOGIN" = "Registration successful. Please re-login.";
+  "SIGN_TO_LOGIN" = "Registration successful. Please re-login.";
   "CATEGORY" = "Category";
   "GET_NOW" = "GET NOW";
 "COLLECT_SUCCESS" = "Add item to wishlist Successfully!";

@@ -11,7 +11,7 @@
 
 
 
-@interface PDFReader ()<QLPreviewControllerDataSource>
+@interface PDFReader ()<QLPreviewControllerDataSource,QLPreviewControllerDelegate>
 @property (nonatomic, readwrite, strong) QLPreviewController *qlVc;
 @property (nonatomic, readwrite, strong) NSURL *fileUrl;
 @property (nonatomic,copy) NSString *orderId;
@@ -44,6 +44,7 @@ static PDFReader *_instance = nil;
     [SFNetworkManager downloadPDF:url success:^(NSURL *fileURL) {
         PDFReader.share.fileUrl = fileURL;
         [PDFReader share].orderId = orderId;
+        [PDFReader share].qlVc = nil;
         [[baseTool getCurrentVC].navigationController pushViewController:PDFReader.share.qlVc animated:YES];
 //        [[baseTool getCurrentVC] addChildViewController:PDFReader.share.qlVc];
 //        PDFReader.share.qlVc.view.frame = [baseTool getCurrentVC].view.bounds;
@@ -72,7 +73,7 @@ static PDFReader *_instance = nil;
     if (!_qlVc) {
         _qlVc = [[QLPreviewController alloc] init];
         _qlVc.dataSource = self;
-        _qlVc.navigationItem.title = @"iOS手册";
+        _qlVc.delegate = self;
         UIButton *ab = [UIButton buttonWithType:UIButtonTypeCustom];
         ab.backgroundColor = RGBColorFrom16(0xff1659);
         [ab setTitle:kLocalizedString(@"SEND_TO_EMAIL") forState:0];

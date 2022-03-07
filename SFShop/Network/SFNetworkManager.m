@@ -85,7 +85,7 @@
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     [manager GET:url parameters:nil headers:@{@"ZSMART_LOCALE":model ? (model.userRes.defLangCode ? model.userRes.defLangCode:@"id") : @"",@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error = nil;
-        NSString *path = [[NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",url.md5String]] stringByAppendingString:@".pdf"];
+        NSString *path = [[NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%u",url.md5String,arc4random()%10000]] stringByAppendingString:@".pdf"];
         NSURL *pathUrl = [NSURL fileURLWithPath:path];
         BOOL ret = [responseObject writeToURL:pathUrl options:NSDataWritingAtomic error:&error];
         if (!ret || error) {

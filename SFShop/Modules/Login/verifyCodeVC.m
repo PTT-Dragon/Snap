@@ -207,6 +207,7 @@
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         [appDelegate.tabVC setSelectedIndex:0];
         [self.navigationController popToRootViewControllerAnimated:YES];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"SIGN_TO_LOGIN")];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];

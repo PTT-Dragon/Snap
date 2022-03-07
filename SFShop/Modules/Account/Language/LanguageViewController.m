@@ -124,7 +124,7 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-10);
     }];
     [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageEnglish];
-    [self changeLanguageWithId:@"1"];
+    [self changeLanguageWithId:@"1"];    
 }
 
 - (void)hindiBtnAction {
