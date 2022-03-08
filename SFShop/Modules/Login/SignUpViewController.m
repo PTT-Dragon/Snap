@@ -85,7 +85,7 @@ static BOOL _passwordSuccess = NO;
             _accountQesLabel.textColor = RGBColorFrom16(0xff1659);
         }
     }else if (textField == _passwordField){
-        _passwordSuccess = [textField systemPhoneCheck:CHECKPASSWORDTYPE editType:EIDTTYPE];//[textField.text validatePassword];
+        _passwordSuccess = [textField.text validatePassword];//[textField systemPhoneCheck:CHECKPASSWORDTYPE editType:EIDTTYPE];//
         if ([textField.text isEqualToString:@""]) {
             _passwordLabel.hidden = YES;
             _passwordQesLabel.hidden = NO;

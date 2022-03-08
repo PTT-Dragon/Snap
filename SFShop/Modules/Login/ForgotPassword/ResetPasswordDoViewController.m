@@ -62,8 +62,8 @@ static BOOL _passwordSuccess2 = NO;
     //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.resetPwd parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_pwdField.text),@"code":_code,@"confirmPwd":login_aes_128_cbc_encrypt(_confirmPwdField.text)} success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Reset_success")];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Reset_success")];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"error"]];
     }];

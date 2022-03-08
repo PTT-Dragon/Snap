@@ -46,6 +46,8 @@
 }
 - (BOOL)validatePassword {
     NSString *rule = SysParamsItemModel.sharedSysParamsItemModel.PASSWORD_REGULAR_RULE;
+//    rule = [rule stringByReplacingOccurrencesOfString:@"[\\\]" withString:@"\\[\\\]"];
+//    rule = @"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~!@#$%^&:;?,.(){}\[\\\\]'*\\-_+=<>])";
     if (!rule.length) {return YES;}//没获取到,统一返回YES
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",rule];
     return [predicate evaluateWithObject:self];
