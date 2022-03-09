@@ -122,7 +122,7 @@
 //  "LOGIN_FACEBOOK" = "Facebook";
 //  "LOGIN_GOOGLE" = "Google";
 //  "LOGIN_SENT_CODE" = "Kode terkirim";
-//  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "Kata sandi tidak sesuai";
+  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "Kata sandi tidak sesuai.";
   "DONT_HAVE_ACCOUNT" = "Belum punya akun?";
   "SIGN_UP" = "DAFTAR";
 //  "SIGN_TO_LOGIN" = "Masuk";
@@ -263,11 +263,11 @@
   "OFF" = "Diskon";
 //  "MIN_SPEND" = "Min. Spend";
   "SIMILAR_PRODUCT_RECOMMENDATION" = "Rekomendasi produk serupa";
-//  "NEW_PASSWORD" = "Kata sandi baru";
+  "NEW_PASSWORD" = "Kata sandi baru";
 //  "CONFIRM_PWD" = "Confirm New Password";
-//  "RE_ENTER_NEW_PASSWORD" = "Masukkan kembali kata sandi baru";
-//  "PASSWORD_NOT_MATCH" = "Kata sandi tidak cocok.";
-//  "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "Re-set ulang sukses. Silahkan masuk kembali.";
+  "RE_ENTER_NEW_PASSWORD" = "Masukan kembali kata sandi baru";
+  "PASSWORD_NOT_MATCH" = "Kata sandi tidak sesuai.";
+  "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "Berhasil memuat ulang. Silakan masuk kembali.";
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Harap masukkan nomor ponsel yang benar.";
   "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Harap masukkan alamat email yang benar.";
 //  "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Harap masukkan alamat email atau no. telephone yang benar.";
@@ -457,7 +457,7 @@
   "TORECEIVE" = "Diterima";
   "DELIVERY_ADDRESS" = "Alamat pengiriman";
   "DELIVERY_INFORMATION" = "Alamat pengiriman";
-//  "ORDER_RECEIPT" = "Resi pesanan";
+  "ORDER_RECEIPT" = "Invoice";
   "PACKAGE" = "Paket";
   "ADD_PACKAGE" = "Tambahkan Paket";
   "IS_REQUIRE" = "diperlukan";

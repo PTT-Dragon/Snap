@@ -42,11 +42,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     cmpBuygetnsModel *model = _cmpBuygetns[section];
-    return model.sel ? 1: 2;
+    return model.sel ? 1: 1+model.rules.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _cmpBuygetns.count>3 ? 3: _cmpBuygetns.count;
+    return _cmpBuygetns.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -59,7 +59,8 @@
         return cell;
     }
     ProductChoosePromotionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductChoosePromotionCell"];
-    cell.model = _cmpBuygetns[indexPath.section];
+    cmpBuygetnsModel *model = _cmpBuygetns[indexPath.section];
+    [cell setModel:model ruleModel:model.rules[indexPath.row-1]];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

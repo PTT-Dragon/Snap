@@ -7,6 +7,9 @@
 
 #import "ResetPasswordDoViewController.h"
 #import "UITextField+expand.h"
+#import "SysParamsModel.h"
+#import "NSString+Fee.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface ResetPasswordDoViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
@@ -37,14 +40,59 @@ static BOOL _passwordSuccess2 = NO;
     _confirmPwdField.layer.borderWidth = 1;
     [_pwdField addTarget:self action:@selector(tfEditingChanged:) forControlEvents:(UIControlEventEditingChanged)];
     [_confirmPwdField addTarget:self action:@selector(tfEditingChanged:) forControlEvents:(UIControlEventEditingChanged)];
+    _label1.text = kLocalizedString(@"NEW_PASSWORD");
+    _pwdField.placeholder = kLocalizedString(@"NEW_PASSWORD");
+    _label3.text = kLocalizedString(@"RE_ENTER_NEW_PASSWORD");
+    _confirmPwdField.placeholder = kLocalizedString(@"RE_ENTER_NEW_PASSWORD");
+    _label4.text = kLocalizedString(@"PASSWORD_NOT_MATCH");
+    [_resetBtn setTitle:kLocalizedString(@"RESET") forState:0];
+    [self loadDatas];
+}
+- (void)loadDatas
+{
+    [SFNetworkManager get:SFNet.account.pwdpolicy parameters:@{} success:^(id  _Nullable response) {
+        SysParamsItemModel *model = [SysParamsItemModel sharedSysParamsItemModel];
+        model.PASSWORD_REGULAR_RULE = response[@"pwdComplexRegRule"];
+        self.label2.text = [NSString stringWithFormat:@"%@-%@,%@",response[@"minPwdLen"],response[@"maxPwdLen"],response[@"pwdComplexMark"]];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (void)tfEditingChanged:(UITextField *)field
 {
     if (field == _pwdField) {
-        _passwordSuccess1 = [field textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label1,_label2]] && [field.text isEqualToString:_confirmPwdField.text];
+        _passwordSuccess1 = [field.text validatePassword];
     }else{
-        _passwordSuccess2 = [field textFieldState:CHECKPASSWORDTYPE editType:EIDTTYPE labels:@[_label3,_label4]]  && [field.text isEqualToString:_pwdField.text];
+        _passwordSuccess2 = [field.text isEqualToString:_pwdField.text];
     }
+    if (!_passwordSuccess1) {
+        _pwdField.layer.borderColor = RGBColorFrom16(0xCE0000).CGColor;
+        _label1.hidden = NO;
+        _label2.hidden = NO;
+        _label1.textColor = RGBColorFrom16(0xCE0000);
+        _label2.textColor = RGBColorFrom16(0xCE0000);
+    }else{
+        _pwdField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
+        _label1.textColor = RGBColorFrom16(0x7b7b7b);
+        _label2.textColor = RGBColorFrom16(0x7b7b7b);
+        _label2.hidden = YES;
+    }
+    if (!_passwordSuccess2) {
+        if (field == _confirmPwdField) {
+            _confirmPwdField.layer.borderColor = RGBColorFrom16(0xCE0000).CGColor;
+            _label3.hidden = NO;
+            _label4.hidden = NO;
+            _label3.textColor = RGBColorFrom16(0xCE0000);
+            _label4.textColor = RGBColorFrom16(0xCE0000);
+        }
+    }else{
+        _confirmPwdField.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
+        _label3.textColor = RGBColorFrom16(0x7b7b7b);
+        _label4.textColor = RGBColorFrom16(0x7b7b7b);
+        _label4.hidden = YES;
+    }
+    _label1.hidden = [_pwdField.text isEqualToString:@""];
+    _label3.hidden = [_confirmPwdField.text isEqualToString:@""];
     if (_passwordSuccess2 && _passwordSuccess1) {
         self.resetBtn.backgroundColor = RGBColorFrom16(0xFF1659);
         self.resetBtn.userInteractionEnabled = YES;
@@ -54,6 +102,20 @@ static BOOL _passwordSuccess2 = NO;
     }
     
 }
+- (void)logoutAction
+{
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.account.logout success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:@"LogOut Success"];
+        UserDefaultSetObjectForKey(kLanguageHindi, @"Language");
+        MJRefreshConfig.defaultConfig.languageCode = @"id";
+        [[FMDBManager sharedInstance] deleteUserData];
+        [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:kLanguageHindi];
+        [baseTool removeVCFromNavigation:weakself];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 - (IBAction)resetAction:(UIButton *)sender {
     if (![_pwdField.text isEqualToString:_confirmPwdField.text]) {
         [MBProgressHUD showTopErrotMessage:kLocalizedString(@"Confirm_password")];
@@ -62,8 +124,8 @@ static BOOL _passwordSuccess2 = NO;
     //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
     [SFNetworkManager post:SFNet.account.resetPwd parameters:@{@"account":_account,@"pwd":login_aes_128_cbc_encrypt(_pwdField.text),@"code":_code,@"confirmPwd":login_aes_128_cbc_encrypt(_confirmPwdField.text)} success:^(id  _Nullable response) {
-        [weakself.navigationController popToRootViewControllerAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Reset_success")];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"RESET_SUCCESSFULLY_PLEASE_RE_LOGIN")];
+        [weakself performSelector:@selector(logoutAction) withObject:nil afterDelay:1];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"error"]];
     }];

@@ -54,6 +54,7 @@
     if (_GroupBuyGroupNbr && ![_GroupBuyGroupNbr isKindOfClass:[NSNull class]]) {
         [self loadGroupInfo];
     }
+    [baseTool removeVCFromNavigationWithVCNameArr:@[@"ProductCheckoutViewController"] currentVC:self];
 }
 - (void)loadGroupInfo
 {

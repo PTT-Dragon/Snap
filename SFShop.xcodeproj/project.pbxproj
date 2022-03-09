@@ -1082,7 +1082,6 @@
 		1BB145E427D486740010C0DC /* ProductChoosePromotionTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductChoosePromotionTitleCell.xib; sourceTree = "<group>"; };
 		1BB145E827D4A7450010C0DC /* KJMarqueeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJMarqueeLabel.h; sourceTree = "<group>"; };
 		1BB145E927D4A7450010C0DC /* KJMarqueeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJMarqueeLabel.m; sourceTree = "<group>"; };
-		1BB145EB27D4BA760010C0DC /* SFShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SFShop.entitlements; sourceTree = "<group>"; };
 		1BB145EC27D4DE270010C0DC /* sendToEmailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sendToEmailView.h; sourceTree = "<group>"; };
 		1BB145ED27D4DE270010C0DC /* sendToEmailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sendToEmailView.m; sourceTree = "<group>"; };
 		1BB145EF27D4DE3D0010C0DC /* sendToEmailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = sendToEmailView.xib; sourceTree = "<group>"; };
@@ -4512,7 +4511,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.11;
+				CURRENT_PROJECT_VERSION = 9.9.9.12;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4561,7 +4560,7 @@
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.11;
+				CURRENT_PROJECT_VERSION = 9.9.9.12;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (

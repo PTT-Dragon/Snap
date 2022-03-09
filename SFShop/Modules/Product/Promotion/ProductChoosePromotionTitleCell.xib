@@ -26,11 +26,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6K5-Qs-lnM">
-                        <rect key="frame" x="45.5" y="15" width="150" height="14.5"/>
+                        <rect key="frame" x="45.5" y="15" width="220" height="14"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="OF4-1G-4q3"/>
+                            <constraint firstAttribute="width" constant="220" id="5UM-hG-uRo"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -56,8 +56,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="6K5-Qs-lnM" firstAttribute="centerY" secondItem="hzh-tK-At9" secondAttribute="centerY" id="2Pb-Ka-Qrp"/>
+                    <constraint firstItem="6K5-Qs-lnM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="4lY-5s-pM8"/>
                     <constraint firstItem="mgf-sl-6ev" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HVa-QI-Z33"/>
-                    <constraint firstItem="hzh-tK-At9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="NIc-iu-M1x"/>
                     <constraint firstItem="hzh-tK-At9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="YdH-X3-FUe"/>
                     <constraint firstItem="6K5-Qs-lnM" firstAttribute="leading" secondItem="hzh-tK-At9" secondAttribute="trailing" constant="5" id="csB-aR-Pbs"/>
                     <constraint firstAttribute="trailing" secondItem="mgf-sl-6ev" secondAttribute="trailing" constant="28" id="ecd-Hl-4wF"/>

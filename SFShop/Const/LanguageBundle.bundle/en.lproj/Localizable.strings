@@ -115,7 +115,7 @@
 //  "LOGIN_FACEBOOK" = "Facebook";
 //  "LOGIN_GOOGLE" = "Google";
 //  "LOGIN_SENT_CODE" = "sent code";
-//  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "The two passwords do not match.";
+  "LOGIN_TWO_PASSWORDS_NOT_MATCH" = "The two passwords do not match.";
   "DONT_HAVE_ACCOUNT" = "Don’t have an account yet?";
 "MAX_PURCHASE_QUANTITY" = "Max purchase quantity";
   "SIGN_UP" = "SIGN UP";
@@ -254,11 +254,11 @@
   "OFF" = "off";
 //  "MIN_SPEND" = "Min. spending";
   "SIMILAR_PRODUCT_RECOMMENDATION" = "Similar product recommendation";
-//  "NEW_PASSWORD" = "New Password";
+  "NEW_PASSWORD" = "New Password";
 //  "CONFIRM_PWD" = "Confirm New Password";
 //  "RE_ENTER_NEW_PASSWORD" = "Re-enter new password";
-//  "PASSWORD_NOT_MATCH" = "Password not match.";
-//  "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "Reset successfully. Please re-login.";
+  "PASSWORD_NOT_MATCH" = "Password not match.";
+  "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "Change successfully. Please re-login.";
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Please input the correct mobile phone.";
   "PLEASE_INPUT_THE_CORRECT_EMAIL" = "Please input the correct email.";
   "PLEASE_INPUT_THE_CORRECT_PHONE_OR_EMAIL" = "Please input the correct phone number or email.";
@@ -451,7 +451,7 @@
   "TORECEIVE" = "To Receive";
   "DELIVERY_ADDRESS" = "Delivery Address";
   "DELIVERY_INFORMATION" = "Delivery Information";
-//  "ORDER_RECEIPT" = "Order Receipt";
+  "ORDER_RECEIPT" = "Order Receipt";
   "PACKAGE" = "Package";
   "ADD_PACKAGE" = "Add Package";
   "IS_REQUIRE" = "is require";

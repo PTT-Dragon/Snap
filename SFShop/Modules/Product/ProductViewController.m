@@ -304,10 +304,14 @@
 {
     ProductChoosePromotionView *view = [[NSBundle mainBundle] loadNibNamed:@"ProductChoosePromotionView" owner:self options:nil].firstObject;
     view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+    __block NSMutableArray *arr = [NSMutableArray array];
     [self.campaignsModel.cmpBuygetns enumerateObjectsUsingBlock:^(cmpBuygetnsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.sel = NO;
+        if (obj.productId.integerValue == self.selProductModel.productId) {
+            [arr addObject:obj];
+        }
     }];
-    view.cmpBuygetns = self.campaignsModel.cmpBuygetns;
+    view.cmpBuygetns = arr;
     [[baseTool getCurrentVC].view addSubview:view];
 }
 - (void)chooseAddress {
@@ -928,7 +932,8 @@
     self.originalPriceLabel.text = [[NSString stringWithFormat:@"%ld",selProductModel.marketPrice] currency];
 
     self.usefulBtn.selected = [selProductModel.isCollection isEqualToString:@"1"];
-    
+    [self layoutCouponSubviews];
+    [self layoutPromotionSubviews];
 }
 - (void)setGroupModel:(ProductGroupModel *)groupModel
 {

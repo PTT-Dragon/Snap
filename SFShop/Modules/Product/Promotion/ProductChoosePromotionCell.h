@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProductChoosePromotionCell : UITableViewCell
-@property (nonatomic,strong) cmpBuygetnsModel *model;
+- (void)setModel:(cmpBuygetnsModel *)model ruleModel:(PromotionRuleModel *)ruleModel;
 
 @end
 

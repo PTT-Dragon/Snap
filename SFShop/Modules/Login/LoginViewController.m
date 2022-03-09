@@ -56,46 +56,47 @@ static BOOL _passwordSuccess = NO;
 
 - (IBAction)facebookLogin:(id)sender {
     
-    if (@available(iOS 13.0, *)) {
-        ASAuthorizationAppleIDProvider *appleIDProvider = [[ASAuthorizationAppleIDProvider alloc] init];
-        ASAuthorizationAppleIDRequest *request = [appleIDProvider createRequest];
-        request.requestedScopes = @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
-        ASAuthorizationController *auth = [[ASAuthorizationController alloc]initWithAuthorizationRequests:@[request]];
-        auth.delegate = self;
-        auth.presentationContextProvider = self;
-        [auth performRequests];
-    }
-//    FBSDKAccessToken *cur_asscessToken = [FBSDKAccessToken currentAccessToken];
-//    if(cur_asscessToken){//已经登录了
-//        NSLog(@"facebookLogin cur_asscessToken=%@",cur_asscessToken.userID);
-//        [SFNetworkManager post:SFNet.account.faceBookLogin parameters:@{@"accessToken":cur_asscessToken.tokenString} success:^(id  _Nullable response) {
-//
-//        } failed:^(NSError * _Nonnull error) {
-//
-//        }];
-//        [self getUserInfoWithResult:cur_asscessToken.userID];
-//    }else{//拉起facebook 授权
-//        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-//        NSArray<NSString*> *permissions = @[@"public_profile"];
-//        [loginManager logInWithReadPermissions:permissions
-//                            fromViewController:self
-//                                       handler:^(FBSDKLoginManagerLoginResult *result,
-//                                                 NSError *error) {
-//            if (error) {
-//                NSLog(@"loginManager error=%@",error);
-//            } else if (result.isCancelled) {
-//                NSLog(@"loginManager 1 result=%@",result);
-//            } else {
-//                NSLog(@"loginManager 2 result=%@",result.token.userID);
-//                //result.token.userID
-//                [SFNetworkManager post:SFNet.account.faceBookLogin parameters:@{@"accessToken":result.token} success:^(id  _Nullable response) {
-//
-//                } failed:^(NSError * _Nonnull error) {
-//
-//                }];
-//                [self getUserInfoWithResult:result.token.userID];
-//            }
-//        }];
+//    if (@available(iOS 13.0, *)) {
+//        ASAuthorizationAppleIDProvider *appleIDProvider = [[ASAuthorizationAppleIDProvider alloc] init];
+//        ASAuthorizationAppleIDRequest *request = [appleIDProvider createRequest];
+//        request.requestedScopes = @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+//        ASAuthorizationController *auth = [[ASAuthorizationController alloc]initWithAuthorizationRequests:@[request]];
+//        auth.delegate = self;
+//        auth.presentationContextProvider = self;
+//        [auth performRequests];
+//    }
+    FBSDKAccessToken *cur_asscessToken = [FBSDKAccessToken currentAccessToken];
+    if(cur_asscessToken){//已经登录了
+        NSLog(@"facebookLogin cur_asscessToken=%@",cur_asscessToken.userID);
+        [SFNetworkManager post:SFNet.account.faceBookLogin parameters:@{@"accessToken":cur_asscessToken.tokenString} success:^(id  _Nullable response) {
+
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+        [self getUserInfoWithResult:cur_asscessToken.userID];
+    }else{//拉起facebook 授权
+        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+        NSArray<NSString*> *permissions = @[@"public_profile"];
+        [loginManager logInWithReadPermissions:permissions
+                            fromViewController:self
+                                       handler:^(FBSDKLoginManagerLoginResult *result,
+                                                 NSError *error) {
+            if (error) {
+                NSLog(@"loginManager error=%@",error);
+            } else if (result.isCancelled) {
+                NSLog(@"loginManager 1 result=%@",result);
+            } else {
+                NSLog(@"loginManager 2 result=%@",result.token.userID);
+                //result.token.userID
+                [SFNetworkManager post:SFNet.account.faceBookLogin parameters:@{@"accessToken":result.token} success:^(id  _Nullable response) {
+
+                } failed:^(NSError * _Nonnull error) {
+
+                }];
+                [self getUserInfoWithResult:result.token.userID];
+            }
+        }];
+}
 }
 
 ///代理主要用于展示在哪里
