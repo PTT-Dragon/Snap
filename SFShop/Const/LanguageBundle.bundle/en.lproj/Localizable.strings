@@ -35,7 +35,7 @@
 //  "TOTAL_PAYMENT" = "Total Payment";
 //  "DELIVERY_TOTAL" = "Delivery Total";
   "MIN_CASH_OUT" = "The balance is insufficient to be withdrawn. The minimum cash withdrawal is ";
-//  "RELATION" = "Relation";
+  "RELATION" = "Relation";
   "EXPENSE" = "Expense";
 //  "CASH_OUT_DETAIL" = "Cash Out Detail";
   "IN_REVIEW" = "Confirmation in progress";
@@ -53,8 +53,8 @@
   "CASH_OUT_HISTORY" = "Cash Out History";
 //  "PLEASE_WAIT_FOR_SYSTEM_REVIEW" = "Please wait for system review";
 //  "SUBMITTED_SUCCESSFUL" = "Submitted successfully";
-//  "CASH_OUT_(RP)" = "Withdraw (Rp)";
-//  "CASH_OUT_TIPS" = "Tips = The maximum daily withdrawal amount is {max}; and the minimum withdrawal amount is {min}.";
+  "CASH_OUT_(RP)" = "Withdraw (Rp)";
+  "CASH_OUT_TIPS" = "Tips: The maximum daily withdrawal amount is {max}, and the minimum withdrawal amount is {min}.";
   "INCOME" = "Income";
 //  "ALL" = "All";
 //  "CONFIRM_CANCEL_REQUEST" = "Are you sure to cancel request?";

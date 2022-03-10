@@ -45,7 +45,7 @@
     _label3.text = type == 2 ? @"Total:": @"";
     _label3.hidden = YES;
     _content1Label.text = type == 2 ? [model.balanceCommission currency]: @"";
-    _content2Label.text = type == 2 ? [model.balanceCommission currency]: @"";
+    _content2Label.text = type == 2 ? [model.receivableCommission currency]: @"";
 //    _content3Label.text = type == 2 ? [NSString stringWithFormat:@"RP %@",model.balanceCommission]: @"";
     
 }

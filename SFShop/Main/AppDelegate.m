@@ -118,6 +118,8 @@
                 model.EMAIL_REGULAR_RULE = dic[@"paramValue"];
             }else if ([dic[@"paramCode"] isEqualToString:@"MINIMUM_DAILY_WITHDRAWAL"]){
                 model.MINIMUM_DAILY_WITHDRAWAL = dic[@"paramValue"];
+            }else if ([dic[@"paramCode"] isEqualToString:@"MAXIMUM_DAILY_WITHDRAWAL"]){
+                model.MAXIMUM_DAILY_WITHDRAWAL = dic[@"paramValue"];
             }
         }
     } failed:^(NSError * _Nonnull error) {

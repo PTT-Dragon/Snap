@@ -25,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _dataSource = [NSMutableArray array];
-    self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    self.view.backgroundColor = RGBColorFrom16(0xffffff);
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"IncomeAndExpenseCell" bundle:nil] forCellReuseIdentifier:@"IncomeAndExpenseCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -93,7 +93,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 74;
+    return 84;
 }
 - (UITableView *)tableView
 {
@@ -102,9 +102,9 @@
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        _tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
+        _tableView.backgroundColor = RGBColorFrom16(0xffffff);
         if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }

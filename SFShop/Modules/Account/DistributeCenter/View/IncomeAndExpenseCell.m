@@ -6,6 +6,9 @@
 //
 
 #import "IncomeAndExpenseCell.h"
+#import "NSDate+Helper.h"
+#import "NSString+Fee.h"
+
 
 @interface IncomeAndExpenseCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -25,9 +28,9 @@
 {
     _model = model;
     _nameLabel.text = model.commissionOperType;
-    _timeLabel.text = model.createdDate;
-    _amountLabel.text = [NSString stringWithFormat:@"RP %@",model.charge];
-    _infoLabel.text = [NSString stringWithFormat:@"Relation:\n%@",model.relaSn];
+    _timeLabel.text = [[NSDate dateFromString:model.createdDate] dayMonthYearHHMM];
+    _amountLabel.text = [model.charge currency];
+    _infoLabel.text = [NSString stringWithFormat:@"%@:\n%@",kLocalizedString(@"RELATION"),model.relaSn];
     
 }
 @end

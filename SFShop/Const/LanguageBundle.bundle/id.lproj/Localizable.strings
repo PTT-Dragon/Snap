@@ -38,7 +38,7 @@
 //  "TOTAL_PAYMENT" = "Total pembayaran";
 //  "DELIVERY_TOTAL" = "Ongkos Kirim";
   "MIN_CASH_OUT" = "Saldo tidak cukup untuk ditarik. Penarikan saldo minimum sebesar ";
-//  "RELATION" = "Relation";
+  "RELATION" = "Nomor Order";
   "EXPENSE" = "Pengeluaran";
 //  "CASH_OUT_DETAIL" = "Cash Out Detail";
   "IN_REVIEW" = "Konfirmasi sedang berjalan";
@@ -57,8 +57,8 @@
   "CASH_OUT_HISTORY" = "Riwayat Panarikan";
 //  "PLEASE_WAIT_FOR_SYSTEM_REVIEW" = "Please wait for system review";
 //  "SUBMITTED_SUCCESSFUL" = "Submitted successfully";
-//  "CASH_OUT_(RP)" = "Tarik dana (Rp)";
-//  "CASH_OUT_TIPS" = "Tips Per hari Max. penarikan adalah {max} dan Min. {min}";
+  "CASH_OUT_(RP)" = "Penarikan (Rp)";
+  "CASH_OUT_TIPS" = "Tips: Penarikan maksimal sehari sebesar {max}, dan penarikan minimum sebesar {min}.";
   "INCOME" = "Pemasukan";
 //  "ALL" = "Semua";
 //  "CONFIRM_CANCEL_REQUEST" = "Apakah and yakin anda mau cancel request?";

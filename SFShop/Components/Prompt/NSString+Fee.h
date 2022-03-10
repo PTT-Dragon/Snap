@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 最小提现金额
 - (NSString *)minWithdraw;
+/// 最大提现金额
+- (NSString *)maxWithdraw;
 
 /// 手机号是否通过校验
 - (BOOL)validatePhoneNumber;
