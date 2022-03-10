@@ -84,6 +84,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CashOutDetailVC *vc = [[CashOutDetailVC alloc] init];
     vc.model = self.dataSource[indexPath.row];
+    vc.block = ^{
+        [self.tableView.mj_header beginRefreshing];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^CashOutDetailVCBlock)(void);
+
 @interface CashOutDetailVC : UIViewController
+@property (nonatomic,copy) CashOutDetailVCBlock block;
 @property (nonatomic,strong) CashOutHistoryListModel *model;
 @end
 

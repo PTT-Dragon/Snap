@@ -40,7 +40,8 @@
 - (void)handleDatas
 {
     [self.btn setTitle:kLocalizedString(@"CANCEL") forState:0];
-    [self.dataSource addObjectsFromArray:@[@{@"title":kLocalizedString(@"Status"),@"content":self.model.state},@{@"title":kLocalizedString(@"ITEM_CODE"),@"content":self.model.reqSn},@{@"title":kLocalizedString(@"DATE"),@"content":[[NSDate dateFromString:self.model.stateDate] dayMonthYearHHMM]},@{@"title":kLocalizedString(@"Account"),@"content":[NSString stringWithFormat:@"%@\n%@\n%@",self.model.bankName,self.model.bankAcctNbr,self.model.bankAcctName]},@{@"title":kLocalizedString(@"TOTAL"),@"content":[self.model.withdrawalAmount currency]},@{@"title":kLocalizedString(@"REJECT_REASON"),@"content":self.model.handleReason ? self.model.handleReason: @"--"}]];
+    self.btn.hidden = ![self.model.state isEqualToString:@"Pending"];
+    [self.dataSource addObjectsFromArray:@[@{@"title":kLocalizedString(@"Status"),@"content":self.model.state},@{@"title":kLocalizedString(@"ITEM_CODE"),@"content":self.model.reqSn},@{@"title":kLocalizedString(@"DATE"),@"content":[[NSDate dateFromString:self.model.stateDate] dayMonthYearHHMM]},@{@"title":kLocalizedString(@"Account"),@"content":[NSString stringWithFormat:@"%@\n%@\n%@",self.model.bankName,self.model.bankAcctNbr,self.model.bankAcctName]},@{@"title":kLocalizedString(@"Total"),@"content":[self.model.withdrawalAmount currency]},@{@"title":kLocalizedString(@"REJECT_REASON"),@"content":self.model.handleReason ? self.model.handleReason: @"--"}]];
     [self.tableView reloadData];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -54,16 +55,23 @@
     return cell;
 }
 - (IBAction)btnAction:(UIButton *)sender {
-    PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"CONFIRM_CANCEL_REQUEST") btnTitle:kLocalizedString(@"CONFIRM") block:^{
+    PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"CONFIRM_CANCEL_REQUEST") btnTitle:kLocalizedString(@"YES") block:^{
         [self cancelAction];
-    } btn2Title:kLocalizedString(@"CANCEL") block2:^{
+    } btn2Title:kLocalizedString(@"NO") block2:^{
         
     }];
     [[baseTool getCurrentVC].view addSubview:alert];
 }
 - (void)cancelAction
 {
-    
+    [SFNetworkManager post:SFNet.distributor.cancelCashOut parameters:@{@"distriCashReqId":self.model.distriCashReqId} success:^(id  _Nullable response) {
+        if (self.block) {
+            self.block();
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
 }
 
 - (UITableView *)tableView

@@ -356,7 +356,7 @@
 //  "MY_ACCOUNT" = "Akun saya";
 //  "SUPPORT" = "Support";
 //  "COMMUNITY" = "Komunitas";
-//  "REJECT_REASON" = "Alasan penolakan";
+  "REJECT_REASON" = "Alasan penolakan";
 //  "PHONE_NUMBER" = "Nomor telepon";
 //  "TWITTER" = "Twitter";
 //  "POSTER" = "Poster";
@@ -382,7 +382,7 @@
 //  "LIVE_CHAT" = "Live chat";
 //  "ARE_YOU_SURE_YOU_WANT_TO_PAY_AGAIN" = "Apakah Anda yakin ingin membayar lagi?";
   "YES" = "YA";
-//  "NO" = "Tidak";
+  "NO" = "TIDAK";
 //  "PLEASE_CONFIRM_WHETHER_THE_PAYMENT_HAS_BEEN_COMPLETED" = "Mohon konfirmasi apakah pembayaran telah selesai";
 //  "FAILED" = "Gagal";
 //  "PAYMENT_COMPLETED" = "Pembayaran selesai";

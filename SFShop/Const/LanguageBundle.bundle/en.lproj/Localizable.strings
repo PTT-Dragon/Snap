@@ -346,7 +346,7 @@
 //  "MY_ACCOUNT" = "Account";
 //  "SUPPORT" = "Support";
 //  "COMMUNITY" = "Community";
-//  "REJECT_REASON" = "Reject Reason";
+  "REJECT_REASON" = "Reject Reason";
   "PHONE_NUMBER" = "Phone Number";
 //  "TWITTER" = "Twitter";
 //  "POSTER" = "Poster";
@@ -374,7 +374,7 @@
 //  "LIVE_CHAT" = "Live Chat";
 //  "ARE_YOU_SURE_YOU_WANT_TO_PAY_AGAIN" = "Are you sure you want to pay again";
   "YES" = "YES";
-//  "NO" = "No";
+  "NO" = "NO";
 //  "PLEASE_CONFIRM_WHETHER_THE_PAYMENT_HAS_BEEN_COMPLETED" = "Please confirm whether the payment has been completed";
 //  "FAILED" = "Failed";
 //  "PAYMENT_COMPLETED" = "Payment Completed";
