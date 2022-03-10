@@ -8,19 +8,27 @@
 #import "DistributorModel.h"
 
 @implementation DistributorRankProductModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end
 
 @implementation DistributionSettlementDtoModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end
 
 @implementation KolDayMonthSaleModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end
 
 @implementation KolOrderStatusNumModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end
 
 @implementation DistributorModel
@@ -30,11 +38,15 @@
 @end
 
 @implementation DistributorCommissionModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end
 
 @implementation IncomeOrWithdrawListModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end
 @implementation RelationOrderItemModel
 
@@ -56,5 +68,14 @@
 @end
 
 @implementation RelationOrderDetailModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
 
+
+@implementation CashOutHistoryListModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end

@@ -6,6 +6,8 @@
 //
 
 #import "CashOutHistoryCell.h"
+#import "NSString+Fee.h"
+#import "NSDate+Helper.h"
 
 @interface CashOutHistoryCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -21,11 +23,12 @@
     [super awakeFromNib];
     // Initialization code
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setModel:(CashOutHistoryListModel *)model
+{
+    _model = model;
+    _nameLabel.text = model.reqSn;
+    _amountLabel.text = [model.withdrawalAmount currency];
+    _dateLabel.text = [[NSDate dateFromString:model.stateDate] dayMonthYearHHMM];
+    _statuLabel.text = model.state;
 }
-
 @end

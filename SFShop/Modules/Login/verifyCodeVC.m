@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "SysParamsModel.h"
 #import <MJRefresh/MJRefresh.h>
+#import "CashOutSuccessVC.h"
 
 @interface verifyCodeVC ()<HWTFCodeBViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
@@ -109,6 +110,9 @@
     if (_type == ChangeEmail_Code) {
         [params setValue:@"true" forKey:@"isEmail"];
         [params setValue:_codeView.code forKey:@"code"];
+    }else if (_type == CashOut_Code){
+        [params setValue:@"false" forKey:@"isEmail"];
+        [params setValue:_codeView.code forKey:@"code"];
     }else{
         [params setValue:_codeView.code forKey:@"code"];
         [params setValue:@"Terminal" forKey:@"userType"];
@@ -164,8 +168,10 @@
 }
 - (void)cashOutAction
 {
-    [SFNetworkManager post:SFNet.distributor.createCashOut parameters:@{} success:^(id  _Nullable response) {
-        
+    MPWeakSelf(self)
+    [SFNetworkManager post:SFNet.distributor.createCashOut parameters:_withdrawInfo success:^(id  _Nullable response) {
+        CashOutSuccessVC *vc = [[CashOutSuccessVC alloc] init];
+        [weakself.navigationController pushViewController:vc animated:YES];
     } failed:^(NSError * _Nonnull error) {
         
     }];

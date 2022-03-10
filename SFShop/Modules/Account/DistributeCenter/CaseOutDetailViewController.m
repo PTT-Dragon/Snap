@@ -143,7 +143,10 @@
 }
 - (IBAction)chargeAction:(UIButton *)sender {
     NSMutableDictionary *withdrawInfo = [NSMutableDictionary dictionary];
-    
+    [withdrawInfo setValue:_bankField.text forKey:@"bankName"];
+    [withdrawInfo setValue:_amountField.text forKey:@"withdrawalAmount"];
+    [withdrawInfo setValue:_accountField.text forKey:@"bankAcctNbr"];
+    [withdrawInfo setValue:_accountNameField.text forKey:@"bankAcctName"];
     verifyCodeVC *vc = [[verifyCodeVC alloc] init];
     vc.withdrawInfo = withdrawInfo;
     vc.type = CashOut_Code;

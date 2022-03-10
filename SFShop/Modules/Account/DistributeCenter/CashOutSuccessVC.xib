@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoBd.otf">
+            <string>TruenoBd</string>
+        </array>
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CashOutSuccessVC">
+            <connections>
+                <outlet property="label1" destination="wAH-Oq-DCF" id="Laf-Iw-0wC"/>
+                <outlet property="label2" destination="baI-aJ-8d6" id="7Zs-KO-SZl"/>
+                <outlet property="toHomeBtn" destination="w61-7E-1Vx" id="Fc9-lJ-jco"/>
+                <outlet property="toRecordBtn" destination="MvB-zs-bLu" id="sm4-Cg-tS7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumb-0" translatesAutoresizingMaskIntoConstraints="NO" id="kWQ-rb-usx">
+                    <rect key="frame" x="174" y="224" width="66" height="53"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="66" id="4nW-Fp-Tpb"/>
+                        <constraint firstAttribute="height" constant="53" id="Ycy-gQ-0vs"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase Succesful" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAH-Oq-DCF">
+                    <rect key="frame" x="130" y="301" width="154" height="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w61-7E-1Vx">
+                    <rect key="frame" x="12" y="683" width="390" height="46"/>
+                    <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="rhA-i0-NpM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                    <state key="normal" title="BACK TO HOME"/>
+                    <connections>
+                        <action selector="backToHomeAction:" destination="-1" eventType="touchUpInside" id="CJo-kQ-xZz"/>
+                    </connections>
+                </button>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvB-zs-bLu">
+                    <rect key="frame" x="12" y="747" width="390" height="46"/>
+                    <color key="backgroundColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="k3h-9m-dM8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                    <state key="normal" title="BACK TO HOME"/>
+                    <connections>
+                        <action selector="toRecordAction:" destination="-1" eventType="touchUpInside" id="4fS-qk-Xhq"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase Succesful" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baI-aJ-8d6">
+                    <rect key="frame" x="147.5" y="329" width="119" height="15"/>
+                    <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="12"/>
+                    <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="w61-7E-1Vx" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="8zG-Xt-Max"/>
+                <constraint firstItem="baI-aJ-8d6" firstAttribute="top" secondItem="wAH-Oq-DCF" secondAttribute="bottom" constant="8" symbolic="YES" id="HJg-TK-qpC"/>
+                <constraint firstItem="wAH-Oq-DCF" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="KYa-k6-mFm"/>
+                <constraint firstItem="w61-7E-1Vx" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="12" id="LOF-OR-Lgf"/>
+                <constraint firstItem="kWQ-rb-usx" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="180" id="VGP-wj-987"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="MvB-zs-bLu" secondAttribute="bottom" constant="69" id="awf-8T-MX1"/>
+                <constraint firstItem="wAH-Oq-DCF" firstAttribute="top" secondItem="kWQ-rb-usx" secondAttribute="bottom" constant="24" id="axL-K0-U1a"/>
+                <constraint firstItem="baI-aJ-8d6" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="bPk-eE-Jm5"/>
+                <constraint firstItem="MvB-zs-bLu" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="kS9-SX-5DP"/>
+                <constraint firstItem="kWQ-rb-usx" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="pdl-3Y-h6g"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="w61-7E-1Vx" secondAttribute="bottom" constant="133" id="wBj-aS-QjR"/>
+                <constraint firstItem="MvB-zs-bLu" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="12" id="yex-9x-Cml"/>
+            </constraints>
+            <point key="canvasLocation" x="133" y="81"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="thumb-0" width="67" height="54"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

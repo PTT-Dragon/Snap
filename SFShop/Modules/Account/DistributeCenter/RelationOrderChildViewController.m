@@ -30,8 +30,8 @@
     [self.view addSubview:self.tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"RelationOrderCell" bundle:nil] forCellReuseIdentifier:@"RelationOrderCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(16);
-        make.right.mas_equalTo(self.view.mas_right).offset(-16);
+        make.left.mas_equalTo(self.view.mas_left).offset(0);
+        make.right.mas_equalTo(self.view.mas_right).offset(-0);
         make.top.bottom.mas_equalTo(self.view);
     }];
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{

@@ -29,10 +29,11 @@
     //0x00B256
     _model = model;
     _stateLabel.text = [model.settState isEqualToString:@"Settled"] ? @"S": @"P";
-    _stateLabel.layer.borderColor = [model.settState isEqualToString:@"Settled"] ? RGBColorFrom16(0xff1659).CGColor: RGBColorFrom16(0xff1659).CGColor;
+    _stateLabel.layer.borderColor = [model.settState isEqualToString:@"Settled"] ? RGBColorFrom16(0x00B256).CGColor: RGBColorFrom16(0xff1659).CGColor;
+    _stateLabel.textColor = [model.settState isEqualToString:@"Settled"] ? RGBColorFrom16(0x00B256): RGBColorFrom16(0xff1659);
     _stateLabel.layer.borderWidth = 2;
     _contentLabel.text = [model.settState isEqualToString:@"Settled"] ? @"Settled": @"Pending";
-    _contentLabel.textColor = [model.settState isEqualToString:@"Settled"] ? RGBColorFrom16(0xff1659): RGBColorFrom16(0xff1659);
+    _contentLabel.textColor = [model.settState isEqualToString:@"Settled"] ? RGBColorFrom16(0x00B256): RGBColorFrom16(0xff1659);
     _timeLabel.text = [model.settState isEqualToString:@"Settled"] ? model.stateDate: @"--";
     _amountLabel.text = [model.kolCommission currency];
 }

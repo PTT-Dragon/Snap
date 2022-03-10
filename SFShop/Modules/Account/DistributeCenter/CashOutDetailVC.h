@@ -1,8 +1,8 @@
 //
-//  CashOutHistoryCell.h
+//  CashOutDetailVC.h
 //  SFShop
 //
-//  Created by 游挺 on 2021/11/3.
+//  Created by 游挺 on 2022/3/10.
 //
 
 #import <UIKit/UIKit.h>
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CashOutHistoryCell : UITableViewCell
+@interface CashOutDetailVC : UIViewController
 @property (nonatomic,strong) CashOutHistoryListModel *model;
 @end
 

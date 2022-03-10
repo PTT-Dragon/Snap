@@ -41,7 +41,8 @@
 {
     _model = model;
     _spLabel.text = [model.settState isEqualToString:@"Settled"] ? @"S": @"P";
-    _spLabel.layer.borderColor = [model.settState isEqualToString:@"Settled"] ? RGBColorFrom16(0xff1659).CGColor: RGBColorFrom16(0xff1659).CGColor;
+    _spLabel.layer.borderColor = [model.settState isEqualToString:@"Settled"] ? RGBColorFrom16(0x00B256).CGColor: RGBColorFrom16(0xff1659).CGColor;
+    _spLabel.textColor = [model.settState isEqualToString:@"Settled"] ? RGBColorFrom16(0x00B256): RGBColorFrom16(0xff1659);
     [_storeIconImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _storeNameLabel.text = model.storeName;
     _nameLabel.text = model.distributorName;

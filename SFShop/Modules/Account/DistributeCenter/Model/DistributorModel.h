@@ -331,4 +331,20 @@ orderItems =             (
  **/
 @end
 
+@interface CashOutHistoryListModel : JSONModel
+@property (nonatomic,copy) NSString *afterWithdrawalCommission;
+@property (nonatomic,copy) NSString *bankAcctName;
+@property (nonatomic,copy) NSString *bankAcctNbr;
+@property (nonatomic,copy) NSString *bankName;
+@property (nonatomic,copy) NSString *createdDate;
+@property (nonatomic,copy) NSString *distriCashReqId;
+@property (nonatomic,copy) NSString *distributorId;
+@property (nonatomic,copy) NSString *handleDate;
+@property (nonatomic,copy) NSString *handleReason;
+@property (nonatomic,copy) NSString *reqSn;
+@property (nonatomic,copy) NSString *state;
+@property (nonatomic,copy) NSString *stateDate;
+@property (nonatomic,copy) NSString *withdrawalAmount;
+@end
+
 NS_ASSUME_NONNULL_END
