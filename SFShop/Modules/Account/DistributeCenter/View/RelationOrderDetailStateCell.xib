@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,25 +33,25 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MA1-KU-5PJ">
-                        <rect key="frame" x="49" y="13.5" width="35.5" height="17"/>
+                        <rect key="frame" x="49" y="13.5" width="38" height="17"/>
                         <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                         <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbZ-00-Vte">
-                        <rect key="frame" x="288.5" y="13.5" width="35.5" height="17"/>
+                        <rect key="frame" x="286" y="13.5" width="38" height="17"/>
                         <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3u-vD-HOF">
-                        <rect key="frame" x="290" y="40" width="34" height="15"/>
-                        <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="heavy" pointSize="12"/>
+                        <rect key="frame" x="291.5" y="40" width="32.5" height="15"/>
+                        <fontDescription key="fontDescription" weight="heavy" name="TruenoRg" family="Trueno" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated Commission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu6-fi-pdv">
-                        <rect key="frame" x="27" y="40.5" width="129" height="14.5"/>
+                        <rect key="frame" x="27" y="40.5" width="139" height="14.5"/>
                         <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -69,6 +74,7 @@
             <connections>
                 <outlet property="amountLabel" destination="D3u-vD-HOF" id="ptQ-ud-aV4"/>
                 <outlet property="contentLabel" destination="MA1-KU-5PJ" id="jab-qC-IKn"/>
+                <outlet property="label" destination="gu6-fi-pdv" id="WYA-gZ-Wut"/>
                 <outlet property="stateLabel" destination="yvD-VB-bqd" id="UqT-qh-5tG"/>
                 <outlet property="timeLabel" destination="FbZ-00-Vte" id="Zzu-2b-yDh"/>
             </connections>

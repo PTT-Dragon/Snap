@@ -26,7 +26,15 @@
     _label1.text = [NSString stringWithFormat:@"%@ %@ %@",kLocalizedString(@"SUCC_INVITE_NUM"),@"0",kLocalizedString(@"teman")];
     [_ruleBtn setTitle:kLocalizedString(@"RULE_DESCRIPTION") forState:0];
     _label2.text = kLocalizedString(@"INVITATION_RECORD");
+    
 }
+- (void)setTotalCount:(NSInteger)totalCount
+{
+    _totalCount = totalCount;
+    _label1.text = [NSString stringWithFormat:@"%@ %ld %@",kLocalizedString(@"SUCC_INVITE_NUM"),totalCount,kLocalizedString(@"teman")];
+}
+
+
 - (IBAction)inviteAction:(id)sender {
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     NSString *shareUrl = [NSString stringWithFormat:@"%@/sign-up-gift/%@",Host,model.userRes.userCode];

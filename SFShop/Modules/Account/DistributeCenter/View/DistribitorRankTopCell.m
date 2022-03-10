@@ -6,6 +6,7 @@
 //
 
 #import "DistribitorRankTopCell.h"
+#import "DistributeProductListVC.h"
 
 @interface DistribitorRankTopCell ()
 @property (weak, nonatomic) IBOutlet UIButton *listBtn;
@@ -24,6 +25,11 @@
     // Initialization code
     _listBtn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
     _listBtn.layer.borderWidth = 1;
+    [_listBtn setTitle:kLocalizedString(@"VIEW_PRODUCT_LIST") forState:0];
+    [_saleBtn setTitle:kLocalizedString(@"SALES_RANKING") forState:0];
+    [_mySaleBtn setTitle:kLocalizedString(@"MY_SALES_RANKING") forState:0];
+    _mySaleBtn.titleLabel.numberOfLines = 2;
+    _saleBtn.titleLabel.numberOfLines = 2;
 }
 - (IBAction)saleAction:(UIButton *)sender {
     _toSaleCenter.priority = 750;
@@ -40,6 +46,9 @@
     [self.delegate selProductListType:2];
 }
 - (IBAction)listAction:(UIButton *)sender {
+    if (self.delegate) {
+        [self.delegate toPRoductList];
+    }
 }
 
 @end

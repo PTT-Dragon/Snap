@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DistributorRankCell : UITableViewCell
 @property (nonatomic,weak) DistributorRankProductModel *model;
 @property (nonatomic,assign) NSInteger rank;
+@property (nonatomic,strong) DistributorModel *centerModel;
 @end
 
 NS_ASSUME_NONNULL_END

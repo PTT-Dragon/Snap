@@ -10,11 +10,13 @@
 #import <MJRefresh/MJRefresh.h>
 #import "DistributorModel.h"
 #import "RelationOrderDetailViewController.h"
+#import "EmptyView.h"
 
 @interface RelationOrderChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger pageIndex;
+@property (nonatomic, strong) EmptyView *emptyView;
 
 @end
 
@@ -39,6 +41,11 @@
         [self loadMoreDatas];
     }];
     [self.tableView.mj_header beginRefreshing];
+    [self.view addSubview:self.emptyView];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(90);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
 }
 - (void)loadDatas
 {
@@ -49,8 +56,17 @@
         [weakself.dataSource addObjectsFromArray:[RelationOrderListModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView reloadData];
         [weakself.tableView.mj_header endRefreshing];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+        }
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
+        [weakself showEmptyView];
     }];
 }
 - (void)loadMoreDatas
@@ -67,8 +83,10 @@
         }else{
             [weakself.tableView.mj_footer endRefreshing];
         }
+        [weakself showEmptyView];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_footer endRefreshing];
+        [weakself showEmptyView];
     }];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,6 +115,13 @@
     vc.orderId = model.orderId;
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (void)showEmptyView {
+    if (self.dataSource.count > 0) {
+        self.emptyView.hidden = YES;
+    } else {
+        self.emptyView.hidden = NO;
+    }
+}
 - (UITableView *)tableView
 {
     if (!_tableView) {
@@ -117,5 +142,13 @@
         _tableView.estimatedRowHeight = 44;
     }
     return _tableView;
+}
+- (EmptyView *)emptyView {
+    if (!_emptyView) {
+        _emptyView = [[EmptyView alloc] init];
+        [_emptyView configDataWithEmptyType:EmptyViewNoOrderType];
+        _emptyView.hidden = YES;
+    }
+    return _emptyView;
 }
 @end

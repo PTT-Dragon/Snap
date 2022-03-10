@@ -72,7 +72,11 @@
     _countLabel.text = [NSString stringWithFormat:@"X%@",itemModel.offerCnt];
     _priceLabel.text = [itemModel.unitPrice currency];
     NSDictionary *dic = [itemModel.productRemark jk_dictionaryValue];
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
+    NSString *sku = @"";
+    for (NSString *key in dic.allKeys) {
+        sku = [sku stringByAppendingFormat:@"%@ ",dic[key]];
+    }
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _dateLabel.text = [NSString stringWithFormat:@"Review Date:%@",[[NSDate dateFromString:itemModel.evaluation[@"createdDate"]] dayMonthYear]];
     _commentLabel.text = itemModel.evaluation[@"evaluationComments"];
     _starView.score = [itemModel.evaluation[@"rate"] integerValue];

@@ -12,6 +12,9 @@
 #import "RelationOrderDetailInfoCell.h"
 #import "RelationOrderDetailProductCell.h"
 #import "OrderListStateCell.h"
+#import "NSString+Fee.h"
+#import "OrderDetailTitleCell.h"
+
 
 @interface RelationOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) RelationOrderDetailModel *model;
@@ -44,6 +47,7 @@
     [_tableView registerNib:[UINib nibWithNibName:@"RelationOrderDetailStateCell" bundle:nil] forCellReuseIdentifier:@"RelationOrderDetailStateCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"RelationOrderDetailProductCell" bundle:nil] forCellReuseIdentifier:@"RelationOrderDetailProductCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"OrderListStateCell" bundle:nil] forCellReuseIdentifier:@"OrderListStateCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"OrderDetailTitleCell" bundle:nil] forCellReuseIdentifier:@"OrderDetailTitleCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(16);
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
@@ -58,8 +62,12 @@
         cell.model = self.model;
         return cell;
     }else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            OrderDetailTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderDetailTitleCell"];
+            return cell;
+        }
         RelationOrderDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RelationOrderDetailInfoCell"];
-        cell.infoDic = self.infomationArr[indexPath.row];
+        cell.infoDic = self.infomationArr[indexPath.row-1];
         return cell;
     }else if (indexPath.row == 0){
         OrderListStateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListStateCell"];
@@ -80,11 +88,11 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 2 ? 1: section == 0 ? self.model.orderDetail.orderItems.count+self.productInfoArr.count+1: self.infomationArr.count;
+    return section == 2 ? 1: section == 0 ? self.model.orderDetail.orderItems.count+self.productInfoArr.count+1: self.infomationArr.count+1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == 2 ? 69: indexPath.section == 1 ? 45: indexPath.row == 0 ? 40: indexPath.row > self.model.orderDetail.orderItems.count ? 45: 154;
+    return indexPath.section == 2 ? 69: indexPath.section == 1 ? 33: indexPath.row == 0 ? 40: indexPath.row > self.model.orderDetail.orderItems.count ? 33: 154;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -108,13 +116,12 @@
 }
 - (void)handleDatas
 {
-    [self.infomationArr addObject:@{@"title":@"Order code",@"value":self.model.orderNbr}];
-    [self.infomationArr addObject:@{@"title":@"Creation time",@"value":self.model.createdDate}];
-    [self.infomationArr addObject:@{@"title":@"Payment time",@"value":self.model.orderNbr}];    
-    [self.infomationArr addObject:@{@"title":@"Order completion time",@"value":self.model.orderDetail.completionDate}];
-    [self.productInfoArr addObject:@{@"title":@"Subtotal",@"value":self.model.orderPrice}];
-    [self.productInfoArr addObject:@{@"title":@"Shipping Fee",@"value":self.model.orderDetail.logisticsFee}];
-    [self.productInfoArr addObject:@{@"title":[NSString stringWithFormat:@"Total:%ld item(s)",self.model.orderDetail.orderItems.count],@"value":self.model.orderPrice}];
+//    [self.infomationArr addObject:@{@"title":@"Order code",@"value":self.model.orderNbr}];
+//    [self.infomationArr addObject:@{@"title":@"Creation time",@"value":self.model.createdDate}];
+//    [self.infomationArr addObject:@{@"title":@"Payment time",@"value":self.model.orderNbr}];
+//    [self.infomationArr addObject:@{@"title":@"Order completion time",@"value":self.model.orderDetail.completionDate}];
+    [self.infomationArr addObjectsFromArray:@[@{kLocalizedString(@"ORDER_CODE"):self.model.orderNbr},@{kLocalizedString(@"CREATION_TIME"):self.model.createdDate},@{kLocalizedString(@"PAYER_EMAIL"):self.model.orderDetail.billAddress.contactEmail},@{kLocalizedString(@"PAYMENT_TIME"): @"--"},@{kLocalizedString(@"COMPLETION_TIME"):self.model.orderDetail.completionDate ? self.model.orderDetail.completionDate: @"--"}]];
+    [self.productInfoArr addObjectsFromArray:@[@{kLocalizedString(@"SUBTOTAL"):[self.model.orderPrice currency]},@{kLocalizedString(@"SHIPPING_FEE"):[self.model.orderDetail.logisticsFee currency]},@{[NSString stringWithFormat:@"%@:%@ %@",kLocalizedString(@"Total"),self.model.orderDetail.offerCnt,kLocalizedString(@"ITEMS")]:[self.model.orderDetail.orderPrice currency]}]];
     [self.tableView reloadData];
     
 }
@@ -135,6 +142,11 @@
         else
         {
             self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        if (@available(iOS 15.0, *)) {
+            _tableView.sectionHeaderTopPadding = 0;
+        } else {
+            // Fallback on earlier versions
         }
         _tableView.estimatedRowHeight = 44;
     }

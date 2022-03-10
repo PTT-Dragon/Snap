@@ -116,6 +116,8 @@
                 model.PHONE_REGULAR_RULE = dic[@"paramValue"];
             }else if ([dic[@"paramCode"] isEqualToString:@"EMAIL_REGULAR_RULE"]){
                 model.EMAIL_REGULAR_RULE = dic[@"paramValue"];
+            }else if ([dic[@"paramCode"] isEqualToString:@"MINIMUM_DAILY_WITHDRAWAL"]){
+                model.MINIMUM_DAILY_WITHDRAWAL = dic[@"paramValue"];
             }
         }
     } failed:^(NSError * _Nonnull error) {

@@ -133,6 +133,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnToName;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnToPrice;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *promotionViewHei;
+@property (weak, nonatomic) IBOutlet UILabel *flashSaleOffLabel;
+@property (weak, nonatomic) IBOutlet UILabel *flashSaleOriginPriceLabel;
 
 @end
 
@@ -716,9 +718,21 @@
     //抢购活动UI
     self.flashSaleInfoView.hidden = NO;
     self.groupInfoView.hidden = YES;
-    self.viewTop.constant = 64;
+    self.viewTop.constant = 85;
     self.addCartBtn.hidden = YES;
+    self.addressViewTop.constant = 12;
+    self.topToGroupTableview.constant = [self calucateGroupTableviewHei] == 0 ? 0: 12;
+    self.priceLabelTop.constant = 14;
+    self.salesPriceLabel.hidden = YES;
+    self.originalPriceLabel.hidden = YES;
+    self.productDiscountLabel.hidden = YES;
+    self.marketPriceLabelIndicationView.hidden = YES;
+    self.btnToName.priority = 750;
+    self.btnToPrice.priority = 250;
     FlashSaleDateModel *model = self.campaignsModel.cmpFlashSales.firstObject;
+    self.flashSaleOffLabel.text = [NSString stringWithFormat:@"-%.0f%%",model.discountPercent];
+    self.flashSaleOriginPriceLabel.text = [[NSString stringWithFormat:@"%ld",self.selProductModel.salesPrice] currency];
+    self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%% Sold",[[NSString stringWithFormat:@"%.0f",model.flsaleSaleQtyPercent] currencyFloat]];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *nowDate = [formatter dateFromString:model.now];
@@ -739,7 +753,7 @@
         NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         self.flashSaleStateLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency, model.specialPrice];
         self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%%  Sold",model.flsaleSaleQtyPercent];
-        self.timeStateLabel.text = kLocalizedString(@"Ends_in");
+        self.timeStateLabel.text = kLocalizedString(@"ENDS_IN");
         MPWeakSelf(self)
         __block NSInteger timeout = expTimeInterval - timeInterval; // 倒计时时间
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);

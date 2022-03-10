@@ -284,6 +284,8 @@
 		1BB145EA27D4A7450010C0DC /* KJMarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145E927D4A7450010C0DC /* KJMarqueeLabel.m */; };
 		1BB145EE27D4DE270010C0DC /* sendToEmailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145ED27D4DE270010C0DC /* sendToEmailView.m */; };
 		1BB145F027D4DE3D0010C0DC /* sendToEmailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB145EF27D4DE3D0010C0DC /* sendToEmailView.xib */; };
+		1BB145F727D8ED4D0010C0DC /* DistributeProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145F627D8ED4C0010C0DC /* DistributeProductListVC.m */; };
+		1BB145FA27D8EF1D0010C0DC /* DistributeProductListChildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145F927D8EF1D0010C0DC /* DistributeProductListChildVC.m */; };
 		1BB1CB5F2763415C008D71DF /* FlashSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */; };
 		1BB1CB602763415C008D71DF /* FlashSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */; };
 		1BB1CB63276341B6008D71DF /* SFNetworkFlashSaleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1CB62276341B6008D71DF /* SFNetworkFlashSaleModule.m */; };
@@ -1085,6 +1087,10 @@
 		1BB145EC27D4DE270010C0DC /* sendToEmailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sendToEmailView.h; sourceTree = "<group>"; };
 		1BB145ED27D4DE270010C0DC /* sendToEmailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sendToEmailView.m; sourceTree = "<group>"; };
 		1BB145EF27D4DE3D0010C0DC /* sendToEmailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = sendToEmailView.xib; sourceTree = "<group>"; };
+		1BB145F527D8ED4C0010C0DC /* DistributeProductListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeProductListVC.h; sourceTree = "<group>"; };
+		1BB145F627D8ED4C0010C0DC /* DistributeProductListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeProductListVC.m; sourceTree = "<group>"; };
+		1BB145F827D8EF1C0010C0DC /* DistributeProductListChildVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeProductListChildVC.h; sourceTree = "<group>"; };
+		1BB145F927D8EF1D0010C0DC /* DistributeProductListChildVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeProductListChildVC.m; sourceTree = "<group>"; };
 		1BB1CB5C2763415C008D71DF /* FlashSaleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashSaleViewController.h; sourceTree = "<group>"; };
 		1BB1CB5D2763415C008D71DF /* FlashSaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashSaleViewController.m; sourceTree = "<group>"; };
 		1BB1CB5E2763415C008D71DF /* FlashSaleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashSaleViewController.xib; sourceTree = "<group>"; };
@@ -2115,6 +2121,10 @@
 				1BD8E797275CF69C00130DCC /* RelationOrderDetailViewController.h */,
 				1BD8E795275CF69C00130DCC /* RelationOrderDetailViewController.m */,
 				1BD8E796275CF69C00130DCC /* RelationOrderDetailViewController.xib */,
+				1BB145F527D8ED4C0010C0DC /* DistributeProductListVC.h */,
+				1BB145F627D8ED4C0010C0DC /* DistributeProductListVC.m */,
+				1BB145F827D8EF1C0010C0DC /* DistributeProductListChildVC.h */,
+				1BB145F927D8EF1D0010C0DC /* DistributeProductListChildVC.m */,
 			);
 			path = DistributeCenter;
 			sourceTree = "<group>";
@@ -3940,6 +3950,7 @@
 				AE81BE4926FF61A300AB4225 /* CategoryModel.m in Sources */,
 				1B43A409279D91D900E7E786 /* AddReviewItemCell.m in Sources */,
 				1B6C529C275B672200A1C617 /* NSBundle+ZLPhotoBrowser.m in Sources */,
+				1BB145F727D8ED4D0010C0DC /* DistributeProductListVC.m in Sources */,
 				1BD8E79D275D005900130DCC /* AccountActiveCell.m in Sources */,
 				1B74DB0927243F0A00B30ECC /* OrderViewController.m in Sources */,
 				8E1EC535279B0C4500CE0088 /* UIButton+FFImagePosition.m in Sources */,
@@ -4141,6 +4152,7 @@
 				AEEB51D4279B38D6001BF789 /* CollectionHeaderEmptyView.m in Sources */,
 				AEEC0BB227883D090071F059 /* DeliveryCell.m in Sources */,
 				1BD8E7B8275F130F00130DCC /* RefundDetailTitleCell.m in Sources */,
+				1BB145FA27D8EF1D0010C0DC /* DistributeProductListChildVC.m in Sources */,
 				AECD632527B4B8E0007A2E62 /* File.swift in Sources */,
 				1B05B2A2278DD9A0000F20A9 /* SysParamsModel.m in Sources */,
 				1BD8E7A3275D12CF00130DCC /* ReviewDetailInfoCell.m in Sources */,

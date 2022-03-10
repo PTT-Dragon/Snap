@@ -13,6 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIView *settledView;
 @property (weak, nonatomic) IBOutlet UILabel *pendingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *settledLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pendingTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *settledTitleLabel;
 
 @end
 
@@ -25,6 +28,9 @@
     [_pendingView addGestureRecognizer:pendingTap];
     UITapGestureRecognizer *settledTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(settledAction)];
     [_settledView addGestureRecognizer:settledTap];
+    _titleLabel.text = kLocalizedString(@"RELATION_ORDER");
+    _pendingTitleLabel.text = kLocalizedString(@"PENDING");
+    _settledTitleLabel.text = kLocalizedString(@"SETTLED");
 }
 - (void)setModel:(DistributorModel *)model
 {

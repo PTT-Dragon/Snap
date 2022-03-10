@@ -200,10 +200,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMN-7b-1jX">
-                    <rect key="frame" x="44" y="770" width="326" height="48"/>
+                    <rect key="frame" x="44" y="772" width="326" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="ETl-Wr-huI"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Facebook" image="facebook">
+                    <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Facebook" image="路径 148042">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                     </state>
                     <connections>
@@ -211,7 +214,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or login in with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-3h-Q58">
-                    <rect key="frame" x="160.5" y="724" width="93" height="15"/>
+                    <rect key="frame" x="160.5" y="726" width="93" height="15"/>
                     <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                     <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -272,10 +275,10 @@
         <image name="email-1" width="20" height="16"/>
         <image name="email-2" width="20" height="16"/>
         <image name="eye-open-0" width="200" height="200"/>
-        <image name="facebook" width="48" height="48"/>
         <image name="hide-0" width="200" height="200"/>
         <image name="pad-1" width="24" height="24"/>
         <image name="pad-2" width="24" height="24"/>
+        <image name="路径 148042" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

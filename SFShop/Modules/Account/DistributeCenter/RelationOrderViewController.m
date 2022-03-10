@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = kLocalizedString(@"Relation_Order");
-    self.menuList = @[@"Pending", @"Settled"];
+    self.menuList = @[kLocalizedString(@"PENDING"), kLocalizedString(@"SETTLED")];
     
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, self.view.jk_height);
     self.magicView.navigationColor = [UIColor whiteColor];

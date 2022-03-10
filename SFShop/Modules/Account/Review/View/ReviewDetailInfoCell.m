@@ -42,7 +42,11 @@
     [_productImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(evaModel.product.imgUrl)]];
     _productNameLabel.text = evaModel.product.productName;
     NSDictionary *dic = [evaModel.product.productRemark jk_dictionaryValue];
-    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",dic.allValues.firstObject];
+    NSString *sku = @"";
+    for (NSString *key in dic.allKeys) {
+        sku = [sku stringByAppendingFormat:@"%@ ",dic[key]];
+    }
+    _skuLabel.text = [NSString stringWithFormat:@"  %@  ",sku];
     _userNameLabel.text = evaModel.user.nickName;
     [_userAvatarImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(evaModel.user.photo)]];
     _scoreLabel.text = [NSString stringWithFormat:@"%.1f",[evaModel.rate floatValue]];;

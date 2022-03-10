@@ -20,6 +20,7 @@
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
 @property (nonatomic,assign) NSInteger pageIndex;
+@property (nonatomic,assign) NSInteger totalCount;
 
 @end
 
@@ -100,6 +101,7 @@
     }];
     [SFNetworkManager get:SFNet.invite.activityInvRecord parameters:@{@"pageIndex":@(_pageIndex)} success:^(id  _Nullable response) {
         NSArray *arr = response[@"list"];
+        self.totalCount = [response[@"total"] integerValue];
         if (!kArrayIsEmpty(arr)) {
             for (NSDictionary *dic in arr) {
                 [weakself.dataSource addObject:[[InviteModel alloc] initWithDictionary:dic error:nil]];
@@ -142,6 +144,7 @@
     if (indexPath.row == 0) {
         InviteTopCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteTopCell"];
         [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(self.imgUrl)]];
+        cell.totalCount = self.totalCount;
         return cell;
     }
     InviteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteCell"];

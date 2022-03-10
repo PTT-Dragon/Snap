@@ -12,6 +12,7 @@
 #import "IncomeAndExpenseViewController.h"
 #import "PublicAlertView.h"
 #import "CaseOutDetailViewController.h"
+#import "NSString+Fee.h"
 
 @interface CommissionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
@@ -22,6 +23,9 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) DistributorCommissionModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *inReviewTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cashedTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *balanceTitleLabel;
 
 @end
 
@@ -32,7 +36,10 @@
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Commission");
     _dataSource = [NSMutableArray array];
-    [_dataSource addObjectsFromArray:@[@{@"image":@"00326： My Wallet ／ Wallet",@"title":@"Cash Out"},@{@"image":@"00327： Piggy Bank ／ Savings",@"title":@"Income & Expense"},@{@"image":@"00348_ Cash Out History",@"title":@"Cash Out History"}]];
+    [_dataSource addObjectsFromArray:@[@{@"image":@"00326： My Wallet ／ Wallet",@"title":kLocalizedString(@"CASH_OUT")},@{@"image":@"00327： Piggy Bank ／ Savings",@"title":kLocalizedString(@"INCOME_EXPENSE")},@{@"image":@"00348_ Cash Out History",@"title":kLocalizedString(@"CASH_OUT_HISTORY")}]];
+    _balanceTitleLabel.text = kLocalizedString(@"BALANCE");
+    _inReviewTitleLabel.text = kLocalizedString(@"IN_REVIEW");
+    _cashedTitleLabel.text = kLocalizedString(@"CASHED");
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
     self.tableView.delegate = self;
@@ -56,9 +63,9 @@
 }
 - (void)updateDatas
 {
-    _balanceLabel.text = [NSString stringWithFormat:@"RP %@",self.model.balanceCommission];
-    _inReviewLabel.text = self.model.lockedCommission;
-    _cashLabel.text = self.model.withdrawnCommission;
+    _balanceLabel.text = [self.model.balanceCommission currency];
+    _inReviewLabel.text = [self.model.lockedCommission currency];
+    _cashLabel.text = [self.model.withdrawnCommission currency];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -87,7 +94,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 0){
         if (self.model.balanceCommission.doubleValue < 10) {
-            PublicAlertView *alertView = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:@"The balance is insufficient to be cashed out.The minimum cash withdrawal is ¥10.00" btnTitle:@"OK" block:^{
+            PublicAlertView *alertView = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:[NSString stringWithFormat:@"%@ %@",kLocalizedString(@"MIN_CASH_OUT"),[@"" minWithdraw]] btnTitle:@"OK" block:^{
                 
             }];
             [self.view addSubview:alertView];

@@ -134,6 +134,7 @@ width = 1;
 @property (nonatomic,copy) NSString *storeLogoUrl;
 @property (nonatomic,copy) NSString *storeName;
 @property (nonatomic,copy) NSString *updateDate;
+- (NSString *)getStateStr;
 /**
  {
  = "2021-10-26 15:29:32";

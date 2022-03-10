@@ -7,12 +7,13 @@
 
 #import <UIKit/UIKit.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol DistribitorRankTopCellDelegate <NSObject>
 
 - (void)selProductListType:(NSInteger)type;
-
+- (void)toPRoductList;
 @end
 
 @interface DistribitorRankTopCell : UITableViewCell

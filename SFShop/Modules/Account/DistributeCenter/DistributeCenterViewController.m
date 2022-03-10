@@ -12,6 +12,7 @@
 #import "DistributorRelationOrderCell.h"
 #import "DistributorModel.h"
 #import "ProductViewController.h"
+#import "DistributeProductListVC.h"
 
 @interface DistributeCenterViewController ()<UITableViewDelegate,UITableViewDataSource,DistribitorRankTopCellDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -46,41 +47,44 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4+self.dataSource.count;
-}
+    return 3+self.dataSource.count;
+} 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
         DistributorInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistributorInfoCell"];
-        [cell setContent:self.model.kolDayMonthSale type:1];
-        return cell;
-    }else if (indexPath.row == 1){
-        DistributorInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistributorInfoCell"];
         [cell setContent:self.model.distributionSettlementDto type:2];
         return cell;
-    }else if (indexPath.row == 2){
+    }
+//    else if (indexPath.row == 1){
+//        DistributorInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistributorInfoCell"];
+//        [cell setContent:self.model.distributionSettlementDto type:2];
+//        return cell;
+//    }
+    else if (indexPath.row == 1){
         DistributorRelationOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistributorRelationOrderCell"];
         cell.model = self.model;
         return cell;
-    }else if (indexPath.row == 3){
+    }else if (indexPath.row == 2){
         DistribitorRankTopCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistribitorRankTopCell"];
         cell.delegate = self;
         return cell;
     }
     DistributorRankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DistributorRankCell"];
-    cell.model = self.dataSource[indexPath.row-4];
-    cell.rank = indexPath.row-3;
+    cell.model = self.dataSource[indexPath.row-3];
+    cell.rank = indexPath.row-2;
+    cell.centerModel = self.model;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
+        return 155;
+    }else if (indexPath.row == 10000){
         return 193;
     }else if (indexPath.row == 1){
-        return 193;
-    }else if (indexPath.row == 2){
         return 157;
-    }else if (indexPath.row == 3){
+    }else if (indexPath.row == 2){
         return 128;
     }
     return 106;
@@ -88,13 +92,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row > 3) {
-        DistributorRankProductModel *model = self.dataSource[indexPath.row-4];
+    if (indexPath.row > 2) {
+        DistributorRankProductModel *model = self.dataSource[indexPath.row-3];
         ProductViewController *vc = [[ProductViewController alloc] init];
         vc.offerId = model.offerId.integerValue;
         vc.productId = model.productId.integerValue;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+- (void)toPRoductList
+{
+    DistributeProductListVC *vc = [[DistributeProductListVC alloc] init];
+    [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - request

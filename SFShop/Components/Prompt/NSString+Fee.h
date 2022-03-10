@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 筛选等反向放大金额
 - (CGFloat)multiplyCurrencyFloat;
 
+/// 最小提现金额
+- (NSString *)minWithdraw;
+
 /// 手机号是否通过校验
 - (BOOL)validatePhoneNumber;
 

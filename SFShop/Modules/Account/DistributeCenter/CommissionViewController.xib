@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommissionViewController">
             <connections>
                 <outlet property="balanceLabel" destination="xCc-M7-AgD" id="iWQ-so-DuN"/>
+                <outlet property="balanceTitleLabel" destination="jVg-AI-ANx" id="bv8-Rp-iwa"/>
                 <outlet property="bgView" destination="jfb-7x-HlQ" id="DgY-9m-wn6"/>
                 <outlet property="bottomView" destination="l9F-XC-3Ok" id="5lC-XD-sv4"/>
                 <outlet property="cashLabel" destination="kLc-9b-M7i" id="Qmn-oc-aJ1"/>
+                <outlet property="cashedTitleLabel" destination="SKx-0d-151" id="4QA-fJ-PHg"/>
                 <outlet property="inReviewLabel" destination="coy-Pe-MLu" id="azJ-CE-Tp4"/>
+                <outlet property="inReviewTitleLabel" destination="Dwz-gI-5Rl" id="HbH-LC-CCV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,13 +36,13 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="193"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCc-M7-AgD">
-                            <rect key="frame" x="182" y="69" width="50" height="24"/>
-                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="20"/>
+                            <rect key="frame" x="180" y="69" width="54" height="24"/>
+                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVg-AI-ANx">
-                            <rect key="frame" x="178" y="97" width="58" height="20"/>
+                            <rect key="frame" x="175.5" y="97" width="63.5" height="20"/>
                             <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -56,14 +64,14 @@
                             <rect key="frame" x="0.0" y="2" width="191" height="89"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coy-Pe-MLu">
-                                    <rect key="frame" x="89" y="20" width="13" height="24"/>
-                                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="20"/>
+                                    <rect key="frame" x="88.5" y="20" width="14" height="24"/>
+                                    <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwz-gI-5Rl">
-                                    <rect key="frame" x="59.5" y="52" width="72.5" height="21"/>
-                                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Review" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwz-gI-5Rl">
+                                    <rect key="frame" x="10" y="52" width="171" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -73,6 +81,7 @@
                                 <constraint firstItem="Dwz-gI-5Rl" firstAttribute="centerX" secondItem="erK-Ph-N88" secondAttribute="centerX" id="Hfm-Cl-RK7"/>
                                 <constraint firstItem="coy-Pe-MLu" firstAttribute="centerX" secondItem="erK-Ph-N88" secondAttribute="centerX" id="OEs-Ig-vCn"/>
                                 <constraint firstItem="Dwz-gI-5Rl" firstAttribute="top" secondItem="coy-Pe-MLu" secondAttribute="bottom" constant="8" id="PaL-MU-exT"/>
+                                <constraint firstItem="Dwz-gI-5Rl" firstAttribute="leading" secondItem="erK-Ph-N88" secondAttribute="leading" constant="10" id="TSt-HE-4an"/>
                                 <constraint firstItem="coy-Pe-MLu" firstAttribute="top" secondItem="erK-Ph-N88" secondAttribute="top" constant="20" id="YDd-OR-hJF"/>
                             </constraints>
                         </view>
@@ -80,14 +89,14 @@
                             <rect key="frame" x="191" y="2" width="191" height="89"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLc-9b-M7i">
-                                    <rect key="frame" x="89" y="20" width="13" height="24"/>
-                                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="20"/>
+                                    <rect key="frame" x="88.5" y="20" width="14" height="24"/>
+                                    <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cashed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKx-0d-151">
-                                    <rect key="frame" x="66.5" y="52" width="58.5" height="21"/>
-                                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cashed" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKx-0d-151">
+                                    <rect key="frame" x="10" y="52" width="171" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -97,6 +106,7 @@
                                 <constraint firstItem="SKx-0d-151" firstAttribute="centerX" secondItem="l9F-XC-3Ok" secondAttribute="centerX" id="3eH-Tv-DHd"/>
                                 <constraint firstItem="SKx-0d-151" firstAttribute="top" secondItem="kLc-9b-M7i" secondAttribute="bottom" constant="8" id="8LV-4c-7et"/>
                                 <constraint firstItem="kLc-9b-M7i" firstAttribute="top" secondItem="l9F-XC-3Ok" secondAttribute="top" constant="20" id="c7y-kJ-M5O"/>
+                                <constraint firstItem="SKx-0d-151" firstAttribute="leading" secondItem="l9F-XC-3Ok" secondAttribute="leading" constant="10" id="jWI-mh-2Qe"/>
                                 <constraint firstItem="kLc-9b-M7i" firstAttribute="centerX" secondItem="l9F-XC-3Ok" secondAttribute="centerX" id="zTl-sk-eJz"/>
                             </constraints>
                         </view>

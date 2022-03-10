@@ -20,8 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = kLocalizedString(@"Income_Expense");
-    self.menuList = @[@"All", @"Income", @"Expense"];
+    self.title = kLocalizedString(@"INCOME_EXPENSE");
+    self.menuList = @[kLocalizedString(@"ALL"), kLocalizedString(@"INCOME"), kLocalizedString(@"EXPENSE")];
     
     self.magicView.frame = CGRectMake(0, 0, MainScreen_width, self.view.jk_height);
     self.magicView.navigationColor = [UIColor whiteColor];

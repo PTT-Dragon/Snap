@@ -7,6 +7,8 @@
 
 #import "RelationOrderCell.h"
 #import "ImageCollectionViewCell.h"
+#import "NSDate+Helper.h"
+#import "NSString+Fee.h"
 
 @interface RelationOrderCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -19,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *spLabel;
 
 @end
 
@@ -32,17 +35,20 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
+    _spLabel.layer.borderWidth = 2;
 }
 - (void)setModel:(RelationOrderListModel *)model
 {
     _model = model;
-    [_storeIconImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)]];
+    _spLabel.text = [model.settState isEqualToString:@"Settled"] ? @"S": @"P";
+    _spLabel.layer.borderColor = [model.settState isEqualToString:@"Settled"] ? RGBColorFrom16(0xff1659).CGColor: RGBColorFrom16(0xff1659).CGColor;
+    [_storeIconImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.storeLogoUrl)] placeholderImage:[UIImage imageNamed:@"toko"]];
     _storeNameLabel.text = model.storeName;
     _nameLabel.text = model.distributorName;
-    _timeLabel.text = model.orderDate;
-    _amountLabel.text = [NSString stringWithFormat:@"RP%@",model.orderPrice];
-    _totalLabel.text = [NSString stringWithFormat:@"RP%@",model.kolCommission];
-    
+    _timeLabel.text = [[NSDate dateFromString:model.orderDate] dayMonthYearHHMM];
+    _amountLabel.text = [model.orderPrice currency];
+    _totalLabel.text = [model.kolCommission currency];
+    _stateLabel.text = [model getStateStr];
 }
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

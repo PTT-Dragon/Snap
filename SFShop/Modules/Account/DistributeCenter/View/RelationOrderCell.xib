@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -30,12 +35,12 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0k-y1-kp0">
                                 <rect key="frame" x="56" y="21" width="32.5" height="14.5"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="semibold" pointSize="12"/>
+                                <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTr-l7-W4b">
-                                <rect key="frame" x="296" y="20.5" width="31" height="15"/>
+                                <rect key="frame" x="294.5" y="20.5" width="32.5" height="15"/>
                                 <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -50,10 +55,10 @@
                                     <size key="itemSize" width="64" height="64"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-YT-ga2">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-YT-ga2">
                                 <rect key="frame" x="303" y="80" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="4Kt-Oi-Pn6"/>
@@ -72,30 +77,40 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72k-Jy-6hX">
-                                <rect key="frame" x="20" y="153" width="31.5" height="14.5"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="12"/>
+                                <rect key="frame" x="20" y="153" width="32.5" height="14.5"/>
+                                <fontDescription key="fontDescription" weight="medium" name="TruenoRg" family="Trueno" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBb-Zn-Tmf">
-                                <rect key="frame" x="295.5" y="153" width="31.5" height="14.5"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" weight="medium" pointSize="12"/>
+                                <rect key="frame" x="294.5" y="153" width="32.5" height="14.5"/>
+                                <fontDescription key="fontDescription" weight="medium" name="TruenoRg" family="Trueno" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="00200： Currency ／ Rupiah Note" translatesAutoresizingMaskIntoConstraints="NO" id="5rp-NZ-ADj">
-                                <rect key="frame" x="283" y="171.5" width="14.5" height="11"/>
+                                <rect key="frame" x="281" y="169" width="16" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtA-eK-LkC">
-                                <rect key="frame" x="301.5" y="171" width="26.5" height="12"/>
+                                <rect key="frame" x="301" y="171" width="27" height="12"/>
                                 <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="10"/>
                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmH-hA-The">
-                                <rect key="frame" x="20" y="171" width="26.5" height="12"/>
+                                <rect key="frame" x="20" y="171" width="27" height="12"/>
                                 <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="10"/>
                                 <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmi-yA-2ta">
+                                <rect key="frame" x="273.5" y="20" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="5hm-iL-j7i"/>
+                                    <constraint firstAttribute="height" constant="16" id="fam-07-9F0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                <color key="textColor" red="1" green="0.086274509799999996" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -109,6 +124,7 @@
                             <constraint firstAttribute="trailing" secondItem="UWd-jU-IQq" secondAttribute="trailing" constant="17" id="CWh-6P-qiT"/>
                             <constraint firstItem="CmH-hA-The" firstAttribute="leading" secondItem="72k-Jy-6hX" secondAttribute="leading" id="Ho4-Rs-JSk"/>
                             <constraint firstAttribute="bottom" secondItem="YtA-eK-LkC" secondAttribute="bottom" constant="15" id="IXh-ni-wfb"/>
+                            <constraint firstItem="vTr-l7-W4b" firstAttribute="leading" secondItem="vmi-yA-2ta" secondAttribute="trailing" constant="5" id="KKj-PM-bYq"/>
                             <constraint firstAttribute="trailing" secondItem="YtA-eK-LkC" secondAttribute="trailing" constant="15" id="MLe-91-lqh"/>
                             <constraint firstItem="5cd-SB-tH5" firstAttribute="top" secondItem="uJQ-MX-SFO" secondAttribute="top" constant="12" id="PHf-n0-cPN"/>
                             <constraint firstItem="fBb-Zn-Tmf" firstAttribute="centerY" secondItem="72k-Jy-6hX" secondAttribute="centerY" id="PXo-wI-RjR"/>
@@ -122,6 +138,7 @@
                             <constraint firstItem="UWd-jU-IQq" firstAttribute="leading" secondItem="uJQ-MX-SFO" secondAttribute="leading" constant="17" id="hcF-rY-Gxe"/>
                             <constraint firstItem="m0k-y1-kp0" firstAttribute="leading" secondItem="5cd-SB-tH5" secondAttribute="trailing" constant="8" id="i7V-wV-ASg"/>
                             <constraint firstItem="UWd-jU-IQq" firstAttribute="top" secondItem="MW5-M4-TSV" secondAttribute="bottom" constant="14" id="iBd-N8-rbr"/>
+                            <constraint firstItem="vmi-yA-2ta" firstAttribute="centerY" secondItem="vTr-l7-W4b" secondAttribute="centerY" id="ieV-5X-XvO"/>
                             <constraint firstItem="5rp-NZ-ADj" firstAttribute="centerY" secondItem="YtA-eK-LkC" secondAttribute="centerY" id="qXH-xv-4qH"/>
                             <constraint firstAttribute="trailing" secondItem="vTr-l7-W4b" secondAttribute="trailing" constant="16" id="uQX-IA-CGE"/>
                             <constraint firstItem="vTr-l7-W4b" firstAttribute="centerY" secondItem="5cd-SB-tH5" secondAttribute="centerY" id="wvO-lF-qoO"/>
@@ -142,7 +159,8 @@
                 <outlet property="collectionView" destination="MW5-M4-TSV" id="umj-dH-4ZC"/>
                 <outlet property="moreBtn" destination="Ibd-YT-ga2" id="ucn-g1-5iT"/>
                 <outlet property="nameLabel" destination="72k-Jy-6hX" id="twF-K8-XiI"/>
-                <outlet property="stateLabel" destination="vTr-l7-W4b" id="9ZZ-8S-WHN"/>
+                <outlet property="spLabel" destination="vmi-yA-2ta" id="lrY-L4-tLe"/>
+                <outlet property="stateLabel" destination="vTr-l7-W4b" id="sOJ-RA-QCD"/>
                 <outlet property="storeIconImgView" destination="5cd-SB-tH5" id="oEu-va-Yi2"/>
                 <outlet property="storeNameLabel" destination="m0k-y1-kp0" id="P8j-g6-MBh"/>
                 <outlet property="timeLabel" destination="CmH-hA-The" id="Asp-t2-cg5"/>
@@ -152,7 +170,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="00200： Currency ／ Rupiah Note" width="14.5" height="11"/>
+        <image name="00200： Currency ／ Rupiah Note" width="16" height="16"/>
         <image name="more-horizontal" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

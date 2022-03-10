@@ -21,6 +21,8 @@ singleton_interface(SysParamsItemModel)
 @property (nonatomic,copy) NSString <Optional>*CURRENCY_DISPLAY;
 @property (nonatomic,copy) NSString <Optional>*CURRENCY_PRECISION;
 @property (nonatomic,copy) NSString <Optional>*CODE_TTL;
+@property (nonatomic,copy) NSString <Optional>*MINIMUM_DAILY_WITHDRAWAL;
+
 
 @end
 

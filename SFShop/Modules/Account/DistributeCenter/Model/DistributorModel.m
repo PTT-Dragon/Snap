@@ -46,7 +46,10 @@
 
 @implementation RelationOrderListModel
 
-
+- (NSString *)getStateStr
+{
+    return [_orderState isEqualToString:@"B"] ? kLocalizedString(@"TO_SHIP"): ([_orderState isEqualToString:@"F"] || [_orderState isEqualToString:@"G"]) ? kLocalizedString(@"TO_SHIP"): [_orderState isEqualToString:@"C"] ? kLocalizedString(@"TORECEIVE"): [_orderState isEqualToString:@"E"] ? kLocalizedString(@"CANCELLED"): [_orderState isEqualToString:@"D"] ? kLocalizedString(@"SUCCESSFUL"): kLocalizedString(@"TO_PAY");
+}
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return YES;
 }

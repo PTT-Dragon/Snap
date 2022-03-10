@@ -9,11 +9,13 @@
 #import "IncomeAndExpenseCell.h"
 #import <MJRefresh/MJRefresh.h>
 #import "DistributorModel.h"
+#import "EmptyView.h"
 
 @interface IncomeAndExpenseChildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic, readwrite, assign) NSInteger currentPage;
+@property (nonatomic, strong) EmptyView *emptyView;
 
 @end
 
@@ -31,7 +33,7 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-16);
         make.top.bottom.mas_equalTo(self.view);
     }];
-    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self loadDatas];
     }];
     self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
@@ -47,6 +49,11 @@
         [weakself.dataSource removeAllObjects];
         [weakself.dataSource addObjectsFromArray:[IncomeOrWithdrawListModel arrayOfModelsFromDictionaries:response[@"list"] error:nil]];
         [weakself.tableView.mj_header endRefreshing];
+        NSInteger pageNum = [response[@"pageNum"] integerValue];
+        NSInteger pages = [response[@"pages"] integerValue];
+        if (pageNum >= pages) {
+            [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         [weakself.tableView.mj_header endRefreshing];
