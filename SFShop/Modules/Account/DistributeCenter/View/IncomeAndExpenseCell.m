@@ -29,9 +29,9 @@
 - (void)setModel:(IncomeOrWithdrawListModel *)model
 {
     _model = model;
-    _nameLabel.text = model.commissionOperType;
+    _nameLabel.text = [model.commissionOperType isEqualToString:@"Commission"] ? kLocalizedString(@"INCOME"): kLocalizedString(@"EXPENSE");
     _timeLabel.text = [[NSDate dateFromString:model.createdDate] dayMonthYearHHMM];
-    _amountLabel.text = [model.charge currency];
+    _amountLabel.text = [model.commissionOperType isEqualToString:@"Commission"] ? [NSString stringWithFormat:@"+%@",[model.charge currency]]: [NSString stringWithFormat:@"-%@",[model.charge currency]];
     _infoLabel.text = [NSString stringWithFormat:@"%@:\n%@",kLocalizedString(@"RELATION"),model.relaSn];
     
 }
