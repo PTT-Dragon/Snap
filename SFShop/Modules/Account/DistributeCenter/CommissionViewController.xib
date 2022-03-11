@@ -40,13 +40,13 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCc-M7-AgD">
                             <rect key="frame" x="180" y="69" width="54" height="24"/>
-                            <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="20"/>
+                            <fontDescription key="fontDescription" weight="semibold" name="TruenoBd" family="Trueno" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVg-AI-ANx">
                             <rect key="frame" x="175.5" y="97" width="63.5" height="20"/>
-                            <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>

@@ -25,7 +25,7 @@
     [super awakeFromNib];
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [self.shareBtn setTitle:[NSString stringWithFormat:@"  %@  ",kLocalizedString(@"Share")] forState:0];
+    [self.shareBtn setTitle:[NSString stringWithFormat:@"  %@  ",kLocalizedString(@"Share_to")] forState:0];
 }
 - (void)setModel:(DistributorRankProductModel *)model
 {

@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="TruenoBd.otf">
+            <string>TruenoBd</string>
+        </array>
         <array key="TruenoRg.otf">
             <string>TruenoRg</string>
         </array>
@@ -45,7 +48,7 @@
                                     <constraint firstAttribute="width" constant="80" id="ASZ-gn-50x"/>
                                     <constraint firstAttribute="height" constant="20" id="cZl-KK-Eo8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="12"/>
                                 <state key="normal" title="Detail" image="Path 174">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -53,15 +56,15 @@
                                     <action selector="detailAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FAG-2W-dct"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXK-yQ-dzA">
-                                <rect key="frame" x="20" y="72" width="38" height="17"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXK-yQ-dzA">
+                                <rect key="frame" x="20" y="72" width="43" height="17"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQq-WO-ysc">
                                 <rect key="frame" x="20" y="106" width="38" height="17"/>
-                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

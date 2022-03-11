@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    self.view.backgroundColor = RGBColorFrom16(0xffffff);
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"DistributorRankCell" bundle:nil] forCellReuseIdentifier:@"DistributorRankCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,6 +57,8 @@
     cell.model = self.dataSource[indexPath.section];
     cell.rank = 10000;
     cell.centerModel = self.centerModel;
+    cell.contentView.layer.borderColor = RGBColorFrom16(0xdddddd).CGColor;
+    cell.contentView.layer.borderWidth = 1;
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -81,7 +83,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, 10)];
-    view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    view.backgroundColor = RGBColorFrom16(0xffffff);
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -159,7 +161,7 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        _tableView.backgroundColor = RGBColorFrom16(0xf5f5f5);
+        _tableView.backgroundColor = RGBColorFrom16(0xffffff);
         if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
@@ -175,7 +177,7 @@
 - (EmptyView *)emptyView {
     if (!_emptyView) {
         _emptyView = [[EmptyView alloc] init];
-        [_emptyView configDataWithEmptyType:EmptyViewNoOrderType];
+        [_emptyView configDataWithEmptyType:EmptyViewNoCouponType];
         _emptyView.hidden = YES;
     }
     return _emptyView;

@@ -93,8 +93,17 @@
         IncomeAndExpenseViewController *vc = [[IncomeAndExpenseViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 0){
-        if (self.model.balanceCommission.doubleValue < 10) {
-            PublicAlertView *alertView = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:[NSString stringWithFormat:@"%@ %@",kLocalizedString(@"MIN_CASH_OUT"),[@"" minWithdraw]] btnTitle:@"OK" block:^{
+        NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
+        float minWithdraw = SysParamsItemModel.sharedSysParamsItemModel.MINIMUM_DAILY_WITHDRAWAL.floatValue / pow(10, precision);
+        if (self.model.balanceCommission.doubleValue < minWithdraw) {
+            NSString *title = @"";
+            NSString *launage = UserDefaultObjectForKey(@"Language");
+            if ([launage isEqualToString:@"id"]) {
+                title = [NSString stringWithFormat:@"Saldo tidak cukup untuk ditarik.\nPenarikan saldo minimum sebesar"];
+            }else{
+                title = [NSString stringWithFormat:@"The balance is insufficient to be withdrawn.\nThe minimum cash withdrawal is "];
+            }
+            PublicAlertView *alertView = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:[NSString stringWithFormat:@"%@\n %@",title,[@"" minWithdraw]] btnTitle:@"OK" block:^{
                 
             }];
             [self.view addSubview:alertView];
@@ -110,8 +119,8 @@
     _bgView.layer.masksToBounds = NO;//默认值为NO。不能设置为YES，否则阴影无法出现。
     _bgView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor;
     _bgView.layer.shadowOpacity = 0.5;//阴影透明度，默认0
-    _bgView.layer.shadowRadius = 4;//阴影圆角
-    _bgView.layer.shadowOffset = CGSizeMake(5, 0);    //阴影偏移量。有值是向下向右偏移。
+    _bgView.layer.shadowRadius = 2;//阴影圆角
+    _bgView.layer.shadowOffset = CGSizeMake(0, 0);    //阴影偏移量。有值是向下向右偏移。
     
     
     /*
