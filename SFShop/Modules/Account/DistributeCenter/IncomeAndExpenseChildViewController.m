@@ -53,6 +53,8 @@
         NSInteger pages = [response[@"pages"] integerValue];
         if (pageNum >= pages) {
             [weakself.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakself.tableView.mj_footer endRefreshing];
         }
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
@@ -95,10 +97,22 @@
 {
     return 84;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.01;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [UIView new];
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
+}
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStyleGrouped];
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
