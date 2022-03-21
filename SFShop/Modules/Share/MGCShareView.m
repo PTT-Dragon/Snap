@@ -11,6 +11,7 @@
 #import "UIView+YYAdd.h"
 #import "UIViewController+parentViewController.h"
 #import "UIWindow+FFWindow.h"
+#import <Social/Social.h>
 
 @interface MGCShareView () <UICollectionViewDelegate,UICollectionViewDataSource>
 //分享按钮
@@ -87,7 +88,6 @@
     [self.bgView addSubview:self.titleLabel];
     [self.bgView addSubview:self.lineView];
     [self.bgView addSubview:self.shareCollectionView];
-//    [self.bgView addSubview:self.cancelBtn];
 }
 
 
@@ -101,20 +101,31 @@
 //默认分享配置方法
 - (void)prepareDefaultShareItem {
     [self.shareItemsArr removeAllObjects];
+    
     MGCShareItemModel *faceBookModel = [[MGCShareItemModel alloc] init];
     faceBookModel.itemName = @"FaceBook";
     faceBookModel.itemType = MGCShareFacebookType;
     faceBookModel.itemImage = @"00262_ Facebook Fill";
+    [self.shareItemsArr addObject:faceBookModel];
+
     
-    MGCShareItemModel *whatsAppModel = [[MGCShareItemModel alloc] init];
-    whatsAppModel.itemName = @"WhatsApp";
-    whatsAppModel.itemType = MGCShareWhatsAppType;
-    whatsAppModel.itemImage = @"00266_ Wx Fill";
+    NSString *url = [NSString stringWithFormat:@"whatsapp://"];
+    NSURL *whatsappURL = [NSURL URLWithString: url];
+    if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
+        MGCShareItemModel *whatsAppModel = [[MGCShareItemModel alloc] init];
+        whatsAppModel.itemName = @"WhatsApp";
+        whatsAppModel.itemType = MGCShareWhatsAppType;
+        whatsAppModel.itemImage = @"00266_ Wx Fill";
+        [self.shareItemsArr addObject:whatsAppModel];
+    }
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        MGCShareItemModel *twitterModel = [[MGCShareItemModel alloc] init];
+        twitterModel.itemName = @"Twitter";
+        twitterModel.itemType = MGCShareTwitterType;
+        twitterModel.itemImage = @"00263_ Twitter Fill";
+        [self.shareItemsArr addObject:twitterModel];
+    }
     
-    MGCShareItemModel *twitterModel = [[MGCShareItemModel alloc] init];
-    twitterModel.itemName = @"Twitter";
-    twitterModel.itemType = MGCShareTwitterType;
-    twitterModel.itemImage = @"00263_ Twitter Fill";
     
     
     MGCShareItemModel *copyModel = [[MGCShareItemModel alloc] init];
@@ -122,9 +133,6 @@
     copyModel.itemType = MGCShareCopyLinkType;
     copyModel.itemImage = @"00103_ Connect Fill";
     
-    [self.shareItemsArr addObject:faceBookModel];
-    [self.shareItemsArr addObject:twitterModel];
-    [self.shareItemsArr addObject:whatsAppModel];
     [self.shareItemsArr addObject:copyModel];
     
     [self.shareCollectionView reloadData];
