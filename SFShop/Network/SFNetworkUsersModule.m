@@ -189,6 +189,9 @@
 - (NSString *)detail {
     return K_evaluate_domain(@"detail");
 }
+- (NSString *)storeorder {
+    return K_evaluate_domain(@"storeorder");
+}
 - (NSString *)getEvaluateOf: (NSString *)evaluateId
 {
     NSString *url = [NSString stringWithFormat:@"evaluations/%@", evaluateId];

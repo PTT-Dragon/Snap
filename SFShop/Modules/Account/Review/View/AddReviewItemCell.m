@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (weak, nonatomic) IBOutlet UILabel *label3;
+@property (weak, nonatomic) IBOutlet UIView *labelsVIew;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelsViewHei;
 
 @end
 
@@ -70,7 +72,7 @@
 //    _starView.score = 5;
     _starView.canSel = YES;
 }
-- (void)setContent:(orderItemsModel *)orderModel row:(NSInteger)row imgArr:(NSMutableArray *)imgArr text:(NSString *)text rate:(NSString *)rate
+- (void)setContent:(orderItemsModel *)orderModel row:(NSInteger)row imgArr:(NSMutableArray *)imgArr text:(NSString *)text rate:(NSString *)rate evaModel:(EvaluatesModel *)evaModel
 {
     _orderModel = orderModel;
     _row = row;
@@ -85,6 +87,52 @@
     CGFloat itemHei = (MainScreen_width-32-60)/4;
     self.photoCollectionViewHei.constant = imgArr.count < 4 ? itemHei+5: imgArr.count < 8 ? 2*itemHei+10: 3* itemHei + 15;
     [self.photoCollectionView reloadData];
+    CGFloat lastRight = 16;
+    CGFloat btnY = 16;
+    for (UIView *subView in self.labelsVIew.subviews) {
+        if ([subView isKindOfClass:[UIButton class]]) {
+            [subView removeFromSuperview];
+        }
+    }
+    for (EvaLabelsModel *labesModel in evaModel.labels) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:labesModel.labelName forState:0];
+        btn.backgroundColor = RGBColorFrom16(0xefefef);
+        [btn setTitleColor:RGBColorFrom16(0x333333) forState:0];
+        btn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+        btn.tag = labesModel.labelId.integerValue;
+        btn.selected = labesModel.sel;
+        if (btn.selected) {
+            btn.backgroundColor = btn.selected ? RGBColorFrom16(0xFFE5EB): RGBColorFrom16(0xefefef);
+            btn.layer.borderWidth = btn.selected ? 1: 0;
+            [btn setTitleColor:btn.selected ? RGBColorFrom16(0xFF1659):RGBColorFrom16(0x333333)  forState:0];
+        }
+        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            btn.selected = !btn.selected;
+            btn.backgroundColor = btn.selected ? RGBColorFrom16(0xFFE5EB): RGBColorFrom16(0xefefef);
+            btn.layer.borderWidth = btn.selected ? 1: 0;
+            [btn setTitleColor:btn.selected ? RGBColorFrom16(0xFF1659):RGBColorFrom16(0x333333)  forState:0];
+            labesModel.sel = btn.selected;
+            if (self.tagBlock) {
+                self.tagBlock(evaModel, self.row);
+            }
+        }];
+        for (NSNumber *selId in evaModel.selLabelIds) {
+            if ([labesModel.labelId isEqualToString:selId.stringValue]) {
+                btn.selected = YES;
+                btn.backgroundColor = btn.selected ? RGBColorFrom16(0xFFE5EB): RGBColorFrom16(0xefefef);
+                btn.layer.borderWidth = btn.selected ? 1: 0;
+                [btn setTitleColor:btn.selected ? RGBColorFrom16(0xFF1659):RGBColorFrom16(0x333333)  forState:0];
+            }
+        }
+        btn.titleLabel.font = kFontLight(12);
+        CGFloat btnWidth = [btn.titleLabel.text calWidthWithLabel:btn.titleLabel] +20;
+        btn.frame = CGRectMake(lastRight, btnY,btnWidth, 33);
+        [self.labelsVIew addSubview:btn];
+        btnY = lastRight + btnWidth > MainScreen_width-32 ? btnY+43: btnY;
+        lastRight = lastRight + btnWidth > MainScreen_width-32 ? 16: lastRight + btnWidth + 10;
+    }
+    self.labelsViewHei.constant = btnY+33;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView

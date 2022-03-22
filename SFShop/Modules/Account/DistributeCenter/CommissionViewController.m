@@ -130,7 +130,7 @@
      设置为：(0,0)，四周都有阴影。
      */
     //阴影路径
-    _bgView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds cornerRadius:_bgView.layer.cornerRadius].CGPath;
+    _bgView.layer.shadowPath = (__bridge CGPathRef _Nullable)([UIBezierPath bezierPathWithRoundedRect:_bgView.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(2, 2)]);// [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds cornerRadius:_bgView.layer.cornerRadius].CGPath;
 }
 
 - (UITableView *)tableView

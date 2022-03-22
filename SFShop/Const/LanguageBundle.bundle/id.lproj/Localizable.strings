@@ -144,7 +144,7 @@
 //  "RETURN" = "Return";
   "CHANGE" = "UBAH";
   "BIND" = "DAFTARKAN";
-//  "BIND_EMAIL" = "Link e-mail";
+  "BIND_EMAIL" = "Daftarkan Email";
 //  "BIND_MOBILE" = "Link no. telephone";
   "EXCHANGE" = "Penukaran";
 //  "DELIVERY" = "Pengiriman";
@@ -422,7 +422,7 @@
 //  "COPIED_TO_CLIPBOARD" = "Disalin ke clipboard";
   "LOGIN_VIA_OPT" = "Masuk menggunakan OTP";
 //  "SMARTFREN_NUMBER" = "Nomor Smartfren";
-  "PHONE_NUMBER_EMAIL" = "Nomor Telepon / Email";
+  "PHONE_NUMBER_EMAIL" = "Nomor telepon/Email";
 "DONE" = "done";
 "ADD_COMMENT" = "Tambah komentar";
   "YOUR_CODE_WAS_SENT_TO" = "Kode Anda sudah dikirim ke";
@@ -470,8 +470,8 @@
 "FORGOT_PWD_SELECT_MODAL_TITLE" = "Anda bisa mengganti kata sandi menggunakan SMS atau Email";
   "SEARCH_DISCOVERY" = "Riwayat Pencarian";
 //  "MAX_DISCOUNT" = "Diskon maksimum";
-//  "EMPTYING" = "Kosong";
-//  "INVALID_PRODUCTS" = "Produk Tidak Valid";
+  "EMPTYING" = "Kosongkan";
+  "INVALID_PRODUCTS" = "Produk Tidak Valid";
   "COUPON_DETAIL" = "Rincian voucher";
 "NORULE" = "Tak ada peraturan yang akan dilanggar";
   "GOT_IT" = "MENGERTI";

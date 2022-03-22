@@ -47,7 +47,8 @@
         if (textField.text.length > 0) {
             [self.searchingView requestAssociate:textField.text];
         } else {
-            self.searchingView.hidden = YES;
+            [self.searchingView requestAssociate:textField.text];
+//            self.searchingView.hidden = YES;
         }
     }
 }

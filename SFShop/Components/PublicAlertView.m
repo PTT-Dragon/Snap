@@ -37,7 +37,7 @@
         _titleLabel.text = title;
         [_bgView addSubview:_titleLabel];
         [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(_bgView.mas_left).offset(44);
+            make.left.mas_equalTo(_bgView.mas_left).offset(24);
             make.centerX.equalTo(_bgView);
             make.top.mas_equalTo(_bgView.mas_top).offset(24);
         }];

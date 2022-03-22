@@ -194,6 +194,18 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="00151_01_arrowright_outline-2" translatesAutoresizingMaskIntoConstraints="NO" id="5ll-NF-pn9">
                                 <rect key="frame" x="263" y="84.5" width="8" height="5.5"/>
                             </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGJ-0b-1wg">
+                                <rect key="frame" x="301" y="10" width="32" height="14.5"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="12"/>
+                                <color key="textColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYC-Nw-rJ9">
+                                <rect key="frame" x="20" y="10" width="32" height="14.5"/>
+                                <fontDescription key="fontDescription" name="TruenoLt" family="Trueno" pointSize="12"/>
+                                <color key="textColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -202,6 +214,8 @@
                             <constraint firstItem="Ct6-i0-Q4T" firstAttribute="trailing" secondItem="5Uk-UU-CJV" secondAttribute="trailing" id="2sy-5h-aii"/>
                             <constraint firstItem="MvD-Qt-BbY" firstAttribute="centerY" secondItem="9Dn-fL-1do" secondAttribute="centerY" id="3vK-aM-dln"/>
                             <constraint firstItem="p92-dv-aGh" firstAttribute="top" secondItem="5Uk-UU-CJV" secondAttribute="top" constant="35" id="5Mi-IF-A2i"/>
+                            <constraint firstItem="tYC-Nw-rJ9" firstAttribute="centerY" secondItem="WGJ-0b-1wg" secondAttribute="centerY" id="6ap-95-Jy5"/>
+                            <constraint firstItem="tYC-Nw-rJ9" firstAttribute="leading" secondItem="MvD-Qt-BbY" secondAttribute="leading" id="ATZ-tF-wLb"/>
                             <constraint firstItem="B4C-9y-QlI" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="Cr5-yA-bCc"/>
                             <constraint firstItem="I8Z-9C-EjC" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" id="HTN-1C-Tu5"/>
                             <constraint firstItem="5ll-NF-pn9" firstAttribute="centerY" secondItem="B4C-9y-QlI" secondAttribute="centerY" id="JPy-Bu-e8X"/>
@@ -224,6 +238,7 @@
                             <constraint firstItem="jWp-Ge-qwV" firstAttribute="leading" secondItem="kJB-Fa-M5g" secondAttribute="trailing" id="eG1-vE-xvB"/>
                             <constraint firstItem="p92-dv-aGh" firstAttribute="leading" secondItem="5Uk-UU-CJV" secondAttribute="trailing" constant="10" id="gQd-tV-DXm"/>
                             <constraint firstItem="Svw-a8-d1D" firstAttribute="top" secondItem="9Dn-fL-1do" secondAttribute="top" constant="10" id="jQu-S9-59B"/>
+                            <constraint firstAttribute="trailing" secondItem="WGJ-0b-1wg" secondAttribute="trailing" constant="10" id="kZT-CC-1l2"/>
                             <constraint firstAttribute="bottom" secondItem="xDM-D5-S5g" secondAttribute="bottom" constant="14" id="kly-px-cjK"/>
                             <constraint firstItem="xMv-kL-ggm" firstAttribute="top" secondItem="9Dn-fL-1do" secondAttribute="top" constant="10" id="knQ-bb-ej2"/>
                             <constraint firstItem="4qa-yK-tzn" firstAttribute="centerY" secondItem="jWp-Ge-qwV" secondAttribute="centerY" id="kuC-Ba-jI6"/>
@@ -235,6 +250,7 @@
                             <constraint firstItem="2OE-4E-Ucf" firstAttribute="top" secondItem="5Uk-UU-CJV" secondAttribute="top" id="tGg-yX-o5m"/>
                             <constraint firstItem="B4C-9y-QlI" firstAttribute="bottom" secondItem="5Uk-UU-CJV" secondAttribute="bottom" constant="-15" id="tXg-xI-YFr"/>
                             <constraint firstItem="MvD-Qt-BbY" firstAttribute="leading" secondItem="9Dn-fL-1do" secondAttribute="leading" constant="20" id="tXs-SH-8LB"/>
+                            <constraint firstItem="WGJ-0b-1wg" firstAttribute="centerY" secondItem="Svw-a8-d1D" secondAttribute="centerY" id="zmu-XK-izP"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -253,6 +269,8 @@
                 <outlet property="campaignsImgView" destination="5ll-NF-pn9" id="zEv-m5-rYQ"/>
                 <outlet property="countLabel" destination="jWp-Ge-qwV" id="GLs-vB-4gl"/>
                 <outlet property="imgView" destination="5Uk-UU-CJV" id="LC3-sa-uCQ"/>
+                <outlet property="invaliadLabel" destination="WGJ-0b-1wg" id="RWR-Dx-swc"/>
+                <outlet property="invaliadLabel2" destination="tYC-Nw-rJ9" id="Mmh-Cj-nv1"/>
                 <outlet property="leftMargin" destination="EPI-1o-fUc" id="Wcg-sz-Yus"/>
                 <outlet property="nameLabel" destination="2OE-4E-Ucf" id="geg-Hm-xwy"/>
                 <outlet property="noStockLabel" destination="4qa-yK-tzn" id="RXs-xU-jTP"/>

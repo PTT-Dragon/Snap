@@ -162,6 +162,7 @@
     }
     [_collectionView reloadData];
     for (ProductReviewChildViewController *subVc in self.magicController.viewControllers) {
+        subVc.labelId = _selLabelModel.labelId;
         [subVc.tableView.mj_header beginRefreshing];
     }
 }

@@ -114,9 +114,6 @@
             self.model.isGet = YES;
             [self setModel:weakself.model];
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COLLECT_COUPON_SUCCESS")];
-//            CouponAlertView *view = [[NSBundle mainBundle] loadNibNamed:@"CouponAlertView" owner:self options:nil].firstObject;
-//            view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-//            [[baseTool getCurrentVC].view addSubview:view];
         } failed:^(NSError * _Nonnull error) {
             [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];

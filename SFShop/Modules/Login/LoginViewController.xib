@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="TruenoBd.otf">
+            <string>TruenoBd</string>
+        </array>
         <array key="TruenoLt.otf">
             <string>TruenoLt</string>
         </array>
@@ -148,11 +151,12 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI4-Cb-XjV">
-                    <rect key="frame" x="110.5" y="427" width="193" height="27"/>
+                    <rect key="frame" x="57" y="427" width="300" height="27"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="300" id="Kcr-s4-Zzn"/>
                         <constraint firstAttribute="height" constant="27" id="laA-s6-RP3"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                    <fontDescription key="fontDescription" name="TruenoBd" family="Trueno" pointSize="12"/>
                     <state key="normal" title="Don't have an account?  Sign up">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                     </state>

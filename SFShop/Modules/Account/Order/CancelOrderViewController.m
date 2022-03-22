@@ -10,6 +10,7 @@
 #import "OrderListItemCell.h"
 #import "CancelOrderChooseReason.h"
 #import "ChooseReasonViewController.h"
+#import "OrderDetailViewController.h"
 
 @interface CancelOrderViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseReasonViewControllerDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -134,10 +135,12 @@
     MPWeakSelf(self)
     //[MBProgressHUD showHudMsg:@""];
     [SFNetworkManager post:SFNet.order.cancelOrder parameters:@{@"orderId":_model.orderId,@"cancelReasonId":_selReasonModel.orderReasonId,@"cancelReason":_selReasonModel.orderReasonName} success:^(id  _Nullable response) {
-        [baseTool removeVCFromNavigationWithVCName:@"OrderDetailViewController" currentVC:self];
-        [weakself.navigationController popViewControllerAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg:@"Cancel Success"];
+        OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
+        vc.orderId = weakself.model.orderId;
+        [weakself.navigationController pushViewController:vc animated:YES];
+        [MBProgressHUD autoDismissShowHudMsg:@"SUCCESSFUL"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"KRefreshOrderNum" object:nil];
+        [baseTool removeVCFromNavigationWithVCNameArr:@[@"CancelOrderViewController"] currentVC:self];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];

@@ -14,6 +14,8 @@ typedef enum : NSUInteger {
     ChangeEmail_Code = 3,
     SignUp_Code = 4,
     Forget_Code = 5,
+    BindEmail_Code = 6,
+    BindPhone_Code = 7,
     
 } LoginType;
 

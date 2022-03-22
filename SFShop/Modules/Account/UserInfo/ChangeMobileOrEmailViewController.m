@@ -166,22 +166,25 @@ static BOOL _passwordSuccess2 = NO;
         
         
     }else{
-        self.title = kLocalizedString(@"CHANGE_EMAIL");
+        BOOL hasEmail = model.userRes.email && ![model.userRes.email isEqualToString:@""];
         _label.text = kLocalizedString(@"EMAIL");
-        _field.placeholder = kLocalizedString(@"CHANGE_EMAIL");
+        
         _label2.hidden = YES;
         _field2.hidden = YES;
         _passwordSuccess2 = YES;
         self.subTitle.hidden = YES;
         self.topMargin.constant = 10;
-        if (model.userRes.email && ![model.userRes.email isEqualToString:@""]) {
+        if (hasEmail) {
+            self.title = hasEmail ? kLocalizedString(@"CHANGE_EMAIL") : kLocalizedString(@"Email");
             _field.placeholder = model.userRes.email;
             [self.btn setTitle:kLocalizedString(@"CHANGE") forState:UIControlStateNormal];
             _field.userInteractionEnabled = NO;
             _btn.userInteractionEnabled = YES;
             self.btn.backgroundColor = RGBColorFrom16(0xFF1659);
         }else{
-            [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:UIControlStateNormal];
+            _field.placeholder = hasEmail ? kLocalizedString(@"CHANGE_EMAIL") : kLocalizedString(@"Email");
+            self.title = hasEmail ? kLocalizedString(@"CHANGE_EMAIL") : kLocalizedString(@"Email");
+            [self.btn setTitle:kLocalizedString(@"BIND") forState:UIControlStateNormal];
         }
         
     }
@@ -201,10 +204,11 @@ static BOOL _passwordSuccess2 = NO;
     }else{
         if (model.userRes.email && ![model.userRes.email isEqualToString:@""]) {
             vc.account = model.userRes.email;
+            vc.type = ChangeEmail_Code;
         }else{
             vc.account = _field.text;
+            vc.type = BindEmail_Code;
         }
-        vc.type = ChangeEmail_Code;
     }
     [self.navigationController pushViewController:vc animated:YES];
 }

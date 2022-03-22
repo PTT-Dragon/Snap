@@ -107,7 +107,7 @@
 {
     if (section >= self.cartModel.validCarts.count) {
         CartListModel *model = self.cartModel.invalidCarts[section-self.cartModel.validCarts.count];
-        return model.shoppingCarts.count+1;
+        return model.shoppingCarts.count+1+model.campaignGroupsShoppingCarts.count;
     }
     CartListModel *listModel = self.cartModel.validCarts[section];
     return listModel.shoppingCarts.count+1+listModel.campaignGroupsShoppingCarts.count;
@@ -421,6 +421,17 @@
         }];
         obj.campaignGroupsShoppingCarts = arr;
     }];
+    [self.cartModel.invalidCarts enumerateObjectsUsingBlock:^(CartListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSMutableArray <CartCampaignsModel *>*arr = [NSMutableArray array];
+        NSMutableArray <CartItemModel *>*arr = [NSMutableArray array];
+        [obj.campaignGroups enumerateObjectsUsingBlock:^(CartCampaignsModel *  _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+            [obj2.shoppingCarts enumerateObjectsUsingBlock:^(CartItemModel *  _Nonnull obj3, NSUInteger idx3, BOOL * _Nonnull stop3) {
+                obj3.isFirst = idx3 == 0;
+                [arr addObject:obj3];
+            }];
+        }];
+        obj.campaignGroupsShoppingCarts = arr;
+    }];
     [self.tableView reloadData];
 }
 - (void)loadCouponsDatasWithStoreId:(NSString *)storeId productArr:(NSArray *)productArr
@@ -716,6 +727,11 @@
         else
         {
             self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        if (@available(iOS 15.0, *)) {
+            _tableView.sectionHeaderTopPadding = 0;
+        } else {
+            // Fallback on earlier versions
         }
         _tableView.estimatedRowHeight = 44;
     }

@@ -12,6 +12,7 @@
 @interface SFSearchingView ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, readwrite, strong) UITableView *tableView;
 @property (nonatomic, readwrite, strong) NSMutableArray *dataArray;
+
 @end
 
 @implementation SFSearchingView

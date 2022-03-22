@@ -89,6 +89,9 @@
 - (void)reset {
     self.model.filterCache = nil;
     self.model.priceModel = nil;
+    [self.model.brandIds enumerateObjectsUsingBlock:^(CategoryRankBrandModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.isSelected = NO;
+    }];
     [self.dataArray removeAllObjects];
     [self dismiss:^{
         !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshReset,self.model);
@@ -120,7 +123,8 @@
         //设置当前的selected
         CategoryRankFilterModel *model = cellModel;
         model.isSelected = !originSelected;
-        [collectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+//        [collectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+        [collectionView reloadData];
         
         //存储数据到缓存中
         if ([cellModel isKindOfClass:CategoryRankServiceModel.class]) {
@@ -288,6 +292,7 @@
         for (NSString *idStr in arr) {
             if (subModel.idStr && [subModel.idStr isEqualToString:idStr]) {
                 subModel.isSelected = YES;
+                break;
             } else {
                 subModel.isSelected = NO;
             }

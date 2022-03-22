@@ -63,9 +63,9 @@
     DistributeProductListChildVC *gridViewController = [magicView dequeueReusablePageWithIdentifier:gridId];
     if (!gridViewController) {
         gridViewController = [[DistributeProductListChildVC alloc] init];
-        gridViewController.isHistory = pageIndex == 1 ? @"Y": @"N";
-        gridViewController.centerModel = self.model;
     }
+    gridViewController.isHistory = pageIndex == 1 ? @"Y": @"N";
+    gridViewController.centerModel = self.model;
     return gridViewController;
 }
 

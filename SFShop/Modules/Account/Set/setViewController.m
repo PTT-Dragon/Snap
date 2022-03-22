@@ -184,8 +184,8 @@
         AddressViewController *vc = [[AddressViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 2){
-        UserModel *model = [FMDBManager sharedInstance].currentUser;
-        NSString *shareUrl = [NSString stringWithFormat:@"%@/sign-up-gift/%@",Host,model.userRes.userCode];
+//        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        NSString *shareUrl = [NSString stringWithFormat:@"%@",Host];
         [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
     }
 }

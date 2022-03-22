@@ -470,7 +470,7 @@
         label3.text = @"Total";
         label3.font = CHINESE_MEDIUM(14);
         [_detailView addSubview:label3];
-        UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(15, 153, 170, 17)];
+        UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(15, 153, 200, 17)];
         label4.text = @"(without shipping/coupons)";
         label4.textColor = RGBColorFrom16(0x555555);
         label4.font = CHINESE_MEDIUM(12);
@@ -523,6 +523,7 @@
             [self.totalBtn setTitle:self.totalBtn.selected ? @"Total": @"Total" forState:0];
             if (self.totalBtn.selected) {
                 [self.view addSubview:self.detailBgView];
+                [self.view insertSubview:self.scrollLabel aboveSubview:self.detailBgView];
             }else{
                 [self.detailBgView removeFromSuperview];
             }

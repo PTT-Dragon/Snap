@@ -136,7 +136,7 @@
   "BRANDS" = "Brands";
 //  "PRICE" = "Price";
   "BIND" = "BIND";
-//  "BIND_EMAIL" = "Bind Email";
+  "BIND_EMAIL" = "Bind Email";
 //  "BIND_MOBILE" = "Bind Mobile Number";
   "EXCHANGE" = "Replacement";
 "RESET_WITH_SMS" = "CHANGE WITH SMS";
@@ -257,7 +257,7 @@
   "SIMILAR_PRODUCT_RECOMMENDATION" = "Similar product recommendation";
   "NEW_PASSWORD" = "New Password";
 //  "CONFIRM_PWD" = "Confirm New Password";
-//  "RE_ENTER_NEW_PASSWORD" = "Re-enter new password";
+  "RE_ENTER_NEW_PASSWORD" = "Re-enter new password";
   "PASSWORD_NOT_MATCH" = "Password not match.";
   "RESET_SUCCESSFULLY_PLEASE_RE_LOGIN" = "Change successfully. Please re-login.";
 //  "PLEASE_INPUT_THE_CORRECT_MOBILE_PHONE" = "Please input the correct mobile phone.";
@@ -459,10 +459,10 @@
 //  "SEARCH" = "Search";
   "SURE_CANCEL" = "Are you sure to cancel?";
   "SURE_DELETE" = "Are you sure to delete?";
-  "SEARCH_DISCOVERY" = "Search Discovery";
+  "SEARCH_DISCOVERY" = "Cash Out History";
 //  "MAX_DISCOUNT" = "Discount max";
-//  "EMPTYING" = "Emptying";
-//  "INVALID_PRODUCTS" = "Invalid Products";
+  "EMPTYING" = "Emptying";
+  "INVALID_PRODUCTS" = "Invalid Products";
   "COUPON_DETAIL" = "Voucher Detail";
   "GOT_IT" = "GOT IT";
 "NORULE" = "There is no usage rule";

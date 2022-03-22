@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol EvaluatesContentsModel;
 @protocol OrderDetailPaymentsModel;
 @protocol PackageListModel;
+@protocol EvaLabelsModel;
+
 
 
 
@@ -254,8 +256,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface EvaLabelsModel : JSONModel
+@property (nonatomic,copy) NSString *labelId;
+@property (nonatomic,copy) NSString *labelName;
+@property (nonatomic,assign) BOOL sel;
+@end
+
 @interface EvaluatesModel : JSONModel
 @property (nonatomic,strong) NSArray <EvaluatesContentsModel>*contents;
+@property (nonatomic,strong) NSArray <EvaLabelsModel>*labels;
+@property (nonatomic,strong) NSArray *selLabelIds;
 @property (nonatomic,copy) NSString <Optional>*evaluationComments;
 @property (nonatomic,copy) NSString <Optional>*isAnonymous;
 @property (nonatomic,copy) NSString <Optional>*isUseful;

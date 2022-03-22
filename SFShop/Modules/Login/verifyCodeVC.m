@@ -34,7 +34,7 @@
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     self.contentLabel.text = [NSString stringWithFormat:@"%@ %@",kLocalizedString(@"YOUR_CODE_WAS_SENT_TO"),_account ? _account: model.userRes.mobilePhone];
     [self.recendBtn setTitle:kLocalizedString(@"RESEND") forState:0];
-    self.titleLabel.text = kLocalizedString(@"ENTER_CODE");
+    self.titleLabel.text = _type == BindEmail_Code ? kLocalizedString(@"BIND_EMAIL"): kLocalizedString(@"ENTER_CODE");
     [self getCode];
 }
 - (void)getCode
@@ -45,6 +45,9 @@
         [params setValue:@"" forKey:@"account"];
     }else if (_type == SignUp_Code){
         [params setValue:_account forKey:@"account"];
+    }else if (_type == BindEmail_Code){
+        [params setValue:_account forKey:@"account"];
+        [params setValue:@"false" forKey:@"isEmail"];
     }else if (_account) {
         [params setValue:_account forKey:@"account"];
     }else{
@@ -132,6 +135,8 @@
             [weakself changeUserPhone];
         }else if (weakself.type == ChangeEmail_Code){
             [weakself changeUserEmail];
+        }else if (weakself.type == BindEmail_Code){
+            [weakself bindUserEmail];
         }
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
@@ -247,7 +252,25 @@
 {
     UserModel *model = [FMDBManager sharedInstance].currentUser;
     MPWeakSelf(self)
-    [SFNetworkManager post:SFNet.account.emailModify parameters:@{@"email":model.userRes.email,@"newEmail":_account,@"code":_codeView.code} success:^(id  _Nullable response) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:model.userRes.email forKey:@"email"];
+    [params setValue:_account forKey:@"newEmail"];
+    [params setValue:_codeView.code forKey:@"code"];
+    [SFNetworkManager post:SFNet.account.emailModify parameters:params success:^(id  _Nullable response) {
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
+        [weakself.navigationController popToRootViewControllerAnimated:YES];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
+- (void)bindUserEmail
+{
+    MPWeakSelf(self)
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:_account forKey:@"email"];
+    [params setValue:@"Terminal" forKey:@"userType"];
+    [params setValue:_codeView.code forKey:@"code"];
+    [SFNetworkManager post:SFNet.account.bindEmail parameters:params success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
         [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failed:^(NSError * _Nonnull error) {

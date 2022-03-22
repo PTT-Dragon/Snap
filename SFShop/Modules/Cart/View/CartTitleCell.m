@@ -81,6 +81,7 @@
 - (void)setIsInvalid:(BOOL)isInvalid
 {
     _isInvalid = isInvalid;
+    _vouchBtn.hidden = isInvalid;
 }
 - (void)getCoupon
 {

@@ -504,6 +504,9 @@
     }else if ([func[@"type"] isEqualToString:@"URL"]){
         NSString *url = [NSString stringWithFormat:@"%@/%@",Host,func[@"data"][@"url"]];
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    }else if ([func[@"type"] rangeOfString:@"https://"].location != NSNotFound){
+        NSString *url = [NSString stringWithFormat:@"%@",func[@"type"]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     }
     
 }
@@ -573,10 +576,10 @@
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     } else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/spike"].location != NSNotFound){
-        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
-        FlashSaleViewController *vc = [[FlashSaleViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-        decisionHandler(WKNavigationActionPolicyCancel);
+//        if (self.pushVc) {[self.navigationController popToViewController:self.pushVc animated:NO];}
+//        FlashSaleViewController *vc = [[FlashSaleViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
+        decisionHandler(WKNavigationActionPolicyAllow);
         return;
     } else if ([navigationAction.request.URL.absoluteString rangeOfString :@"/message-center"].location != NSNotFound){
         if (self.pushVc) {

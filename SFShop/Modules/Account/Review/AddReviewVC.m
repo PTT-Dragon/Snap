@@ -27,6 +27,7 @@
 @property (nonatomic,copy) NSString *Anonymous;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (nonatomic,strong) NSMutableArray *selectAssets;
+@property (nonatomic,strong) ReviewDetailModel *detailModel;
 
 @end
 
@@ -70,7 +71,17 @@
         [self.textArr addObject:@""];
         [self.rateArr addObject:@"5"];
     }
-    [_tableView reloadData];
+    [self loadEvaInfoModel];
+}
+- (void)loadEvaInfoModel
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.evaluate.storeorder parameters:@{@"orderId":_model.orderId} success:^(id  _Nullable response) {
+        weakself.detailModel = [ReviewDetailModel yy_modelWithDictionary:response];
+        [weakself.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -97,7 +108,11 @@
         return cell;
     }
     AddReviewItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddReviewItemCell"];
-    [cell setContent:_model.orderItems[indexPath.row] row:indexPath.row imgArr:self.imgArr[indexPath.row] text:self.textArr[indexPath.row] rate:self.rateArr[indexPath.row]];
+    EvaluatesModel *evaModel;
+    if (self.detailModel.evaluates.count > indexPath.row) {
+        evaModel = self.detailModel.evaluates[indexPath.row];
+    }
+    [cell setContent:_model.orderItems[indexPath.row] row:indexPath.row imgArr:self.imgArr[indexPath.row] text:self.textArr[indexPath.row] rate:self.rateArr[indexPath.row] evaModel:evaModel];
     @weakify(self);
     cell.block = ^(NSInteger row) {
         @strongify(self);
@@ -118,14 +133,20 @@
         }
         [tableView reloadData];
     };
+    cell.tagBlock = ^(EvaluatesModel * _Nonnull evaModel, NSInteger row) {
+        NSMutableArray *labelsArr = [NSMutableArray array];
+        [labelsArr addObjectsFromArray:self.detailModel.evaluates];
+        [labelsArr replaceObjectAtIndex:row withObject:evaModel];
+        self.detailModel.evaluates = labelsArr;
+    };
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat itemHei = (MainScreen_width-32-60)/4;
-    CGFloat hei = ceil(_imgArr.count/4.0)*(itemHei+10)+15;
-    return indexPath.row == self.model.orderItems.count ? 300: hei+438;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    CGFloat itemHei = (MainScreen_width-32-60)/4;
+//    CGFloat hei = ceil(_imgArr.count/4.0)*(itemHei+10)+15;
+//    return indexPath.row == self.model.orderItems.count ? 300: hei+438;
+//}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -235,6 +256,14 @@
         [dic setValue:self.rateArr[i] forKey:@"rate"];
         [dic setValue:[imgUrlDict objectForKey:[NSString stringWithFormat:@"%ld",(long)i]] forKey:@"contents"];
         [dic setValue:_Anonymous forKey:@"isAnonymous"];
+        NSMutableArray *labelsArr = [NSMutableArray array];
+        EvaluatesModel *evaModel = self.detailModel.evaluates[i];
+        for (EvaLabelsModel *labelsModel in evaModel.labels) {
+            if (labelsModel.sel) {
+                [labelsArr addObject:labelsModel.labelId];
+            }
+        }
+        [dic setValue:labelsArr forKey:@"labelIds"];
         [evaluateItems addObject:dic];
     }
     [params setValue:evaluateItems forKey:@"evaluateItems"];

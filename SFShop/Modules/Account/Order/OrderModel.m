@@ -29,6 +29,14 @@
 @implementation OrderDetailPaymentsModel
 
 @end
+@implementation EvaLabelsModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+
+
+@end
 @implementation DeliveryInfoModel
 
 @end

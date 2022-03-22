@@ -14,6 +14,7 @@
 #import <SDWebImage/SDWebImage.h>
 #import "ReviewSuccessViewController.h"
 #import "TextCountView.h"
+#import "NSString+Add.h"
 
 @interface AddReviewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *storeLogoImgView;
@@ -47,6 +48,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *label6;
 @property (weak, nonatomic) IBOutlet UILabel *label7;
 @property (nonatomic,strong) NSMutableArray *selectAssets;
+@property (weak, nonatomic) IBOutlet UIView *labelsVIew;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelsViewHei;
 
 @end
 
@@ -119,7 +122,7 @@
 - (void)updateDatas
 {
     EvaluatesModel *evaModel = self.detailModel.evaluates.firstObject;
-    if (evaModel) {
+    if (evaModel && evaModel.offerEvaluationId) {
         self.textView.text = evaModel.evaluationComments;
         self.starView.score = evaModel.rate.integerValue;
         self.bottomView.hidden = YES;
@@ -134,7 +137,37 @@
     }
     
     [_countView configDataWithTotalCount:500 currentCount:_textView.text.length];
-
+    CGFloat lastRight = 16;
+    CGFloat btnY = 16;
+    for (EvaLabelsModel *labesModel in evaModel.labels) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:labesModel.labelName forState:0];
+        btn.backgroundColor = RGBColorFrom16(0xefefef);
+        [btn setTitleColor:RGBColorFrom16(0x333333) forState:0];
+        btn.layer.borderColor = RGBColorFrom16(0xFF1659).CGColor;
+        btn.tag = labesModel.labelId.integerValue;
+        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            btn.selected = !btn.selected;
+            btn.backgroundColor = btn.selected ? RGBColorFrom16(0xFFE5EB): RGBColorFrom16(0xefefef);
+            btn.layer.borderWidth = btn.selected ? 1: 0;
+            [btn setTitleColor:btn.selected ? RGBColorFrom16(0xFF1659):RGBColorFrom16(0x333333)  forState:0];
+        }];
+        for (NSNumber *selId in evaModel.selLabelIds) {
+            if ([labesModel.labelId isEqualToString:selId.stringValue]) {
+                btn.selected = YES;
+                btn.backgroundColor = btn.selected ? RGBColorFrom16(0xFFE5EB): RGBColorFrom16(0xefefef);
+                btn.layer.borderWidth = btn.selected ? 1: 0;
+                [btn setTitleColor:btn.selected ? RGBColorFrom16(0xFF1659):RGBColorFrom16(0x333333)  forState:0];
+            }
+        }
+        btn.titleLabel.font = kFontLight(12);
+        CGFloat btnWidth = [btn.titleLabel.text calWidthWithLabel:btn.titleLabel] +20;
+        btn.frame = CGRectMake(lastRight, btnY,btnWidth, 33);
+        [self.labelsVIew addSubview:btn];
+        btnY = lastRight + btnWidth > MainScreen_width-32 ? btnY+43: btnY;
+        lastRight = lastRight + btnWidth > MainScreen_width-32 ? 16: lastRight + btnWidth + 10;
+    }
+    self.labelsViewHei.constant = btnY+33;
     
     [self.imgArr removeAllObjects];
     
@@ -173,6 +206,20 @@
 {
     MPWeakSelf(self)
     [SFNetworkManager get:SFNet.evaluate.detail parameters:@{@"orderItemId":_orderItemId} success:^(id  _Nullable response) {
+        weakself.detailModel = [ReviewDetailModel yy_modelWithDictionary:response];
+        if (weakself.detailModel.evaluates.count == 0 || !weakself.detailModel.evaluates) {
+            [weakself loadEvaInfoModel];
+        }else{
+            [weakself updateDatas];
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)loadEvaInfoModel
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.evaluate.storeorder parameters:@{@"orderId":_model.orderId} success:^(id  _Nullable response) {
         weakself.detailModel = [ReviewDetailModel yy_modelWithDictionary:response];
         [weakself updateDatas];
     } failed:^(NSError * _Nonnull error) {
@@ -315,6 +362,13 @@
             [dic setValue:_textView.text forKey:@"ratingComments"];
             [dic setValue:@(_starView.score) forKey:@"rate"];
             [dic setValue:imgUrlArr forKey:@"contents"];
+            NSMutableArray *labelsArr = [NSMutableArray array];
+            for (UIView *subView in self.labelsVIew.subviews) {
+                if ([subView isKindOfClass:[UIButton class]]) {
+                    [labelsArr addObject:@(subView.tag)];
+                }
+            }
+            [dic setValue:labelsArr forKey:@"labelIds"];
             [evaluateItems addObject:dic];
         }
         [params setValue:evaluateItems forKey:@"evaluateItems"];
@@ -342,6 +396,13 @@
             [dic setValue:@(_starView.score) forKey:@"rate"];
             [dic setValue:imgUrlArr forKey:@"contents"];
             [dic setValue:_anonymousBtn.selected ? @"Y": @"N" forKey:@"isAnonymous"];
+            NSMutableArray *labelsArr = [NSMutableArray array];
+            for (UIView *subView in self.labelsVIew.subviews) {
+                if ([subView isKindOfClass:[UIButton class]]) {
+                    [labelsArr addObject:@(subView.tag)];
+                }
+            }
+            [dic setValue:labelsArr forKey:@"labelIds"];
             [evaluateItems addObject:dic];
         }
         [params setValue:evaluateItems forKey:@"evaluateItems"];

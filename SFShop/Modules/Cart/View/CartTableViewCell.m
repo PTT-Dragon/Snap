@@ -32,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgTop;
 @property (weak, nonatomic) IBOutlet UIButton *offBtn;
 @property (weak, nonatomic) IBOutlet UILabel *noStockLabel;
+@property (weak, nonatomic) IBOutlet UILabel *invaliadLabel;
+@property (weak, nonatomic) IBOutlet UILabel *invaliadLabel2;
 
 @end
 
@@ -57,6 +59,10 @@
     [_offBtn setTitle:kLocalizedString(@"TO_SATISFY") forState:0];
     _offBtn.titleLabel.numberOfLines = 0;
     _noStockLabel.text = kLocalizedString(@"OUT_OF_STOCK");
+    _invaliadLabel.text = [NSString stringWithFormat:@"  %@  ",kLocalizedString(@"EMPTYING")];
+    _invaliadLabel2.text = kLocalizedString(@"INVALID_PRODUCTS");
+    _invaliadLabel.layer.borderWidth = 1;
+    _invaliadLabel.layer.borderColor = RGBColorFrom16(0x7b7b7b).CGColor;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skuAction)];
     [_skuLabel addGestureRecognizer:tap];
@@ -131,7 +137,22 @@
 }
 - (void)updateBtnState
 {
-    if (_isInvalid || _model.stock == 0 || [_model.noStock isEqualToString:@"Y"]) {
+    if (_isInvalid) {
+        _selBtn.selected = NO;
+        _selBtn.enabled = NO;
+        _noStockLabel.hidden = YES;
+        _countLabel.hidden = NO;
+        _additonBtn.hidden = NO;
+        _subtractBtn.hidden = NO;
+        _countLabel.textColor = RGBColorFrom16(0x7b7b7b);
+        _invaliadLabel.hidden = NO;
+        _invaliadLabel2.hidden = NO;
+        _campaignsBtn.hidden = YES;
+        _campaignsImgView.hidden = YES;
+        _offBtn.hidden = YES;
+        _offLabel.hidden = YES;
+        _offNameLabel.hidden = YES;
+    }else if(_model.stock == 0 || [_model.noStock isEqualToString:@"Y"]){
         _selBtn.selected = NO;
         _selBtn.enabled = NO;
         _noStockLabel.hidden = NO;
@@ -139,6 +160,8 @@
         _additonBtn.hidden = YES;
         _subtractBtn.hidden = YES;
         _countLabel.textColor = RGBColorFrom16(0x7b7b7b);
+        _invaliadLabel.hidden = YES;
+        _invaliadLabel2.hidden = YES;
     }else{
         _selBtn.enabled = YES;
         _selBtn.selected = [_model.isSelected isEqualToString:@"Y"];
@@ -148,6 +171,8 @@
         _countLabel.hidden = NO;
         _additonBtn.hidden = NO;
         _subtractBtn.hidden = NO;
+        _invaliadLabel.hidden = YES;
+        _invaliadLabel2.hidden = YES;
     }
     self.subtractBtn.enabled = _isInvalid ? NO: ![_countLabel.text isEqualToString:@"1"];
     NSInteger maxBuyCount = !_model.maxBuyCount ? 100000:[_model.maxBuyCount integerValue];

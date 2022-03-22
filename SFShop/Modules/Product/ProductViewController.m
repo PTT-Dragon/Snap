@@ -291,16 +291,28 @@
 }
 - (void)chooseCoupon
 {
-    CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
-    view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
-    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
-    [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.productId.integerValue != _selProductModel.productId) {
-            [arr removeObject:obj];
+    MPWeakSelf(self)
+    [SFNetworkManager get: SFNet.offer.campaigns parameters:@{@"offerId":@(_offerId)} success:^(id  _Nullable response) {
+        weakself.campaignsModel = [ProductCampaignsInfoModel yy_modelWithDictionary:response];
+        if (weakself.campaignsModel.coupons.count > 0){
+            //有可使用红包
+            CartChooseCouponView *view = [[NSBundle mainBundle] loadNibNamed:@"CartChooseCouponView" owner:self options:nil].firstObject;
+            view.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+            NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
+            [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.productId.integerValue != weakself.selProductModel.productId) {
+                    [arr removeObject:obj];
+                }
+            }];
+            view.couponDataSource = arr;
+            [[baseTool getCurrentVC].view addSubview:view];
         }
+        
+    } failed:^(NSError * _Nonnull error) {
+//        [hud hideAnimated:YES];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
-    view.couponDataSource = arr;
-    [[baseTool getCurrentVC].view addSubview:view];
+    
 }
 - (void)choosePromotion
 {

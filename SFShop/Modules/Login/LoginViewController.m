@@ -16,6 +16,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <AuthenticationServices/AuthenticationServices.h>
+#import "NSString+Add.h"
 
 @interface LoginViewController ()<UITextFieldDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
@@ -167,7 +168,9 @@ static BOOL _passwordSuccess = NO;
     self.passwordField.placeholder = kLocalizedString(@"PASSWORD");
     [self.forgetBtn setTitle:kLocalizedString(@"FORGOT_PWD") forState:0];
     [self.loginBtn setTitle:kLocalizedString(@"Login") forState:0];
-    [self.signUpBtn setTitle:[NSString stringWithFormat:@"%@%@",kLocalizedString(@"DONT_HAVE_ACCOUNT"),kLocalizedString(@"Sign_Up")] forState:0];
+//    [self.signUpBtn setTitle:[NSString stringWithFormat:@"%@%@",kLocalizedString(@"DONT_HAVE_ACCOUNT"),kLocalizedString(@"Sign_Up")] forState:0];
+    NSMutableAttributedString *str = [NSMutableString difereentFontStr:[NSString stringWithFormat:@"%@ %@",kLocalizedString(@"DONT_HAVE_ACCOUNT"),kLocalizedString(@"Sign_Up")] font:kFontRegular(12) changeText:kLocalizedString(@"DONT_HAVE_ACCOUNT")];
+    [self.signUpBtn setAttributedTitle:str forState:0];
     [self.OTPButton setTitle:kLocalizedString(@"LOGIN_VIA_OPT") forState:0];
     [self.phoneBtn setTitle:kLocalizedString(@"PHONE") forState:0];
     _label1.text = kLocalizedString(@"PHONE_NUMBER");

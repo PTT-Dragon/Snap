@@ -133,8 +133,9 @@ NS_ASSUME_NONNULL_BEGIN
 **/
 @property (nonatomic, readwrite, strong) NSString *review;
 
-- (NSString *)getEvaluateOf: (NSString *)evaluateId;
+@property (nonatomic, readwrite, strong) NSString *storeorder;
 
+- (NSString *)getEvaluateOf: (NSString *)evaluateId;
 @end
 
 @interface SFNetworkUsersRefundModule : NSObject
