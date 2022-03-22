@@ -100,7 +100,7 @@
 //  "AREA" = "Area";
 //  "HIDE" = "Hide";
 //  "VIEW_REPLIES" = "View replies";
-//  "CONTACT_US" = "Contact Us";
+  "CONTACT_US" = "Contact Us";
 //  "SIGN_IN" = "Sign in";
   "OUT_OF_STOCK" = "Out of Stock";
   "My_coupon" = "My Voucher";

@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CouponModel;
 @protocol cmpBuygetnsModel;
 @protocol PromotionRuleModel;
+@protocol ProductItemLabelsModel;
 
 
 
@@ -64,8 +65,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ProductItemModel: JSONModel
+@interface ProductItemLabelsModel : JSONModel
+@property (nonatomic,copy) NSString *effDate;
+@property (nonatomic,copy) NSString *expDate;
+@property (nonatomic,copy) NSString *imgUrl;
+@property (nonatomic,copy) NSString *labelClass;
+@property (nonatomic,copy) NSString *labelCode;
+@property (nonatomic,copy) NSString *labelId;
+@property (nonatomic,copy) NSString *labelName;
+@property (nonatomic,copy) NSString *labelType;
+@property (nonatomic,assign) NSInteger position;
 
+@end
+
+@interface ProductItemModel: JSONModel
+@property (nonatomic,strong) NSArray <ProductItemLabelsModel *> <ProductItemLabelsModel> *labels;
 @property (nonatomic,copy) NSString <Optional>*orderItemId;
 @property(nonatomic, assign) NSInteger productId;
 @property(nonatomic, strong) NSString *productName;

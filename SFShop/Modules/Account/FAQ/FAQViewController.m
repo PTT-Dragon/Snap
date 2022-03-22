@@ -12,6 +12,8 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 #import "NSString+Add.h"
+#import "UIButton+SGImagePosition.h"
+#import "PublicWebViewController.h"
 
 @interface FAQViewController ()<VTMagicViewDelegate, VTMagicViewDataSource,BaseNavViewDelegate>
 @property(nonatomic, strong) NSArray *menuList;
@@ -25,7 +27,8 @@
 @property (nonatomic,strong) UILabel *explainLabel;
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
-
+@property (weak, nonatomic) IBOutlet UIButton *contactBtn;
+@property (nonatomic,copy) NSString *uccaccount;
 
 @end
 
@@ -64,6 +67,11 @@
         make.height.mas_equalTo(navBarHei);
     }];
     [_navView configDataWithTitle:kLocalizedString(@"Help_center")];
+    self.view.backgroundColor = RGBColorFrom16(0xf5f5f5);
+    [_contactBtn setTitle:kLocalizedString(@"CONTACT_US") forState:0];
+    _contactBtn.layer.borderWidth = 1;
+    _contactBtn.layer.borderColor = RGBColorFrom16(0xd9d9d9).CGColor;
+    [_contactBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
     _dataSource = [NSMutableArray array];
     [self loadDatas];
 }
@@ -76,6 +84,14 @@
     } failed:^(NSError * _Nonnull error) {
         
     }];
+    [SFNetworkManager get:SFNet.h5.uccAccount parameters:@{} success:^(id  _Nullable response) {
+        weakself.uccaccount = response;
+        if (response) {
+            self.contactBtn.hidden = NO;
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (void)initUI
 {
@@ -84,7 +100,7 @@
     }
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
-    _magicController.view.frame = CGRectMake(0, navBarHei+50, MainScreen_width, MainScreen_height-navBarHei-44);
+    _magicController.view.frame = CGRectMake(0, navBarHei+50, MainScreen_width, MainScreen_height-navBarHei-44-100);
     [_magicController.magicView reloadData];
     [self.view addSubview:self.navSearchView];
     
@@ -99,7 +115,7 @@
     UITapGestureRecognizer *searchTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
     imgV.userInteractionEnabled = YES;
     [imgV addGestureRecognizer:searchTap];
-    
+    [self.view bringSubviewToFront:self.contactBtn];
 }
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
@@ -157,6 +173,14 @@
 {
     [_navSearchView searchClick:_navSearchView.searchBtn];
 }
+- (IBAction)contactAction:(UIButton *)sender {
+    PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+    vc.url = [NSString stringWithFormat:@"%@/chat/%@",Host,self.uccaccount];
+    vc.sysAccount = self.uccaccount;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController pushViewController:vc animated:YES];
+    });
+}
 
 #pragma mark - getter
 - (SFSearchNav *)navSearchView {
@@ -168,7 +192,7 @@
             vc.searchText = qs;
         }];
         _navSearchView.searchType = SFSearchTypeNoneInterface;
-        _navSearchView.backgroundColor = [UIColor clearColor];
+        _navSearchView.backgroundColor = [UIColor whiteColor];
     }
     return _navSearchView;
 }

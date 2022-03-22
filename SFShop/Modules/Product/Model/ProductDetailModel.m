@@ -158,6 +158,14 @@
 }
 @end
 
+@implementation ProductItemLabelsModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+
+
+
 
 
 

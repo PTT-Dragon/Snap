@@ -1520,6 +1520,12 @@
 //        }
         [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: self.selProductModel])]];
         [backView addSubview:iv];
+        if (self.selProductModel.labels && self.selProductModel.labels.count > 0) {
+            UIImageView *subImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+            ProductItemLabelsModel *labelsModel = self.selProductModel.labels.firstObject;
+            [subImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.imgUrl)]];;
+            [iv addSubview:subImgView];
+        }
     }else {
         
         ProductCarouselImgModel *subModel = self.model.carouselImgUrls[index-1];

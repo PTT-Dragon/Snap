@@ -55,4 +55,11 @@
 }
 @end
 
+@implementation CmpBuyGetnRuleModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+@end
+
 

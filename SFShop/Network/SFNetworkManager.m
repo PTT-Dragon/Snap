@@ -61,7 +61,11 @@
     MPWeakSelf(self)
     return [manager GET:url parameters:parameters headers:@{@"ZSMART_LOCALE":model ? (model.userRes.defLangCode ? model.userRes.defLangCode:@"id") : @"",@"accessToken":model ? model.accessToken: @""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error;
-        id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:&error];
+        id obj;
+        obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments |NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingFragmentsAllowed error:&error];
+        if (error) {
+            obj = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        }
         !success?:success(obj);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSData *responseData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];

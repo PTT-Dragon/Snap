@@ -77,6 +77,7 @@
     self.cartBtn.titleLabel.numberOfLines = 2;
     self.cartBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.tipBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    self.tipBtn.hidden = _buygetnInfoModel;
     if (_couponModel) {
         _couponNameLabel.text = self.couponModel.couponName;
         if (_couponModel.isGet) {
@@ -90,7 +91,7 @@
         }
     }else if (_buygetnInfoModel){
         _expiredDataLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:_buygetnInfoModel.effDate] dayMonthYear],[[NSDate dateFromString:_buygetnInfoModel.expDate] dayMonthYear]];
-        _couponNameLabel.text = @"";
+        _couponNameLabel.text = self.buygetnInfoModel.campaignName;
     }
     [self.view addSubview:self.headSelectorView];
     [self.view addSubview:self.tableView];
@@ -260,7 +261,7 @@
         _explainLabel.text = [self.orifeeModel.totalPrice isEqualToString:@"0"] ? kLocalizedString(@"BUY_MORE_TO_ENJOY_DISCOUNT"): [self.couponModel.discountMethod isEqualToString:@"AMT"] ? [NSString stringWithFormat:@"%@%@",[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currency],kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT")] : [NSString stringWithFormat:@"%.0f%%%@",[[NSString stringWithFormat:@"%f",self.orifeeModel.couponInfo.discountAmount] currencyFloat ],kLocalizedString(@"N_DISCOUNT_APPLIED_AT_CHECKOUT")];
     }else if (_buygetnInfoModel){
         // 满赠活动
-             if (self.orifeeModel.totalCnt.integerValue > 0) {
+             if (self.orifeeModel.totalPrice.integerValue > 0) {
                if (self.orifeeModel.cmpBuyGetnRule) {
                  if (self.orifeeModel.nextBuyGetnRule) {
                      _explainLabel.text = [NSString stringWithFormat:@"Discount applied. Buy %ld more to enjoy more discount",self.orifeeModel.nextBuyGetnRule.thAmount.integerValue - self.orifeeModel.totalPrice.integerValue];
@@ -424,7 +425,7 @@
 }
 - (void)addToCartWithModel:(CategoryRankPageInfoListModel *)model productModel:(ProductDetailModel *)productDetailModel
 {
-    [SFNetworkManager post:SFNet.cart.cart parameters:@{@"isSelected":@"N",@"contactChannel":@"3",@"addon":@"",@"productId":_selProductModel.productId?@(_selProductModel.productId):@"",@"storeId":@(model.storeId),@"offerId":@(model.offerId),@"num":@(self.attrView.count),@"unitPrice":@(_selProductModel.salesPrice)} success:^(id  _Nullable response) {
+    [SFNetworkManager post:SFNet.cart.cart parameters:@{@"isSelected":@"Y",@"contactChannel":@"3",@"addon":@"",@"productId":_selProductModel.productId?@(_selProductModel.productId):@"",@"storeId":@(model.storeId),@"offerId":@(model.offerId),@"num":@(self.attrView.count),@"unitPrice":@(_selProductModel.salesPrice)} success:^(id  _Nullable response) {
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"ADD_TO_CART_SUCCESS")];
         [self loadFeeDatas];
     } failed:^(NSError * _Nonnull error) {

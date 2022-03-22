@@ -48,7 +48,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label6;
 @property (weak, nonatomic) IBOutlet UILabel *label7;
 @property (nonatomic,strong) NSMutableArray *selectAssets;
-@property (weak, nonatomic) IBOutlet UIView *labelsVIew;
+@property (weak, nonatomic) IBOutlet UIScrollView *labelsVIew;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelsViewHei;
 
 @end
@@ -164,11 +164,11 @@
         CGFloat btnWidth = [btn.titleLabel.text calWidthWithLabel:btn.titleLabel] +20;
         btn.frame = CGRectMake(lastRight, btnY,btnWidth, 33);
         [self.labelsVIew addSubview:btn];
-        btnY = lastRight + btnWidth > MainScreen_width-32 ? btnY+43: btnY;
-        lastRight = lastRight + btnWidth > MainScreen_width-32 ? 16: lastRight + btnWidth + 10;
+        btnY = (lastRight + btnWidth + 26) > MainScreen_width*2 ? btnY+43: btnY;
+        lastRight = (lastRight + btnWidth + 26) > MainScreen_width*2 ? 16: lastRight + btnWidth + 10;
     }
     self.labelsViewHei.constant = btnY+33;
-    
+    self.labelsVIew.contentSize = CGSizeMake(MainScreen_width*2, btnY+33);
     [self.imgArr removeAllObjects];
     
    

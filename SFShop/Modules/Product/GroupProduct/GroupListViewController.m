@@ -285,18 +285,18 @@ typedef NS_ENUM(NSUInteger, CategoryRankType) {
     //改变状态之前的逻辑处理
     [self dealPrice:btn];
     CategoryRankType type = btn.tag - 100;
-    if (btn == self.priceBtn) {
-        BOOL isSeleted = btn.selected;
-        if (isSeleted) {
-            if (type == CategoryRankTypePriceDescending) {
-                btn.tag = CategoryRankTypePriceAscending + 100;
-            } else {
-                btn.tag = CategoryRankTypePriceDescending + 100;
-            }
-        } else {//从未选中到选中状态默认未降序
-            btn.tag = CategoryRankTypePriceDescending + 100;
-        }
-    }
+//    if (btn == self.priceBtn) {
+//        BOOL isSeleted = btn.selected;
+//        if (isSeleted) {
+//            if (type == CategoryRankTypePriceDescending) {
+//                btn.tag = CategoryRankTypePriceAscending + 100;
+//            } else {
+//                btn.tag = CategoryRankTypePriceDescending + 100;
+//            }
+//        } else {//从未选中到选中状态默认未降序
+//            btn.tag = CategoryRankTypePriceDescending + 100;
+//        }
+//    }
     if (type == CategoryRankTypeDetail) {
         [self jumpToFilterDetail];
     }else{

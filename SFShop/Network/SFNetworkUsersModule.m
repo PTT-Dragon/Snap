@@ -365,7 +365,7 @@
     return K_h5_domain(@"image");
 }
 - (NSString *)uccAccount {
-    return K_h5_domain(@"/platform/uccaccount");
+    return K_h5_domain(@"platform/uccaccount");
 }
 - (NSString *)getReceiptOf: (NSString *)orderId
 {

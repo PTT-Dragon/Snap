@@ -8,12 +8,16 @@
 #import "FAQDetailViewController.h"
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
+#import "PublicWebViewController.h"
+#import "UIButton+SGImagePosition.h"
 
 @interface FAQDetailViewController ()<BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic,strong) BaseNavView *navView;
 @property (nonatomic,strong) BaseMoreView *moreView;
+@property (weak, nonatomic) IBOutlet UIButton *contactBtn;
+@property (nonatomic,copy) NSString *uccaccount;
 
 @end
 
@@ -38,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self loadDatas];
     _navView = [[BaseNavView alloc] init];
     _navView.delegate = self;
     [_navView updateIsOnlyShowMoreBtn:YES];
@@ -53,6 +58,30 @@
 //    NSAttributedString *attributedString2 = [[NSAttributedString alloc] initWithData:[_model.contentP dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 
     self.textView.attributedText = attributedString1;
+    [_contactBtn setTitle:kLocalizedString(@"CONTACT_US") forState:0];
+    _contactBtn.layer.borderWidth = 1;
+    _contactBtn.layer.borderColor = RGBColorFrom16(0xd9d9d9).CGColor;
+    [_contactBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:5];
+}
+- (void)loadDatas
+{
+    MPWeakSelf(self)
+    [SFNetworkManager get:SFNet.h5.uccAccount parameters:@{} success:^(id  _Nullable response) {
+        weakself.uccaccount = response;
+        if (response) {
+            self.contactBtn.hidden = NO;
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (IBAction)contactAction:(id)sender {
+    PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+    vc.url = [NSString stringWithFormat:@"%@/chat/%@",Host,self.uccaccount];
+    vc.sysAccount = self.uccaccount;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController pushViewController:vc animated:YES];
+    });
 }
 
 /*

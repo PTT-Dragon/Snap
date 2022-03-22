@@ -112,14 +112,18 @@ willExpireShow = 0;
 
 @end
 
+@interface CmpBuyGetnRuleModel : JSONModel
+
+@end
+
 
 @interface CouponOrifeeModel : JSONModel
 @property (nonatomic,copy) NSString <Optional>*totalPrice;
-@property (nonatomic,copy) NSString <Optional>*cmpBuyGetnRule;
+@property (nonatomic,strong) CmpBuyGetnRuleModel <Optional>*cmpBuyGetnRule;
 @property (nonatomic,copy) NSString <Optional>*totalCnt;
-@property (nonatomic,strong) CouponModel *couponInfo;
-@property (nonatomic,strong) NextBuyGetnRuleModel *nextBuyGetnRule;
-@property (nonatomic,strong) BuygetnInfoModel *buygetnInfo;
+@property (nonatomic,strong) CouponModel <Optional>*couponInfo;
+@property (nonatomic,strong) NextBuyGetnRuleModel <Optional>*nextBuyGetnRule;
+@property (nonatomic,strong) BuygetnInfoModel <Optional>*buygetnInfo;
 
 
 @end

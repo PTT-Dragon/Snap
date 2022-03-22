@@ -26,7 +26,10 @@
 @end
 
 @implementation BuygetnInfoModel
-
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
 @end
 
 @implementation CartListModel

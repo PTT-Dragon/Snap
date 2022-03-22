@@ -12,7 +12,7 @@
 @interface SupportViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
-
+@property (nonatomic,copy) NSString *uccaccount;
 @end
 
 @implementation SupportViewController
@@ -34,8 +34,9 @@
 }
 - (void)loadDatas
 {
+    MPWeakSelf(self)
     [SFNetworkManager get:SFNet.h5.uccAccount parameters:@{} success:^(id  _Nullable response) {
-        
+        weakself.uccaccount = response;
     } failed:^(NSError * _Nonnull error) {
         
     }];
@@ -50,16 +51,19 @@
         }];
 }
 - (IBAction)chatAction:(id)sender {
+    if (self.uccaccount) {
+        PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        vc.url = [NSString stringWithFormat:@"%@/chat/%@",Host,self.uccaccount];
+        vc.sysAccount = model.account;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController pushViewController:vc animated:YES];
+        });
+        return;
+    }
     EmptyViewController *vc = [[EmptyViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-//    PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-//    UserModel *model = [FMDBManager sharedInstance].currentUser;
-//    //TODO: 这里先写死  没有uccaccount数据
-//    vc.url = [NSString stringWithFormat:@"http://47.243.193.90:8064/chat/A1test@A1.com"];
-//    vc.sysAccount = model.account;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self.navigationController pushViewController:vc animated:YES];
-//    });
+    
 }
 
 
