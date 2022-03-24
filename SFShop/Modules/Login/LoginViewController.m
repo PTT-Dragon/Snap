@@ -304,8 +304,7 @@ static BOOL _passwordSuccess = NO;
             MJRefreshConfig.defaultConfig.languageCode = @"id";
             UserDefaultSetObjectForKey(@"id", @"Language");
             [NSNotificationCenter.defaultCenter postNotificationName:@"KLanguageChange" object:@"id"];
-        }
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowUserReceiveCoupon" object:0];
+        }        
         
         if (weakself.didLoginBlock)  {
             weakself.didLoginBlock();

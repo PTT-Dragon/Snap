@@ -175,7 +175,7 @@
 //        if (self.dataSource.count == 0) {
 //            return MainScreen_height-navBarHei;
 //        }
-        UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey: self.imgUrl];
+        UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey: self.imgUrl];
         if (!image) {
             return AdaptedHeight(635);
         }
