@@ -8,6 +8,7 @@
 #import "UserReceiveCouponView.h"
 #import "UserReceiveCouponCell.h"
 
+
 @interface UserReceiveCouponView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *label1;

@@ -94,6 +94,7 @@
                 <outlet property="discountView" destination="maa-rC-TE3" id="BGB-Kb-RuF"/>
                 <outlet property="label2" destination="fxN-uZ-jj8" id="s5A-cx-bnE"/>
                 <outlet property="nameLabel" destination="hSg-Ry-8Zm" id="YIr-Um-TWy"/>
+                <outlet property="statuLabel" destination="Qpu-dH-DTu" id="ns0-6A-XyT"/>
                 <outlet property="timeLabel" destination="baB-SF-JtD" id="WWy-yM-d7h"/>
             </connections>
             <point key="canvasLocation" x="133" y="98"/>

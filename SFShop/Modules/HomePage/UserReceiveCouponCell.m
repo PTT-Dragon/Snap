@@ -7,6 +7,7 @@
 
 #import "UserReceiveCouponCell.h"
 #import "NSDate+Helper.h"
+#import "UseCouponViewController.h"
 
 @interface UserReceiveCouponCell ()
 @property (weak, nonatomic) IBOutlet UIView *discountView;
@@ -23,6 +24,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(useCouponAction)];
+    [self.contentView addGestureRecognizer:tap];
     _label2.text = kLocalizedString(@"EXPIRY_DATE");
     self.contentView.layer.borderColor = RGBColorFrom16(0xe7e7e7).CGColor;
     self.contentView.layer.borderWidth = 1;
@@ -79,5 +82,24 @@
         _statuLabel.textColor = RGBColorFrom16(0xFF1659);
         _discountView.backgroundColor = RGBColorFrom16(0xFF1659);
     }
+}
+
+- (void)useCouponAction
+{
+    if ([_statuLabel.text isEqualToString:kLocalizedString(@"USE_NOW")]) {
+        UseCouponViewController *vc = [[UseCouponViewController alloc] init];
+        vc.couponId = _model.userCouponId;
+        [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
+    }else if ([_statuLabel.text isEqualToString:kLocalizedString(@"GET_NOW")]){
+        MPWeakSelf(self)
+        [SFNetworkManager post:SFNet.coupon.usercoupon parameters:@{@"couponId":_model.couponId} success:^(id  _Nullable response) {
+            self.model.isGet = YES;
+            [self setModel:weakself.model];
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COLLECT_COUPON_SUCCESS")];
+        } failed:^(NSError * _Nonnull error) {
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
+        }];
+    }
+    [self removeFromSuperview];
 }
 @end

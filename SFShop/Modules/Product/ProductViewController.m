@@ -138,6 +138,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *flashSaleOriginPriceLabel;
 @property (weak, nonatomic) IBOutlet UIView *flashSaleProcessView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buyBtnWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *couponViewToPromotionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *butBtnLeadingToCart;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buyBtnLeadingToMessage;
 
 @end
 
@@ -782,6 +785,8 @@
     if (effTimeInterval > timeInterval) {
         //未开始
         self.addCartBtn.hidden = NO;
+        self.buyBtnLeadingToMessage.priority = 750;
+        self.butBtnLeadingToCart.priority = 25;
         self.timeStateLabel.text = kLocalizedString(@"Star_in");
         self.flashSaleStateLabel.text = kLocalizedString(@"Star_from");
         self.flashSaleBeginTimeLabel.text = [[NSDate dateFromString:model.effDate] dayMonthYearHHMM];
@@ -816,6 +821,8 @@
         //进行中
         self.addCartBtn.hidden = YES;
         self.flashSaleProcessView.hidden = NO;
+        self.buyBtnLeadingToMessage.priority = 750;
+        self.butBtnLeadingToCart.priority = 25;
         NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         self.flashSaleStateLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency, model.specialPrice];
         self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%%  Sold",model.flsaleSaleQtyPercent];
@@ -903,18 +910,24 @@
 }
 - (void)layoutCouponSubviews
 {
-    if (self.campaignsModel.coupons.count > 0) {
+        
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
+    [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.productId.integerValue != _selProductModel.productId) {
+            [arr removeObject:obj];
+        }
+    }];
+    if (arr.count == 0) {
+        self.vouchersTitleLabel.hidden = YES;
+        self.couponsViewHeight.constant = 0;
+        self.couponViewToPromotionView.constant = 12;
+    }else{
         self.couponsView.hidden = NO;
         self.vouchersTitleLabel.hidden = NO;
         self.couponsViewHeight.constant = 40;
         self.couponViewTop.constant = 12;
+        self.couponViewToPromotionView.constant = 0;
         __block CGFloat lastRight = 0;
-        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
-        [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.productId.integerValue != _selProductModel.productId) {
-                [arr removeObject:obj];
-            }
-        }];
         [arr enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             UILabel *label = [[UILabel alloc] init];
             label.text = [NSString stringWithFormat:@"%@",obj.couponName];
@@ -932,11 +945,7 @@
             }];
             lastRight += width+20;
         }];
-    }else{
-        self.vouchersTitleLabel.hidden = YES;
-        self.couponsViewHeight.constant = 0;
     }
-    
 }
 - (void)layoutPromotionSubviews
 {

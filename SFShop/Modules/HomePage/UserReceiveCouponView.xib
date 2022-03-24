@@ -30,6 +30,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEC-12-fUf">
                     <rect key="frame" x="16" y="284" width="382" height="338"/>
                     <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组 117721" translatesAutoresizingMaskIntoConstraints="NO" id="RWs-Em-pwp">
+                            <rect key="frame" x="-16" y="-220" width="414" height="634.5"/>
+                        </imageView>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="gF4-CK-YZa">
                             <rect key="frame" x="0.0" y="24" width="382" height="109"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -80,10 +83,13 @@
                         <constraint firstItem="Ei4-b9-6pZ" firstAttribute="top" secondItem="gF4-CK-YZa" secondAttribute="bottom" constant="23" id="6wp-gv-5vb"/>
                         <constraint firstItem="Ei4-b9-6pZ" firstAttribute="centerX" secondItem="MEC-12-fUf" secondAttribute="centerX" id="9kW-Fd-UGO"/>
                         <constraint firstAttribute="trailing" secondItem="qg6-cw-glU" secondAttribute="trailing" constant="24" id="LQk-SH-ihd"/>
+                        <constraint firstAttribute="trailing" secondItem="RWs-Em-pwp" secondAttribute="trailing" constant="-16" id="MOs-zb-vav"/>
+                        <constraint firstItem="RWs-Em-pwp" firstAttribute="top" secondItem="MEC-12-fUf" secondAttribute="top" constant="-220" id="YtG-B5-xAM"/>
                         <constraint firstItem="gF4-CK-YZa" firstAttribute="leading" secondItem="MEC-12-fUf" secondAttribute="leading" id="aEN-Yf-wlU"/>
                         <constraint firstItem="gF4-CK-YZa" firstAttribute="top" secondItem="MEC-12-fUf" secondAttribute="top" constant="24" id="aof-ad-khT"/>
                         <constraint firstAttribute="trailing" secondItem="gF4-CK-YZa" secondAttribute="trailing" id="ca2-PI-Ns0"/>
                         <constraint firstAttribute="bottom" secondItem="qg6-cw-glU" secondAttribute="bottom" constant="24" id="d82-j2-fF8"/>
+                        <constraint firstItem="RWs-Em-pwp" firstAttribute="leading" secondItem="MEC-12-fUf" secondAttribute="leading" constant="-16" id="hN9-9l-yP0"/>
                         <constraint firstItem="GWC-LB-odh" firstAttribute="top" secondItem="Ei4-b9-6pZ" secondAttribute="bottom" constant="24" id="vfv-Uy-YCP"/>
                         <constraint firstItem="qg6-cw-glU" firstAttribute="leading" secondItem="MEC-12-fUf" secondAttribute="leading" constant="24" id="y8r-MP-Fc7"/>
                     </constraints>
@@ -112,6 +118,7 @@
         </view>
     </objects>
     <resources>
+        <image name="组 117721" width="691" height="634.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

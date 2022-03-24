@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *processWidth;
 @property (weak, nonatomic) IBOutlet UILabel *processLabel;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UILabel *tagLabel;
 
 @end
 
@@ -29,6 +30,7 @@
     // Initialization code
     _bgView.layer.borderWidth = 1;
     _bgView.layer.borderColor = RGBColorFrom16(0xcccccc).CGColor;
+    _tagLabel.text = [NSString stringWithFormat:@" %@ ",kLocalizedString(@"FLASH")];
 }
 - (void)setModel:(FlashSaleProductModel *)model
 {
@@ -38,7 +40,7 @@
 //    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
     _priceLabel.text = [model.specialPrice currency];
     _OriginalPriceLabel.text = [model.marketPrice currency];
-    _offLabel.text = [NSString stringWithFormat:@" %@%% ",model.discountPercent];
+    _offLabel.text = model.discountPercent ? [NSString stringWithFormat:@" %@%% ",model.discountPercent] : @"";
     _rateLabel.text = [NSString stringWithFormat:@"%.2f (%f)",model.evaluationAvg.floatValue,model.evaluationCnt];
     _processLabel.text = [NSString stringWithFormat:@"%.2f%% %@",model.salePercent/100, kLocalizedString(@"Terjual")];
     _processWidth.constant = (MainScreen_width-224)*model.salePercent/10000;

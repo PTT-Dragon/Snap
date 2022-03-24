@@ -131,7 +131,7 @@
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor clearColor];
         _magicController.magicView.sliderColor = [UIColor whiteColor];
-        _magicController.magicView.layoutStyle = VTLayoutStyleCenter;
+        _magicController.magicView.layoutStyle = _menuList.count <= 3 ? VTLayoutStyleCenter : VTLayoutStyleDefault;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.navigationHeight = 80.f;
         _magicController.magicView.itemSpacing = 20;

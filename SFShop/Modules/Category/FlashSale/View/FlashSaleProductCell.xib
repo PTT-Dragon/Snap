@@ -34,7 +34,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySN-RE-xmo">
-                                <rect key="frame" x="175" y="13" width="153" height="17"/>
+                                <rect key="frame" x="175" y="26" width="153" height="17"/>
                                 <fontDescription key="fontDescription" weight="semibold" name="TruenoRg" family="Trueno" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -103,6 +103,16 @@
                                     <constraint firstAttribute="height" constant="1" id="qHl-bK-hXC"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEk-ZG-rXp">
+                                <rect key="frame" x="174" y="5" width="27" height="16"/>
+                                <color key="backgroundColor" red="1" green="0.086274509803921567" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="Xxx-NZ-EZa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="10"/>
+                                <color key="textColor" red="0.97647058819999999" green="0.99215686270000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -112,7 +122,7 @@
                             <constraint firstItem="ozf-Q1-fcT" firstAttribute="centerX" secondItem="q0u-zB-2Vy" secondAttribute="centerX" id="4JX-VQ-hCN"/>
                             <constraint firstItem="8mD-Sb-txO" firstAttribute="top" secondItem="bg2-kt-TXl" secondAttribute="bottom" constant="4" id="5BP-EV-dvT"/>
                             <constraint firstItem="xnV-O0-sO3" firstAttribute="top" secondItem="Evk-Ze-jKU" secondAttribute="bottom" constant="5" id="8Bb-CL-6cw"/>
-                            <constraint firstItem="ySN-RE-xmo" firstAttribute="top" secondItem="5KX-88-W2q" secondAttribute="top" constant="13" id="FXw-Am-J7K"/>
+                            <constraint firstItem="ySN-RE-xmo" firstAttribute="top" secondItem="5KX-88-W2q" secondAttribute="top" constant="26" id="FXw-Am-J7K"/>
                             <constraint firstAttribute="trailing" secondItem="ySN-RE-xmo" secondAttribute="trailing" constant="15" id="FjF-S0-udw"/>
                             <constraint firstItem="vZO-ol-CY9" firstAttribute="top" secondItem="xnV-O0-sO3" secondAttribute="bottom" constant="15" id="Hng-cl-1gj"/>
                             <constraint firstItem="xnV-O0-sO3" firstAttribute="leading" secondItem="Xie-9i-ENk" secondAttribute="trailing" constant="15" id="IbK-kG-eRc"/>
@@ -123,8 +133,10 @@
                             <constraint firstItem="Evk-Ze-jKU" firstAttribute="top" secondItem="5KX-88-W2q" secondAttribute="top" constant="65" id="aXb-hL-XVI"/>
                             <constraint firstItem="ySN-RE-xmo" firstAttribute="leading" secondItem="Xie-9i-ENk" secondAttribute="trailing" constant="15" id="c6N-5A-BGx"/>
                             <constraint firstItem="q0u-zB-2Vy" firstAttribute="centerY" secondItem="xnV-O0-sO3" secondAttribute="centerY" id="eoO-1P-BL2"/>
+                            <constraint firstItem="XEk-ZG-rXp" firstAttribute="leading" secondItem="Xie-9i-ENk" secondAttribute="trailing" constant="14" id="fZl-7I-8qB"/>
                             <constraint firstItem="q0u-zB-2Vy" firstAttribute="leading" secondItem="xnV-O0-sO3" secondAttribute="trailing" constant="8" id="l6O-Qg-Us9"/>
                             <constraint firstItem="oPq-Mw-7qy" firstAttribute="leading" secondItem="vZO-ol-CY9" secondAttribute="trailing" constant="2" id="lir-tK-1bt"/>
+                            <constraint firstItem="XEk-ZG-rXp" firstAttribute="top" secondItem="5KX-88-W2q" secondAttribute="top" constant="5" id="nDO-dv-4qq"/>
                             <constraint firstItem="oPq-Mw-7qy" firstAttribute="centerY" secondItem="vZO-ol-CY9" secondAttribute="centerY" id="r7I-yn-wd8"/>
                             <constraint firstAttribute="trailing" secondItem="bg2-kt-TXl" secondAttribute="trailing" constant="15" id="uws-bZ-eft"/>
                             <constraint firstItem="Xie-9i-ENk" firstAttribute="leading" secondItem="5KX-88-W2q" secondAttribute="leading" id="v8C-g6-EG5"/>
@@ -151,6 +163,7 @@
                 <outlet property="processLabel" destination="bg2-kt-TXl" id="Vri-J2-33a"/>
                 <outlet property="processWidth" destination="Usv-bd-MwK" id="LWf-Dg-bSe"/>
                 <outlet property="rateLabel" destination="oPq-Mw-7qy" id="qRU-f5-738"/>
+                <outlet property="tagLabel" destination="XEk-ZG-rXp" id="Bem-h8-uNj"/>
             </connections>
             <point key="canvasLocation" x="64" y="68"/>
         </tableViewCell>

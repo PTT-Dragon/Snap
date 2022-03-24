@@ -391,7 +391,7 @@
 //  "ORDER_PAYMENT_PROCESSING" = "Pembayaran sedang diproses";
 //  "NO_STOCK" = "Tidak ada stok";
 //  "SELECT_REASON" = "Silakan pilih Alasan";
-//  "FLASH" = "Flash";
+  "FLASH" = "Kilat";
 //  "GROUP" = "Group";
 //  "NO_LOGISTICS" = "Tidak ada logistik";
 //  "QUEUING_UP" = "Mengantri; harap tunggu";

@@ -385,7 +385,7 @@
 //  "NO_STOCK" = "No stock";
 //  "PLEASE_ENTER_YOUR_EMAIL" = "Please enter your email";
 //  "SELECT_REASON" = "Please select Reason";
-//  "FLASH" = "Flash";
+  "FLASH" = "Flash";
 //  "GROUP" = "Group";
 //  "NO_LOGISTICS" = "No logistics";
 //  "QUEUING_UP" = "Queuing up; please wait…";

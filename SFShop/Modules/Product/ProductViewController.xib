@@ -21,12 +21,15 @@
                 <outlet property="addressLabel" destination="S5Q-39-22Q" id="u1S-Ty-i6t"/>
                 <outlet property="btnToName" destination="5Ho-G0-Yov" id="2qS-Ka-GeY"/>
                 <outlet property="btnToPrice" destination="lWx-Dh-s8B" id="7GY-V8-xOO"/>
+                <outlet property="butBtnLeadingToCart" destination="dKK-mC-AkZ" id="5Bc-Jh-Pfq"/>
                 <outlet property="buyBtn" destination="7Oj-2V-4K5" id="ZHZ-k6-SYc"/>
+                <outlet property="buyBtnLeadingToMessage" destination="Bdc-Ag-qoJ" id="TqZ-dc-Kh9"/>
                 <outlet property="buyBtnWidth" destination="cWL-Nd-z9H" id="S9N-VR-5XC"/>
                 <outlet property="carouselImgView" destination="3B5-HJ-OKN" id="WOE-eV-rRG"/>
                 <outlet property="cartBtn" destination="Wzh-91-W1s" id="2ru-7x-ruF"/>
                 <outlet property="cartNumLabel" destination="ysm-hw-4n3" id="RY4-6V-pM0"/>
                 <outlet property="chatBtnWidth" destination="2Uo-Q7-c3h" id="0vN-Dc-bTH"/>
+                <outlet property="couponViewToPromotionView" destination="4kX-9s-uye" id="nB1-9l-Np4"/>
                 <outlet property="couponViewTop" destination="InE-92-Jck" id="pDQ-d0-0BB"/>
                 <outlet property="couponsView" destination="1ze-5y-re2" id="cNs-fH-cdW"/>
                 <outlet property="couponsViewHeight" destination="Sss-pG-inW" id="rCI-VT-10S"/>
@@ -161,11 +164,12 @@
                         <constraint firstItem="4Dc-YH-2NV" firstAttribute="leading" secondItem="rmQ-y4-MWr" secondAttribute="trailing" constant="8" id="4V9-RP-t9C"/>
                         <constraint firstItem="Wzh-91-W1s" firstAttribute="leading" secondItem="zDo-0c-8Eg" secondAttribute="leading" constant="16" id="5r0-0c-jg6"/>
                         <constraint firstAttribute="trailing" secondItem="7Oj-2V-4K5" secondAttribute="trailing" constant="15" id="7nq-rc-R35"/>
+                        <constraint firstItem="7Oj-2V-4K5" firstAttribute="leading" secondItem="rmQ-y4-MWr" secondAttribute="trailing" priority="250" constant="165" id="Bdc-Ag-qoJ"/>
                         <constraint firstItem="rmQ-y4-MWr" firstAttribute="leading" secondItem="Wzh-91-W1s" secondAttribute="trailing" constant="8" id="JEI-Yd-tpd"/>
                         <constraint firstItem="ysm-hw-4n3" firstAttribute="leading" secondItem="Wzh-91-W1s" secondAttribute="trailing" constant="-10" id="Tyo-aR-vVQ"/>
                         <constraint firstItem="7Oj-2V-4K5" firstAttribute="centerY" secondItem="zDo-0c-8Eg" secondAttribute="centerY" id="at9-0H-e9L"/>
                         <constraint firstItem="7Oj-2V-4K5" firstAttribute="width" secondItem="4Dc-YH-2NV" secondAttribute="width" multiplier="0.79" id="cWL-Nd-z9H"/>
-                        <constraint firstItem="7Oj-2V-4K5" firstAttribute="leading" secondItem="4Dc-YH-2NV" secondAttribute="trailing" constant="8" id="dKK-mC-AkZ"/>
+                        <constraint firstItem="7Oj-2V-4K5" firstAttribute="leading" secondItem="4Dc-YH-2NV" secondAttribute="trailing" priority="750" constant="8" id="dKK-mC-AkZ"/>
                         <constraint firstItem="4Dc-YH-2NV" firstAttribute="centerY" secondItem="zDo-0c-8Eg" secondAttribute="centerY" id="fC9-td-vFm"/>
                         <constraint firstAttribute="height" constant="78" id="h19-Da-yWY"/>
                         <constraint firstItem="ysm-hw-4n3" firstAttribute="top" secondItem="Wzh-91-W1s" secondAttribute="top" constant="-5" id="woU-dn-CCQ"/>
