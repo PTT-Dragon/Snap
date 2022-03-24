@@ -12,6 +12,7 @@
 #import "BaseNavView.h"
 #import "BaseMoreView.h"
 #import <MJRefresh/MJRefresh.h>
+#import <SDWebImage/SDWebImage.h>
 
 @interface InviteViewController ()<UITableViewDelegate,UITableViewDataSource,BaseNavViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
@@ -89,6 +90,13 @@
     [SFNetworkManager get:SFNet.invite.activityInfo parameters:@{} success:^(id  _Nullable response) {
         NSArray *arr = response;
         weakself.imgUrl = arr.firstObject[@"ctnAttachment"];
+        UIImage *cachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:weakself.imgUrl];
+            
+            if ( !cachedImage ) {
+                [self downloadImage:SFImage(self.imgUrl) forIndexPath:0];
+            } else {
+                
+            }
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
         
@@ -110,6 +118,16 @@
         }
     } failed:^(NSError * _Nonnull error) {
         
+    }];
+}
+
+- (void)downloadImage:(NSString *)imageURL forIndexPath:(NSIndexPath *)indexPath {
+    // 利用 SDWebImage 框架提供的功能下载图片
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:imageURL] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+        [[SDImageCache sharedImageCache] storeImageToMemory:image forKey:self.imgUrl];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
 }
 - (void)loadMoreDatas
@@ -154,10 +172,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        if (self.dataSource.count == 0) {
-            return MainScreen_height-navBarHei;
+//        if (self.dataSource.count == 0) {
+//            return MainScreen_height-navBarHei;
+//        }
+        UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey: self.imgUrl];
+        if (!image) {
+            return AdaptedHeight(635);
         }
-        return AdaptedHeight(635);
+            //手动计算cell
+            CGFloat imgHeight = image.size.height * [UIScreen mainScreen].bounds.size.width / image.size.width;
+            return imgHeight;
+//        return AdaptedHeight(635);
     }
     return 74;
 }

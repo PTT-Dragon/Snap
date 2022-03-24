@@ -45,6 +45,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "ProductChoosePromotionView.h"
 #import "NSDate+Helper.h"
+#import "NSString+Fee.h"
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate,JPVideoPlayerDelegate>
@@ -139,8 +140,9 @@
 @property (weak, nonatomic) IBOutlet UIView *flashSaleProcessView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buyBtnWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *couponViewToPromotionView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *butBtnLeadingToCart;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buyBtnLeadingToMessage;
+@property (weak, nonatomic) IBOutlet UIView *flashSaleOriginPriceView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buyLeadingToMessage;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buyLeadingToCart;
 
 @end
 
@@ -763,6 +765,8 @@
     self.marketPriceLabelIndicationView.hidden = NO;
     self.btnToName.priority = 250;
     self.btnToPrice.priority = 750;
+    [self.buyBtn setTitle:kLocalizedString(@"BUY_NOWMAX") forState:0];
+    [self.addCartBtn setTitle:kLocalizedString(@"ADD_TO_CART") forState:0];
     FlashSaleDateModel *model;
     for (FlashSaleDateModel *flashModel in self.campaignsModel.cmpFlashSales) {
         if (flashModel.productId.integerValue == self.selProductModel.productId) {
@@ -784,9 +788,14 @@
     NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
     if (effTimeInterval > timeInterval) {
         //未开始
+        self.buyLeadingToCart.priority = 750;
+        self.buyLeadingToMessage.priority = 250;
+        self.flashSaleOriginPriceView.hidden = YES;
+        self.flashSaleOriginPriceLabel.hidden = YES;
+        self.flashSaleOffLabel.hidden = YES;
+        self.flashSaleOriginPriceLabel.text = @"";
+        self.flashSaleOffLabel.text = @"";
         self.addCartBtn.hidden = NO;
-        self.buyBtnLeadingToMessage.priority = 750;
-        self.butBtnLeadingToCart.priority = 25;
         self.timeStateLabel.text = kLocalizedString(@"Star_in");
         self.flashSaleStateLabel.text = kLocalizedString(@"Star_from");
         self.flashSaleBeginTimeLabel.text = [[NSDate dateFromString:model.effDate] dayMonthYearHHMM];
@@ -819,14 +828,29 @@
         dispatch_resume(_timer);
     }else if (expTimeInterval > timeInterval){
         //进行中
+        self.buyLeadingToCart.priority = 250;
+        self.buyLeadingToMessage.priority = 750;
+        self.flashSaleOriginPriceView.hidden = NO;
+        self.flashSaleOriginPriceLabel.hidden = NO;
+        self.flashSaleOffLabel.hidden = NO;
+        self.flashSaleOriginPriceLabel.text = [[NSString stringWithFormat:@"%ld",self.selProductModel.marketPrice] currency];
+        self.flashSaleOffLabel.text = (model.discountPercent == 0 || !model.discountPercent) ? @"": [NSString stringWithFormat:@"  -%.0f%%  ",model.discountPercent];
+        
         self.addCartBtn.hidden = YES;
         self.flashSaleProcessView.hidden = NO;
-        self.buyBtnLeadingToMessage.priority = 750;
-        self.butBtnLeadingToCart.priority = 25;
-        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-        self.flashSaleStateLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency, model.specialPrice];
-        self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%%  Sold",model.flsaleSaleQtyPercent];
+//        NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+        self.flashSaleStateLabel.text = [[NSString stringWithFormat:@"%.f",model.specialPrice] currency];
+        self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%%  Sold",model.flsaleSaleQtyPercent/100];
         self.timeStateLabel.text = kLocalizedString(@"ENDS_IN");
+        self.priceLabelTop.constant = 14;
+        self.salesPriceLabel.hidden = YES;
+        self.originalPriceLabel.hidden = YES;
+        self.productDiscountLabel.hidden = YES;
+        self.marketPriceLabelIndicationView.hidden = YES;
+        self.btnToName.priority = 750;
+        self.btnToPrice.priority = 250;
+        self.viewTop.constant = 64;
+        
         MPWeakSelf(self)
         __block NSInteger timeout = expTimeInterval - timeInterval; // 倒计时时间
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -920,6 +944,7 @@
     if (arr.count == 0) {
         self.vouchersTitleLabel.hidden = YES;
         self.couponsViewHeight.constant = 0;
+        self.couponsView.hidden = YES;
         self.couponViewToPromotionView.constant = 12;
     }else{
         self.couponsView.hidden = NO;

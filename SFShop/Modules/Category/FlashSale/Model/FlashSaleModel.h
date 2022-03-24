@@ -47,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FlashSaleProductModel : JSONModel
 @property (nonatomic,strong) ProductImgContentModel *productImgContent;
 @property (nonatomic,copy) NSString *productId;
+@property (nonatomic,copy) NSString *sppProductId;
 @property (nonatomic,copy) NSString *productImg;
 @property (nonatomic,copy) NSString *productName;
 @property (nonatomic,copy) NSString *specialPrice;
