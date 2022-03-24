@@ -135,6 +135,13 @@
     
     [self.shareItemsArr addObject:copyModel];
     
+    MGCShareItemModel *posterModel = [[MGCShareItemModel alloc] init];
+    posterModel.itemName = @"Save Poster";
+    posterModel.itemType = MGCShareCopyLinkType;
+    posterModel.itemImage = @"00103_ Connect Fill";
+    
+    [self.shareItemsArr addObject:posterModel];
+    
     [self.shareCollectionView reloadData];
 }
 

@@ -10,6 +10,7 @@
 #import "MGCShareView.h"
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import <TwitterKit/TwitterKit.h>
+#import "PosterView.h"
 
 @implementation MGCShareManager
 
@@ -49,6 +50,9 @@
             UIPasteboard *pab = [UIPasteboard generalPasteboard];
             pab.string = url;
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COPY_SUCCESS")];
+        } else if (type == MGCSharePosterType) {
+            
+            
         }
     }
                                         failBlock:nil

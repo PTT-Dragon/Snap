@@ -262,6 +262,10 @@
 		1B8841BA27EBE494002C5B99 /* UserReceiveCouponView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8841B927EBE494002C5B99 /* UserReceiveCouponView.xib */; };
 		1B8841BE27EBE991002C5B99 /* UserReceiveCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8841BC27EBE991002C5B99 /* UserReceiveCouponCell.m */; };
 		1B8841BF27EBE991002C5B99 /* UserReceiveCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8841BD27EBE991002C5B99 /* UserReceiveCouponCell.xib */; };
+		1B8841C427EC42DA002C5B99 /* ChangeEmailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8841C227EC42DA002C5B99 /* ChangeEmailVC.m */; };
+		1B8841C527EC42DA002C5B99 /* ChangeEmailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8841C327EC42DA002C5B99 /* ChangeEmailVC.xib */; };
+		1B8841C927EC5716002C5B99 /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8841C827EC5716002C5B99 /* PosterView.m */; };
+		1B8841CB27EC5893002C5B99 /* PosterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8841CA27EC5893002C5B99 /* PosterView.xib */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
@@ -1063,6 +1067,12 @@
 		1B8841BB27EBE991002C5B99 /* UserReceiveCouponCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserReceiveCouponCell.h; sourceTree = "<group>"; };
 		1B8841BC27EBE991002C5B99 /* UserReceiveCouponCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserReceiveCouponCell.m; sourceTree = "<group>"; };
 		1B8841BD27EBE991002C5B99 /* UserReceiveCouponCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserReceiveCouponCell.xib; sourceTree = "<group>"; };
+		1B8841C127EC42DA002C5B99 /* ChangeEmailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeEmailVC.h; sourceTree = "<group>"; };
+		1B8841C227EC42DA002C5B99 /* ChangeEmailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeEmailVC.m; sourceTree = "<group>"; };
+		1B8841C327EC42DA002C5B99 /* ChangeEmailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeEmailVC.xib; sourceTree = "<group>"; };
+		1B8841C727EC5716002C5B99 /* PosterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
+		1B8841C827EC5716002C5B99 /* PosterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
+		1B8841CA27EC5893002C5B99 /* PosterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterView.xib; sourceTree = "<group>"; };
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
@@ -1850,6 +1860,9 @@
 				1B47832C272AA1FF00F2A945 /* SecurityCenterViewController.h */,
 				1B47832D272AA1FF00F2A945 /* SecurityCenterViewController.m */,
 				1B47832E272AA1FF00F2A945 /* SecurityCenterViewController.xib */,
+				1B8841C127EC42DA002C5B99 /* ChangeEmailVC.h */,
+				1B8841C227EC42DA002C5B99 /* ChangeEmailVC.m */,
+				1B8841C327EC42DA002C5B99 /* ChangeEmailVC.xib */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -3188,6 +3201,9 @@
 				8E1872D72796AF2300DBEE3E /* MGCShareManager.m */,
 				8E1872CD2796A98B00DBEE3E /* MGCShareInfoModel.h */,
 				8E1872CE2796A98B00DBEE3E /* MGCShareInfoModel.m */,
+				1B8841C727EC5716002C5B99 /* PosterView.h */,
+				1B8841C827EC5716002C5B99 /* PosterView.m */,
+				1B8841CA27EC5893002C5B99 /* PosterView.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -3770,6 +3786,7 @@
 				1B986E6727D9DC6E005ED82F /* CashOutSuccessVC.xib in Resources */,
 				1B82AE3827701F4F00D75E00 /* ArticleEvaluateBottomCell.xib in Resources */,
 				8EB27B3227D3995D004F4A9C /* TwitterShareExtensionUIResources.bundle in Resources */,
+				1B8841CB27EC5893002C5B99 /* PosterView.xib in Resources */,
 				1BD8E7C3275F47E500130DCC /* RefundDetailProductInfoCell.xib in Resources */,
 				1BD8E7D0275FB8F900130DCC /* PublicShareView.xib in Resources */,
 				1BF00F60272FDC090081C8E4 /* DistributorInfoCell.xib in Resources */,
@@ -3831,6 +3848,7 @@
 				1BFF68FB27968C5F006890D7 /* LogisticsVC.xib in Resources */,
 				1B552EAF276B36CC0086604B /* GroupFilterCell.xib in Resources */,
 				1B82AEDE277080B700D75E00 /* README.md in Resources */,
+				1B8841C527EC42DA002C5B99 /* ChangeEmailVC.xib in Resources */,
 				1B8841BA27EBE494002C5B99 /* UserReceiveCouponView.xib in Resources */,
 				1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */,
 				1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */,
@@ -4180,6 +4198,7 @@
 				62E428D627A2292A00A02F91 /* JPVideoPlayerDownloader.m in Sources */,
 				1B63D462272D238C0062762B /* CartChooseAddressViewController.m in Sources */,
 				1BF56CD02761001000B40CAA /* CountDown.m in Sources */,
+				1B8841C427EC42DA002C5B99 /* ChangeEmailVC.m in Sources */,
 				4B192DBC270950E70029D89F /* ArticleProductCell.m in Sources */,
 				1BB145E527D486740010C0DC /* ProductChoosePromotionTitleCell.m in Sources */,
 				1BBB688727B660EB00A8B83D /* LogisticsMoreCell.m in Sources */,
@@ -4226,6 +4245,7 @@
 				62E428DB27A2292A00A02F91 /* JPVideoPlayerScrollViewProtocol.m in Sources */,
 				1BD8E7D727604FC900130DCC /* AdditionalReviewViewController.m in Sources */,
 				8E11A8D1278DD1F4005D1FC3 /* UIView+Response.m in Sources */,
+				1B8841C927EC5716002C5B99 /* PosterView.m in Sources */,
 				1B6C5298275B672200A1C617 /* ZLInteractiveTrasition.m in Sources */,
 				8E1872C82795AE8900DBEE3E /* MGCShareView.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
@@ -4573,7 +4593,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.23;
+				CURRENT_PROJECT_VERSION = 9.9.9.24;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4622,7 +4642,7 @@
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.23;
+				CURRENT_PROJECT_VERSION = 9.9.9.24;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (

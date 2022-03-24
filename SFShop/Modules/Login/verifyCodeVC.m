@@ -14,6 +14,7 @@
 #import "SysParamsModel.h"
 #import <MJRefresh/MJRefresh.h>
 #import "CashOutSuccessVC.h"
+#import "ChangeEmailVC.h"
 
 @interface verifyCodeVC ()<HWTFCodeBViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
@@ -251,17 +252,9 @@
 }
 - (void)changeUserEmail
 {
-//    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    MPWeakSelf(self)
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:_account forKey:@"newEmail"];
-    [params setValue:_codeView.code forKey:@"code"];
-    [SFNetworkManager post:SFNet.account.emailModify parameters:params success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
-        [weakself.navigationController popToRootViewControllerAnimated:YES];
-    } failed:^(NSError * _Nonnull error) {
-        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
-    }];
+    ChangeEmailVC *vc = [[ChangeEmailVC alloc] init];
+    vc.code = _codeView.code;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)bindUserEmail
 {
