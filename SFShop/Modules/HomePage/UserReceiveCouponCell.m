@@ -100,6 +100,8 @@
             [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
         }];
     }
-    [self removeFromSuperview];
+    if (self.block) {
+        self.block();
+    }
 }
 @end

@@ -52,6 +52,9 @@
 {
     UserReceiveCouponCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UserReceiveCouponCell" forIndexPath:indexPath];
     cell.model = _dataSource[indexPath.row];
+    cell.block = ^{
+        [self removeFromSuperview];
+    };
     return cell;
 }
 

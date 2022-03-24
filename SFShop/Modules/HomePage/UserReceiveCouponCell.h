@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^UserReceiveCouponCellBlock)(void);
+
 @interface UserReceiveCouponCell : UICollectionViewCell
+@property (nonatomic,copy) UserReceiveCouponCellBlock block;
 @property (nonatomic,strong) CouponModel *model;
 @end
 
