@@ -50,8 +50,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *productImg;
 @property (nonatomic,copy) NSString *productName;
 @property (nonatomic,copy) NSString *specialPrice;
+@property (nonatomic,copy) NSString *marketPrice;
 @property (nonatomic,copy) NSString *salesPrice;
 @property (nonatomic,assign) double productSalePercent;
+@property (nonatomic,assign) double salePercent;
 @property (nonatomic,assign) double stockNum;
 @property (nonatomic,copy) NSString *offerId;
 @property (nonatomic,copy) NSString *offerName;
@@ -59,6 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *currencySymbol;
 @property (nonatomic,copy) NSString *sppType;
 @property (nonatomic,copy) NSString *evaluationAvg;
+@property (nonatomic,copy) NSString *imgUrl;
 @property (nonatomic,assign) double evaluationCnt;
 @property (nonatomic,assign) double productCmpSaleNum;
 

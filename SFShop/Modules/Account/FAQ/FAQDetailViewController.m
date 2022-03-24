@@ -10,6 +10,7 @@
 #import "BaseMoreView.h"
 #import "PublicWebViewController.h"
 #import "UIButton+SGImagePosition.h"
+#import "MakeH5Happy.h"
 
 @interface FAQDetailViewController ()<BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -54,7 +55,7 @@
     }];
     [_navView configDataWithTitle:kLocalizedString(@"Help_center")];
     self.titleLabel.text = self.model.faqName;
-    NSAttributedString *attributedString1 = [[NSAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",_model.contentM] dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    NSAttributedString *attributedString1 = [[NSAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",[MakeH5Happy replaceHtmlSourceOfRelativeImageSource:_model.contentM]] dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 //    NSAttributedString *attributedString2 = [[NSAttributedString alloc] initWithData:[_model.contentP dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 
     self.textView.attributedText = attributedString1;
@@ -69,7 +70,7 @@
     [SFNetworkManager get:SFNet.h5.uccAccount parameters:@{} success:^(id  _Nullable response) {
         weakself.uccaccount = response;
         if (response) {
-            self.contactBtn.hidden = NO;
+//            self.contactBtn.hidden = NO;
         }
     } failed:^(NSError * _Nonnull error) {
         

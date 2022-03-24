@@ -37,7 +37,7 @@
 
 - (IBAction)inviteAction:(id)sender {
     UserModel *model = [FMDBManager sharedInstance].currentUser;
-    NSString *shareUrl = [NSString stringWithFormat:@"%@/sign-up-gift/%@",Host,model.userRes.userCode];
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/sign-up-gift/F/%@",Host,model.userRes.userCode];
     [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }
 - (IBAction)ruleAction:(UIButton *)sender {

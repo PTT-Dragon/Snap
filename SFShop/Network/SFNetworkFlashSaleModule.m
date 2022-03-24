@@ -14,7 +14,7 @@
 }
 - (NSString *)productList
 {
-    return K_flashSale_domain(@"product/page");
+    return K_flashSale_domain(@"offer/page");
 }
 - (NSString *)getCatg:(NSString *)catgId
 {

@@ -351,12 +351,12 @@
 {
     //[MBProgressHUD showHudMsg:@""];
     MPWeakSelf(self)
-    if (self.detailModel.evaluates.count > 0) {
+    if (self.detailModel.evaluates.count > 0 && [self.detailModel.evaluates.firstObject offerEvaluationId]) {
         //修改
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         NSMutableArray *evaluateItems = [NSMutableArray array];
-        for (NSInteger i = 0; i<_model.orderItems.count; i++) {
-            orderItemsModel *itemModel = _model.orderItems[i];
+//        for (NSInteger i = 0; i<_model.orderItems.count; i++) {
+            orderItemsModel *itemModel = _model.orderItems[_row];
             NSMutableDictionary *dic = [NSMutableDictionary dictionary];
             [dic setValue:itemModel.orderItemId forKey:@"orderItemId"];
             [dic setValue:_textView.text forKey:@"ratingComments"];
@@ -365,12 +365,14 @@
             NSMutableArray *labelsArr = [NSMutableArray array];
             for (UIView *subView in self.labelsVIew.subviews) {
                 if ([subView isKindOfClass:[UIButton class]]) {
-                    [labelsArr addObject:@(subView.tag)];
+                    if ([(UIButton *)subView isSelected]) {
+                        [labelsArr addObject:@(subView.tag)];
+                    }
                 }
             }
             [dic setValue:labelsArr forKey:@"labelIds"];
             [evaluateItems addObject:dic];
-        }
+//        }
         [params setValue:evaluateItems forKey:@"evaluateItems"];
         [params setValue:@{} forKey:@"store"];
         [SFNetworkManager post:SFNet.evaluate.modify parameters:params success:^(id  _Nullable response) {
@@ -399,7 +401,9 @@
             NSMutableArray *labelsArr = [NSMutableArray array];
             for (UIView *subView in self.labelsVIew.subviews) {
                 if ([subView isKindOfClass:[UIButton class]]) {
-                    [labelsArr addObject:@(subView.tag)];
+                    if ([(UIButton *)subView isSelected]) {
+                        [labelsArr addObject:@(subView.tag)];
+                    }
                 }
             }
             [dic setValue:labelsArr forKey:@"labelIds"];

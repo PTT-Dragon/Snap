@@ -44,6 +44,7 @@
 #import <WebKit/WebKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "ProductChoosePromotionView.h"
+#import "NSDate+Helper.h"
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate,JPVideoPlayerDelegate>
@@ -135,6 +136,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *promotionViewHei;
 @property (weak, nonatomic) IBOutlet UILabel *flashSaleOffLabel;
 @property (weak, nonatomic) IBOutlet UILabel *flashSaleOriginPriceLabel;
+@property (weak, nonatomic) IBOutlet UIView *flashSaleProcessView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buyBtnWidth;
 
 @end
 
@@ -244,6 +247,9 @@
         [self.detailWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
     } @catch (NSException *exception) {
         NSLog(@"可能多次释放，避免crash");
+    }
+    if (_timer) {
+        dispatch_cancel(_timer);
     }
     [MBProgressHUD hideFromKeyWindow];
     [[JPVideoPlayerManager sharedManager] stopPlay];
@@ -427,11 +433,19 @@
         }
         if (weakself.campaignsModel.coupons.count > 0){
             //有可使用红包
+            weakself.vouchersTitleLabel.hidden = NO;
             [weakself layoutCouponSubviews];
+        }else{
+            weakself.vouchersTitleLabel.hidden = YES;
+            weakself.couponsViewHeight.constant = 0;
         }
         if (weakself.campaignsModel.cmpBuygetns.count > 0) {
             //有可使用活动
+            weakself.promotionTitleLabel.hidden = NO;
             [weakself layoutPromotionSubviews];
+        }else{
+            weakself.promotionTitleLabel.hidden = YES;
+            weakself.promotionViewHei.constant = 0;
         }
         
     } failed:^(NSError * _Nonnull error) {
@@ -449,7 +463,11 @@
         return [object.productId integerValue] == productId;
     }].firstObject;
     if (!subModel) {
-        [self hideGroupSubViews];
+        if (self.campaignsModel.cmpFlashSales.count > 0) {
+            //如果是参加抢购的商品 不执行
+        }else{
+            [self hideGroupSubViews];
+        }
         return;
     }
 
@@ -728,22 +746,28 @@
 - (void)layoutFlashSaleSubView
 {
     //抢购活动UI
+    self.viewTop.constant = 70;
     self.flashSaleInfoView.hidden = NO;
+    [self.scrollContentView insertSubview:self.flashSaleInfoView atIndex:0];
+    self.flashSaleInfoView.layer.zPosition = 1;
     self.groupInfoView.hidden = YES;
-    self.viewTop.constant = 85;
-    self.addCartBtn.hidden = YES;
     self.addressViewTop.constant = 12;
     self.topToGroupTableview.constant = [self calucateGroupTableviewHei] == 0 ? 0: 12;
-    self.priceLabelTop.constant = 14;
-    self.salesPriceLabel.hidden = YES;
-    self.originalPriceLabel.hidden = YES;
-    self.productDiscountLabel.hidden = YES;
-    self.marketPriceLabelIndicationView.hidden = YES;
-    self.btnToName.priority = 750;
-    self.btnToPrice.priority = 250;
-    FlashSaleDateModel *model = self.campaignsModel.cmpFlashSales.firstObject;
-    self.flashSaleOffLabel.text = [NSString stringWithFormat:@"-%.0f%%",model.discountPercent];
-    self.flashSaleOriginPriceLabel.text = [[NSString stringWithFormat:@"%ld",self.selProductModel.salesPrice] currency];
+    self.priceLabelTop.constant = 61.5;
+    self.salesPriceLabel.hidden = NO;
+    self.originalPriceLabel.hidden = NO;
+    self.productDiscountLabel.hidden = NO;
+    self.marketPriceLabelIndicationView.hidden = NO;
+    self.btnToName.priority = 250;
+    self.btnToPrice.priority = 750;
+    FlashSaleDateModel *model;
+    for (FlashSaleDateModel *flashModel in self.campaignsModel.cmpFlashSales) {
+        if (flashModel.productId.integerValue == self.selProductModel.productId) {
+            model = flashModel;
+        }
+    }
+    self.flashSaleOffLabel.text = @"";//[NSString stringWithFormat:@"-%.0f%%",model.discountPercent];
+    self.flashSaleOriginPriceLabel.text = @"";//[[NSString stringWithFormat:@"%ld",self.selProductModel.salesPrice] currency];
     self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%% Sold",[[NSString stringWithFormat:@"%.0f",model.flsaleSaleQtyPercent] currencyFloat]];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -757,11 +781,41 @@
     NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
     if (effTimeInterval > timeInterval) {
         //未开始
+        self.addCartBtn.hidden = NO;
         self.timeStateLabel.text = kLocalizedString(@"Star_in");
         self.flashSaleStateLabel.text = kLocalizedString(@"Star_from");
-        self.flashSaleBeginTimeLabel.text = model.effDate;
+        self.flashSaleBeginTimeLabel.text = [[NSDate dateFromString:model.effDate] dayMonthYearHHMM];
+        self.flashSaleProcessView.hidden = YES;
+        MPWeakSelf(self)
+        __block NSInteger timeout = effTimeInterval - timeInterval; // 倒计时时间
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+        dispatch_source_set_event_handler(_timer, ^{
+            if(timeout<=0){
+                
+                dispatch_source_cancel(weakself.timer);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                });
+            }else{
+                NSInteger days = (int)(timeout/(3600*24));
+                NSInteger hours = (int)((timeout-days*24*3600)/3600);
+                NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
+                NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
+                    weakself.minuteLabel.text = [NSString stringWithFormat:@"%02ld",minute];
+                    weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
+                });
+                timeout--;
+            }
+        });
+        dispatch_resume(_timer);
     }else if (expTimeInterval > timeInterval){
         //进行中
+        self.addCartBtn.hidden = YES;
+        self.flashSaleProcessView.hidden = NO;
         NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
         self.flashSaleStateLabel.text = [NSString stringWithFormat:@"%@ %.0f", currency, model.specialPrice];
         self.flashSaleBeginTimeLabel.text = [NSString stringWithFormat:@"%.0f%%  Sold",model.flsaleSaleQtyPercent];
@@ -794,6 +848,7 @@
         dispatch_resume(_timer);
     }else{
         //已结束
+        
     }
 }
 
@@ -801,7 +856,6 @@
     self.groupTableViewTop.constant = 0;
     self.addressViewTop.constant = 12;
     self.groupInfoView.hidden = YES;
-    self.flashSaleInfoView.hidden = YES;
     self.viewTop.constant = 0;
     self.priceLabelTop.constant = 61;
     self.salesPriceLabel.hidden = NO;
@@ -849,63 +903,76 @@
 }
 - (void)layoutCouponSubviews
 {
-    self.couponsView.hidden = NO;
-    self.couponsViewHeight.constant = 40;
-    self.couponViewTop.constant = 12;
-    __block CGFloat lastRight = 0;
-    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
-    [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.productId.integerValue != _selProductModel.productId) {
-            [arr removeObject:obj];
-        }
-    }];
-    [arr enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UILabel *label = [[UILabel alloc] init];
-        label.text = [NSString stringWithFormat:@"%@",obj.couponName];
-        label.font = kFontBlod(10);
-        label.textAlignment = NSTextAlignmentCenter;
-        label.backgroundColor = RGBColorFrom16(0xFF1659);
-        label.textColor = [UIColor whiteColor];
-        CGFloat width = [label.text calWidthWithLabel:label];
-        [self.couponsView addSubview:label];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.couponsView.mas_left).offset(100+lastRight);
-            make.centerY.equalTo(self.couponsView);
-            make.width.mas_equalTo(width+15);
-            make.height.mas_equalTo(18);
+    if (self.campaignsModel.coupons.count > 0) {
+        self.couponsView.hidden = NO;
+        self.vouchersTitleLabel.hidden = NO;
+        self.couponsViewHeight.constant = 40;
+        self.couponViewTop.constant = 12;
+        __block CGFloat lastRight = 0;
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.coupons];
+        [self.campaignsModel.coupons enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.productId.integerValue != _selProductModel.productId) {
+                [arr removeObject:obj];
+            }
         }];
-        lastRight += width+20;
-    }];
+        [arr enumerateObjectsUsingBlock:^(CouponModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            UILabel *label = [[UILabel alloc] init];
+            label.text = [NSString stringWithFormat:@"%@",obj.couponName];
+            label.font = kFontBlod(10);
+            label.textAlignment = NSTextAlignmentCenter;
+            label.backgroundColor = RGBColorFrom16(0xFF1659);
+            label.textColor = [UIColor whiteColor];
+            CGFloat width = [label.text calWidthWithLabel:label];
+            [self.couponsView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.couponsView.mas_left).offset(100+lastRight);
+                make.centerY.equalTo(self.couponsView);
+                make.width.mas_equalTo(width+15);
+                make.height.mas_equalTo(18);
+            }];
+            lastRight += width+20;
+        }];
+    }else{
+        self.vouchersTitleLabel.hidden = YES;
+        self.couponsViewHeight.constant = 0;
+    }
+    
 }
 - (void)layoutPromotionSubviews
 {
-    self.promotionView.hidden = NO;
-    self.promotionViewHei.constant = 40;
-    __block CGFloat lastRight = 0;
-    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.cmpBuygetns];
-    [self.campaignsModel.cmpBuygetns enumerateObjectsUsingBlock:^(cmpBuygetnsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.productId.integerValue != _selProductModel.productId) {
-            [arr removeObject:obj];
-        }
-    }];
-    [arr enumerateObjectsUsingBlock:^(cmpBuygetnsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UILabel *label = [[UILabel alloc] init];
-        label.text = [obj.promotType rangeOfString:@"C"].location != NSNotFound ? [NSString stringWithFormat:@" %@ ",kLocalizedString(@"OFF")]: [NSString stringWithFormat:@" %@ ",kLocalizedString(@"DISCOUNT")];
-        label.font = kFontBlod(10);
-        label.textAlignment = NSTextAlignmentCenter;
-        label.backgroundColor = RGBColorFrom16(0xFF1659);
-        label.alpha = 0.4;
-        label.textColor = [UIColor whiteColor];
-        CGFloat width = [label.text calWidthWithLabel:label];
-        [self.promotionView addSubview:label];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.promotionView.mas_left).offset(100+lastRight);
-            make.centerY.equalTo(self.promotionView);
-            make.width.mas_equalTo(width+15);
-            make.height.mas_equalTo(18);
+    if (self.campaignsModel.cmpBuygetns.count > 0) {
+        self.promotionView.hidden = NO;
+        self.promotionViewHei.constant = 40;
+        __block CGFloat lastRight = 0;
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.campaignsModel.cmpBuygetns];
+        [self.campaignsModel.cmpBuygetns enumerateObjectsUsingBlock:^(cmpBuygetnsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.productId.integerValue != _selProductModel.productId) {
+                [arr removeObject:obj];
+            }
         }];
-        lastRight += width+20;
-    }];
+        [arr enumerateObjectsUsingBlock:^(cmpBuygetnsModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            UILabel *label = [[UILabel alloc] init];
+            label.text = [obj.promotType rangeOfString:@"C"].location != NSNotFound ? [NSString stringWithFormat:@" %@ ",kLocalizedString(@"OFF")]: [NSString stringWithFormat:@" %@ ",kLocalizedString(@"DISCOUNT")];
+            label.font = kFontBlod(10);
+            label.textAlignment = NSTextAlignmentCenter;
+            label.backgroundColor = RGBColorFrom16(0xFF1659);
+            label.alpha = 0.4;
+            label.textColor = [UIColor whiteColor];
+            CGFloat width = [label.text calWidthWithLabel:label];
+            [self.promotionView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.promotionView.mas_left).offset(100+lastRight);
+                make.centerY.equalTo(self.promotionView);
+                make.width.mas_equalTo(width+15);
+                make.height.mas_equalTo(18);
+            }];
+            lastRight += width+20;
+        }];
+    }else{
+        self.promotionTitleLabel.hidden = YES;
+        self.promotionViewHei.constant = 0;
+    }
+    
 }
 - (void)showGroupView
 {
@@ -960,6 +1027,9 @@
     self.usefulBtn.selected = [selProductModel.isCollection isEqualToString:@"1"];
     [self layoutCouponSubviews];
     [self layoutPromotionSubviews];
+    if (self.campaignsModel.cmpFlashSales.count > 0) {
+        [self layoutFlashSaleSubView];
+    }
 }
 - (void)setGroupModel:(ProductGroupModel *)groupModel
 {

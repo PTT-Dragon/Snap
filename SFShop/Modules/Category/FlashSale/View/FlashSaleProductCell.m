@@ -7,6 +7,7 @@
 
 #import "FlashSaleProductCell.h"
 #import "SysParamsModel.h"
+#import "NSString+Fee.h"
 
 @interface FlashSaleProductCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -32,14 +33,14 @@
 - (void)setModel:(FlashSaleProductModel *)model
 {
     _model = model;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.productImg)]];
-    _nameLabel.text = model.productName;
-    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
-    _priceLabel.text = [NSString stringWithFormat:@"%@ %@", currency,model.specialPrice];
-    _OriginalPriceLabel.text = [NSString stringWithFormat:@"%@",model.salesPrice];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.imgUrl)]];
+    _nameLabel.text = model.offerName;
+//    NSString *currency = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_DISPLAY;
+    _priceLabel.text = [model.specialPrice currency];
+    _OriginalPriceLabel.text = [model.marketPrice currency];
     _offLabel.text = [NSString stringWithFormat:@" %@%% ",model.discountPercent];
-    _rateLabel.text = [NSString stringWithFormat:@"%@ (%f)",model.evaluationAvg,model.evaluationCnt];
-    _processLabel.text = [NSString stringWithFormat:@"%.2f%% %@",model.productSalePercent/100, kLocalizedString(@"Terjual")];
-    _processWidth.constant = (MainScreen_width-224)*model.productSalePercent/10000;
+    _rateLabel.text = [NSString stringWithFormat:@"%.2f (%f)",model.evaluationAvg.floatValue,model.evaluationCnt];
+    _processLabel.text = [NSString stringWithFormat:@"%.2f%% %@",model.salePercent/100, kLocalizedString(@"Terjual")];
+    _processWidth.constant = (MainScreen_width-224)*model.salePercent/10000;
 }
 @end

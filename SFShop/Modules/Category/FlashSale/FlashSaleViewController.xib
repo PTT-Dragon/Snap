@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TruenoRg.otf">
+            <string>TruenoRg</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FlashSaleViewController">
             <connections>
+                <outlet property="titleLabel" destination="CeT-mp-teP" id="GIw-yb-qml"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,12 +24,71 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="75421648003788_.pic" translatesAutoresizingMaskIntoConstraints="NO" id="vCl-Qj-DEQ">
+                    <rect key="frame" x="0.0" y="-4" width="414" height="663"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kv1-gQ-hlB">
+                    <rect key="frame" x="10" y="45" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="lz1-SU-7i9"/>
+                        <constraint firstAttribute="width" constant="22" id="q32-l1-nOQ"/>
+                    </constraints>
+                    <state key="normal" image="联合 82"/>
+                    <connections>
+                        <action selector="backAction:" destination="-1" eventType="touchUpInside" id="wSl-kS-abu"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywa-Wg-xr2">
+                    <rect key="frame" x="373.5" y="45" width="18.5" height="22"/>
+                    <state key="normal" image="路径 1044"/>
+                    <connections>
+                        <action selector="shareAction:" destination="-1" eventType="touchUpInside" id="zdq-a2-6XI"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组 115226" translatesAutoresizingMaskIntoConstraints="NO" id="Qiq-0Q-taE">
+                    <rect key="frame" x="155" y="44" width="24" height="24"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeT-mp-teP">
+                    <rect key="frame" x="184" y="47.5" width="38" height="17"/>
+                    <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
+                    <color key="textColor" red="0.97647058819999999" green="0.99215686270000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="75411648003741_.pic" translatesAutoresizingMaskIntoConstraints="NO" id="aga-qL-8u0">
+                    <rect key="frame" x="16" y="91" width="382" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="BRH-FD-ryf"/>
+                    </constraints>
+                </imageView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="122" y="70"/>
+            <constraints>
+                <constraint firstItem="Kv1-gQ-hlB" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="5hN-AB-owQ"/>
+                <constraint firstItem="aga-qL-8u0" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="6ZQ-k6-Rjx"/>
+                <constraint firstItem="Qiq-0Q-taE" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" constant="-40" id="8ft-c7-z9E"/>
+                <constraint firstItem="vCl-Qj-DEQ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="CnX-Su-7rK"/>
+                <constraint firstItem="CeT-mp-teP" firstAttribute="centerY" secondItem="Qiq-0Q-taE" secondAttribute="centerY" id="Fh0-H7-9yC"/>
+                <constraint firstItem="aga-qL-8u0" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="47" id="bHy-xn-gvQ"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="top" secondItem="Qiq-0Q-taE" secondAttribute="top" id="bhe-og-TOO"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Ywa-Wg-xr2" secondAttribute="trailing" constant="22" id="e1V-fd-DjS"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="vCl-Qj-DEQ" secondAttribute="trailing" id="e8g-g6-ROG"/>
+                <constraint firstItem="Kv1-gQ-hlB" firstAttribute="centerY" secondItem="Ywa-Wg-xr2" secondAttribute="centerY" id="jEt-aL-OTT"/>
+                <constraint firstItem="Ywa-Wg-xr2" firstAttribute="centerY" secondItem="Qiq-0Q-taE" secondAttribute="centerY" id="wYm-tc-KkQ"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="top" secondItem="vCl-Qj-DEQ" secondAttribute="top" constant="48" id="xZ7-Ga-iXR"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="leading" secondItem="aga-qL-8u0" secondAttribute="leading" constant="-16" id="y92-Yi-krp"/>
+                <constraint firstItem="CeT-mp-teP" firstAttribute="leading" secondItem="Qiq-0Q-taE" secondAttribute="trailing" constant="5" id="zn1-lt-xyl"/>
+            </constraints>
+            <point key="canvasLocation" x="121.73913043478262" y="69.642857142857139"/>
         </view>
     </objects>
     <resources>
+        <image name="75411648003741_.pic" width="1029" height="258"/>
+        <image name="75421648003788_.pic" width="1125" height="663"/>
+        <image name="组 115226" width="24" height="24"/>
+        <image name="联合 82" width="12.5" height="12"/>
+        <image name="路径 1044" width="18.5" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

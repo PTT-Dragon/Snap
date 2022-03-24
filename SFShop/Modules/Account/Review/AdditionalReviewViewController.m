@@ -111,7 +111,7 @@
 - (void)loadDatas
 {
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.evaluate.detail parameters:@{@"orderItemId":[_orderModel.orderItems.firstObject orderItemId]} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.evaluate.detail parameters:@{@"orderItemId":[_orderModel.orderItems[_row] orderItemId]} success:^(id  _Nullable response) {
         weakself.model = [ReviewDetailModel yy_modelWithDictionary:response];
         [weakself updateDatas];
     } failed:^(NSError * _Nonnull error) {

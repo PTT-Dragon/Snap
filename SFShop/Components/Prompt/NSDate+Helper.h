@@ -69,5 +69,6 @@
 - (NSString *)dayWeek;
 - (NSString *)dayMonthYear;
 - (NSString *)dayMonthYearHHMM;
+- (NSString *)dayMonth;
 
 @end

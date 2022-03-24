@@ -9,6 +9,8 @@
 #import "ProductReviewLabelCell.h"
 #import "FlashSaleProductCell.h"
 #import "ProductViewController.h"
+#import "NSDate+Helper.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface FlashSaleChildViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -19,6 +21,11 @@
 @property (nonatomic,strong) FlashSaleCtgModel *selCtgModel;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,assign) NSInteger pageIndex;
+@property (weak, nonatomic) IBOutlet UILabel *secondLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minuteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hourLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statuLabel;
+@property (nonatomic, strong) dispatch_source_t timer;//倒计时
 
 @end
 
@@ -29,9 +36,94 @@
     // Do any additional setup after loading the view from its nib.
     [_collectionView registerNib:[UINib nibWithNibName:@"ProductReviewLabelCell" bundle:nil] forCellWithReuseIdentifier:@"ProductReviewLabelCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"FlashSaleProductCell" bundle:nil] forCellReuseIdentifier:@"FlashSaleProductCell"];
-    _dateLabel.text = _selDateModel.effDate;
+    _dateLabel.text = [[NSDate dateFromString:_selDateModel.effDate] dayMonth];
     [self loadCtgDatas];
-    [self loadDatas];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.pageIndex = 1;
+        [self loadDatas];
+    }];
+    
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        self.pageIndex ++;
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
+    [self layoutSubviews];
+}
+- (void)layoutSubviews
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *nowDate = [formatter dateFromString:_selDateModel.now];
+    NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
+    
+    NSDate *effDate = [formatter dateFromString:_selDateModel.effDate];
+    NSTimeInterval effTimeInterval = [effDate timeIntervalSince1970];
+    
+    NSDate *expDate = [formatter dateFromString:_selDateModel.expDate];
+    NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
+    if (effTimeInterval > timeInterval) {
+        //未开始
+        self.statuLabel.text = kLocalizedString(@"Star_in");
+        MPWeakSelf(self)
+        __block NSInteger timeout = effTimeInterval - timeInterval; // 倒计时时间
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+        dispatch_source_set_event_handler(_timer, ^{
+            if(timeout<=0){
+                
+                dispatch_source_cancel(weakself.timer);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                });
+            }else{
+                NSInteger days = (int)(timeout/(3600*24));
+                NSInteger hours = (int)((timeout-days*24*3600)/3600);
+                NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
+                NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
+                    weakself.minuteLabel.text = [NSString stringWithFormat:@"%02ld",minute];
+                    weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
+                });
+                timeout--;
+            }
+        });
+        dispatch_resume(_timer);
+    }else if (expTimeInterval > timeInterval){
+        //进行中
+        self.statuLabel.text = kLocalizedString(@"ENDS_IN");
+        MPWeakSelf(self)
+        __block NSInteger timeout = expTimeInterval - timeInterval; // 倒计时时间
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+        dispatch_source_set_event_handler(_timer, ^{
+            if(timeout<=0){
+                
+                dispatch_source_cancel(weakself.timer);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                });
+            }else{
+                NSInteger days = (int)(timeout/(3600*24));
+                NSInteger hours = (int)((timeout-days*24*3600)/3600);
+                NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
+                NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakself.hourLabel.text = [NSString stringWithFormat:@"%02ld",hours+days*24];
+                    weakself.minuteLabel.text = [NSString stringWithFormat:@"%02ld",minute];
+                    weakself.secondLabel.text = [NSString stringWithFormat:@"%02ld",second];
+                });
+                timeout--;
+            }
+        });
+        dispatch_resume(_timer);
+    }else{
+        //已结束
+        
+    }
 }
 - (void)loadCtgDatas
 {
@@ -47,11 +139,15 @@
 {
     _pageIndex = 1;
     MPWeakSelf(self)
-    [SFNetworkManager get:SFNet.flashSale.productList parameters:@{@"campaignId":_selDateModel.campaignId,@"catgId":_selCtgModel ? _selCtgModel.catalogId:@"",@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+    [SFNetworkManager get:SFNet.flashSale.productList parameters:@{@"campaignId":_selDateModel.campaignId,@"catalogId":_selCtgModel ? _selCtgModel.catalogId:@"101",@"pageIndex":@(_pageIndex),@"pageSize":@(10)} success:^(id  _Nullable response) {
+        [self.tableView.mj_header endRefreshing];
+        if ([response[@"isLastPage"] integerValue] == 1) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
         weakself.dataSource = [FlashSaleProductModel arrayOfModelsFromDictionaries:response[@"list"] error:nil];
         [weakself.tableView reloadData];
     } failed:^(NSError * _Nonnull error) {
-        
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 #pragma mark - UICollectionViewDelegate

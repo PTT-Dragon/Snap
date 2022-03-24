@@ -259,6 +259,9 @@
 		1B8483BB27AFBDDF0078B9A4 /* OfflineOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8483B927AFBDDF0078B9A4 /* OfflineOrderViewController.m */; };
 		1B8483BC27AFBDDF0078B9A4 /* OfflineOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8483BA27AFBDDF0078B9A4 /* OfflineOrderViewController.xib */; };
 		1B8483BF27B00D0E0078B9A4 /* NSDictionary+add.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8483BE27B00D0E0078B9A4 /* NSDictionary+add.m */; };
+		1B8841BA27EBE494002C5B99 /* UserReceiveCouponView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8841B927EBE494002C5B99 /* UserReceiveCouponView.xib */; };
+		1B8841BE27EBE991002C5B99 /* UserReceiveCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8841BC27EBE991002C5B99 /* UserReceiveCouponCell.m */; };
+		1B8841BF27EBE991002C5B99 /* UserReceiveCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8841BD27EBE991002C5B99 /* UserReceiveCouponCell.xib */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
@@ -281,6 +284,7 @@
 		1B986E7027D9E7B3005ED82F /* CashOutDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B986E6E27D9E7B3005ED82F /* CashOutDetailCell.m */; };
 		1B986E7127D9E7B3005ED82F /* CashOutDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B986E6F27D9E7B3005ED82F /* CashOutDetailCell.xib */; };
 		1B996BFA279A60420094EAFE /* accountOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B996BFC279A60420094EAFE /* accountOrderCell.xib */; };
+		1BAC0EDA27EBE36200F1713F /* UserReceiveCouponView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC0ED927EBE36100F1713F /* UserReceiveCouponView.m */; };
 		1BB145DA27D478F00010C0DC /* ProductChoosePromotionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145D927D478F00010C0DC /* ProductChoosePromotionView.m */; };
 		1BB145DC27D47C260010C0DC /* ProductChoosePromotionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB145DB27D47C260010C0DC /* ProductChoosePromotionView.xib */; };
 		1BB145E027D4809D0010C0DC /* ProductChoosePromotionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB145DE27D4809D0010C0DC /* ProductChoosePromotionCell.m */; };
@@ -1055,6 +1059,10 @@
 		1B8483BA27AFBDDF0078B9A4 /* OfflineOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineOrderViewController.xib; sourceTree = "<group>"; };
 		1B8483BD27B00D0E0078B9A4 /* NSDictionary+add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+add.h"; sourceTree = "<group>"; };
 		1B8483BE27B00D0E0078B9A4 /* NSDictionary+add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+add.m"; sourceTree = "<group>"; };
+		1B8841B927EBE494002C5B99 /* UserReceiveCouponView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserReceiveCouponView.xib; sourceTree = "<group>"; };
+		1B8841BB27EBE991002C5B99 /* UserReceiveCouponCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserReceiveCouponCell.h; sourceTree = "<group>"; };
+		1B8841BC27EBE991002C5B99 /* UserReceiveCouponCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserReceiveCouponCell.m; sourceTree = "<group>"; };
+		1B8841BD27EBE991002C5B99 /* UserReceiveCouponCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserReceiveCouponCell.xib; sourceTree = "<group>"; };
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
@@ -1088,6 +1096,8 @@
 		1B986E6D27D9E7B3005ED82F /* CashOutDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashOutDetailCell.h; sourceTree = "<group>"; };
 		1B986E6E27D9E7B3005ED82F /* CashOutDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashOutDetailCell.m; sourceTree = "<group>"; };
 		1B986E6F27D9E7B3005ED82F /* CashOutDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashOutDetailCell.xib; sourceTree = "<group>"; };
+		1BAC0ED827EBE36100F1713F /* UserReceiveCouponView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserReceiveCouponView.h; sourceTree = "<group>"; };
+		1BAC0ED927EBE36100F1713F /* UserReceiveCouponView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserReceiveCouponView.m; sourceTree = "<group>"; };
 		1BB145D827D478F00010C0DC /* ProductChoosePromotionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductChoosePromotionView.h; sourceTree = "<group>"; };
 		1BB145D927D478F00010C0DC /* ProductChoosePromotionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductChoosePromotionView.m; sourceTree = "<group>"; };
 		1BB145DB27D47C260010C0DC /* ProductChoosePromotionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductChoosePromotionView.xib; sourceTree = "<group>"; };
@@ -2932,6 +2942,12 @@
 				4B9FB9FE26FB7AAB00C90790 /* HomeViewController.m */,
 				AE81BE2A26FE153800AB4225 /* MerchandisePageController.h */,
 				AE81BE2B26FE153800AB4225 /* MerchandisePageController.m */,
+				1BAC0ED827EBE36100F1713F /* UserReceiveCouponView.h */,
+				1BAC0ED927EBE36100F1713F /* UserReceiveCouponView.m */,
+				1B8841B927EBE494002C5B99 /* UserReceiveCouponView.xib */,
+				1B8841BB27EBE991002C5B99 /* UserReceiveCouponCell.h */,
+				1B8841BC27EBE991002C5B99 /* UserReceiveCouponCell.m */,
+				1B8841BD27EBE991002C5B99 /* UserReceiveCouponCell.xib */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -3779,6 +3795,7 @@
 				1BC7A2D0272B081E00755832 /* UseCouponViewController.xib in Resources */,
 				1BD8E7B4275DFDAD00130DCC /* ReviewAddNewPhotoCell.xib in Resources */,
 				1BCD2E86279BF70F008A530B /* ProductReviewAddCell.xib in Resources */,
+				1B8841BF27EBE991002C5B99 /* UserReceiveCouponCell.xib in Resources */,
 				1B49D11D27192CFB002461ED /* AddressViewController.xib in Resources */,
 				1B986E6C27D9E69A005ED82F /* CashOutDetailVC.xib in Resources */,
 				4B192DB627094FC20029D89F /* ArticleProductCell.xib in Resources */,
@@ -3814,6 +3831,7 @@
 				1BFF68FB27968C5F006890D7 /* LogisticsVC.xib in Resources */,
 				1B552EAF276B36CC0086604B /* GroupFilterCell.xib in Resources */,
 				1B82AEDE277080B700D75E00 /* README.md in Resources */,
+				1B8841BA27EBE494002C5B99 /* UserReceiveCouponView.xib in Resources */,
 				1BDB5DBC272E92C10016C2F3 /* CancelOrderReasonCell.xib in Resources */,
 				1B74DAE52721B6FD00B30ECC /* InviteViewController.xib in Resources */,
 				1BDBEBA326FDAEB50018109B /* verifyCodeVC.xib in Resources */,
@@ -4140,6 +4158,7 @@
 				1B96475C273E4CC600345DDA /* RelationOrderViewController.m in Sources */,
 				1B74DAFE2722A86800B30ECC /* InviteTopCell.m in Sources */,
 				1BD8E7C2275F47E500130DCC /* RefundDetailProductInfoCell.m in Sources */,
+				1BAC0EDA27EBE36200F1713F /* UserReceiveCouponView.m in Sources */,
 				4B818FD527239C910058038A /* ProductViewController.m in Sources */,
 				4B1522D5272D432700C3BDD9 /* BaseViewController.m in Sources */,
 				1B49D12127193181002461ED /* AddressTableViewCell.m in Sources */,
@@ -4315,6 +4334,7 @@
 				1BFF68FA27968C5F006890D7 /* LogisticsVC.m in Sources */,
 				1BDBEBB326FF609A0018109B /* LoginAlertView.m in Sources */,
 				1B74DB442728EB1A00B30ECC /* RecentlyModel.m in Sources */,
+				1B8841BE27EBE991002C5B99 /* UserReceiveCouponCell.m in Sources */,
 				1B82AEE3277080B700D75E00 /* UIImageView+YYWebImage.m in Sources */,
 				1B49D139271D4557002461ED /* changeUserInfoVC.m in Sources */,
 				1B6C52A6275B672200A1C617 /* ZLBrushBoardImageView.m in Sources */,
@@ -4553,7 +4573,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.18;
+				CURRENT_PROJECT_VERSION = 9.9.9.22;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4602,7 +4622,7 @@
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.18;
+				CURRENT_PROJECT_VERSION = 9.9.9.22;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (

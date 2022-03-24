@@ -176,11 +176,13 @@
   "ORDER_CANCEL_REASON" = "Alasan pembatalan";
 //  "CHECK_OUT" = "Check out";
   "USE_NOW" = "Gunakan sekarang";
-//  "HINT_SUCCESS" = "Berhasil";
+  "HINT_SUCCESS" = "Berhasil";
+"SET_SUCCESSFUL" = "Perubahan berhasil!";
+"FLASH_DEAL" = "Pertukaran kilat";
   "COLLECT_MORE_COUPON" = "Kumpulkan lebih banyak voucher";
   "COUPON_NO_DATA_TXT" = "Maaf, voucher tidak ditemukan.";
-//  "LOGIN_SUCCESS" = "Login Berhasil";
-//  "REGISTRATION_COUPON_HINT" = "Paket kupon pendaftaran telah dikirim ke akun Anda.";
+  "LOGIN_SUCCESS" = "Berhasil Masuk";
+  "REGISTRATION_COUPON_HINT" = "Paket voucher registrasi sudah dikirim ke akun Anda.";
   "REVIEW" = "ULASAN";
   "EDIT" = "UBAH";
 "ADDITIONAL_REVIEW" = "ULASAN TAMBAHAN";
@@ -535,6 +537,8 @@
 "Empty_Tip_NoPrize" = "Kejadian ini berakhir; menunggu kedatangan Anda berikutnya.";
 "Empty_Tip_NoCoupon" = "Oops! Disini kosong.";
 "Error_system_loading" = "Pemeliharaan system Silahkan coba lagi nanti";
+"Coming_soon" = "Segera";
+"ON_going" = "Aktif";
 "Account" = "Akaun";
 "Home" = "Beranda";
 "Cart" = "Keranjang";

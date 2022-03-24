@@ -15,17 +15,19 @@
 @property(nonatomic, strong) NSMutableArray *menuList;
 @property(nonatomic, strong) NSMutableArray *dateArr;
 @property(nonatomic, assign) NSInteger currentMenuIndex;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
 @implementation FlashSaleViewController
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.titleLabel.text = kLocalizedString(@"FLASH_DEAL");
     [self loadDatas];
 }
 - (void)loadDatas
@@ -42,11 +44,33 @@
 {
     _menuList = [NSMutableArray array];
     for (FlashSaleDateModel *dateModel in self.dateArr) {
-        [_menuList addObject:dateModel.campaignName];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSDate *nowDate = [formatter dateFromString:dateModel.now];
+        NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
+        
+        NSDate *effDate = [formatter dateFromString:dateModel.effDate];
+        NSTimeInterval effTimeInterval = [effDate timeIntervalSince1970];
+        
+        NSDate *expDate = [formatter dateFromString:dateModel.expDate];
+        NSTimeInterval expTimeInterval = [expDate timeIntervalSince1970];
+        NSString *str ;
+        if (effTimeInterval > timeInterval) {
+            //未开始
+            str = kLocalizedString(@"Coming_soon");
+        }else if (expTimeInterval > timeInterval){
+            //进行中
+            str = kLocalizedString(@"ON_going");
+        }else{
+            //已结束
+            
+        }
+        NSString *title = [NSString stringWithFormat:@"%@\n%@",dateModel.campaignName,str];
+        [_menuList addObject:title];
     }
     [self addChildViewController:self.magicController];
     [self.view addSubview:_magicController.view];
-    _magicController.view.frame = CGRectMake(0, navBarHei, MainScreen_width, MainScreen_height-navBarHei);
+    _magicController.view.frame = CGRectMake(0, navBarHei+100, MainScreen_width, MainScreen_height-navBarHei-100);
     [_magicController.magicView reloadData];
 }
 /// VTMagicViewDataSource
@@ -59,8 +83,10 @@
     UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor: [UIColor jk_colorWithHexString: @"#7B7B7B"] forState:UIControlStateNormal];
-        [menuItem setTitleColor: [UIColor blackColor] forState:UIControlStateSelected];
+        [menuItem setTitleColor: [UIColor jk_colorWithHexString: @"#bbbbbb"] forState:UIControlStateNormal];
+        [menuItem setTitleColor: [UIColor whiteColor] forState:UIControlStateSelected];
+        menuItem.titleLabel.numberOfLines = 2;
+        menuItem.titleLabel.textAlignment = NSTextAlignmentCenter;
         menuItem.titleLabel.font = kFontBlod(14);
     }
     [menuItem setSelected: (itemIndex == self.currentMenuIndex)];
@@ -91,16 +117,24 @@
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex {
     NSLog(@"didSelectItemAtIndex:%ld", (long)itemIndex);
 }
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)shareAction:(id)sender {
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/spike",Host];
+    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
+}
 
 - (VTMagicController *)magicController
 {
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
-        _magicController.magicView.navigationColor = [UIColor whiteColor];
-        _magicController.magicView.sliderColor = RGBColorFrom16(0xFF1659);
-        _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
+        _magicController.magicView.navigationColor = [UIColor clearColor];
+        _magicController.magicView.sliderColor = [UIColor whiteColor];
+        _magicController.magicView.layoutStyle = VTLayoutStyleCenter;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
-        _magicController.magicView.navigationHeight = 40.f;
+        _magicController.magicView.navigationHeight = 80.f;
+        _magicController.magicView.itemSpacing = 20;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.scrollEnabled = NO;

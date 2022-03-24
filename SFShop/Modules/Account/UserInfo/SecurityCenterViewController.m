@@ -22,20 +22,27 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self loadUserInfo];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = kLocalizedString(@"Security_center");
     _dataSource = [NSMutableArray array];
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
-    [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":kLocalizedString(@"Change_Password")},@{@"image":@"",@"title":kLocalizedString(@"CHANGE_MOBILE"),@"subTitle":([model.userRes.mobilePhone isEqualToString:@""] || !model.userRes.mobilePhone) ? @"Not Set": model.userRes.mobilePhone},@{@"image":@"",@"title":kLocalizedString(@"CHANGE_EMAIL"),@"subTitle":([model.userRes.email isEqualToString:@""] || !model.userRes.email) ? @"Not Set": model.userRes.email}]];
+    [self updateDatas];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"accountSubCell" bundle:nil] forCellReuseIdentifier:@"accountSubCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(navBarHei);
     }];
+}
+- (void)updateDatas
+{
+    [_dataSource removeAllObjects];
+    UserModel *model = [FMDBManager sharedInstance].currentUser;
+    [_dataSource addObjectsFromArray:@[@{@"image":@"",@"title":kLocalizedString(@"Change_Password")},@{@"image":@"",@"title":kLocalizedString(@"CHANGE_MOBILE"),@"subTitle":([model.userRes.mobilePhone isEqualToString:@""] || !model.userRes.mobilePhone) ? @"Not Set": model.userRes.mobilePhone},@{@"image":@"",@"title":kLocalizedString(@"CHANGE_EMAIL"),@"subTitle":([model.userRes.email isEqualToString:@""] || !model.userRes.email) ? @"Not Set": model.userRes.email}]];
+    [self.tableView reloadData];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -74,6 +81,18 @@
         vc.type = 2;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+- (void)loadUserInfo
+{
+    [SFNetworkManager get:SFNet.account.userInfo success:^(id  _Nullable response) {
+        userResModel *resModel = [[userResModel alloc] initWithDictionary:response error:nil];
+        UserModel *model = [FMDBManager sharedInstance].currentUser;
+        [model setUserRes:resModel];
+        [[FMDBManager sharedInstance] updateUser:model ofAccount:model.account];
+        [self updateDatas];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (UITableView *)tableView

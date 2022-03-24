@@ -93,7 +93,7 @@
 //  "ADDRESS" = "Address";
   "STREET" = "Sub-District and Zip Code";
   "OTHERDETAIL" = "Street/building/name and number";
-//  "OK" = "OK";
+  "OK" = "OK";
   "SAVE" = "SAVE";
   "SAVEPROFILE" = "SAVE PROFILE";
 //  "SELECT" = "Select";
@@ -170,13 +170,13 @@
 
 
 
-//  "HINT_SUCCESS" = "Successfully";
+  "HINT_SUCCESS" = "Successfully";
   "COLLECT_MORE_COUPON" = "Collect More Vouchers";
 "BUY_MORE_TO_ENJOY_DISCOUNT" = "Buy more to enjoy discount";
 "N_DISCOUNT_APPLIED_AT_CHECKOUT" = " discount applied at checkout";
   "COUPON_NO_DATA_TXT" = "Sorry, no vouchers were found.";
-//  "LOGIN_SUCCESS" = "Login Success!";
-//  "REGISTRATION_COUPON_HINT" = "The registration coupon package has been sent to your account.";
+  "LOGIN_SUCCESS" = "Login Success!";
+  "REGISTRATION_COUPON_HINT" = "The registration coupon package has been sent to your account.";
   "REVIEW" = "REVIEW";
   "EDIT" = "EDIT";
 //  "ADDITIONAL_REVIEW" = "Additional Review";
@@ -278,6 +278,8 @@
   "TO_RECEIVE" = "Shipped";
   "SUCCESSFUL" = "Successful";
   "COMPLETED" = "Done";
+"Coming_soon" = "Coming Soon";
+"ON_going" = "On Going";
   "CANCELLED" = "Cancelled";
   "BANK" = "Bank";
   "ACCOUNT_NAME" = "Account Name";
@@ -375,6 +377,7 @@
 //  "ARE_YOU_SURE_YOU_WANT_TO_PAY_AGAIN" = "Are you sure you want to pay again";
   "YES" = "YES";
   "NO" = "NO";
+"FLASH_DEAL" = "Flash Deal";
 //  "PLEASE_CONFIRM_WHETHER_THE_PAYMENT_HAS_BEEN_COMPLETED" = "Please confirm whether the payment has been completed";
 //  "FAILED" = "Failed";
 //  "PAYMENT_COMPLETED" = "Payment Completed";
@@ -568,8 +571,8 @@
 "Quantity" = "Quantity";
 "Special_promo" = "SPECIAL PROMO";
 "Product_detail" = "Product Detail";
-"Star_in" = "Star in";
-"Star_from" = "Star From";
+"Star_in" = "Start in";
+"Star_from" = "Start From";
 "Ends_in" = "Ends in";
 "Recommendations" = "Recommendations";
 "ADD_TO_CART_SUCCESS" = "Added to cart successfully!";
@@ -646,6 +649,7 @@
 "Reset_password" = "Reset Password";
 "Confirm_password" = "Confirm password";
 "Reset_success" = "Reset Success!";
+"SET_SUCCESSFUL" = "Set Successfully!";
 "Login" = "LOGIN";
 "Phone_number" = "Phone number";
 "Sign_Up" = "Sign Up";

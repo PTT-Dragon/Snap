@@ -22,6 +22,9 @@
 #import "MyCouponViewController.h"
 #import "LoginViewController.h"
 #import "OrderDetailViewController.h"
+#import "FlashSaleViewController.h"
+#import "UserReceiveCouponView.h"
+
 
 @interface PublicWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 
@@ -135,6 +138,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterChatNotification:)
                                                  name:@"KWillEnterChatNotification"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showUserReceiveCoupon:)
+                                                 name:@"ShowUserReceiveCoupon"
+                                               object:nil];
+    
 }
 
 - (void)reset {
@@ -146,7 +153,24 @@
         _jsBridge = nil;
     }
 }
-
+- (void)showUserReceiveCoupon:(NSNotification *)noti
+{
+    [SFNetworkManager get:SFNet.coupon.usercoupons parameters:@{@"initiator":@"PLT",@"pageIndex":@(1),@"pageSize":@(100),@"couponState":@"A"} success:^(id  _Nullable response) {
+        NSArray *arr = response[@"list"];
+        NSMutableArray *dataSource = [[NSMutableArray alloc] init];
+        for (NSDictionary *dic in arr) {
+            [dataSource addObject:[[CouponModel alloc] initWithDictionary:dic error:nil]];
+        }
+        UserReceiveCouponView *couponView = [[NSBundle mainBundle] loadNibNamed:@"UserReceiveCouponView" owner:self options:nil].firstObject;
+        couponView.dataSource = dataSource;
+        couponView.frame = CGRectMake(0, 0, MainScreen_width, MainScreen_height);
+        couponView.layer.zPosition = 1;
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [window addSubview:couponView];
+    } failed:^(NSError * _Nonnull error) {
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
+    }];
+}
 - (void)willEnterChatNotification:(NSNotification *)noti {
     if (_isHome) {
         MPWeakSelf(self)
@@ -507,6 +531,11 @@
     }else if ([func[@"type"] rangeOfString:@"https://"].location != NSNotFound){
         NSString *url = [NSString stringWithFormat:@"%@",func[@"type"]];
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    }else if ([func[@"type"] rangeOfString:@"FLASH_SHOP_MORE"].location != NSNotFound){
+        FlashSaleViewController *vc = [[FlashSaleViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+//        NSString *url = [NSString stringWithFormat:@"%@/%@",Host,@"spike"];
+//        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     }
     
 }

@@ -200,6 +200,7 @@
     };
     cell.additionBlock = ^(OrderModel * _Nonnull model) {
         AdditionalReviewViewController *vc = [[AdditionalReviewViewController alloc] init];
+        vc.row = indexPath.row;
         vc.orderModel = model;
         [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
     };

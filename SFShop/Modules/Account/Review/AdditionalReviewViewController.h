@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdditionalReviewViewController : BaseViewController
+@property (nonatomic,assign) NSInteger row;
 @property (nonatomic,strong) OrderModel *orderModel;
 @end
 

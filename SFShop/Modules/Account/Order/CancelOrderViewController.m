@@ -138,7 +138,7 @@
         OrderDetailViewController *vc = [[OrderDetailViewController alloc] init];
         vc.orderId = weakself.model.orderId;
         [weakself.navigationController pushViewController:vc animated:YES];
-        [MBProgressHUD autoDismissShowHudMsg:@"SUCCESSFUL"];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"HINT_SUCCESS")];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"KRefreshOrderNum" object:nil];
         [baseTool removeVCFromNavigationWithVCNameArr:@[@"CancelOrderViewController"] currentVC:self];
     } failed:^(NSError * _Nonnull error) {

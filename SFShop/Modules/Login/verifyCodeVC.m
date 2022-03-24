@@ -66,7 +66,7 @@
     } failed:^(NSError * _Nonnull error) {
         weakself.recendBtn.userInteractionEnabled = YES;
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
-        [weakself.navigationController popViewControllerAnimated:YES];
+//        [weakself.navigationController popViewControllerAnimated:YES];
     }];
 }
 - (void)showCountLabel
@@ -178,7 +178,7 @@
         CashOutSuccessVC *vc = [[CashOutSuccessVC alloc] init];
         [weakself.navigationController pushViewController:vc animated:YES];
     } failed:^(NSError * _Nonnull error) {
-        
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
 }
 - (void)signUp
@@ -218,6 +218,7 @@
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         [appDelegate.tabVC setSelectedIndex:0];
         [self.navigationController popToRootViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowUserReceiveCoupon" object:0];
         [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"SIGN_TO_LOGIN")];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
@@ -250,10 +251,9 @@
 }
 - (void)changeUserEmail
 {
-    UserModel *model = [FMDBManager sharedInstance].currentUser;
+//    UserModel *model = [FMDBManager sharedInstance].currentUser;
     MPWeakSelf(self)
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:model.userRes.email forKey:@"email"];
     [params setValue:_account forKey:@"newEmail"];
     [params setValue:_codeView.code forKey:@"code"];
     [SFNetworkManager post:SFNet.account.emailModify parameters:params success:^(id  _Nullable response) {
@@ -271,8 +271,9 @@
     [params setValue:@"Terminal" forKey:@"userType"];
     [params setValue:_codeView.code forKey:@"code"];
     [SFNetworkManager post:SFNet.account.bindEmail parameters:params success:^(id  _Nullable response) {
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
-        [weakself.navigationController popToRootViewControllerAnimated:YES];
+        [baseTool removeVCFromNavigationWithVCNameArr:@[@"ChangeMobileOrEmailViewController"] currentVC:self];
+        [weakself.navigationController popViewControllerAnimated:YES];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"SET_SUCCESSFUL")];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];

@@ -24,17 +24,30 @@
 
 - (void)showShareViewWithShareMessage:(NSString *)message {
     MGCShareInfoModel *infoModel = [[MGCShareInfoModel alloc] init];
+    __block NSString *url = message;
     [MGCShareView showShareViewWithShareInfoModel:nil
                                      successBlock:^(NSDictionary *info, MGCShareType type) {
         if (type == MGCShareFacebookType) {
-            [self shareToFaceBookWithMessage:message];
+            if ([message rangeOfString:@"/F/"].location != NSNotFound) {
+                url = [message stringByReplacingOccurrencesOfString:@"/F/" withString:@"/F/"];
+            }
+            [self shareToFaceBookWithMessage:url];
         } else if (type == MGCShareTwitterType) {
-            [self shareToTwitterWithMessage:message];
+            if ([message rangeOfString:@"/F/"].location != NSNotFound) {
+                url = [message stringByReplacingOccurrencesOfString:@"/F/" withString:@"/T/"];
+            }
+            [self shareToTwitterWithMessage:url];
         } else if (type == MGCShareWhatsAppType) {
-            [self shareToWhatsAppWithMessage:message];
+            if ([message rangeOfString:@"/F/"].location != NSNotFound) {
+                url = [message stringByReplacingOccurrencesOfString:@"/F/" withString:@"/W/"];
+            }
+            [self shareToWhatsAppWithMessage:url];
         } else if (type == MGCShareCopyLinkType) {
+            if ([message rangeOfString:@"/F/"].location != NSNotFound) {
+                url = [message stringByReplacingOccurrencesOfString:@"/F/" withString:@"/S/"];
+            }
             UIPasteboard *pab = [UIPasteboard generalPasteboard];
-            pab.string = message;
+            pab.string = url;
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COPY_SUCCESS")];
         }
     }
