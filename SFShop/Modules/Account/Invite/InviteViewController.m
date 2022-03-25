@@ -22,6 +22,7 @@
 @property (nonatomic,strong) BaseMoreView *moreView;
 @property (nonatomic,assign) NSInteger pageIndex;
 @property (nonatomic,assign) NSInteger totalCount;
+@property (nonatomic,copy) NSDictionary *ruleDic;
 
 @end
 
@@ -61,6 +62,7 @@
     // Do any additional setup after loading the view from its nib.
     _dataSource = [NSMutableArray array];
     [self loadDatas];
+    [self loadRule];
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"InviteTopCell" bundle:nil] forCellReuseIdentifier:@"InviteTopCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"InviteCell" bundle:nil] forCellReuseIdentifier:@"InviteCell"];
@@ -120,6 +122,16 @@
         
     }];
 }
+- (void)loadRule
+{
+    [SFNetworkManager get:SFNet.invite.activityInvRule parameters:@{} success:^(id  _Nullable response) {
+        NSArray *arr = response;
+        self.ruleDic = arr.firstObject;
+        [self.tableView reloadData];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
 
 - (void)downloadImage:(NSString *)imageURL forIndexPath:(NSIndexPath *)indexPath {
     // 利用 SDWebImage 框架提供的功能下载图片
@@ -163,6 +175,7 @@
         InviteTopCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteTopCell"];
         [cell.imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(self.imgUrl)]];
         cell.totalCount = self.totalCount;
+        cell.ruleDic = self.ruleDic;
         return cell;
     }
     InviteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteCell"];

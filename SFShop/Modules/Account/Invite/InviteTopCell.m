@@ -8,6 +8,7 @@
 #import "InviteTopCell.h"
 #import "PublicShareView.h"
 #import "PublicAlertView.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 @interface InviteTopCell ()
 @property (weak, nonatomic) IBOutlet UIButton *inviteBtn;
@@ -25,6 +26,7 @@
     [_inviteBtn setTitle:kLocalizedString(@"INVITE_NOW") forState:0];
     _label1.text = [NSString stringWithFormat:@"%@ %@ %@",kLocalizedString(@"SUCC_INVITE_NUM"),@"0",kLocalizedString(@"teman")];
     [_ruleBtn setTitle:kLocalizedString(@"RULE_DESCRIPTION") forState:0];
+    [_ruleBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
     _label2.text = kLocalizedString(@"INVITATION_RECORD");
     
 }
@@ -41,6 +43,16 @@
     [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
 }
 - (IBAction)ruleAction:(UIButton *)sender {
+    if (_ruleDic) {
+        NSDictionary *options = @{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:@(NSUTF8StringEncoding)};
+        NSData *data = [_ruleDic[@"ctnDesc"] dataUsingEncoding:NSUTF8StringEncoding];
+        NSAttributedString *str = [[NSAttributedString alloc] initWithData:data options:options documentAttributes:nil error:nil];
+        PublicAlertView *alert = [[PublicAlertView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_width, MainScreen_height) title:kLocalizedString(@"RULE") content:[str string] btnTitle:kLocalizedString(@"CLOSE") block:^{
+            
+        }];
+        [[baseTool getCurrentVC].view addSubview:alert];
+        return;
+    }
     [SFNetworkManager get:SFNet.invite.activityInvRule parameters:@{} success:^(id  _Nullable response) {
         NSArray *arr = response;
         NSDictionary *dic = arr.firstObject;

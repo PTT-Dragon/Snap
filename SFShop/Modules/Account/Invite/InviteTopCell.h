@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
 @property (nonatomic,assign) NSInteger totalCount;
-
+@property (nonatomic,copy) NSDictionary *ruleDic;
 
 @end
 
