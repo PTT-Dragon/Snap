@@ -364,8 +364,9 @@
 //  "POSTER" = "Poster";
 //  "VIDEO" = "Video";
 //  "URL" = "URL";
-//  "SAVE_POSTER" = "Save Poster";
-//  "SAVE_ALL" = "Save All";
+  "SAVE_POSTER" = "Simpan Poster";
+  "SAVE_ALL" = "Simpan semua";
+"LONG_PRESS_TO_BUY" = "Tekan yang lama untuk membeli";
   "RULE" = "Peraturan";
 //  "PRODUCT_NAME_ORDER_NUMBER" = "Nama produk/Nomor pesanan";
 //  "SIMILAR_PRODUCTS" = "produk sejenis";

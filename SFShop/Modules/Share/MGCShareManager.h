@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 
 - (void)showShareViewWithShareMessage:(NSString *)message;
-- (void)showShareViewWithShareMessage:(NSString *)message posterModel:(PosterPosterModel *)posterModel;
+- (void)showShareViewWithShareMessage:(NSString *)message posterModel:(NSArray <PosterPosterModel *> *)posterModelArr productModel:(DistributorRankProductModel *)productModel;
 
 @end
 

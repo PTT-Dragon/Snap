@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PosterView : UIView
-@property (nonatomic,strong) PosterPosterModel *posterModel;
+@property (nonatomic,strong) NSArray <PosterPosterModel *>*posterModelArr;
+@property (nonatomic,strong) DistributorRankProductModel *productModel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -53,7 +53,10 @@
     [SFNetworkManager get:SFNet.distributor.material parameters:@{@"distriSpuLibId":self.model.distriSpuLibId} success:^(id  _Nullable response) {
         PosterModel *posterModel = [[PosterModel alloc] initWithDictionary:response error:nil];
         NSString *shareUrl = [NSString stringWithFormat:@"%@/product/detail/%@?campaignId=%@&cmpType=%@&distributorId=%@",Host,self.model.offerId,self.centerModel.sysKolCampaignId,@"8",self.centerModel.distributionSettlementDto.distributorId];
-        [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl posterModel:posterModel.posters.firstObject];
+        for (PosterPosterModel *subModel in posterModel.posters) {
+            subModel.shareUrl = shareUrl;
+        }
+        [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl posterModel:posterModel.posters productModel:self.model];
     } failed:^(NSError * _Nonnull error) {
         
     }];

@@ -24,12 +24,13 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.posterModel.contents.count;
+    return self.posterModelArr.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PosterViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PosterViewCell" forIndexPath:indexPath];
-    cell.model = self.posterModel.contents[indexPath.row];
+    cell.model = self.posterModelArr[indexPath.row];
+    cell.productModel = self.productModel;
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

@@ -354,8 +354,9 @@
 //  "POSTER" = "Poster";
 //  "VIDEO" = "Video";
 //  "URL" = "URL";
-//  "SAVE_POSTER" = "Save Poster";
-//  "SAVE_ALL" = "Save All";
+  "SAVE_POSTER" = "Save Poster";
+  "SAVE_ALL" = "Save All";
+"LONG_PRESS_TO_BUY" = "Long press to buy";
   "RULE" = "Rule";
 //  "PRODUCT_NAME_ORDER_NUMBER" = "Product name/Order number";
 //  "SIMILAR_PRODUCTS" = "Similar Products";

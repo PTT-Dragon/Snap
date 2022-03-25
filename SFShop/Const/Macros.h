@@ -342,3 +342,6 @@ dispatch_async(dispatch_get_main_queue(), block);\
 #define kFontBlod(fontSize) [UIFont fontWithName:@"TruenoBd" size:fontSize]
 #define kFontRegular(fontSize) [UIFont fontWithName:@"TruenoRg" size:fontSize]
 #define kFontLight(fontSize) [UIFont fontWithName:@"TruenoLt" size:fontSize]
+#ifndef UIColorHex
+#define UIColorHex(_hex_)   [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]
+#endif

@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PosterViewCell : UICollectionViewCell
-@property (nonatomic,strong) PosterContentModel *model;
+@property (nonatomic,strong) PosterPosterModel *model;
+@property (nonatomic,strong) DistributorRankProductModel *productModel;
 @end
 
 NS_ASSUME_NONNULL_END

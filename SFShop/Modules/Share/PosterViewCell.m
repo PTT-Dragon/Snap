@@ -6,6 +6,7 @@
 //
 
 #import "PosterViewCell.h"
+#import "NSString+Fee.h"
 
 @interface PosterViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *productImgView;
@@ -23,11 +24,23 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _longLabel.text = kLocalizedString(@"LONG_PRESS_TO_BUY");
 }
-- (void)setModel:(PosterContentModel *)model
+- (void)setModel:(PosterPosterModel *)model
 {
-    [_productImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(model.url)]];
+    [_productImgView sd_setImageWithURL:[NSURL URLWithString:SFImage([model.contents.firstObject url])]];
     _qrCodeImgView.image = model.qrCodeImage;
+}
+- (void)setProductModel:(DistributorRankProductModel *)productModel
+{
+    _productModel = productModel;
+    _priceLabel.text = [productModel.salesPrice currency];
+    _marketPriceLabel.text = [productModel.marketPrice currency];
+    NSInteger precision = SysParamsItemModel.sharedSysParamsItemModel.CURRENCY_PRECISION.intValue;
+    NSString *precisionStr = [NSString stringWithFormat:@"%%.%ldf", precision];//精度
+    NSString *thousandthStr = [NSString stringWithFormat:precisionStr,[productModel.commissionRate currencyFloat]];
+    _offLabel.text = [NSString stringWithFormat:@" %@%% ",thousandthStr];
+    _contentLabel.text = productModel.offerName;
 }
 
 @end

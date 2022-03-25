@@ -85,12 +85,21 @@
                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_poster_bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Zom-vp-S1C">
+                        <rect key="frame" x="0.0" y="395" width="231" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="Ohm-hc-jdX"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="tKK-sG-hcP" secondAttribute="trailing" id="2Kl-rM-5CA"/>
+                <constraint firstAttribute="bottom" secondItem="Zom-vp-S1C" secondAttribute="bottom" id="6uI-a3-TZi"/>
                 <constraint firstItem="rrA-Oe-LeN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="8Ol-9z-LWP"/>
                 <constraint firstItem="9eL-Qx-CFc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="C9O-6G-33Q"/>
+                <constraint firstItem="Zom-vp-S1C" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Cjb-xy-3FE"/>
+                <constraint firstAttribute="trailing" secondItem="Zom-vp-S1C" secondAttribute="trailing" id="Fgz-cy-GrQ"/>
                 <constraint firstAttribute="trailing" secondItem="f3w-eE-NDq" secondAttribute="trailing" constant="15" id="HVJ-OA-Mzl"/>
                 <constraint firstItem="ukS-r4-fQi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="HW9-K8-CF6"/>
                 <constraint firstAttribute="trailing" secondItem="EP7-VA-Rub" secondAttribute="trailing" constant="10" id="IT8-Dl-MMX"/>
@@ -123,4 +132,7 @@
             <point key="canvasLocation" x="131.8840579710145" y="97.767857142857139"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="img_poster_bottom" width="231" height="32"/>
+    </resources>
 </document>

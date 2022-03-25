@@ -6,6 +6,7 @@
 //
 
 #import "DistributorModel.h"
+#import "JKQRCode.h"
 
 @implementation PosterContentModel
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -13,6 +14,13 @@
 }
 @end
 @implementation PosterPosterModel
+- (UIImage *)qrCodeImage
+{
+    if (!_qrCodeImage) {
+        _qrCodeImage = [JKQRCode creatQrWithString:_shareUrl withSize:80];
+    }
+    return _qrCodeImage;
+}
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return YES;
 }

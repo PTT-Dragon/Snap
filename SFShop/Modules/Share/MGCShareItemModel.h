@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, MGCShareType) {
     MGCShareCopyLinkType = 4, // 拷贝
     MGCSharePosterType = 5, // 海报
     MGCShareSavePosterType = 7, // 保存海报图片
+    MGCShareSavePosterToFacebookType = 8, // 分享海报到facebook
 };
 
 @interface MGCShareItemModel : NSObject

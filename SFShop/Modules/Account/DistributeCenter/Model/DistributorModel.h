@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional> *seq;
 @property (nonatomic,copy) NSString <Optional> *smallImgUrl;
 @property (nonatomic,copy) NSString <Optional> *url;
-@property (nonatomic,strong) UIImage <Optional> *qrCodeImage;
+
 
 @end
 
@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString <Optional> *spuMaterialId;
 @property (nonatomic,copy) NSString <Optional> *state;
 @property (nonatomic,strong) NSArray <PosterContentModel>*contents;
+@property (nonatomic,copy) NSString <Optional> *shareUrl;
+@property (nonatomic,strong) UIImage  *qrCodeImage;
 @end
 
 @interface PosterModel : JSONModel

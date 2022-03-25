@@ -57,12 +57,13 @@
 
 @implementation MGCShareView
 
-+ (MGCShareView *)showShareViewWithShareInfoModel:(MGCShareInfoModel *)shareInfoModel
++ (MGCShareView *)showShareViewWithShareInfoModel:(MGCShareInfoModel *)shareInfoModel posterModel:(NSArray <PosterPosterModel *> *)posterModelArr
                                      successBlock:(void (^)(NSDictionary *info, MGCShareType type))successBlock
                                         failBlock:(void (^)(NSDictionary *info, MGCShareType type))failBlock
                                         completed:(void (^)(BOOL isShow))completed {
     MGCShareView *shareView = [[MGCShareView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     shareView.shareInfoModel = shareInfoModel;
+    shareView.posterModelArr = posterModelArr;
     [shareView prepareDefaultShareItem];
     [shareView prepareCollection];
     shareView.successBlock = successBlock;
@@ -73,12 +74,13 @@
     [shareView showWithView:[UIWindow ffGetKeyWindow]];
     return shareView;
 }
-+ (MGCShareView *)showPosterViewWithShareInfoModel:(MGCShareInfoModel *)shareInfoModel posterModel:(PosterPosterModel *)posterModel
++ (MGCShareView *)showPosterViewWithShareInfoModel:(MGCShareInfoModel *)shareInfoModel posterModel:(NSArray <PosterPosterModel *> *)posterModelArr productModel:(DistributorRankProductModel *)productModel
                                      successBlock:(void (^)(NSDictionary *info, MGCShareType type))successBlock
                                         failBlock:(void (^)(NSDictionary *info, MGCShareType type))failBlock
                                          completed:(void (^)(BOOL isShow))completed {
     MGCShareView *shareView = [[MGCShareView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    shareView.posterModel = posterModel;
+    shareView.posterModelArr = posterModelArr;
+    shareView.productModel = productModel;
     shareView.shareInfoModel = shareInfoModel;
     [shareView prepareDefaultPosterItem];
     [shareView prepareCollection];
@@ -155,13 +157,16 @@
     copyModel.itemImage = @"00103_ Connect Fill";
     
     [self.shareItemsArr addObject:copyModel];
+    if (self.posterModelArr) {
+        MGCShareItemModel *posterModel = [[MGCShareItemModel alloc] init];
+        posterModel.itemName = @"Save Poster";
+        posterModel.itemType = MGCSharePosterType;
+        posterModel.itemImage = @"00103_ Connect Fill";
+        
+        [self.shareItemsArr addObject:posterModel];
+    }
     
-    MGCShareItemModel *posterModel = [[MGCShareItemModel alloc] init];
-    posterModel.itemName = @"Save Poster";
-    posterModel.itemType = MGCSharePosterType;
-    posterModel.itemImage = @"00103_ Connect Fill";
     
-    [self.shareItemsArr addObject:posterModel];
     
     [self.shareCollectionView reloadData];
 }
@@ -170,22 +175,22 @@
     [self.shareItemsArr removeAllObjects];
     
     MGCShareItemModel *posterModel = [[MGCShareItemModel alloc] init];
-    posterModel.itemName = @"Save Poster";
+    posterModel.itemName = kLocalizedString(@"SAVE_POSTER");
     posterModel.itemType = MGCShareSavePosterType;
-    posterModel.itemImage = @"00118_ Download";
+    posterModel.itemImage = @"00118_ Download-1";
     
     [self.shareItemsArr addObject:posterModel];
     
     MGCShareItemModel *allPosterModel = [[MGCShareItemModel alloc] init];
-    allPosterModel.itemName = @"Save All";
+    allPosterModel.itemName = kLocalizedString(@"SAVE_ALL");
     allPosterModel.itemType = MGCShareCopyLinkType;
-    allPosterModel.itemImage = @"联合 118";
+    allPosterModel.itemImage = @"00118_ Download_All";
     
     [self.shareItemsArr addObject:allPosterModel];
     
     MGCShareItemModel *faceBookModel = [[MGCShareItemModel alloc] init];
     faceBookModel.itemName = @"FaceBook";
-    faceBookModel.itemType = MGCShareFacebookType;
+    faceBookModel.itemType = MGCShareSavePosterToFacebookType;
     faceBookModel.itemImage = @"00262_ Facebook Fill";
     [self.shareItemsArr addObject:faceBookModel];
 
@@ -216,7 +221,8 @@
 {
     _posterView = [[NSBundle mainBundle] loadNibNamed:@"PosterView" owner:self options:nil].firstObject;
     _posterView.frame = CGRectMake(70, 50, MainScreen_width-140, 427);
-    _posterView.posterModel = self.posterModel;
+    _posterView.productModel = self.productModel;
+    _posterView.posterModelArr = self.posterModelArr;
     [self addSubview:_posterView];
 }
 
@@ -254,6 +260,13 @@
     if (itemModel.itemType == MGCShareSavePosterType) {
         UIImage *img = [self convertViewToImage:self.posterView];
         UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+        [self cancelBtnAction];
+        return;
+    }else if (itemModel.itemType == MGCShareSavePosterToFacebookType){
+        if (self.successBlock) {
+            UIImage *img = [self convertViewToImage:self.posterView];
+            self.successBlock(@{@"image":img}, itemModel.itemType);
+        }
         [self cancelBtnAction];
         return;
     }

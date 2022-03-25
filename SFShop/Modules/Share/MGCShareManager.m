@@ -26,7 +26,7 @@
 - (void)showShareViewWithShareMessage:(NSString *)message {
     MGCShareInfoModel *infoModel = [[MGCShareInfoModel alloc] init];
     __block NSString *url = message;
-    [MGCShareView showShareViewWithShareInfoModel:nil
+    [MGCShareView showShareViewWithShareInfoModel:nil posterModel:nil
                                      successBlock:^(NSDictionary *info, MGCShareType type) {
         if (type == MGCShareFacebookType) {
             if ([message rangeOfString:@"/F/"].location != NSNotFound) {
@@ -58,11 +58,11 @@
                                         failBlock:nil
                                         completed:nil];
 }
-- (void)showShareViewWithShareMessage:(NSString *)message posterModel:(PosterPosterModel *)posterModel
+- (void)showShareViewWithShareMessage:(NSString *)message posterModel:(NSArray <PosterPosterModel *> *)posterModelArr productModel:(DistributorRankProductModel *)productModel
 {
     MGCShareInfoModel *infoModel = [[MGCShareInfoModel alloc] init];
     __block NSString *url = message;
-    [MGCShareView showShareViewWithShareInfoModel:nil
+    [MGCShareView showShareViewWithShareInfoModel:nil posterModel:posterModelArr
                                      successBlock:^(NSDictionary *info, MGCShareType type) {
         if (type == MGCShareFacebookType) {
             if ([message rangeOfString:@"/F/"].location != NSNotFound) {
@@ -87,14 +87,15 @@
             pab.string = url;
             [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COPY_SUCCESS")];
         } else if (type == MGCSharePosterType) {
-            [MGCShareView showPosterViewWithShareInfoModel:nil posterModel:posterModel successBlock:^(NSDictionary *info, MGCShareType type) {
-                
+            [MGCShareView showPosterViewWithShareInfoModel:nil posterModel:posterModelArr productModel:productModel successBlock:^(NSDictionary *info, MGCShareType type) {
+                if (type == MGCShareSavePosterToFacebookType) {
+                    [self shareToFacebookWithImage:info[@"image"]];
+                }
             } failBlock:^(NSDictionary *info, MGCShareType type) {
                 
             } completed:^(BOOL isShow) {
                 
             }];
-            
         }
     }
                                         failBlock:nil
@@ -106,6 +107,17 @@
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
     NSString *urlStr = [message stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     content.contentURL = [NSURL URLWithString:urlStr];
+    FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
+    dialog.fromViewController = [UIViewController currentTopViewController];
+    dialog.shareContent = content;
+    dialog.mode = FBSDKShareDialogModeAutomatic;
+    [dialog show];
+}
+- (void)shareToFacebookWithImage:(UIImage *)image
+{
+    FBSDKSharePhotoContent *content = [[FBSDKSharePhotoContent alloc] init];
+    FBSDKSharePhoto *photo = [FBSDKSharePhoto photoWithImage:image userGenerated:YES];
+    content.photos = @[photo];
     FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
     dialog.fromViewController = [UIViewController currentTopViewController];
     dialog.shareContent = content;

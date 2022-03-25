@@ -61,7 +61,7 @@ static BOOL _passwordSuccess1 = NO;
     [SFNetworkManager post:SFNet.account.emailModify parameters:params success:^(id  _Nullable response) {
         [baseTool removeVCFromNavigationWithVCNameArr:@[@"verifyCodeVC",@"ChangeMobileOrEmailViewController"] currentVC:self];
         [weakself.navigationController popViewControllerAnimated:YES];
-        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"Modify_success")];
+        [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"SET_SUCCESSFUL")];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"message"]];
     }];
