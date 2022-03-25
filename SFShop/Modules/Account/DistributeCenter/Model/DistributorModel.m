@@ -7,6 +7,22 @@
 
 #import "DistributorModel.h"
 
+@implementation PosterContentModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+@implementation PosterPosterModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+@implementation PosterModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+
 @implementation DistributorRankProductModel
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return YES;

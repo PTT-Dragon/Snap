@@ -58,6 +58,48 @@
                                         failBlock:nil
                                         completed:nil];
 }
+- (void)showShareViewWithShareMessage:(NSString *)message posterModel:(PosterPosterModel *)posterModel
+{
+    MGCShareInfoModel *infoModel = [[MGCShareInfoModel alloc] init];
+    __block NSString *url = message;
+    [MGCShareView showShareViewWithShareInfoModel:nil
+                                     successBlock:^(NSDictionary *info, MGCShareType type) {
+        if (type == MGCShareFacebookType) {
+            if ([message rangeOfString:@"/F/"].location != NSNotFound) {
+                url = [message stringByReplacingOccurrencesOfString:@"/F/" withString:@"/F/"];
+            }
+            [self shareToFaceBookWithMessage:url];
+        } else if (type == MGCShareTwitterType) {
+            if ([message rangeOfString:@"/F/"].location != NSNotFound) {
+                url = [message stringByReplacingOccurrencesOfString:@"/F/" withString:@"/T/"];
+            }
+            [self shareToTwitterWithMessage:url];
+        } else if (type == MGCShareWhatsAppType) {
+            if ([message rangeOfString:@"/F/"].location != NSNotFound) {
+                url = [message stringByReplacingOccurrencesOfString:@"/F/" withString:@"/W/"];
+            }
+            [self shareToWhatsAppWithMessage:url];
+        } else if (type == MGCShareCopyLinkType) {
+            if ([message rangeOfString:@"/F/"].location != NSNotFound) {
+                url = [message stringByReplacingOccurrencesOfString:@"/F/" withString:@"/S/"];
+            }
+            UIPasteboard *pab = [UIPasteboard generalPasteboard];
+            pab.string = url;
+            [MBProgressHUD autoDismissShowHudMsg:kLocalizedString(@"COPY_SUCCESS")];
+        } else if (type == MGCSharePosterType) {
+            [MGCShareView showPosterViewWithShareInfoModel:nil posterModel:posterModel successBlock:^(NSDictionary *info, MGCShareType type) {
+                
+            } failBlock:^(NSDictionary *info, MGCShareType type) {
+                
+            } completed:^(BOOL isShow) {
+                
+            }];
+            
+        }
+    }
+                                        failBlock:nil
+                                        completed:nil];
+}
 
 
 - (void)shareToFaceBookWithMessage:(NSString *)message {

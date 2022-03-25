@@ -12,6 +12,7 @@
 #import "UIViewController+parentViewController.h"
 #import "UIWindow+FFWindow.h"
 #import <Social/Social.h>
+#import "PosterView.h"
 
 @interface MGCShareView () <UICollectionViewDelegate,UICollectionViewDataSource>
 //分享按钮
@@ -50,6 +51,8 @@
 
 @property (nonatomic, assign) CGFloat lastTransitionY;
 
+@property (nonatomic,strong) PosterView *posterView;
+
 @end
 
 @implementation MGCShareView
@@ -62,6 +65,24 @@
     shareView.shareInfoModel = shareInfoModel;
     [shareView prepareDefaultShareItem];
     [shareView prepareCollection];
+    shareView.successBlock = successBlock;
+    shareView.failBlock = failBlock;
+    if (completed) {
+        completed(YES);
+    }
+    [shareView showWithView:[UIWindow ffGetKeyWindow]];
+    return shareView;
+}
++ (MGCShareView *)showPosterViewWithShareInfoModel:(MGCShareInfoModel *)shareInfoModel posterModel:(PosterPosterModel *)posterModel
+                                     successBlock:(void (^)(NSDictionary *info, MGCShareType type))successBlock
+                                        failBlock:(void (^)(NSDictionary *info, MGCShareType type))failBlock
+                                         completed:(void (^)(BOOL isShow))completed {
+    MGCShareView *shareView = [[MGCShareView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    shareView.posterModel = posterModel;
+    shareView.shareInfoModel = shareInfoModel;
+    [shareView prepareDefaultPosterItem];
+    [shareView prepareCollection];
+    [shareView preparePosterView];
     shareView.successBlock = successBlock;
     shareView.failBlock = failBlock;
     if (completed) {
@@ -137,12 +158,66 @@
     
     MGCShareItemModel *posterModel = [[MGCShareItemModel alloc] init];
     posterModel.itemName = @"Save Poster";
-    posterModel.itemType = MGCShareCopyLinkType;
+    posterModel.itemType = MGCSharePosterType;
     posterModel.itemImage = @"00103_ Connect Fill";
     
     [self.shareItemsArr addObject:posterModel];
     
     [self.shareCollectionView reloadData];
+}
+//默认分享配置方法
+- (void)prepareDefaultPosterItem {
+    [self.shareItemsArr removeAllObjects];
+    
+    MGCShareItemModel *posterModel = [[MGCShareItemModel alloc] init];
+    posterModel.itemName = @"Save Poster";
+    posterModel.itemType = MGCShareSavePosterType;
+    posterModel.itemImage = @"00118_ Download";
+    
+    [self.shareItemsArr addObject:posterModel];
+    
+    MGCShareItemModel *allPosterModel = [[MGCShareItemModel alloc] init];
+    allPosterModel.itemName = @"Save All";
+    allPosterModel.itemType = MGCShareCopyLinkType;
+    allPosterModel.itemImage = @"联合 118";
+    
+    [self.shareItemsArr addObject:allPosterModel];
+    
+    MGCShareItemModel *faceBookModel = [[MGCShareItemModel alloc] init];
+    faceBookModel.itemName = @"FaceBook";
+    faceBookModel.itemType = MGCShareFacebookType;
+    faceBookModel.itemImage = @"00262_ Facebook Fill";
+    [self.shareItemsArr addObject:faceBookModel];
+
+    
+    NSString *url = [NSString stringWithFormat:@"whatsapp://"];
+    NSURL *whatsappURL = [NSURL URLWithString: url];
+    if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
+        MGCShareItemModel *whatsAppModel = [[MGCShareItemModel alloc] init];
+        whatsAppModel.itemName = @"WhatsApp";
+        whatsAppModel.itemType = MGCShareWhatsAppType;
+        whatsAppModel.itemImage = @"00266_ Wx Fill";
+        [self.shareItemsArr addObject:whatsAppModel];
+    }
+//    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+//        MGCShareItemModel *twitterModel = [[MGCShareItemModel alloc] init];
+//        twitterModel.itemName = @"Twitter";
+//        twitterModel.itemType = MGCShareTwitterType;
+//        twitterModel.itemImage = @"00263_ Twitter Fill";
+//        [self.shareItemsArr addObject:twitterModel];
+//    }
+    
+    
+    
+    
+    [self.shareCollectionView reloadData];
+}
+- (void)preparePosterView
+{
+    _posterView = [[NSBundle mainBundle] loadNibNamed:@"PosterView" owner:self options:nil].firstObject;
+    _posterView.frame = CGRectMake(70, 50, MainScreen_width-140, 427);
+    _posterView.posterModel = self.posterModel;
+    [self addSubview:_posterView];
 }
 
 - (void)prepareCollection {
@@ -176,10 +251,24 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     MGCShareItemModel *itemModel = [self.shareItemsArr objectAtIndex:indexPath.item];
+    if (itemModel.itemType == MGCShareSavePosterType) {
+        UIImage *img = [self convertViewToImage:self.posterView];
+        UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+        [self cancelBtnAction];
+        return;
+    }
     if (self.successBlock) {
         self.successBlock(@{}, itemModel.itemType);
     }
     [self cancelBtnAction];
+}
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
+{
+    if (error) {
+        
+    }   else {
+        [MBProgressHUD autoDismissShowHudMsg:@"save success!"];
+    }
 }
 
 
@@ -197,6 +286,18 @@
             [self removeFromSuperview];
         }
     }];
+}
+- (UIImage *)convertViewToImage:(UIView *)view {
+    
+    UIImage *imageRet = [[UIImage alloc]init];
+    //UIGraphicsBeginImageContextWithOptions(区域大小, 是否是非透明的, 屏幕密度);
+    UIGraphicsBeginImageContextWithOptions(view.frame.size, YES, [UIScreen mainScreen].scale);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    imageRet = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageRet;
+    
 }
 
 #pragma mark - show && Hide

@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DistributorModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PosterView : UIView
-
+@property (nonatomic,strong) PosterPosterModel *posterModel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -266,6 +266,8 @@
 		1B8841C527EC42DA002C5B99 /* ChangeEmailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8841C327EC42DA002C5B99 /* ChangeEmailVC.xib */; };
 		1B8841C927EC5716002C5B99 /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8841C827EC5716002C5B99 /* PosterView.m */; };
 		1B8841CB27EC5893002C5B99 /* PosterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8841CA27EC5893002C5B99 /* PosterView.xib */; };
+		1B8841D027ED5906002C5B99 /* PosterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8841CE27ED5906002C5B99 /* PosterViewCell.m */; };
+		1B8841D127ED5907002C5B99 /* PosterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8841CF27ED5906002C5B99 /* PosterViewCell.xib */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
@@ -1073,6 +1075,9 @@
 		1B8841C727EC5716002C5B99 /* PosterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
 		1B8841C827EC5716002C5B99 /* PosterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
 		1B8841CA27EC5893002C5B99 /* PosterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterView.xib; sourceTree = "<group>"; };
+		1B8841CD27ED5906002C5B99 /* PosterViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosterViewCell.h; sourceTree = "<group>"; };
+		1B8841CE27ED5906002C5B99 /* PosterViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosterViewCell.m; sourceTree = "<group>"; };
+		1B8841CF27ED5906002C5B99 /* PosterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterViewCell.xib; sourceTree = "<group>"; };
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
@@ -3204,6 +3209,9 @@
 				1B8841C727EC5716002C5B99 /* PosterView.h */,
 				1B8841C827EC5716002C5B99 /* PosterView.m */,
 				1B8841CA27EC5893002C5B99 /* PosterView.xib */,
+				1B8841CD27ED5906002C5B99 /* PosterViewCell.h */,
+				1B8841CE27ED5906002C5B99 /* PosterViewCell.m */,
+				1B8841CF27ED5906002C5B99 /* PosterViewCell.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -3868,6 +3876,7 @@
 				8EE292212789AA400051DF85 /* LanguageBundle.bundle in Resources */,
 				1BD8E7DD27605D0400130DCC /* ReviewSuccessViewController.xib in Resources */,
 				1BDBEBBA26FF62BF0018109B /* LoginViaOTP.xib in Resources */,
+				1B8841D127ED5907002C5B99 /* PosterViewCell.xib in Resources */,
 				1B6C52472758AD8100A1C617 /* CartViewController.xib in Resources */,
 				1B74D328279E9BF800577E46 /* ChooseRefundTitleCell.xib in Resources */,
 				1B996BFA279A60420094EAFE /* accountOrderCell.xib in Resources */,
@@ -4076,6 +4085,7 @@
 				AE68D68B272AFAF900CF544C /* SFSearchSectionHeadView.m in Sources */,
 				1B82AEDB277080B700D75E00 /* YYAnimatedImageView.m in Sources */,
 				AEB5AFC3278EEE90004CD19B /* UIViewController+Top.m in Sources */,
+				1B8841D027ED5906002C5B99 /* PosterViewCell.m in Sources */,
 				1B6C5294275B672200A1C617 /* ZLPhotoBrowserCell.m in Sources */,
 				8E1872D42796AB3C00DBEE3E /* MGCShareItemModel.m in Sources */,
 				AEEC0BAD27883C140071F059 /* DeleveryViewController.m in Sources */,
@@ -4593,7 +4603,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.24;
+				CURRENT_PROJECT_VERSION = 9.9.9.25;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4642,7 +4652,7 @@
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.24;
+				CURRENT_PROJECT_VERSION = 9.9.9.25;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (

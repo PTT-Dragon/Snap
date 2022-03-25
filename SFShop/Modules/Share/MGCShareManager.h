@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "MGCShareInfoModel.h"
 #import "MGCShareItemModel.h"
+#import "DistributorModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 
 - (void)showShareViewWithShareMessage:(NSString *)message;
+- (void)showShareViewWithShareMessage:(NSString *)message posterModel:(PosterPosterModel *)posterModel;
 
 @end
 

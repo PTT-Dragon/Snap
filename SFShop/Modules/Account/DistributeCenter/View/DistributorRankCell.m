@@ -50,8 +50,13 @@
     }
 }
 - (IBAction)shareAction:(UIButton *)sender {
-    //http://47.243.193.90:8064/product/detail/4?campaignId=96&cmpType=8&distributorId=1007
-    NSString *shareUrl = [NSString stringWithFormat:@"%@/product/detail/%@?campaignId=%@&cmpType=%@&distributorId=%@",Host,self.model.offerId,self.centerModel.sysKolCampaignId,@"8",self.centerModel.distributionSettlementDto.distributorId];
-    [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl];
+    [SFNetworkManager get:SFNet.distributor.material parameters:@{@"distriSpuLibId":self.model.distriSpuLibId} success:^(id  _Nullable response) {
+        PosterModel *posterModel = [[PosterModel alloc] initWithDictionary:response error:nil];
+        NSString *shareUrl = [NSString stringWithFormat:@"%@/product/detail/%@?campaignId=%@&cmpType=%@&distributorId=%@",Host,self.model.offerId,self.centerModel.sysKolCampaignId,@"8",self.centerModel.distributionSettlementDto.distributorId];
+        [[MGCShareManager sharedInstance] showShareViewWithShareMessage:shareUrl posterModel:posterModel.posters.firstObject];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+    
 }
 @end

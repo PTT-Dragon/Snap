@@ -45,6 +45,10 @@
 {
     return K_distributor_domain(@"orders/detail");
 }
+- (NSString *)material
+{
+    return K_distributor_domain(@"offers/material");
+}
 - (NSString *)offers
 {
     return K_distributor_domain(@"offers");

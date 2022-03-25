@@ -8,9 +8,36 @@
 #import "JSONModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+@protocol PosterContentModel;
+@protocol PosterPosterModel;
 @protocol RelationOrderItemModel <NSObject>
 
+@end
+
+@interface PosterContentModel : JSONModel
+@property (nonatomic,copy) NSString <Optional> *bigImgUrl;
+@property (nonatomic,copy) NSString <Optional> *contentId;
+@property (nonatomic,copy) NSString <Optional> *contentType;
+@property (nonatomic,copy) NSString <Optional> *materialContentId;
+@property (nonatomic,copy) NSString <Optional> *seq;
+@property (nonatomic,copy) NSString <Optional> *smallImgUrl;
+@property (nonatomic,copy) NSString <Optional> *url;
+@property (nonatomic,strong) UIImage <Optional> *qrCodeImage;
+
+@end
+
+@interface PosterPosterModel : JSONModel
+@property (nonatomic,copy) NSString <Optional> *comments;
+@property (nonatomic,copy) NSString <Optional> *distriSpuLibId;
+@property (nonatomic,copy) NSString <Optional> *pageType;
+@property (nonatomic,copy) NSString <Optional> *seq;
+@property (nonatomic,copy) NSString <Optional> *spuMaterialId;
+@property (nonatomic,copy) NSString <Optional> *state;
+@property (nonatomic,strong) NSArray <PosterContentModel>*contents;
+@end
+
+@interface PosterModel : JSONModel
+@property (nonatomic,strong) NSArray<PosterPosterModel> *posters;
 @end
 
 @interface DistributorRankProductModel : JSONModel

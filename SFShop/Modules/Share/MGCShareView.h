@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MGCShareInfoModel.h"
+#import "DistributorModel.h"
 
 @interface MGCShareView : UIView
 
@@ -20,6 +21,13 @@
                                      successBlock:(void (^)(NSDictionary *info, MGCShareType type))successBlock
                                         failBlock:(void (^)(NSDictionary *info, MGCShareType type))failBlock
                                         completed:(void (^)(BOOL isShow))completed;
+//海报
++ (MGCShareView *)showPosterViewWithShareInfoModel:(MGCShareInfoModel *)shareInfoModel posterModel:(PosterPosterModel *)posterModel
+                                     successBlock:(void (^)(NSDictionary *info, MGCShareType type))successBlock
+                                        failBlock:(void (^)(NSDictionary *info, MGCShareType type))failBlock
+                                         completed:(void (^)(BOOL isShow))completed;
+//海报model
+@property (nonatomic,strong) PosterPosterModel *posterModel;
 /// 删除视图
 - (void)cancelBtnAction;
 

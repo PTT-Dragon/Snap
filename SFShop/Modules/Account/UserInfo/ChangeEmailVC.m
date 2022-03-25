@@ -31,6 +31,7 @@ static BOOL _passwordSuccess1 = NO;
     self.field.layer.borderWidth = 1;
     [_field addTarget:self action:@selector(changedTextField:) forControlEvents:(UIControlEventEditingChanged)];
     _field.placeholder = kLocalizedString(@"EMAIL");
+    [self.btn setTitle:kLocalizedString(@"SUBMIT") forState:UIControlStateNormal];
 }
 - (void)changedTextField:(UITextField *)textField
 {
