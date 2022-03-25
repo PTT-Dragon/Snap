@@ -8,7 +8,6 @@
 #import "MGCShareManager.h"
 #import "UIViewController+parentViewController.h"
 #import "MGCShareView.h"
-#import <FBSDKShareKit/FBSDKShareKit.h>
 #import <TwitterKit/TwitterKit.h>
 #import "PosterView.h"
 
@@ -89,7 +88,11 @@
         } else if (type == MGCSharePosterType) {
             [MGCShareView showPosterViewWithShareInfoModel:nil posterModel:posterModelArr productModel:productModel successBlock:^(NSDictionary *info, MGCShareType type) {
                 if (type == MGCShareSavePosterToFacebookType) {
-                    [self shareToFacebookWithImage:info[@"image"]];
+                    [self shareToFaceBookWithMessage:message];
+//                    [self shareToFacebookWithImage:info[@"image"]];
+                }else if (type == MGCShareSavePosterToWhatsAppType){
+                    [self shareToWhatsAppWithMessage:url];
+//                    [self shareToWhatsAppWithImage:info[@"image"]];
                 }
             } failBlock:^(NSDictionary *info, MGCShareType type) {
                 
@@ -115,14 +118,33 @@
 }
 - (void)shareToFacebookWithImage:(UIImage *)image
 {
+//    FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+//    NSString *urlStr = [@"http://47.243.193.90:8064/product/detail/4?campaignId=96&cmpType=8&distributorId=1007" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    content.contentURL = [NSURL URLWithString:urlStr];
+//    FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
+//    dialog.fromViewController = [UIViewController currentTopViewController];
+//    dialog.shareContent = content;
+//    dialog.mode = FBSDKShareDialogModeAutomatic;
+//    [dialog show];
     FBSDKSharePhotoContent *content = [[FBSDKSharePhotoContent alloc] init];
     FBSDKSharePhoto *photo = [FBSDKSharePhoto photoWithImage:image userGenerated:YES];
+    photo.caption = @"11";
     content.photos = @[photo];
     FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
     dialog.fromViewController = [UIViewController currentTopViewController];
     dialog.shareContent = content;
     dialog.mode = FBSDKShareDialogModeAutomatic;
     [dialog show];
+//    [FBSDKShareDialog showFromViewController:[baseTool getCurrentVC] withContent:content delegate:self];
+
+}
+- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error
+{
+    
+}
+- (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results
+{
+    
 }
 
 - (void)shareToTwitterWithMessage:(NSString *)message {
@@ -165,6 +187,32 @@
     if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
         [[UIApplication sharedApplication] openURL: whatsappURL];
     }
+}
+- (void)shareToWhatsAppWithImage:(UIImage *)image
+{
+    if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]){
+        
+//        UIImage *image = [UIImage imageWithContentsOfFile:localpath];
+        NSString *savePath  = [NSHomeDirectory() stringByAppendingPathComponent:@"whatsAppTmp.wai"];
+        [UIImageJPEGRepresentation(image, 0.8) writeToFile:savePath atomically:YES];
+         
+        NSArray *activityItems = @[[NSURL fileURLWithPath:savePath]];
+        UIActivityViewController *ctrl = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+        ctrl.excludedActivityTypes = @[UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop];
+        [[baseTool getCurrentVC] presentViewController:ctrl animated:YES completion:nil];
+
+         
+//            NSString *savePath  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/whatsAppTmp.wai"];
+//
+//            [UIImageJPEGRepresentation(image, 1.0) writeToFile:savePath atomically:YES];
+//
+//            _documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:savePath]];
+//            _documentInteractionController.UTI = @"net.whatsapp.image";
+//            _documentInteractionController.delegate = self;
+//            [_documentInteractionController presentOpenInMenuFromRect:CGRectZero inView:[baseTool getCurrentVC].view animated: YES];
+        } else {
+            
+        }
 }
 
 

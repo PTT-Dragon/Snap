@@ -79,8 +79,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Long press to buy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3w-eE-NDq">
-                        <rect key="frame" x="135" y="375" width="81" height="11"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Long press to buy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3w-eE-NDq">
+                        <rect key="frame" x="131" y="375" width="85" height="11"/>
                         <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="9"/>
                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
@@ -112,6 +112,7 @@
                 <constraint firstItem="isx-EP-O09" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="ZCH-4N-cGD"/>
                 <constraint firstItem="Ap1-Q2-cGJ" firstAttribute="centerY" secondItem="YNr-rm-QD6" secondAttribute="centerY" id="cA6-Xr-THh"/>
                 <constraint firstItem="Ap1-Q2-cGJ" firstAttribute="centerX" secondItem="YNr-rm-QD6" secondAttribute="centerX" id="dd0-io-rkD"/>
+                <constraint firstItem="f3w-eE-NDq" firstAttribute="leading" secondItem="EP7-VA-Rub" secondAttribute="leading" constant="-10" id="iF7-cq-IJQ"/>
                 <constraint firstItem="Ap1-Q2-cGJ" firstAttribute="leading" secondItem="YNr-rm-QD6" secondAttribute="leading" id="jqj-0F-khY"/>
                 <constraint firstAttribute="trailing" secondItem="ukS-r4-fQi" secondAttribute="trailing" id="pEM-BG-uOU"/>
                 <constraint firstItem="tKK-sG-hcP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="svk-hj-ycx"/>

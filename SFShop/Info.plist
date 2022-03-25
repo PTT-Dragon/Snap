@@ -45,6 +45,7 @@
 	<string>Nuri</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>twitter</string>
 		<string>wechat</string>
 		<string>weixin</string>
 		<string>weixinULAPI</string>

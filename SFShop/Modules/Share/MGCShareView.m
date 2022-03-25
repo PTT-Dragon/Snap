@@ -141,7 +141,7 @@
         whatsAppModel.itemImage = @"00266_ Wx Fill";
         [self.shareItemsArr addObject:whatsAppModel];
     }
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter://"]]) {
         MGCShareItemModel *twitterModel = [[MGCShareItemModel alloc] init];
         twitterModel.itemName = @"Twitter";
         twitterModel.itemType = MGCShareTwitterType;
@@ -200,7 +200,7 @@
     if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
         MGCShareItemModel *whatsAppModel = [[MGCShareItemModel alloc] init];
         whatsAppModel.itemName = @"WhatsApp";
-        whatsAppModel.itemType = MGCShareWhatsAppType;
+        whatsAppModel.itemType = MGCShareSavePosterToWhatsAppType;
         whatsAppModel.itemImage = @"00266_ Wx Fill";
         [self.shareItemsArr addObject:whatsAppModel];
     }
@@ -220,7 +220,7 @@
 - (void)preparePosterView
 {
     _posterView = [[NSBundle mainBundle] loadNibNamed:@"PosterView" owner:self options:nil].firstObject;
-    _posterView.frame = CGRectMake(70, 50, MainScreen_width-140, 427);
+    _posterView.frame = CGRectMake(70, 100, MainScreen_width-140, 427);
     _posterView.productModel = self.productModel;
     _posterView.posterModelArr = self.posterModelArr;
     [self addSubview:_posterView];
@@ -238,7 +238,7 @@
     _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
     _titleLabel.frame = CGRectMake(15, 14, self.width, 21);
     _lineView.frame = CGRectMake(15, self.titleLabel.bottom + 13, self.width-30, 1);
-    _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60);
+    _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60+(self.shareItemsArr.count > 4 ? 80: 0));
     _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
     [self.shareCollectionView reloadData];
 }
@@ -257,12 +257,19 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     MGCShareItemModel *itemModel = [self.shareItemsArr objectAtIndex:indexPath.item];
-    if (itemModel.itemType == MGCShareSavePosterType) {
+    if (itemModel.itemType == MGCShareSavePosterType || itemModel.itemType == MGCShareSaveAllPosterType) {
         UIImage *img = [self convertViewToImage:self.posterView];
         UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
         [self cancelBtnAction];
         return;
     }else if (itemModel.itemType == MGCShareSavePosterToFacebookType){
+        if (self.successBlock) {
+            UIImage *img = [self convertViewToImage:self.posterView];
+            self.successBlock(@{@"image":img}, itemModel.itemType);
+        }
+        [self cancelBtnAction];
+        return;
+    }else if (itemModel.itemType == MGCShareSavePosterToWhatsAppType){
         if (self.successBlock) {
             UIImage *img = [self convertViewToImage:self.posterView];
             self.successBlock(@{@"image":img}, itemModel.itemType);
@@ -341,7 +348,7 @@
     self.bgView.frame = CGRectMake(0, self.height, self.width, height);
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1;
-        self.bgView.frame = CGRectMake(0, self.height - height, self.width, height);
+        self.bgView.frame = CGRectMake(0, self.height - height-(self.shareItemsArr.count > 4 ? 80: 0), self.width, viewHeight+(self.shareItemsArr.count > 4 ? 80: 0));
         self.maskView.alpha = 1;
     } completion:^(BOOL finished) {
         
@@ -382,7 +389,7 @@
         oneToolHeight = 113+100+iPhoneXBottomOffset;
     }
     CGFloat viewHeight = oneToolHeight;
-    self.bgView.frame = CGRectMake(0, self.height - viewHeight, self.width, viewHeight);
+    self.bgView.frame = CGRectMake(0, self.height - height-(self.shareItemsArr.count > 4 ? 80: 0), self.width, viewHeight+(self.shareItemsArr.count > 4 ? 80: 0));
 }
 
 #pragma mark - setter && getter
@@ -395,11 +402,11 @@
             height = 145+iPhoneXBottomOffset;
         }
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - height, self.width, height)];
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(6, 0)];
-        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-        maskLayer.frame = _bgView.bounds;
-        maskLayer.path = maskPath.CGPath;
-        _bgView.layer.mask = maskLayer;
+//        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_bgView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(6, 0)];
+//        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//        maskLayer.frame = _bgView.bounds;
+//        maskLayer.path = maskPath.CGPath;
+//        _bgView.layer.mask = maskLayer;
         _bgView.backgroundColor = [UIColor whiteColor];
     }
     return _bgView;
@@ -436,7 +443,7 @@
 - (UICollectionView *)shareCollectionView {
     if (!_shareCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
         flowLayout.minimumLineSpacing = (App_Frame_Width - 50 - 70*4)/3.0;
         flowLayout.itemSize = CGSizeMake(70, 60);
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 25, 0, 25);
