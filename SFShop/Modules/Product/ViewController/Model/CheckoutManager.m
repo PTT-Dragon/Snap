@@ -137,7 +137,7 @@ static CheckoutManager *_instance = nil;
                 self.cacheData.feeModel = [[ProductCalcFeeModel alloc] initWithDictionary:response error:nil];
                 dispatch_group_leave(group);
             } failed:^(NSError * _Nonnull error) {
-                [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
+                [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"messsage"]];
                 dispatch_group_leave(group);
             }];
         });
@@ -201,7 +201,7 @@ static CheckoutManager *_instance = nil;
             !complete ?: complete(YES,self.cacheData);
         } failed:^(NSError * _Nonnull error) {
             !complete ?: complete(NO,self.cacheData);
-            [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
+            [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"messsage"]];
         }];
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(nil,nil);
@@ -224,7 +224,7 @@ static CheckoutManager *_instance = nil;
         !complete ?: complete(YES,self.cacheData);
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(NO,self.cacheData);
-        [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"messsage"]];
     }];
 }
 
@@ -243,7 +243,7 @@ static CheckoutManager *_instance = nil;
         !complete ?: complete(YES,self.cacheData);
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(NO,self.cacheData);
-        [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"messsage"]];
     }];
 }
 
@@ -257,7 +257,7 @@ static CheckoutManager *_instance = nil;
         !complete ?: complete(YES,self.cacheData);
     } failed:^(NSError * _Nonnull error) {
         !complete ?: complete(NO,self.cacheData);
-        [MBProgressHUD showTopErrotMessage: @"Calcfee Failed!"];
+        [MBProgressHUD showTopErrotMessage:[NSMutableString getErrorMessage:error][@"messsage"]];
     }];
 }
 

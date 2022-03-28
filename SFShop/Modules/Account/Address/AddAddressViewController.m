@@ -130,6 +130,12 @@ static BOOL changePhone = NO;
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    [self.areaField resignFirstResponder];
+    [self.nameField resignFirstResponder];
+    [self.emailField resignFirstResponder];
+    [self.phoneField resignFirstResponder];
+    [self.detailField resignFirstResponder];
+    [self.streetField resignFirstResponder];
     if (textField == _areaField) {
         ChooseAreaViewController *vc = [[ChooseAreaViewController alloc] init];
         vc.selProvinceAreaMoel = _selProvinceAreaMoel;

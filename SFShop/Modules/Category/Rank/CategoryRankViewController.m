@@ -45,7 +45,7 @@
     [super viewDidLoad];
     self.initLoad = YES;
     self.reloadFilter = YES;
-    self.currentType = 2;
+    self.currentType = 1;
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadsubviews];
     self.navSearchView.activeSearch = self.activeSearch;
@@ -162,7 +162,7 @@
 
 #pragma mark - Event
 - (void)jumpToFilterDetail {
-    //加载缓存配置到数据层
+    //加载缓存配置到数据层    
     self.dataModel.filterCache = self.filterCacheModel;
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
@@ -204,8 +204,8 @@
 }
 
 - (void)resetSort {
-    self.currentType = CategoryRankTypePopularity;
-    [self.headSelectorView nonUserBehaviorSelected:CategoryRankTypePopularity];
+    self.currentType = CategoryRankTypeSales;
+    [self.headSelectorView nonUserBehaviorSelected:CategoryRankTypeSales];
 }
 
 /// 筛选后，会重置隐藏空页面
@@ -337,7 +337,7 @@
 
 - (CategoryRankHeadSelectorView *)headSelectorView {
     if (_headSelectorView == nil) {
-        _headSelectorView = [[CategoryRankHeadSelectorView alloc] initWithFrame:CGRectMake(0, navBarHei + 10, MainScreen_width, KScale(64)) type:CategoryRankTypePopularity];
+        _headSelectorView = [[CategoryRankHeadSelectorView alloc] initWithFrame:CGRectMake(0, navBarHei + 10, MainScreen_width, KScale(64)) type:CategoryRankTypeSales];
         __weak __typeof(self)weakSelf = self;
         _headSelectorView.clickFilterBlock = ^(CategoryRankType type) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;

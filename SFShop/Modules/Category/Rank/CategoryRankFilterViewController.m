@@ -87,8 +87,14 @@
 }
 
 - (void)reset {
+    NSString *qs = self.model.filterCache.qs;
     self.model.filterCache = nil;
     self.model.priceModel = nil;
+    CategoryRankFilterCacheModel *filterModel = [[CategoryRankFilterCacheModel alloc] init];
+    filterModel.qs = qs;
+    filterModel.minPrice = -1;
+    filterModel.maxPrice = -1;
+    self.model.filterCache = filterModel;
     [self.model.brandIds enumerateObjectsUsingBlock:^(CategoryRankBrandModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.isSelected = NO;
     }];

@@ -33,8 +33,11 @@
     self.magicView.dataSource = self;
     self.magicView.delegate = self;
     self.magicView.scrollEnabled = NO;
+    self.currentMenuIndex = _selIndex;
+    self.currentPage = _selIndex;
+    self.magicController.currentPage = _selIndex;
     [self.magicView reloadData];
-    
+    [self switchToPage:_selIndex animated:YES];
 }
 /// VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {

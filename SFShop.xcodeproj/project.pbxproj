@@ -229,6 +229,7 @@
 		1B787B61272A354C00E6A983 /* AddReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B787B5F272A354C00E6A983 /* AddReviewViewController.xib */; };
 		1B78865D276C7E74009A080A /* ProductReviewReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78865B276C7E74009A080A /* ProductReviewReplyCell.m */; };
 		1B78865E276C7E74009A080A /* ProductReviewReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B78865C276C7E74009A080A /* ProductReviewReplyCell.xib */; };
+		1B7A903E27F0AD69004672D7 /* ASPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A903D27F0AD69004672D7 /* ASPageView.m */; };
 		1B82AE33276F7B7F00D75E00 /* CommunityEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE32276F7B7F00D75E00 /* CommunityEvaluateCell.m */; };
 		1B82AE3727701F4F00D75E00 /* ArticleEvaluateBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82AE3527701F4F00D75E00 /* ArticleEvaluateBottomCell.m */; };
 		1B82AE3827701F4F00D75E00 /* ArticleEvaluateBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B82AE3627701F4F00D75E00 /* ArticleEvaluateBottomCell.xib */; };
@@ -319,6 +320,8 @@
 		1B88427927ED6CBE002C5B99 /* JKQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B88424227ED6CBE002C5B99 /* JKQRCode.m */; };
 		1B88427A27ED6CBE002C5B99 /* JKScanningQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B88424527ED6CBE002C5B99 /* JKScanningQRViewController.m */; };
 		1B88427B27ED6CBE002C5B99 /* JKBaseKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B88424827ED6CBE002C5B99 /* JKBaseKit.bundle */; };
+		1B88428127EDC54C002C5B99 /* savePosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B88428027EDC54C002C5B99 /* savePosterView.m */; };
+		1B88428327EDC55F002C5B99 /* savePosterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B88428227EDC55F002C5B99 /* savePosterView.xib */; };
 		1B90F960272B992E003A047A /* UseCouponProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F95E272B992E003A047A /* UseCouponProductCell.m */; };
 		1B90F961272B992E003A047A /* UseCouponProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B90F95F272B992E003A047A /* UseCouponProductCell.xib */; };
 		1B92D14A27326FC200E73F98 /* PublicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92D14927326FC200E73F98 /* PublicAlertView.m */; };
@@ -1053,6 +1056,8 @@
 		1B78865A276C7E74009A080A /* ProductReviewReplyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductReviewReplyCell.h; sourceTree = "<group>"; };
 		1B78865B276C7E74009A080A /* ProductReviewReplyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductReviewReplyCell.m; sourceTree = "<group>"; };
 		1B78865C276C7E74009A080A /* ProductReviewReplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductReviewReplyCell.xib; sourceTree = "<group>"; };
+		1B7A903C27F0AD69004672D7 /* ASPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASPageView.h; sourceTree = "<group>"; };
+		1B7A903D27F0AD69004672D7 /* ASPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASPageView.m; sourceTree = "<group>"; };
 		1B82AE31276F7B7F00D75E00 /* CommunityEvaluateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunityEvaluateCell.h; sourceTree = "<group>"; };
 		1B82AE32276F7B7F00D75E00 /* CommunityEvaluateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunityEvaluateCell.m; sourceTree = "<group>"; };
 		1B82AE3427701F4F00D75E00 /* ArticleEvaluateBottomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleEvaluateBottomCell.h; sourceTree = "<group>"; };
@@ -1234,6 +1239,9 @@
 		1B88424527ED6CBE002C5B99 /* JKScanningQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKScanningQRViewController.m; sourceTree = "<group>"; };
 		1B88424627ED6CBE002C5B99 /* IMBaseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBaseKit.h; sourceTree = "<group>"; };
 		1B88424827ED6CBE002C5B99 /* JKBaseKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JKBaseKit.bundle; sourceTree = "<group>"; };
+		1B88427F27EDC54C002C5B99 /* savePosterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = savePosterView.h; sourceTree = "<group>"; };
+		1B88428027EDC54C002C5B99 /* savePosterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = savePosterView.m; sourceTree = "<group>"; };
+		1B88428227EDC55F002C5B99 /* savePosterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = savePosterView.xib; sourceTree = "<group>"; };
 		1B90F95D272B992E003A047A /* UseCouponProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCouponProductCell.h; sourceTree = "<group>"; };
 		1B90F95E272B992E003A047A /* UseCouponProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCouponProductCell.m; sourceTree = "<group>"; };
 		1B90F95F272B992E003A047A /* UseCouponProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UseCouponProductCell.xib; sourceTree = "<group>"; };
@@ -2457,6 +2465,15 @@
 			path = Similar;
 			sourceTree = "<group>";
 		};
+		1B7A903B27F0AD69004672D7 /* ASPageView */ = {
+			isa = PBXGroup;
+			children = (
+				1B7A903C27F0AD69004672D7 /* ASPageView.h */,
+				1B7A903D27F0AD69004672D7 /* ASPageView.m */,
+			);
+			path = ASPageView;
+			sourceTree = "<group>";
+		};
 		1B82AE3C27707CB500D75E00 /* KSPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -3291,6 +3308,7 @@
 		4B9FB9C926FB782900C90790 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1B7A903B27F0AD69004672D7 /* ASPageView */,
 				1B8841D227ED6CBD002C5B99 /* IMBaseKit */,
 				1BB145E727D4A7210010C0DC /* ScrollLabel */,
 				8EB27B2527D3995D004F4A9C /* SocialLibraries */,
@@ -3585,6 +3603,9 @@
 				1B8841CD27ED5906002C5B99 /* PosterViewCell.h */,
 				1B8841CE27ED5906002C5B99 /* PosterViewCell.m */,
 				1B8841CF27ED5906002C5B99 /* PosterViewCell.xib */,
+				1B88427F27EDC54C002C5B99 /* savePosterView.h */,
+				1B88428027EDC54C002C5B99 /* savePosterView.m */,
+				1B88428227EDC55F002C5B99 /* savePosterView.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -4224,6 +4245,7 @@
 				1B18E35B279EFABE00A90152 /* ReplaceDeliveryAddCell.xib in Resources */,
 				1BF00F65272FDC2E0081C8E4 /* DistributorRelationOrderCell.xib in Resources */,
 				1B74DB112724463500B30ECC /* OrderListStateCell.xib in Resources */,
+				1B88428327EDC55F002C5B99 /* savePosterView.xib in Resources */,
 				1BD8E7AA275D1B5900130DCC /* ReviewPhrchaseCell.xib in Resources */,
 				1B12A3E227015F7000DD7BCD /* CouponCenterCell.xib in Resources */,
 				1B964764273E4F2F00345DDA /* RelationOrderCell.xib in Resources */,
@@ -4668,6 +4690,7 @@
 				1B6C5298275B672200A1C617 /* ZLInteractiveTrasition.m in Sources */,
 				8E1872C82795AE8900DBEE3E /* MGCShareView.m in Sources */,
 				1B88427427ED6CBE002C5B99 /* JKSmallLabels.m in Sources */,
+				1B88428127EDC54C002C5B99 /* savePosterView.m in Sources */,
 				4B9FB9F926FB7A9F00C90790 /* CommunityViewController.m in Sources */,
 				1B478310272A8CA900F2A945 /* RefundDetailViewController.m in Sources */,
 				1B6246772762F0FD00009DE2 /* MessageOrderListViewController.m in Sources */,
@@ -4686,6 +4709,7 @@
 				1B88427027ED6CBE002C5B99 /* UIApplication+JKExtension.m in Sources */,
 				AEB59C32278ECD13004CD19B /* NSString+Fee.m in Sources */,
 				4B43857C26FF535600BA3D90 /* CommunityDetailController.m in Sources */,
+				1B7A903E27F0AD69004672D7 /* ASPageView.m in Sources */,
 				1B74D323279E7F5A00577E46 /* UIButton+time.m in Sources */,
 				1B82AEE5277080B700D75E00 /* UIImage+YYWebImage.m in Sources */,
 				1B2AE434272E3FD200FB23D3 /* CancelOrderViewController.m in Sources */,
@@ -5027,7 +5051,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.26;
+				CURRENT_PROJECT_VERSION = 9.9.9.30;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5076,7 +5100,7 @@
 				CODE_SIGN_ENTITLEMENTS = SFShop/SFShop.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9.9.9.26;
+				CURRENT_PROJECT_VERSION = 9.9.9.30;
 				DEVELOPMENT_TEAM = 45TSGW46CH;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))\n\n";
 				FRAMEWORK_SEARCH_PATHS = (

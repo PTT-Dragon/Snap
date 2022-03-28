@@ -22,6 +22,7 @@
 #import "JPVideoPlayerManager.h"
 #import "NSDate+Helper.h"
 #import "LoginViewController.h"
+#import "ASPageView.h"
 
 @interface CommunityDetailController () <iCarouselDelegate, iCarouselDataSource,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BaseNavViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
@@ -39,7 +40,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *replyCntLabel;
 @property (weak, nonatomic) IBOutlet UIView *productContainer;
 @property (weak, nonatomic) IBOutlet UILabel *productName;
-
+@property (strong, nonatomic) ASPageView *pageView;
 @property (weak, nonatomic) IBOutlet UILabel *createDateLabel;
 @property (nonatomic, strong) WKWebView *detailWebView;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
@@ -114,9 +115,15 @@
     self.theTitle.text = kLocalizedString(@"REPLIES");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNaviBtnAction) name:@"KBaseNavViewHiddenMoreView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNaviBtnAction) name:@"KBaseMoreViewHidden" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCurrentPage:) name:@"updateCurrentPage" object:nil];
+    
 }
 - (void)showNaviBtnAction {
     [_navView updateIsShowArticleTop:NO];
+}
+- (void)updateCurrentPage:(NSNotification *)noti
+{
+    self.pageView.currentPage = [noti.object integerValue];
 }
 - (BOOL)shouldCheckLoggedIn {
     return NO;
@@ -250,6 +257,12 @@
             
         }];
     }
+    _pageView = [[ASPageView alloc] initWithFrame:CGRectMake((MainScreen_width-100)/2, MainScreen_width-30, 100, 10) pageNumber:self.model.imgs.count];
+    _pageView.pageIndicatorTintColor = RGBColorFrom16(0xefefef);
+    _pageView.currentPageIndicatorTintColor = RGBColorFrom16(0xff1659);
+    _pageView.circularPage = NO;
+    _pageView.pageSize = CGSizeMake(20, 3);
+    [self.scrollContentView addSubview:_pageView];
     [self.articlePictures reloadData];
 }
 
@@ -416,6 +429,10 @@
 #pragma mark - iCarouselDataSource
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
     return _model.articlePictures.count;
+}
+- (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel {
+    NSInteger index = carousel.currentItemIndex;
+    self.pageView.currentPage = index;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {

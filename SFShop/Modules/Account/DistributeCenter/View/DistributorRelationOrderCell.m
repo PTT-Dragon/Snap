@@ -41,11 +41,13 @@
 - (void)pendingAction
 {
     RelationOrderViewController *vc = [[RelationOrderViewController alloc] init];
+    vc.selIndex = 0;
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 - (void)settledAction
 {
     RelationOrderViewController *vc = [[RelationOrderViewController alloc] init];
+    vc.selIndex = 1;
     [[baseTool getCurrentVC].navigationController pushViewController:vc animated:YES];
 }
 @end

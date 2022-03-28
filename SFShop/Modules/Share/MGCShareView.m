@@ -13,6 +13,7 @@
 #import "UIWindow+FFWindow.h"
 #import <Social/Social.h>
 #import "PosterView.h"
+#import "savePosterView.h"
 
 @interface MGCShareView () <UICollectionViewDelegate,UICollectionViewDataSource>
 //分享按钮
@@ -53,6 +54,8 @@
 
 @property (nonatomic,strong) PosterView *posterView;
 
+@property (nonatomic,strong) NSMutableArray *posterViewArr;
+
 @end
 
 @implementation MGCShareView
@@ -84,6 +87,7 @@
     shareView.shareInfoModel = shareInfoModel;
     [shareView prepareDefaultPosterItem];
     [shareView prepareCollection];
+    [shareView prepareSavePosterView];
     [shareView preparePosterView];
     shareView.successBlock = successBlock;
     shareView.failBlock = failBlock;
@@ -159,9 +163,9 @@
     [self.shareItemsArr addObject:copyModel];
     if (self.posterModelArr) {
         MGCShareItemModel *posterModel = [[MGCShareItemModel alloc] init];
-        posterModel.itemName = @"Save Poster";
+        posterModel.itemName = @"Poster";
         posterModel.itemType = MGCSharePosterType;
-        posterModel.itemImage = @"00103_ Connect Fill";
+        posterModel.itemImage = @"00278_ Picture Fill";
         
         [self.shareItemsArr addObject:posterModel];
     }
@@ -183,7 +187,7 @@
     
     MGCShareItemModel *allPosterModel = [[MGCShareItemModel alloc] init];
     allPosterModel.itemName = kLocalizedString(@"SAVE_ALL");
-    allPosterModel.itemType = MGCShareCopyLinkType;
+    allPosterModel.itemType = MGCShareSaveAllPosterType;
     allPosterModel.itemImage = @"00118_ Download_All";
     
     [self.shareItemsArr addObject:allPosterModel];
@@ -217,6 +221,18 @@
     
     [self.shareCollectionView reloadData];
 }
+- (void)prepareSavePosterView
+{
+    _posterViewArr = [NSMutableArray array];
+    for (PosterPosterModel *posterModel in self.posterModelArr) {
+        savePosterView *view = [[NSBundle mainBundle] loadNibNamed:@"savePosterView" owner:self options:nil].firstObject;
+        view.frame = CGRectMake(70, 100, MainScreen_width-140, 427);
+        view.model = posterModel;
+        view.productModel = self.productModel;
+        [self addSubview:view];
+        [_posterViewArr addObject:view];
+    }
+}
 - (void)preparePosterView
 {
     _posterView = [[NSBundle mainBundle] loadNibNamed:@"PosterView" owner:self options:nil].firstObject;
@@ -238,7 +254,7 @@
     _bgView.frame = CGRectMake(0, self.height - oneToolHeight, self.width, oneToolHeight);
     _titleLabel.frame = CGRectMake(15, 14, self.width, 21);
     _lineView.frame = CGRectMake(15, self.titleLabel.bottom + 13, self.width-30, 1);
-    _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 60+(self.shareItemsArr.count > 4 ? 80: 0));
+    _shareCollectionView.frame = CGRectMake(0, self.lineView.bottom + 24, self.width, 75+(self.shareItemsArr.count > 4 ? 95: 0));
     _cancelBtn.frame = CGRectMake(15, self.bgView.height - btnHeitght, self.width - 30, 40);
     [self.shareCollectionView reloadData];
 }
@@ -257,7 +273,7 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     MGCShareItemModel *itemModel = [self.shareItemsArr objectAtIndex:indexPath.item];
-    if (itemModel.itemType == MGCShareSavePosterType || itemModel.itemType == MGCShareSaveAllPosterType) {
+    if (itemModel.itemType == MGCShareSavePosterType) {
         UIImage *img = [self convertViewToImage:self.posterView];
         UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
         [self cancelBtnAction];
@@ -276,6 +292,10 @@
         }
         [self cancelBtnAction];
         return;
+    }else if (itemModel.itemType == MGCShareSaveAllPosterType){
+        [self saveAllPosterView];
+        [self cancelBtnAction];
+        return;
     }
     if (self.successBlock) {
         self.successBlock(@{}, itemModel.itemType);
@@ -288,6 +308,14 @@
         
     }   else {
         [MBProgressHUD autoDismissShowHudMsg:@"save success!"];
+    }
+}
+- (void)saveAllPosterView
+{
+    for (NSInteger i = 0; i<self.posterViewArr.count; i++) {
+        UIView *subView = self.posterViewArr[i];
+        UIImage *img = [self convertViewToImage:subView];
+        UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     }
 }
 
@@ -348,7 +376,7 @@
     self.bgView.frame = CGRectMake(0, self.height, self.width, height);
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1;
-        self.bgView.frame = CGRectMake(0, self.height - height-(self.shareItemsArr.count > 4 ? 80: 0), self.width, viewHeight+(self.shareItemsArr.count > 4 ? 80: 0));
+        self.bgView.frame = CGRectMake(0, self.height - height-(self.shareItemsArr.count > 4 ? 95: 0), self.width, viewHeight+(self.shareItemsArr.count > 4 ? 95: 0));
         self.maskView.alpha = 1;
     } completion:^(BOOL finished) {
         
@@ -389,7 +417,7 @@
         oneToolHeight = 113+100+iPhoneXBottomOffset;
     }
     CGFloat viewHeight = oneToolHeight;
-    self.bgView.frame = CGRectMake(0, self.height - height-(self.shareItemsArr.count > 4 ? 80: 0), self.width, viewHeight+(self.shareItemsArr.count > 4 ? 80: 0));
+    self.bgView.frame = CGRectMake(0, self.height - height-(self.shareItemsArr.count > 4 ? 95: 0), self.width, viewHeight+(self.shareItemsArr.count > 4 ? 95: 0));
 }
 
 #pragma mark - setter && getter
@@ -445,9 +473,9 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
         flowLayout.minimumLineSpacing = (App_Frame_Width - 50 - 70*4)/3.0;
-        flowLayout.itemSize = CGSizeMake(70, 60);
+        flowLayout.itemSize = CGSizeMake(70, 75);
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 25, 0, 25);
-        _shareCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.lineView.bottom + 24, self.width, 60) collectionViewLayout:flowLayout];
+        _shareCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.lineView.bottom + 24, self.width, 75) collectionViewLayout:flowLayout];
         _shareCollectionView.backgroundColor = [UIColor clearColor];
         _shareCollectionView.delegate = self;
         _shareCollectionView.dataSource = self;

@@ -130,6 +130,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     NSInteger index = scrollView.contentOffset.x/self.bounds.size.width;
     imgIndex = index;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateCurrentPage" object:@(index)];
     if (self.type == TSDETAILTYPEVIDEO) {
         if (self.scrolView.contentOffset.x < self.frame.size.width) {
             self.indexLab.hidden = YES;

@@ -56,6 +56,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self loadSides];
 }
 
 - (void)loadsubviews {
@@ -70,6 +71,7 @@
      [SFNetworkManager get:SFNet.page.buyer_displaycatgs parameters:@{@"catgLevel":@"1"} success:^(id  _Nullable response) {
         [MBProgressHUD hideFromKeyWindow];
         NSArray *array = response;
+         [self.sideTableView.dataArray removeAllObjects];
         for (NSDictionary *dict in array) {
             CategoryModel *model = [CategoryModel yy_modelWithDictionary:dict];
             [self.sideTableView.dataArray addObject:model];

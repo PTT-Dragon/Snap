@@ -26,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZw-Zw-Lsa">
-                        <rect key="frame" x="16" y="153" width="288" height="45"/>
+                        <rect key="frame" x="16" y="113" width="288" height="45"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="6RV-Y7-RH0"/>
@@ -40,13 +40,13 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have successfully invited 3 friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3W-Gw-dRu">
-                        <rect key="frame" x="29" y="210" width="262.5" height="17"/>
+                        <rect key="frame" x="29" y="170" width="262.5" height="17"/>
                         <fontDescription key="fontDescription" name="TruenoRg" family="Trueno" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVITATION RECORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfe-4f-QnG">
-                        <rect key="frame" x="79" y="259" width="162" height="20"/>
+                        <rect key="frame" x="79" y="219" width="162" height="20"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                     <constraint firstItem="MZw-Zw-Lsa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bZk-O4-M5A"/>
                     <constraint firstAttribute="trailing" secondItem="gZ0-Hf-6Lo" secondAttribute="trailing" id="jLy-sY-ZeW"/>
                     <constraint firstItem="gZ0-Hf-6Lo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lXm-tc-fWR"/>
-                    <constraint firstAttribute="bottom" secondItem="MZw-Zw-Lsa" secondAttribute="bottom" constant="102" id="rGc-NE-9lY"/>
+                    <constraint firstAttribute="bottom" secondItem="MZw-Zw-Lsa" secondAttribute="bottom" constant="142" id="rGc-NE-9lY"/>
                     <constraint firstItem="JHA-i2-dUG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="tRq-ku-u3q"/>
                     <constraint firstAttribute="bottom" secondItem="gZ0-Hf-6Lo" secondAttribute="bottom" id="tSN-by-gYI"/>
                     <constraint firstItem="MZw-Zw-Lsa" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="v0u-t4-ar6"/>

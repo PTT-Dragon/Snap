@@ -10,7 +10,10 @@
 
 @interface CategoryRankCell ()
 
-@property (nonatomic, readwrite, strong) UIImageView *iconLabelImageView;//icon 右上角标签
+@property (nonatomic, readwrite, strong) UIImageView *iconTopLeftImageView;//icon 右上角标签
+@property (nonatomic, readwrite, strong) UIImageView *iconTopRightImageView;//icon 右上角标签
+@property (nonatomic, readwrite, strong) UIImageView *iconBottomLeftImageView;//icon 右上角标签
+@property (nonatomic, readwrite, strong) UIImageView *iconBottomRightImageView;//icon 右上角标签
 @property (nonatomic, readwrite, strong) UIImageView *iconImageView;
 @property (nonatomic, readwrite, strong) TagListView *promoTypeView;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
@@ -35,7 +38,10 @@
     self.contentView.layer.borderWidth = 0.5;
     self.contentView.layer.borderColor = [UIColor jk_colorWithHexString:@"#CCCCCC"].CGColor;
     [self.contentView addSubview:self.iconImageView];
-    [self.iconImageView addSubview:self.iconLabelImageView];
+    [self.iconImageView addSubview:self.iconTopLeftImageView];
+    [self.iconImageView addSubview:self.iconTopRightImageView];
+    [self.iconImageView addSubview:self.iconBottomLeftImageView];
+    [self.iconImageView addSubview:self.iconBottomRightImageView];
     [self.contentView addSubview:self.promoTypeView];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.priceLabel];
@@ -53,10 +59,25 @@
         make.height.mas_equalTo(160);
     }];
     
-    [self.iconLabelImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.iconTopLeftImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.mas_equalTo(0);
+        make.height.mas_equalTo(KScale(30));
+        make.width.mas_equalTo(KScale(30));
+    }];
+    [self.iconTopRightImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(KScale(50));
-        make.width.mas_equalTo(KScale(50));
+        make.height.mas_equalTo(KScale(30));
+        make.width.mas_equalTo(KScale(30));
+    }];
+    [self.iconBottomLeftImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(KScale(30));
+        make.width.mas_equalTo(KScale(30));
+    }];
+    [self.iconBottomRightImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(KScale(30));
+        make.width.mas_equalTo(KScale(30));
     }];
     
     [self.promoTypeView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -130,10 +151,25 @@
         make.width.mas_equalTo(KScale(160));
     }];
     
-    [self.iconLabelImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.iconTopLeftImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.mas_equalTo(0);
+        make.height.mas_equalTo(KScale(30));
+        make.width.mas_equalTo(KScale(30));
+    }];
+    [self.iconTopRightImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(KScale(50));
-        make.width.mas_equalTo(KScale(50));
+        make.height.mas_equalTo(KScale(30));
+        make.width.mas_equalTo(KScale(30));
+    }];
+    [self.iconBottomLeftImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(KScale(30));
+        make.width.mas_equalTo(KScale(30));
+    }];
+    [self.iconBottomRightImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(KScale(30));
+        make.width.mas_equalTo(KScale(30));
     }];
     
     [self.promoTypeView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -222,11 +258,28 @@
 
 - (void)setModel:(CategoryRankPageInfoListModel *)model {
     _model = model;
-    if (_model.labelPictureUrl.length > 0) {
-        self.iconLabelImageView.hidden = NO;
-        [self.iconLabelImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.labelPictureUrl)]];
-    } else {
-        self.iconLabelImageView.hidden = YES;
+    self.iconTopLeftImageView.hidden = YES;
+    self.iconBottomLeftImageView.hidden = YES;
+    self.iconTopRightImageView.hidden = YES;
+    self.iconBottomRightImageView.hidden = YES;
+    for (CategoryRankPageInfoListLabelsModel *labelsModel in model.labels) {
+        if ([labelsModel.position isEqualToString:@"1"]) {
+            self.iconTopLeftImageView.hidden = NO;
+            [self.iconTopLeftImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.labelPictureUrl)]];
+        }else if([labelsModel.position isEqualToString:@"2"]){
+            self.iconBottomLeftImageView.hidden = NO;
+            [self.iconBottomLeftImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.labelPictureUrl)]];
+        }else if([labelsModel.position isEqualToString:@"3"]){
+            self.iconTopRightImageView.hidden = NO;
+            [self.iconTopRightImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.labelPictureUrl)]];
+        }else if([labelsModel.position isEqualToString:@"4"]){
+            self.iconBottomRightImageView.hidden = NO;
+            [self.iconBottomRightImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.labelPictureUrl)]];
+        }else if([labelsModel.position isEqualToString:@"5"]){
+            
+        }else{
+            
+        }
     }
     NSArray *formatterTags = _model.allTags;
     if (formatterTags.count) {
@@ -275,7 +328,7 @@
 //        self.iconLabelImageView.hidden = NO;
 //        [self.iconLabelImageView sd_setImageWithURL:[NSURL URLWithString:SFImage(_similarModel.labelPictureUrl)]];
 //    } else {
-        self.iconLabelImageView.hidden = YES;
+//        self.iconLabelImageView.hidden = YES;
 //    }
     NSArray *formatterTags = similarModel.allTags;//[self fetchTagsWithSppType:similarModel.sppType promotType:@""];
     if (formatterTags.count) {
@@ -356,12 +409,33 @@
     return _iconImageView;
 }
 
-- (UIImageView *)iconLabelImageView {
-    if (_iconLabelImageView == nil) {
-        _iconLabelImageView = [[UIImageView alloc] init];
-        _iconLabelImageView.hidden = YES;
+- (UIImageView *)iconTopLeftImageView {
+    if (_iconTopLeftImageView == nil) {
+        _iconTopLeftImageView = [[UIImageView alloc] init];
+        _iconTopLeftImageView.hidden = YES;
     }
-    return _iconLabelImageView;
+    return _iconTopLeftImageView;
+}
+- (UIImageView *)iconTopRightImageView {
+    if (_iconTopRightImageView == nil) {
+        _iconTopRightImageView = [[UIImageView alloc] init];
+        _iconTopRightImageView.hidden = YES;
+    }
+    return _iconTopRightImageView;
+}
+- (UIImageView *)iconBottomLeftImageView {
+    if (_iconBottomLeftImageView == nil) {
+        _iconBottomLeftImageView = [[UIImageView alloc] init];
+        _iconBottomLeftImageView.hidden = YES;
+    }
+    return _iconBottomLeftImageView;
+}
+- (UIImageView *)iconBottomRightImageView {
+    if (_iconBottomRightImageView == nil) {
+        _iconBottomRightImageView = [[UIImageView alloc] init];
+        _iconBottomRightImageView.hidden = YES;
+    }
+    return _iconBottomRightImageView;
 }
 
 - (UILabel *)titleLabel {

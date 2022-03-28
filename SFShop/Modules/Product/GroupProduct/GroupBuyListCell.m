@@ -51,7 +51,7 @@
     for (cmpShareBuysModel *shareBuysModel in model.campaigns.cmpShareBuys) {
         for (ProductGroupListModel *listModel in shareBuysModel.groups) {
             UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*20, 0, 18, 18)];
-            [imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(listModel.photo)]];
+            [imgView sd_setImageWithURL:[NSURL URLWithString:SFImage(listModel.photo)] placeholderImage:[UIImage imageNamed:@"Unknown"]];
             i++;
             [_groupInfoBgView addSubview:imgView];
             if (i>= 3) {

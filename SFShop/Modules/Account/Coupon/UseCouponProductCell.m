@@ -21,6 +21,10 @@
 @property (nonatomic,strong) CategoryRankPageInfoListModel *model;
 @property (weak, nonatomic) IBOutlet UIImageView *starImgView;
 @property (nonatomic, readwrite, strong) TagListView *promoTypeView;
+@property (weak, nonatomic) IBOutlet UIImageView *topLeftImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *topRightImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *bottomRightImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *bottomLeftImgView;
 
 @end
 
@@ -47,6 +51,29 @@
     self.starImgView.hidden = [score isEqualToString:@""];
     _scoreLabel.text = [NSString stringWithFormat:@"%@ %@",score,count];
     _offLabel.text = [NSString stringWithFormat:@" -%@%% ",model.discountPercent];
+    
+    [self.topLeftImgView sd_setImageWithURL:[NSURL URLWithString:@""]];
+    [self.topRightImgView sd_setImageWithURL:[NSURL URLWithString:@""]];
+    [self.bottomLeftImgView sd_setImageWithURL:[NSURL URLWithString:@""]];
+    [self.bottomRightImgView sd_setImageWithURL:[NSURL URLWithString:@""]];
+    
+    if (model.labels && model.labels.count > 0) {
+        for (CategoryRankPageInfoListLabelsModel *labelsModel in model.labels) {
+            if ([labelsModel.position isEqualToString:@"1"]) {
+                [self.topLeftImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.labelPictureUrl)]];
+            }else if([labelsModel.position isEqualToString:@"3"]){
+                [self.topRightImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.labelPictureUrl)]];
+            }else if([labelsModel.position isEqualToString:@"2"]){
+                [self.bottomLeftImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.labelPictureUrl)]];
+            }else if([labelsModel.position isEqualToString:@"4"]){
+                [self.bottomRightImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.labelPictureUrl)]];
+            }else if([labelsModel.position isEqualToString:@"5"]){
+                
+            }else{
+                
+            }
+        }
+    }
     
     NSArray *formatterTags = _model.allTags;
     if (formatterTags.count) {

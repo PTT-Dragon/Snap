@@ -52,6 +52,13 @@
         _discountLabel.font = CHINESE_BOLD(14);
         _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
     }
+    if (model.getOffsetExp) {
+        _timeLabel.text = [NSString stringWithFormat:@"%@ %@ %@",kLocalizedString(@"VALID_RANGE"),_model.getOffsetExp,kLocalizedString(@"hari")];
+    }else if (model.effDate){
+        _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[[NSDate dateFromString:model.effDate] dayMonthYear],[[NSDate dateFromString:model.expDate] dayMonthYear]];
+    }else{
+        _timeLabel.text = @"";
+    }
     [_storeImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(_model.storeLogo)] placeholderImage:[UIImage imageNamed:@"toko"]];
 //    NSUInteger endTimeStamp = [[NSDate dateFromString:model.expDate] utcTimeStamp];
 //    NSUInteger nowTimeStamp = [[NSDate date] utcTimeStamp];
@@ -71,11 +78,6 @@
         _model.isGet = NO;
         [self.getBtn setTitle:kLocalizedString(@"GET_NOW") forState:0];
     }
-//    if ([model.isOrderTh isEqualToString:@"Y"]) {
-//        _contentLabel.text = [NSString stringWithFormat:@"Min.spend %@",[[NSString stringWithFormat:@"%@f",model.thAmount] currency]];
-//    }else{
-//        _contentLabel.text = [NSString stringWithFormat:@"%@ Without limit",[[NSString stringWithFormat:@"%.0f",model.discountAmount] currency]];
-//    }
     _contentLabel.text = model.couponName;
     _storeNameLabel.text = model.storeName ? model.storeName: @"Platform Voucher";
     

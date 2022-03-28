@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RelationOrderViewController : VTMagicController
+@property (nonatomic,assign) NSInteger selIndex;
 
 @end
 

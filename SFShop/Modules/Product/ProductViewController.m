@@ -46,6 +46,7 @@
 #import "ProductChoosePromotionView.h"
 #import "NSDate+Helper.h"
 #import "NSString+Fee.h"
+#import "ASPageView.h"
 
 
 @interface ProductViewController ()<UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,ChooseAreaViewControllerDelegate,BaseNavViewDelegate,WKNavigationDelegate,JPVideoPlayerDelegate>
@@ -59,6 +60,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *chatBtnWidth;
 @property(nonatomic, strong) ProductDetailModel *model;
 @property (weak, nonatomic) IBOutlet iCarousel *carouselImgView;
+@property (strong, nonatomic) ASPageView *pageView;
 @property (weak, nonatomic) IBOutlet UILabel *salesPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *marketPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *offerNameLabel;
@@ -315,6 +317,30 @@
                     [arr removeObject:obj];
                 }
             }];
+            NSArray *testArr = [arr sortedArrayWithOptions:NSSortStable usingComparator:
+            ^NSComparisonResult(CouponModel *  _Nonnull obj1, CouponModel *  _Nonnull obj2) {
+                NSInteger timeStamp1 = 0;
+                NSInteger timeStamp2 = 0;
+                //结束时间
+                if (obj1.expDate) {
+                    timeStamp1 = [[NSDate dateFromString:obj1.expDate] utcTimeStamp];
+                }else if (obj1.getOffsetExp){
+                    timeStamp1 = [[NSDate date] utcTimeStamp]+obj1.getOffsetExp.integerValue*86400;
+                }
+                if (obj2.expDate) {
+                    timeStamp2 = [[NSDate dateFromString:obj2.expDate] utcTimeStamp];
+                }else if (obj2.getOffsetExp){
+                    timeStamp2 = [[NSDate date] utcTimeStamp]+obj2.getOffsetExp.integerValue*86400;
+                }
+                        if (timeStamp1 > timeStamp2) {
+                            return NSOrderedDescending;
+                        }else if (timeStamp1 == timeStamp2){
+                            return NSOrderedSame;
+                        }else{
+                            return NSOrderedAscending;
+                        }
+                    }];
+            NSMutableArray *resultArr = [NSMutableArray arrayWithArray:testArr];
             view.couponDataSource = arr;
             [[baseTool getCurrentVC].view addSubview:view];
         }
@@ -651,6 +677,8 @@
     _carouselImgView.type = iCarouselTypeLinear;
     _carouselImgView.bounces = NO;
     _carouselImgView.pagingEnabled = YES;
+    
+    
     
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     config.preferences = [WKPreferences new];
@@ -1035,7 +1063,12 @@
     self.selProductModel = [model.products jk_filter:^BOOL(ProductItemModel *object) {
         return object.productId == self.productId;
     }].firstObject;
-    
+    _pageView = [[ASPageView alloc] initWithFrame:CGRectMake((MainScreen_width-100)/2, MainScreen_width-30, 100, 10) pageNumber:self.model.carouselImgUrls.count+1];
+    _pageView.pageIndicatorTintColor = RGBColorFrom16(0xefefef);
+    _pageView.currentPageIndicatorTintColor = RGBColorFrom16(0xff1659);
+    _pageView.circularPage = NO;
+    _pageView.pageSize = CGSizeMake(20, 3);
+    [self.scrollContentView addSubview:_pageView];
     [self.carouselImgView reloadData];
 }
 - (void)setSelProductModel:(ProductItemModel *)selProductModel
@@ -1608,6 +1641,7 @@
             [[JPVideoPlayerManager sharedManager] pause];
         }
     }
+    self.pageView.currentPage = index;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
@@ -1625,10 +1659,25 @@
         [iv sd_setImageWithURL: [NSURL URLWithString: SFImage([MakeH5Happy getNonNullCarouselImageOf: self.selProductModel])]];
         [backView addSubview:iv];
         if (self.selProductModel.labels && self.selProductModel.labels.count > 0) {
-            UIImageView *subImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-            ProductItemLabelsModel *labelsModel = self.selProductModel.labels.firstObject;
-            [subImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.imgUrl)]];;
-            [iv addSubview:subImgView];
+            for (ProductItemLabelsModel *labelsModel in self.selProductModel.labels) {
+                CGRect frame;
+                if (labelsModel.position == 1) {
+                    frame = CGRectMake(0, 0, 60, 60);
+                }else if(labelsModel.position == 3){
+                    frame = CGRectMake(MainScreen_width-60, 0, 60, 60);
+                }else if(labelsModel.position == 2){
+                    frame = CGRectMake(0, MainScreen_width-60, 60, 60);
+                }else if(labelsModel.position == 4){
+                    frame = CGRectMake(MainScreen_width-60, MainScreen_width-60, 60, 60);
+                }else if(labelsModel.position == 5){
+                    frame = CGRectMake(0, MainScreen_width-60, 0, 0);
+                }else{
+                    frame = CGRectMake(MainScreen_width-60, MainScreen_width-60, 0, 0);
+                }
+                UIImageView *subImgView = [[UIImageView alloc] initWithFrame:frame];
+                [subImgView sd_setImageWithURL:[NSURL URLWithString:SFImage(labelsModel.imgUrl)]];;
+                [iv addSubview:subImgView];
+            }
         }
     }else {
         
