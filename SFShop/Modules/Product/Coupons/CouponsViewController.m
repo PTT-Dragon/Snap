@@ -36,8 +36,12 @@
 
 - (void)snapSubviews {
     CGFloat tableHeight = self.dataArray.count * (KCouponsCellHeight + KCouponsCellFooter);
+    _tableView.scrollEnabled = YES;
     if (tableHeight > MainScreen_height * 0.7) {
         tableHeight = MainScreen_height * 0.7;
+    }else if (tableHeight < 200){
+        tableHeight = 200;
+        _tableView.scrollEnabled = NO;
     }
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
