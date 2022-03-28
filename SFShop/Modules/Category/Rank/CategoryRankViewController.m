@@ -167,7 +167,7 @@
     CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
     filterVc.model = self.dataModel;
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
-        if (type != CategoryRankFilterRefreshCancel) {
+        if (type != CategoryRankFilterRefreshCancel && type != CategoryRankFilterRefreshDidSelected) {
             [self resetIfEmpty];
             [self disableInitParam];
             self.dataModel = model;
