@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, CategoryRankFilterRefreshType) {
     CategoryRankFilterRefreshCancel,//取消
     CategoryRankFilterRefreshReset,//重置
-    CategoryRankFilterRefreshUpdate,//更新
+    CategoryRankFilterRefreshConfirm,//确定
+    CategoryRankFilterRefreshDidSelected,//点击选中
 };
 
 @interface CategoryRankFilterViewController : UIViewController

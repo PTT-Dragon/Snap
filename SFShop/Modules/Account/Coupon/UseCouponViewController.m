@@ -54,7 +54,7 @@
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @property (nonatomic,strong) EmptyView *emptyView;
 @property (nonatomic,strong) CouponModel *couponModel;
-
+@property (nonatomic,strong) CategoryRankFilterViewController *filterVc;
 @end
 
 @implementation UseCouponViewController
@@ -209,6 +209,7 @@
             self.emptyView.hidden = YES;
             self.tableView.mj_footer.hidden = NO;
         }
+        [self updateFilterDetailIfNeed];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:error.localizedDescription];
         if ([self.tableView.mj_header isRefreshing]) {
@@ -286,18 +287,24 @@
 #pragma mark - Event
 - (void)jumpToFilterDetail {
     //加载缓存配置到数据层
-    self.dataModel.filterCache = self.filterCacheModel;
-    CategoryRankFilterViewController *filterVc = [[CategoryRankFilterViewController alloc] init];
-    filterVc.model = self.dataModel;
+    self.filterVc = [[CategoryRankFilterViewController alloc] init];
+    [self updateFilterDetailIfNeed];
     MPWeakSelf(self)
-    filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
+    self.filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
         if (type != CategoryRankFilterRefreshCancel) {
             weakself.dataModel = model;
             weakself.filterCacheModel = weakself.dataModel.filterCache;
-            [self.tableView.mj_header beginRefreshing];
+            [weakself.tableView.mj_header beginRefreshing];
         }
     };
-    [self presentViewController:filterVc animated:YES completion:nil];
+    [self presentViewController:self.filterVc animated:YES completion:nil];
+}
+
+- (void)updateFilterDetailIfNeed {
+    if (self.filterVc) {
+        self.dataModel.filterCache = self.filterCacheModel;
+        self.filterVc.model = self.dataModel;
+    }
 }
 
 - (CategoryRankHeadSelectorView *)headSelectorView {

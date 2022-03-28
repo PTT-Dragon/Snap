@@ -65,7 +65,7 @@
     filterVc.model = self.dataModel;
     MPWeakSelf(self)
     filterVc.filterRefreshBlock = ^(CategoryRankFilterRefreshType type, CategoryRankModel * _Nonnull model) {
-        if (type != CategoryRankFilterRefreshCancel) {
+        if (type != CategoryRankFilterRefreshCancel && type != CategoryRankFilterRefreshDidSelected) {
             FavoriteChildViewController *vc = self.magicController.childViewControllers[self.magicController.currentPage];
             if (model.priceModel && model.priceModel.minPrice > -1) {
                 model.priceModel.minPrice = [[NSString stringWithFormat:@"%.ld",model.priceModel.minPrice] multiplyCurrencyFloat];

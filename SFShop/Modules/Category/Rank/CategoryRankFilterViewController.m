@@ -100,8 +100,12 @@
 
 - (void)confirm {
     [self dismiss:^{
-        !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshUpdate,self.model);
+        !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshConfirm,self.model);
     }];
+}
+
+- (void)didSelected {
+    !self.filterRefreshBlock ?: self.filterRefreshBlock(CategoryRankFilterRefreshDidSelected,self.model);
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -160,6 +164,7 @@
             }
             self.model.filterCache.offerAttrValues = arr;
         }
+        [self didSelected];
     }
 }
 
@@ -234,6 +239,7 @@
 
 #pragma mark - Getter
 - (void)setModel:(CategoryRankModel *)model {
+    [self.dataArray removeAllObjects];
     _model = model;
     
     CategoryRankPriceModel *priceModel = [CategoryRankPriceModel new];
@@ -316,6 +322,8 @@
             }
         }
     }
+    
+    [self.collectionView reloadData];
 }
 
 - (UICollectionView *)collectionView {
