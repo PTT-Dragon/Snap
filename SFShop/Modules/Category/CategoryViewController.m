@@ -218,6 +218,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryModel *model = [self.sideTableView.dataArray objectAtIndex:indexPath.row];
     _selCategoryModel = model;
+    //这里不用缓存
 //    NSArray *arr = [self.cacheDatas objectForKey:[NSString stringWithFormat:@"%ld",model.inner.catgId]];
 //    if (arr) {
 //        self.contentCollectionView.dataArray = arr;

@@ -63,6 +63,7 @@
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar setTranslucent:NO];
     self.tabBar.tintColor = RGBColorFrom16(0xFF1659);
+    [self setDelegate:self];
     [self setViewControllers:@[homeNav,categoryNav,communityNav,CartNav,accountNav]];
     [[UINavigationBar appearance]setTintColor:[UIColor blackColor]];
     [baseTool updateCartNum];
