@@ -29,6 +29,7 @@
 @property (nonatomic, readwrite, strong) NSURLSessionDataTask *lastRequestTask;
 @property (nonatomic, readwrite, strong) BaseMoreView *moreView;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
+@property (nonatomic,strong) CategoryModel *selCategoryModel;//记录选中的分类
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @end
 
@@ -72,13 +73,19 @@
         [MBProgressHUD hideFromKeyWindow];
         NSArray *array = response;
          [self.sideTableView.dataArray removeAllObjects];
+         NSInteger row = 0;
+         NSInteger i = 0;
         for (NSDictionary *dict in array) {
             CategoryModel *model = [CategoryModel yy_modelWithDictionary:dict];
             [self.sideTableView.dataArray addObject:model];
+            if (model.inner.catgId == self.selCategoryModel.inner.catgId) {
+                row = i;
+            }
+            i++;
         }
         [self.sideTableView reloadData];
-        [self.sideTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-        CategoryModel *model = self.sideTableView.dataArray.firstObject;
+        [self.sideTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+         CategoryModel *model = self.selCategoryModel ? self.selCategoryModel : self.sideTableView.dataArray.firstObject;
         [self loadContentDatas:model.inner.catgId];
     } failed:^(NSError * _Nonnull error) {
         [MBProgressHUD showTopErrotMessage:error.localizedDescription];
@@ -202,6 +209,7 @@
 #pragma mark UITableviewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryModel *model = [self.sideTableView.dataArray objectAtIndex:indexPath.row];
+    _selCategoryModel = model;
     NSArray *arr = [self.cacheDatas objectForKey:[NSString stringWithFormat:@"%ld",model.inner.catgId]];
     if (arr) {
         self.contentCollectionView.dataArray = arr;
