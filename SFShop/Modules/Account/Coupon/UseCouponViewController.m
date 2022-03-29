@@ -200,6 +200,9 @@
         if ([self.tableView.mj_footer isRefreshing]) {
             [self.tableView.mj_footer endRefreshing];
         }
+        if (self.dataModel.pageInfo.isLastPage) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
         [self.dataArray addObjectsFromArray:self.dataModel.pageInfo.list];
         [self.tableView reloadData];
         if (self.dataArray.count==0) {
