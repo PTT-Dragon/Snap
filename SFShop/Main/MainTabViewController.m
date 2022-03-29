@@ -14,7 +14,7 @@
 #import "CategoryViewController.h"
 #import "PublicWebViewController.h"
 
-@interface MainTabViewController ()
+@interface MainTabViewController ()<UITabBarControllerDelegate,UITabBarDelegate>
 
 @end
 
@@ -77,6 +77,16 @@
         [baseTool updateCartNum];
     }else if ([item.title isEqualToString:kLocalizedString(@"Home")]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"KReloadWebview" object:nil];
+    }else if ([item.title isEqualToString:kLocalizedString(@"Category")]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"KRemoveSelCategoryModel" object:nil];
     }
+}
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    
+}
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    return YES;
 }
 @end

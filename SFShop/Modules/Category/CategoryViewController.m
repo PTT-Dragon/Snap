@@ -7,7 +7,6 @@
 
 #import "CategoryViewController.h"
 #import "CategorySideTableView.h"
-#import "CategoryModel.h"
 #import "CategoryContentCollectionView.h"
 #import "CategoryRankViewController.h"
 #import "SFSearchNav.h"
@@ -29,12 +28,15 @@
 @property (nonatomic, readwrite, strong) NSURLSessionDataTask *lastRequestTask;
 @property (nonatomic, readwrite, strong) BaseMoreView *moreView;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
-@property (nonatomic,strong) CategoryModel *selCategoryModel;//记录选中的分类
 //@property (nonatomic, readwrite, strong) SFSearchNav *navSearchView;
 @end
 
 @implementation CategoryViewController
-- (void)viewDidDisappear:(BOOL)animated
+//- (void)viewDidDisappear:(BOOL)animated
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
+- (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -48,10 +50,16 @@
 - (void)addNoti
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideMoreView) name:@"KBaseMoreViewHidden" object:nil];;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeCategoryModel) name:@"KRemoveSelCategoryModel" object:nil];;
+    
 }
 - (void)hideMoreView
 {
     [self.navSearchView clickRightBtn];
+}
+- (void)removeCategoryModel
+{
+    self.selCategoryModel = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -210,13 +218,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryModel *model = [self.sideTableView.dataArray objectAtIndex:indexPath.row];
     _selCategoryModel = model;
-    NSArray *arr = [self.cacheDatas objectForKey:[NSString stringWithFormat:@"%ld",model.inner.catgId]];
-    if (arr) {
-        self.contentCollectionView.dataArray = arr;
-        [self.contentCollectionView reloadData];
-    } else {
+//    NSArray *arr = [self.cacheDatas objectForKey:[NSString stringWithFormat:@"%ld",model.inner.catgId]];
+//    if (arr) {
+//        self.contentCollectionView.dataArray = arr;
+//        [self.contentCollectionView reloadData];
+//    } else {
         [self loadContentDatas:model.inner.catgId];
-    }
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

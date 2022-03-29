@@ -13,7 +13,7 @@
 #import <TwitterKit/TwitterKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -85,7 +85,17 @@
 
 - (void)receiveLanguageChangeNotification:(NSNotification *)sender {
     self.tabVC = [[MainTabViewController alloc] init];
+    self.tabVC.delegate = self;
     self.window.rootViewController = self.tabVC;
+}
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    
+}
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    
+    return YES;
 }
 
 - (void)confitUShareSettings {
